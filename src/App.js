@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import {Redirect} from 'react-router';
 import './css/App.scss';
 import { withTranslation } from 'react-i18next';
+import { withStyles } from '@material-ui/core/styles';
 
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -23,6 +24,43 @@ import Home from './containers/00Home/Home';
 import {
     Button
 } from '@material-ui/core';
+
+const styles = theme => ({
+    root: {
+        [theme.breakpoints.up('md')]: {
+            width: '700px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        marginBottom: '70px',
+    },
+    requiredField: {
+        color: 'red',
+    },
+    createButton: {
+        [theme.breakpoints.up('md')]: {
+            borderRadius: '10px',
+            display: 'block',
+            margin: '0 auto',
+            marginTop: '10px',
+            marginBottom: '10px',
+            width: '360px',
+        },
+        [theme.breakpoints.down('sm')]: {
+            borderRadius: '0px',
+            bottom: '0px',
+            position: 'fixed',
+            width: '100%',
+            height: '60px',
+            fontSize: '20px',
+        },
+        backgroundColor: theme.palette.secondary.main,
+        color: 'white',
+        '&:hover': {
+            backgroundColor: theme.palette.secondary.main,
+        },
+    },
+});
 
 class App extends Component {
 
@@ -97,7 +135,7 @@ class App extends Component {
 
                     <div className="blackPlane"></div>
 
-                    <Button>123</Button>
+                    <Button className={this.props.classes.createButton}>Hello</Button>
 
                     {/* <Footer /> */}
                 </div>
@@ -112,4 +150,4 @@ const mapStateToProps = (state) => (
     }
 );
 
-export default withTranslation()(connect(mapStateToProps)(App));
+export default withTranslation()(connect(mapStateToProps)(withStyles(styles)(App)));
