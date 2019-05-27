@@ -1,0 +1,40 @@
+.wrapper-search { padding:0 20px; 
+    @media (max-width: 640px) { padding:0 20px 20px; }
+
+    .search { margin:0 auto; max-width:665px; background:white; padding:15px; border:solid 1px #ccc;
+
+        .wrap { margin: 0 0 0 -30px; 
+            > div.fifty,
+            > div.oneThird,
+            > div.twoThird {
+                @media (max-width: 640px) { width:100%; }
+            }
+            .sep-0 { border-bottom:solid 1px #ccc; margin:0 0 10px 30px; 
+                &.toShow { display:none; 
+                    @media (max-width: 640px) { display:block; }
+                }
+            }
+            
+            > div > div { margin:0 0 0 30px; position:relative;
+
+                .vertical-sep { position:absolute; width:1px; height:calc(100% - 10px); top:0; right:-15px; background:#ccc; 
+                    @media (max-width: 640px) { display:none; }
+                }
+
+                select,
+                input { border:none; padding:0; }
+
+                h5 { color:$majorYellowGreen; text-transform:uppercase; margin:0; 
+                    &.toHide { 
+                        @media (max-width: 640px) { display:none; }
+                    }
+                }
+                .button { width:100%; background:$majorYellowGreen; margin:0; padding:15px 25px; font-size:18px; 
+                    &.special { margin-top:26px; 
+                        @media (max-width: 640px) { margin-top:10px; }
+                    }
+                }
+            }
+        }
+    }
+}

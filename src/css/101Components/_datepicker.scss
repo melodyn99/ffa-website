@@ -1,0 +1,82 @@
+// REACT DATEPICKER
+.react-datepicker-wrapper { width:100% !important;
+    >div { width:100% !important; 
+        input[type=text] { background: #fff url('../images/mobile/03_find_parking_space/icon_type_1.png') center right no-repeat; width:100% !important; }
+    }
+}
+
+.react-datepicker-popper { z-index: 5 !important; }
+.react-datepicker-popper[data-placement^="top"] { margin:0!important; }
+.react-datepicker-popper[data-placement^="bottom"] { margin:0!important; }
+
+// header
+.react-datepicker { border: 1px solid #cccccc !important; border-radius: 0 !important; box-shadow:0px 0 15px #ddd !important;
+    
+    .react-datepicker__triangle { display:none !important; }
+    
+    .react-datepicker__navigation { top:36px!important; }
+
+    .react-datepicker__header { background:none !important; border:none!important; border-radius:0 !important; padding-top: 34px; text-transform: uppercase;
+        
+        .react-datepicker__current-month { font-size:20px; margin-bottom:12px; }
+        
+        .react-datepicker__day-name {
+            width:3rem !important;
+            height:2rem !important;
+            line-height:3rem !important;
+            text-transform: uppercase;
+            font-weight:bold;
+        }
+    }
+}
+
+// available days
+.react-datepicker__day {
+    color:#fff !important; 
+    background:$majorGreen !important;
+    
+    width:3rem !important;
+    height:3rem !important;
+    line-height:3rem !important;
+
+    &:hover { border-radius:0 !important; }
+
+    &.react-datepicker__day--keyboard-selected, 
+    &.react-datepicker__day--today {
+        border-radius:0 !important;
+    }
+}
+
+// unavailable days
+.react-datepicker__day--disabled {
+    color:#a7a7a7 !important;
+    background:#dedede !important;
+}
+
+// outside month
+.react-datepicker__day--outside-month {
+    color:#a7a7a7 !important;
+    background:none!important;
+}
+
+// Add by jabie for mobile version
+@media (max-width: 980px) {
+    // header
+    .react-datepicker {
+        .react-datepicker__header {
+            padding-top: 15px;
+
+            .react-datepicker__day-name {
+                width:2rem !important;
+                line-height:2rem !important;
+            }
+        }
+    }
+
+    // available days
+    .react-datepicker__day {
+        width:2rem !important;
+        height:2rem !important;
+        line-height:2rem !important;
+    }
+}

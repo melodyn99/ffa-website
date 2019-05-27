@@ -1,0 +1,114 @@
+/* grid */
+.full img,
+.fifty img,
+.oneThird img,
+.twoThird img,
+.oneFourth img,
+.oneFifth img,	
+.oneSixth img,
+.oneTenth img,
+.thirty img,
+.forty img,
+.sixty img,
+.seventy img            { width:100%; }		
+
+.full					{ width:100%; }
+.fifty					{ width:50%; }
+.oneThird				{ width:33.33%; }
+.twoThird				{ width:66.66%; }
+.oneFourth				{ width:25%; }
+.oneFifth				{ width:20%; }
+.oneSixth				{ width:16.66%; }
+.oneTenth				{ width:10%; }
+.twenty 				{ width:20%; }
+.thirty					{ width:30%; }
+.forty					{ width:40%; }
+.sixty					{ width:60%; }
+.seventy				{ width:70%; }
+
+/* sep */
+.sep-0					{ height:0px; clear:both; padding:0; }
+.sep-5					{ height:0px; clear:both; padding:2px 0 3px; }
+.sep-10					{ height:0px; clear:both; padding:5px 0 5px; }
+.sep-15					{ height:0px; clear:both; padding:7px 0 8px; }
+.sep-20					{ height:0px; clear:both; padding:10px 0 10px; }
+.sep-25					{ height:0px; clear:both; padding:15px 0 10px; }
+.sep-30					{ height:0px; clear:both; padding:15px 0 15px; }
+.sep-40					{ height:0px; clear:both; padding:20px 0 20px; }
+.sep-60					{ height:0px; clear:both; padding:30px 0 30px; }
+// .sep-0					{ height:0px; clear:both; padding:0; background:red; }
+// .sep-5					{ height:0px; clear:both; padding:2px 0 3px; background:orange; }
+// .sep-10					{ height:0px; clear:both; padding:5px 0 5px; background:pink; }
+// .sep-15					{ height:0px; clear:both; padding:7px 0 8px; background:green; }
+// .sep-20					{ height:0px; clear:both; padding:10px 0 10px; background:cyan; }
+// .sep-25					{ height:0px; clear:both; padding:15px 0 10px; background:blue; }
+// .sep-30					{ height:0px; clear:both; padding:15px 0 15px; background:purple; }
+// .sep-40					{ height:0px; clear:both; padding:20px 0 20px; background:brown; }
+.sep-60					{ height:0px; clear:both; padding:30px 0 30px; }
+.sepTwo		    		{ height:0px; clear:both; padding:0; display:none; }
+.sepFour				{ height:0px; clear:both; padding:0; display:none; }
+.sepThree				{ height:0px; clear:both; padding:0; display:none; }
+.sepSeven				{ height:0px; clear:both; padding:0; display:none; }
+.sep-line				{ height:1px; clear:both; padding:0; margin:20px 0 20px 0; }
+
+/* margin */
+.n1						{ margin:0 0 0 -1px; }
+.p1						{ margin:0 0 1px 1px; }
+
+.n20					{ margin:0 0 0 -20px; }
+.p20					{ margin:0 0 20px 20px; }
+
+/* form grid */
+dl.generalForm { width:100%;
+
+    >div { display:table; width:100%;
+
+        @media (max-width: 980px ) { display:block; }
+
+        dt { display:table-cell; vertical-align:middle; width:200px; padding:0 20px 0 0; font-size:18px; color:#444; 
+            
+            @media (max-width: 980px ) { display:block; width:100%; }
+
+            h4 { margin:0; font-size:18px;
+                
+                @media (max-width: 980px ) { margin: 0 0 20px 0; }
+            }
+        }
+
+        dd { display:table-cell; vertical-align:middle; width:calc(100% - 200px); position: relative;
+
+            @media (max-width: 980px ) { display:block; width:100%; }
+        
+            .wrap { margin:0 0 0 -25px; display:table; width:calc(100% + 25px);
+
+                > div { display:table-cell; vertical-align:middle; 
+                    
+                    @media (max-width: 640px ) { display:block; width:100%; }
+                }
+
+                > div > div { margin:0 0 0 25px;
+                    
+                    @media (max-width: 640px ) { margin:0 0 25px 25px; }
+                }
+            }
+
+            .addmore,
+            .removemore { position:absolute; top:0; right:0; color:$majorGreen; padding:18px 15px 18px 35px; height:56px; cursor:pointer; }
+
+            .addmore {background:url('../images/mobile/03_find_parking_space/icon_add.png') center left no-repeat; background-size:27px; }
+            .removemore { background:url('../images/mobile/04_list_a_space/icon_remove.png') center left no-repeat; background-size:27px; }
+        }
+        .sep-40 {
+            @media (max-width: 640px ) { display:none; }
+         }
+
+        .spaceFix {
+            @media (max-width: 640px ) { display:none; }
+        }
+
+        p { margin: 0 0 10px 0; font-size:18px; }
+
+        .button { display:inline-block; margin:0; }
+    }
+    .sep-40 { }
+}

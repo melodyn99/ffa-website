@@ -1,0 +1,12 @@
+@mixin animation-delay($time) {
+	animation-delay:$time; 
+	-webkit-animation-delay:$time; 
+}
+
+@mixin transition($time) {
+	-moz-transition:all $time ease-out;
+	-o-transition:all $time ease-out; 
+	-webkit-transition:all $time ease-out;
+	-ms-transition:all $time ease-out; 
+	transition:all $time ease-out;
+}

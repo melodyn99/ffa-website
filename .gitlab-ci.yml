@@ -1,0 +1,38 @@
+stages: 
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script: echo "Building project"
+
+test:
+  stage: test
+  script: echo "Testing project"
+
+deploy_dev:
+  stage: deploy
+  script:
+    - echo "Deploy to dev server"
+    - eval $(ssh-agent)
+    - ssh-add ~/.ssh/xxxx.pem
+    - ssh -p22 xxxx@xxxx" 
+  environment:
+    name: dev
+    url: https://letspark.dev.guruonlineapps.com/
+  only:
+    - dev_guru
+
+deploy_uat:
+  stage: deploy
+  script:
+    - echo "Deploy to uat server"
+    - eval $(ssh-agent)
+    - ssh-add ~/.ssh/xxxx.pem
+    - ssh -p22 xxxx@xxxx" 
+  environment:
+    name: uat
+    url: https://letspark.uat.guruonlineapps.com/
+  only:
+    - uat_guru

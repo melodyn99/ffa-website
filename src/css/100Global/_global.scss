@@ -1,0 +1,70 @@
+html, 
+body { font-family:$font-family-body; font-size:$font-size-base; font-weight:normal; color:$bodyColor; line-height:$line-height-base;
+        margin:0; padding:0; border:0; vertical-align:baseline; height:100%; word-break:break-word; -webkit-text-size-adjust:100%; }
+
+body { -webkit-text-size-adjust:none; background:$bodyBgColor; overflow-y:scroll; opacity:1; 
+	&.active{ opacity:1; }
+    * { outline:none; box-sizing:border-box; }
+}
+
+a { margin:0; padding:0; border:0; text-decoration:none; color:$aColor; word-wrap:break-word; font-size:13px;
+    &:hover,
+    &:active,
+    &:focus { color:$aHoverColor; text-decoration:none; }
+    img { display:block; border:none; }
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 { display:block; margin:0; padding:0; font-weight:normal; color:$bodyColor; line-height:1.4em; font-family:$font-family-titles; }
+
+h1 { font-size:48px; margin:0 0 20px 0; }
+h2 { font-size:26px; margin:0 0 15px 0; }
+h3 { font-size:20px; margin:0 0 30px 0; font-weight:bold; }
+h4 { font-size:19px; margin:0 0 10px 0; font-weight:bold; }
+h5 { font-size:16px; margin:0 0 10px 0; }
+h6 { font-size:12px; margin:0 0 4px 0; }
+
+p { line-height:1.6em; margin:0 0 20px 0; font-size:14px; 
+    a { color:$majorGreen; text-decoration:none; font-size:15px; }
+}
+
+hr { height:1px; margin:0; padding:0; border:0; background:#cccccc; }
+
+ol { }
+ul { }
+dl, dt, dd { margin:0; padding:0; }
+
+table { width:100%; border-collapse:collapse; border-spacing:0; }
+tr { }
+td { vertical-align:top; padding:2px 0; }
+
+/* custom */
+strong { font-weight:bold; }
+em { font-style:italic; }
+
+.left { float:left; }
+.right { float:right; }
+
+.hide { display: none !important; }
+.show { display: block !important; }
+
+.align-left { text-align:left; }
+.align-center { text-align:center; }
+.align-right { text-align:right; }
+
+.align-top { vertical-align:top !important; }
+.align-middle { vertical-align:middle !important; }
+.align-bottom { vertical-align:bottom !important; }
+
+.clearfix { zoom:1; 
+    &:after	{ content:"."; display:block; clear:both; width:0px; height:0px; visibility:hidden; font-size:0; }
+}
+
+.color-white { color:white!important; }
+
+.color-green { color: $majorGreen !important; }
+.border-green { border-color: $majorGreen !important; }

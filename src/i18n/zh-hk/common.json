@@ -1,0 +1,44 @@
+{
+	"about": {
+		"title": "關於我們"
+	},
+	"memberCreateAccount": {
+		"title": "歡迎"
+	},
+	"General": {
+		"LetsPark": "Lets Park",
+		"Others": "其他",
+		"ForParkers": "車主",
+		"ForOwners": "車位業主",
+		"Register": "注冊",
+		"Login": "登入",
+		"Logout": "登出",
+		"MyAccount": "我的帳戶",
+		"AllRightsReserved": "2019 Lets Park 版權所有",
+		"NowAvailableAt": "現已登陸 :",
+		"LanguageText": "Eng",
+		"ListYourSpace": "List Your Space"
+	},
+	"Menu": {
+		"Discover": "關於我們",
+		"MediaCoverage": "媒體報導",
+		"HelpCentre": "常見問題",
+		"ContactUs": "聯絡我們",
+		"TermsAndConditions": "條款及細則",
+		"CancellationPolicy": "取消政策",
+		"PrivacyPolicy": "隱私政策",
+		"Disclaimer": "免責條款",
+		"HowItWork": "如何運作",
+		"LetsParkEnterprise": "Lets Park 商業版"
+	},
+	"Days": {
+		"day_1" : "Mon",
+		"day_2" : "Tue",
+		"day_3" : "Wed",
+		"day_4" : "Thu",
+		"day_5" : "Fri",
+		"day_6" : "Sat",
+		"day_7" : "Sun",
+		"day_8" : "PH"
+	}
+}

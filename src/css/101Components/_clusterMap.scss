@@ -1,0 +1,83 @@
+.clusterMap {
+  // TODO: may need to update the resolution
+  width: calc(100% - 600px);
+  height: 840px;
+  float: right;
+
+  @media (max-width: 980px) { width:100%; }
+
+  .containerMain {
+    &.fullWidth {
+      padding: 0;
+      max-width: 100%;
+      // min-height: 840px;
+    }
+  }
+  .marker {
+    background: #1dbeb9;
+    width: 74px;
+    height: 32px;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
+    color: white;
+    box-sizing: border-box;
+    .icon {
+      background: url(../images/mobile/03_find_parking_space/icon_letspark.png)
+        no-repeat;
+      width: 17px;
+      height: 23px;
+      background-position: top;
+    }
+    .price {
+      font-size: 14px;
+    }
+    &.active {
+      background: white;
+      border: 2px solid #1dbeb9;
+      color: #1dbeb9;
+      .icon {
+        background-position: bottom;
+      }
+    }
+  }
+  .info-window {
+    display: flex;
+    background: white;
+    padding: 6px;
+    width: 456px;
+    height: 140px;
+    .info-detail {
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      .info-detail-address {
+        font-size: 18px;
+        font-weight: bold;
+        flex: 1;
+      }
+      .info-detail-reviews {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        .review-rating {
+          background: url(../images/mobile/03_find_parking_space/icon_reivew2.png);
+          width: (24px * 5);
+          height: 24px;
+          margin-right: 5px;
+          position: relative;
+          .review-rating-star {
+            background: url(../images/mobile/03_find_parking_space/icon_reivew1.png);
+            height: 24px;
+            position: absolute;
+          }
+        }
+        .review-count {
+        }
+      }
+    }
+  }
+}

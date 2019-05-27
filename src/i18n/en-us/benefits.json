@@ -1,0 +1,56 @@
+{
+    "BenefitsofParkers": {
+        "title-1": "Benefits of ",
+        "title-2": "Parkers",
+        "sub-title-1": "TBC",
+        "sub-title-2": "TBC",
+        "SEARCH&BOOK": {
+            "title": "SEARCH & BOOK",
+            "content": "Convenient and efficient one-stop search and book time share and other spaces"
+        },
+        "VERIFIED": {
+            "title": "VERIFIED",
+            "content": "Verified parking space via land search to ensure bookings with safety and integrity"
+        },
+        "GUARANTEE": {
+            "title": "GUARANTEE",
+            "content": "Value your parking experience to offer full refund for problematic bookings"
+        }
+    },
+    "BenefitsofOwners": {
+        "title-1": "Benefits of ",
+        "title-2": "Owners",
+        "sub-title-1": "TBC",
+        "sub-title-2": "TBC",
+        "FREETOLIST": {
+            "title": "FREE TO LIST",
+            "content": "Free to list and manage space details easily with friendly UI"
+        },
+        "GETPAID": {
+            "title": "GET PAID",
+            "content": "Payment straight to your bank account on time. Reliable and secure"
+        },
+        "INSURANCE": {
+            "title": "INSURANCE",
+            "content": "Up to HK$2 million insurance protection gives you peace of mind"
+        }
+    },
+    "CommonBenefitsofParkersandOwners": {
+        "title-1": "Common Benefits of Parkers and Owners",
+        "title-2": "",
+        "sub-title-1": "TBC",
+        "sub-title-2": "TBC",
+        "ATTENTIVESUPPORT": {
+            "title": "ATTENTIVE SUPPORT",
+            "content": "Our professional and caring customer service team is there to assist you"
+        },
+        "PROFILE": {
+            "title": "PROFILE",
+            "content": "Know more about members via their profile and ratings for your best booking decisions"
+        },
+        "FREENOTIFICATION": {
+            "title": "FREE NOTIFICATION",
+            "content": "Receive free favourite space and booking alerts"
+        }
+    }
+}

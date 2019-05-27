@@ -1,0 +1,44 @@
+{
+	"about": {
+		"title": "About"
+	},
+	"memberCreateAccount": {
+		"title": "Welcome"
+	},
+	"General": {
+		"LetsPark": "Lets Park",
+		"Others": "Others",
+		"ForParkers": "For Parkers",
+		"ForOwners": "For Owners",
+		"Register": "Register",
+		"Login": "Login",
+		"Logout": "Logout",
+		"MyAccount": "My Account",
+		"AllRightsReserved": "Lets Park. All rights reserved.",
+		"NowAvailableAt": "Now available at :",
+		"LanguageText": "繁",
+		"ListYourSpace": "List Your Space"
+	},
+	"Menu": {
+		"Discover": "Discover",
+		"MediaCoverage": "Media Coverage",
+		"HelpCentre": "Help Centre",
+		"ContactUs": "Contact us",
+		"TermsAndConditions": "Terms and Conditions",
+		"CancellationPolicy": "Cancellation Policy",
+		"PrivacyPolicy": "Privacy Policy",
+		"Disclaimer": "Disclaimer",
+		"HowItWork": "How it work",
+		"LetsParkEnterprise": "Lets Park Enterprise"
+	},
+	"Days": {
+		"day_1" : "Monday",
+		"day_2" : "Tuesday",
+		"day_3" : "Wednesday",
+		"day_4" : "Thursday",
+		"day_5" : "Friday",
+		"day_6" : "Saturday",
+		"day_7" : "Sunday",
+		"day_8" : "Public Holiday"
+	}
+}
