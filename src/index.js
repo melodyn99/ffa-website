@@ -1,7 +1,5 @@
 import 'react-app-polyfill/ie9';
-import React
-    // , { useEffect } 
-    from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import {
@@ -35,13 +33,13 @@ import {
 //import './i18n/i18n';
 import i18n from './i18n/i18n';
 
+// @material-ui
+import { createMuiTheme } from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+
 // socket.io
 import socketIoMiddleware from 'redux-socket.io-middleware';
 import io from './socket/connect';
-
-// material-ui
-import { createMuiTheme } from '@material-ui/core/styles';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 // IMPORT REDUCERS
 import members from './reducers/members';
@@ -94,8 +92,11 @@ const persistor = persistStore(store);
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/en-us/foo'))
 
-// material-ui
+// @material-ui
 const theme = createMuiTheme({
+    typography: {
+        useNextVariants: true,
+    },
     ripple: {
         color: 'red',
     },
@@ -116,33 +117,33 @@ const theme = createMuiTheme({
     },
 });
 
-// function WrapperApp() {
-//     // const { t } = useTranslation();
+function WrapperApp() {
+    // const { t } = useTranslation();
 
-//     useEffect(() => {
-//         let urlFull = history.location.pathname;
-//         let urlArray = urlFull.split("/");
+    useEffect(() => {
+        let urlFull = history.location.pathname;
+        let urlArray = urlFull.split("/");
 
-//         let param = '';
+        let param = '';
 
-//         switch (urlArray[1]) {
-//             case 'zh-HK':
-//                 param = 'zh-HK';
-//                 break;
-//             case 'en-US':
-//                 param = 'en-US';
-//                 break;
-//             default:
-//                 param = 'zh-HK';
-//         }
+        switch (urlArray[1]) {
+            case 'zh-HK':
+                param = 'zh-HK';
+                break;
+            case 'en-US':
+                param = 'en-US';
+                break;
+            default:
+                param = 'zh-HK';
+        }
 
-//         i18n.changeLanguage(param);
-//     }, []);
+        i18n.changeLanguage(param);
+    }, []);
 
-//     return (
-//         <App />
-//     );
-// }
+    return (
+        <App />
+    );
+}
 
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
@@ -152,7 +153,7 @@ ReactDOM.render(
                 <I18nextProvider i18n={i18n}>
                     <ConnectedRouter history={history}>
                         <div>
-                            <Route path="*" component={App} />
+                            <Route path="*" component={WrapperApp} />
                         </div>
                     </ConnectedRouter>
                 </I18nextProvider>
