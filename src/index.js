@@ -1,5 +1,7 @@
 import 'react-app-polyfill/ie9';
-import React, { useEffect } from 'react';
+import React
+    // , { useEffect } 
+    from 'react';
 import ReactDOM from 'react-dom';
 
 import {
@@ -36,6 +38,10 @@ import i18n from './i18n/i18n';
 // socket.io
 import socketIoMiddleware from 'redux-socket.io-middleware';
 import io from './socket/connect';
+
+// material-ui
+import { createMuiTheme } from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 // IMPORT REDUCERS
 import members from './reducers/members';
@@ -88,47 +94,71 @@ const persistor = persistStore(store);
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/en-us/foo'))
 
-function WrapperApp() {
-    // const { t } = useTranslation();
+// material-ui
+const theme = createMuiTheme({
+    ripple: {
+        color: 'red',
+    },
+    palette: {
+        primary: {
+            main_feature: '#1f2bae',
+            main: '#fff200',
+            light: '#67dbfc',
+            dark: '#007a98',
+            contrastText: '#000',
+        },
+        secondary: {
+            main: '#02de72',
+            light: '#64ffa2',
+            dark: '#00ab44',
+            contrastText: '#fff',
+        },
+    },
+});
 
-    useEffect(() => {
-        let urlFull = history.location.pathname;
-        let urlArray = urlFull.split("/");
+// function WrapperApp() {
+//     // const { t } = useTranslation();
 
-        let param = '';
+//     useEffect(() => {
+//         let urlFull = history.location.pathname;
+//         let urlArray = urlFull.split("/");
 
-        switch (urlArray[1]) {
-            case 'zh-HK':
-                param = 'zh-HK';
-                break;
-            case 'en-US':
-                param = 'en-US';
-                break;
-            default:
-                param = 'zh-HK';
-        }
+//         let param = '';
 
-        i18n.changeLanguage(param);
-    }, []);
+//         switch (urlArray[1]) {
+//             case 'zh-HK':
+//                 param = 'zh-HK';
+//                 break;
+//             case 'en-US':
+//                 param = 'en-US';
+//                 break;
+//             default:
+//                 param = 'zh-HK';
+//         }
 
-    return (
-        <App />
-    );
-}
+//         i18n.changeLanguage(param);
+//     }, []);
+
+//     return (
+//         <App />
+//     );
+// }
 
 ReactDOM.render(
-    <Provider store={store}>
-        {/* ConnectedRouter will use the store from Provider automatically */}
-        <PersistGate persistor={persistor}>
-            <I18nextProvider i18n={i18n}>
-                <ConnectedRouter history={history}>
-                    <div>
-                        <Route path="*" component={WrapperApp} />
-                    </div>
-                </ConnectedRouter>
-            </I18nextProvider>
-        </PersistGate>
-    </Provider>,
+    <MuiThemeProvider theme={theme}>
+        <Provider store={store}>
+            {/* ConnectedRouter will use the store from Provider automatically */}
+            <PersistGate persistor={persistor}>
+                <I18nextProvider i18n={i18n}>
+                    <ConnectedRouter history={history}>
+                        <div>
+                            <Route path="*" component={App} />
+                        </div>
+                    </ConnectedRouter>
+                </I18nextProvider>
+            </PersistGate>
+        </Provider>
+    </MuiThemeProvider>,
     document.getElementById('root')
 )
 

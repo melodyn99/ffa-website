@@ -1,24 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // import {Redirect} from 'react-router';
 import './css/App.scss';
 import { withTranslation } from 'react-i18next';
 
 // import { bindActionCreators } from 'redux';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 // import * as AnimationsActionCreators from './actions/animations';
 
 import querySearch from "stringquery";
 
-import MobileMenu from './components/100Include/mobileMenu';
-import Header from './components/100Include/header';
-import Footer from './components/100Include/footer';
+// import MobileMenu from './components/100Include/mobileMenu';
+// import Header from './components/100Include/header';
+// import Footer from './components/100Include/footer';
 
 import * as HelperDesktopHandle from './utils/00General/DesktopHandle';
 import * as HelperMobileHandle from './utils/00General/MobileHandle';
 import * as HelperPopup from './utils/00General/Popup';
 
 import Home from './containers/00Home/Home';
-import PageNotFound from './containers/PageNotFound';
+// import PageNotFound from './containers/PageNotFound';
+
+import {
+    Button
+} from '@material-ui/core';
 
 class App extends Component {
 
@@ -68,34 +72,34 @@ class App extends Component {
                 }
 
                 default: {
-                    return <PageNotFound />;
+                    return <Home />;
                 }
             }
         } else {
-            return <Home/>
+            return <Home />
         }
     }
 
     render() {
 
-        const {
-            route,
-            // animations
-        } = this.props;
+        // const {
+        //     route,
+        //     // animations
+        // } = this.props;
         // console.log(route.location.pathname);
 
         return (
             <div>
-                <MobileMenu />
+                {/* <MobileMenu /> */}
 
                 <div id="wrap">
-                    <Header />
+                    {/* <Header /> */}
 
                     <div className="blackPlane"></div>
 
-                    {this.renderSwitch(route)}
+                    <Button>123</Button>
 
-                    <Footer />
+                    {/* <Footer /> */}
                 </div>
             </div>
         );
