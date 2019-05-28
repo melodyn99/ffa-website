@@ -11,10 +11,10 @@ import { Button } from '@material-ui/core';
 import BreadCrumb from '../../components/100Include/breadcrumb';
 
 import { apiAuth } from '../../Api/ApiAuth';
+import { apiConferences } from '../../Api/ApiConferences';
 
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux';
-// import * as FindParkingSpaceActionCreators from '../../actions/findParkingSpace';
+import { connect } from 'react-redux';
+import { login, verifyToken } from '../../Redux/Action/authAction';
 
 class Home extends Component {
     constructor(props) {
@@ -53,9 +53,23 @@ class Home extends Component {
         // await AsyncStorage.setItem('userToken', 'abc');
         apiAuth.authenticate('admin@joyaether.test', 'abcd1234').then((res) => {
             console.log(res);
-            // this.props.loginP(res.access_token);
+            this.props.loginP(res.access_token);
+
+            this._getConference();
         })
     };
+
+    _getConference = () => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        apiConferences.getConferenceFullList(this.props.auth.token, cb, eCb);
+    }
 
     render() {
         // const { i18n } = this.props;
@@ -85,6 +99,15 @@ class Home extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+const mapDispatchToProps = dispatch => ({
+    loginP: data => dispatch(login(data)),
+    verifyT: token => dispatch(verifyToken(token)),
+});
+
 const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
 
-export default withTranslation()(withStyles(combinedStyles)(Home));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Home)));

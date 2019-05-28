@@ -97,10 +97,8 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = (state) => (
-    {
-        route: state.router
-    }
-);
+const mapStateToProps = (state) => ({
+    route: state.router
+});
 
 export default withTranslation()(connect(mapStateToProps)(App));
