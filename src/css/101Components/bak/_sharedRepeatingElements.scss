@@ -1,0 +1,309 @@
+// GridType1
+.GridType1{
+	.image { padding-top:75%; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat;
+        .box { position:absolute; bottom:0; left:0; width:100%; padding:15px; background:white; opacity:0.8;
+            h4 { color:#000; font-size:16px; }
+        }
+    }
+
+    .text { padding:15px; background-color:#f3f3f3;
+    
+    }
+}
+
+// GridType3
+.GridType3{
+	.image { padding-top:75%; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat;
+        .box { position:absolute; bottom:0; left:0; width:100%; padding:15px; background:white; opacity:0.8;
+            h4 { color:#000; font-size:16px; margin:0 0 5px 0; }
+            .price { color:$majorGreen; background:url('../images/mobile/02_membership/01_wishlist/icon_type_3.png') center left -8px no-repeat; padding:3px 0 3px 30px; }
+        }
+    }
+
+    .text { padding:15px; background-color:#f3f3f3; }
+}
+
+// GridType4
+.GridType4{
+	.image { padding-top:75%; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat; }
+
+    .text { padding:20px 15px 25px; background-color:#f3f3f3;
+
+        h3 { font-size:21px; color:#000; margin:0 0 5px 0; }
+
+        .date { font-size:14px; color:#717171; }
+
+        .source { font-size:14px; color:#717171; margin:0 0 10px 16px; position:relative;
+            &:before { content:''; position:absolute; left:-9px; top:9px; width:2px; height:2px; border-radius:10px; background:#a0a0a0; }
+        }
+
+        p { font-size:15px; color:#767676; margin:10px 0 0 0; }
+
+        .button { margin:20px 0 0; }
+    }
+}
+
+// GridType5 [ Payment ]
+.GridType5{
+	.image { padding-top:75%; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat; }
+
+    .text { padding:15px 0 0px;
+
+        h3 { font-size:21px; color:#000; margin:0 0 5px 0; }
+
+    }
+}
+
+// ListType1
+.ListType1 {
+	.image { width:250px; float:left; padding-top:180px; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat;
+        @media (max-width:980px) { width:100%; float:none; padding-top:60%; }
+    }
+
+    .text { width:calc(100% - 250px); float:left; padding:0 0 0 20px;
+        @media (max-width:980px) { width:100%; padding:10px 0 20px; float:none; }
+
+        h3 { margin:0; padding:0; font-size:20px; font-weight:bold; color:#000; }
+        .price { color:#707070; }
+        .park { color:#707070; }
+        .review { }
+        .owner { }
+        .button { margin:5px 0; }
+    }
+}
+
+// ListType3 [ Member Module ]
+.wrapper-ListType3 { padding:20px; background:#f3f3f3; margin:0 0 20px 0;
+    .ListType3 {
+        .image { width:300px; float:left; margin:0 0 30px 0; padding-top:200px; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat;
+            @media (max-width:840px) { width:100%; float:none; margin:0 0 20px 0; padding-top:60%; }
+        }
+
+        .text { width:calc(100% - 300px); float:left; margin:0 0 30px 0; padding:0 0 0 20px;
+            @media (max-width:840px) { width:100%; float:none; margin:0 0 20px 0; padding:0; }
+
+            h3 { margin:0; padding:0; font-size:20px; font-weight:bold; color:#000; }
+            .price { color:#707070; }
+            .park { color:#707070; }
+            .review { }
+            .owner { }
+            .button { margin:5px 0; }
+        }
+
+        .information { width:100%; float:left; border-top:solid 1px #c8c8c8; padding:20px 0 0 0;
+            h4 { color:$majorGreen; font-weight:bold; text-align:left;}
+            
+            >dl { display:block; margin:0; padding:0; 
+                
+                h5 { width:100%; float:left; color:#000; margin:0 0 5px 0; padding:0; font-weight:bold; display:block; text-align:left; }
+
+                dt { width:100%; float:left; margin:0 0 5px 0; padding:0 10px 0 0; color:#a0a0a0; font-weight:normal; text-align:left;
+                    @media (max-width:480px) { width:100%; }
+
+                    &.short{ width:50%; 
+                        @media (max-width:480px) { width:100%; }
+                    }
+                }
+
+                dd { width:100%; float:left; margin:0 0 5px 0; padding:0;text-align:right; color:#a0a0a0; text-align:right;
+                    @media (max-width:480px) { width:100%; }
+
+                    &.short{ width:50%; 
+                        @media (max-width:480px) { width:100%; }
+                    }
+
+                    .button {
+                        &.message,
+                        &.change { display:inline; margin:0; padding:5px 20px; color:$majorGreen; background:none; border:solid 1px $majorGreen; border-radius:20px; font-size:12px;
+                            @media (max-width:480px) { display:inline-block; margin:0 0 5px 0; }
+                        }
+                    }
+                }
+
+                .button { margin:0; padding:15px 35px;}
+            }
+        }
+    }
+}
+
+// ListType2
+.ListType2 { padding:20px 0; border-top:solid 1px #ccc; 
+    &.first { padding:0 0 20px 0; border:none; }
+
+	.image { width:280px; float:left; padding-top:160px; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat; 
+        @media (max-width:1024px) { width:220px; padding-top:160px; }
+        @media (max-width:840px) { width:100%; float:none; padding-top:60%; }
+    }
+
+    .text { width:calc(100% - 280px); float:left; padding:0 0 0 20px; position:relative;
+        @media (max-width:1024px) { width:calc(100% - 220px); }
+        @media (max-width:840px) { width:100%; float:none; padding:10px 0 0 0; }
+        
+        h3 { margin:0; padding:0; font-size:20px; font-weight:bold; color:#000; }
+        h4 { margin:0; padding:0; font-size:16px; color: #9c9c9c; font-weight:normal; }
+        .price { color:$majorGreen; position:relative; display:inline-block;
+            .instantBooking { position:absolute;top:50%; margin-top:-10px; right:-22px; width:16px; height:24px; background:url('../images/mobile/03_find_parking_space/icon_instant_booking.png') center center no-repeat; background-size:100%; }
+        }
+        .park { color:#707070; }
+        .review { }
+        .owner { }
+        .button { margin:0; background:$majorYellowGreen; position:absolute; bottom:0; right:0; 
+            @media (max-width:480px) { position:relative; bottom:auto; right:auto; margin:10px 0 0 0; }
+        }
+    }
+}
+
+.ListType2a { padding:20px 0; border-top:solid 1px #ccc; 
+    &.first { padding:0 0 20px 0; border:none; }
+
+	.image { width:220px; float:left; padding-top:140px; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat; }
+
+    .text { width:calc(100% - 220px); float:left; padding:0 0 0 20px; position:relative;
+        
+        h3 { margin:0; padding:0; font-size:16px; font-weight:bold; color:#000; }
+        .price { color:$majorGreen; position:relative; display:inline-block;
+            .instantBooking { position:absolute;top:50%; margin-top:-10px; right:-22px; width:16px; height:24px; background:url('../images/mobile/03_find_parking_space/icon_instant_booking.png') center center no-repeat; background-size:100%; }
+        }
+        .park { color:#707070; }
+        .review { }
+        .owner { }
+        .carTypes { margin: 0 0 0 -10px;
+            li { width:30px; height:30px; margin:0 0 0 10px; }
+        }
+        .button { margin:0; background:$majorYellowGreen; position:absolute; bottom:-5px; right:0; 
+            @media (max-width:480px) { position:relative; bottom:auto; right:auto; margin:10px 0 0 0; }
+        }
+    }
+}
+
+.ListType2b { padding:20px 0; border-top:solid 1px #ccc; 
+    &.first { padding:0 0 20px 0; border:none; }
+
+    .image { width:220px; float:left; padding-top:160px; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat; 
+        @media (max-width:640px) { width:130px; padding-top:90px; }
+        @media (max-width:480px) { width:100px; padding-top:70px; }
+    }
+
+    .text { width:calc(100% - 220px); float:left; padding:0 0 0 20px; position:relative;
+        @media (max-width:640px) { width:calc(100% - 130px); }
+        @media (max-width:480px) { width:calc(100% - 100px); }
+        
+        .sixty { width:calc(100% - 120px);
+            @media (max-width:480px) { width: calc(100% - 75px); }
+        }
+
+        .forty { width: 120px;
+            @media (max-width:480px) { width: 75px; }
+        }
+        
+        h3 { margin:0; padding:0; font-size:16px; font-weight:bold; color:#000; 
+            @media (max-width:480px) { font-size:12px; }
+        }
+        .price { color:$majorGreen; position:relative; display:inline-block;
+            .instantBooking { position:absolute;top:50%; margin-top:-10px; right:-22px; width:16px; height:24px; background:url('../images/mobile/03_find_parking_space/icon_instant_booking.png') center center no-repeat; background-size:100%; }
+        }
+        .carTypes { margin: 0 0 0 -10px;
+            li { width:30px; height:30px; margin:0 0 0 10px;  
+                @media (max-width:480px) { width:20px; height:20px; margin:0px; background-size:100%; 
+                    &:first-child{ margin:0 0 0 5px; }
+                }
+            }
+        }
+
+        .button { margin:0; background:$majorYellowGreen; 
+            @media (max-width:640px) { position:relative; bottom:auto; right:auto; margin:0 0 0 0; }
+            @media (max-width:480px) { padding:5px 8px; font-size:12px; }
+        }
+    }
+}
+
+// ListType4 [ Message ]
+.ListType4 { padding:15px 0;
+    &.first { padding:0 0 15px 0; }
+
+    .border-box { border:1px solid #ccc; padding:25px 20px; position:relative;
+
+        .control { position:absolute; top:25px; right:20px; 
+            .number { display:block; width:25px; height:25px; float:left; color:#fff; background-color:#1cbdb9; padding:4px 0; font-size:12px; text-align:center; vertical-align:middle; white-space:nowrap; border-radius:50%; margin: 0 15px 0 0; }
+            .arrow { display:block; width:25px; height:25px; float:left; background-color:yellow; cursor:pointer; }
+        }
+        
+        .image { width:120px; height:120px; float:left; background-size:cover; background-position:center center; background-repeat:no-repeat; border-radius:60px; 
+            @media (max-width:640px) { float:none; }
+        }
+
+        .text { width:calc(100% - 120px); float:left; padding:10px 20px;
+            @media (max-width:640px) { float:none; width:100%; padding:10px 0; }
+
+            h3 { margin:0; padding:0; font-size:22px; color:#000; line-height:1.2em; }
+            h4 { margin:0; padding:0; font-size:20px; color:#000; font-weight:normal; }
+
+        }
+
+        .details { margin:50px 0 0 0; 
+            p { font-size:18px; }
+            .button { margin:0; }
+        }
+    }
+}
+
+// GridCredit
+.GridCredit{ padding:20px; display:table; width:calc(100% - 60px); 
+
+    @media (max-width:1200px) { width:calc(100% - 20px) }
+    @media (max-width:480px) { display:block; }
+    
+    .image { width:40%; display:table-cell; padding-top:15%; background:grey; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat; 
+    
+        @media (max-width:480px) { display:block; width:100%; padding-top:60%; }
+    }
+
+    .text { width:60%; display:table-cell; padding:0 0 0 20px;
+
+        @media (max-width:480px) { display:block; width:100%; padding:20px 0; }
+        
+        h3 { color:#000; }
+
+        .wrap { display:table; width:100%;
+            >div { display:table-cell; vertical-align:bottom; width:50%; 
+                &:first-child { width:30%; }
+
+                >div{ color:$majorGreen; font-size:16px; 
+                    >span { color:$majorGreen; font-weight:bold; font-size:22px; }
+                }
+                .button { margin:10px 0 0 0; width:100%; text-align:center; 
+                    &:first-child{ margin:0; }
+                }
+            }
+        }
+    }
+}
+
+// GridRedeem
+.GridRedeem{ display:table; width:calc(100% - 20px); min-height:140px; margin:0 0 20px 0;
+    
+    .image { width:45%; display:table-cell; padding-top:15%; background:#fff; position:relative; background-size:cover; background-position:center center; background-repeat:no-repeat; 
+        @media (max-width:980px){ padding-top:25%; }
+        @media (max-width:480px){ width:100%; display:block; padding-top:60%; }
+    }
+
+    .text { width:55%; display:table-cell; padding:0 0 0 35px; vertical-align:middle;
+        
+        @media (max-width:480px){ width:100%; display:block; padding:20px 0 0; }
+
+        h3 { color:#fff; margin:0 0 10px 0; }
+
+        .creditPoints { display:inline-block; color:$majorGreen; background:#fff; padding:7px 23px; font-size:16px; border-radius:16px; 
+            span { font-weight:bold; font-size:20px; }
+        }
+    }
+}
+
+// Verified and Heart
+.verified   { width:32px; height:32px; border-radius:20px; position:absolute; top:15px; left:15px; background:url('../images/mobile/03_find_parking_space/btn_verified.png') center top no-repeat; cursor:pointer;
+    &.active { background-position-y:bottom; }
+}
+
+.heart  { width:32px; height:32px; border-radius:20px; position:absolute; top:15px; right:15px; background:url('../images/mobile/03_find_parking_space/btn_bookmark.png') center top no-repeat; cursor:pointer;
+    &.active { background-position-y:bottom; }
+}

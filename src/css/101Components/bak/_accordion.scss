@@ -1,0 +1,28 @@
+/* accordion */
+ul.accordion { display:block; list-style:none; margin:0; padding:0 35px; border:solid 1px $borderColor; 
+    
+    @media (max-width: 640px) { padding:0 20px; }
+
+    >li { display:block; margin:0; padding:0; 
+        
+        >a { position:relative; display:block; margin:0; padding:20px 0; font-size:18px; font-weight:bold; color:$bodyColor; border-top: solid 1px $borderColor; /* background:url(../images/icon_arrow_down.png) center right no-repeat; */ font-family:$font-family-titles;
+            
+            &.active { /* background-image:url('../images/icon_arrow_up.png') */ }
+        }
+    
+        >ul { display:none; list-style:none; margin:0; padding:0 0 30px; 
+            
+            >li { display:block; margin:0; 
+                
+                >div {
+
+                    h4 { color:$majorGreen; font-size:15px; margin-bottom:10px; font-weight:normal; }
+
+                    p { margin:0 0 25px 0; font-size:15px; line-height:1.4em; }
+                }
+            }
+        }
+
+        &:first-child a { border:none; }
+    }
+}

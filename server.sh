@@ -1,2 +1,2 @@
-echo "Serving LetsPark"
+echo "Serving FFA"
 serve -s ./build -p 80 

@@ -1,0 +1,477 @@
+// PAGE TITLE
+.page-title { text-align:center; padding: 90px 20px 90px; position:relative; z-index:1;
+
+    h2 { font-size:60px; color:#000; text-transform:uppercase; font-weight:bold; margin:0; padding:0; display:inline-block; line-height:1.2em;
+        
+        &.atHome { color:#fff; text-shadow: 2px 2px 3px #ccc; }
+        .sep-0 { display:block; }
+
+        @media (max-width: 980px) { font-size:40px; }
+        @media (max-width: 480px) { font-size:40px; }
+        
+    }
+}
+
+// REQUIRED FIELD
+.requiredField { font-size:14px; color:#bfbfbf; margin: 0 0 30px 0; display:block; text-align:right; 
+    &.absolute { position:absolute; top:0; right:0; 
+        @media (max-width: 480px) { position:relative; top:auto; right:auto; }
+    }
+}
+
+// MEDIA BACK BUTTON
+.backToListing { font-size:14px; color:#bfbfbf; margin: 0 0 30px 0; display:block; text-align:right; 
+    &.absolute { position:absolute; top:0; right:0; 
+        @media (max-width: 480px) { position:relative; top:auto; right:auto; }
+    }
+}
+
+// SHOW MORE
+.wrapper-show-more { max-width:1200px; margin:0 auto; padding:60px 0; text-align:center;
+    .show-more { font-size:25px; font-weight:bold; text-transform:uppercase; text-align:center; color:#bfbfbf; margin:0; padding:0; display:inline-block;cursor:pointer;
+        &:after { content:''; display:block; width:1px; height:42px; margin:20px auto 10px; background-color:#bfbfbf; }
+    }
+}
+
+// PREV NEXT
+.prevNext { text-align:center; margin:50px 0 0 0;
+    >a { display:inline-block; font-size:36px; font-weight:bold; padding:0; margin:0 0 0 100px; text-transform:uppercase; color:#bfbfbf;
+        
+        @media (max-width: 480px) { font-size:20px; margin:0; width:50%; text-align:right; }
+        
+        &:first-child{ margin:0; 
+            @media (max-width: 480px) { text-align:left; }
+        }
+        
+        &:hover,
+        &:focus,
+        &.active { color:#000; }
+
+        &.align-center { text-align:center; }
+    }
+
+    .progressBar { max-width:220px; margin:45px auto 0; position:relative; text-align:right;
+
+        @media (max-width: 480px) { margin:20px auto 0; max-width:none; }
+        
+        &:before { content:''; display:block; width:100%; height:2px; background:#a4a4a4; position:absolute; top:50%; margin-top:-1px; z-index:101; }
+        &:after { content:''; display:block; width:30%; height:2px; background:#000; position:absolute; top:50%; margin-top:-1px; z-index:101; }
+
+        &.one:after { width:10%; }
+        &.two:after { width:50%; }
+        &.three:after { width:88%; }
+
+        >span { position:relative; display:inline-block; color:#a4a4a4; background:#fff; padding:0 10px; z-index:102; }
+    }
+}
+
+// CARTYPES [ HotSpaces, LandlordProfile ]
+.carTypes { list-style:none; display:block; margin:0 0 0 -20px; padding:0; 
+    > li { margin:0; width:45px; height:45px; display:block; float:left;
+        &:first-child { margin-left:10px; }
+        &.one { background:url('../images/mobile/03_find_parking_space/icon_feature_1.png') center center no-repeat; }
+        &.two { background:url('../images/mobile/03_find_parking_space/icon_feature_2.png') center center no-repeat; }
+        &.three { background:url('../images/mobile/03_find_parking_space/icon_feature_3.png') center center no-repeat; }
+        &.four { background:url('../images/mobile/03_find_parking_space/icon_feature_4.png') center center no-repeat; }
+        &.five { background:url('../images/mobile/03_find_parking_space/icon_feature_5.png') center center no-repeat; }
+    }
+}
+
+// RATINGS [ HotSpaces, LandlordProfile, DetailShare ]
+.reviews { list-style:none; display:block; margin:0; padding:0;
+    > li { margin:0 0 0 5px; width:15px; height:15px; display:block; border-radius:10px; float:left; background:url('../images/mobile/03_find_parking_space/icon_reivew2.png') 0 0 no-repeat; background-size:100%;
+        &.active { background:url('../images/mobile/03_find_parking_space/icon_reivew1.png') 0 0 no-repeat; background-size:100%; }
+        &:first-child { margin:0; }
+    }
+    span { display:block; float:left; margin:-2px 0 0 10px; font-size:14px; color:#9c9c9c; }
+}
+
+// SOCIAL SHARE [ DetaiShare ]
+.socialShare { list-style:none; margin:0; padding:0; display:block; line-height:0.8em;
+    > li { list-style:none; margin:0 0 0 15px; padding:0; display:inline-block; 
+        &:first-child { margin:0; }
+        a { display:block; width:40px; height:40px; background:#bfbfbf; border-radius:20px; }
+    }
+}
+
+// TAGS [ DetaiShare ]
+.tags { list-style:none; display:block; margin:0 0 0 -10px; padding:0;
+    > li { margin:0 0 10px 10px; padding:4px 15px; display:block; border-radius:20px; float:left; color:#fff; background:$majorGreen; font-size:13px; }   
+}
+
+// DIFFERENT VIEWS [ DetaiShare ]
+.views { list-style:none; margin:0; padding:0; display:block; text-align:center; position:absolute; bottom:15px; left:15px; border-radius:3px; overflow:hidden; z-index:101;
+    li { list-style:none; margin:0 0 0 -1px; padding:0; display:block; float:left; 
+        a { display:block; background-color:#fff; background-position:15px center; background-repeat:no-repeat; color: #838383; padding:15px 25px 15px 50px; border-left:solid 1px #838383; z-index:101; position:relative;
+            
+            &.mapView  { background-image:url('../images/mobile/03_find_parking_space/btn_mapview.png');}
+            &.streetView  { background-image:url('../images/mobile/03_find_parking_space/btn_streetview.png') }
+            &.photoView { background-image:url('../images/mobile/03_find_parking_space/btn_photoview.png') }
+            
+            &.active { background-color:$majorGreen !important; color:#fff; border-left:solid 1px transparent; z-index:102; position:relative; 
+                &.mapView  { background-image:url('../images/mobile/03_find_parking_space/btn_mapview_h.png');}
+                &.streetView  { background-image:url('../images/mobile/03_find_parking_space/btn_streetview_h.png') }
+                &.photoView { background-image:url('../images/mobile/03_find_parking_space/btn_photoview_h.png') }
+            }
+
+            @media (max-width: 840px) { padding:10px 20px 10px 45px; background-size:20px; }
+            @media (max-width: 480px) { padding:10px 15px 10px 15px; background-image:none !important; }
+            @media (max-width: 420px) { padding:5px 8px; background-image:none !important; }
+        }
+    }
+}
+
+// ATTRIBUTES [ DetaiShare ]
+.attributes { list-style:none; display:block; margin:0 0 0 -20px; padding:0; 
+    > li { margin:0 0 10px 20px; padding:15px 15px 15px 55px; display:block; border-radius:3px; float:left; color:#454545; border:solid 1px #454545; font-size:13px;
+        position: relative;
+        img {
+            position: absolute;
+            top: 20%;
+            left: 10px;
+        }
+
+
+    }
+
+    &.small-icon {
+        img {
+            top: 30%;
+            left: 15px;
+        }
+    }
+}
+
+// BOOKNG TYPE [ FormHourly ]
+.booking-types { list-style:none; display:block; margin:0 0 0 -20px; padding:0; 
+
+    &.no-margin { display:none;
+        @media (max-width: 980px) { display:block; }
+        
+        >div {
+            li { margin: 0 0 0 25px; 
+                @media (max-width: 640px) { margin:0 0 0 0px; }
+            }
+        }
+    }
+
+    @media (max-width: 640px) { margin:0; }
+
+    >div { display:block !important; float:left; 
+
+        
+
+        li { display:block; margin:0 0 20px 20px; padding:0; text-align:center;
+            
+            >div {position:relative;
+                .or { position:absolute; width:50px; height:auto; top:61px; margin-top:-10px; left:0; margin-left:-35px; display:block; font-size:18px; font-weight:bold; color:#000; 
+                    @media (max-width: 640px) { top:60px; font-size:14px; margin-left:-25px; }
+                    @media (max-width: 480px) { top:40px; }
+                }
+            }
+            
+
+            @media (max-width: 640px) { margin:0 0 10px 0px; }
+
+            .icon { width:132px; height:132px; border-radius:61px; display:inline-block; background-size:100% !important; cursor:pointer; 
+
+                @media (max-width: 640px) { width:120px; height:120px; border-radius:60px; }
+                @media (max-width: 480px) { width:80px; height:80px; border-radius:40px; }
+
+                &.active { background-position:center bottom !important; }
+
+                &.privateCar { background:url('../images/mobile/04_list_a_space/btn_01_1_private.png') center top no-repeat; }
+                &.van { background:url('../images/mobile/04_list_a_space/btn_01_2_van.png') center top no-repeat; }
+                &.motorcycle { background:url('../images/mobile/04_list_a_space/btn_01_4_motorcycle.png') center top no-repeat;}
+                &.lorry { background:url('../images/mobile/04_list_a_space/btn_01_3_lorry.png') center top no-repeat; }
+                &.others { background:url('../images/mobile/04_list_a_space/btn_01_1_private.png') center top no-repeat; }
+
+                &.indoor { background:url('../images/mobile/04_list_a_space/btn_02_2_cover.png') center top no-repeat; }
+                &.withCovers { background:url('../images/mobile/04_list_a_space/btn_02_2_cover.png') center top no-repeat; }
+                &.noCovers { background:url('../images/mobile/04_list_a_space/btn_02_3nocover.png') center top no-repeat; }
+                &.ev { background:url('../images/mobile/04_list_a_space/btn_02_4_ev.png') center top no-repeat; }
+                &.headRoom { background:url('../images/mobile/04_list_a_space/btn_02_5_headroom.png') center top no-repeat; }
+
+                &.hourly { background:url('../images/mobile/04_list_a_space/btn_03_2_hourly.png') center top no-repeat; }
+                &.monthly { background:url('../images/mobile/04_list_a_space/btn_03_1_monthly.png') center top no-repeat; }
+                &.timeShare { background:url('../images/mobile/04_list_a_space/btn_03_2_share.png') center top no-repeat;}
+            }
+            h5 { text-align:center; color:#000; font-size:14px; margin:0; padding:10px; 
+                @media (max-width: 480px) { font-size:12px; }
+            }
+
+            input[type=text],
+            select {
+                @media (max-width: 980px) { display:none; }
+            }
+            .sep-10 {
+                @media (max-width: 980px) { display:none; }
+            }
+
+            .triangle { display:block; width:23px; height:20px; background:orange; margin:0 auto; height:1px; opacity:0;
+                &.active { height:20px; opacity:1; }
+            }
+        }
+    }
+}
+
+.detailBox { background:#bfbfbf; float:none; padding:20px; text-align:center; position:relative; display:none; width:calc(100% + 140px); margin-left:-70px; margin-top:-1px; display:none;
+    &.active { display:none; 
+        @media (max-width: 980px) { display:block; }
+    }
+
+    @media (max-width: 640px) { width:calc(100% + 40px); margin-left:-20px; }
+
+    input[type=text],
+    select {
+        max-width:200px; margin:0 auto; display:none;
+        &.active { display:inline-block; }
+    }
+}
+
+// TABS [ DetaiShare, FormHourly ]
+.wrapper-tabs {
+            
+    ul.nav-tabs { list-style:none; margin:0 0 20px -30px; padding:0; display:block; border:none; 
+        
+        @media (max-width: 480px) { margin:0 0 0 -30px; }
+
+        li { display:block; float:left; margin:0 0 18px 30px; padding:0;
+            
+            // &:first-child { margin:0 0 18px 0; }
+            
+            a { display:block; margin:0; padding:0; color:#c1c1c1; font-size:22px; font-weight:bold; border:none; outline:none; line-height:1em;
+                &:hover { background:none; }
+
+                @media (max-width: 640px) { font-size:20px; }
+                @media (max-width: 480px) { font-size:16px; }
+            }
+
+            &.active a { color:#000; background:none;
+                &:focus,
+                &:hover{ border:none; }
+            }
+        }
+    }
+
+    .tab-content { padding:0;
+
+        // Type 1
+        .title { color:#fff; background:#a0a0a0; padding:12px 20px; font-size:18px; }
+    
+        .content { padding: 30px 20px 0;
+            
+            h3 { color:#464646; font-size:17px; margin:0 0 20px 0; }
+            
+            .form-elements { margin:0 0 0 -20px; display:table; width:calc(100% + 20px); 
+
+                @media (max-width: 640px) { display:block; }
+                
+                > div { display:table-cell; vertical-align: middle; 
+                    @media (max-width: 640px) { display:block; width:100%; }
+                }
+
+                > div > div { margin:0 0 20px 20px; position:relative; 
+                    &.narrow { margin-bottom:10px; }
+                }
+            }
+
+            .wrapper-calendar { height:500px; }
+        }
+
+        .button { padding: 15px 35px; font-size:16px; }
+
+        // Type 2
+        .inner { background:#f3f3f3; padding:35px 20px 65px;
+
+            h5 { color:#000; font-size:17px; margin:0 0 15px 0; }
+
+            p { margin: 0 0 5px 0; }
+        }
+    }
+}
+
+// WEED DAYS
+.days-of-week { list-style:none; display:block; margin:0 0 10px -15px; padding:0; 
+    > li { display:block; margin:0 0 5px 15px; padding:6px 5px; float:left; width:50px; text-align:center; border:solid 1px #ccccca; border-radius:3px; color:#fff; background:#c8c8c8; text-transform:uppercase; font-size:13px; cursor:pointer;
+        &.active { background:$majorGreen; }
+    }   
+}
+
+// SHARE YOUR LINK [ Member Credit ]
+.wrapper-share-your-link{ display:inline-block; margin:0 auto; width:100%; max-width:900px; 
+    
+    .share-your-link { list-style:none; display:block; margin:0 0 0 -20px; padding:0;
+
+        @media (max-width: 840px) { margin:0 0 0 -10px; }
+        
+        > li { display:block; margin:0; padding:0; float:left; width:25%;
+            
+            @media (max-width: 1024px) { width:50%; }
+            @media (max-width: 480px) { width:100%; }
+            
+            >div { margin:0 0 10px 20px; padding:8px 5px; text-align:center; color:$majorGreen; border:solid 1px $majorGreen; border-radius:20px; font-size:15px; font-weight:bold; 
+                @media (max-width: 840px) { margin:0 0 10px 10px; }
+            }
+        }  
+        .sep-0 { display:none; 
+            
+            @media (max-width: 1024px) { display:block; }
+        }
+    }
+}
+
+// CenterBox
+.centerBox { text-align:center; padding:25px 50px;
+
+    @media (max-width: 840px) { padding:20px 0 10px; }
+
+    h2 { margin: 0 0 5px 0; font-size: 30px; font-weight: bold; color: #000;}
+
+    h3 { margin:0 0 5px 0; padding:0; font-size:20px; font-weight:bold; color:#000; line-height:1.5em; }
+
+    p { margin:0 0 20px 0; 
+        &.please { line-height:2.1em; margin:0; }
+        span { display:inline; background:$majorGreen; margin:0 10px; padding:5px 25px; border-radius:3px; color:#fff; cursor:pointer; white-space:nowrap; 
+            @media (max-width: 840px) { margin:0 5px; padding:5px 15px; }
+        }
+    }
+}
+
+// Free Bubble
+.free { display:inline-block; list-style:none; margin:0 20px 0 0; padding:0; vertical-align: middle;
+
+    li { list-style:none; margin:0; padding:0;
+
+        a { display:block; height:40px; width:150px; text-align:center; vertical-align: middle; 
+            img { width:100%; }
+        }
+    }
+}
+
+.free2 { display:inline-block; list-style:none; margin:0 20px 0 0; padding:0; border-radius:50px; vertical-align: middle;
+
+    li { list-style:none; margin:0; padding:0;
+
+        a { display:block; height:40px; width:150px; text-align:center; vertical-align: middle; }
+
+    }
+    img {
+        width: 100%;
+    }
+}
+
+// List Your Space Three Steps    
+.wrapperThreeSteps {margin: 25px auto 0; display:inline-block; 
+    
+    .threeSteps { list-style:none; display:inline-block; margin:0 0 0 -50px; padding:0; position:relative;
+
+        > li { position:relative; display:block; width:50px; height:50px; margin:0 0 0 50px; padding:16px 0; border-radius:25px; float:left; color:$majorGreen; background:#fff; font-size:30px; font-weight:bold; text-align:center; z-index:102;
+            
+            &.active { color:#fff; background:$majorGreen;}
+
+                     
+        }   
+        .line { position:absolute; display:block; width:200px; height:2px; background:#fff; left:75px; top:50%; margin-top:-1px; z-index:101; }   
+    }
+
+    p { font-size:22px; color:#47414d; font-weight:bold; margin:15px 0 0; 
+        span { font-size:30px; color:$majorGreen; margin: 0 5px; }
+    }
+}
+
+// IMAGE UPLOAD [ StepFour ]
+.image-upload { list-style:none; display:block; margin:0 0 0 -25px; padding:0; 
+    >div { display:block !important; float:left;
+    
+        &:first-child >div >li { 
+            @media (max-width: 840px) { margin:0 0 0 25px; }
+        }
+
+        @media (max-width: 840px) { width:100%; }
+
+        >div{ min-height:132px;  
+
+            >li { display:block; margin:0 0 0 25px; padding:0; text-align:center; position:relative;
+
+                @media (max-width: 840px) { margin:80px 0 0 25px; }
+
+                .exchange { background:url('../images/mobile/04_list_a_space/icon_swap.png') center top no-repeat; width:62px; height:26px; position:absolute; top:64px; margin-top:-13px; left:0; margin-left:calc(-12.5px - 31px); cursor:pointer; z-index:3;
+                    @media (max-width: 840px) { top:0; margin-top:-54px; left:50%; margin-left:-30px; transform: rotate(90deg); }
+
+                    &:hover { background-position:center bottom; }
+                }
+
+                >div { position:relative; display:inline-block; min-height:132px; width:132px; 
+
+                    input[type=file] { width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1; }
+                    input[type=file] + label { width:132px; height:132px; position:absolute; top:0; left:0; background:url('../images/mobile/04_list_a_space/icon_addphoto.png') center center no-repeat; border:solid 1px #ccc; cursor:pointer; z-index:2;}
+
+                    .remove { width:132px; height:132px; position:absolute; top:0; left:0; background:url('../images/mobile/04_list_a_space/icon_remove.png') center center no-repeat; border:solid 1px #ccc; cursor:pointer; z-index:2; display:none; }
+                    
+                    .imageWrap {width:132px; height:132px; vertical-align:middle; display:table-cell; 
+                        .wide { display:inline-block; max-width: 100%; }
+                        .long { display:inline-block; max-height: 100%; width:auto; }
+                    }
+
+                    ul { list-style:none; display:inline-block; margin:0; padding:0; 
+                        >li { width:32px; height:32px; float:left; margin:0 0 0 15px; background:url('../images/mobile/03_find_parking_space/icon_add.png') center center no-repeat; cursor:pointer;
+                            &.antiClockwise { background:url('../images/mobile/04_list_a_space/icon_anti-clockwise.png') center top no-repeat; 
+                                &:hover { background-position:center bottom; }
+                            }
+                            &.clockwise {  background:url('../images/mobile/04_list_a_space/icon_clockwise.png') center top no-repeat; 
+                                &:hover { background-position:center bottom; }
+                            }
+
+                            
+                            &:first-child { margin:0; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Range [ Find your space filter ]
+.inputRangeDiv { padding: 10px 20px;
+    >.input-range { width:calc(100% - 10px) !important; margin:0 auto !important; }
+}
+
+
+// jabie calendar hack
+.rbc-event {
+    height: 50px;
+}
+
+.imagePreview {
+    img {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+.previewBg {
+    position: relative;
+
+    .previewOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: url(../images/preview.png);
+        opacity:0.5;
+        z-index:102;
+    }
+}
+
+// Confirmation Pages
+.confirmation {
+    .containerMain { padding:105px 70px;
+        .content { margin: 0 auto; max-width: 700px;
+            h3 { font-size:24px; margin:0 0 60px 0; }
+            p { font-size:18px; margin:0 0 30px 0; }
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import { withTranslation } from 'react-i18next';
 
 // import { bindActionCreators } from 'redux';
@@ -70,12 +70,10 @@ class Home extends Component {
     }
 
     render() {
-        const { i18n } = this.props;
+        // const { i18n } = this.props;
 
         return (
-            <div>hello
-
-            </div>
+            <div>hello</div>
         );
     }
 }
