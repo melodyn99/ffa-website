@@ -10,11 +10,12 @@ export const MobileHandle = {
                 $('#root').css('margin-top', -$(window).scrollTop());
                 $('body').css('position', 'fixed');
 
-                $('#wrap, .wrapper-header, .sortbyFilter').addClass('active');
-                $('.wrapper-mobile-menu').css('display', 'block');
+                $('#wrap, .wrapper-header').addClass('active');
+
 
                 setTimeout(function () {
                     $('.blackPlane').stop(true, false).fadeIn(200).attr('rel', 'active');
+                    $('.wrapper-mobile-menu').css('display', 'block');
                     setTimeout(function () {
                         $('.wrapper-mobile-menu > .mobile-menu > ul > li > a').click(function () {
                             MobileHandle.menuReset();
@@ -33,11 +34,11 @@ export const MobileHandle = {
         $('#root').css('margin-top', '');
         $(window).scrollTop($('#root').attr('rel'));
 
-        $('#wrap, .wrapper-header, .sortbyFilter').removeClass('active');
+        $('#wrap, .wrapper-header').removeClass('active');
+        $('.wrapper-mobile-menu').css('display', 'none');
 
         setTimeout(function () {
             $('.blackPlane').stop(true, false).fadeOut(200).attr('rel', '');
-            $('.wrapper-mobile-menu').css('display', 'none');
         }, 100);
     },
     containersSize: function () {

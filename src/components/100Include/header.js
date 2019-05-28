@@ -28,7 +28,7 @@ class Header extends Component {
         return (
             <div className="wrapper-header">
                 <div className="header">
-                    Header
+                    <div className="mobile-menu-btn">MENU</div>
                 </div>
             </div>
         );

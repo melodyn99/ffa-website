@@ -8,7 +8,7 @@ import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
 import { HeaderStyles } from '../../utils/01MaterialJsStyles/header'
 
 import { Button } from '@material-ui/core';
-import BreadCrumb from '../../components/100Include/breadcrumb'
+import BreadCrumb from '../../components/100Include/breadcrumb';
 
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
