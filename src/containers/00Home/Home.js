@@ -61,7 +61,7 @@ class Home extends Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <Button className={this.props.classes.deleteButton}>Hello</Button>
+                                <Button className={this.props.classes.createButton}>Hello</Button>
                             </div>
                         </div>
 
