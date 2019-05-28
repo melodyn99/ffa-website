@@ -34,7 +34,7 @@ import {
 import i18n from './i18n/i18n';
 
 // @material-ui
-import { createMuiTheme } from '@material-ui/core/styles';
+import { theme } from './utils/01MaterialJsStyles/theme';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 // socket.io
@@ -91,31 +91,6 @@ const persistor = persistStore(store);
 
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/en-us/foo'))
-
-// @material-ui
-const theme = createMuiTheme({
-    typography: {
-        useNextVariants: true,
-    },
-    ripple: {
-        color: 'red',
-    },
-    palette: {
-        primary: {
-            main_feature: '#1f2bae',
-            main: '#fff200',
-            light: '#67dbfc',
-            dark: '#007a98',
-            contrastText: '#000',
-        },
-        secondary: {
-            main: '#02de72',
-            light: '#64ffa2',
-            dark: '#00ab44',
-            contrastText: '#fff',
-        },
-    },
-});
 
 function WrapperApp() {
     // const { t } = useTranslation();

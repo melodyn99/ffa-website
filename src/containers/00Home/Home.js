@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router';
 import { withTranslation } from 'react-i18next';
 import { withStyles } from '@material-ui/core/styles';
+import { styles } from '../../utils/01MaterialJsStyles/common'
 
 import { Button } from '@material-ui/core';
 import BreadCrumb from '../../components/100Include/breadcrumb'
@@ -9,43 +10,6 @@ import BreadCrumb from '../../components/100Include/breadcrumb'
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
 // import * as FindParkingSpaceActionCreators from '../../actions/findParkingSpace';
-
-const styles = theme => ({
-    root: {
-        [theme.breakpoints.up('md')]: {
-            width: '700px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        },
-        marginBottom: '70px',
-    },
-    requiredField: {
-        color: 'red',
-    },
-    createButton: {
-        [theme.breakpoints.up('md')]: {
-            borderRadius: '10px',
-            display: 'block',
-            margin: '0 auto',
-            marginTop: '10px',
-            marginBottom: '10px',
-            width: '360px',
-        },
-        [theme.breakpoints.down('sm')]: {
-            borderRadius: '0px',
-            bottom: '0px',
-            position: 'relative',
-            width: '100%',
-            height: '60px',
-            fontSize: '20px',
-        },
-        backgroundColor: theme.palette.secondary.main,
-        color: 'white',
-        '&:hover': {
-            backgroundColor: theme.palette.secondary.main,
-        },
-    },
-});
 
 class Home extends Component {
     constructor(props) {
