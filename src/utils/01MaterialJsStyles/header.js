@@ -1,4 +1,4 @@
-export const CommonStyles = theme => ({
+export const HeaderStyles = theme => ({
     root: {
         [theme.breakpoints.up('md')]: {
             width: '700px',
@@ -10,7 +10,7 @@ export const CommonStyles = theme => ({
     requiredField: {
         color: 'red',
     },
-    createButton: {
+    deleteButton: {
         [theme.breakpoints.up('md')]: {
             borderRadius: '10px',
             display: 'block',
@@ -28,7 +28,7 @@ export const CommonStyles = theme => ({
             fontSize: '20px',
         },
         backgroundColor: theme.palette.secondary.main,
-        color: 'white',
+        color: 'black',
         '&:hover': {
             backgroundColor: theme.palette.secondary.main,
         },

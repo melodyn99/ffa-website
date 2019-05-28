@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router';
 import { withTranslation } from 'react-i18next';
 import { withStyles } from '@material-ui/core/styles';
-import { styles } from '../../utils/01MaterialJsStyles/common'
+
+import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
+import { HeaderStyles } from '../../utils/01MaterialJsStyles/header'
 
 import { Button } from '@material-ui/core';
 import BreadCrumb from '../../components/100Include/breadcrumb'
@@ -58,7 +61,7 @@ class Home extends Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <Button className={this.props.classes.createButton}>Hello</Button>
+                                <Button className={this.props.classes.deleteButton}>Hello</Button>
                             </div>
                         </div>
 
@@ -69,4 +72,6 @@ class Home extends Component {
     }
 }
 
-export default withTranslation()(withStyles(styles)(Home));
+const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
+
+export default withTranslation()(withStyles(combinedStyles)(Home));
