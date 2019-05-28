@@ -90,10 +90,12 @@ class Home extends Component {
 
                         <h2 className="pageTitle">報名歷史</h2>
 
-                        <div className="content">
+                        <div className="wrapper-content">
                             <BreadCrumb />
 
-                            <Button className={this.props.classes.createButton}>Hello</Button>
+                            <div className="content">
+                                <Button className={this.props.classes.createButton}>Hello</Button>
+                            </div>
                         </div>
 
                     </div>

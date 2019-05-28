@@ -83,7 +83,7 @@
 
 	&.active { left: 300px; @include transition(0.1s); }
 
-	.header { width:100%; max-width:1240px; height:100px; margin:0 auto; padding:10px 20px;
+	.header { width:100%; max-width:1640px; height:100px; margin:0 auto; padding:10px 20px;
 		@media (max-width: 980px) { height:50px; } 
 	}
 }
@@ -91,15 +91,15 @@
 //FOOTER
 .wrapper-footer { background:#1b1718; 
 
-	.footer { position:relative; max-width:1240px; margin:0 auto; padding:20px; color:#fff; }
+	.footer { position:relative; max-width:1640px; margin:0 auto; padding:20px; color:#fff; }
 }
  
 //CONTAINER
 .wrapper-container-main { position:relative; width:100%; background:#e6e408; background-size:100%;
 
-	.container-main { position:relative; padding:20px; max-width:1240px; margin:0 auto; min-height:600px; background:green;
+	.container-main { position:relative; padding:20px; max-width:1640px; margin:0 auto; min-height:600px; 
 
-		.breadcrumb { background-color:#000; color:#fff; border-radius:0; 
+		.breadcrumb { background-color:#000; color:#fff; border-radius:0; margin:0; 
 			span { display:inline-block; font-size:12px; padding:0 5px;
 				a { display:block; color:#fff; font-size:12px; }
 			}
@@ -107,6 +107,8 @@
 
 		.pageTitle { font-size:60px; color:#fff; }
 
-		.content { position:relative; background: yellow; }
+		.wrapper-content { position:relative; background:#fff; 
+			.content { padding:20px; }
+		}
 	}
 }
