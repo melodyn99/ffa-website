@@ -33,7 +33,7 @@ const styles = theme => ({
         [theme.breakpoints.down('sm')]: {
             borderRadius: '0px',
             bottom: '0px',
-            position: 'fixed',
+            position: 'relative',
             width: '100%',
             height: '60px',
             fontSize: '20px',
@@ -86,7 +86,13 @@ class Home extends Component {
             <div>
                 <div className="wrapper-container">
                     <div className="containerMain">
-                        <Button className={this.props.classes.createButton}>Hello</Button>
+
+                        <h2 className="pageTitle">報名歷史</h2>
+
+                        <div className="content">
+                            <Button className={this.props.classes.createButton}>Hello</Button>
+                        </div>
+
                     </div>
                 </div>
             </div>
