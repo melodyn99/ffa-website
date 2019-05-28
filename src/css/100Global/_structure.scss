@@ -95,9 +95,15 @@
 }
  
 //CONTAINER
-.wrapper-container { position:relative; width:100%; background:#e6e408; background-size:100%;
+.wrapper-container-main { position:relative; width:100%; background:#e6e408; background-size:100%;
 
-	.containerMain { position:relative; padding:20px; max-width:1240px; margin:0 auto; min-height:600px; background:green;
+	.container-main { position:relative; padding:20px; max-width:1240px; margin:0 auto; min-height:600px; background:green;
+
+		.breadcrumb { background-color:#000; color:#fff; border-radius:0; 
+			span { display:inline-block; font-size:12px; padding:0 5px;
+				a { display:block; color:#fff; font-size:12px; }
+			}
+		}
 
 		.pageTitle { font-size:60px; color:#fff; }
 

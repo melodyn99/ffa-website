@@ -4,6 +4,7 @@ import { withTranslation } from 'react-i18next';
 import { withStyles } from '@material-ui/core/styles';
 
 import { Button } from '@material-ui/core';
+import BreadCrumb from '../../components/100Include/breadcrumb'
 
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
@@ -84,12 +85,14 @@ class Home extends Component {
 
         return (
             <div>
-                <div className="wrapper-container">
-                    <div className="containerMain">
+                <div className="wrapper-container-main">
+                    <div className="container-main">
 
                         <h2 className="pageTitle">報名歷史</h2>
 
                         <div className="content">
+                            <BreadCrumb />
+
                             <Button className={this.props.classes.createButton}>Hello</Button>
                         </div>
 
