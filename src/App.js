@@ -17,7 +17,13 @@ import * as HelperDesktopHandle from './utils/00JqueryControl/DesktopHandle';
 import * as HelperMobileHandle from './utils/00JqueryControl/MobileHandle';
 import * as HelperPopup from './utils/00JqueryControl/Popup';
 
+// Home
 import Home from './containers/00Home/Home';
+
+// Notes
+import NotesTaking from './containers/06Notes/NotesTaking';
+
+// 404
 import PageNotFound from './containers/PageNotFound';
 
 class App extends Component {
@@ -67,6 +73,10 @@ class App extends Component {
                     return <Home />;
                 }
 
+                case 'notes-taking': {
+                    return <NotesTaking />;
+                }
+
                 default: {
                     return <PageNotFound />;
                 }
@@ -77,7 +87,7 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.props.route.location.pathname);
+        // console.log(this.props.route.location.pathname);
 
         return (
             <div>

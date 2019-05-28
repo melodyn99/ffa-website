@@ -10,13 +10,11 @@ import { Button } from '@material-ui/core';
 
 import BreadCrumb from '../../components/100Include/breadcrumb';
 
-import { apiAuth } from '../../Api/ApiAuth';
-import { apiConferences } from '../../Api/ApiConferences';
+import { apiNoteTaking } from '../../Api/ApiNoteTaking';
 
 import { connect } from 'react-redux';
-import { login, verifyToken } from '../../Redux/Action/authAction';
 
-class Home extends Component {
+class NotesTaking extends Component {
     constructor(props) {
         super(props);
 
@@ -26,14 +24,7 @@ class Home extends Component {
     }
 
     componentDidMount = () => {
-        // const storageData = JSON.parse(sessionStorage.getItem('state'));
-        //console.log(storageData);
-
-        // if (storageData) {
-        //     this.setState(storageData)
-        // }
-
-        window.addEventListener("resize", this.windowResize);
+        this._getNotes();
     }
 
     componentDidUpdate = () => {
@@ -49,15 +40,7 @@ class Home extends Component {
         }, 100);
     }
 
-    _signInAsync = async () => {
-        apiAuth.authenticate('admin@joyaether.test', 'abcd1234').then((res) => {
-            // console.log(res);
-            this.props.loginP(res.access_token);
-            this._getConference();
-        })
-    };
-
-    _getConference = () => {
+    _getNotes = () => {
 
         const cb = (obj) => {
             console.log("cb : ", obj);
@@ -66,7 +49,7 @@ class Home extends Component {
             console.log("eCb : ", obj);
         }
 
-        apiConferences.getConferenceFullList(this.props.auth.token, cb, eCb);
+        apiNoteTaking.getNoteTakingList(this.props.auth.token, cb, eCb);
     }
 
     render() {
@@ -102,10 +85,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    loginP: data => dispatch(login(data)),
-    verifyT: token => dispatch(verifyToken(token)),
+    // loginP: data => dispatch(login(data)),
+    // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Home)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NotesTaking)));

@@ -13,7 +13,7 @@ export const apiGeneral = {
             method: 'get',
             headers: new Headers({
                 'Authorization': 'Bearer ' + token,
-                // 'Accept': 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }),
             body: null
@@ -43,7 +43,7 @@ export const apiGeneral = {
             method: 'post',
             headers: new Headers({
                 'Authorization': 'Bearer ' + token,
-                // 'Accept': 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }),
             body: JSON.stringify(body)
