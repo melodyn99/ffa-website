@@ -37,7 +37,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => (
     {
-        members: state.members,
+        members: state.auth,
         router: state.router
     }
 );

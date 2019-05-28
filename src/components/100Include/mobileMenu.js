@@ -25,7 +25,7 @@ function MobileMenu(props) {
 	}
 
 	let logined = false;
-	if (typeof (props.members.Login) !== "undefined" && props.members.Login !== null && props.members.Login.length !== 0)
+	if (typeof (props.auth.auth) !== "undefined" && props.auth.auth !== null && props.auth.auth.length !== 0)
 		logined = true;
 
 	return (
@@ -93,7 +93,7 @@ function MobileMenu(props) {
 const mapStateToProps = (state) => (
 	{
 		router: state.router,
-		members: state.members
+		auth: state.auth
 	}
 );
 

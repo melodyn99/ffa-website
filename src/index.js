@@ -43,6 +43,7 @@ import io from './socket/connect';
 
 // IMPORT REDUCERS
 import members from './reducers/members';
+import authReducer from './Redux/Reducer/authReducer';
 
 // APP ENTRY POINT
 import App from './App';
@@ -60,7 +61,7 @@ const middleware = routerMiddleware(history)
 // Also apply our middleware for navigating
 const appReducer = combineReducers({
     router: routerReducer,
-    members
+    auth: authReducer
 });
 
 const rootReducer = (state, action) => {
