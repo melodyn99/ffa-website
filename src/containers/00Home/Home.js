@@ -1,48 +1,58 @@
 import React, { Component } from 'react';
 // import { Redirect } from 'react-router';
 import { withTranslation } from 'react-i18next';
+import { withStyles } from '@material-ui/core/styles';
+
+import { Button } from '@material-ui/core';
 
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
 // import * as FindParkingSpaceActionCreators from '../../actions/findParkingSpace';
+
+const styles = theme => ({
+    root: {
+        [theme.breakpoints.up('md')]: {
+            width: '700px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        marginBottom: '70px',
+    },
+    requiredField: {
+        color: 'red',
+    },
+    createButton: {
+        [theme.breakpoints.up('md')]: {
+            borderRadius: '10px',
+            display: 'block',
+            margin: '0 auto',
+            marginTop: '10px',
+            marginBottom: '10px',
+            width: '360px',
+        },
+        [theme.breakpoints.down('sm')]: {
+            borderRadius: '0px',
+            bottom: '0px',
+            position: 'fixed',
+            width: '100%',
+            height: '60px',
+            fontSize: '20px',
+        },
+        backgroundColor: theme.palette.secondary.main,
+        color: 'white',
+        '&:hover': {
+            backgroundColor: theme.palette.secondary.main,
+        },
+    },
+});
 
 class Home extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            search: {
-                DateStart: '',
-                DateEnd: '',
-                type: 'hourly',
-                where: '',
-                lat: null,
-                lng: null,
-
-            },
-            formSubmitted: false,
-            verified: {
-                0: true,
-                2: true
-            },
-            wishlist: {
-                1: true
-            }
+            formSubmitted: false
         }
-
-        this.settingsBanner = {
-            arrows: false,
-            dots: true,
-            dotsClass: "slick-dots slick-thumb",
-            infinite: true,
-            autoplay: true,
-            autoplaySpeed: 3000,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        };
-
-        this.changeStateLevelTwo = this.changeStateLevelTwo.bind(this);
-        this.changeStateLevelTwoArray = this.changeStateLevelTwoArray.bind(this);
     }
 
     componentDidMount = () => {
@@ -65,7 +75,7 @@ class Home extends Component {
         var resizeTimer;
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function () {
-
+            // do something
         }, 100);
     }
 
@@ -73,9 +83,15 @@ class Home extends Component {
         // const { i18n } = this.props;
 
         return (
-            <div>hello</div>
+            <div>
+                <div className="wrapper-container">
+                    <div className="containerMain">
+                        <Button className={this.props.classes.createButton}>Hello</Button>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
 
-export default withTranslation()(Home);
+export default withTranslation()(withStyles(styles)(Home));

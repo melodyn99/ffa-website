@@ -103,7 +103,7 @@
 
 	>li { display:block; margin:0; padding:0; text-align:center; 
 
-		> span { display:block; cursor:pointer; background:#f3f3f3 url('../images/mobile/General/menu-and-footer/btn_arrow-footer.png') center right 20px no-repeat; color:black; padding:15px 45px 15px 20px; text-align:right; 
+		// > span { display:block; cursor:pointer; background:#f3f3f3 url('../images/mobile/General/menu-and-footer/btn_arrow-footer.png') center right 20px no-repeat; color:black; padding:15px 45px 15px 20px; text-align:right; 
 			&.active { background-color:$majorGreen; color:#fff; }
 		}
 

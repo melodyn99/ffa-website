@@ -3,7 +3,7 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 function Footer(props) {
-	const { t, i18n } = props;
+	// const { t, i18n } = props;
 
 	return (
 		<div className="wrapper-footer">
