@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import {
     createStore, combineReducers, applyMiddleware,
-    // compose
+    compose
 } from 'redux'
 import { Provider } from 'react-redux'
 
@@ -81,10 +81,10 @@ const pReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
     pReducer,
-    // compose(
-    applyMiddleware(middleware, socketIoMiddleware(io))
-    // , window.devToolsExtension && window.devToolsExtension()
-    // )
+    compose(
+        applyMiddleware(middleware, socketIoMiddleware(io))
+        , window.devToolsExtension && window.devToolsExtension()
+    )
 );
 
 const persistor = persistStore(store);

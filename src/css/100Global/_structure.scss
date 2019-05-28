@@ -3,6 +3,18 @@
 	>div { overflow:hidden; z-index:0; }
 }
 
+/* WRAP */
+#wrap { position:relative; padding-top:95px; left:0; background:#e6e408; z-index:1; @include transition(0.1s); height:100%;
+	
+	@media (max-width: 980px) { padding-top:50px; } 
+
+	&.active { left: 300px; @include transition(0.1s); }
+
+	.blackPlane { position:absolute; top:0; left:0; width:100%; height:100%; background:black; z-index:999; display:none; opacity:0.8; 
+		&.active { display:block; }
+	}
+}
+
 //MOBILE MENU
 .wrapper-mobile-menu { position:fixed; top:0; left:0; height:100%; width:300px; background:white; overflow-y:scroll; -webkit-overflow-scrolling: touch; z-index:1; display:none;
 	
@@ -63,18 +75,6 @@
 			.free { margin:0; }
 			a { display:inline-block; }
 		}
-	}
-}
-
-/* REAL */
-#wrap { position:relative; padding-top:95px; left:0; background:#e6e408; z-index:1; @include transition(0.1s); height:100%;
-	
-	@media (max-width: 980px) { padding-top:50px; } 
-
-	&.active { left: 300px; @include transition(0.1s); }
-
-	.blackPlane { position:absolute; top:0; left:0; width:100%; height:100%; background:black; z-index:999; display:none; opacity:0.8; 
-		&.active { display:block; }
 	}
 }
 
