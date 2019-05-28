@@ -42,7 +42,6 @@ import socketIoMiddleware from 'redux-socket.io-middleware';
 import io from './socket/connect';
 
 // IMPORT REDUCERS
-import members from './reducers/members';
 import authReducer from './Redux/Reducer/authReducer';
 
 // APP ENTRY POINT

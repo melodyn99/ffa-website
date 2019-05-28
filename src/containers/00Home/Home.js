@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 // import { Redirect } from 'react-router';
 import { withTranslation } from 'react-i18next';
-import { withStyles } from '@material-ui/core/styles';
 
-import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
 import { HeaderStyles } from '../../utils/01MaterialJsStyles/header'
-
+import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+
 import BreadCrumb from '../../components/100Include/breadcrumb';
+
+import { apiAuth } from '../../Api/ApiAuth';
 
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
@@ -47,6 +49,14 @@ class Home extends Component {
         }, 100);
     }
 
+    _signInAsync = async () => {
+        // await AsyncStorage.setItem('userToken', 'abc');
+        apiAuth.authenticate('admin@joyaether.test', 'abcd1234').then((res) => {
+            console.log(res);
+            // this.props.loginP(res.access_token);
+        })
+    };
+
     render() {
         // const { i18n } = this.props;
 
@@ -61,7 +71,10 @@ class Home extends Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <Button className={this.props.classes.createButton}>Hello</Button>
+                                <Button
+                                    className={this.props.classes.createButton}
+                                    onClick={() => { this._signInAsync() }}
+                                >Hello</Button>
                             </div>
                         </div>
 
