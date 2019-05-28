@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 // import * as InviteeActionCreators from '../actions/invitee';
 
-class Contact extends Component {
+class PageNotFound extends Component {
 
 	render() {
 		return (
@@ -20,5 +20,5 @@ class Contact extends Component {
 // 	}
 // );
 
-export default Contact;
+export default PageNotFound;
 // connect(mapStateToProps)(Contact);

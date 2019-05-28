@@ -28,10 +28,7 @@
 						&:first-child { border:none; }
 
 						.accordion__title { background:none; padding: 25px 0; cursor:pointer;
-							
-							&[aria-selected="true"]{background-image: url(../images/arrow-up.png); }
 
-							background-image: url(../images/arrow-down.png);
 							background-repeat: no-repeat;
 							background-position: right center;
 
