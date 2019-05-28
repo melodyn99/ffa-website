@@ -11,8 +11,8 @@ import { connect } from 'react-redux';
 import querySearch from "stringquery";
 
 // import MobileMenu from './components/100Include/mobileMenu';
-// import Header from './components/100Include/header';
-// import Footer from './components/100Include/footer';
+import Header from './components/100Include/header';
+import Footer from './components/100Include/footer';
 
 import * as HelperDesktopHandle from './utils/00General/DesktopHandle';
 import * as HelperMobileHandle from './utils/00General/MobileHandle';
@@ -131,13 +131,13 @@ class App extends Component {
                 {/* <MobileMenu /> */}
 
                 <div id="wrap">
-                    {/* <Header /> */}
+                    <Header />
 
                     <div className="blackPlane"></div>
 
                     <Button className={this.props.classes.createButton}>Hello</Button>
 
-                    {/* <Footer /> */}
+                    <Footer />
                 </div>
             </div>
         );
