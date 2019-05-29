@@ -1,20 +1,29 @@
+// Essential for all components
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
+// Styling
 import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
 import { HeaderStyles } from '../../utils/01MaterialJsStyles/header'
 import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
-import BreadCrumb from '../../components/100Include/breadcrumb';
-
+// Api
 import { apiAuth } from '../../Api/ApiAuth';
 import { apiConferences } from '../../Api/ApiConferences';
 
+// Redux
 import { connect } from 'react-redux';
 import { login, verifyToken } from '../../Redux/Action/authAction';
+
+// Utils
+
+// Children components
+import BreadCrumb from '../../components/100Include/breadcrumb';
 
 class Home extends Component {
     constructor(props) {
@@ -26,19 +35,7 @@ class Home extends Component {
     }
 
     componentDidMount = () => {
-        // const storageData = JSON.parse(sessionStorage.getItem('state'));
-        //console.log(storageData);
-
-        // if (storageData) {
-        //     this.setState(storageData)
-        // }
-
         window.addEventListener("resize", this.windowResize);
-    }
-
-    componentDidUpdate = () => {
-        // sessionStorage.setItem('state', JSON.stringify(this.state));
-        // console.log(this.state);
     }
 
     windowResize = () => {
