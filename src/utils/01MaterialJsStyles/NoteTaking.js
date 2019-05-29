@@ -10,7 +10,7 @@ export const NoteTakingStyles = () => ({
         paddingBottom: '20px',
     },
     listItemText: {
-        marginLeft: '20px',
+        marginLeft: '10px',
         '& p ': {
             padding: 0,
         },

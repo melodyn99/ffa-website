@@ -59,9 +59,9 @@ class NotesTaking extends React.Component {
     }
 
     render() {
-        const { classes, dispatch } = this.props;
+        const { i18n, classes, dispatch } = this.props;
         const { listNote } = this.state;
-
+        console.log(i18n.language)
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -85,8 +85,8 @@ class NotesTaking extends React.Component {
                                                     }}
                                                     component={Link}
                                                     to={{
-                                                        pathname: '/notecontent',
-                                                        search: item.note_id,
+                                                        pathname: '/' + i18n.language + '/notes-content',
+                                                        search: 'note=' + item.note_id,
                                                         state: item,
                                                     }}
                                                     className={classes.listItem}
@@ -98,9 +98,7 @@ class NotesTaking extends React.Component {
                                                         className={classes.listItemText}
                                                     />
                                                     <Typography className={classes.typography}>
-                                                        {
-                                                            dateToDayAndMonth(item.createddate)
-                                                        }
+                                                        {dateToDayAndMonth(item.createddate)}
                                                     </Typography>
                                                 </ListItem>
                                             ))

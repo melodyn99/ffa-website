@@ -22,6 +22,7 @@ import Home from './containers/00Home/Home';
 
 // Notes
 import NotesTaking from './containers/06Notes/NotesTaking';
+import NotesContent from './containers/06Notes/NotesContent';
 
 // 404
 import PageNotFound from './containers/PageNotFound';
@@ -68,6 +69,8 @@ class App extends Component {
 
         if (component) {
 
+            console.log(params);
+
             switch (component) {
                 case 'home': {
                     return <Home />;
@@ -75,6 +78,9 @@ class App extends Component {
 
                 case 'notes-taking': {
                     return <NotesTaking />;
+                }
+                case 'notes-content': {
+                    return <NotesContent params={params} />;
                 }
 
                 default: {

@@ -43,19 +43,19 @@ import io from './socket/connect';
 
 // IMPORT REDUCERS
 import authReducer from './Redux/Reducer/authReducer';
-// import profileReducer from './src/Redux/Reducer/profileReducer';
+// import profileReducer from './Redux/Reducer/profileReducer';
 import seminarReducer from './Redux/Reducer/seminarReducer';
-// import eventReducer from './src/Redux/Reducer/eventReducer';
-// import seatingPlanReducer from './src/Redux/Reducer/seatingPlanReducer';
-// import studentContainerReducer from './src/Redux/Reducer/studentContainerReducer';
-// import seatMapReducer from './src/Redux/Reducer/seatMapReducer';
-// import accountReducer from './src/Redux/Reducer/accountReducer';
-// import companyReducer from './src/Redux/Reducer/companyReducer';
-// import studentReducer from './src/Redux/Reducer/studentReducer';
-// import libraryReducer from './src/Redux/Reducer/libraryReducer';
-// import reminderReducer from './src/Redux/Reducer/reminderReducer';
-// import messageReducer from './src/Redux/Reducer/messageReducer';
-// import viewContentReducer from './src/Redux/Reducer/viewContentReducer';
+import eventReducer from './Redux/Reducer/eventReducer';
+// import seatingPlanReducer from './Redux/Reducer/seatingPlanReducer';
+// import studentContainerReducer from './Redux/Reducer/studentContainerReducer';
+// import seatMapReducer from './Redux/Reducer/seatMapReducer';
+// import accountReducer from './Redux/Reducer/accountReducer';
+// import companyReducer from './Redux/Reducer/companyReducer';
+// import studentReducer from './Redux/Reducer/studentReducer';
+import libraryReducer from './Redux/Reducer/libraryReducer';
+// import reminderReducer from './Redux/Reducer/reminderReducer';
+// import messageReducer from './Redux/Reducer/messageReducer';
+// import viewContentReducer from './Redux/Reducer/viewContentReducer';
 
 // APP ENTRY POINT
 import App from './App';
@@ -74,7 +74,9 @@ const middleware = routerMiddleware(history)
 const appReducer = combineReducers({
     router: routerReducer,
     auth: authReducer,
-    seminarReducer: seminarReducer
+    seminarReducer: seminarReducer,
+    libraryReducer: libraryReducer,
+    eventReducer: eventReducer
 });
 
 const rootReducer = (state, action) => {
