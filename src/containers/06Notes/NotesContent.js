@@ -53,35 +53,17 @@ class NoteContent extends Component {
             name: viewingNote.name,
         });
 
-        emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
-            console.log('hello');
-            console.log('hey', data);
-            // const cb = (obj) => {
-            //     // console.log("cb : ", obj);
-            //     this.setState({
-            //         noteFile: obj.body,
-            //     });
-            // }
-            // const eCb = (obj) => {
-            //     console.log("eCb : ", obj);
-            // }
-
-            // const params = null;
-
-            // apiNoteFile._getNoteFileForNote(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
-
-
-
-            // apiFile.createFile(data).then((res) => {
-            //     console.log(res);
-            //     apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
-            //         console.log('rr', resp);
-            //         this._getNoteFile();
-            //     });
-            // }).catch((err) => {
-            //     console.log(err);
-            // });
-        });
+        // emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
+        //     apiFile.createFile(data).then((res) => {
+        //         console.log(res);
+        //         apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
+        //             console.log('rr', resp);
+        //             this._getNoteFile();
+        //         });
+        //     }).catch((err) => {
+        //         console.log(err);
+        //     });
+        // });
     }
     componentWillUnmount() {
         // emitter.removeListener(EventTypes.ADD_FILE_TO_NOTE);

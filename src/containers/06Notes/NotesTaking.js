@@ -77,20 +77,20 @@ class NotesTaking extends React.Component {
                                 <div className={classes.notesWrapper}>
                                     <List className={classes.list}>
                                         {
-                                            listNote.map(item => (
+                                            listNote.map((item, i) => (
                                                 <ListItem
                                                     onClick={() => {
-                                                        dispatch(setNoteTitle(item.name));
-                                                        dispatch(viewingNoteAction(item));
+                                                        this.props.setNoteTitle(item.name);
+                                                        this.props.viewingNoteAction(item);
                                                     }}
                                                     component={Link}
                                                     to={{
                                                         pathname: '/' + i18n.language + '/notes-content',
-                                                        search: 'note=' + item.note_id,
-                                                        state: item,
+                                                        search: 'notes=' + item.note_id,
+                                                        // state: item,
                                                     }}
                                                     className={classes.listItem}
-                                                    key={Math.random()}
+                                                    key={i}
                                                 >
                                                     <ListItemText
                                                         primary={item.name}
@@ -117,7 +117,7 @@ class NotesTaking extends React.Component {
 NotesTaking.propTypes = {
     classes: PropTypes.object.isRequired,
     viewingSeminar: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -125,6 +125,11 @@ const mapStateToProps = state => ({
     viewingSeminar: state.seminarReducer.viewingSeminar,
 });
 
+const mapDispatchToProps = dispatch => ({
+    setNoteTitle: data => dispatch(setNoteTitle(data)),
+    viewingNoteAction: data => dispatch(viewingNoteAction(data)),
+});
+
 const combinedStyles = combineStyles(CommonStyles, NoteTakingStyles);
 
-export default withTranslation()(autoScrollTop(connect(mapStateToProps, null)(withStyles(combinedStyles)(NotesTaking))));
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NotesTaking))));
