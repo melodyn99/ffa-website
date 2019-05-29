@@ -1,88 +1,33 @@
+// Essential for all components
 import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+// import { Redirect } from 'react-router';
+// import { Link } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
+
+// Styling
+import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
+import { DocumentStyles } from '../../utils/01MaterialJsStyles/Document.js'
 import { withStyles } from '@material-ui/core/styles';
-import {
-  Button, Typography, Checkbox,Dialog,
-} from '@material-ui/core';
+import { Button, Typography, Checkbox, Dialog } from '@material-ui/core';
 import {
   MailOutline as Mail, GetApp as Download, Delete as TrashCan, CheckBox as CheckBoxIcon, CheckBoxOutlineBlank as CheckBoxOutlineBlankIcon,
 } from '@material-ui/icons';
-import moment from 'moment';
-import { apiStudents } from '../../Api/ApiStudents';
 
-import {last} from 'lodash-es'
+// Api
 import { apiMaterial } from '../../Api/ApiMaterial';
-import CommonUtils, { getErrorMessage, getThumbnail } from '../../Util/CommonUtils';
 import { apiEventPptFile } from '../../Api/ApiEventPptFile';
 import { apiNoteFile } from '../../Api/ApiNoteFile';
-import { autoScrollTop } from '../../Misc/ScrollToTop';
+import { apiStudents } from '../../Api/ApiStudents';
 
-const styles = theme => ({
-  root: {
-    [theme.breakpoints.up('md')]: {
-      width: '700px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  documentWrapper: {
-    '&:nth-child(even)': {
-      backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    },
-  },
-  documentWrapperOpen: {
-    border: '1px solid black',
-    backgroundColor: '#A9D0F5',
-  },
-  document: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    paddingTop: '16px',
-    paddingBottom: '16px',
-    [theme.breakpoints.up('md')]: {
-      width: '700px',
-    },
-  },
-  documentInfo: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  rightDocumentWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: '1',
-    flexGrow: '3',
-    color: '#000'
-  },
-  editBar: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    textAlign: 'right',
-    backgroundColor: '#A9D0F5',
-    [theme.breakpoints.up('md')]: {
-      width: '700px',
-    },
-  },
-  label: {
-    flexDirection: 'column',
-    fontSize: '16px',
-  },
-  icon: {
-    fontSize: '30px',
-  },
-  checkBox: {
-    marginLeft: '10px',
-    color: theme.palette.secondary.main,
-  },
-  iconSpeaker: {
-    width: '32px',
-  },
-});
+// Redux
+import { connect } from 'react-redux';
+
+// Utils
+import { autoScrollTop } from '../../Misc/ScrollToTop';
+import { last } from 'lodash-es'
+import CommonUtils, { getErrorMessage, getThumbnail } from '../../Util/CommonUtils';
+import moment from 'moment';
 
 class DocumentList extends React.Component {
   constructor(props) {
@@ -93,10 +38,10 @@ class DocumentList extends React.Component {
       prevExpand: -1,
       check: new Array(props.documents.length).fill(false),
       student_mails: null,
-      review:{
-        url:''
+      review: {
+        url: ''
       },
-      open:false
+      open: false
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -112,7 +57,7 @@ class DocumentList extends React.Component {
       for (const company of companies) {
         student_mails.push(...company.students.map(s => s.email));
       }
-    } catch (_) {}
+    } catch (_) { }
 
     this.setState({
       student_mails,
@@ -234,7 +179,7 @@ class DocumentList extends React.Component {
     }
   }
 
-  handleClose = () =>{
+  handleClose = () => {
     this.setState({
       open: false
     })
@@ -256,18 +201,18 @@ class DocumentList extends React.Component {
       >
         <div className={classes.document} onClick={() => !hasCheckbox && this.handleClick(i)}>
           {hasCheckbox && (
-          <Checkbox
-            className={classes.checkBox}
-            icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 36 }} />}
-            checkedIcon={<CheckBoxIcon style={{ fontSize: 36 }} />}
-            checked={check[i]}
-            onChange={() => {
-              handleCheckbox(d, !check[i]);
-              const excheck = check;
-              excheck[i] = !excheck[i];
-              this.setState({ check: excheck });
-            }}
-          />
+            <Checkbox
+              className={classes.checkBox}
+              icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 36 }} />}
+              checkedIcon={<CheckBoxIcon style={{ fontSize: 36 }} />}
+              checked={check[i]}
+              onChange={() => {
+                handleCheckbox(d, !check[i]);
+                const excheck = check;
+                excheck[i] = !excheck[i];
+                this.setState({ check: excheck });
+              }}
+            />
           )}
           <div style={{ flex: '1', flexGrow: '1', textAlign: 'center' }}>
             <img
@@ -275,9 +220,9 @@ class DocumentList extends React.Component {
               alt="document"
               width="42px"
               height="42px"
-              onClick={()=>{
-                console.log('onclick',last(file.url.split('/')))
-                if(file.mime_type.text_value.startsWith('image/')) {
+              onClick={() => {
+                console.log('onclick', last(file.url.split('/')))
+                if (file.mime_type.text_value.startsWith('image/')) {
                   this.setState({
                     review: file,
                     open: true
@@ -357,12 +302,12 @@ class DocumentList extends React.Component {
     return (
       <Fragment>
         {documents.map(this.renderItem)}
-        <Dialog 
+        <Dialog
           aria-labelledby="simple-dialog-title"
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <img src={this.state.review.url} alt="" style={{width: '100%', height: 'auto'}}/>
+          <img src={this.state.review.url} alt="" style={{ width: '100%', height: 'auto' }} />
         </Dialog>
       </Fragment>
     );
@@ -382,8 +327,7 @@ const mapStateToProps = state => ({
   viewingSeminar: state.seminarReducer.viewingSeminar,
 });
 
-const CompWithStyle = withStyles(styles)(DocumentList);
+const combinedStyles = combineStyles(CommonStyles, DocumentStyles);
 
-export default connect(mapStateToProps)(
-  autoScrollTop(CompWithStyle),
-);
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, null)(withStyles(combinedStyles)(DocumentList))));
+

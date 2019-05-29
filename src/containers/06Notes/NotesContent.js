@@ -29,7 +29,7 @@ import {
     emitter,
     EventTypes
 } from '../../Util/EventEmitter';
-// import DocumentList from '../Library/DocumentList';
+import DocumentList from '../Library/DocumentList';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
@@ -58,17 +58,17 @@ class NoteContent extends Component {
             name: viewingNote.name,
         });
 
-        emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
-            apiFile.createFile(data).then((res) => {
-                console.log(res);
-                apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
-                    console.log('rr', resp);
-                    this._getNoteFile();
-                });
-            }).catch((err) => {
-                console.log(err);
-            });
-        });
+        // emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
+        //     apiFile.createFile(data).then((res) => {
+        //         console.log(res);
+        //         apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
+        //             console.log('rr', resp);
+        //             this._getNoteFile();
+        //         });
+        //     }).catch((err) => {
+        //         console.log(err);
+        //     });
+        // });
     }
     componentWillUnmount() {
         // emitter.removeListener(EventTypes.ADD_FILE_TO_NOTE);
@@ -143,12 +143,12 @@ class NoteContent extends Component {
                                         </div>
                                     ) : (
                                             <div className={classes.divScroll}>
-                                                {/* <DocumentList
+                                                <DocumentList
                                                     onUpdate={() => this._getNoteFile()}
                                                     documents={noteFile}
                                                     listingType="note"
                                                     profile={profile}
-                                                /> */}
+                                                />
                                             </div>
 
                                         )}
