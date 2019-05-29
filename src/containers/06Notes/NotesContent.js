@@ -41,35 +41,53 @@ class NoteContent extends Component {
     }
 
     componentDidMount() {
-        this.getNoteFile();
-        // this.changeNoteType(EventTypes.CHANGE_TYPE_NOTE, 'text');
+        this._getNoteFile();
 
-        const { viewingNote, location } = this.props
-        // console.log('viewingNote', viewingNote)
-        // console.log('location', location)
+        this._changeNoteType(EventTypes.CHANGE_TYPE_NOTE, 'text');
+
+        const { viewingNote } = this.props
+
         this.setState({
             ...this.state,
             content: viewingNote.content,
             name: viewingNote.name,
         });
 
-        // emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
-        //     apiFile.createFile(data).then((res) => {
-        //         console.log(res);
-        //         apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
-        //             console.log('rr', resp);
-        //             this.getNoteFile();
-        //         });
-        //     }).catch((err) => {
-        //         console.log(err);
-        //     });
-        // });
+        emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
+            console.log('hello');
+            console.log('hey', data);
+            // const cb = (obj) => {
+            //     // console.log("cb : ", obj);
+            //     this.setState({
+            //         noteFile: obj.body,
+            //     });
+            // }
+            // const eCb = (obj) => {
+            //     console.log("eCb : ", obj);
+            // }
+
+            // const params = null;
+
+            // apiNoteFile._getNoteFileForNote(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
+
+
+
+            // apiFile.createFile(data).then((res) => {
+            //     console.log(res);
+            //     apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
+            //         console.log('rr', resp);
+            //         this._getNoteFile();
+            //     });
+            // }).catch((err) => {
+            //     console.log(err);
+            // });
+        });
     }
     componentWillUnmount() {
-        emitter.removeListener(EventTypes.ADD_FILE_TO_NOTE);
+        // emitter.removeListener(EventTypes.ADD_FILE_TO_NOTE);
     }
 
-    getNoteFile = () => {
+    _getNoteFile = () => {
         const { viewingNote } = this.props;
 
         const cb = (obj) => {
@@ -87,54 +105,71 @@ class NoteContent extends Component {
         apiNoteFile.getNoteFileForNote(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
     }
 
-    switchTab = (tab) => {
+    _switchTab = (tab) => {
         this.setState({
             activeTab: tab
         })
-        this.changeNoteType(EventTypes.CHANGE_TYPE_NOTE, tab);
+        this._changeNoteType(EventTypes.CHANGE_TYPE_NOTE, tab);
     }
-    changeNoteType = (eventName, data) => {
-        emitter.emit(eventName, data);
+
+    _changeNoteType = (eventName, data) => {
+        // emitter.emit(eventName, data);
     }
+
     render() {
         const { classes, profile } = this.props;
         const { noteFile, content, name, activeTab } = this.state;
 
         return (
-            <div className={classes.root}>
-                <AppBar position="static">
-                    <Tabs
-                        variant="scrollable"
-                        variant="fullWidth"
-                        classes={{ indicator: classes.indicator }}
-                        value={activeTab}
-                    >
-                        <Tab label="笔记" value="text" onClick={() => this.switchTab('text')} />
-                        <Tab label={`文件 (${noteFile.length})`} value="file" onClick={() => this.switchTab('file')} />
-                    </Tabs>
-                </AppBar>
-                {activeTab === 'text' ? (
-                    <div className={classes.content}>
-                        <textarea
-                            value={content}
-                            placeholder="请输入"
-                            className={classes.input}
-                            disabled
-                        />
+            <div>
+                <div className="wrapper-container-main">
+                    <div className="container-main">
+
+                        <h2 className="pageTitle">報名歷史</h2>
+
+                        <div className="wrapper-content">
+                            <BreadCrumb />
+
+                            <div className="content">
+                                <div className={classes.root}>
+                                    <AppBar position="static">
+                                        <Tabs
+                                            variant="scrollable"
+                                            variant="fullWidth"
+                                            classes={{ indicator: classes.indicator }}
+                                            value={activeTab}
+                                        >
+                                            <Tab label="笔记" value="text" onClick={() => this._switchTab('text')} />
+                                            <Tab label={`文件 (${noteFile.length})`} value="file" onClick={() => this._switchTab('file')} />
+                                        </Tabs>
+                                    </AppBar>
+                                    {activeTab === 'text' ? (
+                                        <div className={classes.content}>
+                                            <textarea
+                                                value={content}
+                                                placeholder="请输入"
+                                                className={classes.input}
+                                                disabled
+                                            />
 
 
-                    </div>
-                ) : (
-                        <div className={classes.divScroll}>
-                            {/* <DocumentList
-                                onUpdate={() => this.getNoteFile()}
-                                documents={noteFile}
-                                listingType="note"
-                                profile={profile}
-                            /> */}
+                                        </div>
+                                    ) : (
+                                            <div className={classes.divScroll}>
+                                                {/* <DocumentList
+                                                    onUpdate={() => this._getNoteFile()}
+                                                    documents={noteFile}
+                                                    listingType="note"
+                                                    profile={profile}
+                                                /> */}
+                                            </div>
+
+                                        )}
+                                </div>
+                            </div>
                         </div>
-
-                    )}
+                    </div>
+                </div>
             </div>
         );
     }

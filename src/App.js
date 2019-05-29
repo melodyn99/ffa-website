@@ -68,8 +68,7 @@ class App extends Component {
         let component = urlArray[2];
 
         if (component) {
-
-            console.log(params);
+            // console.log(params);
 
             switch (component) {
                 case 'home': {
