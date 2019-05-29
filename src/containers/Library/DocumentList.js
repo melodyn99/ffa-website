@@ -8,6 +8,7 @@ import { withTranslation } from 'react-i18next';
 // Styling
 import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
 import { DocumentStyles } from '../../utils/01MaterialJsStyles/Document.js'
+import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Typography, Checkbox, Dialog } from '@material-ui/core';
 import {
@@ -24,7 +25,7 @@ import { apiStudents } from '../../Api/ApiStudents';
 import { connect } from 'react-redux';
 
 // Utils
-import { autoScrollTop } from '../../Misc/ScrollToTop';
+import { autoScrollTop } from '../../Util/ScrollToTop';
 import { last } from 'lodash-es'
 import CommonUtils, { getErrorMessage, getThumbnail } from '../../Util/CommonUtils';
 import moment from 'moment';
@@ -139,7 +140,7 @@ class DocumentList extends React.Component {
 
   handleDelete(d) {
     const { onUpdate, listingType, profile } = this.props;
-    const result = confirm('您确定要删除此文件吗?');
+    const result = window.confirm('您确定要删除此文件吗?');
     if (result) {
       if (listingType === 'material') {
         apiMaterial.deleteMaterial(d.material_id)
@@ -167,7 +168,7 @@ class DocumentList extends React.Component {
         apiEventPptFile.deleteEventPptFile(d.event_preparation_file_id)
           .then((rs) => {
             onUpdate();
-          }).catch(() => {
+          }).catch((e) => {
             let message = getErrorMessage(e) || 'Failed to delete file';
             onUpdate();
             alert(message);

@@ -52,7 +52,9 @@
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "stringquery": "^1.0.8",
-    "yup": "^0.26.6"
+    "yup": "^0.26.6",
+    "file-saver": "^2.0.0",
+    "text-encoding": "^0.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
