@@ -4,8 +4,7 @@ import { apiGeneral } from './_General';
 
 export const apiNoteTaking = {
 
-  getNoteTakingList: (token, cb, eCb) => {
-    const params = null;
+  getNoteTakingList: (params, token, cb, eCb) => {
     apiGeneral.apiFetch('notes', params, token, cb, eCb)
   },
 

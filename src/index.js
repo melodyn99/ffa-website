@@ -43,6 +43,19 @@ import io from './socket/connect';
 
 // IMPORT REDUCERS
 import authReducer from './Redux/Reducer/authReducer';
+// import profileReducer from './src/Redux/Reducer/profileReducer';
+import seminarReducer from './Redux/Reducer/seminarReducer';
+// import eventReducer from './src/Redux/Reducer/eventReducer';
+// import seatingPlanReducer from './src/Redux/Reducer/seatingPlanReducer';
+// import studentContainerReducer from './src/Redux/Reducer/studentContainerReducer';
+// import seatMapReducer from './src/Redux/Reducer/seatMapReducer';
+// import accountReducer from './src/Redux/Reducer/accountReducer';
+// import companyReducer from './src/Redux/Reducer/companyReducer';
+// import studentReducer from './src/Redux/Reducer/studentReducer';
+// import libraryReducer from './src/Redux/Reducer/libraryReducer';
+// import reminderReducer from './src/Redux/Reducer/reminderReducer';
+// import messageReducer from './src/Redux/Reducer/messageReducer';
+// import viewContentReducer from './src/Redux/Reducer/viewContentReducer';
 
 // APP ENTRY POINT
 import App from './App';
@@ -60,7 +73,8 @@ const middleware = routerMiddleware(history)
 // Also apply our middleware for navigating
 const appReducer = combineReducers({
     router: routerReducer,
-    auth: authReducer
+    auth: authReducer,
+    seminarReducer: seminarReducer
 });
 
 const rootReducer = (state, action) => {

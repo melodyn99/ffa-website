@@ -9,6 +9,8 @@ export const apiGeneral = {
         if (params)
             fullUrl += "?" + buildParam(params);
 
+        console.log(fullUrl);
+
         fetch(fullUrl, {
             method: 'get',
             headers: new Headers({
