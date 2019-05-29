@@ -32,7 +32,6 @@ import BreadCrumb from '../../components/100Include/breadcrumb';
 class NoteContent extends Component {
     constructor(props) {
         super(props);
-        console.log('pr', props);
         this.state = {
             noteFile: [],
             content: '',
@@ -43,25 +42,28 @@ class NoteContent extends Component {
 
     componentDidMount() {
         this.getNoteFile();
-        this.changeNoteType(EventTypes.CHANGE_TYPE_NOTE, 'text');
+        // this.changeNoteType(EventTypes.CHANGE_TYPE_NOTE, 'text');
+
         const { viewingNote, location } = this.props
-        console.log('viewingNote', viewingNote)
-        console.log('location', location)
+        // console.log('viewingNote', viewingNote)
+        // console.log('location', location)
         this.setState({
+            ...this.state,
             content: viewingNote.content,
             name: viewingNote.name,
-        })
-        emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
-            apiFile.createFile(data).then((res) => {
-                console.log(res);
-                apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
-                    console.log('rr', resp);
-                    this.getNoteFile();
-                });
-            }).catch((err) => {
-                console.log(err);
-            });
         });
+
+        // emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
+        //     apiFile.createFile(data).then((res) => {
+        //         console.log(res);
+        //         apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
+        //             console.log('rr', resp);
+        //             this.getNoteFile();
+        //         });
+        //     }).catch((err) => {
+        //         console.log(err);
+        //     });
+        // });
     }
     componentWillUnmount() {
         emitter.removeListener(EventTypes.ADD_FILE_TO_NOTE);
@@ -69,10 +71,20 @@ class NoteContent extends Component {
 
     getNoteFile = () => {
         const { viewingNote } = this.props;
-        apiNoteFile.getNoteFileForNote(viewingNote.note_id).then((rs) => {
-            console.log(rs);
-            this.setState({ noteFile: rs });
-        }).catch(err => console.log(err));
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.setState({
+                noteFile: obj.body,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = null;
+
+        apiNoteFile.getNoteFileForNote(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
     }
 
     switchTab = (tab) => {
@@ -92,8 +104,8 @@ class NoteContent extends Component {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Tabs
-                        scrollable
-                        fullWidth
+                        variant="scrollable"
+                        variant="fullWidth"
                         classes={{ indicator: classes.indicator }}
                         value={activeTab}
                     >
@@ -130,10 +142,11 @@ class NoteContent extends Component {
 
 NoteContent.propTypes = {
     classes: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
+    // history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
+    auth: state.auth,
     library: state.libraryReducer.library,
     profile: state.profileReducer,
     viewingNote: state.eventReducer.viewingNote,
