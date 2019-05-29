@@ -59,7 +59,7 @@ class NotesTaking extends React.Component {
     }
 
     render() {
-        const { i18n, classes, dispatch } = this.props;
+        const { i18n, classes } = this.props;
         const { listNote } = this.state;
 
         return (

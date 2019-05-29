@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -10,20 +10,25 @@ import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
 import { NoteContentStyles } from '../../utils/01MaterialJsStyles/NoteContent.js'
 import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import { Tabs, Tab, AppBar, Typography } from '@material-ui/core';
+import {
+    Tabs, Tab, AppBar
+    // , Typography
+} from '@material-ui/core';
 
 // Api
-import { apiNoteTaking } from '../../Api/ApiNoteTaking';
+// import { apiNoteTaking } from '../../Api/ApiNoteTaking';
 import { apiNoteFile } from '../../Api/ApiNoteFile';
 import { apiFile } from '../../Api/ApiFile';
 
 // Redux
 import { connect } from 'react-redux';
-import { setNoteTitle, viewingNoteAction } from '../../Redux/Action/eventAction';
 
 // Utils
 import { autoScrollTop } from '../../Util/ScrollToTop';
-import { emitter, EventTypes } from '../../Util/EventEmitter';
+import {
+    emitter,
+    EventTypes
+} from '../../Util/EventEmitter';
 // import DocumentList from '../Library/DocumentList';
 
 // Children components
@@ -53,17 +58,17 @@ class NoteContent extends Component {
             name: viewingNote.name,
         });
 
-        // emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
-        //     apiFile.createFile(data).then((res) => {
-        //         console.log(res);
-        //         apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
-        //             console.log('rr', resp);
-        //             this._getNoteFile();
-        //         });
-        //     }).catch((err) => {
-        //         console.log(err);
-        //     });
-        // });
+        emitter.addListener(EventTypes.ADD_FILE_TO_NOTE, (data) => {
+            apiFile.createFile(data).then((res) => {
+                console.log(res);
+                apiNoteFile.createNoteFile({ file: res.file_id, note: viewingNote.note_id }).then((resp) => {
+                    console.log('rr', resp);
+                    this._getNoteFile();
+                });
+            }).catch((err) => {
+                console.log(err);
+            });
+        });
     }
     componentWillUnmount() {
         // emitter.removeListener(EventTypes.ADD_FILE_TO_NOTE);

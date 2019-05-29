@@ -1,6 +1,6 @@
 import * as EventActionTypes from '../Constant/ActionType';
 
-import * as DummyEvents from '../../data/event';
+// import * as DummyEvents from '../../data/event';
 
 const initialState = {
     noteTitle: '新增记录',
