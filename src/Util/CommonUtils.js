@@ -1,9 +1,8 @@
-import React from 'react'
 import { isNaN, isNumber } from 'lodash-es';
 import moment from 'moment';
+
 import mime from 'mime-types';
 import FileSaver from 'file-saver';
-import { TextEncoder } from 'text-encoding';
 
 import mp4Icon from "../images/mp4.png";
 import mp3Icon from "../images/mp3.png";

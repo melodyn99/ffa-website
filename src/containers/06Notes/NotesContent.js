@@ -18,17 +18,14 @@ import {
 // Api
 // import { apiNoteTaking } from '../../Api/ApiNoteTaking';
 import { apiNoteFile } from '../../Api/ApiNoteFile';
-import { apiFile } from '../../Api/ApiFile';
+// import { apiFile } from '../../Api/ApiFile';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
 import { autoScrollTop } from '../../Util/ScrollToTop';
-import {
-    emitter,
-    EventTypes
-} from '../../Util/EventEmitter';
+// import { emitter, EventTypes} from '../../Util/EventEmitter';
 import DocumentList from '../Library/DocumentList';
 
 // Children components
@@ -48,7 +45,7 @@ class NoteContent extends Component {
     componentDidMount() {
         this._getNoteFile();
 
-        this._changeNoteType(EventTypes.CHANGE_TYPE_NOTE, 'text');
+        // this._changeNoteType(EventTypes.CHANGE_TYPE_NOTE, 'text');
 
         const { viewingNote } = this.props
 
@@ -96,16 +93,18 @@ class NoteContent extends Component {
         this.setState({
             activeTab: tab
         })
-        this._changeNoteType(EventTypes.CHANGE_TYPE_NOTE, tab);
+        // this._changeNoteType(EventTypes.CHANGE_TYPE_NOTE, tab);
     }
 
-    _changeNoteType = (eventName, data) => {
-        // emitter.emit(eventName, data);
-    }
+    // _changeNoteType = (eventName, data) => {
+    //     // emitter.emit(eventName, data);
+    // }
 
     render() {
         const { classes, profile } = this.props;
-        const { noteFile, content, name, activeTab } = this.state;
+        const { noteFile, content,
+            // name, 
+            activeTab } = this.state;
 
         return (
             <div>
