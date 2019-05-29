@@ -43,7 +43,7 @@ import io from './socket/connect';
 
 // IMPORT REDUCERS
 import authReducer from './Redux/Reducer/authReducer';
-// import profileReducer from './Redux/Reducer/profileReducer';
+import profileReducer from './Redux/Reducer/profileReducer';
 import seminarReducer from './Redux/Reducer/seminarReducer';
 import eventReducer from './Redux/Reducer/eventReducer';
 // import seatingPlanReducer from './Redux/Reducer/seatingPlanReducer';
@@ -76,7 +76,8 @@ const appReducer = combineReducers({
     auth: authReducer,
     seminarReducer: seminarReducer,
     libraryReducer: libraryReducer,
-    eventReducer: eventReducer
+    eventReducer: eventReducer,
+    profileReducer: profileReducer,
 });
 
 const rootReducer = (state, action) => {
