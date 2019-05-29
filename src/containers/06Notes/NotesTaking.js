@@ -37,7 +37,7 @@ class NotesTaking extends React.Component {
 
     _getNoteTakingList = () => {
 
-        const { viewingSeminar } = this.props;
+        // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);

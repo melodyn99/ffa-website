@@ -25,7 +25,7 @@ export function dateToPaymentDueDate(dueDate) {
 }
 
 export function dateToRemainingDaysEvent(deadline) {
-  console.log('deadline',moment(deadline).format('DD MM YYYY'))
+  console.log('deadline', moment(deadline).format('DD MM YYYY'))
 
   const deadLine = moment(deadline);
   const currentDate = moment();
@@ -66,7 +66,7 @@ export function timeStampToDate(timestamp) {
  * Otherwise return false.
  */
 export function isDateEqual(date1, date2) {
-  return (date1 == null || date2 == null) ? (date1 == date2) : (date1.valueOf() === date2.valueOf());
+  return (date1 === null || date2 === null) ? (date1 === date2) : (date1.valueOf() === date2.valueOf());
 }
 
 /**
