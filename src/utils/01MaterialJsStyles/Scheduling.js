@@ -130,6 +130,7 @@ export const SchedulingStyles = theme => ({
         flexDirection: 'row',
         border: 'unset',
         margin: '2px 0',
+        padding: '0',
     },
     wrapperCenter: {
         width: '100%',
