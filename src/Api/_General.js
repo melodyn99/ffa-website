@@ -24,7 +24,7 @@ export const apiGeneral = {
                 r.json().then(data => ({ status: r.status, body: data }))
             )
             .then((obj) => {
-                console.log(fullUrl, "success", obj);
+                // console.log(fullUrl, "success", obj);
                 if (typeof (callback) === "function") {
                     callback(obj);
                 }

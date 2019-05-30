@@ -62,7 +62,47 @@ class Scheduling extends React.Component {
 
         const start = moment.unix(date).startOf('day').valueOf();
         const end = moment.unix(date).endOf('day').valueOf();
-        // apiConferences.getConferenceList({ take_place_from: start, take_place_to: end }) // { take_place_from: start, take_place_to: end }
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            const { sortType } = this.state;
+            this.setState({ seminars: sortBy(obj.body, sortType, 'start_date') });
+
+            const startM = moment().startOf('month').valueOf();
+            const endM = moment().endOf('month').valueOf();
+
+            const cb = (obj) => {
+                // console.log("cb : ", obj);
+                const { sortType } = this.state;
+                return this.setState({
+                    ...this.state,
+                    seminars: sortBy(obj.body, sortType, 'start_date')
+                });
+            }
+            const eCb = (obj) => {
+                console.log("eCb : ", obj);
+            }
+            const params = ({ seminars: sortBy(obj.body, sortType, 'start_date') });
+
+            apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
+
+            // return apiConferences.getConferenceList({ 'start_date[between]': `${startM},${endM}` })
+            //     .then((rs) => {
+            //         if (rs && !rs.error && rs.length > 0) {
+            //             const { sortType } = this.state;
+            //             return this.setState({ seminars: sortBy(rs, sortType, 'start_date') });
+            //         }
+            //     });
+
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = ({ take_place_from: start, take_place_to: end });
+
+        apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
+
+        // apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb) // { take_place_from: start, take_place_to: end }
         //     .then((rs) => {
         //         if (rs && !rs.error && rs.length > 0) {
         //             const { sortType } = this.state;
@@ -98,9 +138,9 @@ class Scheduling extends React.Component {
         });
     }
 
-    componentWillUnmount() {
-        emitter.removeListener(EventTypes.SHOW_SEMINAR_SEARCH);
-    }
+    // componentWillUnmount() {
+    //     emitter.removeListener(EventTypes.SHOW_SEMINAR_SEARCH);
+    // }
 
     handleClick = (seminar) => {
         const { history, dispatch } = this.props;
@@ -171,7 +211,13 @@ class Scheduling extends React.Component {
         const end = moment.unix(date).endOf('day').valueOf();
 
         const cb = (obj) => {
-            console.log("cb : ", obj);
+            // console.log("cb : ", obj);
+            const { sortType } = this.state;
+            this.setState({
+                ...this.state,
+                seminars: sortBy(obj.body, sortType, 'start_date'),
+                seminarsSearch: sortBy(obj.body, sortType, 'start_date')
+            });
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -197,7 +243,7 @@ class Scheduling extends React.Component {
     render() {
         const { classes } = this.props;
         const { seminars, sortType, enableSearch } = this.state;
-        // console.log("state", this.state);
+
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -228,9 +274,7 @@ class Scheduling extends React.Component {
                                             <div className={classes.wrapper}>
                                                 {(
                                                     <div className={classes.seminarTag}>
-                                                        <Typography className={classes.subToolbarText}>
-                                                            项目
-                </Typography>
+                                                        <Typography className={classes.subToolbarText}>项目</Typography>
                                                         {
                                                             enableSearch && (
                                                                 <div className={classes.searchBar}>
@@ -262,32 +306,32 @@ class Scheduling extends React.Component {
                                                     </div>
                                                 )}
                                                 {/* {(
-              <div className={classes.searchBar}>
-                <TextField
-                  fullWidth
-                  onChange={this.onSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <Close
-                        onClick={() => {
-                          this.setState({ enableSearch: false }, () => {
-                            const { milestone } = this.state;
-                            this._loadData(milestone);
-                          });
-                        }}
-                        style={{ color: '#000' }}
-                        className={classes.closeButton}
-                      />
-                    ),
-                  }}
-                />
-              </div>
-              )} */}
+                                                    <div className={classes.searchBar}>
+                                                        <TextField
+                                                            fullWidth
+                                                            onChange={this.onSearch}
+                                                            InputProps={{
+                                                                startAdornment: (
+                                                                    <InputAdornment position="start">
+                                                                        <SearchIcon />
+                                                                    </InputAdornment>
+                                                                ),
+                                                                endAdornment: (
+                                                                    <Close
+                                                                        onClick={() => {
+                                                                            this.setState({ enableSearch: false }, () => {
+                                                                                const { milestone } = this.state;
+                                                                                this._loadData(milestone);
+                                                                            });
+                                                                        }}
+                                                                        style={{ color: '#000' }}
+                                                                        className={classes.closeButton}
+                                                                    />
+                                                                ),
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )} */}
                                                 <div className={classes.cardWrapper}>
                                                     {seminars.map(n => (
                                                         <button type="button" key={Math.random()} className={classes.seminarItem} onClick={() => this.handleClick(n)}>
@@ -317,18 +361,14 @@ class Scheduling extends React.Component {
                                                                             </Typography>
                                                                         </div>
                                                                         <div className={classes.row} style={{ marginTop: '2px' }}>
-                                                                            <Typography
+                                                                            {/* <Typography
                                                                                 variant="subtitle1"
                                                                                 style={{ marginLeft: '30px' }}
-                                                                            >
-                                                                                {n.teachers.toString()}
-                                                                            </Typography>
-                                                                            <Typography
+                                                                            >{n.teachers.toString()}</Typography> */}
+                                                                            {/* <Typography
                                                                                 variant="subtitle1"
                                                                                 className={classes.rightColumnTypography}
-                                                                            >
-                                                                                {n.location}
-                                                                            </Typography>
+                                                                            >{n.location}</Typography> */}
                                                                         </div>
                                                                     </div>
                                                                 </CardContent>
