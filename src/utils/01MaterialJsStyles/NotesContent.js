@@ -1,4 +1,4 @@
-export const NoteContentStyles = () => ({
+export const NotesContentStyles = () => ({
     root: {
         height: '88vh',
         overflowY: 'hidden',

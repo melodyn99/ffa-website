@@ -23,6 +23,7 @@ import Home from './containers/00Home/Home';
 // Notes
 import NotesTaking from './containers/06Notes/NotesTaking';
 import NotesContent from './containers/06Notes/NotesContent';
+import NewNoteTitle from './containers/06Notes/NewNoteTitle';
 
 // 404
 import PageNotFound from './containers/PageNotFound';
@@ -80,6 +81,9 @@ class App extends Component {
                 }
                 case 'notes-content': {
                     return <NotesContent params={params} />;
+                }
+                case 'new-note': {
+                    return <NewNoteTitle />
                 }
 
                 default: {

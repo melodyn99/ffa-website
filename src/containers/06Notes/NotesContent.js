@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
-import { NoteContentStyles } from '../../utils/01MaterialJsStyles/NoteContent.js'
+import { NotesContentStyles } from '../../utils/01MaterialJsStyles/NotesContent.js'
 import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -31,7 +31,7 @@ import DocumentList from '../Library/DocumentList';
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
 
-class NoteContent extends Component {
+class NotesContent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -160,7 +160,7 @@ class NoteContent extends Component {
     }
 }
 
-NoteContent.propTypes = {
+NotesContent.propTypes = {
     classes: PropTypes.object.isRequired,
     // history: PropTypes.object.isRequired,
 };
@@ -172,6 +172,6 @@ const mapStateToProps = state => ({
     viewingNote: state.eventReducer.viewingNote,
 });
 
-const combinedStyles = combineStyles(CommonStyles, NoteContentStyles);
+const combinedStyles = combineStyles(CommonStyles, NotesContentStyles);
 
-export default withTranslation()(autoScrollTop(connect(mapStateToProps, null)(withStyles(combinedStyles)(NoteContent))));
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, null)(withStyles(combinedStyles)(NotesContent))));

@@ -36,8 +36,8 @@ import { theme } from './utils/01MaterialJsStyles/theme';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 // socket.io
-import socketIoMiddleware from 'redux-socket.io-middleware';
-import io from './socket/connect';
+// import socketIoMiddleware from 'redux-socket.io-middleware';
+// import io from './socket/connect';
 
 // IMPORT REDUCERS
 import authReducer from './Redux/Reducer/authReducer';
@@ -96,7 +96,9 @@ const pReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
     pReducer,
-    composeWithDevTools(applyMiddleware(middleware, socketIoMiddleware(io)))
+    composeWithDevTools(applyMiddleware(middleware
+        // , socketIoMiddleware(io)
+    ))
 );
 
 const persistor = persistStore(store);
