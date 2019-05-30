@@ -3,21 +3,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Styling
-import {
-    IconButton,
-} from '@material-ui/core';
-import {
-    PlayArrow,
-} from '@material-ui/icons';
+import { IconButton } from '@material-ui/core';
+import { PlayArrow } from '@material-ui/icons';
 
 // Api
-// import { apiConferences } from '../Api/ApiConferences';
+import { apiConferences } from '../Api/ApiConferences';
+
+// Redux
+import { connect } from 'react-redux';
 
 // Utils
 import moment from 'moment';
-// import { forEach, toNumber } from 'lodash-es';
-
-
+import { forEach, toNumber } from 'lodash-es';
 
 const config = {
     months: moment.months('zh-CN'),
@@ -49,6 +46,7 @@ class Calendar extends Component {
     componentDidMount() {
         const retrieve = this.retrieveMilestone();
         this.setState({
+            ...this.state,
             current: retrieve ? new Date(retrieve) : this.state.current,
         }
             , () => {
@@ -74,7 +72,7 @@ class Calendar extends Component {
         }
     }
 
-    updateMonth(onload, add, initial, ) {
+    updateMonth(onload, add, initial) {
         const { current } = this.state;
         const { onDatePicked } = this.props;
         const d = initial || (add === 0 ? config.today() : current);
@@ -84,42 +82,50 @@ class Calendar extends Component {
 
         const eom = new Date(d.getYear(), d.getMonth() + 1, 0).getDate();
 
+        this._getConferenceList(d);
+
+        if (onload) {
+            // console.log('onload', onload)
+            setTimeout(() => this.onClickMonth(d), 500)
+        }
+        this.setState({
+            ...this.state,
+            current: d,
+            ldom: eom,
+        });
+    }
+
+    _getConferenceList = (d) => {
         const firstDay = new Date(d.getFullYear(), d.getMonth(), 1);
         const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0);
         const firstDayTimestamp = moment(firstDay).valueOf();
         const lastDayTimestamp = moment(lastDay).valueOf();
 
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const daysHaveSeminar = [];
+            forEach(obj.body, (item) => {
+                forEach(item.conference_sections, i => {
+                    if (i.start_date >= firstDayTimestamp && i.start_date <= lastDayTimestamp) {
+                        daysHaveSeminar.push(toNumber(moment.unix(i.start_date / 1000).format('DD')));
+                    }
+                })
+            });
+            this.setState({
+                ...this.state,
+                daysHaveSeminar
+            });
+
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
         const params = {
             take_place_from: firstDayTimestamp,
             take_place_to: lastDayTimestamp,
         };
 
-        this.setState({ daysHaveSeminar: [] });
-
-        // apiConferences.getConferenceList(params)
-        //     .then((resp) => {
-        //         if (resp && !resp.error) {
-        //             const daysHaveSeminar = [];
-        //             forEach(resp, (item) => {
-        //                 forEach(item.conference_sections, i => {
-        //                     if (i.start_date >= firstDayTimestamp && i.start_date <= lastDayTimestamp) {
-        //                         daysHaveSeminar.push(toNumber(moment.unix(i.start_date / 1000).format('DD')));
-        //                     }
-        //                 })
-        //             });
-        //             this.setState({ daysHaveSeminar });
-        //         }
-        //     })
-        //     .catch(e => console.log(e));
-        if (onload) {
-            console.log('onload', onload)
-            setTimeout(() => this.onClickMonth(d), 500)
-        }
-        this.setState({
-            current: d,
-            ldom: eom,
-        }
-        );
+        apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
     prev() {
@@ -355,4 +361,8 @@ Calendar.defaultProps = {
     orientation: 'flex-col',
 };
 
-export default Calendar;
+const mapStateToProps = state => ({
+    auth: state.auth,
+});
+
+export default connect(mapStateToProps, null)(Calendar);
