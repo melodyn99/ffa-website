@@ -60,9 +60,9 @@ class Scheduling extends React.Component {
 
     componentDidMount() {
         // Load current date's seminar. If they are empty, load the current
-        // this._loadData(moment().unix());
+        // this._clickCalendarDay(moment().unix());
 
-        this._seminarCurrentDate();
+        this._getSeminarCurrentDate();
 
         // The rest is still normal...
         // emitter.addListener(EventTypes.SHOW_SEMINAR_SEARCH, (type) => {
@@ -71,19 +71,19 @@ class Scheduling extends React.Component {
         //         this.setState({ enableSearch: !this.state.enableSearch }, () => {
         //             if (this.state.enableSearch) {
         //                 // const { milestone } = this.state;
-        //                 // this._loadData(milestone);
+        //                 // this._clickCalendarDay(milestone);
         //                 console.log('da vao nhe');
         //                 this.setState({ seminarsSearch: this.state.seminars });
         //             } else {
         //                 const { milestone } = this.state;
-        //                 this._loadData(milestone);
+        //                 this._clickCalendarDay(milestone);
         //             }
         //         });
         //     }
         // });
     }
 
-    _seminarCurrentDate = () => {
+    _getSeminarCurrentDate = () => {
         const date = this.state.milestone;
 
         const start = moment.unix(date).startOf('day').valueOf();
@@ -96,7 +96,7 @@ class Scheduling extends React.Component {
                 ...this.state,
                 seminars: sortBy(obj.body, sortType, 'start_date')
             }, () => {
-                this._seminarCurrentMonth();
+                this._getSeminarCurrentMonth();
             });
         }
         const eCb = (obj) => {
@@ -110,7 +110,7 @@ class Scheduling extends React.Component {
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
-    _seminarCurrentMonth = () => {
+    _getSeminarCurrentMonth = () => {
         const startM = moment().startOf('month').valueOf();
         const endM = moment().endOf('month').valueOf();
 
@@ -132,8 +132,8 @@ class Scheduling extends React.Component {
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
-    // List view
-    _clickOneSeminar = (seminar) => {
+    // List
+    _clickListSeminar = (seminar) => {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -170,7 +170,7 @@ class Scheduling extends React.Component {
     }
 
     // List Search
-    _onSearch = (e) => {
+    _onListSearch = (e) => {
         const keyword = e.target.value;
         const searcher = new FuzzySearch(this.state.seminarsSearch, ['name', 'teachers'], {
             caseSensitive: true,
@@ -183,7 +183,7 @@ class Scheduling extends React.Component {
         })
     }
 
-    _changeSearchType = (e) => {
+    _changeListSearchType = (e) => {
         const type = e.target.value;
         const { seminars } = this.state;
         this.setState({
@@ -194,31 +194,7 @@ class Scheduling extends React.Component {
     }
 
     // Calendar
-    _loadDataInMonth(milestone) {
-        const start = moment(milestone).startOf('month').valueOf();
-        const end = moment(milestone).endOf('month').valueOf();
-
-        const cb = (obj) => {
-            // console.log("cb : ", obj);
-            const { sortType } = this.state;
-            this.setState({
-                ...this.state,
-                seminars: sortBy(obj.body, sortType, 'start_date'),
-                seminarsSearch: sortBy(obj.body, sortType, 'start_date')
-            });
-        }
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
-        const params = ({
-            take_place_from: start,
-            take_place_to: end
-        });
-
-        apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
-    }
-
-    _loadData(date) {
+    _clickCalendarDay(date) {
         this.setState({
             ...this.state,
             milestone: date
@@ -247,10 +223,33 @@ class Scheduling extends React.Component {
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
+    _clickCalendarMonth(milestone) {
+        const start = moment(milestone).startOf('month').valueOf();
+        const end = moment(milestone).endOf('month').valueOf();
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const { sortType } = this.state;
+            this.setState({
+                ...this.state,
+                seminars: sortBy(obj.body, sortType, 'start_date'),
+                seminarsSearch: sortBy(obj.body, sortType, 'start_date')
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = ({
+            take_place_from: start,
+            take_place_to: end
+        });
+
+        apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
+    }
+
     render() {
         const { classes } = this.props;
         const { seminars, sortType, enableSearch } = this.state;
-        console.log(this.state);
 
         return (
             <div>
@@ -270,13 +269,13 @@ class Scheduling extends React.Component {
                                                 <div className={classes.calendarWrapper}>
                                                     <Calendar
                                                         startDate={this.state.milestone}
-                                                        onDatePicked={d => this._loadData(d)}
+                                                        onDatePicked={d => this._clickCalendarDay(d)}
                                                         onChoseMonth={(milestone) => {
                                                             this.setState({
                                                                 ...this.state,
-                                                                milestone: milestone
+                                                                milestone: moment().unix(milestone)
                                                             });
-                                                            this._loadDataInMonth(milestone);
+                                                            this._clickCalendarMonth(milestone);
                                                         }}
                                                         showHeader={false}
                                                     />
@@ -291,7 +290,7 @@ class Scheduling extends React.Component {
                                                                 <div className={classes.searchBar}>
                                                                     <TextField
                                                                         fullWidth
-                                                                        onChange={this._onSearch}
+                                                                        onChange={this._onListSearch}
                                                                         InputProps={{
                                                                             endAdornment: (
                                                                                 <InputAdornment position="start">
@@ -307,7 +306,7 @@ class Scheduling extends React.Component {
                                                             <Select
                                                                 displayEmpty
                                                                 value={sortType}
-                                                                onChange={this._changeSearchType}
+                                                                onChange={this._changeListSearchType}
                                                                 input={<Input disableUnderline />}
                                                             >
                                                                 <MenuItem value="teachers">老师</MenuItem>
@@ -320,7 +319,7 @@ class Scheduling extends React.Component {
                                                     <div className={classes.searchBar}>
                                                         <TextField
                                                             fullWidth
-                                                            onChange={this._onSearch}
+                                                            onChange={this._onListSearch}
                                                             InputProps={{
                                                                 startAdornment: (
                                                                     <InputAdornment position="start">
@@ -332,7 +331,7 @@ class Scheduling extends React.Component {
                                                                         onClick={() => {
                                                                             this.setState({ enableSearch: false }, () => {
                                                                                 const { milestone } = this.state;
-                                                                                this._loadData(milestone);
+                                                                                this._clickCalendarDay(milestone);
                                                                             });
                                                                         }}
                                                                         style={{ color: '#000' }}
@@ -345,7 +344,7 @@ class Scheduling extends React.Component {
                                                 )} */}
                                                 <div className={classes.cardWrapper}>
                                                     {seminars.map((n, i) => (
-                                                        <button type="button" key={i} className={classes.seminarItem} onClick={() => this._clickOneSeminar(n)}>
+                                                        <button type="button" key={i} className={classes.seminarItem} onClick={() => this._clickListSeminar(n)}>
                                                             <Card className={classes.frontCard}>
                                                                 <Typography variant="subtitle1">{CourseTypesMap[n.type]}</Typography>
                                                                 <Typography variant="subtitle1">{dateToRemainingDays(n.start_date)}</Typography>
