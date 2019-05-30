@@ -32,11 +32,14 @@ import { CourseTypesMap } from '../../Redux/Constant/StaticTypes';
 
 // Utils
 import { autoScrollTop } from '../../Util/ScrollToTop';
-import { emitter, EventTypes } from '../../Util/EventEmitter';
+// import { emitter, EventTypes } from '../../Util/EventEmitter';
 import { dateToDayMonthYear, dateToRemainingDays } from '../../Util/DateUtils';
 import moment from 'moment';
 import FuzzySearch from 'fuzzy-search';
-import { isArray, sortBy } from 'lodash-es';
+import {
+    // isArray, 
+    sortBy
+} from 'lodash-es';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
@@ -50,7 +53,8 @@ class Scheduling extends React.Component {
             sortType: 'teachers',
             enableSearch: true,
             seminarsSearch: [],
-            milestone: localStorage.startDate ? moment.unix(localStorage.startDate) : moment().unix(),
+            milestone: moment().unix()
+            // milestone: localStorage.startDate ? moment.unix(localStorage.startDate) : moment().unix(),
         };
     }
 
@@ -165,19 +169,21 @@ class Scheduling extends React.Component {
         apiEventPpt.getEventPptList(params, this.props.auth.token, cb, eCb);
     }
 
-    _onSearch = (evt) => {
-        const keyword = evt.target.value;
+    // List Search
+    _onSearch = (e) => {
+        const keyword = e.target.value;
         const searcher = new FuzzySearch(this.state.seminarsSearch, ['name', 'teachers'], {
             caseSensitive: true,
         });
         const result = searcher.search(keyword);
         console.log(result)
         this.setState({
+            ...this.state,
             seminars: result
         })
     }
 
-    _handleChangeType = (e) => {
+    _changeSearchType = (e) => {
         const type = e.target.value;
         const { seminars } = this.state;
         this.setState({
@@ -187,28 +193,36 @@ class Scheduling extends React.Component {
         });
     }
 
+    // Calendar
     _loadDataInMonth(milestone) {
-        console.log('mile', milestone);
         const start = moment(milestone).startOf('month').valueOf();
         const end = moment(milestone).endOf('month').valueOf();
 
-        apiConferences.getConferenceList({ take_place_from: start, take_place_to: end })
-            .then((rs) => {
-                if (rs && !rs.error) {
-                    const { sortType } = this.state;
-                    this.setState({ seminars: sortBy(rs, sortType, 'start_date') });
-                    this.setState({ seminarsSearch: sortBy(rs, sortType, 'start_date') });
-                } else {
-                    this.setState({ seminars: [] });
-                    this.setState({ seminarsSearch: [] });
-                }
-            }).catch(err => console.log(err));
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const { sortType } = this.state;
+            this.setState({
+                ...this.state,
+                seminars: sortBy(obj.body, sortType, 'start_date'),
+                seminarsSearch: sortBy(obj.body, sortType, 'start_date')
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = ({
+            take_place_from: start,
+            take_place_to: end
+        });
+
+        apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
     _loadData(date) {
-        this.setState({ milestone: date });
-        console.log('date...........', date);
-        localStorage.setItem("startDate", date);
+        this.setState({
+            ...this.state,
+            milestone: date
+        });
 
         const start = moment.unix(date).startOf('day').valueOf();
         const end = moment.unix(date).endOf('day').valueOf();
@@ -236,6 +250,7 @@ class Scheduling extends React.Component {
     render() {
         const { classes } = this.props;
         const { seminars, sortType, enableSearch } = this.state;
+        console.log(this.state);
 
         return (
             <div>
@@ -254,10 +269,13 @@ class Scheduling extends React.Component {
                                             {(
                                                 <div className={classes.calendarWrapper}>
                                                     <Calendar
-                                                        startDate={localStorage.startDate}
+                                                        startDate={this.state.milestone}
                                                         onDatePicked={d => this._loadData(d)}
                                                         onChoseMonth={(milestone) => {
-                                                            this.setState({ milestone });
+                                                            this.setState({
+                                                                ...this.state,
+                                                                milestone: milestone
+                                                            });
                                                             this._loadDataInMonth(milestone);
                                                         }}
                                                         showHeader={false}
@@ -289,7 +307,7 @@ class Scheduling extends React.Component {
                                                             <Select
                                                                 displayEmpty
                                                                 value={sortType}
-                                                                onChange={this._handleChangeType}
+                                                                onChange={this._changeSearchType}
                                                                 input={<Input disableUnderline />}
                                                             >
                                                                 <MenuItem value="teachers">老师</MenuItem>

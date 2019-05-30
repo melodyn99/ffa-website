@@ -11,11 +11,11 @@ import {
 } from '@material-ui/icons';
 
 // Api
-import { apiConferences } from '../Api/ApiConferences';
+// import { apiConferences } from '../Api/ApiConferences';
 
 // Utils
 import moment from 'moment';
-import { forEach, toNumber } from 'lodash-es';
+// import { forEach, toNumber } from 'lodash-es';
 
 
 
@@ -323,10 +323,7 @@ class Calendar extends Component {
                             style={moment().month() === currentMonth ? { outline: '2px solid #9dd29d' } : {}}
                             className="month-title"
                             onClick={() => this.onClickMonth(this.state.current)}
-                        >
-                            {month}
-                            <br />
-                            <span className="month-year">{year}</span>
+                        >{month}<br /><span className="month-year">{year}</span>
                         </div>
                         <IconButton className="month-arrow-left" onClick={() => this.next()}>
                             <PlayArrow />
