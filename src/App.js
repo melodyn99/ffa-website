@@ -26,6 +26,9 @@ import NotesContent from './containers/06Notes/NotesContent';
 import NewNoteTitle from './containers/06Notes/NewNoteTitle';
 import NewNoteContent from './containers/06Notes/NewNoteContent';
 
+// Scheduling
+import Scheduling from './containers/07Schedule/Scheduling';
+
 // 404
 import PageNotFound from './containers/PageNotFound';
 
@@ -77,6 +80,7 @@ class App extends Component {
                     return <Home />;
                 }
 
+                // Notes Taking
                 case 'notes-taking': {
                     return <NotesTaking />;
                 }
@@ -88,6 +92,11 @@ class App extends Component {
                 }
                 case 'new-note-content': {
                     return <NewNoteContent />
+                }
+
+                // Scheduling
+                case 'scheduling': {
+                    return <Scheduling />;
                 }
 
                 default: {

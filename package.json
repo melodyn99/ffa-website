@@ -12,6 +12,7 @@
     "faker": "^4.1.0",
     "file-saver": "^2.0.0",
     "formik": "^1.4.0",
+    "fuzzy-search": "^3.0.1",
     "google-maps-react": "^2.0.2",
     "history": "^4.7.2",
     "i18next": "^15.0.7",
