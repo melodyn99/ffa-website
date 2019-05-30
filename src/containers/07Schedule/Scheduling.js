@@ -63,24 +63,6 @@ class Scheduling extends React.Component {
         // this._clickCalendarDay(moment().unix());
 
         this._getSeminarCurrentDate();
-
-        // The rest is still normal...
-        // emitter.addListener(EventTypes.SHOW_SEMINAR_SEARCH, (type) => {
-        //     console.log('hello');
-        //     if (type === 2) {
-        //         this.setState({ enableSearch: !this.state.enableSearch }, () => {
-        //             if (this.state.enableSearch) {
-        //                 // const { milestone } = this.state;
-        //                 // this._clickCalendarDay(milestone);
-        //                 console.log('da vao nhe');
-        //                 this.setState({ seminarsSearch: this.state.seminars });
-        //             } else {
-        //                 const { milestone } = this.state;
-        //                 this._clickCalendarDay(milestone);
-        //             }
-        //         });
-        //     }
-        // });
     }
 
     _getSeminarCurrentDate = () => {
@@ -367,14 +349,14 @@ class Scheduling extends React.Component {
                                                                             </Typography>
                                                                         </div>
                                                                         <div className={classes.row} style={{ marginTop: '2px' }}>
-                                                                            {/* <Typography
+                                                                            <Typography
                                                                                 variant="subtitle1"
                                                                                 style={{ marginLeft: '30px' }}
-                                                                            >{n.teachers.toString()}</Typography> */}
-                                                                            {/* <Typography
+                                                                            >{n.teachers}</Typography>
+                                                                            <Typography
                                                                                 variant="subtitle1"
                                                                                 className={classes.rightColumnTypography}
-                                                                            >{n.location}</Typography> */}
+                                                                            >{n.location}</Typography>
                                                                         </div>
                                                                     </div>
                                                                 </CardContent>
