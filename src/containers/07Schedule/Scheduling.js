@@ -58,89 +58,75 @@ class Scheduling extends React.Component {
         // Load current date's seminar. If they are empty, load the current
         // this._loadData(moment().unix());
 
+        this._firstCall();
+
+        // The rest is still normal...
+        // emitter.addListener(EventTypes.SHOW_SEMINAR_SEARCH, (type) => {
+        //     console.log('hello');
+        //     if (type === 2) {
+        //         this.setState({ enableSearch: !this.state.enableSearch }, () => {
+        //             if (this.state.enableSearch) {
+        //                 // const { milestone } = this.state;
+        //                 // this._loadData(milestone);
+        //                 console.log('da vao nhe');
+        //                 this.setState({ seminarsSearch: this.state.seminars });
+        //             } else {
+        //                 const { milestone } = this.state;
+        //                 this._loadData(milestone);
+        //             }
+        //         });
+        //     }
+        // });
+    }
+
+    _firstCall = () => {
         const date = this.state.milestone;
 
         const start = moment.unix(date).startOf('day').valueOf();
         const end = moment.unix(date).endOf('day').valueOf();
 
         const cb = (obj) => {
-            console.log("cb : ", obj);
+            // console.log("cb : ", obj);
             const { sortType } = this.state;
-            this.setState({ seminars: sortBy(obj.body, sortType, 'start_date') });
-
-            const startM = moment().startOf('month').valueOf();
-            const endM = moment().endOf('month').valueOf();
-
-            const cb = (obj) => {
-                // console.log("cb : ", obj);
-                const { sortType } = this.state;
-                return this.setState({
-                    ...this.state,
-                    seminars: sortBy(obj.body, sortType, 'start_date')
-                });
-            }
-            const eCb = (obj) => {
-                console.log("eCb : ", obj);
-            }
-            const params = ({ seminars: sortBy(obj.body, sortType, 'start_date') });
-
-            apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
-
-            // return apiConferences.getConferenceList({ 'start_date[between]': `${startM},${endM}` })
-            //     .then((rs) => {
-            //         if (rs && !rs.error && rs.length > 0) {
-            //             const { sortType } = this.state;
-            //             return this.setState({ seminars: sortBy(rs, sortType, 'start_date') });
-            //         }
-            //     });
-
+            this.setState({
+                ...this.state,
+                seminars: sortBy(obj.body, sortType, 'start_date')
+            }, () => {
+                this._secondCall();
+            });
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
-        const params = ({ take_place_from: start, take_place_to: end });
+        const params = ({
+            take_place_from: start,
+            take_place_to: end
+        });
 
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
-
-        // apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb) // { take_place_from: start, take_place_to: end }
-        //     .then((rs) => {
-        //         if (rs && !rs.error && rs.length > 0) {
-        //             const { sortType } = this.state;
-        //             return this.setState({ seminars: sortBy(rs, sortType, 'start_date') });
-        //         }
-        //         // const startM = moment().startOf('month').valueOf();
-        //         // const endM = moment().endOf('month').valueOf();
-        //         // return apiConferences.getConferenceList({ 'start_date[between]': `${startM},${endM}` })
-        //         //   .then((rs) => {
-        //         //     if (rs && !rs.error && rs.length > 0) {
-        //         //       const { sortType } = this.state;
-        //         //       return this.setState({ seminars: sortBy(rs, sortType, 'start_date') });
-        //         //     }
-        //         //   });
-        //     })
-        //     .catch(err => console.log(err));
-
-        // The rest is still normal...
-        emitter.addListener(EventTypes.SHOW_SEMINAR_SEARCH, (type) => {
-            if (type === 2) {
-                this.setState({ enableSearch: !this.state.enableSearch }, () => {
-                    if (this.state.enableSearch) {
-                        // const { milestone } = this.state;
-                        // this._loadData(milestone);
-                        console.log('da vao nhe');
-                        this.setState({ seminarsSearch: this.state.seminars });
-                    } else {
-                        const { milestone } = this.state;
-                        this._loadData(milestone);
-                    }
-                });
-            }
-        });
     }
 
-    // componentWillUnmount() {
-    //     emitter.removeListener(EventTypes.SHOW_SEMINAR_SEARCH);
-    // }
+    _secondCall = () => {
+        const startM = moment().startOf('month').valueOf();
+        const endM = moment().endOf('month').valueOf();
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const { sortType } = this.state;
+            return this.setState({
+                ...this.state,
+                seminars: sortBy(obj.body, sortType, 'start_date')
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = ({
+            'start_date[between]': `${startM},${endM}`
+        });
+
+        apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
+    }
 
     handleClick = (seminar) => {
         const { history, dispatch } = this.props;
@@ -179,10 +165,14 @@ class Scheduling extends React.Component {
         })
     }
 
-    handleChangeType = (e) => {
+    _handleChangeType = (e) => {
         const type = e.target.value;
         const { seminars } = this.state;
-        this.setState({ sortType: type, seminars: sortBy(seminars, type, 'start_date') });
+        this.setState({
+            ...this.state,
+            sortType: type,
+            seminars: sortBy(seminars, type, 'start_date')
+        });
     }
 
     _loadDataInMonth(milestone) {
@@ -207,6 +197,7 @@ class Scheduling extends React.Component {
         this.setState({ milestone: date });
         console.log('date...........', date);
         localStorage.setItem("startDate", date);
+
         const start = moment.unix(date).startOf('day').valueOf();
         const end = moment.unix(date).endOf('day').valueOf();
 
@@ -222,22 +213,12 @@ class Scheduling extends React.Component {
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
-        const params = ({ take_place_from: start, take_place_to: end });
+        const params = ({
+            take_place_from: start,
+            take_place_to: end
+        });
 
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
-
-        // apiConferences.getConferenceList({ take_place_from: start, take_place_to: end }) // { take_place_from: start, take_place_to: end }
-        //     .then((rs) => {
-        //         console.log(rs);
-        //         if (rs && !rs.error) {
-        //             const { sortType } = this.state;
-        //             this.setState({ seminars: sortBy(rs, sortType, 'start_date') });
-        //             this.setState({ seminarsSearch: sortBy(rs, sortType, 'start_date') });
-        //         } else {
-        //             this.setState({ seminars: [] });
-        //             this.setState({ seminarsSearch: [] });
-        //         }
-        //     }).catch(err => console.log(err));
     }
 
     render() {
@@ -296,7 +277,7 @@ class Scheduling extends React.Component {
                                                             <Select
                                                                 displayEmpty
                                                                 value={sortType}
-                                                                onChange={this.handleChangeType}
+                                                                onChange={this._handleChangeType}
                                                                 input={<Input disableUnderline />}
                                                             >
                                                                 <MenuItem value="teachers">老师</MenuItem>
