@@ -51,11 +51,9 @@ class NewNoteTitle extends Component {
 
     _toNoteCreateContent = () => {
 
-        console.log(this.props);
-
-        const { viewingSeminar } = this.props;
+        // const { viewingSeminar } = this.props;
         const { title, content } = this.state;
-        const { location: { state } } = this.props;
+        // const { location: { state } } = this.props;
 
         if (!title) return;
 
@@ -80,7 +78,7 @@ class NewNoteTitle extends Component {
         // } else {
 
         const cb = (obj) => {
-            console.log("cb : ", obj);
+            // console.log("cb : ", obj);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
