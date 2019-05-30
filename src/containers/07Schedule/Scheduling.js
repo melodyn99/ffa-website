@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -15,9 +15,10 @@ import {
     Typography, Select, MenuItem, Input,
     FormControl, InputAdornment, TextField,
 } from '@material-ui/core';
-// import {
-//     Search as SearchIcon, Close,
-// } from '@material-ui/icons';
+import {
+    Search as SearchIcon
+    // , Close,
+} from '@material-ui/icons';
 
 // Api
 import { apiConferences } from '../../Api/ApiConferences';
@@ -228,7 +229,7 @@ class Scheduling extends React.Component {
                                                                         InputProps={{
                                                                             endAdornment: (
                                                                                 <InputAdornment position="start">
-                                                                                    {/* <SearchIcon /> */}
+                                                                                    <SearchIcon />
                                                                                 </InputAdornment>
                                                                             ),
                                                                         }}
@@ -339,7 +340,7 @@ class Scheduling extends React.Component {
 
 Scheduling.propTypes = {
     classes: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
+    // history: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
 };
 

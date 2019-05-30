@@ -149,6 +149,7 @@ class Calendar extends Component {
     }
 
     renderDay(opts = {}) {
+        let key = opts.key;
         let baseClasses = 'day noselect';
         let today = '';
         let todayStyle = {};
@@ -194,6 +195,7 @@ class Calendar extends Component {
 
         return (
             <div
+                key={key}
                 className={baseClasses}
                 style={containerStyle}
             >
@@ -250,6 +252,7 @@ class Calendar extends Component {
                 && TODAY.getMonth() === copy.getMonth());
 
             days.push(this.renderDay({
+                key: i,
                 today: isToday,
                 selected: isSelected,
                 current: inMonth,
@@ -265,7 +268,7 @@ class Calendar extends Component {
         const header = [];
 
         for (let i = 0; i < config.week_subs.length; i++) {
-            header.push(<p className="day-headers noselect">
+            header.push(<p className="day-headers noselect" key={i}>
                 {config.week_subs[i]}
             </p>,
             );
@@ -291,7 +294,7 @@ class Calendar extends Component {
         const month = config.months[this.state.current.getMonth()];
         const currentMonth = this.state.current.getMonth();
         const year = this.state.current.getFullYear();
-        const date = this.state.current.getDate();
+        // const date = this.state.current.getDate();
 
         let upperDate = null;
         if (this.props.showHeader) {
