@@ -1,7 +1,7 @@
 // Essential for all components
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
@@ -29,7 +29,8 @@ import BreadCrumb from '../../components/100Include/breadcrumb';
 class NewNoteTitle extends Component {
     state = {
         title: '',
-        content: ''
+        content: '',
+        formSubmitted: false,
     }
 
     componentDidMount() {
@@ -79,6 +80,10 @@ class NewNoteTitle extends Component {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
+            this.setState({
+                ...this.state,
+                formSubmitted: true
+            })
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -98,8 +103,12 @@ class NewNoteTitle extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, i18n } = this.props;
         const { title, content } = this.state;
+
+        if (this.state.formSubmitted) {
+            return <Redirect push to={'/' + i18n.language + '/new-note-content'} />
+        }
 
         return (
             <div>
