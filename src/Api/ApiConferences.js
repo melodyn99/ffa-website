@@ -8,8 +8,7 @@ const CONTRACT_TYPE_TERM_ID = '87b8750b-525c-4f73-9509-2b7e3fa6590b';
 
 export const apiConferences = {
 
-    getConferenceFullList: (token, cb, eCb) => {
-        const params = null;
+    getConferenceFullList: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
     },
 
@@ -22,7 +21,10 @@ export const apiConferences = {
         return api.get(url, params, null, cancelToken);
     },
 
-    getConferenceList: params => api.get('conference_list', { ...params }, '&$orderby=start_date asc'),
+    // getConferenceList: params => api.get('conference_list', { ...params }, '&$orderby=start_date asc'),
+    getConferenceList: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
+    },
 
     getConferenceDefail: conferenceId => {
         const url = `conferences/${encodeURIComponent(conferenceId)}?$expand=conference_officers/user,conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/company,contracts/contract_file,contracts/contract_incomes`;

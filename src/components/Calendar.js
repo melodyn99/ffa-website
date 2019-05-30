@@ -96,21 +96,21 @@ class Calendar extends Component {
 
         this.setState({ daysHaveSeminar: [] });
 
-        apiConferences.getConferenceList(params)
-            .then((resp) => {
-                if (resp && !resp.error) {
-                    const daysHaveSeminar = [];
-                    forEach(resp, (item) => {
-                        forEach(item.conference_sections, i => {
-                            if (i.start_date >= firstDayTimestamp && i.start_date <= lastDayTimestamp) {
-                                daysHaveSeminar.push(toNumber(moment.unix(i.start_date / 1000).format('DD')));
-                            }
-                        })
-                    });
-                    this.setState({ daysHaveSeminar });
-                }
-            })
-            .catch(e => console.log(e));
+        // apiConferences.getConferenceList(params)
+        //     .then((resp) => {
+        //         if (resp && !resp.error) {
+        //             const daysHaveSeminar = [];
+        //             forEach(resp, (item) => {
+        //                 forEach(item.conference_sections, i => {
+        //                     if (i.start_date >= firstDayTimestamp && i.start_date <= lastDayTimestamp) {
+        //                         daysHaveSeminar.push(toNumber(moment.unix(i.start_date / 1000).format('DD')));
+        //                     }
+        //                 })
+        //             });
+        //             this.setState({ daysHaveSeminar });
+        //         }
+        //     })
+        //     .catch(e => console.log(e));
         if (onload) {
             console.log('onload', onload)
             setTimeout(() => this.onClickMonth(d), 500)

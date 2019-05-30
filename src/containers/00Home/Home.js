@@ -62,8 +62,9 @@ class Home extends Component {
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
+        const params = null;
 
-        apiConferences.getConferenceFullList(this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
     }
 
     render() {
