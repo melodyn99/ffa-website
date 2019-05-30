@@ -120,7 +120,6 @@ class NoteContent extends Component {
                                 <div className={classes.root}>
                                     <AppBar position="static">
                                         <Tabs
-                                            variant="scrollable"
                                             variant="fullWidth"
                                             classes={{ indicator: classes.indicator }}
                                             value={activeTab}

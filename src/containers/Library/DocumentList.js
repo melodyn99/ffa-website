@@ -19,7 +19,7 @@ import {
 import { apiMaterial } from '../../Api/ApiMaterial';
 import { apiEventPptFile } from '../../Api/ApiEventPptFile';
 import { apiNoteFile } from '../../Api/ApiNoteFile';
-import { apiStudents } from '../../Api/ApiStudents';
+// import { apiStudents } from '../../Api/ApiStudents';
 
 // Redux
 import { connect } from 'react-redux';
@@ -50,21 +50,21 @@ class DocumentList extends React.Component {
     }
 
     async componentDidMount() {
-        const { viewingSeminar
-            // , setStudentContainer 
-        } = this.props;
-        const student_mails = [];
+        // const { viewingSeminar
+        //     // , setStudentContainer 
+        // } = this.props;
+        // const student_mails = [];
 
-        try {
-            const companies = await apiStudents.getConferenceStudent(viewingSeminar.conference_id);
-            for (const company of companies) {
-                student_mails.push(...company.students.map(s => s.email));
-            }
-        } catch (_) { }
+        // try {
+        //     const companies = await apiStudents.getConferenceStudent(viewingSeminar.conference_id);
+        //     for (const company of companies) {
+        //         student_mails.push(...company.students.map(s => s.email));
+        //     }
+        // } catch (_) { }
 
-        this.setState({
-            student_mails,
-        });
+        // this.setState({
+        //     student_mails,
+        // });
     }
 
     getPermissionObject() {
