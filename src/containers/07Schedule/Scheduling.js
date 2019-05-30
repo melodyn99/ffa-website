@@ -11,8 +11,8 @@ import { SchedulingStyles } from '../../utils/01MaterialJsStyles/Scheduling.js'
 import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import {
-    Card, CardContent, 
-    Typography, Select, MenuItem, Input, 
+    Card, CardContent,
+    Typography, Select, MenuItem, Input,
     FormControl, InputAdornment, TextField,
 } from '@material-ui/core';
 // import {
@@ -39,7 +39,7 @@ import { isArray, sortBy } from 'lodash-es';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
-import Calendar from '../../Util/Calendar/Calendar';
+import Calendar from '../../components/Calendar';
 
 class Scheduling extends React.Component {
     constructor(props) {

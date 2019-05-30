@@ -11,7 +11,7 @@ import {
 } from '@material-ui/icons';
 
 // Api
-import { apiConferences } from '../../Api/ApiConferences';
+import { apiConferences } from '../Api/ApiConferences';
 
 // Utils
 import moment from 'moment';
@@ -329,7 +329,7 @@ class Calendar extends Component {
                             <PlayArrow />
                         </IconButton>
                     </div>
-                    <div className="footer">
+                    <div className="footer1">
                         {header}
                         {days}
                     </div>
