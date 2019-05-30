@@ -2,10 +2,8 @@ import 'react-app-polyfill/ie9';
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import {
-    createStore, combineReducers, applyMiddleware,
-    compose
-} from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux'
 
 // react-router-redux https://github.com/sysgears/react-router-redux
@@ -98,10 +96,7 @@ const pReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
     pReducer,
-    compose(
-        applyMiddleware(middleware, socketIoMiddleware(io))
-        , window.devToolsExtension && window.devToolsExtension()
-    )
+    composeWithDevTools(applyMiddleware(middleware, socketIoMiddleware(io)))
 );
 
 const persistor = persistStore(store);
