@@ -21,7 +21,7 @@ import { setNoteTitle, viewingNoteAction } from '../../Redux/Action/eventAction'
 
 // Utils
 import { autoScrollTop } from '../../Util/ScrollToTop';
-import { emitter, EventTypes } from '../../Util/EventEmitter';
+// import { emitter, EventTypes } from '../../Util/EventEmitter';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
@@ -29,33 +29,39 @@ import BreadCrumb from '../../components/100Include/breadcrumb';
 class NewNoteTitle extends Component {
     state = {
         title: '',
+        content: ''
     }
 
     componentDidMount() {
-        console.log(this.props);
+        // console.log(this.props);
 
         // Have params, editing note.
         // if (state) {
         //     const { name, content } = state;
         //     this.setState({ title: name, content });
         // }
-        emitter.addListener(EventTypes.UPDATE_TITLE_NOTE, () => {
-            this.toNoteCreateContent()
-        });
-    }
-    componentWillUnmount() {
-        emitter.removeAllListeners(EventTypes.UPDATE_TITLE_NOTE);
-
+        // emitter.addListener(EventTypes.UPDATE_TITLE_NOTE, () => {
+        this._toNoteCreateContent();
+        // });
     }
 
-    toNoteCreateContent = () => {
+    // componentWillUnmount() {
+    //     emitter.removeAllListeners(EventTypes.UPDATE_TITLE_NOTE);
+    // }
+
+    _toNoteCreateContent = () => {
+
+        console.log(this.props);
+
         const { viewingSeminar } = this.props;
         const { title, content } = this.state;
+        const { location: { state } } = this.props;
 
         if (!title) return;
 
         const newNote = {
-            conference: viewingSeminar.conference_id,
+            // conference: viewingSeminar.conference_id,
+            conference: 'f0c3b12a-0ec7-4958-8d7c-b31602f4065e',
             name: title,
             content: content || '',
         };
@@ -72,14 +78,24 @@ class NewNoteTitle extends Component {
         //         // });
         //     });
         // } else {
-        //     apiNoteTaking.createNoteTaking(newNote).then((resp) => {
-        //         console.log(resp);
-        //         this.props.viewingNoteAction(resp);
-        //         // history.push({
-        //         //     pathname: '/newnotecontent',
-        //         //     state: { newNote: resp },
-        //         // });
-        //     });
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        apiNoteTaking.createNoteTaking(newNote, this.props.auth.token, cb, eCb);
+
+        // apiNoteTaking.createNoteTaking(newNote).then((resp) => {
+        //     console.log(resp);
+        //     this.props.viewingNoteAction(resp);
+        //     // history.push({
+        //     //     pathname: '/newnotecontent',
+        //     //     state: { newNote: resp },
+        //     // });
+        // });
         // }
     }
 
@@ -138,7 +154,7 @@ class NewNoteTitle extends Component {
                                             <Button
                                                 className={classes.createButton}
                                                 disabled={!title}
-                                                onClick={() => this.toNoteCreateContent()}
+                                                onClick={() => this._toNoteCreateContent()}
                                             >创建</Button>
                                         )
                                     }
@@ -162,6 +178,7 @@ NewNoteTitle.propTypes = {
 
 const mapStateToProps = state => ({
     location: state.router,
+    auth: state.auth,
     viewingSeminar: state.seminarReducer.viewingSeminar,
 });
 

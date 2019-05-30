@@ -10,7 +10,10 @@ export const apiNoteTaking = {
 
   getNoteTakingDefail: noteId => api.get(`notes/${noteId}`),
 
-  createNoteTaking: data => api.post('notes', data),
+  // createNoteTaking: data => api.post('notes', data),
+  createNoteTaking: (body, token, cb, eCb) => {
+    apiGeneral.apiPost('notes', body, token, cb, eCb)
+  },
 
   editNoteTaking: (noteId, data) => api.put(`notes/${noteId}`, data),
 
