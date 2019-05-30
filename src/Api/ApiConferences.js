@@ -21,20 +21,22 @@ export const apiConferences = {
         return api.get(url, params, null, cancelToken);
     },
 
-    // getConferenceList: params => api.get('conference_list', { ...params }, '&$orderby=start_date asc'),
     getConferenceList: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
     },
 
-    getConferenceDefail: conferenceId => {
-        const url = `conferences/${encodeURIComponent(conferenceId)}?$expand=conference_officers/user,conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/company,contracts/contract_file,contracts/contract_incomes`;
-        return api.get(url).then(response => {
-            const conferenceSections = response.conference_sections;
-            if (conferenceSections && conferenceSections.length > 1) {
-                response.conference_sections = sortBy(conferenceSections, 'sequence');
-            }
-            return response;
-        });
+    // getConferenceDefail: conferenceId => {
+    //     const url = `conferences/${encodeURIComponent(conferenceId)}?$expand=conference_officers/user,conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/company,contracts/contract_file,contracts/contract_incomes`;
+    //     return api.get(url).then(response => {
+    //         const conferenceSections = response.conference_sections;
+    //         if (conferenceSections && conferenceSections.length > 1) {
+    //             response.conference_sections = sortBy(conferenceSections, 'sequence');
+    //         }
+    //         return response;
+    //     });
+    // },
+    getConferenceDefail: (conferenceId, params, token, cb, eCb) => {
+        apiGeneral.apiFetch(`conferences/${encodeURIComponent(conferenceId)}`, params, token, cb, eCb)
     },
 
     createConference: data => api.post('create_conference', data),

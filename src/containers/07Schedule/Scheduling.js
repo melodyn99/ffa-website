@@ -58,7 +58,7 @@ class Scheduling extends React.Component {
         // Load current date's seminar. If they are empty, load the current
         // this._loadData(moment().unix());
 
-        this._firstCall();
+        this._seminarCurrentDate();
 
         // The rest is still normal...
         // emitter.addListener(EventTypes.SHOW_SEMINAR_SEARCH, (type) => {
@@ -79,7 +79,7 @@ class Scheduling extends React.Component {
         // });
     }
 
-    _firstCall = () => {
+    _seminarCurrentDate = () => {
         const date = this.state.milestone;
 
         const start = moment.unix(date).startOf('day').valueOf();
@@ -92,7 +92,7 @@ class Scheduling extends React.Component {
                 ...this.state,
                 seminars: sortBy(obj.body, sortType, 'start_date')
             }, () => {
-                this._secondCall();
+                this._seminarCurrentMonth();
             });
         }
         const eCb = (obj) => {
@@ -106,7 +106,7 @@ class Scheduling extends React.Component {
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
-    _secondCall = () => {
+    _seminarCurrentMonth = () => {
         const startM = moment().startOf('month').valueOf();
         const endM = moment().endOf('month').valueOf();
 
@@ -128,32 +128,44 @@ class Scheduling extends React.Component {
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
-    handleClick = (seminar) => {
-        const { history, dispatch } = this.props;
-        console.log('dsad');
-        apiConferences.getConferenceDefail(seminar.conference_id)
-            .then((resp) => {
-                if (resp.conference_id) {
-                    this.getEventPptData(resp.conference_id);
-                    dispatch(setViewingSeminar(resp));
-                    history.push({ pathname: '/basicinfo', state: { prePath: '/scheduling' } });
-                }
-            });
+    // List view
+    _clickOneSeminar = (seminar) => {
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this._getEventPreparationData(obj.body.conference_id);
+            this.props.setViewingSeminar(obj.body);
+            // history.push({ pathname: '/basicinfo', state: { prePath: '/scheduling' } });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = ({
+            '$expand': `conference_officers/user,conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/company,contracts/contract_file,contracts/contract_incomes`
+        });
+
+        apiConferences.getConferenceDefail(seminar.conference_id, params, this.props.auth.token, cb, eCb);
     }
 
-    getEventPptData = (conferenceId) => {
-        const { dispatch } = this.props;
-        apiEventPpt.getEventPptList(conferenceId)
-            .then((resp) => {
-                console.log('eventsPPt: ', resp);
-                if (isArray(resp)) {
-                    dispatch(addEvent(resp));
-                }
-            })
-            .catch(e => console.log(e));
+    _getEventPreparationData = (conferenceId) => {
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.props.addEvent(obj.body);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = ({
+            conference: conferenceId,
+            $expand: 'conference',
+            $orderby: 'createddate desc'
+        });
+
+        apiEventPpt.getEventPptList(params, this.props.auth.token, cb, eCb);
     }
 
-    onSearch = (evt) => {
+    _onSearch = (evt) => {
         const keyword = evt.target.value;
         const searcher = new FuzzySearch(this.state.seminarsSearch, ['name', 'teachers'], {
             caseSensitive: true,
@@ -261,7 +273,7 @@ class Scheduling extends React.Component {
                                                                 <div className={classes.searchBar}>
                                                                     <TextField
                                                                         fullWidth
-                                                                        onChange={this.onSearch}
+                                                                        onChange={this._onSearch}
                                                                         InputProps={{
                                                                             endAdornment: (
                                                                                 <InputAdornment position="start">
@@ -290,7 +302,7 @@ class Scheduling extends React.Component {
                                                     <div className={classes.searchBar}>
                                                         <TextField
                                                             fullWidth
-                                                            onChange={this.onSearch}
+                                                            onChange={this._onSearch}
                                                             InputProps={{
                                                                 startAdornment: (
                                                                     <InputAdornment position="start">
@@ -314,17 +326,13 @@ class Scheduling extends React.Component {
                                                     </div>
                                                 )} */}
                                                 <div className={classes.cardWrapper}>
-                                                    {seminars.map(n => (
-                                                        <button type="button" key={Math.random()} className={classes.seminarItem} onClick={() => this.handleClick(n)}>
-                                                            <Card className={classes.frontCard} key={Math.random()}>
-                                                                <Typography variant="subtitle1">
-                                                                    {CourseTypesMap[n.type]}
-                                                                </Typography>
-                                                                <Typography variant="subtitle1">
-                                                                    {dateToRemainingDays(n.start_date)}
-                                                                </Typography>
+                                                    {seminars.map((n, i) => (
+                                                        <button type="button" key={i} className={classes.seminarItem} onClick={() => this._clickOneSeminar(n)}>
+                                                            <Card className={classes.frontCard}>
+                                                                <Typography variant="subtitle1">{CourseTypesMap[n.type]}</Typography>
+                                                                <Typography variant="subtitle1">{dateToRemainingDays(n.start_date)}</Typography>
                                                             </Card>
-                                                            <Card className={classes.card} key={n.name}>
+                                                            <Card className={classes.card}>
                                                                 <CardContent style={{ paddingBottom: '0px', paddingTop: '0px' }}>
                                                                     <div className={classes.rowWrapper}>
                                                                         <div className={classes.row} style={{ marginBottom: '2px' }}>
@@ -373,7 +381,7 @@ class Scheduling extends React.Component {
 Scheduling.propTypes = {
     classes: PropTypes.object.isRequired,
     // history: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -381,7 +389,12 @@ const mapStateToProps = state => ({
     seminars: state.seminarReducer.seminars,
 });
 
+const mapDispatchToProps = dispatch => ({
+    setViewingSeminar: data => dispatch(setViewingSeminar(data)),
+    addEvent: data => dispatch(addEvent(data)),
+});
+
 const combinedStyles = combineStyles(CommonStyles, SchedulingStyles);
 
-export default withTranslation()(autoScrollTop(connect(mapStateToProps, null)(withStyles(combinedStyles)(Scheduling))));
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Scheduling))));
 

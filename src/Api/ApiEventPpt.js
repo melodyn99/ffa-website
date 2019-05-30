@@ -1,14 +1,20 @@
 // AKA Event Preparations.
 import { api } from './_ApiFactoryWithHeader';
 
+import { apiGeneral } from './_General';
+
 export const apiEventPpt = {
-  getEventPptList: conferenceId => api.get('event_preparations', { conference: conferenceId, $expand: 'conference', $orderby: 'createddate desc' }),
 
-  editEventPpt: (eventId, params) => api.put(`event_preparations/${eventId}/?$expand=conference`, params),
+    // getEventPptList: conferenceId => api.get('event_preparations', { conference: conferenceId, $expand: 'conference', $orderby: 'createddate desc' }),
+    getEventPptList: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('event_preparations', params, token, cb, eCb);
+    },
 
-  createEventPpt: params => api.post('event_preparations', params),
+    editEventPpt: (eventId, params) => api.put(`event_preparations/${eventId}/?$expand=conference`, params),
 
-  deleteEventPpt: id => api.delete(`event_preparations/${id}`),
+    createEventPpt: params => api.post('event_preparations', params),
 
-  getEventPpt: eventId => api.get('event_preparations', { event_preparation_id: eventId, $expand: 'event_preparation_files/file/mime_type,conference/conference_sections' }),
+    deleteEventPpt: id => api.delete(`event_preparations/${id}`),
+
+    getEventPpt: eventId => api.get('event_preparations', { event_preparation_id: eventId, $expand: 'event_preparation_files/file/mime_type,conference/conference_sections' }),
 };
