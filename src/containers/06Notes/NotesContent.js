@@ -10,10 +10,7 @@ import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
 import { NotesContentStyles } from '../../utils/01MaterialJsStyles/NotesContent.js'
 import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import {
-    Tabs, Tab, AppBar
-    // , Typography
-} from '@material-ui/core';
+import { Tabs, Tab, AppBar } from '@material-ui/core';
 
 // Api
 // import { apiNoteTaking } from '../../Api/ApiNoteTaking';

@@ -13,16 +13,16 @@ import { withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, AppBar } from '@material-ui/core';
 
 // Api
-import { apiNoteTaking } from '../../Api/ApiNoteTaking';
+// import { apiNoteTaking } from '../../Api/ApiNoteTaking';
 import { apiNoteFile } from '../../Api/ApiNoteFile';
-import { apiFile } from '../../Api/ApiFile';
+// import { apiFile } from '../../Api/ApiFile';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
 import { autoScrollTop } from '../../Util/ScrollToTop';
-import { emitter, EventTypes } from '../../Util/EventEmitter';
+// import { emitter, EventTypes } from '../../Util/EventEmitter';
 import DocumentList from '../Library/DocumentList';
 
 // Children components
@@ -30,13 +30,12 @@ import BreadCrumb from '../../components/100Include/breadcrumb';
 
 class NewNoteContent extends Component {
     constructor(props) {
-
         super(props);
-
         this.state = {
             activeTab: 'text',
             noteFile: [],
             noteText: '',
+            formSubmitted: false
         };
     }
 
@@ -63,16 +62,22 @@ class NewNoteContent extends Component {
     }
 
     _getNoteFile = () => {
-        // const { location: { state: { newNote } } } = this.props;
-        // apiNoteFile.__getNoteFileForNote(newNote.note_id).then((rs) => {
-        //     console.log(rs);
-        //     this.setState({ noteFile: rs });
-        // }).catch(err => console.log(err));
-    }
+        // const { viewingNote } = this.props;
 
-    // changeNoteType = (eventName, data) => {
-    //     emitter.emit(eventName, data);
-    // }
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.setState({
+                noteFile: obj.body,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = null;
+        // apiNoteFile.getNoteFileForNote(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
+        apiNoteFile.getNoteFileForNote('239fd228-ff67-4b5a-abb0-636858f20018', params, this.props.auth.token, cb, eCb);
+    }
 
     _submitNote = () => {
         // const { history } = this.props;
@@ -92,58 +97,78 @@ class NewNoteContent extends Component {
         // });
     }
 
-    _switchTab(activeTab) {
-        this.setState({ activeTab });
-        this.changeNoteType(EventTypes.CHANGE_TYPE_NOTE, activeTab);
+    _switchTab(data) {
+        this.setState({
+            ...this.state,
+            activeTab: data
+        });
+        // this.changeNoteType(EventTypes.CHANGE_TYPE_NOTE, activeTab);
     }
 
     render() {
-        const { classes, profile } = this.props;
-        const { noteFile, noteText } = this.state;
-        const { activeTab } = this.state;
+        const { classes, profile, i18n } = this.props;
+        const { noteFile, noteText, activeTab } = this.state;
+
+        if (this.state.formSubmitted) {
+            return <Redirect push to={'/' + i18n.language + '/new-note-content'} />
+        }
 
         return (
-            <div className={classes.root}>
-                <AppBar position="static">
-                    <Tabs
-                        scrollable
-                        fullWidth
-                        classes={{ indicator: classes.indicator }}
-                        value={activeTab}
-                    >
-                        <Tab label="笔记" value="text" onClick={() => this._switchTab('text')} />
-                        <Tab label={`文件 (${noteFile.length})`} value="file" onClick={() => this._switchTab('file')} />
-                    </Tabs>
-                </AppBar>
-                {activeTab === 'text' ? (
-                    <div className={classes.content}>
-                        <textarea
-                            cols="30"
-                            rows="10"
-                            value={noteText}
-                            onChange={(e) => {
-                                e.preventDefault();
-                                this.setState({
-                                    noteText: e.target.value,
-                                });
-                            }}
-                            placeholder="请输入"
-                            className={classes.input}
-                        />
-                    </div>
-                ) : (
-                        <div style={{
-                            height: 'calc(100% - 130px)',
-                            overflowY: 'scroll'
-                        }}>
-                            <DocumentList
-                                onUpdate={() => this._getNoteFile()}
-                                documents={noteFile}
-                                listingType="note"
-                                profile={profile}
-                            />
+            <div>
+                <div className="wrapper-container-main">
+                    <div className="container-main">
+
+                        <h2 className="pageTitle">報名歷史</h2>
+
+                        <div className="wrapper-content">
+                            <BreadCrumb />
+
+                            <div className="content">
+                                <div className={classes.root}>
+                                    <AppBar position="static">
+                                        <Tabs
+                                            variant="fullWidth"
+                                            classes={{ indicator: classes.indicator }}
+                                            value={activeTab}
+                                        >
+                                            <Tab label="笔记" value="text" onClick={() => this._switchTab('text')} />
+                                            <Tab label={`文件 (${noteFile.length})`} value="file" onClick={() => this._switchTab('file')} />
+                                        </Tabs>
+                                    </AppBar>
+                                    {activeTab === 'text' ? (
+                                        <div className={classes.content}>
+                                            <textarea
+                                                cols="30"
+                                                rows="10"
+                                                value={noteText}
+                                                onChange={(e) => {
+                                                    e.preventDefault();
+                                                    this.setState({
+                                                        noteText: e.target.value,
+                                                    });
+                                                }}
+                                                placeholder="请输入"
+                                                className={classes.input}
+                                            />
+                                        </div>
+                                    ) : (
+                                            <div style={{
+                                                height: 'calc(100% - 130px)',
+                                                overflowY: 'scroll'
+                                            }}>
+                                                <DocumentList
+                                                    onUpdate={() => this._getNoteFile()}
+                                                    documents={noteFile}
+                                                    listingType="note"
+                                                    profile={profile}
+                                                />
+                                            </div>
+                                        )}
+                                </div>
+                            </div>
                         </div>
-                    )}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -155,8 +180,9 @@ NewNoteContent.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    library: state.libraryReducer.library,
+    auth: state.auth,
     profile: state.profileReducer,
+    library: state.libraryReducer.library,
 });
 
 const combinedStyles = combineStyles(CommonStyles, NewNoteContentStyles);
