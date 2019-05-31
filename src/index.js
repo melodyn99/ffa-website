@@ -44,7 +44,7 @@ import authReducer from './Redux/Reducer/authReducer';
 import profileReducer from './Redux/Reducer/profileReducer';
 import seminarReducer from './Redux/Reducer/seminarReducer';
 import eventReducer from './Redux/Reducer/eventReducer';
-// import seatingPlanReducer from './Redux/Reducer/seatingPlanReducer';
+import seatingPlanReducer from './Redux/Reducer/seatingPlanReducer';
 // import studentContainerReducer from './Redux/Reducer/studentContainerReducer';
 // import seatMapReducer from './Redux/Reducer/seatMapReducer';
 // import accountReducer from './Redux/Reducer/accountReducer';
@@ -76,6 +76,7 @@ const appReducer = combineReducers({
     libraryReducer: libraryReducer,
     eventReducer: eventReducer,
     profileReducer: profileReducer,
+    seatingPlanReducer: seatingPlanReducer,
 });
 
 const rootReducer = (state, action) => {

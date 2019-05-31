@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
-import { SchedulingStyles } from '../../utils/01MaterialJsStyles/Scheduling.js'
+import { SchedulingStyles } from '../../utils/01MaterialJsStyles/Scheduling'
 import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -394,4 +394,3 @@ const mapDispatchToProps = dispatch => ({
 const combinedStyles = combineStyles(CommonStyles, SchedulingStyles);
 
 export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Scheduling))));
-
