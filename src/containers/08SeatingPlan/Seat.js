@@ -44,7 +44,7 @@ class Seat extends React.Component {
     constructor(props) {
         super(props);
 
-        const { letter, plan, row } = this.props;
+        // const { letter, plan, row } = this.props;
 
         this.moved = false;
         this.dropped = null;
@@ -142,7 +142,8 @@ class Seat extends React.Component {
 
     render() {
         const {
-            letter, plan, viewingEvent,
+            letter,
+            // plan, viewingEvent,
             row, companies, onSeat, view
         } = this.props;
 

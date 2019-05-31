@@ -1,5 +1,5 @@
 // Essential for all components
-import React, { Component } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 class StudentListItem extends React.Component {
 
 	render() {
-		const { company, plan, student, color, index, onSeat, classes } = this.props;
+		// const { company, plan, student, color, index, onSeat, classes } = this.props;
 		// const { conference_student_id } = student;
 
 		return (
