@@ -41,6 +41,7 @@ const getRGBBrand = (brands, brand) => {
 };
 
 class SquareColor extends React.Component {
+
     styles = {
         square: {
             width: 24,

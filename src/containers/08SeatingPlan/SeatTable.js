@@ -36,8 +36,8 @@ class SeatTable extends React.Component {
 		return (
 			<div
 			// style={{
-			// ...styles.root,
-			// gridTemplateColumns: `repeat(${nstudents}, auto)`,
+			// 	...styles.root,
+			// 	gridTemplateColumns: `repeat(${nstudents}, auto)`,
 			// }}
 			>
 				{

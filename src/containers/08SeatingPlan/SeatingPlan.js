@@ -99,12 +99,13 @@ class SeatingPlan extends React.Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <SeatingPlanPanel companies={companies}
+                                <SeatingPlanPanel
+                                    companies={companies}
                                     viewingEvent={viewingEvent}
                                     onCompanyColorChanged={this.handleCompanyColorChanged}
                                 />
-                                <SeatPlanView companies={companies}
-                                    plan={plan} />
+                                {/* <SeatPlanView companies={companies}
+                                    plan={plan} /> */}
                             </div>
                         </div>
 

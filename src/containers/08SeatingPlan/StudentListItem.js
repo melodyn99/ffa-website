@@ -17,34 +17,37 @@ import { connect } from 'react-redux';
 class StudentListItem extends React.Component {
 
 	render() {
-		// const { company, plan, student, color, index, onSeat, classes } = this.props;
-		// const { conference_student_id } = student;
-
+		const { company, plan, student, color, index, onSeat, classes } = this.props;
+		const { conference_student_id } = student;
+		console.log(this.props);
 		return (
 			<div>
-				{/* <div draggable={!onSeat}
-				onDragStart={(e) => {
-					e.dataTransfer.setData("text", JSON.stringify({
-						student_id: conference_student_id,
-						number: `#${index + 1}`,
-						color
-					}));
-					// A hack to get the information of the dragged student on onDragEnter
-					// since we can't use DataTransfer.getData on onDragEnter
-					// See https://stackoverflow.com/q/11065803/5717561
-					e.dataTransfer.setData(color, "");
-				}} 
-			// style={{
-			//   ...styles.item,
-			//   cursor: onSeat ? "default" : "grab",
-			//   backgroundColor: color,
-			// }} 
-			// >
-			// 	{`${student.name} (${company.brand})`}
-			// </div>
-			// <div style={classes.seat}>
-			// 	{onSeat && `${onSeat.sequence}${onSeat.seat}`}
-			// </div>*/}
+				<div
+					draggable={!onSeat}
+					onDragStart={(e) => {
+						e.dataTransfer.setData("text", JSON.stringify({
+							student_id: conference_student_id,
+							number: `#${index + 1}`,
+							color
+						}));
+						// A hack to get the information of the dragged student on onDragEnter
+						// since we can't use DataTransfer.getData on onDragEnter
+						// See https://stackoverflow.com/q/11065803/5717561
+						e.dataTransfer.setData(color, "");
+					}}
+				// style={{
+				//   ...styles.item,
+				//   cursor: onSeat ? "default" : "grab",
+				//   backgroundColor: color,
+				// }} 
+				>
+					{`${student.name} (${company.brand})`}
+				</div>
+				<div>
+					{onSeat &&
+						`${onSeat.sequence}${onSeat.seat}`
+					}
+				</div>
 			</div>
 		)
 	}

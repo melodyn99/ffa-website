@@ -342,6 +342,7 @@ class SeatingPlanPanel extends React.Component {
     }
 
     render() {
+
         const {
             classes,
             // viewingEvent,
@@ -364,9 +365,8 @@ class SeatingPlanPanel extends React.Component {
                 </div>
                 <div className={classes.bottomBar}>
                     <Button className={classes.bottomButton}
-                        onClick={this.onResetButton} >
-                        重置排列
-          </Button>
+                        onClick={this.onResetButton} >重置排列
+                    </Button>
                     <Button className={classes.bottomButton}
                         style={{ borderRight: "unset" }}
                         onClick={this.onAutoAssignButton} >
