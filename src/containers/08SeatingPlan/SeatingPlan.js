@@ -23,8 +23,8 @@ import { setPlan, setEditPlanType } from '../../Redux/Action/seatingPlanAction';
 import { autoScrollTop } from '../../Util/ScrollToTop';
 
 // Children components
-// import SeatPlanView from './SeatPlanView';
-// import SeatingPlanPanel from "./SeatingPlanPanel";
+import SeatPlanView from './SeatPlanView';
+import SeatingPlanPanel from "./SeatingPlanPanel";
 
 class SeatingPlan extends React.Component {
     constructor(props) {
@@ -83,18 +83,18 @@ class SeatingPlan extends React.Component {
     }
 
     render() {
-        // const { classes, viewingEvent, plan } = this.props;
-        // const { companies } = this.state;
+        const { classes, viewingEvent, plan } = this.props;
+        const { companies } = this.state;
 
         // return companies && plan && 
         return (
             <div>
-                {/* <SeatingPlanPanel companies={companies}
+                <SeatingPlanPanel companies={companies}
                     viewingEvent={viewingEvent}
                     onCompanyColorChanged={this.handleCompanyColorChanged}
                 />
                 <SeatPlanView companies={companies}
-                    plan={plan} /> */}
+                    plan={plan} />
             </div>
         );
     }
