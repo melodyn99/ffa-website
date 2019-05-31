@@ -1,11 +1,16 @@
+// Essential for all components
 import React from 'react';
+
+// Redux
 import { connect } from 'react-redux';
 
+// Utils
 import { emitter, EventTypes } from '../../Util/EventEmitter'
-import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
-import { getColumnLetter } from "./SeatTable";
 
+// Children components
 import SeatTable from "./SeatTable";
+import { getColumnLetter } from "./SeatTable";
+import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
 
 // https://stackoverflow.com/a/9851769/5717561
 const isFirefox = () => {
