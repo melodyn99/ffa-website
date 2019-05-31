@@ -175,7 +175,6 @@ class Calendar extends Component {
                 border: '2px solid',
                 borderColor: this.props.accentColor,
                 color: '#fff',
-                backgroundColor: '#fff',
             };
             containerStyle = {
                 color: '#ffffff',
