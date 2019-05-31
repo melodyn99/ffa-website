@@ -14,7 +14,6 @@ import { withStyles } from '@material-ui/core/styles';
 // Redux
 import { connect } from 'react-redux';
 
-
 class StudentListItem extends React.Component {
 
 	render() {

@@ -164,9 +164,7 @@ class Seat extends React.Component {
                         this.deleted = true;
                         this.forceUpdate();
                         this.deleteSeat();
-                    }} >
-                    留座
-        </div>
+                    }} >留座</div>
             );
         }
 
