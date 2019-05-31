@@ -1,6 +1,6 @@
-import { sortBy } from 'lodash-es';
+// import { sortBy } from 'lodash-es';
 import { api } from './_ApiFactoryWithHeader';
-import { getLowerCaseIteratee } from '../Util/CommonUtils';
+// import { getLowerCaseIteratee } from '../Util/CommonUtils';
 
 import { apiGeneral } from './_General';
 
@@ -12,18 +12,22 @@ export const apiStudents = {
 
     editStudent: (studentId, params) => api.post(`students/${studentId}?$expand=contacts`, params),
 
-    getConferenceStudent: (conferenceId) => {
-        const url = `conference_students?conference=${encodeURIComponent(conferenceId)}&$expand=student,students/contacts,student/business_license_copy`;
-        return api.get(url).then(conferenceStudents => {
-            const nameIteratee = getLowerCaseIteratee('name');
-            return sortBy(conferenceStudents, getLowerCaseIteratee('brand')).map(conferenceStudent => {
-                const students = conferenceStudent.students;
-                if (students && students.length > 0) {
-                    conferenceStudent.students = sortBy(students, nameIteratee);
-                }
-                return conferenceStudent;
-            })
-        })
+    // OLD
+    // getConferenceStudent: (conferenceId) => {
+    //     const url = `conference_students?conference=${encodeURIComponent(conferenceId)}&$expand=student,students/contacts,student/business_license_copy`;
+    //     return api.get(url).then(conferenceStudents => {
+    //         const nameIteratee = getLowerCaseIteratee('name');
+    //         return sortBy(conferenceStudents, getLowerCaseIteratee('brand')).map(conferenceStudent => {
+    //             const students = conferenceStudent.students;
+    //             if (students && students.length > 0) {
+    //                 conferenceStudent.students = sortBy(students, nameIteratee);
+    //             }
+    //             return conferenceStudent;
+    //         })
+    //     })
+    // },
+    getConferenceStudent: (conferenceId, params, token, cb, eCb) => {
+        apiGeneral.apiFetch(`conference_students?conference=${encodeURIComponent(conferenceId)}&$expand=student,students/contacts,student/business_license_copy`, params, token, cb, eCb)
     },
 
     getConferenceStudentAccMgt: (params) => api.get(`conference_students`, { ...params }),

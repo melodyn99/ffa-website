@@ -23,8 +23,8 @@ import { setPlan, setEditPlanType } from '../../Redux/Action/seatingPlanAction';
 import { autoScrollTop } from '../../Util/ScrollToTop';
 
 // Children components
-import SeatPlanView from './SeatPlanView';
-import SeatingPlanPanel from "./SeatingPlanPanel";
+// import SeatPlanView from './SeatPlanView';
+// import SeatingPlanPanel from "./SeatingPlanPanel";
 
 class SeatingPlan extends React.Component {
     constructor(props) {
@@ -36,24 +36,44 @@ class SeatingPlan extends React.Component {
     }
 
     componentDidMount() {
-        const { viewingSeminar, viewingEvent, setEditPlanType, setPlan } = this.props;
-        return Promise.all([
-            apiSeatingPlan.seatingPlanDetail(viewingEvent.event_preparation_id),
-            apiStudents.getConferenceStudent(viewingSeminar.conference_id)
-        ]).then(results => {
-            const [plan, companies] = results;
-            setEditPlanType(plan.seating_plan_type);
-            setPlan(plan);
-            this.setState({ companies });
-        }).catch(console.error);
+        // const { viewingSeminar, viewingEvent } = this.props;
+
+        // this._apiSeatingPlanDetail(viewingEvent.event_preparation_id);
+        this._apiSeatingPlanDetail('3e5529cc-b096-428a-90b2-2a3eb520927b');
+
+        // this._apiGetConferenceStudent(viewingSeminar.conference_id);
+        this._apiGetConferenceStudent('5dd2c9b5-8898-4dd8-b44e-003917ce5815');
+    }
+
+    _apiSeatingPlanDetail = (id) => {
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.props.setEditPlanType(obj.body.seating_plan_type);
+            this.props.setPlan(obj.body);
+        }
+        const eCb = (obj) => { console.log("eCb : ", obj) }
+        const params = null;
+        apiSeatingPlan.seatingPlanDetail(id, params, this.props.auth.token, cb, eCb);
+    }
+
+    _apiGetConferenceStudent = (id) => {
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.setState({
+                ...this.state,
+                companies: obj.body
+            });
+        }
+        const eCb = (obj) => { console.log("eCb : ", obj) }
+        const params = null;
+        apiStudents.getConferenceStudent(id, params, this.props.auth.token, cb, eCb);
     }
 
     handleCompanyColorChanged(rgb, company) {
-        const { viewingEvent, setEditPlanType, setPlan } = this.props;
-        return apiSeatingPlan.seatingPlanDetail(viewingEvent.event_preparation_id).then(plan => {
-            setEditPlanType(plan.seating_plan_type);
-            setPlan(plan);
-        });
+        const { viewingEvent } = this.props;
+        this._apiSeatingPlanDetail = (viewingEvent.event_preparation_id);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -63,8 +83,8 @@ class SeatingPlan extends React.Component {
     }
 
     render() {
-        const { classes, viewingEvent, plan } = this.props;
-        const { companies } = this.state;
+        // const { classes, viewingEvent, plan } = this.props;
+        // const { companies } = this.state;
 
         // return companies && plan && 
         return (
@@ -81,14 +101,15 @@ class SeatingPlan extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    auth: state.auth,
     viewingEvent: state.eventReducer.viewingEvent,
     viewingSeminar: state.seminarReducer.viewingSeminar,
     plan: state.seatingPlanReducer.plan,
 });
 
 const mapDispatchToProps = dispatch => ({
-    setPlan: (plan) => dispatch(setPlan(plan)),
-    setEditPlanType: (type) => dispatch(setEditPlanType(type))
+    setPlan: (data) => { dispatch(setPlan(data)) },
+    setEditPlanType: (data) => { dispatch(setEditPlanType(data)) }
 });
 
 const combinedStyles = combineStyles(CommonStyles, SeatingPlanStyles);
