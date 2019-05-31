@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
-import { HeaderStyles } from '../../utils/01MaterialJsStyles/header'
+import { SeatingPlanPanelStyles } from '../../utils/01MaterialJsStyles/SeatingPlanPanel'
 import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
@@ -15,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Api
 import { apiSeatingPlan } from '../../Api/ApiSeatingPlan';
-import { apiStudents } from '../../Api/ApiStudents';
+// import { apiStudents } from '../../Api/ApiStudents';
 
 // Redux
 import { connect } from 'react-redux';
@@ -34,38 +34,6 @@ const CONCURRENT_CONNECTION_LIMIT = 4;
 function isFreeSeat(planSeat, row, letter) {
     return planSeat && planSeat.get((row + 1) + letter) === undefined;
 }
-
-const styles = theme => ({
-    studentsList: {
-        maxHeight: "calc(100% - 56px)",
-        height: "100%",
-        overflowY: 'auto'
-    },
-    bottomBar: {
-        background: 'rgb(242, 242, 242)',
-        display: "flex",
-        height: '56px',
-        minWidth: '320px'
-    },
-    bottomButton: {
-        width: '100%',
-        borderRadius: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.05)',
-        borderTop: '2px solid rgba(0, 0, 0, 0.2)',
-        borderRight: '2px solid rgba(0, 0, 0, 0.2)',
-    },
-    leftColumn: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        height: '100%',
-        flex: 'none',
-        borderRight: '2px solid rgba(0, 0, 0, 0.1)',
-        [theme.breakpoints.down('xs')]: {
-            maxWidth: "unset"
-        }
-    }
-});
 
 class SeatingPlanPanel extends React.Component {
     constructor(props) {
@@ -421,6 +389,6 @@ const mapDispatchToProps = dispatch => ({
     setPlan: (plan) => dispatch(setPlan(plan))
 });
 
-const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
+const combinedStyles = combineStyles(CommonStyles, SeatingPlanPanelStyles);
 
 export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SeatingPlanPanel)));

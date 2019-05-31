@@ -84,7 +84,7 @@ class SeatingPlan extends React.Component {
     }
 
     render() {
-        const { classes, viewingEvent, plan } = this.props;
+        const { viewingEvent, plan } = this.props;
         const { companies } = this.state;
 
         // return companies && plan && 

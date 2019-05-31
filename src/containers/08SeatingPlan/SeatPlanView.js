@@ -71,7 +71,9 @@ class SeatBoardView extends React.Component {
     }
 
     render() {
-        const { classes, plan, companies } = this.props;
+        const { classes, plan
+            //, companies 
+        } = this.props;
         const { view } = this.state;
 
         return !isPlanExisting(plan)
