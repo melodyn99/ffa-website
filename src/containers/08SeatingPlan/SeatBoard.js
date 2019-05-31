@@ -32,12 +32,14 @@ const LetterCell = ({ value, number, view, column, student_per_table }) => (
 	}}
 	>
 		{(new Array(number)).fill(null).map((item, index) => (
-			<div style={{
-				width: '100%',
-				textAlign: 'center',
-				placeSelf: 'center',
-				transform: `rotate(${view === 'bottom' ? 180 : 0}deg)`,
-			}}
+			<div
+				key={index}
+				style={{
+					width: '100%',
+					textAlign: 'center',
+					placeSelf: 'center',
+					transform: `rotate(${view === 'bottom' ? 180 : 0}deg)`,
+				}}
 			>
 				{getColumnLetter(index + (column * student_per_table))}
 			</div>
@@ -122,7 +124,7 @@ class SeatBoard extends React.Component {
 
 	renderLettersRow(view, column, student_per_table) {
 		const { tables } = this.state;
-		const blank = <LetterCell value={0} number={0} key={-1} />;
+		const blank = <LetterCell value={0} number={0} />;
 		let letterNomer;
 
 		return [blank, ...tables.map((item, index) => {

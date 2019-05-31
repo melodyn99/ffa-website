@@ -281,15 +281,12 @@ class Seat extends React.Component {
     }
 }
 
-const mapStateToProps = (state, { letter, row }) => {
-    const { plan_seat, plan } = state.seatingPlanReducer;
-    return {
-        viewingEvent: state.eventReducer.viewingEvent,
-        viewingSeminar: state.seminarReducer.viewingSeminar,
-        plan,
-        onSeat: plan_seat.get(`${row + 1}${letter}`) || null
-    }
-};
+const mapStateToProps = (state) => ({
+    viewingEvent: state.eventReducer.viewingEvent,
+    viewingSeminar: state.seminarReducer.viewingSeminar,
+    // plan,
+    // onSeat: plan_seat.get(`${row + 1}${letter}`) || null
+});
 
 const mapDispatchToProps = dispatch => ({
     setPlan: (plan) => dispatch(setPlan(plan))

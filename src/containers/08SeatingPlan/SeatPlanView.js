@@ -16,8 +16,7 @@ import { Radio, FormControlLabel, RadioGroup, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 // Children components
-// import BreadCrumb from '../../components/100Include/breadcrumb';
-// import SeatBoard from "./SeatBoard";
+import SeatBoard from "./SeatBoard";
 
 const BarTop = ({ plan, view, onViewChange }) => {
     const name = plan && plan.seating_plan_type.name || "Plan";
@@ -71,9 +70,7 @@ class SeatBoardView extends React.Component {
     }
 
     render() {
-        const { classes, plan
-            //, companies 
-        } = this.props;
+        const { classes, plan, companies } = this.props;
         const { view } = this.state;
 
         return !isPlanExisting(plan)
@@ -83,9 +80,9 @@ class SeatBoardView extends React.Component {
                     <BarTop plan={plan}
                         view={view}
                         onViewChange={this.onViewChange} />
-                    {/* <SeatBoard plan={plan}
+                    <SeatBoard plan={plan}
                         companies={companies}
-                        view={view} /> */}
+                        view={view} />
                 </div>
             );
     }
