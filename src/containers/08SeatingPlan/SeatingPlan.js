@@ -23,6 +23,7 @@ import { setPlan, setEditPlanType } from '../../Redux/Action/seatingPlanAction';
 import { autoScrollTop } from '../../Util/ScrollToTop';
 
 // Children components
+import BreadCrumb from '../../components/100Include/breadcrumb';
 import SeatPlanView from './SeatPlanView';
 import SeatingPlanPanel from "./SeatingPlanPanel";
 
@@ -89,12 +90,26 @@ class SeatingPlan extends React.Component {
         // return companies && plan && 
         return (
             <div>
-                <SeatingPlanPanel companies={companies}
-                    viewingEvent={viewingEvent}
-                    onCompanyColorChanged={this.handleCompanyColorChanged}
-                />
-                <SeatPlanView companies={companies}
-                    plan={plan} />
+                <div className="wrapper-container-main">
+                    <div className="container-main">
+
+                        <h2 className="pageTitle">報名歷史</h2>
+
+                        <div className="wrapper-content">
+                            <BreadCrumb />
+
+                            <div className="content">
+                                <SeatingPlanPanel companies={companies}
+                                    viewingEvent={viewingEvent}
+                                    onCompanyColorChanged={this.handleCompanyColorChanged}
+                                />
+                                <SeatPlanView companies={companies}
+                                    plan={plan} />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         );
     }

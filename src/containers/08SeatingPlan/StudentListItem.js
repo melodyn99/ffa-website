@@ -1,64 +1,65 @@
-import React from 'react';
+// Essential for all components
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+// import { Redirect } from 'react-router';
+// import { Link } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
+
+// Styling
+import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
+import { StudentListItemStyles } from '../../utils/01MaterialJsStyles/StudentListItem'
+import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { withStyles } from '@material-ui/core/styles';
+
+// Redux
 import { connect } from 'react-redux';
 
-const styles = {
-  root: {
-    display: "flex",
-    justifyContent: "space-between",
-    width: "100%",
-    cursor: "default",
-    fontSize: 18
-  },
-  item: {
-    padding: "0 10px",
-    // padding: '6px 17px',
-    border: '1px solid black',
-    marginLeft: 24,
-    marginBottom: 5
-  },
-  seat: {
-    // paddingTop: 6,
-    marginLeft: 10
-  }
+
+class StudentListItem extends React.Component {
+
+	render() {
+		const { company, plan, student, color, index, onSeat, classes } = this.props;
+		// const { conference_student_id } = student;
+
+		return (
+			<div>
+				{/* <div draggable={!onSeat}
+				onDragStart={(e) => {
+					e.dataTransfer.setData("text", JSON.stringify({
+						student_id: conference_student_id,
+						number: `#${index + 1}`,
+						color
+					}));
+					// A hack to get the information of the dragged student on onDragEnter
+					// since we can't use DataTransfer.getData on onDragEnter
+					// See https://stackoverflow.com/q/11065803/5717561
+					e.dataTransfer.setData(color, "");
+				}} 
+			// style={{
+			//   ...styles.item,
+			//   cursor: onSeat ? "default" : "grab",
+			//   backgroundColor: color,
+			// }} 
+			// >
+			// 	{`${student.name} (${company.brand})`}
+			// </div>
+			// <div style={classes.seat}>
+			// 	{onSeat && `${onSeat.sequence}${onSeat.seat}`}
+			// </div>*/}
+			</div>
+		)
+	}
 };
 
-const StudentListItem = ({ company, plan, student, color, index, onSeat }) => {
-  const { conference_student_id } = student;
+const mapStateToProps = (state) => ({
+	auth: state.auth
+	// const {conference_student_id} = student;
+	// const plan = state.seatingPlanReducer.plan_id;
+	// return {
+	//   onSeat: plan.get(conference_student_id) || null
+	// }
+});
 
-  return (
-    <div style={styles.root}>
-      <div draggable={!onSeat}
-           onDragStart={(e) => {
-               e.dataTransfer.setData("text", JSON.stringify({
-                 student_id: conference_student_id,
-                 number: `#${index + 1}`,
-                 color
-               }));
-               // A hack to get the information of the dragged student on onDragEnter
-               // since we can't use DataTransfer.getData on onDragEnter
-               // See https://stackoverflow.com/q/11065803/5717561
-               e.dataTransfer.setData(color, "");
-           }}
-           style={{
-             ...styles.item,
-             cursor: onSeat ? "default" : "grab",
-             backgroundColor: color,
-           }} >
-        {`${student.name} (${company.brand})`}
-      </div>
-      <div style={styles.seat}>
-        {onSeat && `${onSeat.sequence}${onSeat.seat}`}
-      </div>
-    </div>
-  );
-};
+const combinedStyles = combineStyles(CommonStyles, StudentListItemStyles);
 
-const mapStateToProps = (state, { student }) => {
-  const { conference_student_id } = student;
-  const plan = state.seatingPlanReducer.plan_id;
-  return {
-    onSeat: plan.get(conference_student_id) || null
-  }
-};
-
-export default connect(mapStateToProps)(StudentListItem);
+export default withTranslation()(connect(mapStateToProps, null)(withStyles(combinedStyles)(StudentListItem)));
