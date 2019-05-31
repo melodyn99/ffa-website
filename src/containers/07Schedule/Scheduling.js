@@ -99,7 +99,7 @@ class Scheduling extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const { sortType } = this.state;
-            return this.setState({
+            this.setState({
                 ...this.state,
                 seminars: sortBy(obj.body, sortType, 'start_date')
             });

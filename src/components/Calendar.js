@@ -143,6 +143,7 @@ class Calendar extends Component {
         d.setDate(day);
         this.props.onDatePicked(moment(d).unix());
         this.setState({
+            ...this.state,
             selected: d,
         });
     }
@@ -150,6 +151,7 @@ class Calendar extends Component {
     refreshToday() {
         this.updateMonth(false, 0);
         this.setState({
+            ...this.state,
             selected: config.today(),
         });
     }
