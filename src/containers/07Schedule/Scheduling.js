@@ -378,9 +378,7 @@ class Scheduling extends React.Component {
 }
 
 Scheduling.propTypes = {
-    classes: PropTypes.object.isRequired,
-    // history: PropTypes.object.isRequired,
-    // dispatch: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

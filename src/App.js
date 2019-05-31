@@ -29,6 +29,9 @@ import NewNoteContent from './containers/06Notes/NewNoteContent';
 // Scheduling
 import Scheduling from './containers/07Schedule/Scheduling';
 
+// Seating Plan
+import SeatingPlan from './containers/08SeatingPlan/SeatingPlan';
+
 // 404
 import PageNotFound from './containers/PageNotFound';
 
@@ -97,6 +100,11 @@ class App extends Component {
                 // Scheduling
                 case 'scheduling': {
                     return <Scheduling />;
+                }
+
+                // Seating Plan
+                case 'seating-plan': {
+                    return <SeatingPlan />;
                 }
 
                 default: {
