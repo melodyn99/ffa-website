@@ -34,10 +34,7 @@ const RowNumber = ({ row, view }) => (
 );
 
 const LetterCell = ({ value, number, view, column, student_per_table }) => (
-	<div style={{
-		display: 'flex',
-	}}
-	>
+	<div style={{ display: 'flex' }}>
 		{(new Array(number)).fill(null).map((item, index) => (
 			<div
 				key={index}
@@ -137,16 +134,21 @@ class SeatBoard extends React.Component {
 
 		const isScaled = scale !== 1;
 		let current_row = 0;
-		let parentStyleObject = {};
 
-		if (isScaled) {
-			let gridDom;
-			if (gridDom = (this.grid && this.grid.current)) {
-				parentStyleObject.width = gridWidth * scale;
-				parentStyleObject.height = (gridDom.scrollHeight + 40) * scale;
-				parentStyleObject.overflow = 'hidden';
-			}
-		}
+		// let parentStyleObject = {};
+
+		// console.log('this.grid', this.grid);
+		// console.log('this.grid.current', this.grid.current);
+
+		// if (isScaled) {
+		// 	let gridDom;
+		// 	if (gridDom = (this.grid && this.grid.current)) {
+		// 		parentStyleObject.width = gridWidth * scale;
+		// 		parentStyleObject.height = (gridDom.scrollHeight + 40) * scale;
+		// 		parentStyleObject.overflow = 'hidden';
+		// 	}
+		// 	// console.log('hello', this.grid.current.scrollHeight);
+		// }
 
 		const seatPerRow = tables.length + 2;
 		return tables && tables.length > 0 && (
@@ -154,7 +156,13 @@ class SeatBoard extends React.Component {
 				ref={this.root}
 				className={classes.rootSeatBoard}
 			>
-				<div style={parentStyleObject}>
+				<div
+					style={{
+						width: isScaled ? gridWidth * scale : '',
+						height: isScaled ? (this.grid.current.scrollHeight + 40) * scale : '',
+						overflow: isScaled ? 'hidden' : ''
+					}}
+				>
 					<div
 						className={classes.child}
 						style={{ transform: isScaled ? ` : scale(${scale})` : '' }}
