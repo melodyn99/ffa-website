@@ -29,5 +29,5 @@ export const StudentContainerStyles = ({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '80%',
-    },
+    }
 });

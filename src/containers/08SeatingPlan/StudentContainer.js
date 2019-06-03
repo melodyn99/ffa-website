@@ -139,9 +139,9 @@ class StudentContainer extends React.Component {
         if (isFunction(this.props.onCompanyColorChanged)) {
             this.props.onCompanyColorChanged(rgb, company);
         }
-        this.setState({ 
+        this.setState({
             ...this.state,
-            [company.company_id]: color 
+            [company.company_id]: color
         });
     }
 
@@ -171,13 +171,13 @@ class StudentContainer extends React.Component {
                                     <ExpansionPanelDetails className={classes.zeroPadding}>
                                         <List className={classes.zeroPadding}>
                                             {company.students.map((student, index) => (
-                                                    <StudentListItem key={index}
-                                                        company={company}
-                                                        plan={plan}
-                                                        student={student}
-                                                        color={color}
-                                                        index={index} />
-                                                ))}
+                                                <StudentListItem key={index}
+                                                    company={company}
+                                                    plan={plan}
+                                                    student={student}
+                                                    color={color}
+                                                    index={index} />
+                                            ))}
                                         </List>
                                     </ExpansionPanelDetails>
                                 </ExpansionPanel>

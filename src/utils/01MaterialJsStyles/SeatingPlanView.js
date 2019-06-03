@@ -1,5 +1,5 @@
 export const SeatingPlanViewStyles = theme => ({
-    root: {
+    rootSeatingPlanView: {
         height: "100%",
         display: "flex",
         flexDirection: "column",

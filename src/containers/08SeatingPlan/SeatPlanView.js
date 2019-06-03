@@ -76,7 +76,7 @@ class SeatBoardView extends React.Component {
         return !isPlanExisting(plan)
             ? <SelectPlanView />
             : (
-                <div className={classes.root}>
+                <div className={classes.rootSeatingPlanView}>
                     <BarTop plan={plan}
                         view={view}
                         onViewChange={this.onViewChange} />
