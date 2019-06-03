@@ -54,8 +54,6 @@ const LetterCell = ({ value, number, view, column, student_per_table }) => (
 	</div>
 );
 
-
-
 class SeatBoard extends React.Component {
 	constructor(props) {
 		super(props);
@@ -92,17 +90,17 @@ class SeatBoard extends React.Component {
 		}
 		this.setState(newState);
 
-		emitter.addListener(EventTypes.PLAN2PDF, () => {
-			// const { seating_plan_type } = this.props.plan;
-			// const { student_per_table, column, row } = seating_plan_type;
-			// SeatingPlan2PDF({
-			// 	...this.props,
-			// 	tables: this.state.tables,
-			// 	student_per_table,
-			// 	column,
-			// 	row
-			// });
-		})
+		// emitter.addListener(EventTypes.PLAN2PDF, () => {
+		// 	const { seating_plan_type } = this.props.plan;
+		// 	const { student_per_table, column, row } = seating_plan_type;
+		// 	SeatingPlan2PDF({
+		// 		...this.props,
+		// 		tables: this.state.tables,
+		// 		student_per_table,
+		// 		column,
+		// 		row
+		// 	});
+		// })
 	}
 
 	componentWillUnmount() {
@@ -175,7 +173,7 @@ class SeatBoard extends React.Component {
 						<div
 						//ref={this.grid} style={gridStyleObject}
 						>
-							{/* {lettersRow} */}
+							{lettersRow}
 							{
 								(new Array((row || 0) * seatPerRow)).fill(null).map((_, index) => {
 									const indexString = index.toString();
