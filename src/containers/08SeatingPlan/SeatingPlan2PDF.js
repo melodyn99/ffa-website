@@ -1,10 +1,14 @@
+// Utils
 import * as jsPDF from "jspdf";
-import { getColumnLetter } from "./SeatTable";
-import { makeColorString, getStudentNumber, getStudentName } from "./Seat";
+import {
+    makeColorString,
+    // getStudentNumber, 
+    getStudentName
+} from "./Seat";
 import { getColorBrand } from "./StudentContainer";
+import { getColumnLetter } from "./SeatTable";
 
 // Some constants
-
 const RULE_HEIGHT = 60;
 const RULE_WIDTH = 60;
 
@@ -23,7 +27,11 @@ let SPACES_BETWEEN_TABLE_X = 20;
 const TABLE_MAX_HEIGHT = 75;
 
 // Compute size of elements on the canvas
-const compute = ({ plan, tables, student_per_table, column, row }) => {
+const compute = ({
+    // plan, 
+    tables, student_per_table,
+    // column, 
+    row }) => {
     const totalTableSpaceHeight = Math.max(row - 1, 0) * SPACES_BETWEEN_TABLE_Y;
     let width = WIDTH_LANSCAPE - Math.max(tables.length - 1, 0) * SPACES_BETWEEN_TABLE_X;
     let height = HEIGHT_LANSCAPE - totalTableSpaceHeight - RULE_HEIGHT * 2;
@@ -73,8 +81,16 @@ const fillText = (ctx, x, y, text, size, color) => {
 // Draw tables
 const draw_tables = (
     ctx,
-    { seat_width, table_width, table_height, width, height, start_y }, // computed
-    { plan, tables, student_per_table, column, row, view } // props
+    {
+        // seat_width, 
+        table_width, table_height,
+        // width, height, 
+        start_y }, // computed
+    {
+        // plan, 
+        tables,
+        // student_per _table, column, 
+        row, view } // props
 ) => {
     let y = start_y;
     let x_seats = [];
@@ -89,7 +105,9 @@ const draw_tables = (
     for (let c_row = 0; c_row < row; c_row += 1) {
         let x = MARGIN_X / 2 + RULE_WIDTH;
 
-        for (const [index_table, table] of tables.entries()) {
+        for (const [index_table,
+            // table
+        ] of tables.entries()) {
             // Draw the rectange of the table
             rect(ctx, x, y, table_width, table_height);
 
@@ -191,7 +209,9 @@ function trimTextToFitRect(this_seat_width, text, ctx) {
 }
 
 // Filling seats with colors & text
-const draw_seats = (ctx, seats_coords, { table_height, seat_width }, { row, column, plan_seat, companies, view }) => {
+const draw_seats = (ctx, seats_coords, { table_height,
+    // seat_width 
+}, { row, column, plan_seat, companies, view }) => {
     for (let r = 0; r < row; r += 1) {
         for (let c = 0; c < column; c += 1) {
 
@@ -217,7 +237,7 @@ const draw_seats = (ctx, seats_coords, { table_height, seat_width }, { row, colu
                     text = "留座"; color = "#FF0000";
                 } else {
                     text = getStudentName(companies, onSeat.conference_student);
-                    brandText = onSeat && onSeat.student_brand || '';
+                    brandText = onSeat ? onSeat.student_brand : '';
                     color = makeColorString(onSeat);
                 }
             } else {
@@ -299,7 +319,9 @@ const draw_companies = (ctx, pdf, canvas, { plan, companies, plan_id }) => {
         fillRect(ctx, x, y, LEGEND_WIDTH, LEGEND_HEIGHT, color);
         fillText(ctx, x + 50, y + LEGEND_TEXT_Y_DELTA, company.brand, ctx.measureText(company.brand));
         y += (LEGEND_HEIGHT + LEGEND_MARGIN_BOTTOM);
-        for (const [index, student] of company.students.entries()) {
+        for (const [
+            // index, 
+            student] of company.students.entries()) {
             const y_text = y + LEGEND_TEXT_Y_DELTA;
             fillText(ctx, x + 50, y_text, student.name, FONT_SIZE);
 
@@ -328,7 +350,9 @@ const draw_companies = (ctx, pdf, canvas, { plan, companies, plan_id }) => {
 }
 
 export const SeatingPlan2PDF = (props) => {
-    const { plan, tables, student_per_table, column, row, viewingSeminar } = props;
+    const {
+        // plan, tables, student_per_table, 
+        column, row, viewingSeminar } = props;
 
     SPACES_BETWEEN_TABLE_Y = column > 11 ? 4 : 10;
     SPACES_BETWEEN_TABLE_X = row > 11 ? 6 : 20;

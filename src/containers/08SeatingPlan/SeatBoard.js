@@ -17,7 +17,7 @@ import { emitter, EventTypes } from '../../Util/EventEmitter';
 // Children components
 import SeatTable from "./SeatTable";
 import { getColumnLetter } from "./SeatTable";
-// import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
+import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
 
 // https://stackoverflow.com/a/9851769/5717561
 const isFirefox = () => {
@@ -90,17 +90,17 @@ class SeatBoard extends React.Component {
 		}
 		this.setState(newState);
 
-		// emitter.addListener(EventTypes.PLAN2PDF, () => {
-		// 	const { seating_plan_type } = this.props.plan;
-		// 	const { student_per_table, column, row } = seating_plan_type;
-		// 	SeatingPlan2PDF({
-		// 		...this.props,
-		// 		tables: this.state.tables,
-		// 		student_per_table,
-		// 		column,
-		// 		row
-		// 	});
-		// })
+		emitter.addListener(EventTypes.PLAN2PDF, () => {
+			const { seating_plan_type } = this.props.plan;
+			const { student_per_table, column, row } = seating_plan_type;
+			SeatingPlan2PDF({
+				...this.props,
+				tables: this.state.tables,
+				student_per_table,
+				column,
+				row
+			});
+		})
 	}
 
 	componentWillUnmount() {
