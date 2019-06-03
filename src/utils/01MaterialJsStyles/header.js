@@ -28,7 +28,7 @@ export const HeaderStyles = theme => ({
             fontSize: '20px',
         },
         backgroundColor: theme.palette.secondary.main,
-        color: 'black',
+        color: 'blue',
         '&:hover': {
             backgroundColor: theme.palette.secondary.main,
         },

@@ -1,5 +1,5 @@
 export const SeatingPlanStyles = {
-    root: {
+    rootSeatingPlan: {
         display: 'flex',
         flexDirection: 'row',
         height: "100%",

@@ -68,7 +68,7 @@ class Home extends Component {
     }
 
     render() {
-        // const { i18n } = this.props;
+        const { classes } = this.props;
 
         return (
             <div>
@@ -82,7 +82,7 @@ class Home extends Component {
 
                             <div className="content">
                                 <Button
-                                    className={this.props.classes.createButton}
+                                    className={classes.createButton}
                                     onClick={() => { this._signInAsync() }}
                                 >Hello</Button>
                             </div>

@@ -84,7 +84,7 @@ class SeatingPlan extends React.Component {
     }
 
     render() {
-        const { viewingEvent, plan } = this.props;
+        const { viewingEvent, plan, classes } = this.props;
         const { companies } = this.state;
 
         // return companies && plan && 
@@ -99,18 +99,20 @@ class SeatingPlan extends React.Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <SeatingPlanPanel
-                                    companies={companies}
-                                    viewingEvent={viewingEvent}
-                                    onCompanyColorChanged={this.handleCompanyColorChanged}
-                                />
-                                <SeatPlanView companies={companies}
-                                    plan={plan} />
+                                <div className={classes.rootSeatingPlan}>
+                                    <SeatingPlanPanel
+                                        companies={companies}
+                                        viewingEvent={viewingEvent}
+                                        onCompanyColorChanged={this.handleCompanyColorChanged}
+                                    />
+                                    <SeatPlanView companies={companies}
+                                        plan={plan} />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
