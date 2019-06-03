@@ -1,5 +1,5 @@
 export const SeatBoardStyles = {
-    root: {
+    rootSeatBoard: {
         overflow: "auto",
         flex: "auto",
         userSelect: "none"

@@ -1,5 +1,5 @@
 export const SeatTableStyles = {
-    root: {
+    rootSeatTable: {
         display: "grid",
         height: "100%",
         border: "0.7px black solid",

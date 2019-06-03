@@ -30,22 +30,20 @@ export const getColumnLetter = (n) => {
 class SeatTable extends React.Component {
 
 	render() {
-		const { row, column, plan, companies, view, nstudents } = this.props;
+		const { row, column, plan, companies, view, nstudents, classes } = this.props;
 		const { student_per_table } = plan.seating_plan_type;
 
 		return (
 			<div
-			// style={{
-			// 	...styles.root,
-			// 	gridTemplateColumns: `repeat(${nstudents}, auto)`,
-			// }}
+				className={classes.rootSeatTable}
+				style={{
+					gridTemplateColumns: `repeat(${nstudents}, auto)`,
+				}}
 			>
 				{
 					(new Array(nstudents)).fill(null).map((_, index) => {
 						return (
-							<div key={index}
-							// style={classes.child}
-							>
+							<div key={index} className={classes.child}>
 								<Seat letter={getColumnLetter(index + (column * student_per_table))}
 									view={view}
 									companies={companies}
