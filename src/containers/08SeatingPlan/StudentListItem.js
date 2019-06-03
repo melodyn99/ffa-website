@@ -22,7 +22,7 @@ class StudentListItem extends React.Component {
 			student, color, index, onSeat, classes
 		} = this.props;
 		const { conference_student_id } = student;
-		console.log(this.props);
+
 		return (
 			<div>
 				<div

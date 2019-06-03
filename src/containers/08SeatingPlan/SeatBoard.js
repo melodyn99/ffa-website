@@ -17,7 +17,7 @@ import { emitter, EventTypes } from '../../Util/EventEmitter';
 // Children components
 import SeatTable from "./SeatTable";
 import { getColumnLetter } from "./SeatTable";
-import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
+// import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
 
 // https://stackoverflow.com/a/9851769/5717561
 const isFirefox = () => {
@@ -39,12 +39,14 @@ const LetterCell = ({ value, number, view, column, student_per_table }) => (
 	}}
 	>
 		{(new Array(number)).fill(null).map((item, index) => (
-			<div style={{
-				width: '100%',
-				textAlign: 'center',
-				placeSelf: 'center',
-				transform: `rotate(${view === 'bottom' ? 180 : 0}deg)`,
-			}}
+			<div
+				key={index}
+				style={{
+					width: '100%',
+					textAlign: 'center',
+					placeSelf: 'center',
+					transform: `rotate(${view === 'bottom' ? 180 : 0}deg)`,
+				}}
 			>
 				{getColumnLetter(index + (column * student_per_table))}
 			</div>
@@ -91,15 +93,15 @@ class SeatBoard extends React.Component {
 		this.setState(newState);
 
 		emitter.addListener(EventTypes.PLAN2PDF, () => {
-			const { seating_plan_type } = this.props.plan;
-			const { student_per_table, column, row } = seating_plan_type;
-			SeatingPlan2PDF({
-				...this.props,
-				tables: this.state.tables,
-				student_per_table,
-				column,
-				row
-			});
+			// const { seating_plan_type } = this.props.plan;
+			// const { student_per_table, column, row } = seating_plan_type;
+			// SeatingPlan2PDF({
+			// 	...this.props,
+			// 	tables: this.state.tables,
+			// 	student_per_table,
+			// 	column,
+			// 	row
+			// });
 		})
 	}
 
@@ -107,12 +109,15 @@ class SeatBoard extends React.Component {
 		emitter.removeListener(EventTypes.PLAN2PDF);
 	}
 
-	renderLettersRow(view, column, student_per_table) {
+	renderLettersRow(view,
+		// column, 
+		student_per_table) {
 		const { tables } = this.state;
-		const blank = <LetterCell value={0} number={0} />;
+		const blank1 = <LetterCell value={0} number={0} key={-1} />;
+		const blank2 = <LetterCell value={0} number={0} key={-2} />;
 		let letterNomer;
 
-		return [blank, ...tables.map((item, index) => {
+		return [blank1, ...tables.map((item, index) => {
 			const currentColumn = index % (tables.length + 2);
 			if (letterNomer === undefined) {
 				letterNomer = 0;
@@ -120,12 +125,8 @@ class SeatBoard extends React.Component {
 				letterNomer += item;
 			}
 
-			console.log('currentColumn', currentColumn);
-			console.log('letterNomer', letterNomer);
-
-
-			return <LetterCell value={letterNomer} number={item} view={view} column={currentColumn} student_per_table={student_per_table} />;
-		}), blank];
+			return <LetterCell value={letterNomer} number={item} view={view} column={currentColumn} student_per_table={student_per_table} key={index} />;
+		}), blank2];
 	}
 
 	render() {
@@ -163,11 +164,18 @@ class SeatBoard extends React.Component {
 
 		const seatPerRow = tables.length + 2;
 		return tables && tables.length > 0 && (
-			<div ref={this.root} style={classes.root}>
+			<div
+			// ref={this.root}
+			// style={classes.root}
+			>
 				<div style={parentStyleObject}>
-					<div style={childStyleObject}>
-						<div ref={this.grid} style={gridStyleObject}>
-							{lettersRow}
+					<div
+					// style={childStyleObject}
+					>
+						<div
+						//ref={this.grid} style={gridStyleObject}
+						>
+							{/* {lettersRow} */}
 							{
 								(new Array((row || 0) * seatPerRow)).fill(null).map((_, index) => {
 									const indexString = index.toString();
