@@ -24,7 +24,7 @@ import { autoScrollTop } from '../../Util/ScrollToTop';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
-import SeatPlanView from './SeatPlanView';
+// import SeatPlanView from './SeatPlanView';
 import SeatingPlanPanel from "./SeatingPlanPanel";
 
 class SeatingPlan extends React.Component {
@@ -84,7 +84,9 @@ class SeatingPlan extends React.Component {
     }
 
     render() {
-        const { viewingEvent, plan } = this.props;
+        const { viewingEvent
+            // , plan 
+        } = this.props;
         const { companies } = this.state;
 
         // return companies && plan && 

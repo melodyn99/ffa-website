@@ -17,7 +17,10 @@ import { connect } from 'react-redux';
 class StudentListItem extends React.Component {
 
 	render() {
-		const { company, plan, student, color, index, onSeat, classes } = this.props;
+		const { company,
+			// plan, 
+			student, color, index, onSeat, classes
+		} = this.props;
 		const { conference_student_id } = student;
 		console.log(this.props);
 		return (
@@ -35,15 +38,15 @@ class StudentListItem extends React.Component {
 						// See https://stackoverflow.com/q/11065803/5717561
 						e.dataTransfer.setData(color, "");
 					}}
-				// style={{
-				//   ...styles.item,
-				//   cursor: onSeat ? "default" : "grab",
-				//   backgroundColor: color,
-				// }} 
+					className={classes.item}
+					style={{
+						cursor: onSeat ? "default" : "grab",
+						backgroundColor: color,
+					}}
 				>
 					{`${student.name} (${company.brand})`}
 				</div>
-				<div>
+				<div>hi
 					{onSeat &&
 						`${onSeat.sequence}${onSeat.seat}`
 					}
