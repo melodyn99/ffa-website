@@ -68,7 +68,7 @@ class SeatBoard extends React.Component {
 		const n = Math.floor(column / student_per_table);
 		const rest = column % student_per_table;
 
-		let tables = new Array(n > 0 && Number.isFinite(n) && n || 0).fill(student_per_table);
+		let tables = new Array(n > 0 && Number.isFinite(n) ? n : 0).fill(student_per_table);
 		rest > 0 && tables.push(rest);
 
 		this.state = {

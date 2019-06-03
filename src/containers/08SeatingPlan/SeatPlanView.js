@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import SeatBoard from "./SeatBoard";
 
 const BarTop = ({ plan, view, onViewChange }) => {
-    const name = plan && plan.seating_plan_type.name || "Plan";
+    const name = plan ? plan.seating_plan_type.name : "Plan";
     return (
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div style={{ textAlign: "center", margin: "0px 20px" }}>

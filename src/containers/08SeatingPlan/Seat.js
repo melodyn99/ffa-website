@@ -177,7 +177,7 @@ class Seat extends React.Component {
                 textOverflow: "ellipsis",
                 overflowX: "hidden"
             };
-            const brandName = onSeat && onSeat.student_brand || '';
+            const brandName = onSeat ? onSeat.student_brand : '';
             return (
                 <div style={{ backgroundColor: color, ...style, cursor: "grab" }}
                     onDoubleClick={(e) => {
