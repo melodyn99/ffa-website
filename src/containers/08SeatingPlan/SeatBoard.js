@@ -5,12 +5,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Utils
-import { emitter, EventTypes } from '../../Util/EventEmitter'
+import { emitter, EventTypes } from '../../Util/EventEmitter';
 
 // Children components
 import SeatTable from "./SeatTable";
-import { getColumnLetter } from "./SeatTable";
-import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
+// import { getColumnLetter } from "./SeatTable";
+// import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
 
 // https://stackoverflow.com/a/9851769/5717561
 const isFirefox = () => {
@@ -19,7 +19,7 @@ const isFirefox = () => {
 
 function LetterCell(props) {
 
-	console.log('Number', props.number);
+	// console.log('Number', props.number);
 
 	return (
 		<div
@@ -37,7 +37,7 @@ function LetterCell(props) {
 						transform: `rotate(${props.view === 'bottom' ? 180 : 0}deg)`,
 					}}
 				>
-					{getColumnLetter(i + (props.column * props.student_per_table)) + 'hello'}
+					{/* {getColumnLetter(i + (props.column * props.student_per_table)) + 'hello'} */}123
 				</div>
 			))}
 		</div>
@@ -137,13 +137,13 @@ class SeatBoard extends React.Component {
 		emitter.addListener(EventTypes.PLAN2PDF, () => {
 			const { seating_plan_type } = this.props.plan;
 			const { student_per_table, column, row } = seating_plan_type;
-			SeatingPlan2PDF({
-				...this.props,
-				tables: this.state.tables,
-				student_per_table,
-				column,
-				row
-			});
+			// SeatingPlan2PDF({
+			// 	...this.props,
+			// 	tables: this.state.tables,
+			// 	student_per_table,
+			// 	column,
+			// 	row
+			// });
 		})
 	}
 
@@ -152,6 +152,7 @@ class SeatBoard extends React.Component {
 	}
 
 	render() {
+
 		const { companies, plan, view } = this.props;
 		const { seating_plan_type } = plan;
 		const { row, column } = seating_plan_type;
