@@ -16,14 +16,13 @@ import { connect } from 'react-redux';
 
 const StudentListItem = ({ company,
 	// plan, 
-	student, color, index, onSeat
-	// , classes 
+	student, color, index, onSeat, classes
 }) => {
 	const { conference_student_id } = student;
 
 	return (
 		<div
-		// style={classes.root}
+			className={classes.rootStudentListItem}
 		>
 			<div
 				// draggable={!onSeat}
@@ -38,18 +37,16 @@ const StudentListItem = ({ company,
 					// See https://stackoverflow.com/q/11065803/5717561
 					e.dataTransfer.setData(color, "");
 				}}
-			// style={{
-			// 	...classes.item,
-			// 	cursor: onSeat ? "default" : "grab",
-			// 	backgroundColor: color,
-			// }} 
+				className={classes.item}
+				style={{
+					cursor: onSeat ? "default" : "grab",
+					backgroundColor: color,
+				}}
 			>
 				{`${student.name} (${company.brand})`}
 			</div>
-			<div
-			// style={classes.seat}
-			>
-				{onSeat && `${onSeat.sequence}${onSeat.seat}`}
+			<div className={classes.seat}>
+				{onSeat && `${onSeat.sequence}${onSeat.seat}`}12
 			</div>
 		</div>
 	);

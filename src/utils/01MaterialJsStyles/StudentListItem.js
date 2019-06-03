@@ -1,11 +1,11 @@
 export const StudentListItemStyles = {
-    // root: {
-    //     display: "flex",
-    //     justifyContent: "space-between",
-    //     width: "100%",
-    //     cursor: "default",
-    //     fontSize: 18
-    // },
+    rootStudentListItem: {
+        display: "flex",
+        justifyContent: "space-between",
+        width: "100%",
+        cursor: "default",
+        fontSize: 18
+    },
     item: {
         padding: "0 10px",
         // padding: '6px 17px',
