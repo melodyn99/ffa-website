@@ -138,20 +138,8 @@ class SeatBoard extends React.Component {
 		const isScaled = scale !== 1;
 		let current_row = 0;
 		let parentStyleObject = {};
-		// let childStyleObject = classes.child;
-		// let gridStyleObject = {
-		// 	...classes.grid,
-		// 	gridTemplateColumns: `40px repeat(${tables.length}, auto) 40px`,
-		// 	gridTemplateRows: `repeat(${row + 2}, 45px)`
-		// };
-		// if (view === 'bottom') {
-		// 	gridStyleObject.transform = 'rotate(180deg)';
-		// }
+
 		if (isScaled) {
-			// childStyleObject = {
-			// 	...classes.child,
-			// 	transform: `scale(${scale})`
-			// };
 			let gridDom;
 			if (gridDom = (this.grid && this.grid.current)) {
 				parentStyleObject.width = gridWidth * scale;
@@ -163,12 +151,11 @@ class SeatBoard extends React.Component {
 		const seatPerRow = tables.length + 2;
 		return tables && tables.length > 0 && (
 			<div
-			// ref={this.root}
-			// style={classes.root}
+				ref={this.root}
+				className={classes.rootSeatBoard}
 			>
 				<div style={parentStyleObject}>
 					<div
-						// style={childStyleObject}
 						className={classes.child}
 						style={{ transform: isScaled ? ` : scale(${scale})` : '' }}
 					>
