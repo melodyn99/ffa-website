@@ -1,5 +1,12 @@
 // Essential for all components
 import React from 'react';
+import { withTranslation } from 'react-i18next';
+
+// Styling
+import { CommonStyles } from '../../utils/01MaterialJsStyles/common';
+import { SeatBoardStyles } from '../../utils/01MaterialJsStyles/SeatBoard';
+import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { withStyles } from '@material-ui/core/styles';
 
 // Redux
 import { connect } from 'react-redux';
@@ -9,62 +16,12 @@ import { emitter, EventTypes } from '../../Util/EventEmitter';
 
 // Children components
 import SeatTable from "./SeatTable";
-// import { getColumnLetter } from "./SeatTable";
-// import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
+import { getColumnLetter } from "./SeatTable";
+import { SeatingPlan2PDF } from "./SeatingPlan2PDF";
 
 // https://stackoverflow.com/a/9851769/5717561
 const isFirefox = () => {
 	return typeof InstallTrigger !== 'undefined';
-}
-
-function LetterCell(props) {
-
-	// console.log('Number', props.number);
-
-	return (
-		<div
-			style={{
-				display: 'flex',
-			}}
-		>
-			{(new Array(props.number)).fill(null).map((item, i) => (
-				<div
-					key={i}
-					style={{
-						width: '100%',
-						textAlign: 'center',
-						placeSelf: 'center',
-						transform: `rotate(${props.view === 'bottom' ? 180 : 0}deg)`,
-					}}
-				>
-					{/* {getColumnLetter(i + (props.column * props.student_per_table)) + 'hello'} */}123
-				</div>
-			))}
-		</div>
-	)
-}
-
-function LettersRow(props) {
-
-	let rows = [];
-
-	if (props.tables) {
-		props.tables.map((item, i) => {
-
-			rows.push(
-				<LetterCell
-					key={i}
-					// value={letterNomer}
-					number={item}
-					view={props.view}
-					// column={currentColumn}
-					student_per_table={props.student_per_table}
-				/>
-			)
-		});
-	}
-
-	return (rows);
 }
 
 const RowNumber = ({ row, view }) => (
@@ -76,27 +33,26 @@ const RowNumber = ({ row, view }) => (
 	</div>
 );
 
-const styles = {
-	root: {
-		overflow: "auto",
-		flex: "auto",
-		userSelect: "none"
-	},
-	child: {
-		display: "grid",
-		transformOrigin: "left top",
-	},
-	grid: {
-		display: "grid",
-		alignContent: "center",
-		gridGap: "5px 20px",
-		width: "100%",
-		padding: 20,
-		margin: "auto",
-		transformOrigin: "50% 50%",
-		transition: "all 0.4s ease 0s",
-	}
-};
+const LetterCell = ({ value, number, view, column, student_per_table }) => (
+	<div style={{
+		display: 'flex',
+	}}
+	>
+		{(new Array(number)).fill(null).map((item, index) => (
+			<div style={{
+				width: '100%',
+				textAlign: 'center',
+				placeSelf: 'center',
+				transform: `rotate(${view === 'bottom' ? 180 : 0}deg)`,
+			}}
+			>
+				{getColumnLetter(index + (column * student_per_table))}
+			</div>
+		))}
+	</div>
+);
+
+
 
 class SeatBoard extends React.Component {
 	constructor(props) {
@@ -137,13 +93,13 @@ class SeatBoard extends React.Component {
 		emitter.addListener(EventTypes.PLAN2PDF, () => {
 			const { seating_plan_type } = this.props.plan;
 			const { student_per_table, column, row } = seating_plan_type;
-			// SeatingPlan2PDF({
-			// 	...this.props,
-			// 	tables: this.state.tables,
-			// 	student_per_table,
-			// 	column,
-			// 	row
-			// });
+			SeatingPlan2PDF({
+				...this.props,
+				tables: this.state.tables,
+				student_per_table,
+				column,
+				row
+			});
 		})
 	}
 
@@ -151,21 +107,41 @@ class SeatBoard extends React.Component {
 		emitter.removeListener(EventTypes.PLAN2PDF);
 	}
 
-	render() {
+	renderLettersRow(view, column, student_per_table) {
+		const { tables } = this.state;
+		const blank = <LetterCell value={0} number={0} />;
+		let letterNomer;
 
-		const { companies, plan, view } = this.props;
+		return [blank, ...tables.map((item, index) => {
+			const currentColumn = index % (tables.length + 2);
+			if (letterNomer === undefined) {
+				letterNomer = 0;
+			} else {
+				letterNomer += item;
+			}
+
+			console.log('currentColumn', currentColumn);
+			console.log('letterNomer', letterNomer);
+
+
+			return <LetterCell value={letterNomer} number={item} view={view} column={currentColumn} student_per_table={student_per_table} />;
+		}), blank];
+	}
+
+	render() {
+		const { companies, plan, view, classes } = this.props;
 		const { seating_plan_type } = plan;
 		const { row, column } = seating_plan_type;
 		const { scale, tables, gridWidth } = this.state;
 		const { student_per_table } = plan.seating_plan_type;
-		// const lettersRow = this.renderLettersRow(view, column, student_per_table);
+		const lettersRow = this.renderLettersRow(view, column, student_per_table);
 
 		const isScaled = scale !== 1;
 		let current_row = 0;
 		let parentStyleObject = {};
-		let childStyleObject = styles.child;
+		let childStyleObject = classes.child;
 		let gridStyleObject = {
-			...styles.grid,
+			...classes.grid,
 			gridTemplateColumns: `40px repeat(${tables.length}, auto) 40px`,
 			gridTemplateRows: `repeat(${row + 2}, 45px)`
 		};
@@ -174,7 +150,7 @@ class SeatBoard extends React.Component {
 		}
 		if (isScaled) {
 			childStyleObject = {
-				...styles.child,
+				...classes.child,
 				transform: `scale(${scale})`
 			};
 			let gridDom;
@@ -187,16 +163,11 @@ class SeatBoard extends React.Component {
 
 		const seatPerRow = tables.length + 2;
 		return tables && tables.length > 0 && (
-			<div ref={this.root} style={styles.root}>
+			<div ref={this.root} style={classes.root}>
 				<div style={parentStyleObject}>
 					<div style={childStyleObject}>
 						<div ref={this.grid} style={gridStyleObject}>
-							{/* {lettersRow} */}
-							<LettersRow
-								view={view}
-								column={column}
-								student_per_table={student_per_table}
-							/>
+							{lettersRow}
 							{
 								(new Array((row || 0) * seatPerRow)).fill(null).map((_, index) => {
 									const indexString = index.toString();
@@ -222,12 +193,7 @@ class SeatBoard extends React.Component {
 									);
 								})
 							}
-							<LettersRow
-								view={view}
-								column={column}
-								student_per_table={student_per_table}
-								tables={this.state.tables}
-							/>
+							{lettersRow}
 						</div>
 					</div>
 				</div>
@@ -242,4 +208,6 @@ const mapStateToProps = (state) => ({
 	plan_id: state.seatingPlanReducer.plan_id,
 });
 
-export default connect(mapStateToProps)(SeatBoard);
+const combinedStyles = combineStyles(CommonStyles, SeatBoardStyles);
+
+export default withTranslation()(connect(mapStateToProps, null)(withStyles(combinedStyles)(SeatBoard)));

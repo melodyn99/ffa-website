@@ -3,8 +3,8 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
-import { SeatTableStyles } from '../../utils/01MaterialJsStyles/SeatTable'
+import { CommonStyles } from '../../utils/01MaterialJsStyles/common';
+import { SeatTableStyles } from '../../utils/01MaterialJsStyles/SeatTable';
 import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 
