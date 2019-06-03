@@ -138,20 +138,20 @@ class SeatBoard extends React.Component {
 		const isScaled = scale !== 1;
 		let current_row = 0;
 		let parentStyleObject = {};
-		let childStyleObject = classes.child;
-		let gridStyleObject = {
-			...classes.grid,
-			gridTemplateColumns: `40px repeat(${tables.length}, auto) 40px`,
-			gridTemplateRows: `repeat(${row + 2}, 45px)`
-		};
-		if (view === 'bottom') {
-			gridStyleObject.transform = 'rotate(180deg)';
-		}
+		// let childStyleObject = classes.child;
+		// let gridStyleObject = {
+		// 	...classes.grid,
+		// 	gridTemplateColumns: `40px repeat(${tables.length}, auto) 40px`,
+		// 	gridTemplateRows: `repeat(${row + 2}, 45px)`
+		// };
+		// if (view === 'bottom') {
+		// 	gridStyleObject.transform = 'rotate(180deg)';
+		// }
 		if (isScaled) {
-			childStyleObject = {
-				...classes.child,
-				transform: `scale(${scale})`
-			};
+			// childStyleObject = {
+			// 	...classes.child,
+			// 	transform: `scale(${scale})`
+			// };
 			let gridDom;
 			if (gridDom = (this.grid && this.grid.current)) {
 				parentStyleObject.width = gridWidth * scale;
@@ -168,10 +168,18 @@ class SeatBoard extends React.Component {
 			>
 				<div style={parentStyleObject}>
 					<div
-					// style={childStyleObject}
+						// style={childStyleObject}
+						className={classes.child}
+						style={{ transform: isScaled ? ` : scale(${scale})` : '' }}
 					>
 						<div
-						//ref={this.grid} style={gridStyleObject}
+							ref={this.grid}
+							className={classes.grid}
+							style={{
+								gridTemplateColumns: `40px repeat(${tables.length}, auto) 40px`,
+								gridTemplateRows: `repeat(${row + 2}, 45px)`,
+								transform: (view === 'bottom') ? 'rotate(180deg)' : ''
+							}}
 						>
 							{lettersRow}
 							{
@@ -203,7 +211,7 @@ class SeatBoard extends React.Component {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div >
 		);
 	}
 }
