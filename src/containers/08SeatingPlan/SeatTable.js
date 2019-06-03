@@ -44,7 +44,7 @@ class SeatTable extends React.Component {
 					(new Array(nstudents)).fill(null).map((_, index) => {
 						return (
 							<div key={index}
-							// style={this.props.classes.child}
+							// style={classes.child}
 							>
 								<Seat letter={getColumnLetter(index + (column * student_per_table))}
 									view={view}

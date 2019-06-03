@@ -108,7 +108,6 @@ class SeatingPlan extends React.Component {
                                     plan={plan} />
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
