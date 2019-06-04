@@ -134,28 +134,6 @@ class SeatBoard extends React.Component {
 
 		const isScaled = scale !== 1;
 		let current_row = 0;
-		// let parentStyleObject = {};
-		// let childStyleObject = styles.child;
-		// let gridStyleObject = {
-		// 	...styles.grid,
-		// 	gridTemplateColumns: `40px repeat(${tables.length}, auto) 40px`,
-		// 	gridTemplateRows: `repeat(${row + 2}, 45px)`
-		// };
-		// if (view === 'bottom') {
-		// 	gridStyleObject.transform = 'rotate(180deg)';
-		// }
-		// if (isScaled) {
-		// 	childStyleObject = {
-		// 		...styles.child,
-		// 		transform: `scale(${scale})`
-		// 	};
-		// 	let gridDom;
-		// 	if (gridDom = (this.grid && this.grid.current)) {
-		// 		parentStyleObject.width = gridWidth * scale;
-		// 		parentStyleObject.height = (gridDom.scrollHeight + 40) * scale;
-		// 		parentStyleObject.overflow = 'hidden';
-		// 	}
-		// }
 
 		const seatPerRow = tables.length + 2;
 		return tables && tables.length > 0 && (
