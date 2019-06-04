@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
-import { SeatingPlanViewStyles } from '../../utils/01MaterialJsStyles/SeatingPlanView'
-import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
+import { SeatingPlanViewStyles } from '../../utils/01MaterialJsStyles/08SeatingPlan/SeatingPlanView'
+import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Radio, FormControlLabel, RadioGroup, Button } from '@material-ui/core';
 

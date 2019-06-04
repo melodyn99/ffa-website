@@ -6,9 +6,9 @@ import { Redirect } from 'react-router';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/common';
-import { NewNoteTitleStyles } from '../../utils/01MaterialJsStyles/NewNoteTitle';
-import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common';
+import { NewNoteTitleStyles } from '../../utils/01MaterialJsStyles/06Notes/NewNoteTitle';
+import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Input, List, ListItem, ListItemText, Button } from '@material-ui/core';
 

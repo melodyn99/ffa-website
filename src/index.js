@@ -32,7 +32,7 @@ import {
 import i18n from './i18n/i18n';
 
 // @material-ui
-import { theme } from './utils/01MaterialJsStyles/theme';
+import { theme } from './utils/01MaterialJsStyles/00Common/theme';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 // socket.io

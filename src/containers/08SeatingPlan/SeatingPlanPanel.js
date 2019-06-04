@@ -6,9 +6,9 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
-import { SeatingPlanPanelStyles } from '../../utils/01MaterialJsStyles/SeatingPlanPanel'
-import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
+import { SeatingPlanPanelStyles } from '../../utils/01MaterialJsStyles/08SeatingPlan/SeatingPlanPanel'
+import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -342,7 +342,7 @@ class SeatingPlanPanel extends React.Component {
     }
 
     render() {
-        
+
         const {
             classes,
             // viewingEvent, 

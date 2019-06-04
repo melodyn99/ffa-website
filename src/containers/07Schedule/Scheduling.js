@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
-import { SchedulingStyles } from '../../utils/01MaterialJsStyles/Scheduling'
-import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
+import { SchedulingStyles } from '../../utils/01MaterialJsStyles/07Schedule/Scheduling'
+import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import {
     Card, CardContent,

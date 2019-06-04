@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
+import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
 import { DocumentStyles } from '../../utils/01MaterialJsStyles/Document.js'
-import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Typography, Checkbox, Dialog } from '@material-ui/core';
 import {

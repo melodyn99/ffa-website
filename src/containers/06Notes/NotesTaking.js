@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/common'
-import { NotesTakingStyles } from '../../utils/01MaterialJsStyles/NotesTaking.js'
-import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
+import { NotesTakingStyles } from '../../utils/01MaterialJsStyles/06Notes/NotesTaking'
+import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText, Typography, } from '@material-ui/core';
 

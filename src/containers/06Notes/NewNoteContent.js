@@ -6,9 +6,9 @@ import { Redirect } from 'react-router';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/common';
-import { NewNoteContentStyles } from '../../utils/01MaterialJsStyles/NewNoteContent';
-import combineStyles from '../../utils/01MaterialJsStyles/combineStyles';
+import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common';
+import { NewNoteContentStyles } from '../../utils/01MaterialJsStyles/06Notes/NewNoteContent';
+import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, AppBar } from '@material-ui/core';
 
