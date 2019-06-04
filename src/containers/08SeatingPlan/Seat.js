@@ -156,6 +156,8 @@ class Seat extends React.Component {
             transform: `rotate(${view === "bottom" ? 180 : 0}deg)`
         };
 
+        // onSeat: plan_seat.get(`${row + 1}${letter}`) || null
+
         if (this.reserved || (!this.deleted && onSeat && onSeat.status === "reserved")) {
             this.reserved = false;
             return (
@@ -281,17 +283,13 @@ class Seat extends React.Component {
     }
 }
 
-const mapStateToProps = (state
-    // , { letter, row }
-) => ({
-    // const { plan_seat, plan } = state.seatingPlanReducer;
-    // return {
+const mapStateToProps = state => ({
+    plan: state.seatingPlanReducer,
     viewingEvent: state.eventReducer.viewingEvent,
     viewingSeminar: state.seminarReducer.viewingSeminar,
-    // plan,
-    // onSeat: plan_seat.get(`${row + 1}${letter}`) || null
-    // }
+
 });
+
 const mapDispatchToProps = dispatch => ({
     setPlan: (plan) => dispatch(setPlan(plan))
 });

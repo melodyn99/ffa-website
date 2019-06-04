@@ -18,11 +18,7 @@ class StudentListItem extends React.Component {
 
 	render() {
 		const { company, plan, student, color, index, classes } = this.props;
-
 		const onSeat = plan.conference_student_id;
-
-		console.log(plan);
-
 		const { conference_student_id } = student;
 
 		return (
