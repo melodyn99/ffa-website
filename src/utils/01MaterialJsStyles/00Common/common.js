@@ -32,5 +32,16 @@ export const CommonStyles = theme => ({
         '&:hover': {
             backgroundColor: theme.palette.secondary.main,
         },
+        paper: {
+            width: '100%',
+            marginTop: theme.spacing.unit * 3,
+        },
+        table: {
+            minWidth: 1020,
+        },
+        tableWrapper: {
+            overflowX: 'auto',
+        },
     },
+
 });

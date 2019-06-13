@@ -32,5 +32,5 @@ export const HeaderStyles = theme => ({
         '&:hover': {
             backgroundColor: theme.palette.secondary.main,
         },
-    },
+    }
 });
