@@ -81,10 +81,25 @@
 //HEAD
 .wrapper-header { position:fixed; top:0; width:100%; z-index:1000; background:#e6e408; box-shadow: 2px 0 2px #666; left:0; @include transition(0.1s); 
 
-	&.active { left: 300px; @include transition(0.1s); }
+	&.active { left: 300px; @include transition(2s); }
 
-	.header { width:100%; max-width:1640px; height:100px; margin:0 auto; padding:10px 20px;
+	.header { width:100%; max-width:1640px; height:100px; margin:0 auto; padding:10px 20px; position:relative;
 		@media (max-width: 980px) { height:50px; } 
+
+		.mobile-menu-btn { display:none; 
+			@media (max-width: 980px) { display:block; } 
+		}
+
+		.logo { width:100px; height:60px; background-color:#fff000; position:absolute; top:20px; left:20px; }
+	
+		.desktop-menu { list-style:none; display:block; margin:0; padding:0; position:absolute; top:30px; left:150px;
+			>li { display:block; margin:0 0 0 -1px; padding:0; float:left; 
+				>a { display:block; padding: 10px 20px; color:$aColor; border:solid 1px $aColor; font-size:16px;
+				 &.active,
+				 &:hover { border-bottom:solid 2px $aColor; }
+				}
+			}
+		}
 	}
 }
 

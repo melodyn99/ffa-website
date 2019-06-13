@@ -20,6 +20,30 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 // Home
 import Home from './containers/00Home/Home';
 
+// Course Management
+import CourseManagement from './containers/01Course/CourseManagement';
+
+// Student Management
+import StudentManagement from './containers/02Student/StudentManagement';
+
+// Enrollment Management
+import EnrollmentManagement from './containers/03Enrollment/EnrollmentManagement';
+
+// News Management
+import NewsManagement from './containers/04News/NewsManagement';
+
+// Activities Management
+import ActivityManagement from './containers/05Activity/ActivityManagement';
+
+// Resources Management
+import ResourceManagement from './containers/06Resource/ReourceManagement';
+
+// My Alerts
+import MyAlert from './containers/07Alert/MyAlert';
+
+// Report
+import Report from './containers/08Report/Report';
+
 // Notes
 import NotesTaking from './containers/06Notes/NotesTaking';
 import NotesContent from './containers/06Notes/NotesContent';
@@ -82,6 +106,47 @@ class App extends Component {
                 case 'home': {
                     return <Home />;
                 }
+
+                // Course
+                case 'courses-management': {
+                    return <CourseManagement />;
+                }
+
+                // Student
+                case 'students-management': {
+                    return <StudentManagement />;
+                }
+
+                // Enrollment
+                case 'enrollment-management': {
+                    return <EnrollmentManagement />;
+                }
+
+                // News
+                case 'news-management': {
+                    return <NewsManagement />;
+                }
+
+                // Activities
+                case 'activities-management': {
+                    return <ActivityManagement />;
+                }
+
+                // Resources
+                case 'resources-management': {
+                    return <ResourceManagement />;
+                }
+
+                // My Alert
+                case 'my-alerts': {
+                    return <MyAlert />;
+                }
+
+                // Report
+                case 'reports': {
+                    return <Report />;
+                }
+
 
                 // Notes Taking
                 case 'notes-taking': {
