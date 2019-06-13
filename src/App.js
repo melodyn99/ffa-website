@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './css/App.scss';
 import { withTranslation } from 'react-i18next';
 
-// import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux'; bye
 import { connect } from 'react-redux';
 // import * as AnimationsActionCreators from './actions/animations';
 
