@@ -1,5 +1,5 @@
 // Essential for all components
-import React, { Component } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
@@ -85,7 +85,7 @@ class EnhancedTableHead extends React.Component {
                         return (
                             <TableCell
                                 key={row.id}
-                                numeric={row.numeric}
+                                // numeric={row.numeric}
                                 padding={row.disablePadding ? 'none' : 'default'}
                                 sortDirection={orderBy === row.id ? order : false}
                             >
@@ -243,10 +243,10 @@ class EnhancedTable extends React.Component {
                                                                 <TableCell component="th" scope="row" padding="none">
                                                                     {n.name}
                                                                 </TableCell>
-                                                                <TableCell numeric>{n.calories}</TableCell>
-                                                                <TableCell numeric>{n.fat}</TableCell>
-                                                                <TableCell numeric>{n.carbs}</TableCell>
-                                                                <TableCell numeric>{n.protein}</TableCell>
+                                                                <TableCell>{n.calories}</TableCell>
+                                                                <TableCell>{n.fat}</TableCell>
+                                                                <TableCell>{n.carbs}</TableCell>
+                                                                <TableCell>{n.protein}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
