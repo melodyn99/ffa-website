@@ -54,9 +54,13 @@
 			@media (max-width: 980px) { display:block; } 
 		}
 
-		.logo { width:100px; height:60px; background-color:#fff000; position:absolute; top:20px; left:20px; }
+		.logo {
+			@media (max-width: 980px) {display:none;}
+			width:100px; height:60px; background-color:#fff000; position:absolute; top:20px; left:20px; }
 	
-		.desktop-menu { list-style:none; display:block; margin:0; padding:0; position:absolute; top:30px; left:150px;
+		.desktop-menu { 
+			@media (max-width: 980px) {display:none; }
+			list-style:none; display:block; margin:0; padding:0; position:absolute; top:30px; left:150px;
 			>li { display:block; margin:0 0 0 -1px; padding:0; float:left; 
 				>a { display:block; padding: 10px 20px; color:$aColor; border:solid 1px $aColor; font-size:16px;
 				 &.active,
