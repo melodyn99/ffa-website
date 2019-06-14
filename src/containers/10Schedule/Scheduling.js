@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { SchedulingStyles } from '../../utils/01MaterialJsStyles/07Schedule/Scheduling'
+import { SchedulingStyles } from '../../utils/01MaterialJsStyles/10Schedule/Scheduling'
 import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import {

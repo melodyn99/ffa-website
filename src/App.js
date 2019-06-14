@@ -45,16 +45,16 @@ import MyAlert from './containers/07Alert/MyAlert';
 import Report from './containers/08Report/Report';
 
 // Notes
-import NotesTaking from './containers/06Notes/NotesTaking';
-import NotesContent from './containers/06Notes/NotesContent';
-import NewNoteTitle from './containers/06Notes/NewNoteTitle';
-import NewNoteContent from './containers/06Notes/NewNoteContent';
+import NotesTaking from './containers/09Notes/NotesTaking';
+import NotesContent from './containers/09Notes/NotesContent';
+import NewNoteTitle from './containers/09Notes/NewNoteTitle';
+import NewNoteContent from './containers/09Notes/NewNoteContent';
 
 // Scheduling
-import Scheduling from './containers/07Schedule/Scheduling';
+import Scheduling from './containers/10Schedule/Scheduling';
 
 // Seating Plan
-import SeatingPlan from './containers/08SeatingPlan/SeatingPlan';
+import SeatingPlan from './containers/11SeatingPlan/SeatingPlan';
 
 // 404
 import PageNotFound from './containers/PageNotFound';

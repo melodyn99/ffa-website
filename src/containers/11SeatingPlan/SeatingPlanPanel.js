@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { SeatingPlanPanelStyles } from '../../utils/01MaterialJsStyles/08SeatingPlan/SeatingPlanPanel'
+import { SeatingPlanPanelStyles } from '../../utils/01MaterialJsStyles/11SeatingPlan/SeatingPlanPanel'
 import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
