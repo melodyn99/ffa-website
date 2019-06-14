@@ -9,9 +9,9 @@ jobs:
       only:
       - dev
 
-    # docker:
+    docker:
       # specify the version you desire here
-      # - image: node:11.10.1 
+      - image: node:11.10.1
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
