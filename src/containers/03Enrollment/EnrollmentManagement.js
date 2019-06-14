@@ -20,7 +20,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
 
 // Api
@@ -56,7 +56,7 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-    { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
+    { id: 'name', numeric: false, disablePadding: false, label: 'Dessert (100g serving)' },
     { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
     { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
     { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
@@ -74,13 +74,13 @@ class EnhancedTableHead extends React.Component {
         return (
             <TableHead>
                 <TableRow>
-                    <TableCell padding="checkbox">
+                    {/* <TableCell padding="checkbox">
                         <Checkbox
                             indeterminate={numSelected > 0 && numSelected < rowCount}
                             checked={numSelected === rowCount}
                             onChange={onSelectAllClick}
                         />
-                    </TableCell>
+                    </TableCell> */}
                     {rows.map(row => {
                         return (
                             <TableCell
@@ -237,10 +237,12 @@ class EnhancedTable extends React.Component {
                                                                 key={n.id}
                                                                 selected={isSelected}
                                                             >
-                                                                <TableCell padding="checkbox">
+                                                                {/* <TableCell padding="checkbox">
                                                                     <Checkbox checked={isSelected} />
-                                                                </TableCell>
-                                                                <TableCell component="th" scope="row" padding="none">
+                                                                </TableCell> */}
+                                                                <TableCell component="th" scope="row"
+                                                                // padding="none"
+                                                                >
                                                                     {n.name}
                                                                 </TableCell>
                                                                 <TableCell>{n.calories}</TableCell>
