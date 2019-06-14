@@ -15,13 +15,10 @@ import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
-import Tooltip from '@material-ui/core/Tooltip';
 
 // Api
 // import { apiAuth } from '../../Api/ApiAuth';
@@ -31,28 +28,17 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { connect } from 'react-redux';
 
 // Utils
+// import { desc } from '../../utils/02MaterialDesign/Table';
+import { getSorting } from '../../utils/02MaterialDesign/Table';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
+import EnhancedTableHead from '../../components/103MaterialDesign/Table/EnhancedTableHead';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
     counter += 1;
     return { id: counter, name, calories, fat, carbs, protein };
-}
-
-function desc(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getSorting(order, orderBy) {
-    return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
 const rows = [
@@ -62,63 +48,6 @@ const rows = [
     { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
     { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
-
-class EnhancedTableHead extends React.Component {
-    createSortHandler = property => event => {
-        this.props.onRequestSort(event, property);
-    };
-
-    render() {
-        const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
-
-        return (
-            <TableHead>
-                <TableRow>
-                    {/* <TableCell padding="checkbox">
-                        <Checkbox
-                            indeterminate={numSelected > 0 && numSelected < rowCount}
-                            checked={numSelected === rowCount}
-                            onChange={onSelectAllClick}
-                        />
-                    </TableCell> */}
-                    {rows.map(row => {
-                        return (
-                            <TableCell
-                                key={row.id}
-                                // numeric={row.numeric}
-                                padding={row.disablePadding ? 'none' : 'default'}
-                                sortDirection={orderBy === row.id ? order : false}
-                            >
-                                <Tooltip
-                                    title="Sort"
-                                    placement={row.numeric ? 'bottom-end' : 'bottom-start'}
-                                    enterDelay={300}
-                                >
-                                    <TableSortLabel
-                                        active={orderBy === row.id}
-                                        direction={order}
-                                        onClick={this.createSortHandler(row.id)}
-                                    >
-                                        {row.label}
-                                    </TableSortLabel>
-                                </Tooltip>
-                            </TableCell>
-                        );
-                    }, this)}
-                </TableRow>
-            </TableHead>
-        );
-    }
-}
-
-EnhancedTableHead.propTypes = {
-    numSelected: PropTypes.number.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
-    order: PropTypes.string.isRequired,
-    orderBy: PropTypes.string.isRequired,
-    rowCount: PropTypes.number.isRequired,
-};
 
 class EnhancedTable extends React.Component {
     state = {
@@ -141,7 +70,7 @@ class EnhancedTable extends React.Component {
             createData('Oreo', 437, 18.0, 63, 4.0),
         ],
         page: 0,
-        rowsPerPage: 5,
+        rowsPerPage: 10,
     };
 
     handleRequestSort = (event, property) => {
@@ -220,6 +149,7 @@ class EnhancedTable extends React.Component {
                                                 onSelectAllClick={this.handleSelectAllClick}
                                                 onRequestSort={this.handleRequestSort}
                                                 rowCount={data.length}
+                                                rows={rows}
                                             />
                                             <TableBody>
                                                 {data
