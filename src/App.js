@@ -12,6 +12,7 @@ import querySearch from "stringquery";
 import MobileMenu from './components/100Include/mobileMenu';
 import Header from './components/100Include/header';
 import Footer from './components/100Include/footer';
+import Sitemap from './components/100Include/sitemap';
 
 import * as HelperDesktopHandle from './utils/00JqueryControl/DesktopHandle';
 import * as HelperMobileHandle from './utils/00JqueryControl/MobileHandle';
@@ -44,6 +45,9 @@ import MyAlert from './containers/07Alert/MyAlert';
 // Report
 import Report from './containers/08Report/Report';
 
+// Account
+import RelatedCourses from './containers/09Account/RelatedCourses';
+
 // Notes
 import NotesTaking from './containers/09Notes/NotesTaking';
 import NotesContent from './containers/09Notes/NotesContent';
@@ -60,6 +64,13 @@ import SeatingPlan from './containers/11SeatingPlan/SeatingPlan';
 import PageNotFound from './containers/PageNotFound';
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            debug: true
+        }
+    }
 
     componentDidMount = () => {
         HelperDesktopHandle.DesktopHandle.init();
@@ -147,6 +158,11 @@ class App extends Component {
                     return <Report />;
                 }
 
+                // Account
+                case 'related-courses': {
+                    return <RelatedCourses />;
+                }
+
 
                 // Notes Taking
                 case 'notes-taking': {
@@ -196,6 +212,10 @@ class App extends Component {
                     {this.renderSwitch(this.props.route)}
 
                     <Footer />
+
+                    {this.state.debug &&
+                        <Sitemap />
+                    }
                 </div>
             </div >
         );
