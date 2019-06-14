@@ -49,4 +49,4 @@ jobs:
       
       - deploy: 
             command : 
-                - ssh -p22 -o "StrictHostKeyChecking no" ubuntu@13.228.170.122 'cd /var/www/html/ffa-react-client-dev && sudo chmod -R 777 .git && sudo git checkout package.json && sudo git checkout package-lock.json && sudo git pull origin dev && sudo rm -rf build && sudo cp -R deploy build';
+                - ssh -p22 -o "StrictHostKeyChecking no" ubuntu@13.228.170.122 'cd /var/www/html/ffa-react-client-dev && sudo chmod -R 777 .git && sudo git pull origin dev && sudo rm -rf build && sudo cp -R deploy build';
