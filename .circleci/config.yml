@@ -43,6 +43,6 @@ jobs:
       - run: npm run build
 
       # deploy
-      - add_ssh_key:
+      - add_ssh_keys d:
         fingerprints:
             - "db:92:9d:19:2a:5a:ef:16:d7:4a:49:71:14:ed:cd:bf"
