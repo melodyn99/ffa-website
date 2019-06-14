@@ -19,6 +19,23 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/course-work'}>Course Work</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-management'}>Student Management</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-management-attendance'}>Student Management Attendance</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-management-homework'}>Student Management Homework</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-q-and-a'}>Course Q & A</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-notes'}>Course Notes</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-assessment'}>Course Assessment</Link></li>
+
+                    <h3>Enromment Management</h3>
+                    <li><Link to={'/' + i18n.language + '/enrollment-management'}>Enrollment Management</Link></li>
+
+                    <h3>News Management</h3>
+                    <li><Link to={'/' + i18n.language + '/news-management'}>News Management</Link></li>
+
+                    <h3>Activities Management</h3>
+                    <li><Link to={'/' + i18n.language + '/activities-management'}>Activity Management</Link></li>
+
+                    <h3>Resources Management</h3>
+                    <li><Link to={'/' + i18n.language + '/resources-management-course'}>Resource Management Course</Link></li>
+                    <li><Link to={'/' + i18n.language + '/resources-management-homework'}>Resource Management Homework</Link></li>
 
                     <h3>Accounts</h3>
                     <li><Link to={'/' + i18n.language + '/related-courses'}>Related Courses</Link></li>

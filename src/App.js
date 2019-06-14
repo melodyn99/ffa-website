@@ -28,6 +28,10 @@ import Materials from './containers/01Course/Materials';
 import CourseWork from './containers/01Course/CourseWork';
 import StudentManagement from './containers/01Course/StudentManagement';
 import StudentManagementAttendance from './containers/01Course/StudentManagementAttendance';
+import StudentManagementHomework from './containers/01Course/StudentManagementHomework';
+import CourseQandA from './containers/01Course/CourseQandA';
+import CourseNotes from './containers/01Course/CourseNotes';
+import CourseAssessment from './containers/01Course/CourseAssessment';
 
 // Student Management
 // import StudentManagement from './containers/02Student/StudentManagement';
@@ -42,7 +46,8 @@ import NewsManagement from './containers/04News/NewsManagement';
 import ActivityManagement from './containers/05Activity/ActivityManagement';
 
 // Resources Management
-import ResourceManagement from './containers/06Resource/ReourceManagement';
+import ResourceManagementCourse from './containers/06Resource/ResourceManagementCourse';
+import ResourceManagementHomework from './containers/06Resource/ResourceManagementHomework';
 
 // My Alerts
 import MyAlert from './containers/07Alert/MyAlert';
@@ -143,6 +148,19 @@ class App extends Component {
                 case 'student-management-attendance': {
                     return <StudentManagementAttendance />;
                 }
+                case 'student-management-homework': {
+                    return <StudentManagementHomework />;
+                }
+                case 'course-q-and-a': {
+                    return <CourseQandA />;
+                }
+                case 'course-notes': {
+                    return <CourseNotes />;
+                }
+                case 'course-assessment': {
+                    return <CourseAssessment />;
+                }
+
 
                 // Student
 
@@ -163,8 +181,11 @@ class App extends Component {
                 }
 
                 // Resources
-                case 'resources-management': {
-                    return <ResourceManagement />;
+                case 'resources-management-course': {
+                    return <ResourceManagementCourse />;
+                }
+                case 'resources-management-homework': {
+                    return <ResourceManagementHomework />;
                 }
 
                 // My Alert

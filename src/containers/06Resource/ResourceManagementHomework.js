@@ -44,7 +44,7 @@ const rows = [
     { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
-class EnrollmentManagement extends React.Component {
+class ResourceManagementHomework extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -195,7 +195,7 @@ class EnrollmentManagement extends React.Component {
     }
 }
 
-EnrollmentManagement.propTypes = {
+ResourceManagementHomework.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -210,4 +210,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(EnrollmentManagement)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(ResourceManagementHomework)));
