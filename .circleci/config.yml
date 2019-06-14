@@ -9,7 +9,7 @@ jobs:
       only:
       - dev
 
-    docker:
+    # docker:
       # specify the version you desire here
       # - image: node:11.10.1 
 
