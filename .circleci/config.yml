@@ -24,27 +24,28 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "package.json" }}
+      #       # fallback to using the latest cache if no exact match is found
+      #       - v1-dependencies-
 
-      - run: npm install
+      # - run: npm install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
       # - run: npm test
 
-      - run: npm run build
+      # - run: npm run build
 
       # deploy
       - add_ssh_keys: # add private SSH key from CircleCI account based on fingerprint.
           fingerprints:
             - "db:92:9d:19:2a:5a:ef:16:d7:4a:49:71:14:ed:cd:bf"
       
-      - run: ssh -p22 -o "StrictHostKeyChecking no" ubuntu@13.228.170.122 'cd /var/www/html/ffa-react-client-dev';
+      - deploy: 
+            command : ssh -p22 -o "StrictHostKeyChecking no" ubuntu@13.228.170.122 'cd /var/www/html/ffa-react-client-dev';
