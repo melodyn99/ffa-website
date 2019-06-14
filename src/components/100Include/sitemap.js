@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 function Sitemap(props) {
-    const { t,
+    const {
+        // t,
         i18n } = props;
 
     return (
@@ -25,7 +26,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/course-assessment'}>Course Assessment</Link></li>
 
                     <h3>Enromment Management</h3>
-                    <li><Link to={'/' + i18n.language + '/enrollment-management'}>Enrollment Management</Link></li>
+                    <li><Link to={'/' + i18n.language + '/enrollment-management'}>Enrollment Management (done)</Link></li>
 
                     <h3>News Management</h3>
                     <li><Link to={'/' + i18n.language + '/news-management'}>News Management</Link></li>

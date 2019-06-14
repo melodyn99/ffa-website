@@ -37,11 +37,13 @@ import data from '../../data/03EnrollmentManagement/EnrollmentManagement';
 
 // Define column names
 const rows = [
-    { id: 'name', numeric: false, disablePadding: false, label: '課程作業' },
-    { id: 'type', numeric: true, disablePadding: false, label: '類型' },
-    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+    { id: 'subject', numeric: false, disablePadding: false, label: '学科' },
+    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
+    { id: 'date', numeric: true, disablePadding: false, label: '课程日期' },
+    { id: 'fee', numeric: true, disablePadding: false, label: '学费' },
+    { id: 'score', numeric: true, disablePadding: false, label: '学分' },
+    { id: 'grade', numeric: true, disablePadding: false, label: '成绩' },
+    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
 ];
 
 class EnrollmentManagement extends React.Component {
@@ -114,7 +116,7 @@ class EnrollmentManagement extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学生管理</h2>
+                        <h2 className="pageTitle">报名历史</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -153,13 +155,13 @@ class EnrollmentManagement extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >
-                                                                    {n.name}
-                                                                </TableCell>
-                                                                <TableCell>{n.calories}</TableCell>
-                                                                <TableCell>{n.fat}</TableCell>
-                                                                <TableCell>{n.carbs}</TableCell>
-                                                                <TableCell>{n.protein}</TableCell>
+                                                                >{n.subject}</TableCell>
+                                                                <TableCell>{n.course}</TableCell>
+                                                                <TableCell>{n.date}</TableCell>
+                                                                <TableCell>{n.fee}</TableCell>
+                                                                <TableCell>{n.score}</TableCell>
+                                                                <TableCell>{n.grade}</TableCell>
+                                                                <TableCell>{n.status}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
