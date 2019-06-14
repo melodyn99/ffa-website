@@ -1,0 +1,36 @@
+export default [
+    {
+        "id": 1,
+        "student": "S 1",
+        "fee": 123,
+        "actualfee": 456,
+        "status": 789,
+        "attendance": 10,
+        "homework": 10,
+        "score": 10,
+        "date": 10,
+    },
+    {
+        "id": 2,
+        "student": "S 2",
+        "fee": 123,
+        "actualfee": 456,
+        "status": 789,
+        "attendance": 10,
+        "homework": 10,
+        "score": 10,
+        "date": 10,
+    },
+    {
+        "id": 3,
+        "student": "S 3",
+        "fee": 123,
+        "actualfee": 456,
+        "status": 789,
+        "attendance": 10,
+        "homework": 10,
+        "score": 10,
+        "date": 10,
+    },
+];
+
