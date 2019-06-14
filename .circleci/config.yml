@@ -4,10 +4,11 @@
 #
 version: 2
 jobs:
-  build-dev:
+  build:
     branches:
       only:
       - dev
+      - uat
 
     docker:
       # specify the version you desire here
@@ -47,51 +48,11 @@ jobs:
           fingerprints:
             - "db:92:9d:19:2a:5a:ef:16:d7:4a:49:71:14:ed:cd:bf"
       
+      if [ $CIRCLE_BRANCH = dev ]; then
       - deploy: 
             command : ssh -p22 -o "StrictHostKeyChecking no" ubuntu@13.228.170.122 'cd /var/www/html/ffa-react-client-dev && sudo chmod -R 777 .git && sudo git pull origin dev && sudo rm -rf build && sudo cp -R deploy build'; 
-
-build-uat:
-    branches:
-      only:
-      - dev
-
-    docker:
-      # specify the version you desire here
-      - image: node:11.10.1
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
-    steps:
-      # - checkout
-
-      # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "package.json" }}
-      #       # fallback to using the latest cache if no exact match is found
-      #       - v1-dependencies-
-
-      # - run: npm install
-
-      # - save_cache:
-      #     paths:
-      #       - node_modules
-      #     key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      # - run: npm test
-
-      # - run: npm run build
-
-      # deploy
-      - add_ssh_keys: # add private SSH key from CircleCI account based on fingerprint.
-          fingerprints:
-            - "db:92:9d:19:2a:5a:ef:16:d7:4a:49:71:14:ed:cd:bf"
-      
+      fi
+      if [ $CIRCLE_BRANCH = uat ]; then
       - deploy: 
-            command : ssh -p22 -o "StrictHostKeyChecking no" ubuntu@13.228.170.122 'cd /var/www/html/ffa-react-client-dev && sudo chmod -R 777 .git && sudo git pull origin uat && sudo rm -rf build && sudo cp -R deploy build'; 
+            command : ssh -p22 -o "StrictHostKeyChecking no" ubuntu@13.228.170.122 'cd /var/www/html/ffa-react-client-uat && sudo chmod -R 777 .git && sudo git pull origin uat && sudo rm -rf build && sudo cp -R deploy build'; 
+      fi
