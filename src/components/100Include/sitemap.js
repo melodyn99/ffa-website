@@ -14,7 +14,7 @@ function Sitemap(props) {
                     <h2>Table views</h2>
 
                     <h3>Courses Management</h3>
-                    <li><Link to={'/' + i18n.language + '/all-courses'}>All Courses</Link></li>
+                    <li><Link to={'/' + i18n.language + '/all-courses'}>All Courses (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/preparations'}>Preparations</Link></li>
                     <li><Link to={'/' + i18n.language + '/materials'}>Materials</Link></li>
                     <li><Link to={'/' + i18n.language + '/course-work'}>Course Work</Link></li>
