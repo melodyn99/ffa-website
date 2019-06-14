@@ -65,7 +65,7 @@
     "build": "react-scripts build && rm -rf deploy && cp -R build deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "pm2 start ./server.sh --name LetsPark"
+    "deploy": "pm2 start ./server.sh --name FFA"
   },
   "eslintConfig": {
     "extends": "react-app"
