@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 function Footer(props) {
@@ -7,23 +7,23 @@ function Footer(props) {
 
 	return (
 		<div className="wrapper-footer">
-			<div className="bottom">
-				<ul class="clearfix">
+			<div className="footer">
+				<ul className="clearfix">
 					<li>
-						<a href="abhcd">联系我们</a>
+						<Link to={"/"}>联系我们</Link>
 					</li>
 					<li>
-						<a href="abcd">隐私政策</a>
+						<Link to={"/"}>隐私政策</Link>
 					</li>
 					<li>
-						<a href="abcd">版权和免责声明</a>
+						<Link to={"/"}>版权和免责声明</Link>
 					</li>
 				</ul>
+				<div className="copyright">
+					<span>&copy; 2019 Fablead学院。&nbsp;&nbsp;版权所有。</span>
 				</div>
-			<div className="copyright">
-				© 2019 Fablead学院。版权所有。
 			</div>
-			</div>
+		</div>
 	);
 }
 
