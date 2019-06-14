@@ -1,8 +1,8 @@
-let counter = 0;
-function createData(name, calories, fat, carbs, protein) {
-    counter += 1;
-    return { id: counter, name, calories, fat, carbs, protein };
-}
+// let counter = 0;
+// function createData(name, calories, fat, carbs, protein) {
+//     counter += 1;
+//     return { id: counter, name, calories, fat, carbs, protein };
+// }
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {

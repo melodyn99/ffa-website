@@ -33,12 +33,12 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/EnrollmentManagement';
+import data from '../../data/03EnrollmentManagement/EnrollmentManagement';
 
 // Define column names
 const rows = [
-    { id: 'name', numeric: false, disablePadding: false, label: 'Dessert (100g serving)' },
-    { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
+    { id: 'name', numeric: false, disablePadding: false, label: '課程作業' },
+    { id: 'type', numeric: true, disablePadding: false, label: '類型' },
     { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
     { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
     { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
