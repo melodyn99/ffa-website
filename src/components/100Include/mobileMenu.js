@@ -41,7 +41,7 @@ function MobileMenu(props) {
 
 				<ul>
 					<li><Link to={"/" + i18n.language + "/courses-management"}>课程管理</Link></li>
-					<li><Link to={"/" + i18n.language + "/students-management"} className="active">学生管理</Link></li>
+					<li><Link to={"/" + i18n.language + "/student-management"} className="active">学生管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/enrollment-management"}>报名管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/news-management"}>新闻管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/activities-management"}>活动管理</Link></li>

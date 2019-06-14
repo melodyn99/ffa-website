@@ -22,10 +22,15 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 import Home from './containers/00Home/Home';
 
 // Course Management
-import CourseManagement from './containers/01Course/CourseManagement';
+import AllCourses from './containers/01Course/AllCourses';
+import Preparations from './containers/01Course/Preparations';
+import Materials from './containers/01Course/Materials';
+import CourseWork from './containers/01Course/CourseWork';
+import StudentManagement from './containers/01Course/StudentManagement';
+import StudentManagementAttendance from './containers/01Course/StudentManagementAttendance';
 
 // Student Management
-import StudentManagement from './containers/02Student/StudentManagement';
+// import StudentManagement from './containers/02Student/StudentManagement';
 
 // Enrollment Management
 import EnrollmentManagement from './containers/03Enrollment/EnrollmentManagement';
@@ -47,6 +52,7 @@ import Report from './containers/08Report/Report';
 
 // Account
 import RelatedCourses from './containers/09Account/RelatedCourses';
+import EnrollmentHistory from './containers/09Account/EnrollmentHistory';
 
 // Notes
 import NotesTaking from './containers/09Notes/NotesTaking';
@@ -119,14 +125,27 @@ class App extends Component {
                 }
 
                 // Course
-                case 'courses-management': {
-                    return <CourseManagement />;
+                case 'all-courses': {
+                    return <AllCourses />;
+                }
+                case 'preparations': {
+                    return <Preparations />;
+                }
+                case 'materials': {
+                    return <Materials />;
+                }
+                case 'course-work': {
+                    return <CourseWork />;
+                }
+                case 'student-management': {
+                    return <StudentManagement />;
+                }
+                case 'student-management-attendance': {
+                    return <StudentManagementAttendance />;
                 }
 
                 // Student
-                case 'students-management': {
-                    return <StudentManagement />;
-                }
+
 
                 // Enrollment
                 case 'enrollment-management': {
@@ -161,6 +180,9 @@ class App extends Component {
                 // Account
                 case 'related-courses': {
                     return <RelatedCourses />;
+                }
+                case 'enrollment-history': {
+                    return <EnrollmentHistory />;
                 }
 
 
