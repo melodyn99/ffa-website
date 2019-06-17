@@ -46,6 +46,9 @@ function Sitemap(props) {
                 <ul>
                     <h2>Form views</h2>
 
+                    <h3>Courses Management</h3>
+                    <li><Link to={'/' + i18n.language + '/new-notes'}>New Notes</Link></li>
+
                     <h3>Students Management</h3>
                     <li><Link to={'/' + i18n.language + '/new-student'}>New Student (done)</Link></li>
 
