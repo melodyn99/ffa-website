@@ -30,7 +30,7 @@ import BreadCrumb from '../../components/100Include/breadcrumb';
 class NewStudent extends React.Component {
 
     render() {
-        const { classes } = this.props;
+        // const { classes } = this.props;
 
         return (
             <div>
@@ -59,9 +59,23 @@ class NewStudent extends React.Component {
                                     </Grid>
 
                                     <Grid item xs={1} >
-                                        帳戶類型
+                                        中文姓名
                                     </Grid>
                                     <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        性别
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        证件号码
+                                    </Grid>
+                                    <Grid item xs={2}>
                                         <select>
                                             <option value="123">123</option>
                                             <option value="123">456</option>
@@ -69,8 +83,112 @@ class NewStudent extends React.Component {
                                             <option value="123">678</option>
                                         </select>
                                     </Grid>
+                                    <Grid item xs={9}>
+                                        <input type="text" />
+                                    </Grid>
 
+                                    <Grid item xs={1} >
+                                        出生日期
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
 
+                                    <Grid item xs={1} >
+                                        公司
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        公司地址
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        工作职位
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        电邮
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        微信
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        QQ
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        联络电话
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        联络住址
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
+                                </Grid>
+                            </div>
+
+                            <div className="content">
+                                <Grid container spacing={16} alignItems="center">
+                                    <Grid item xs={1} >
+                                        学院
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <select>
+                                            <option value="1">学院名称</option>
+                                            <option value="2">学院名称</option>
+                                            <option value="3">学院名称</option>
+                                            <option value="4">学院名称</option>
+                                        </select>
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        学科
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <select>
+                                            <option value="1">战略课程</option>
+                                            <option value="2">战略课程</option>
+                                            <option value="3">战略课程</option>
+                                            <option value="4">战略课程</option>
+                                        </select>
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        状态
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <select>
+                                            <option value="1">正常</option>
+                                            <option value="2">正常</option>
+                                            <option value="3">正常</option>
+                                            <option value="4">正常</option>
+                                        </select>
+                                    </Grid>
                                 </Grid>
                             </div>
                         </div>
