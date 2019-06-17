@@ -23,6 +23,7 @@ import Home from './containers/00Home/Home';
 
 // Course Management
 import AllCourses from './containers/01Course/AllCourses';
+import CourseInformation from './containers/01Course/CourseInformation';
 import Preparations from './containers/01Course/Preparations';
 import Materials from './containers/01Course/Materials';
 import CourseWork from './containers/01Course/CourseWork';
@@ -135,6 +136,9 @@ class App extends Component {
                 // Course
                 case 'all-courses': {
                     return <AllCourses />;
+                }
+                case 'course-information': {
+                    return <CourseInformation />
                 }
                 case 'preparations': {
                     return <Preparations />;
