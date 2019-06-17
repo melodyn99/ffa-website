@@ -46,8 +46,19 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程评分</span></div>);
             }
 
+            // Enrollment
             case 'enrollment-management': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span>报名历史</span></div>);
+            }
+
+            // News
+            case 'news-management': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span>新闻管理</span></div>);
+            }
+
+            // Activities
+            case 'activities-management': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span>活动管理</span></div>);
             }
             
 
