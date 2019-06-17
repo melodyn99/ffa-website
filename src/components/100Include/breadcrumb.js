@@ -18,6 +18,9 @@ class Breadcrumb extends Component {
             case 'all-courses': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>课程管理</span></div>);
             }
+            case 'course-info': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程资料</span></div>);
+            }
             case 'preparations': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>预先准备</span></div>);
             }

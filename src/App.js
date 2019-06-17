@@ -22,6 +22,7 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 import Home from './containers/00Home/Home';
 
 // Course Management
+import CourseInfo from './containers/01Course/CourseInfo';
 import AllCourses from './containers/01Course/AllCourses';
 import Preparations from './containers/01Course/Preparations';
 import Materials from './containers/01Course/Materials';
@@ -141,6 +142,9 @@ class App extends Component {
                 // Course
                 case 'all-courses': {
                     return <AllCourses />;
+                }
+                case 'course-info': {
+                    return <CourseInfo />;
                 }
                 case 'preparations': {
                     return <Preparations />;
