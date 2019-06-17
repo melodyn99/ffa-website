@@ -12,7 +12,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 
 // Api
 // import { apiAuth } from '../../Api/ApiAuth';
@@ -45,31 +44,33 @@ class NewAccount extends React.Component {
 
                             <div className="content">
                                 <Grid container spacing={16} alignItems="center">
-                                    <Grid item xs={2} >
-                                        hello
+                                    <Grid item xs={1} >
+                                        姓
                                     </Grid>
-                                    <Grid item xs={10}>
-                                        <TextField
-                                            id="outlined-bare"
-                                            className={classes.textField}
-                                            defaultValue="Bare"
-                                            margin="normal"
-                                            variant="outlined"
-                                        />
+                                    <Grid item xs={11}>
+                                        <input type="text" />
                                     </Grid>
 
-                                    <Grid item xs={2} >
-                                        hello
+                                    <Grid item xs={1} >
+                                        名
                                     </Grid>
-                                    <Grid item xs={10}>
-                                        <TextField
-                                            id="outlined-bare"
-                                            className={classes.textField}
-                                            defaultValue="Bare"
-                                            margin="normal"
-                                            variant="outlined"
-                                        />
+                                    <Grid item xs={11}>
+                                        <input type="text" />
                                     </Grid>
+
+                                    <Grid item xs={1} >
+                                        帳戶類型
+                                    </Grid>
+                                    <Grid item xs={11}>
+                                        <select>
+                                            <option value="123">123</option>
+                                            <option value="123">456</option>
+                                            <option value="123">567</option>
+                                            <option value="123">678</option>
+                                        </select>
+                                    </Grid>
+
+
                                 </Grid>
                             </div>
                         </div>
