@@ -11,8 +11,8 @@ class Breadcrumb extends Component {
     renderSwitch = (currentPath) => {
 
         console.log('hello', currentPath);
-        switch (currentPath) {
 
+        switch (currentPath) {
 
             case 'enrollment-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名</span></div>);
@@ -26,8 +26,6 @@ class Breadcrumb extends Component {
 
     render() {
         // const { t, i18n } = props;
-
-        console.log(this.props);
 
         let pathname = this.props.route.location.pathname,
             urlArray = pathname.split("/"),
