@@ -60,6 +60,9 @@ class Breadcrumb extends Component {
             case 'news-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>新闻管理</span></div>);
             }
+            case 'new-news': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span>新闻管理</span></div>);
+            }
 
             // Activities
             case 'activities-management': {

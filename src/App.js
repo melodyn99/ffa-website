@@ -42,6 +42,7 @@ import EnrollmentManagement from './containers/03Enrollment/EnrollmentManagement
 
 // News Management
 import NewsManagement from './containers/04News/NewsManagement';
+import NewNews from './containers/04News/NewNews';
 
 // Activities Management
 import ActivityManagement from './containers/05Activity/ActivityManagement';
@@ -183,6 +184,9 @@ class App extends Component {
                 // News
                 case 'news-management': {
                     return <NewsManagement />;
+                }
+                case 'new-news': {
+                    return <NewNews />;
                 }
 
                 // Activities
