@@ -14,9 +14,42 @@ class Breadcrumb extends Component {
 
         switch (currentPath) {
 
+            // Course
+            case 'all-courses': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span></div>);
+            }
+            case 'preparations': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>预先准备</span></div>);
+            }
+            case 'materials': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程教材</span></div>);
+            }
+            case 'course-work': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程作业</span></div>);
+            }
+            case 'student-management': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>学生管理</span></div>);
+            }
+            case 'student-management-attendance': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>陈大文：点名</span></div>);
+            }
+            case 'student-management-homework': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>陈大文：作业</span></div>);
+            }
+            case 'course-q-and-a': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程问答</span></div>);
+            }
+            case 'course-notes': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>及时记录</span></div>);
+            }
+            case 'course-assessment': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程评分</span></div>);
+            }
+
             case 'enrollment-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名</span></div>);
             }
+            
 
             default: {
                 return (<div><span> <Link to="/">主頁</Link></span></div>);
