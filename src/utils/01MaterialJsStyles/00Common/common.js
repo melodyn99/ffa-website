@@ -43,5 +43,10 @@ export const CommonStyles = theme => ({
             overflowX: 'auto',
         },
     },
+    textField: {
+        margin: 0,
+        padding: 0,
+        width: '100%'
+    }
 
 });

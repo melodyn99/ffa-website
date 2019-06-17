@@ -5,7 +5,6 @@ import { withTranslation } from 'react-i18next';
 
 // Redux
 import { connect } from 'react-redux';
-import i18next from 'i18next';
 
 class Preparation extends Component {
 
@@ -13,11 +12,11 @@ class Preparation extends Component {
         const { //t, 
             i18n } = this.props;
 
-        let pathname = this.props.route.location.pathname,
-            urlArray = pathname.split("/"),
-            currentPath = urlArray[2];
+        // let pathname = this.props.route.location.pathname,
+        //     urlArray = pathname.split("/"),
+        //     currentPath = urlArray[2];
 
-        console.log(currentPath);
+        // console.log(currentPath);
 
         return (
             <div className="subMenu">
