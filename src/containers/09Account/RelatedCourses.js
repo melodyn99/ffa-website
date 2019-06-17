@@ -33,15 +33,15 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/03EnrollmentManagement/EnrollmentManagement';
+import data from '../../data/09AccountManagement/RelatedCourses';
 
 // Define column names
 const rows = [
-    { id: 'name', numeric: false, disablePadding: false, label: '課程作業' },
-    { id: 'type', numeric: true, disablePadding: false, label: '類型' },
-    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+    { id: 'subject', numeric: false, disablePadding: false, label: '学科' },
+    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
+    { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
+    { id: 'location', numeric: true, disablePadding: false, label: '地点' },
+    { id: 'date', numeric: true, disablePadding: false, label: '开课日期' },
 ];
 
 class RelatedCourses extends React.Component {
@@ -114,7 +114,7 @@ class RelatedCourses extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学生管理</h2>
+                        <h2 className="pageTitle">账户管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -153,19 +153,17 @@ class RelatedCourses extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >
-                                                                    {n.name}
-                                                                </TableCell>
-                                                                <TableCell>{n.calories}</TableCell>
-                                                                <TableCell>{n.fat}</TableCell>
-                                                                <TableCell>{n.carbs}</TableCell>
-                                                                <TableCell>{n.protein}</TableCell>
+                                                                >{n.subject}</TableCell>
+                                                                <TableCell>{n.course}</TableCell>
+                                                                <TableCell>{n.teacher}</TableCell>
+                                                                <TableCell>{n.location}</TableCell>
+                                                                <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
