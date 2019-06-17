@@ -33,7 +33,7 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/09AccountManagement/RelatedCourses';
+import data from '../../data/09Account/RelatedCourses';
 
 // Define column names
 const rows = [
