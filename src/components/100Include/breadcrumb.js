@@ -18,6 +18,10 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名</span></div>);
             }
 
+            case 'my-alerts': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名123</span></div>);
+            }
+
             default: {
                 return (<div><span> <Link to="/">主頁</Link></span></div>);
             }
@@ -27,11 +31,13 @@ class Breadcrumb extends Component {
     render() {
         // const { t, i18n } = props;
 
+        // console.log('hi', this.props.route.location.pathname);
+
         let pathname = this.props.route.location.pathname,
             urlArray = pathname.split("/"),
             currentPath = urlArray[2];
 
-        console.log(currentPath);
+        // console.log(currentPath);
 
         return (
             <div className="breadcrumb">
