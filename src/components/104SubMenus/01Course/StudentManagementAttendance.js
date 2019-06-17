@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 // Redux
 import { connect } from 'react-redux';
 
-class Preparation extends Component {
+class StudentManagementAttendance extends Component {
 
     render() {
         const { //t, 
@@ -22,10 +22,10 @@ class Preparation extends Component {
             <div className="subMenu">
                 <ul className="clearfix">
                     <li><Link to={"/" + i18n.language + "/"}>课程资料</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"} className="active">预先准备</Link></li>
+                    <li><Link to={"/" + i18n.language + "/"}>预先准备</Link></li>
                     <li><Link to={"/" + i18n.language + "/"}>课程教材</Link></li>
                     <li><Link to={"/" + i18n.language + "/"}>课程作业</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>学生管理</Link></li>
+                    <li><Link to={"/" + i18n.language + "/"} className="active">学生管理</Link></li>
                     <li><Link to={"/" + i18n.language + "/"}>课程公告</Link></li>
                     <li><Link to={"/" + i18n.language + "/"}>课程问答</Link></li>
                     <li><Link to={"/" + i18n.language + "/"}>及时记录</Link></li>
@@ -40,4 +40,4 @@ const mapStateToProps = (state) => ({
     route: state.router
 });
 
-export default withTranslation()(connect(mapStateToProps)(Preparation));
+export default withTranslation()(connect(mapStateToProps)(StudentManagementAttendance));
