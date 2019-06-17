@@ -58,6 +58,8 @@ import Report from './containers/08Report/Report';
 // Account
 import RelatedCourses from './containers/09Account/RelatedCourses';
 import EnrollmentHistory from './containers/09Account/EnrollmentHistory';
+import NewAccount from './containers/09Account/NewAccount';
+
 
 // Notes
 import NotesTaking from './containers/09Notes/NotesTaking';
@@ -204,6 +206,9 @@ class App extends Component {
                 }
                 case 'enrollment-history': {
                     return <EnrollmentHistory />;
+                }
+                case 'new-account': {
+                    return <NewAccount />
                 }
 
 
