@@ -75,7 +75,7 @@
 .wrapper-footer { background:#1b1718; width:100%; height:auto; position:relative;
 
 	.footer { position:relative; max-width:1640px; margin:0 auto; padding:10px 20px; color:#fff;
-		>ul { list-style:none; margin:0 0 10px -10px; padding:0; text-align:left;
+		>ul { list-style:none; display:block; margin:0 0 10px -10px; padding:0; text-align:left;
 			>li { display:inline-block; border-left:solid 1px #d7d7d7;
 				&:first-child { border:none; }
 
@@ -101,10 +101,21 @@
 
 	.container-main { position:relative; padding:20px; max-width:1640px; margin:0 auto; min-height:600px; 
 
-		.breadcrumb { background-color:#000; color:#fff; border-radius:0; margin:0; 
-			span { display:inline-block; font-size:12px; padding:0 5px;
+		.breadcrumb { color:#fff; background-color:#000; margin:0; padding:5px 15px; border-radius:0; border-bottom:solid 1px #fff;
+			span { display:inline-block; font-size:12px; padding:5px;
 				a { display:block; color:#fff; font-size:12px; }
 			}
+		}
+
+		.subMenu { background-color:#383234;
+			ul { list-style:none; display:block; margin:0; padding:0;
+				>li { display:block; float:left;
+					a { display:inline-block; padding: 10px 20px; color:#fff; background:#383234; 
+						&.active,
+						&:hover{ color:#000; background: #DCFE00; }
+					}
+				}
+			}	
 		}
 
 		.pageTitle { font-size:60px; color:#fff; }
