@@ -35,6 +35,7 @@ import CourseAssessment from './containers/01Course/CourseAssessment';
 
 // Student Management
 // import StudentManagement from './containers/02Student/StudentManagement';
+import NewStudent from './containers/02Student/NewStudent';
 
 // Enrollment Management
 import EnrollmentManagement from './containers/03Enrollment/EnrollmentManagement';
@@ -165,6 +166,9 @@ class App extends Component {
 
 
                 // Student
+                case 'new-student': {
+                    return <NewStudent />;
+                }
 
 
                 // Enrollment
