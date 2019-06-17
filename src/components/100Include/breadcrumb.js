@@ -16,7 +16,7 @@ class Breadcrumb extends Component {
 
             // Course
             case 'all-courses': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span>课程管理</span></div>);
             }
             case 'preparations': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>预先准备</span></div>);
@@ -31,10 +31,10 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>学生管理</span></div>);
             }
             case 'student-management-attendance': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>陈大文：点名</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>用户名：点名</span></div>);
             }
             case 'student-management-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>陈大文：作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>用户名：作业</span></div>);
             }
             case 'course-q-and-a': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程问答</span></div>);
@@ -48,7 +48,7 @@ class Breadcrumb extends Component {
 
             // Enrollment
             case 'enrollment-management': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span>报名历史</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span>报名管理</span></div>);
             }
 
             // News
@@ -59,6 +59,22 @@ class Breadcrumb extends Component {
             // Activities
             case 'activities-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>活动管理</span></div>);
+            }
+
+            // Resources
+            case 'resources-management-course': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span>课程教材</span></div>);
+            }
+            case 'resources-management-homework': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span>课程作业</span></div>);
+            }
+
+            // Account
+            case 'related-courses': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            }
+            case 'enrollment-history': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span>账户管理</span></div>);
             }
             
 

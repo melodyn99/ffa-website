@@ -37,13 +37,13 @@ import data from '../../data/03Enrollment/EnrollmentManagement';
 
 // Define column names
 const rows = [
-    { id: 'subject', numeric: false, disablePadding: false, label: '学科' },
+    { id: 'year', numeric: false, disablePadding: false, label: '学年' },
+    { id: 'department', numeric: true, disablePadding: false, label: '学院' },
+    { id: 'subject', numeric: true, disablePadding: false, label: '学科' },
     { id: 'course', numeric: true, disablePadding: false, label: '课程' },
-    { id: 'date', numeric: true, disablePadding: false, label: '课程日期' },
-    { id: 'fee', numeric: true, disablePadding: false, label: '学费' },
-    { id: 'score', numeric: true, disablePadding: false, label: '学分' },
-    { id: 'grade', numeric: true, disablePadding: false, label: '成绩' },
+    { id: 'student', numeric: true, disablePadding: false, label: '学生' },
     { id: 'status', numeric: true, disablePadding: false, label: '状态' },
+    { id: 'date', numeric: true, disablePadding: false, label: '报名日期' },
 ];
 
 class EnrollmentManagement extends React.Component {
@@ -116,7 +116,7 @@ class EnrollmentManagement extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">报名历史</h2>
+                        <h2 className="pageTitle">报名管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -155,13 +155,13 @@ class EnrollmentManagement extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.subject}</TableCell>
+                                                                >{n.year}</TableCell>
+                                                                <TableCell>{n.department}</TableCell>
+                                                                <TableCell>{n.subject}</TableCell>
                                                                 <TableCell>{n.course}</TableCell>
-                                                                <TableCell>{n.date}</TableCell>
-                                                                <TableCell>{n.fee}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.grade}</TableCell>
+                                                                <TableCell>{n.student}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
+                                                                <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
