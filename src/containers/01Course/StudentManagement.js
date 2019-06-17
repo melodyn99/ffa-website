@@ -33,15 +33,18 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/03EnrollmentManagement/EnrollmentManagement';
+import data from '../../data/01Course/StudentManagement';
 
 // Define column names
 const rows = [
-    { id: 'name', numeric: false, disablePadding: false, label: '課程作業' },
-    { id: 'type', numeric: true, disablePadding: false, label: '類型' },
-    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+    { id: 'student', numeric: false, disablePadding: false, label: '学生' },
+    { id: 'fee', numeric: true, disablePadding: false, label: '学费' },
+    { id: 'actualfee', numeric: true, disablePadding: false, label: '实际收费' },
+    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
+    { id: 'attendance', numeric: true, disablePadding: false, label: '点名' },
+    { id: 'homework', numeric: true, disablePadding: false, label: '作业' },
+    { id: 'score', numeric: true, disablePadding: false, label: '总分数' },
+    { id: 'date', numeric: true, disablePadding: false, label: '添加日期' },
 ];
 
 class StudentManagement extends React.Component {
@@ -114,7 +117,7 @@ class StudentManagement extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学生管理</h2>
+                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -153,19 +156,20 @@ class StudentManagement extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >
-                                                                    {n.name}
-                                                                </TableCell>
-                                                                <TableCell>{n.calories}</TableCell>
-                                                                <TableCell>{n.fat}</TableCell>
-                                                                <TableCell>{n.carbs}</TableCell>
-                                                                <TableCell>{n.protein}</TableCell>
+                                                                >{n.student}</TableCell>
+                                                                <TableCell>{n.fee}</TableCell>
+                                                                <TableCell>{n.actualfee}</TableCell>
+                                                                <TableCell>{n.status}</TableCell>
+                                                                <TableCell>{n.attendance}</TableCell>
+                                                                <TableCell>{n.homework}</TableCell>
+                                                                <TableCell>{n.score}</TableCell>
+                                                                <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
+                                                        <TableCell colSpan={8} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>

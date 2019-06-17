@@ -33,15 +33,16 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/03EnrollmentManagement/EnrollmentManagement';
+import data from '../../data/01Course/CourseAssessment';
 
 // Define column names
 const rows = [
-    { id: 'name', numeric: false, disablePadding: false, label: '課程作業' },
-    { id: 'type', numeric: true, disablePadding: false, label: '類型' },
-    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+    { id: 'student', numeric: false, disablePadding: false, label: '学生' },
+    { id: 'teacherassess', numeric: true, disablePadding: false, label: '讲师评价' },
+    { id: 'materialassess', numeric: true, disablePadding: false, label: '资料评价' },
+    { id: 'assessment', numeric: true, disablePadding: false, label: '综合评价' },
+    { id: 'other', numeric: true, disablePadding: false, label: '其他意见' },
+    { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
 ];
 
 class CourseAssessment extends React.Component {
@@ -114,7 +115,7 @@ class CourseAssessment extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学生管理</h2>
+                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -153,13 +154,12 @@ class CourseAssessment extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >
-                                                                    {n.name}
-                                                                </TableCell>
-                                                                <TableCell>{n.calories}</TableCell>
-                                                                <TableCell>{n.fat}</TableCell>
-                                                                <TableCell>{n.carbs}</TableCell>
-                                                                <TableCell>{n.protein}</TableCell>
+                                                                >{n.student}</TableCell>
+                                                                <TableCell>{n.teacherassess}</TableCell>
+                                                                <TableCell>{n.materialassess}</TableCell>
+                                                                <TableCell>{n.assessment}</TableCell>
+                                                                <TableCell>{n.other}</TableCell>
+                                                                <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}

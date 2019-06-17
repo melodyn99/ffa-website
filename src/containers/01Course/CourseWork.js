@@ -33,15 +33,16 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/03EnrollmentManagement/EnrollmentManagement';
+import data from '../../data/01Course/CourseWork';
 
 // Define column names
 const rows = [
-    { id: 'name', numeric: false, disablePadding: false, label: '課程作業' },
-    { id: 'type', numeric: true, disablePadding: false, label: '類型' },
-    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+    { id: 'coursework', numeric: false, disablePadding: false, label: '课程作业' },
+    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
+    { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
+    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
+    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
+    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
 class CourseWorks extends React.Component {
@@ -114,7 +115,7 @@ class CourseWorks extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学生管理</h2>
+                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -153,13 +154,12 @@ class CourseWorks extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >
-                                                                    {n.name}
-                                                                </TableCell>
-                                                                <TableCell>{n.calories}</TableCell>
-                                                                <TableCell>{n.fat}</TableCell>
-                                                                <TableCell>{n.carbs}</TableCell>
-                                                                <TableCell>{n.protein}</TableCell>
+                                                                >{n.coursework}</TableCell>
+                                                                <TableCell>{n.type}</TableCell>
+                                                                <TableCell>{n.questions}</TableCell>
+                                                                <TableCell>{n.score}</TableCell>
+                                                                <TableCell>{n.deadline}</TableCell>
+                                                                <TableCell>{n.lastdate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
