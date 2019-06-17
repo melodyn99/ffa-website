@@ -91,6 +91,8 @@
 .wrapper-sitemap {
 
 	.sitemap { position:relative; max-width:1640px; margin:0 auto; padding:20px; color:#fff; 
+
+		>ul { float:left; width:50%; }
 		
 		h3 { font-size:14px; margin:20px 0 10px 0;}
 	}

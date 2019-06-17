@@ -9,7 +9,7 @@ function Sitemap(props) {
 
     return (
         <div className="wrapper-sitemap">
-            <div className="sitemap">
+            <div className="sitemap clearfix">
                 <ul>
                     <h2>Table views</h2>
 
@@ -41,6 +41,13 @@ function Sitemap(props) {
                     <h3>Accounts</h3>
                     <li><Link to={'/' + i18n.language + '/related-courses'}>Related Courses (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/enrollment-history'}>Entrollment History (done)</Link></li>
+                </ul>
+
+                <ul>
+                    <h2>Form views</h2>
+                    <h3>Accounts</h3>
+                    <li><Link to={'/' + i18n.language + '/new-account'}>New Account</Link></li>
+
                 </ul>
             </div>
         </div >
