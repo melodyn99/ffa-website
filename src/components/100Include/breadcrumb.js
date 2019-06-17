@@ -1,15 +1,50 @@
-import React from 'react';
+// Essential for all components
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
-function Breadcrumb(props) {
-    // const { t, i18n } = props;
+// Redux
+import { connect } from 'react-redux';
 
-    return (
-        <div className="breadcrumb">
-            <span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名</span>
-        </div>
-    );
+class Breadcrumb extends Component {
+
+    renderSwitch = (currentPath) => {
+
+        console.log('hello', currentPath);
+        switch (currentPath) {
+
+
+            case 'enrollment-management': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名</span></div>);
+            }
+
+            default: {
+                return (<div><span> <Link to="/">主頁</Link></span></div>);
+            }
+        }
+    }
+
+    render() {
+        // const { t, i18n } = props;
+
+        console.log(this.props);
+
+        let pathname = this.props.route.location.pathname,
+            urlArray = pathname.split("/"),
+            currentPath = urlArray[2];
+
+        console.log(currentPath);
+
+        return (
+            <div className="breadcrumb">
+                {this.renderSwitch(currentPath)}
+            </div>
+        );
+    }
 }
 
-export default withTranslation()(Breadcrumb);
+const mapStateToProps = (state) => ({
+    route: state.router
+});
+
+export default withTranslation()(connect(mapStateToProps)(Breadcrumb));
