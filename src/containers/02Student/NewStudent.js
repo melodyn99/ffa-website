@@ -37,7 +37,7 @@ class NewStudent extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">账户管理</h2>
+                        <h2 className="pageTitle">学生管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />

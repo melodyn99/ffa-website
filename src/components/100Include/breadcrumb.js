@@ -81,8 +81,10 @@ class Breadcrumb extends Component {
             case 'enrollment-history': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>账户管理</span></div>);
             }
+            case 'new-account': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">账户管理</Link></span> > <span>新增账户</span></div>);
+            }
             
-
             case 'my-alerts': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名123</span></div>);
             }
