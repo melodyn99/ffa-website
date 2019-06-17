@@ -40,7 +40,7 @@ class Header extends Component {
 
                     <div className="desktop-menu clearfix">
                         <li><Link to={"/" + i18n.language + "/all-courses"} className={urlArray[2] === 'all-courses' ? 'active' : ''}>课程管理</Link></li>
-                        <li><Link to={"/" + i18n.language + "/student-management"} className={urlArray[2] === 'student-management' ? 'active' : ''}>学生管理</Link></li>
+                        <li><Link to={"/" + i18n.language + "/course-student-management"} className={urlArray[2] === 'course-student-management' ? 'active' : ''}>学生管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/enrollment-management"} className={urlArray[2] === 'enrollment-management' ? 'active' : ''}>报名管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/news-management"} className={urlArray[2] === 'news-management' ? 'active' : ''}>新闻管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/activities-management"} className={urlArray[2] === 'activities-management' ? 'active' : ''}>活动管理</Link></li>

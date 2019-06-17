@@ -35,7 +35,7 @@ import CourseNotes from './containers/01Course/CourseNotes';
 import CourseAssessment from './containers/01Course/CourseAssessment';
 
 // Student Management
-// import CourseStudentManagement from './containers/02Student/CourseStudentManagement';
+// import StudentManagement from './containers/02Student/StudentManagement';
 import NewStudent from './containers/02Student/NewStudent';
 
 // Enrollment Management
@@ -140,22 +140,22 @@ class App extends Component {
                 case 'course-information': {
                     return <CourseInformation />
                 }
-                case 'preparations': {
+                case 'course-preparations': {
                     return <CoursePreparations />;
                 }
-                case 'materials': {
+                case 'course-materials': {
                     return <CourseMaterials />;
                 }
                 case 'course-work': {
                     return <CourseWork />;
                 }
-                case 'student-management': {
+                case 'course-student-management': {
                     return <CourseStudentManagement />;
                 }
-                case 'student-management-attendance': {
+                case 'course-student-management-attendance': {
                     return <CourseStudentManagementAttendance />;
                 }
-                case 'student-management-homework': {
+                case 'course-student-management-homework': {
                     return <CourseStudentManagementHomework />;
                 }
                 case 'course-q-and-a': {
