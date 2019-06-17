@@ -45,6 +45,7 @@ import NewsManagement from './containers/04News/NewsManagement';
 
 // Activities Management
 import ActivityManagement from './containers/05Activity/ActivityManagement';
+import NewActivity from './containers/05Activity/NewActivity';
 
 // Resources Management
 import ResourceManagementCourse from './containers/06Resource/ResourceManagementCourse';
@@ -187,6 +188,9 @@ class App extends Component {
                 // Activities
                 case 'activities-management': {
                     return <ActivityManagement />;
+                }
+                case 'new-activity': {
+                    return <NewActivity />;
                 }
 
                 // Resources
