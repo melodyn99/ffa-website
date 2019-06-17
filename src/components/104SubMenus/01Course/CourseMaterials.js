@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 // Redux
 import { connect } from 'react-redux';
 
-class Materials extends Component {
+class CourseMaterials extends Component {
 
     render() {
         const { //t, 
@@ -40,4 +40,4 @@ const mapStateToProps = (state) => ({
     route: state.router
 });
 
-export default withTranslation()(connect(mapStateToProps)(Materials));
+export default withTranslation()(connect(mapStateToProps)(CourseMaterials));

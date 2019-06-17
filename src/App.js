@@ -24,18 +24,18 @@ import Home from './containers/00Home/Home';
 // Course Management
 import AllCourses from './containers/01Course/AllCourses';
 import CourseInformation from './containers/01Course/CourseInformation';
-import Preparations from './containers/01Course/Preparations';
-import Materials from './containers/01Course/Materials';
+import CoursePreparations from './containers/01Course/CoursePreparations';
+import CourseMaterials from './containers/01Course/CourseMaterials';
 import CourseWork from './containers/01Course/CourseWork';
-import StudentManagement from './containers/01Course/StudentManagement';
-import StudentManagementAttendance from './containers/01Course/StudentManagementAttendance';
-import StudentManagementHomework from './containers/01Course/StudentManagementHomework';
+import CourseStudentManagement from './containers/01Course/CourseStudentManagement';
+import CourseStudentManagementAttendance from './containers/01Course/CourseStudentManagementAttendance';
+import CourseStudentManagementHomework from './containers/01Course/CourseStudentManagementHomework';
 import CourseQandA from './containers/01Course/CourseQandA';
 import CourseNotes from './containers/01Course/CourseNotes';
 import CourseAssessment from './containers/01Course/CourseAssessment';
 
 // Student Management
-// import StudentManagement from './containers/02Student/StudentManagement';
+// import CourseStudentManagement from './containers/02Student/CourseStudentManagement';
 import NewStudent from './containers/02Student/NewStudent';
 
 // Enrollment Management
@@ -141,22 +141,22 @@ class App extends Component {
                     return <CourseInformation />
                 }
                 case 'preparations': {
-                    return <Preparations />;
+                    return <CoursePreparations />;
                 }
                 case 'materials': {
-                    return <Materials />;
+                    return <CourseMaterials />;
                 }
                 case 'course-work': {
                     return <CourseWork />;
                 }
                 case 'student-management': {
-                    return <StudentManagement />;
+                    return <CourseStudentManagement />;
                 }
                 case 'student-management-attendance': {
-                    return <StudentManagementAttendance />;
+                    return <CourseStudentManagementAttendance />;
                 }
                 case 'student-management-homework': {
-                    return <StudentManagementHomework />;
+                    return <CourseStudentManagementHomework />;
                 }
                 case 'course-q-and-a': {
                     return <CourseQandA />;

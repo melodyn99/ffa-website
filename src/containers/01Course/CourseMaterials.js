@@ -32,21 +32,18 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
-import SubMenu from '../../components/104SubMenus/01Course/StudentManagementHomework';
+import SubMenu from '../../components/104SubMenus/01Course/CourseMaterials';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/01Course/StudentManagementHomework';
+import data from '../../data/01Course/CourseMaterials';
 
 // Define column names
 const rows = [
-    { id: 'coursework', numeric: false, disablePadding: false, label: '课程作业' },
-    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
-    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
-    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
-    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
-    { id: 'handin', numeric: true, disablePadding: false, label: '提交日期' },
+    { id: 'materials', numeric: false, disablePadding: false, label: '课程教材' },
+    { id: 'files', numeric: true, disablePadding: false, label: '文件' },
+    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改时间' },
 ];
 
-class StudentManagementHomework extends React.Component {
+class CourseMaterials extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -156,18 +153,15 @@ class StudentManagementHomework extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.coursework}</TableCell>
-                                                                <TableCell>{n.type}</TableCell>
-                                                                <TableCell>{n.status}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.deadline}</TableCell>
-                                                                <TableCell>{n.handin}</TableCell>
+                                                                >{n.materials}</TableCell>
+                                                                <TableCell>{n.files}</TableCell>
+                                                                <TableCell>{n.lastdate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
+                                                        <TableCell colSpan={3} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -197,7 +191,7 @@ class StudentManagementHomework extends React.Component {
     }
 }
 
-StudentManagementHomework.propTypes = {
+CourseMaterials.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -212,4 +206,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentManagementHomework)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseMaterials)));

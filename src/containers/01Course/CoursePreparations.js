@@ -34,7 +34,7 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 import BreadCrumb from '../../components/100Include/breadcrumb';
 import SubMenu from '../../components/104SubMenus/01Course/Preparation';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/01Course/Preparations';
+import data from '../../data/01Course/CoursePreparations';
 
 // Define column names
 const rows = [
@@ -44,7 +44,7 @@ const rows = [
     { id: 'status', numeric: true, disablePadding: false, label: '状态' },
 ];
 
-class Preparations extends React.Component {
+class CoursePreparations extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -193,7 +193,7 @@ class Preparations extends React.Component {
     }
 }
 
-Preparations.propTypes = {
+CoursePreparations.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -208,4 +208,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Preparations)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CoursePreparations)));

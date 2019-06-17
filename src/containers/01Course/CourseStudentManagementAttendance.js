@@ -32,18 +32,18 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
-import SubMenu from '../../components/104SubMenus/01Course/Materials';
+import SubMenu from '../../components/104SubMenus/01Course/StudentManagementAttendance';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/01Course/Materials';
+import data from '../../data/01Course/CourseStudentManagementAttendance';
 
 // Define column names
 const rows = [
-    { id: 'materials', numeric: false, disablePadding: false, label: '课程教材' },
-    { id: 'files', numeric: true, disablePadding: false, label: '文件' },
-    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改时间' },
+    { id: 'date', numeric: false, disablePadding: false, label: '课程日期' },
+    { id: 'admin', numeric: true, disablePadding: false, label: '操作人员' },
+    { id: 'deadline', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class Materials extends React.Component {
+class StudentManagementAttendance extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -153,9 +153,9 @@ class Materials extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.materials}</TableCell>
-                                                                <TableCell>{n.files}</TableCell>
-                                                                <TableCell>{n.lastdate}</TableCell>
+                                                                >{n.date}</TableCell>
+                                                                <TableCell>{n.admin}</TableCell>
+                                                                <TableCell>{n.deadline}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
@@ -191,7 +191,7 @@ class Materials extends React.Component {
     }
 }
 
-Materials.propTypes = {
+StudentManagementAttendance.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -206,4 +206,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Materials)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentManagementAttendance)));
