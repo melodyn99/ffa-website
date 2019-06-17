@@ -32,6 +32,7 @@ import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../components/100Include/breadcrumb';
+import SubMenu from '../../components/104SubMenus/01Course/AllCourses';
 import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../data/01Course/AllCourses';
 
@@ -118,6 +119,7 @@ class AllCourses extends React.Component {
 
                         <div className="wrapper-content">
                             <BreadCrumb />
+                            <SubMenu />
 
                             <div className="content">
                                 <Paper className={classes.paper}>
