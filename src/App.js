@@ -50,6 +50,7 @@ import ActivityManagement from './containers/05Activity/ActivityManagement';
 import ResourceManagementCourse from './containers/06Resource/ResourceManagementCourse';
 import ResourceManagementHomework from './containers/06Resource/ResourceManagementHomework';
 import NewHomework from './containers/06Resource/NewHomework';
+import NewQuestion from './containers/06Resource/NewQuestion';
 
 // My Alerts
 import MyAlert from './containers/07Alert/MyAlert';
@@ -196,6 +197,9 @@ class App extends Component {
                 }
                 case 'new-homework': {
                     return <NewHomework />;
+                }
+                case 'new-question': {
+                    return <NewQuestion />;
                 }
 
                 // My Alert

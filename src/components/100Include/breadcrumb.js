@@ -76,6 +76,9 @@ class Breadcrumb extends Component {
             case 'new-homework': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span><Link to="/">课程作业</Link></span> > <span>新增作业</span></div>);
             }
+            case 'new-question': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span><Link to="/">课程作业</Link></span> > <span><Link to="/">战略课程作业</Link></span> > <span>新增问题</span></div>);
+            }
 
             // Account
             case 'related-courses': {
