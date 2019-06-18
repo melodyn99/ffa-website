@@ -15,12 +15,12 @@ function Sitemap(props) {
 
                     <h3>Courses Management</h3>
                     <li><Link to={'/' + i18n.language + '/all-courses'}>All Courses (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-preparations'}>CoursePreparations (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-materials'}>CourseMaterials (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-preparations'}>Course Preparations (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-materials'}>Course Materials (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/course-work'}>Course Work (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-student-management'}>Student Management (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-student-management-attendance'}>Student Management Attendance (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-student-management-homework'}>Student Management Homework (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-student-management'}>Course Student Management (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-student-management-attendance'}>Course Student Management Attendance (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-student-management-homework'}>Course Student Management Homework (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/course-q-and-a'}>Course Q & A (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/course-notes'}>Course Notes (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/course-assessment'}>Course Assessment (done)</Link></li>
@@ -48,7 +48,7 @@ function Sitemap(props) {
 
                     <h3>Courses Management</h3>
                     <li><Link to={'/' + i18n.language + '/course-information'}>Course Information (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/new-notes'}>New Notes (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-new-notes'}>Course New Notes (done)</Link></li>
 
                     <h3>Students Management</h3>
                     <li><Link to={'/' + i18n.language + '/new-student'}>New Student (done)</Link></li>

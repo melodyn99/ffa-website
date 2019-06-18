@@ -25,10 +25,10 @@ import { connect } from 'react-redux';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/NewNotes';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/CourseNewNotes';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewNotes extends React.Component {
+class CourseNewNotes extends React.Component {
 
    render() {
        // const { classes } = this.props;
@@ -73,7 +73,7 @@ class NewNotes extends React.Component {
    }
 }
 
-NewNotes.propTypes = {
+CourseNewNotes.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -88,4 +88,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewNotes)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseNewNotes)));

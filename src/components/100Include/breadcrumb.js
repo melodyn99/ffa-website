@@ -45,7 +45,7 @@ class Breadcrumb extends Component {
             case 'course-notes': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>及时记录</span></div>);
             }
-            case 'new-notes': {
+            case 'course-new-notes': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">及时记录</Link></span> > <span>及时记录1</span></div>);
             }
             case 'course-assessment': {
