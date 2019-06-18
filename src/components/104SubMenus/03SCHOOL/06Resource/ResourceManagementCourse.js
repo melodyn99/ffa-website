@@ -21,8 +21,8 @@ class ResourceManagementCourse extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/"} className="active">课程教材</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>课程作业</Link></li>
+                    <li><Link to={"/" + i18n.language + "/resources-management-course"} className="active">课程教材</Link></li>
+                    <li><Link to={"/" + i18n.language + "/resources-management-homework"}>课程作业</Link></li>
                 </ul>
             </div>
         );
