@@ -21,11 +21,11 @@ class AllCourses extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/"} className="active">所有课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>战略课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>商品管理系列课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>设计应用系列课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>开发流程系列课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'all-courses' ? 'active' : ''}>所有课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'course-a' ? 'active' : ''}>战略课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'course-b' ? 'active' : ''}>商品管理系列课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'course-c' ? 'active' : ''}>设计应用系列课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'course-d' ? 'active' : ''}>开发流程系列课程</Link></li>
                 </ul>
             </div>
         );
