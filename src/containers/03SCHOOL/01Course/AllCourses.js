@@ -53,7 +53,7 @@ class AllCourses extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetailPage: false
+        tempGoDetail: false
     };
 
     handleRequestSort = (event, property) => {
@@ -107,10 +107,10 @@ class AllCourses extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempCourseDetail = () => {
+    _tempDetail = () => {
         this.setState({
             ...this.state,
-            tempGoDetailPage: true
+            tempGoDetail: true
         });
     }
 
@@ -119,7 +119,7 @@ class AllCourses extends React.Component {
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        if (this.state.tempGoDetailPage) {
+        if (this.state.tempGoDetail) {
             return <Redirect to={"/" + i18n.language + "/course-information"} />;
         }
 
@@ -157,7 +157,7 @@ class AllCourses extends React.Component {
                                                             <TableRow
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempCourseDetail()}
+                                                                onClick={() => this._tempDetail()}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
