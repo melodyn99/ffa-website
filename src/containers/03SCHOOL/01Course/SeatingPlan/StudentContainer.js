@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common';
-import { StudentContainerStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/StudentContainer';
+import { StudentContainerStyles } from '../../../../utils/01MaterialJsStyles/SeatingPlan/StudentContainer';
 import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, List, Typography } from '@material-ui/core';

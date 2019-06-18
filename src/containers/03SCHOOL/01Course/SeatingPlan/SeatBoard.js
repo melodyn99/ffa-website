@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common';
-import { SeatBoardStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/SeatBoard';
+import { SeatBoardStyles } from '../../../../utils/01MaterialJsStyles/SeatingPlan/SeatBoard';
 import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 

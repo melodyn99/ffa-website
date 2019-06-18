@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common'
-import { StudentListItemStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/StudentListItem'
+import { StudentListItemStyles } from '../../../../utils/01MaterialJsStyles/SeatingPlan/StudentListItem'
 import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 

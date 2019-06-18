@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
-import { NotesTakingStyles } from '../../../utils/01MaterialJsStyles/09Notes/NotesTaking'
+import { NotesTakingStyles } from '../../../utils/01MaterialJsStyles/Notes/NotesTaking'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText, Typography, } from '@material-ui/core';

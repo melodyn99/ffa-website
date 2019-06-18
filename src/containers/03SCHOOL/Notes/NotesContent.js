@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
-import { NotesContentStyles } from '../../../utils/01MaterialJsStyles/09Notes/NotesContent.js'
+import { NotesContentStyles } from '../../../utils/01MaterialJsStyles/Notes/NotesContent.js'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, AppBar } from '@material-ui/core';

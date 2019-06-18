@@ -68,16 +68,16 @@ import NewAccount from './containers/03SCHOOL/09Account/NewAccount';
 
 
 // Notes
-import NotesTaking from './containers/03SCHOOL/09Notes/NotesTaking';
-import NotesContent from './containers/03SCHOOL/09Notes/NotesContent';
-import NewNoteTitle from './containers/03SCHOOL/09Notes/NewNoteTitle';
-import NewNoteContent from './containers/03SCHOOL/09Notes/NewNoteContent';
+import NotesTaking from './containers/03SCHOOL/Notes/NotesTaking';
+import NotesContent from './containers/03SCHOOL/Notes/NotesContent';
+import NewNoteTitle from './containers/03SCHOOL/Notes/NewNoteTitle';
+import NewNoteContent from './containers/03SCHOOL/Notes/NewNoteContent';
 
 // Scheduling
-import Scheduling from './containers/02STUDENTS/10Schedule/Scheduling';
+import Scheduling from './containers/02STUDENTS/Schedule/Scheduling';
 
 // Seating Plan
-import SeatingPlan from './containers/03SCHOOL/01Course/11SeatingPlan/SeatingPlan';
+import SeatingPlan from './containers/03SCHOOL/01Course/SeatingPlan/SeatingPlan';
 
 // 404
 import PageNotFound from './containers/PageNotFound';
