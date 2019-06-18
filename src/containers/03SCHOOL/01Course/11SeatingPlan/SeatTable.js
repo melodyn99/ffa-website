@@ -1,15 +1,15 @@
 // Essential for all components
-import React from './node_modules/react';
-import { withTranslation } from './node_modules/react-i18next';
+import React from 'react';
+import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common';
 import { SeatTableStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/SeatTable';
 import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
-import { withStyles } from './node_modules/@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 // Redux
-import { connect } from './node_modules/react-redux';
+import { connect } from 'react-redux';
 
 // Children components
 import Seat from "./Seat";

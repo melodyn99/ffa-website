@@ -6,8 +6,8 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common'
-import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
@@ -28,13 +28,13 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 
 // Utils
-import { getSorting } from '../../../../utils/02MaterialDesign/EnhancedTable';
+import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
-import BreadCrumb from '../../../../components/100Include/breadcrumb';
-import SubMenu from '../../../../components/104SubMenus/01Course/StudentManagement';
-import EnhancedTableHead from '../../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../../data/01Course/CourseStudentManagement';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
+import SubMenu from '../../../components/104SubMenus/01Course/StudentManagement';
+import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
+import data from '../../../data/01Course/CourseStudentManagement';
 
 // Define column names
 const rows = [

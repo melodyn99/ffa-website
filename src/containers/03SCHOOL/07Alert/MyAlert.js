@@ -1,15 +1,15 @@
 // Essential for all components
-import React, { Component } from './node_modules/react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
-import { withTranslation } from './node_modules/react-i18next';
+import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import { HeaderStyles } from '../../../utils/01MaterialJsStyles/00Common/header'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
-import { withStyles } from './node_modules/@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 // import { Button } from '@material-ui/core';
 
 // Api
@@ -17,7 +17,7 @@ import { withStyles } from './node_modules/@material-ui/core/styles';
 // import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
-import { connect } from './node_modules/react-redux';
+import { connect } from 'react-redux';
 
 // Utils
 
