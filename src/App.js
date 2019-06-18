@@ -18,62 +18,66 @@ import * as HelperDesktopHandle from './utils/00JqueryControl/DesktopHandle';
 import * as HelperMobileHandle from './utils/00JqueryControl/MobileHandle';
 import * as HelperPopup from './utils/00JqueryControl/Popup';
 
+/*** GENERAL ***/
 // Home
-import Home from './containers/00Home/Home';
+import Home from './containers/01GENERAL/00Home/Home';
 
+/*** STUDENT ***/
+
+/*** SCHOOL ***/
 // Course Management
-import AllCourses from './containers/01Course/AllCourses';
-import CourseInformation from './containers/01Course/CourseInformation';
-import CoursePreparations from './containers/01Course/CoursePreparations';
-import CourseMaterials from './containers/01Course/CourseMaterials';
-import CourseWork from './containers/01Course/CourseWork';
-import CourseStudentManagement from './containers/01Course/CourseStudentManagement';
-import CourseStudentManagementAttendance from './containers/01Course/CourseStudentManagementAttendance';
-import CourseStudentManagementHomework from './containers/01Course/CourseStudentManagementHomework';
-import CourseQandA from './containers/01Course/CourseQandA';
-import CourseNotes from './containers/01Course/CourseNotes';
-import CourseAssessment from './containers/01Course/CourseAssessment';
+import AllCourses from './containers/03SCHOOL/01Course/AllCourses';
+import CourseInformation from './containers/03SCHOOL/01Course/CourseInformation';
+import CoursePreparations from './containers/03SCHOOL/01Course/CoursePreparations';
+import CourseMaterials from './containers/03SCHOOL/01Course/CourseMaterials';
+import CourseWork from './containers/03SCHOOL/01Course/CourseWork';
+import CourseStudentManagement from './containers/03SCHOOL/01Course/CourseStudentManagement';
+import CourseStudentManagementAttendance from './containers/03SCHOOL/01Course/CourseStudentManagementAttendance';
+import CourseStudentManagementHomework from './containers/03SCHOOL/01Course/CourseStudentManagementHomework';
+import CourseQandA from './containers/03SCHOOL/01Course/CourseQandA';
+import CourseNotes from './containers/03SCHOOL/01Course/CourseNotes';
+import CourseAssessment from './containers/03SCHOOL/01Course/CourseAssessment';
 
 // Student Management
 // import StudentManagement from './containers/02Student/StudentManagement';
-import NewStudent from './containers/02Student/NewStudent';
+import NewStudent from './containers/03SCHOOL/02Student/NewStudent';
 
 // Enrollment Management
-import EnrollmentManagement from './containers/03Enrollment/EnrollmentManagement';
+import EnrollmentManagement from './containers/03SCHOOL/03Enrollment/EnrollmentManagement';
 
 // News Management
-import NewsManagement from './containers/04News/NewsManagement';
+import NewsManagement from './containers/03SCHOOL/04News/NewsManagement';
 
 // Activities Management
-import ActivityManagement from './containers/05Activity/ActivityManagement';
+import ActivityManagement from './containers/03SCHOOL/05Activity/ActivityManagement';
 
 // Resources Management
-import ResourceManagementCourse from './containers/06Resource/ResourceManagementCourse';
-import ResourceManagementHomework from './containers/06Resource/ResourceManagementHomework';
+import ResourceManagementCourse from './containers/03SCHOOL/06Resource/ResourceManagementCourse';
+import ResourceManagementHomework from './containers/03SCHOOL/06Resource/ResourceManagementHomework';
 
 // My Alerts
-import MyAlert from './containers/07Alert/MyAlert';
+import MyAlert from './containers/03SCHOOL/07Alert/MyAlert';
 
 // Report
-import Report from './containers/08Report/Report';
+import Report from './containers/03SCHOOL/08Report/Report';
 
 // Account
-import RelatedCourses from './containers/09Account/RelatedCourses';
-import EnrollmentHistory from './containers/09Account/EnrollmentHistory';
-import NewAccount from './containers/09Account/NewAccount';
+import RelatedCourses from './containers/03SCHOOL/09Account/RelatedCourses';
+import EnrollmentHistory from './containers/03SCHOOL/09Account/EnrollmentHistory';
+import NewAccount from './containers/03SCHOOL/09Account/NewAccount';
 
 
 // Notes
-import NotesTaking from './containers/09Notes/NotesTaking';
-import NotesContent from './containers/09Notes/NotesContent';
-import NewNoteTitle from './containers/09Notes/NewNoteTitle';
-import NewNoteContent from './containers/09Notes/NewNoteContent';
+import NotesTaking from './containers/03SCHOOL/09Notes/NotesTaking';
+import NotesContent from './containers/03SCHOOL/09Notes/NotesContent';
+import NewNoteTitle from './containers/03SCHOOL/09Notes/NewNoteTitle';
+import NewNoteContent from './containers/03SCHOOL/09Notes/NewNoteContent';
 
 // Scheduling
-import Scheduling from './containers/10Schedule/Scheduling';
+import Scheduling from './containers/02STUDENTS/10Schedule/Scheduling';
 
 // Seating Plan
-import SeatingPlan from './containers/11SeatingPlan/SeatingPlan';
+import SeatingPlan from './containers/03SCHOOL/11SeatingPlan/SeatingPlan';
 
 // 404
 import PageNotFound from './containers/PageNotFound';
