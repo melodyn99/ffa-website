@@ -30,8 +30,28 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 
 class CourseInformation extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            courseCode: 56789,
+            courseName: 'Cooking Course',
+            courseAddress: 'Hong Kong'
+        }
+    }
+
+    _handleInput = (value, key) => {
+        console.log(value);
+        this.setState({
+            ...this.state,
+            [key]: value
+        })
+    }
+
     render() {
         // const { classes } = this.props;
+
+        console.log(this.state.courseName.price);
 
         return (
             <div>
@@ -50,14 +70,22 @@ class CourseInformation extends React.Component {
                                         课程编号
                                    </Grid>
                                     <Grid item xs={11}>
-                                        <input type="text" />
+                                        <input
+                                            type="text"
+                                            onChange={(e) => this._handleInput(e.target.value, 'courseCode')}
+                                            value={this.state.courseCode}
+                                        />
                                     </Grid>
 
                                     <Grid item xs={1} >
                                         课程名称
                                    </Grid>
                                     <Grid item xs={11}>
-                                        <input type="text" />
+                                        <input
+                                            type="text"
+                                            onChange={(e) => this._handleInput(e.target.value, 'courseCode')}
+                                            value={this.state.courseCode}
+                                        />
                                     </Grid>
 
                                     <Grid item xs={1} >
@@ -88,21 +116,29 @@ class CourseInformation extends React.Component {
                                         课程地址
                                    </Grid>
                                     <Grid item xs={11}>
-                                        <input type="text" />
+                                        <input type="text"
+                                            onChange={(e) => this._handleInput(e.target.value, 'courseAddress')}
+                                            value={this.state.courseAddress} />
                                     </Grid>
 
                                     <Grid item xs={1} >
                                         课程简介
                                    </Grid>
                                     <Grid item xs={11}>
-                                        <input type="text" />
+                                        <input type="text"
+                                            onChange={(e) => this._handleInput(e.target.value, 'courseName')}
+                                            value={this.state.courseName}
+                                        />
                                     </Grid>
 
                                     <Grid item xs={1} >
                                         课程重点
                                    </Grid>
                                     <Grid item xs={11}>
-                                        <input type="text" />
+                                        <input type="text"
+                                            onChange={(e) => this._handleInput(e.target.value, 'courseName')}
+                                            value={this.state.courseName}
+                                        />
                                     </Grid>
 
                                     <Grid item xs={1} >
