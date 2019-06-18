@@ -25,65 +25,65 @@ import { connect } from 'react-redux';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/CourseNewNotes';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class CourseNewNotes extends React.Component {
 
-   render() {
-       // const { classes } = this.props;
+    render() {
+        // const { classes } = this.props;
 
-       return (
-           <div>
-               <div className="wrapper-container-main">
-                   <div className="container-main">
+        return (
+            <div>
+                <div className="wrapper-container-main">
+                    <div className="container-main">
 
-                       <h2 className="pageTitle">S1-001品牌盈利模式</h2>
+                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
 
-                       <div className="wrapper-content">
-                           <BreadCrumb />
-                           <SubMenu />
+                        <div className="wrapper-content">
+                            <BreadCrumb />
+                            <SubMenu />
 
-                           <div className="content">
-                               <Grid container spacing={16} alignItems="center">
-                                   <Grid item xs={1} >
-                                       记录标题
+                            <div className="content">
+                                <Grid container spacing={16} alignItems="center">
+                                    <Grid item xs={1} >
+                                        记录标题
                                    </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
 
-                                   <Grid item xs={1} >
-                                       记录内容
+                                    <Grid item xs={1} >
+                                        记录内容
                                    </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
+                                    <Grid item xs={11}>
+                                        <input type="text" />
+                                    </Grid>
 
-                                   <Grid item xs={12} >
-                                       记录文件
+                                    <Grid item xs={12} >
+                                        记录文件
                                    </Grid>
-                               </Grid>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       );
-   }
+                                </Grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 CourseNewNotes.propTypes = {
-   classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-   auth: state.auth
+    auth: state.auth
 });
 
 const mapDispatchToProps = dispatch => ({
-   // loginP: data => dispatch(login(data)),
-   // verifyT: token => dispatch(verifyToken(token)),
+    // loginP: data => dispatch(login(data)),
+    // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
