@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 class Breadcrumb extends Component {
 
     renderSwitch = (currentPath) => {
-
+        const { //t, 
+            i18n } = this.props;
         // console.log('hello', currentPath);
 
         switch (currentPath) {
@@ -19,42 +20,42 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>课程管理</span></div>);
             }
             case 'course-information': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程资料</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程资料</span></div>);
             }
             case 'course-preparations': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>预先准备</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>预先准备</span></div>);
             }
             case 'course-materials': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程教材</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程教材</span></div>);
             }
             case 'course-work': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程作业</span></div>);
             }
             case 'course-student-management': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>学生管理</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>学生管理</span></div>);
             }
             case 'course-student-management-attendance': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>用户名：点名</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>用户名：点名</span></div>);
             }
             case 'course-student-management-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>用户名：作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>用户名：作业</span></div>);
             }
             case 'course-q-and-a': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程问答</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程问答</span></div>);
             }
             case 'course-notes': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>及时记录</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>及时记录</span></div>);
             }
             case 'course-new-notes': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">及时记录</Link></span> > <span>及时记录1</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">及时记录</Link></span> > <span>及时记录1</span></div>);
             }
             case 'course-assessment': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程评分</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程评分</span></div>);
             }
 
             // Student
             case 'new-student': {
-                return (<div><span><Link to="/">主页</Link></span> / <span><Link to="/">学生管理</Link></span> > <span>新增学生</span></div>)
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-student-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
             }
 
             // Enrollment
@@ -80,19 +81,19 @@ class Breadcrumb extends Component {
 
             // Resources
             case 'resources-management-course': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span>课程教材</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span>课程教材</span></div>);
             }
             case 'resources-management-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span>课程作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span>课程作业</span></div>);
             }
             case 'new-material': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span><Link to="/">课程教材</Link></span> > <span>新增教材</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to="/">课程教材</Link></span> > <span>新增教材</span></div>);
             }
             case 'new-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span><Link to="/">课程作业</Link></span> > <span>新增作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to="/">课程作业</Link></span> > <span>新增作业</span></div>);
             }
             case 'new-question': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">资源库管理</Link></span> > <span><Link to="/">课程作业</Link></span> > <span><Link to="/">战略课程作业</Link></span> > <span>新增问题</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to="/">课程作业</Link></span> > <span><Link to="/">战略课程作业</Link></span> > <span>新增问题</span></div>);
             }
 
             // Account

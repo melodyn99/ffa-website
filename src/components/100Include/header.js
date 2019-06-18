@@ -43,7 +43,7 @@ class Header extends Component {
                         <li><Link to={"/" + i18n.language + "/enrollment-management"} className={currentPath === 'enrollment-management' ? 'active' : ''}>报名管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/news-management"} className={currentPath === 'news-management' ? 'active' : ''}>新闻管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/activities-management"} className={currentPath === 'activities-management' ? 'active' : ''}>活动管理</Link></li>
-                        <li><Link to={"/" + i18n.language + "/resources-management-course"} className={currentPath === 'resources-management-course' ? 'active' : ''}>资源管理</Link></li>
+                        <li><Link to={"/" + i18n.language + "/all-resources-management"} className={currentPath === 'all-resources-management' ? 'active' : ''}>资源管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/my-alerts"} className={currentPath === 'my-alerts' ? 'active' : ''}>我的提醒 (6)</Link></li>
                         <li><Link to={"/" + i18n.language + "/reports"} className={currentPath === 'reports' ? 'active' : ''}>项目报告</Link></li>
                     </div>
