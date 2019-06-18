@@ -48,10 +48,14 @@ class CourseInformation extends React.Component {
         })
     }
 
+    _handleSelect = () => {
+
+    }
+
     render() {
         // const { classes } = this.props;
 
-        console.log(this.state.courseName.price);
+        console.log(this.state);
 
         return (
             <div>
@@ -92,7 +96,10 @@ class CourseInformation extends React.Component {
                                         学科名称
                                    </Grid>
                                     <Grid item xs={11}>
-                                        <select>
+                                        <select
+                                        // value={this.state.courseCode}
+                                        // onChange={(e) => this.changeStateLevelTwo('SpaceSuitable', 'LorryTones', e.target.value)}
+                                        >
                                             <option value="1">战略课程</option>
                                             <option value="2">战略课程</option>
                                             <option value="3">战略课程</option>
@@ -105,10 +112,10 @@ class CourseInformation extends React.Component {
                                    </Grid>
                                     <Grid item xs={11}>
                                         <select>
-                                            <option value="1">大商品公开课程</option>
-                                            <option value="2">大商品公开课程</option>
-                                            <option value="3">大商品公开课程</option>
-                                            <option value="4">大商品公开课程</option>
+                                            <option value="1">大商品公开课程1</option>
+                                            <option value="2">大商品公开课程2</option>
+                                            <option value="3">大商品公开课程3</option>
+                                            <option value="4">大商品公开课程4</option>
                                         </select>
                                     </Grid>
 
