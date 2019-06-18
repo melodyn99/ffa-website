@@ -295,6 +295,7 @@ class CourseInformation extends React.Component {
 
     handleSubmit = (values, { setFieldError }) => {
         // call api
+        // TODO
         console.log('GREAT!');
     }
 
