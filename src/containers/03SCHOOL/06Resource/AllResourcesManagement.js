@@ -45,13 +45,14 @@ class AllStudentsManagement extends Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学生管理</h2>
+                        <h2 className="pageTitle">资源库管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
 
                             <div className="content">
                                 <p>This is All Resources Management</p>
+                                <p>REQUIRES MOCKUP</p>
                             </div>
                         </div>
 
