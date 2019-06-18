@@ -1,7 +1,7 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
@@ -53,6 +53,7 @@ class AllCourses extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
+        tempGoDetailPage: false
     };
 
     handleRequestSort = (event, property) => {
@@ -75,6 +76,7 @@ class AllCourses extends React.Component {
     };
 
     handleClick = (event, id) => {
+        console.log(id);
         const { selected } = this.state;
         const selectedIndex = selected.indexOf(id);
         let newSelected = [];
@@ -105,10 +107,21 @@ class AllCourses extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    _tempCourseDetail = () => {
+        this.setState({
+            ...this.state,
+            tempGoDetailPage: true
+        });
+    }
+
     render() {
-        const { classes } = this.props;
+        const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
+        if (this.state.tempGoDetailPage) {
+            return <Redirect to={"/" + i18n.language + "/course-information"} />;
+        }
 
         return (
             <div>
@@ -143,7 +156,8 @@ class AllCourses extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                // onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={() => this._tempCourseDetail()}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
