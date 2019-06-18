@@ -47,7 +47,7 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>及时记录</span></div>);
             }
             case 'course-new-notes': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">及时记录</Link></span> > <span>及时记录1</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to={"/" + i18n.language + "/course-notes"}>及时记录</Link></span> > <span>及时记录1</span></div>);
             }
             case 'course-assessment': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程评分</span></div>);
@@ -87,28 +87,28 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span>课程作业</span></div>);
             }
             case 'new-material': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to="/">课程教材</Link></span> > <span>新增教材</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-course"}>课程教材</Link></span> > <span>新增教材</span></div>);
             }
             case 'new-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to="/">课程作业</Link></span> > <span>新增作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-homework"}>课程作业</Link></span> > <span>新增作业</span></div>);
             }
             case 'new-question': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to="/">课程作业</Link></span> > <span><Link to="/">战略课程作业</Link></span> > <span>新增问题</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-homework"}>课程作业</Link></span> > <span><Link to="/">战略课程作业</Link></span> > <span>新增问题</span></div>);
             }
 
             // Account
             case 'related-courses': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
             case 'enrollment-history': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>账户管理</span></div>);
             }
             case 'new-account': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">账户管理</Link></span> > <span>新增账户</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span>新增账户</span></div>);
             }
 
             case 'my-alerts': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名123</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span>我的提醒(6)</span></div>);
             }
 
             default: {
