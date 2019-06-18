@@ -6,8 +6,8 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
@@ -21,20 +21,20 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
-import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
+import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
-import SubMenu from '../../components/104SubMenus/09Account/RelatedCourses';
-import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/09Account/RelatedCourses';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
+import SubMenu from '../../../components/104SubMenus/09Account/RelatedCourses';
+import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
+import data from '../../../data/09Account/RelatedCourses';
 
 // Define column names
 const rows = [

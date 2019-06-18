@@ -6,27 +6,27 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { NotesContentStyles } from '../../utils/01MaterialJsStyles/09Notes/NotesContent.js'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import { NotesContentStyles } from '../../../utils/01MaterialJsStyles/09Notes/NotesContent.js'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, AppBar } from '@material-ui/core';
 
 // Api
-// import { apiNoteTaking } from '../../Api/ApiNoteTaking';
-import { apiNoteFile } from '../../Api/ApiNoteFile';
-// import { apiFile } from '../../Api/ApiFile';
+// import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
+import { apiNoteFile } from '../../../Api/ApiNoteFile';
+// import { apiFile } from '../../../Api/ApiFile';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
-import { autoScrollTop } from '../../Util/ScrollToTop';
-// import { emitter, EventTypes} from '../../Util/EventEmitter';
-import DocumentList from '../Library/DocumentList';
+import { autoScrollTop } from '../../../Util/ScrollToTop';
+// import { emitter, EventTypes} from '../../../Util/EventEmitter';
+import DocumentList from '../../Library/DocumentList';
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
 
 class NotesContent extends Component {
     constructor(props) {

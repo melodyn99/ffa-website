@@ -6,20 +6,20 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { SeatingPlanPanelStyles } from '../../utils/01MaterialJsStyles/11SeatingPlan/SeatingPlanPanel'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common'
+import { SeatingPlanPanelStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/SeatingPlanPanel'
+import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Api
-import { apiSeatingPlan } from '../../Api/ApiSeatingPlan';
-// import { apiStudents } from '../../Api/ApiStudents';
+import { apiSeatingPlan } from '../../../../Api/ApiSeatingPlan';
+// import { apiStudents } from '../../../../Api/ApiStudents';
 
 // Redux
 import { connect } from 'react-redux';
-import { setPlan } from '../../Redux/Action/seatingPlanAction';
+import { setPlan } from '../../../../Redux/Action/seatingPlanAction';
 
 // Utils
 import { cloneDeep, flatMap, flatten, filter, groupBy, isFunction, keyBy, map, partition, values, zip } from 'lodash-es';

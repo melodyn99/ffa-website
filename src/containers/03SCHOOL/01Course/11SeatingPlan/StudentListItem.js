@@ -1,18 +1,18 @@
 // Essential for all components
-import React from 'react';
+import React from './node_modules/react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from './node_modules/react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { StudentListItemStyles } from '../../utils/01MaterialJsStyles/11SeatingPlan/StudentListItem'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
-import { withStyles } from '@material-ui/core/styles';
+import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common'
+import { StudentListItemStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/StudentListItem'
+import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { withStyles } from './node_modules/@material-ui/core/styles';
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from './node_modules/react-redux';
 
 class StudentListItem extends React.Component {
 

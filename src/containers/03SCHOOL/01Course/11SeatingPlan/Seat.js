@@ -1,15 +1,15 @@
 // Essential for all components
-import React from 'react';
+import React from './node_modules/react';
 
 // Api
-import { apiSeatingPlan } from '../../Api/ApiSeatingPlan';
+import { apiSeatingPlan } from '../../../../Api/ApiSeatingPlan';
 
 // Redux
-import { connect } from 'react-redux';
-import { setPlan } from '../../Redux/Action/seatingPlanAction';
+import { connect } from './node_modules/react-redux';
+import { setPlan } from '../../../../Redux/Action/seatingPlanAction';
 
 // Utils
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from './node_modules/@material-ui/core/Tooltip';
 
 export const makeColorString = ({ r, g, b }) => {
     return (

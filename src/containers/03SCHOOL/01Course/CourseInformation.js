@@ -6,16 +6,16 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -24,8 +24,8 @@ import { connect } from 'react-redux';
 
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
-// import data from '../../data/09Account/EnrollmentHistory';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
+// import data from '../../../data/09Account/EnrollmentHistory';
 
 class NewAccount extends React.Component {
 

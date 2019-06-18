@@ -1,31 +1,31 @@
 // Essential for all components
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from './node_modules/react';
+import PropTypes from './node_modules/prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from './node_modules/react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
-import { withStyles } from '@material-ui/core/styles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { withStyles } from './node_modules/@material-ui/core/styles';
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
+import Grid from './node_modules/@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from './node_modules/react-redux';
 
 // Utils
 
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
-// import data from '../../data/09Account/EnrollmentHistory';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
+// import data from '../../../data/09Account/EnrollmentHistory';
 
 class NewAccount extends React.Component {
 

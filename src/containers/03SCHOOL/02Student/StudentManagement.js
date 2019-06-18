@@ -6,15 +6,15 @@ import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { HeaderStyles } from '../../utils/01MaterialJsStyles/00Common/header'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import { HeaderStyles } from '../../../utils/01MaterialJsStyles/00Common/header'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 // import { Button } from '@material-ui/core';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -22,7 +22,7 @@ import { connect } from 'react-redux';
 // Utils
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
 
 class StudentManagement extends Component {
     constructor(props) {

@@ -77,7 +77,7 @@ import NewNoteContent from './containers/03SCHOOL/09Notes/NewNoteContent';
 import Scheduling from './containers/02STUDENTS/10Schedule/Scheduling';
 
 // Seating Plan
-import SeatingPlan from './containers/03SCHOOL/11SeatingPlan/SeatingPlan';
+import SeatingPlan from './containers/03SCHOOL/01Course/11SeatingPlan/SeatingPlan';
 
 // 404
 import PageNotFound from './containers/PageNotFound';

@@ -1,30 +1,30 @@
 // Essential for all components
-import React from 'react';
+import React from './node_modules/react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from './node_modules/react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common';
-import { StudentContainerStyles } from '../../utils/01MaterialJsStyles/11SeatingPlan/StudentContainer';
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
-import { withStyles } from '@material-ui/core/styles';
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, List, Typography } from '@material-ui/core';
-import { ChevronRight } from '@material-ui/icons';
+import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common';
+import { StudentContainerStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/StudentContainer';
+import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { withStyles } from './node_modules/@material-ui/core/styles';
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, List, Typography } from './node_modules/@material-ui/core';
+import { ChevronRight } from './node_modules/@material-ui/icons';
 
 // Api
-import { apiEventPpt } from '../../Api/ApiEventPpt';
-// import { apiStudents } from '../../Api/ApiStudents';
-// import { apiSeatingPlan } from '../../Api/ApiSeatingPlan';
+import { apiEventPpt } from '../../../../../Api/ApiEventPpt';
+// import { apiStudents } from '../../../../Api/ApiStudents';
+// import { apiSeatingPlan } from '../../../../Api/ApiSeatingPlan';
 
 // Redux
-import { connect } from 'react-redux';
-import { setPlan } from '../../Redux/Action/seatingPlanAction';
+import { connect } from './node_modules/react-redux';
+import { setPlan } from '../../../../../Redux/Action/seatingPlanAction';
 
 // Utils
-import { ChromePicker } from 'react-color';
-import { isFunction } from 'lodash-es';
+import { ChromePicker } from './node_modules/react-color';
+import { isFunction } from './node_modules/lodash-es';
 
 // Children components
 import { makeColorString } from "./Seat";

@@ -1,39 +1,39 @@
 // Essential for all components
-import React from 'react';
+import React from './node_modules/react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from './node_modules/react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
-import { withStyles } from '@material-ui/core/styles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { withStyles } from './node_modules/@material-ui/core/styles';
 
 // Material UI
-import PropTypes from 'prop-types';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import PropTypes from './node_modules/prop-types';
+import Table from './node_modules/@material-ui/core/Table';
+import TableBody from './node_modules/@material-ui/core/TableBody';
+import TableCell from './node_modules/@material-ui/core/TableCell';
+import TablePagination from './node_modules/@material-ui/core/TablePagination';
+import TableRow from './node_modules/@material-ui/core/TableRow';
+import Paper from './node_modules/@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from './node_modules/react-redux';
 
 // Utils
-import { getSorting } from '../../utils/02MaterialDesign/EnhancedTable';
+import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
-import EnhancedTableHead from '../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../data/03Enrollment/EnrollmentManagement';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
+import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
+import data from '../../../data/03Enrollment/EnrollmentManagement';
 
 // Define column names
 const rows = [

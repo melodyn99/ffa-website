@@ -6,24 +6,24 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { SeatingPlanStyles } from '../../utils/01MaterialJsStyles/11SeatingPlan/SeatingPlan'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common'
+import { SeatingPlanStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/SeatingPlan'
+import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 
 // Api
-import { apiSeatingPlan } from '../../Api/ApiSeatingPlan';
-import { apiStudents } from '../../Api/ApiStudents';
+import { apiSeatingPlan } from '../../../../Api/ApiSeatingPlan';
+import { apiStudents } from '../../../../Api/ApiStudents';
 
 // Redux
 import { connect } from 'react-redux';
-import { setPlan, setEditPlanType } from '../../Redux/Action/seatingPlanAction';
+import { setPlan, setEditPlanType } from '../../../../Redux/Action/seatingPlanAction';
 
 // Utils
-import { autoScrollTop } from '../../Util/ScrollToTop';
+import { autoScrollTop } from '../../../../Util/ScrollToTop';
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../../components/100Include/breadcrumb';
 import SeatingPlanPanel from "./SeatingPlanPanel";
 import SeatPlanView from './SeatPlanView';
 

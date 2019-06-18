@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { SchedulingStyles } from '../../utils/01MaterialJsStyles/10Schedule/Scheduling'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import { SchedulingStyles } from '../../../utils/01MaterialJsStyles/10Schedule/Scheduling'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import {
     Card, CardContent,
@@ -21,19 +21,19 @@ import {
 } from '@material-ui/icons';
 
 // Api
-import { apiConferences } from '../../Api/ApiConferences';
-import { apiEventPpt } from '../../Api/ApiEventPpt';
+import { apiConferences } from '../../../Api/ApiConferences';
+import { apiEventPpt } from '../../../Api/ApiEventPpt';
 
 // Redux
 import { connect } from 'react-redux';
-import { addEvent } from '../../Redux/Action/eventAction';
-import { setViewingSeminar } from '../../Redux/Action/seminarAction';
-import { CourseTypesMap } from '../../Redux/Constant/StaticTypes';
+import { addEvent } from '../../../Redux/Action/eventAction';
+import { setViewingSeminar } from '../../../Redux/Action/seminarAction';
+import { CourseTypesMap } from '../../../Redux/Constant/StaticTypes';
 
 // Utils
-import { autoScrollTop } from '../../Util/ScrollToTop';
-// import { emitter, EventTypes } from '../../Util/EventEmitter';
-import { dateToDayMonthYear, dateToRemainingDays } from '../../Util/DateUtils';
+import { autoScrollTop } from '../../../Util/ScrollToTop';
+// import { emitter, EventTypes } from '../../../Util/EventEmitter';
+import { dateToDayMonthYear, dateToRemainingDays } from '../../../Util/DateUtils';
 import moment from 'moment';
 import FuzzySearch from 'fuzzy-search';
 import {
@@ -42,8 +42,8 @@ import {
 } from 'lodash-es';
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
-import Calendar from '../../components/Calendar';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
+import Calendar from '../../../components/Calendar';
 
 class Scheduling extends React.Component {
     constructor(props) {

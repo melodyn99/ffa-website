@@ -6,25 +6,25 @@ import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
-import { NotesTakingStyles } from '../../utils/01MaterialJsStyles/09Notes/NotesTaking'
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
+import { NotesTakingStyles } from '../../../utils/01MaterialJsStyles/09Notes/NotesTaking'
+import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText, Typography, } from '@material-ui/core';
 
 // Api
-import { apiNoteTaking } from '../../Api/ApiNoteTaking';
+import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
 import { connect } from 'react-redux';
-import { setNoteTitle, viewingNoteAction } from '../../Redux/Action/eventAction';
+import { setNoteTitle, viewingNoteAction } from '../../../Redux/Action/eventAction';
 
 // Utils
-import { autoScrollTop } from '../../Util/ScrollToTop';
-import { dateToDayAndMonth } from '../../Util/DateUtils';
+import { autoScrollTop } from '../../../Util/ScrollToTop';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
-import BreadCrumb from '../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/breadcrumb';
 
 class NotesTaking extends React.Component {
     state = {

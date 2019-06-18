@@ -3,16 +3,16 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 // Styling
-import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common';
-import { SeatBoardStyles } from '../../utils/01MaterialJsStyles/11SeatingPlan/SeatBoard';
-import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { CommonStyles } from '../../../../utils/01MaterialJsStyles/00Common/common';
+import { SeatBoardStyles } from '../../../../utils/01MaterialJsStyles/11SeatingPlan/SeatBoard';
+import combineStyles from '../../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
-import { emitter, EventTypes } from '../../Util/EventEmitter';
+import { emitter, EventTypes } from '../../../../Util/EventEmitter';
 
 // Children components
 import SeatTable from "./SeatTable";
