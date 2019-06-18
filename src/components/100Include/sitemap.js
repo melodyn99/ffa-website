@@ -47,13 +47,25 @@ function Sitemap(props) {
                     <h2>Form views</h2>
 
                     <h3>Courses Management</h3>
-                    <li><Link to={'/' + i18n.language + '/course-information'}>Course Information</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-info'}>Course Info (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-notes'}>New Notes (done)</Link></li>
 
                     <h3>Students Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-student'}>New Student</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-student'}>New Student (done)</Link></li>
+
+                    <h3>News Management</h3>
+                    <li><Link to={'/' + i18n.language + '/new-news'}>New News (done)</Link></li>
+
+                    <h3>Activities Management</h3>
+                    <li><Link to={'/' + i18n.language + '/new-activity'}>New Activity (done)</Link></li>
+
+                    <h3>Resources Management</h3>
+                    <li><Link to={'/' + i18n.language + '/new-material'}>New Material (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-homework'}>New Homework (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-question'}>New Question (done)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/new-account'}>New Account</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-account'}>New Account (done)</Link></li>
 
                 </ul>
             </div>
