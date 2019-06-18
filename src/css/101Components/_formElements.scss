@@ -1,0 +1,10 @@
+//ELEMENTS
+input[type=text],
+input[type=email],
+input[type=password] { margin:0; padding:6px 10px; line-height: 1em; border:solid 1px #848484; border-radius:5px; width:100%; font-size:14px; color:#000; height:34px; }
+
+select { margin:0; padding:6px 10px; line-height: 1em; border:solid 1px #848484; border-radius:5px; width:100%; font-size:14px; color:#000; background-color:#fff; height:34px;
+    -webkit-appearance: none;
+
+    option { padding:9px 10px; }
+}
