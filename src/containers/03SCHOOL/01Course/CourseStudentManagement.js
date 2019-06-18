@@ -32,7 +32,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/01Course/StudentManagement';
+import SubMenu from '../../../components/104SubMenus/01Course/CourseStudentManagement';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../../data/01Course/CourseStudentManagement';
 
@@ -48,7 +48,7 @@ const rows = [
     { id: 'date', numeric: true, disablePadding: false, label: '添加日期' },
 ];
 
-class StudentManagement extends React.Component {
+class CourseStudentManagement extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -201,7 +201,7 @@ class StudentManagement extends React.Component {
     }
 }
 
-StudentManagement.propTypes = {
+CourseStudentManagement.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -216,4 +216,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentManagement)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseStudentManagement)));

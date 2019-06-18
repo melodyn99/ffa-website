@@ -20,7 +20,7 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 
 /*** GENERAL ***/
 // Home
-import Home from './containers/01GENERAL/00Home/Home';
+import Home from './containers/01GENERAL/01Home/Home';
 
 /*** STUDENT ***/
 

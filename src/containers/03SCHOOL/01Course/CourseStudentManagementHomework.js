@@ -32,7 +32,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/01Course/StudentManagementHomework';
+import SubMenu from '../../../components/104SubMenus/01Course/CourseStudentManagementHomework';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../../data/01Course/CourseStudentManagementHomework';
 
@@ -46,7 +46,7 @@ const rows = [
     { id: 'handin', numeric: true, disablePadding: false, label: '提交日期' },
 ];
 
-class StudentManagementHomework extends React.Component {
+class CourseStudentManagementHomework extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -197,7 +197,7 @@ class StudentManagementHomework extends React.Component {
     }
 }
 
-StudentManagementHomework.propTypes = {
+CourseStudentManagementHomework.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -212,4 +212,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentManagementHomework)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseStudentManagementHomework)));

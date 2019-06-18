@@ -10,7 +10,7 @@ class Breadcrumb extends Component {
 
     renderSwitch = (currentPath) => {
 
-        console.log('hello', currentPath);
+        // console.log('hello', currentPath);
 
         switch (currentPath) {
 
