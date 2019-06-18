@@ -36,7 +36,7 @@ import CourseStudentManagementAttendance from './containers/03SCHOOL/01Course/Co
 import CourseStudentManagementHomework from './containers/03SCHOOL/01Course/CourseStudentManagementHomework';
 import CourseQandA from './containers/03SCHOOL/01Course/CourseQandA';
 import CourseNotes from './containers/03SCHOOL/01Course/CourseNotes';
-import NewNotes from './containers/03SCHOOL/01Course/NewNotes';
+import CourseNewNotes from './containers/03SCHOOL/01Course/CourseNewNotes';
 import CourseAssessment from './containers/03SCHOOL/01Course/CourseAssessment';
 
 // Student Management
@@ -181,8 +181,8 @@ class App extends Component {
                 case 'course-notes': {
                     return <CourseNotes />;
                 }
-                case 'new-notes': {
-                    return <NewNotes />;
+                case 'course-new-notes': {
+                    return <CourseNewNotes />;
                 }
                 case 'course-assessment': {
                     return <CourseAssessment />;
