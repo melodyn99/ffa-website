@@ -34,6 +34,7 @@ import CourseWork from './containers/03SCHOOL/01Course/CourseWork';
 import CourseStudentManagement from './containers/03SCHOOL/01Course/CourseStudentManagement';
 import CourseStudentManagementAttendance from './containers/03SCHOOL/01Course/CourseStudentManagementAttendance';
 import CourseStudentManagementHomework from './containers/03SCHOOL/01Course/CourseStudentManagementHomework';
+import CourseAnnouncement from './containers/03SCHOOL/01Course/CourseAnnouncement';
 import CourseQandA from './containers/03SCHOOL/01Course/CourseQandA';
 import CourseNotes from './containers/03SCHOOL/01Course/CourseNotes';
 import CourseNewNotes from './containers/03SCHOOL/01Course/CourseNewNotes';
@@ -175,6 +176,9 @@ class App extends Component {
                 }
                 case 'course-student-management-homework': {
                     return <CourseStudentManagementHomework />;
+                }
+                case 'course-announcement': {
+                    return <CourseAnnouncement />
                 }
                 case 'course-q-and-a': {
                     return <CourseQandA />;
