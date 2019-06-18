@@ -36,6 +36,7 @@ import CourseStudentManagementAttendance from './containers/03SCHOOL/01Course/Co
 import CourseStudentManagementHomework from './containers/03SCHOOL/01Course/CourseStudentManagementHomework';
 import CourseQandA from './containers/03SCHOOL/01Course/CourseQandA';
 import CourseNotes from './containers/03SCHOOL/01Course/CourseNotes';
+import NewNotes from './containers/03SCHOOL/01Course/NewNotes';
 import CourseAssessment from './containers/03SCHOOL/01Course/CourseAssessment';
 
 // Student Management
@@ -47,13 +48,18 @@ import EnrollmentManagement from './containers/03SCHOOL/03Enrollment/EnrollmentM
 
 // News Management
 import NewsManagement from './containers/03SCHOOL/04News/NewsManagement';
+import NewNews from './containers/03SCHOOL/04News/NewNews';
 
 // Activities Management
 import ActivityManagement from './containers/03SCHOOL/05Activity/ActivityManagement';
+import NewActivity from './containers/03SCHOOL/05Activity/NewActivity';
 
 // Resources Management
 import ResourceManagementCourse from './containers/03SCHOOL/06Resource/ResourceManagementCourse';
 import ResourceManagementHomework from './containers/03SCHOOL/06Resource/ResourceManagementHomework';
+import NewMaterial from './containers/03SCHOOL//06Resource/NewMaterial';
+import NewHomework from './containers/03SCHOOL//06Resource/NewHomework';
+import NewQuestion from './containers/03SCHOOL//06Resource/NewQuestion';
 
 // My Alerts
 import MyAlert from './containers/03SCHOOL/07Alert/MyAlert';
@@ -175,6 +181,9 @@ class App extends Component {
                 case 'course-notes': {
                     return <CourseNotes />;
                 }
+                case 'new-notes': {
+                    return <NewNotes />;
+                }
                 case 'course-assessment': {
                     return <CourseAssessment />;
                 }
@@ -193,10 +202,16 @@ class App extends Component {
                 case 'news-management': {
                     return <NewsManagement />;
                 }
+                case 'new-news': {
+                    return <NewNews />;
+                }
 
                 // Activity
                 case 'activities-management': {
                     return <ActivityManagement />;
+                }
+                case 'new-activity': {
+                    return <NewActivity />;
                 }
 
                 // Resource
@@ -205,6 +220,15 @@ class App extends Component {
                 }
                 case 'resources-management-homework': {
                     return <ResourceManagementHomework />;
+                }
+                case 'new-material': {
+                    return <NewMaterial />;
+                }
+                case 'new-homework': {
+                    return <NewHomework />;
+                }
+                case 'new-question': {
+                    return <NewQuestion />;
                 }
 
                 // Alert
