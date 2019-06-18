@@ -10,7 +10,7 @@ class Breadcrumb extends Component {
 
     renderSwitch = (currentPath) => {
 
-        console.log('hello', currentPath);
+        // console.log('hello', currentPath);
 
         switch (currentPath) {
 
@@ -21,22 +21,22 @@ class Breadcrumb extends Component {
             case 'course-info': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程资料</span></div>);
             }
-            case 'preparations': {
+            case 'course-preparations': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>预先准备</span></div>);
             }
-            case 'materials': {
+            case 'course-materials': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程教材</span></div>);
             }
             case 'course-work': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程作业</span></div>);
             }
-            case 'student-management': {
+            case 'course-student-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>学生管理</span></div>);
             }
-            case 'student-management-attendance': {
+            case 'course-student-management-attendance': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>用户名：点名</span></div>);
             }
-            case 'student-management-homework': {
+            case 'course-student-management-homework': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to="/">学生管理</Link></span> > <span>用户名：作业</span></div>);
             }
             case 'course-q-and-a': {
@@ -105,7 +105,7 @@ class Breadcrumb extends Component {
             case 'new-account': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">账户管理</Link></span> > <span>新增账户</span></div>);
             }
-            
+
             case 'my-alerts': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">報名歷史</Link></span> > <span>報名123</span></div>);
             }

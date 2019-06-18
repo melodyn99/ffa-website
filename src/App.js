@@ -40,7 +40,7 @@ import NewNotes from './containers/03SCHOOL/01Course/NewNotes';
 import CourseAssessment from './containers/03SCHOOL/01Course/CourseAssessment';
 
 // Student Management
-// import StudentManagement from './containers/02Student/StudentManagement';
+import AllStudentsManagement from './containers/03SCHOOL/02Student/AllStudentsManagement';
 import NewStudent from './containers/03SCHOOL/02Student/NewStudent';
 
 // Enrollment Management
@@ -189,6 +189,9 @@ class App extends Component {
                 }
 
                 // Student
+                case 'all-students-management': {
+                    return <AllStudentsManagement />
+                }
                 case 'new-student': {
                     return <NewStudent />;
                 }

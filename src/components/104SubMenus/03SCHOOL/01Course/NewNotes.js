@@ -16,7 +16,7 @@ class NewNotes extends Component {
             urlArray = pathname.split("/"),
             currentPath = urlArray[2];
 
-        console.log(currentPath);
+        // console.log(currentPath);
 
         return (
             <div className="subMenu">

@@ -27,9 +27,8 @@ class Header extends Component {
             i18n } = this.props;
 
         let pathname = this.props.router.location.pathname,
-            urlArray = pathname.split("/");
-
-        // console.log(urlArray[2]);
+            urlArray = pathname.split("/"),
+            currentPath = urlArray[2];
 
         return (
             <div className="wrapper-header">
@@ -39,14 +38,14 @@ class Header extends Component {
                     <div className="logo"></div>
 
                     <div className="desktop-menu clearfix">
-                        <li><Link to={"/" + i18n.language + "/all-courses"} className={urlArray[2] === 'all-courses' ? 'active' : ''}>课程管理</Link></li>
-                        <li><Link to={"/" + i18n.language + "/course-student-management"} className={urlArray[2] === 'course-student-management' ? 'active' : ''}>学生管理</Link></li>
-                        <li><Link to={"/" + i18n.language + "/enrollment-management"} className={urlArray[2] === 'enrollment-management' ? 'active' : ''}>报名管理</Link></li>
-                        <li><Link to={"/" + i18n.language + "/news-management"} className={urlArray[2] === 'news-management' ? 'active' : ''}>新闻管理</Link></li>
-                        <li><Link to={"/" + i18n.language + "/activities-management"} className={urlArray[2] === 'activities-management' ? 'active' : ''}>活动管理</Link></li>
-                        <li><Link to={"/" + i18n.language + "/resources-management-course"} className={urlArray[2] === 'resources-management-course' ? 'active' : ''}>资源管理</Link></li>
-                        <li><Link to={"/" + i18n.language + "/my-alerts"} className={urlArray[2] === 'my-alerts' ? 'active' : ''}>我的提醒 (6)</Link></li>
-                        <li><Link to={"/" + i18n.language + "/reports"} className={urlArray[2] === 'reports' ? 'active' : ''}>项目报告</Link></li>
+                        <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'all-courses' ? 'active' : ''}>课程管理</Link></li>
+                        <li><Link to={"/" + i18n.language + "/all-students-management"} className={currentPath === 'all-students-management' ? 'active' : ''}>学生管理</Link></li>
+                        <li><Link to={"/" + i18n.language + "/enrollment-management"} className={currentPath === 'enrollment-management' ? 'active' : ''}>报名管理</Link></li>
+                        <li><Link to={"/" + i18n.language + "/news-management"} className={currentPath === 'news-management' ? 'active' : ''}>新闻管理</Link></li>
+                        <li><Link to={"/" + i18n.language + "/activities-management"} className={currentPath === 'activities-management' ? 'active' : ''}>活动管理</Link></li>
+                        <li><Link to={"/" + i18n.language + "/resources-management-course"} className={currentPath === 'resources-management-course' ? 'active' : ''}>资源管理</Link></li>
+                        <li><Link to={"/" + i18n.language + "/my-alerts"} className={currentPath === 'my-alerts' ? 'active' : ''}>我的提醒 (6)</Link></li>
+                        <li><Link to={"/" + i18n.language + "/reports"} className={currentPath === 'reports' ? 'active' : ''}>项目报告</Link></li>
                     </div>
                 </div>
             </div>
