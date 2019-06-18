@@ -21,15 +21,15 @@ class CourseAssessment extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/"}>课程资料</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>预先准备</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>课程教材</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>课程作业</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>学生管理</Link></li>
+                    <li><Link to={"/" + i18n.language + "/course-information"}>课程资料</Link></li>
+                    <li><Link to={"/" + i18n.language + "/course-preparations"}>预先准备</Link></li>
+                    <li><Link to={"/" + i18n.language + "/course-materials"}>课程教材</Link></li>
+                    <li><Link to={"/" + i18n.language + "/course-work"}>课程作业</Link></li>
+                    <li><Link to={"/" + i18n.language + "/course-student-management"}>学生管理</Link></li>
                     <li><Link to={"/" + i18n.language + "/"}>课程公告</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>课程问答</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>及时记录</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"} className="active">课程评分</Link></li>
+                    <li><Link to={"/" + i18n.language + "/course-q-and-a"}>课程问答</Link></li>
+                    <li><Link to={"/" + i18n.language + "/course-notes"}>及时记录</Link></li>
+                    <li><Link to={"/" + i18n.language + "/course-assessment"} className="active">课程评分</Link></li>
                 </ul>
             </div>
         );
