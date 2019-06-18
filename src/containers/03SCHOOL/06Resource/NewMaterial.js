@@ -27,7 +27,7 @@ import { connect } from 'react-redux';
 import BreadCrumb from '../../../components/100Include/breadcrumb';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewAccount extends React.Component {
+class NewMaterial extends React.Component {
 
    render() {
        // const { classes } = this.props;
@@ -37,7 +37,7 @@ class NewAccount extends React.Component {
                <div className="wrapper-container-main">
                    <div className="container-main">
 
-                       <h2 className="pageTitle">账户管理</h2>
+                       <h2 className="pageTitle">资源库管理</h2>
 
                        <div className="wrapper-content">
                            <BreadCrumb />
@@ -45,74 +45,46 @@ class NewAccount extends React.Component {
                            <div className="content">
                                <Grid container spacing={16} alignItems="center">
                                    <Grid item xs={1} >
-                                       姓*
+                                       教材标题
                                    </Grid>
                                    <Grid item xs={11}>
                                        <input type="text" />
                                    </Grid>
 
                                    <Grid item xs={1} >
-                                       名*
+                                       学科
                                    </Grid>
                                    <Grid item xs={11}>
-                                       <input type="text" />
+                                   <select>
+                                           <option value="1">战略课程</option>
+                                           <option value="2">战略课程</option>
+                                           <option value="3">战略课程</option>
+                                           <option value="4">战略课程</option>
+                                       </select>
                                    </Grid>
-
+                                  
                                    <Grid item xs={1} >
-                                       账户类型*
+                                       编辑用户#1
                                    </Grid>
                                    <Grid item xs={11}>
                                        <select>
-                                           <option value="1">老师</option>
-                                           <option value="2">老师</option>
-                                           <option value="3">老师</option>
-                                           <option value="4">老师</option>
+                                           <option value="1">请选择</option>
+                                           <option value="2">选择1</option>
+                                           <option value="3">选择2</option>
+                                           <option value="4">选择3</option>
                                        </select>
                                    </Grid>
 
                                    <Grid item xs={1} >
-                                       性别*
+                                       一般用户#1
                                    </Grid>
                                    <Grid item xs={11}>
                                        <select>
-                                           <option value="boy">男</option>
-                                           <option value="girl">女</option>
+                                           <option value="1">请选择</option>
+                                           <option value="2">选择1</option>
+                                           <option value="3">选择2</option>
+                                           <option value="4">选择3</option>
                                        </select>
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       联络电话*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       电邮*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       微信
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       省市区
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       联络住址
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
                                    </Grid>
                                </Grid>
                            </div>
@@ -124,7 +96,7 @@ class NewAccount extends React.Component {
    }
 }
 
-NewAccount.propTypes = {
+NewMaterial.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -139,4 +111,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewAccount)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewMaterial)));

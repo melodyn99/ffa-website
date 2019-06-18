@@ -27,7 +27,7 @@ import { connect } from 'react-redux';
 import BreadCrumb from '../../../components/100Include/breadcrumb';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewAccount extends React.Component {
+class NewQuestion extends React.Component {
 
    render() {
        // const { classes } = this.props;
@@ -37,7 +37,7 @@ class NewAccount extends React.Component {
                <div className="wrapper-container-main">
                    <div className="container-main">
 
-                       <h2 className="pageTitle">账户管理</h2>
+                       <h2 className="pageTitle">资源库管理</h2>
 
                        <div className="wrapper-content">
                            <BreadCrumb />
@@ -45,74 +45,57 @@ class NewAccount extends React.Component {
                            <div className="content">
                                <Grid container spacing={16} alignItems="center">
                                    <Grid item xs={1} >
-                                       姓*
+                                       问题
                                    </Grid>
                                    <Grid item xs={11}>
                                        <input type="text" />
                                    </Grid>
 
                                    <Grid item xs={1} >
-                                       名*
+                                       分数
                                    </Grid>
                                    <Grid item xs={11}>
                                        <input type="text" />
                                    </Grid>
 
                                    <Grid item xs={1} >
-                                       账户类型*
+                                       选择#A
                                    </Grid>
                                    <Grid item xs={11}>
-                                       <select>
-                                           <option value="1">老师</option>
-                                           <option value="2">老师</option>
-                                           <option value="3">老师</option>
-                                           <option value="4">老师</option>
+                                       <input type="text" />
+                                   </Grid>
+
+                                   <Grid item xs={1} >
+                                       选择#B
+                                   </Grid>
+                                   <Grid item xs={11}>
+                                       <input type="text" />
+                                   </Grid>
+
+                                   <Grid item xs={1} >
+                                       选择#C
+                                   </Grid>
+                                   <Grid item xs={11}>
+                                       <input type="text" />
+                                   </Grid>
+
+                                   <Grid item xs={1} >
+                                       选择#D
+                                   </Grid>
+                                   <Grid item xs={11}>
+                                       <input type="text" />
+                                   </Grid>
+
+                                   <Grid item xs={1} >
+                                       正确答案
+                                   </Grid>
+                                   <Grid item xs={11}>
+                                   <select>
+                                           <option value="1">选择#A</option>
+                                           <option value="2">选择#B</option>
+                                           <option value="3">选择#C</option>
+                                           <option value="4">选择#D</option>
                                        </select>
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       性别*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <select>
-                                           <option value="boy">男</option>
-                                           <option value="girl">女</option>
-                                       </select>
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       联络电话*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       电邮*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       微信
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       省市区
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       联络住址
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
                                    </Grid>
                                </Grid>
                            </div>
@@ -124,7 +107,7 @@ class NewAccount extends React.Component {
    }
 }
 
-NewAccount.propTypes = {
+NewQuestion.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -139,4 +122,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewAccount)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewQuestion)));

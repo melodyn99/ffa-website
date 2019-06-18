@@ -25,7 +25,7 @@ import { connect } from 'react-redux';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/CourseInfo';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/CourseInformation';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class CourseInformation extends React.Component {
