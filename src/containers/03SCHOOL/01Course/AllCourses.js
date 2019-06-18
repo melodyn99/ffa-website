@@ -120,7 +120,7 @@ class AllCourses extends React.Component {
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         if (this.state.tempGoDetail) {
-            return <Redirect to={"/" + i18n.language + "/course-information"} />;
+            return <Redirect push to={"/" + i18n.language + "/course-information"} />;
         }
 
         return (

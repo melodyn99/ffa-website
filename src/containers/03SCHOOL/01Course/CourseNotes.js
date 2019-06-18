@@ -1,7 +1,7 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
@@ -51,6 +51,7 @@ class CourseNotes extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
+        tempGoDetail: false
     };
 
     handleRequestSort = (event, property) => {
@@ -103,10 +104,21 @@ class CourseNotes extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    _tempDetail = () => {
+        this.setState({
+            ...this.state,
+            tempGoDetail: true
+        });
+    }
+
     render() {
-        const { classes } = this.props;
+        const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
+        if (this.state.tempGoDetail) {
+            return <Redirect push to={"/" + i18n.language + "/notes-taking"} />;
+        }
 
         return (
             <div>
@@ -141,7 +153,8 @@ class CourseNotes extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                // onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={() => this._tempDetail()}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
