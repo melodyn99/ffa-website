@@ -137,6 +137,13 @@ class App extends Component {
                     return <Home />;
                 }
 
+                /*** STUDENT ***/
+                // Scheduling
+                case 'scheduling': {
+                    return <Scheduling />;
+                }
+
+                /*** SCHOOL ***/
                 // Course
                 case 'all-courses': {
                     return <AllCourses />;
@@ -172,12 +179,10 @@ class App extends Component {
                     return <CourseAssessment />;
                 }
 
-
                 // Student
                 case 'new-student': {
                     return <NewStudent />;
                 }
-
 
                 // Enrollment
                 case 'enrollment-management': {
@@ -189,12 +194,12 @@ class App extends Component {
                     return <NewsManagement />;
                 }
 
-                // Activities
+                // Activity
                 case 'activities-management': {
                     return <ActivityManagement />;
                 }
 
-                // Resources
+                // Resource
                 case 'resources-management-course': {
                     return <ResourceManagementCourse />;
                 }
@@ -202,7 +207,7 @@ class App extends Component {
                     return <ResourceManagementHomework />;
                 }
 
-                // My Alert
+                // Alert
                 case 'my-alerts': {
                     return <MyAlert />;
                 }
@@ -236,11 +241,6 @@ class App extends Component {
                 }
                 case 'new-note-content': {
                     return <NewNoteContent />
-                }
-
-                // Scheduling
-                case 'scheduling': {
-                    return <Scheduling />;
                 }
 
                 // Seating Plan
