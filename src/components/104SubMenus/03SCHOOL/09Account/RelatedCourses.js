@@ -21,8 +21,8 @@ class RelatedCourses extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/"}>账户资料</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"} className="active">相关课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/"} className={currentPath === '' ? 'active' : ''}>账户资料</Link></li>
+                    <li><Link to={"/" + i18n.language + "/"} className={currentPath === '' ? 'active' : ''}>相关课程</Link></li>
                 </ul>
             </div>
         );

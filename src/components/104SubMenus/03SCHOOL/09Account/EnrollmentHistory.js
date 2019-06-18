@@ -21,10 +21,10 @@ class EnrollmentHistory extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/"} className="active">全部</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>老师</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>课程人员</Link></li>
-                    <li><Link to={"/" + i18n.language + "/"}>管理员</Link></li>
+                    <li><Link to={"/" + i18n.language + "/"} className={currentPath === '' ? 'active' : ''}>全部</Link></li>
+                    <li><Link to={"/" + i18n.language + "/"} className={currentPath === '' ? 'active' : ''}>老师</Link></li>
+                    <li><Link to={"/" + i18n.language + "/"} className={currentPath === '' ? 'active' : ''}>课程人员</Link></li>
+                    <li><Link to={"/" + i18n.language + "/"} className={currentPath === '' ? 'active' : ''}>管理员</Link></li>
                 </ul>
             </div>
         );
