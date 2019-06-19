@@ -38,13 +38,17 @@ class BeforeStudentRegister extends React.Component {
         return (
             <div>
 
-                Do you agree?
+                報名須知
+                <div className="sep-20"></div>
 
+                PLEASE PROVIDE TEXT CONTENT
+
+                <div className="sep-20"></div>
 
                 <Button
                     className={classes.createButton}
                     onClick={() => this.props.handleAgree()}
-                >Yes
+                >Agree
                 </Button>
 
             </div>
