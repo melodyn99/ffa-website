@@ -37,6 +37,18 @@ class Header extends Component {
 
                     <div className="logo"></div>
 
+                    <div className="desktop-menu general clearfix">
+                        <li><Link to={"/" + i18n.language + "/"} className={(currentPath === '123') ? 'active' : ''}>入学</Link></li>
+                        <li><Link to={"/" + i18n.language + "/"} className={(currentPath === '123') ? 'active' : ''}>品牌</Link></li>
+                    </div>
+
+                    <div className="desktop-menu student clearfix">
+                        <li><Link to={"/" + i18n.language + "/"} className={currentPath === '123' ? 'active' : ''}>报名申请</Link></li>
+                        <li><Link to={"/" + i18n.language + "/"} className={currentPath === '123' ? 'active' : ''}>我的课程</Link></li>
+                        <li><Link to={"/" + i18n.language + "/"} className={currentPath === '123' ? 'active' : ''}>我的报名</Link></li>
+                        <li><Link to={"/" + i18n.language + "/"} className={currentPath === '123' ? 'active' : ''}>我的提醒</Link></li>
+                    </div>
+
                     <div className="desktop-menu clearfix">
                         <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'all-courses' ? 'active' : ''}>课程管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/all-students-management"} className={(currentPath === 'all-students-management') || (currentPath === 'new-student') ? 'active' : ''}>学生管理</Link></li>
