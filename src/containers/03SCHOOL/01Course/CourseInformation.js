@@ -231,11 +231,11 @@ class CourseInformation extends React.Component {
                             <option value="4">D</option>
                         </select>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Button type="submit" className={classes.editButton}>編輯</Button>
-                        <Button type="submit" className={classes.editButton}>編輯</Button>
-                    </Grid>
                 </Grid>
+                <div className="bottomControl clearfix">
+                    {/* <Button type="submit" className={classes.editButton}>編輯</Button> */}
+                    <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span>
+                </div>
             </Form>
         )
     }

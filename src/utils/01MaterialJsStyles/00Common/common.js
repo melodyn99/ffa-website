@@ -61,5 +61,5 @@ export const CommonStyles = theme => ({
         '&:hover': {
             backgroundColor: '#02de72',
         },
-    },
+    }
 });
