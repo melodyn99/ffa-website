@@ -45,7 +45,7 @@ class LoginWithRegister extends React.Component {
                         登入FFA网上报名系统
                     </Grid>
                     <Grid item xs={6} className="align-right">
-                        <Link to={'/' + i18n.language + '/new-student'}>忘记密码</Link>
+                        <Link to={'/' + i18n.language + ''}>忘记密码</Link>
                     </Grid>
 
                     <Grid item xs={12}>
