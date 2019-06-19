@@ -68,6 +68,16 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/new-account'}>New Account (Melody) (done)</Link></li>
 
                 </ul>
+
+                <ul>
+                    <h2>New Pages</h2>
+
+                    <h3>Student Account</h3>
+                    <li><Link to={'/' + i18n.language + '/login-with-register'}>Login with Regster (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/login-no-register'}>Login no Regster (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-register'}>Student Register (Melody)</Link></li>
+
+                </ul>
             </div>
         </div >
     );
