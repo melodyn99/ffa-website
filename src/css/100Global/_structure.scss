@@ -105,7 +105,9 @@
 .wrapper-container-main { position:relative; width:100%; background:#ecc879; background-size:100%;
 
 	.container-main { position:relative; padding:20px; max-width:1640px; margin:0 auto; min-height:600px; 
-
+		
+		.pageTitle { font-size:60px; color:#fff; }
+		
 		.breadcrumb { color:#fff; background-color:#000; margin:0; padding:5px 15px; border-radius:0; border-bottom:solid 1px #fff;
 			span { display:inline-block; font-size:12px; padding:5px;
 				a { display:block; color:#fff; font-size:12px; }
@@ -123,7 +125,11 @@
 			}	
 		}
 
-		.pageTitle { font-size:60px; color:#fff; }
+		.toolBar { margin-bottom:20px; 
+			button { margin-left:10px; 
+				&:first-child { margin-left:0; } 
+			}
+		}
 
 		.wrapper-content { position:relative; background:#fff; 
 			.content { padding:20px; }

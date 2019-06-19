@@ -5,9 +5,9 @@ export const theme = createMuiTheme({
     typography: {
         useNextVariants: true,
     },
-    ripple: {
-        color: 'red',
-    },
+    // ripple: {
+    //     color: 'red',
+    // },
     palette: {
         primary: {
             main_feature: '#1f2bae',

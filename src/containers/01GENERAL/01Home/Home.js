@@ -84,7 +84,7 @@ class Home extends Component {
                                 <Button
                                     className={classes.createButton}
                                     onClick={() => { this._signInAsync() }}
-                                >Hello</Button>
+                                >登入</Button>
                             </div>
                         </div>
 

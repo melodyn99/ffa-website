@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -125,6 +126,19 @@ class CourseStudentManagement extends React.Component {
                             <SubMenu />
 
                             <div className="content">
+
+                                <div className="toolBar">
+                                    <Button
+                                        className={classes.createButton}
+                                    >登入</Button>
+                                    <Button
+                                        className={classes.editButton}
+                                    >編輯</Button>
+                                    <Button
+                                        className={classes.editButton}
+                                    >導入CSV</Button>
+                                </div>
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
