@@ -21,10 +21,12 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 /*** GENERAL ***/
 // Home
 import Home from './containers/01GENERAL/01Home/Home';
+import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
+import LoginNoRegister from './containers/01GENERAL/02Login/LoginNoRegister';
 
 /*** STUDENT ***/
-import StudentRegister from './containers/02STUDENTS/01Account/StudentRegister';
-import StudentLogin from './containers/02STUDENTS/01Account/StudentLogin';
+import StudentRegister from './containers/02STUDENTS/01Register/StudentRegister';
+
 
 /*** SCHOOL ***/
 // Course Management
@@ -146,15 +148,19 @@ class App extends Component {
                 case 'home': {
                     return <Home />;
                 }
+                case 'login-with-register': {
+                    return <LoginWithRegister />
+                }
+                case 'login-no-register': {
+                    return <LoginNoRegister />
+                }
 
                 /*** STUDENT ***/
                 // Account
                 case 'student-register': {
                     return <StudentRegister />
                 }
-                case 'student-login': {
-                    return <StudentLogin />
-                }
+
 
                 // Scheduling
                 case 'scheduling': {

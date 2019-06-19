@@ -27,7 +27,7 @@ import * as Yup from 'yup';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+// import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
@@ -394,11 +394,10 @@ class StudentRegister extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
+                        <h2 className="pageTitle">建立新帐户</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
-                            <SubMenu />
 
                             <div className="content">
                                 <Formik

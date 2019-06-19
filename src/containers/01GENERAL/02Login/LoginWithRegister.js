@@ -31,7 +31,7 @@ import BreadCrumb from '../../../components/100Include/breadcrumb';
 // import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class StudentLogin extends React.Component {
+class LoginWithRegister extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -86,7 +86,7 @@ class StudentLogin extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
+                        <h2 className="pageTitle">登入</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -112,7 +112,7 @@ class StudentLogin extends React.Component {
     }
 }
 
-StudentLogin.propTypes = {
+LoginWithRegister.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -127,4 +127,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentLogin)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(LoginWithRegister)));
