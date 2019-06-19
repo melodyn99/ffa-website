@@ -27,6 +27,7 @@ import * as Yup from 'yup';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
+import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class NewAccount extends React.Component {
@@ -44,7 +45,7 @@ class NewAccount extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="lastName" type="text" placeholder="赵" maxLength="100" />
-                        {errors.lastName && touched.lastName ? <div>{errors.lastName}</div> : null}
+                        {errors.lastName && touched.lastName ? <ErrorMessage message={errors.lastName} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -52,7 +53,7 @@ class NewAccount extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="firstName" type="text" placeholder="小红" maxLength="100" />
-                        {errors.firstName && touched.firstName ? <div>{errors.firstName}</div> : null}
+                        {errors.firstName && touched.firstName ? <ErrorMessage message={errors.firstName} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -82,7 +83,7 @@ class NewAccount extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactNumber" type="text" placeholder="12345678" maxLength="100" />
-                        {errors.contactNumber && touched.contactNumber ? <div>{errors.contactNumber}</div> : null}
+                        {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -90,7 +91,7 @@ class NewAccount extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactEmail" type="text" placeholder="abc@gmail.com" maxLength="100" />
-                        {errors.contactEmail && touched.contactEmail ? <div>{errors.contactEmail}</div> : null}
+                        {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} />: null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -98,7 +99,7 @@ class NewAccount extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactWechat" type="text" placeholder="12345678" maxLength="100" />
-                        {errors.contactWechat && touched.contactWechat ? <div>{errors.contactWechat}</div> : null}
+                        {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -106,7 +107,7 @@ class NewAccount extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="area" type="text" placeholder="" maxLength="100" />
-                        {errors.area && touched.area ? <div>{errors.area}</div> : null}
+                        {errors.area && touched.area ? <ErrorMessage message={errors.area} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -114,7 +115,7 @@ class NewAccount extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactAddress" type="text" placeholder="" maxLength="100" />
-                        {errors.contactAddress && touched.contactAddress ? <div>{errors.contactAddress}</div> : null}
+                        {errors.contactAddress && touched.contactAddress ? <ErrorMessage message={errors.contactAddress} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -156,9 +157,6 @@ class NewAccount extends React.Component {
             contactEmail: Yup.string()
                 .email('Contact Email must be a valid email')
                 .required('Contact Email is required'),
-            contactWechat: Yup.number()
-                .typeError('Wechat number must be a valid phone number')
-                .required('WeChat number is required'), 
         })
 
         return (

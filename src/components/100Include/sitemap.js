@@ -51,31 +51,21 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/course-new-notes'}>Course New Notes (Melody) (done)</Link></li>
 
                     <h3>Students Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-student'}>New Student ()</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-student'}>New Student (done)</Link></li>
 
                     <h3>News Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-news'}>New News ()</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-news'}>New News (Melody) (done)</Link></li>
 
                     <h3>Activities Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-activity'}>New Activity ()</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-activity'}>New Activity (Melody) (done)</Link></li>
 
                     <h3>Resources Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-material'}>New Material ()</Link></li>
-                    <li><Link to={'/' + i18n.language + '/new-homework'}>New Homework (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/new-question'}>New Question (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-material'}>New Material (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-homework'}>New Homework (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-question'}>New Question (Melody) (done)</Link></li>
 
                     <h3>Accounts</h3>
                     <li><Link to={'/' + i18n.language + '/new-account'}>New Account (Melody) (done)</Link></li>
-
-                </ul>
-                <div className="sep-20"></div>
-                <ul>
-                    <h2>New Pages</h2>
-
-                    <h3>Student Account</h3>
-                    <li><Link to={'/' + i18n.language + '/login-with-register'}>Login with Regster (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/login-no-register'}>Login no Regster (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/student-register'}>Student Register (Melody)</Link></li>
 
                 </ul>
             </div>

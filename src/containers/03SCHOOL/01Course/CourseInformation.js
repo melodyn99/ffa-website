@@ -124,7 +124,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseName" type="text" placeholder="课程名称 456" maxLength="100" />
-                        {errors.courseName && touched.courseName ? <div>{errors.courseName}</div> : null}
+                        {errors.courseName && touched.courseName ? <ErrorMessage message={errors.courseName} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -132,7 +132,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseAddress" type="text" placeholder="Address 1" maxLength="100" />
-                        {errors.courseAddress && touched.courseAddress ? <div>{errors.courseAddress}</div> : null}
+                        {errors.courseAddress && touched.courseAddress ? <ErrorMessage message={errors.courseAddress} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -140,7 +140,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseBio" type="text" placeholder="Bio 1" maxLength="100" />
-                        {errors.courseBio && touched.courseBio ? <div>{errors.courseBio}</div> : null}
+                        {errors.courseBio && touched.courseBio ? <ErrorMessage message={errors.courseBio} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -148,7 +148,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseHighlights" type="text" placeholder="Highlight 1" maxLength="100" />
-                        {errors.courseHighlights && touched.courseHighlights ? <div>{errors.courseHighlights}</div> : null}
+                        {errors.courseHighlights && touched.courseHighlights ? <ErrorMessage message={errors.courseHighlights} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -156,7 +156,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseBenefits" type="text" placeholder="Benefit 1" maxLength="100" />
-                        {errors.courseBenefits && touched.courseBenefits ? <div>{errors.courseBenefits}</div> : null}
+                        {errors.courseBenefits && touched.courseBenefits ? <ErrorMessage message={errors.courseBenefits} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -164,7 +164,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactEmail" type="text" placeholder="abc@abc.com" maxLength="100" />
-                        {errors.contactEmail && touched.contactEmail ? <div>{errors.contactEmail}</div> : null}
+                        {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -172,7 +172,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactWechat" type="text" placeholder="user123" maxLength="100" />
-                        {errors.contactWechat && touched.contactWechat ? <div>{errors.contactWechat}</div> : null}
+                        {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -180,7 +180,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactNumber" type="text" placeholder="12345678" maxLength="100" />
-                        {errors.contactNumber && touched.contactNumber ? <div>{errors.contactNumber}</div> : null}
+                        {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -224,7 +224,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseSpots" type="text" placeholder="100" maxLength="100" />
-                        {errors.courseSpots && touched.courseSpots ? <div>{errors.courseSpots}</div> : null}
+                        {errors.courseSpots && touched.courseSpots ? <ErrorMessage message={errors.courseSpots} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -232,7 +232,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseCredits" type="text" placeholder="10" maxLength="100" />
-                        {errors.courseCredits && touched.courseCredits ? <div>{errors.courseCredits}</div> : null}
+                        {errors.courseCredits && touched.courseCredits ? <ErrorMessage message={errors.courseCredits} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -240,7 +240,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.courseFees && touched.courseFees ? <div>{errors.courseFees}</div> : null}
+                        {errors.courseFees && touched.courseFees ? <ErrorMessage message={errors.courseFees} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -248,7 +248,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="projectedFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.projectedFees && touched.projectedFees ? <div>{errors.projectedFees}</div> : null}
+                        {errors.projectedFees && touched.projectedFees ? <ErrorMessage message={errors.projectedFees} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -256,7 +256,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="actualFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.actualFees && touched.actualFees ? <div>{errors.actualFees}</div> : null}
+                        {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null}
                     </Grid>
 
                     <Grid item xs={12} >
@@ -272,7 +272,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="className1" type="text" placeholder="第一课" maxLength="100" />
-                        {errors.className1 && touched.className1 ? <div>{errors.className1}</div> : null}
+                        {errors.className1 && touched.className1 ? <ErrorMessage message={errors.className1} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -280,7 +280,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="classDate1" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
-                        {errors.classDate1 && touched.classDate1 ? <div>{errors.classDate1}</div> : null}
+                        {errors.classDate1 && touched.classDate1 ? <ErrorMessage message={errors.classDate1} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -288,7 +288,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="classLocation1" type="text" placeholder="5号厅" maxLength="100" />
-                        {errors.classLocation1 && touched.classLocation1 ? <div>{errors.classLocation1}</div> : null}
+                        {errors.classLocation1 && touched.classLocation1 ? <ErrorMessage message={errors.classLocation1} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -312,7 +312,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="className2" type="text" placeholder="第一课" maxLength="100" />
-                        {errors.className2 && touched.className2 ? <div>{errors.className2}</div> : null}
+                        {errors.className2 && touched.className2 ? <ErrorMessage message={errors.className2} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -320,7 +320,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="classDate2" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
-                        {errors.classDate2 && touched.classDate2 ? <div>{errors.classDate2}</div> : null}
+                        {errors.classDate2 && touched.classDate2 ? <ErrorMessage message={errors.classDate2} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -328,7 +328,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="classLocation2" type="text" placeholder="5号厅" maxLength="100" />
-                        {errors.classLocation2 && touched.classLocation2 ? <div>{errors.classLocation2}</div> : null}
+                        {errors.classLocation2 && touched.classLocation2 ? <ErrorMessage message={errors.classLocation2} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
