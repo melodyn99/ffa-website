@@ -9,7 +9,6 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -34,6 +33,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../../data/01Course/CourseStudentManagement';
 
@@ -127,20 +127,29 @@ class CourseStudentManagement extends React.Component {
 
                             <div className="content">
 
-                                <div className="toolBar">
-                                    <Button
-                                        className={classes.createButton}
-                                    >创建</Button>
-                                    <Button
-                                        className={classes.editButton}
-                                    >编辑</Button>
-                                    <Button
-                                        className={classes.editButton}
-                                    >导入CSV</Button>
-                                    <Button
-                                        className={classes.editButton}
-                                    >学生报告</Button>
-                                </div>
+                                <ToolBar
+                                    backButton={true}
+                                    backButtonText="返回"
+
+                                    createButton={true}
+                                    createButtonText="创建"
+                                    createButtonUrl='new-course-student-management'
+
+                                    editButton={true}
+                                    editButtonText="编辑"
+
+                                    deleteButton={true}
+                                    deleteButtonText="删除"
+
+                                    importButton={true}
+                                    importButtonText="导入CSV"
+
+                                    copyButton={true}
+                                    copyButtonText="拷贝"
+
+                                    reportButton={true}
+                                    reportButtonText="学生报告"
+                                />
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
