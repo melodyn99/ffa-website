@@ -15,6 +15,11 @@ class Breadcrumb extends Component {
 
         switch (currentPath) {
 
+            // Login
+            case 'login-with-register': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span>报名</span></div>);
+            }
+
             // Course
             case 'all-courses': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>课程管理</span></div>);
