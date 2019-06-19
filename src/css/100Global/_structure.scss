@@ -140,7 +140,9 @@
 		}
 
 		.wrapper-content { position:relative; background:#fff; 
-			.content { padding:20px; }
+			.content { padding:20px; 
+				.narrow { max-width:840px; margin: 0 auto; }
+			}
 		}
 	}
 }

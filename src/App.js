@@ -23,6 +23,8 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 import Home from './containers/01GENERAL/01Home/Home';
 
 /*** STUDENT ***/
+import StudentRegister from './containers/02STUDENTS/01Account/StudentRegister';
+import StudentLogin from './containers/02STUDENTS/01Account/StudentLogin';
 
 /*** SCHOOL ***/
 // Course Management
@@ -146,6 +148,14 @@ class App extends Component {
                 }
 
                 /*** STUDENT ***/
+                // Account
+                case 'student-register': {
+                    return <StudentRegister />
+                }
+                case 'student-login': {
+                    return <StudentLogin />
+                }
+
                 // Scheduling
                 case 'scheduling': {
                     return <Scheduling />;

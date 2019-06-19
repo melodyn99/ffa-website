@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -27,34 +28,15 @@ import * as Yup from 'yup';
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class CourseInformation extends React.Component {
-
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         courseCode: 56789,
-    //         courseName: 'Cooking Course',
-    //         courseAddress: 'Hong Kong'
-    //     }
-    // }
-
-    _handleInput = (value, key) => {
-        console.log(value);
-        this.setState({
-            ...this.state,
-            [key]: value
-        })
-    }
-
-    _handleSelect = () => {
-
-    }
+class StudentRegister extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
-        // const { t, i18n } = this.props;
+        const { classes
+            //, t, i18n 
+        } = this.props;
 
         return (
             <Form>
@@ -112,7 +94,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseCode" type="text" placeholder="课程编号 123" maxLength="100" />
-                        {errors.courseCode && touched.courseCode ? <div>{errors.courseCode}</div> : null}
+                        {errors.courseCode && touched.courseCode ? <ErrorMessage message={errors.courseCode} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -180,6 +162,18 @@ class CourseInformation extends React.Component {
                     </Grid>
 
                     <Grid item xs={1} >
+                        先修课程
+                    </Grid>
+                    <Grid item xs={11}>
+                        <select>
+                            <option value="1">课程1</option>
+                            <option value="2">课程2</option>
+                            <option value="3">课程3</option>
+                            <option value="4">课程4</option>
+                        </select>
+                    </Grid>
+
+                    <Grid item xs={1} >
                         报名开始
                     </Grid>
                     <Grid item xs={11}>
@@ -232,7 +226,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="projectedFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.projectedFees && touched.projectedFees ? <div>{errors.projectedFees}</div> : null}                    
+                        {errors.projectedFees && touched.projectedFees ? <div>{errors.projectedFees}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -240,7 +234,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="actualFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.actualFees && touched.actualFees ? <div>{errors.actualFees}</div> : null}         
+                        {errors.actualFees && touched.actualFees ? <div>{errors.actualFees}</div> : null}
                     </Grid>
 
                     <Grid item xs={12} >
@@ -255,21 +249,24 @@ class CourseInformation extends React.Component {
                         课程标题
                     </Grid>
                     <Grid item xs={11}>
-                        <input type="text" />
+                        <Field name="className1" type="text" placeholder="第一课" maxLength="100" />
+                        {errors.className1 && touched.className1 ? <div>{errors.className1}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         课程日期
                     </Grid>
                     <Grid item xs={11}>
-                        <input type="text" />
+                        <Field name="classDate1" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
+                        {errors.classDate1 && touched.classDate1 ? <div>{errors.classDate1}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         课程地点
                     </Grid>
                     <Grid item xs={11}>
-                        <input type="text" />
+                        <Field name="classLocation1" type="text" placeholder="5号厅" maxLength="100" />
+                        {errors.classLocation1 && touched.classLocation1 ? <div>{errors.classLocation1}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -293,7 +290,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="className2" type="text" placeholder="第一课" maxLength="100" />
-                        {errors.className2 && touched.className2 ? <div>{errors.className2}</div> : null}     
+                        {errors.className2 && touched.className2 ? <div>{errors.className2}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -301,7 +298,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="classDate2" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
-                        {errors.classDate2 && touched.classDate2 ? <div>{errors.classDate2}</div> : null}    
+                        {errors.classDate2 && touched.classDate2 ? <div>{errors.classDate2}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -309,7 +306,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="classLocation2" type="text" placeholder="5号厅" maxLength="100" />
-                        {errors.classLocation2 && touched.classLocation2 ? <div>{errors.classLocation2}</div> : null}    
+                        {errors.classLocation2 && touched.classLocation2 ? <div>{errors.classLocation2}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -324,7 +321,10 @@ class CourseInformation extends React.Component {
                         </select>
                     </Grid>
                 </Grid>
-                <button type="submit" className="button">Submit</button>
+                <div className="bottomControl clearfix">
+                    <Button type="submit" className={classes.editButton}>提交</Button>
+                    {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
+                </div>
             </Form>
         )
     }
@@ -348,25 +348,39 @@ class CourseInformation extends React.Component {
             courseBio: Yup.string()
                 .required('Course Bio is required'),
             courseHighlights: Yup.string()
-                .required('Course Bio is required'),
+                .required('Course Highlights is required'),
             courseBenefits: Yup.string()
-                .required('Course Bio is required'),
+                .required('Course Benefits is required'),
             contactEmail: Yup.string()
-                .email('Valid email is required'),
-            contactWechat: Yup.string()
-                .matches(/^[0-9]+$/,{message:'WeChat Number is required', excludeEmptyString: false }),
-            contactNumber: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Contact Number is required', excludeEmptyString: false }),
-            courseSpots: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Course Spots is required', excludeEmptyString: false }),
-            courseCredits: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Course Credits is required', excludeEmptyString: false }),
-            courseFees: Yup.string()
-                .required('Fees is required'),
-            projectedFees: Yup.string()
+                .email('Contact Email must be a valid email')
+                .required('Contact Email is required'),
+            contactWechat: Yup.number()
+                .typeError('Wechat number must be a valid phone number')
+                .required('WeChat number is required'),
+            contactNumber: Yup.number()
+                .typeError('Contact Number must be a valid phone number')
+                .required('Contact Number is required'),
+            courseSpots: Yup.number()
+                .typeError('Course Spots must be a number')
+                .required('Course Spots is required'),
+            courseCredits: Yup.number()
+                .typeError('Course Credits must be a number')
+                .required('Course Credits is required'),
+            courseFees: Yup.number()
+                .typeError('Course Fees must be a number')
+                .required('Course Fees is required'),
+            projectedFees: Yup.number()
+                .typeError('Projected Fees must be a number')
                 .required('Projected Fees is required'),
-            actualFees: Yup.string()
+            actualFees: Yup.number()
+                .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
+            className1: Yup.string()
+                .required('Class Name is required'),
+            classDate1: Yup.string()
+                .required('Class Date is required'),
+            classLocation1: Yup.string()
+                .required('Class Location is required'),
             className2: Yup.string()
                 .required('Class Name is required'),
             classDate2: Yup.string()
@@ -393,7 +407,7 @@ class CourseInformation extends React.Component {
                                         courseName: '',
                                         courseAddress: '',
                                         courseBio: '',
-                                        courseHighlights:'',
+                                        courseHighlights: '',
                                         courseBenefits: '',
                                         contactEmail: '',
                                         contactWechat: '',
@@ -403,6 +417,9 @@ class CourseInformation extends React.Component {
                                         courseFees: '',
                                         projectedFees: '',
                                         actualFees: '',
+                                        className1: '',
+                                        classDate1: '',
+                                        classLocation1: '',
                                         className2: '',
                                         classDate2: '',
                                         classLocation2: '',
@@ -420,7 +437,7 @@ class CourseInformation extends React.Component {
     }
 }
 
-CourseInformation.propTypes = {
+StudentRegister.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -435,4 +452,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseInformation)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentRegister)));
