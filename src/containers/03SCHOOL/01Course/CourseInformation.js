@@ -258,21 +258,24 @@ class CourseInformation extends React.Component {
                         课程标题
                     </Grid>
                     <Grid item xs={11}>
-                        <input type="text" />
+                        <Field name="className1" type="text" placeholder="第一课" maxLength="100" />
+                        {errors.className1 && touched.className1 ? <div>{errors.className1}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         课程日期
                     </Grid>
                     <Grid item xs={11}>
-                        <input type="text" />
+                        <Field name="classDate1" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
+                        {errors.classDate1 && touched.classDate1 ? <div>{errors.classDate1}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         课程地点
                     </Grid>
                     <Grid item xs={11}>
-                        <input type="text" />
+                        <Field name="classLocation1" type="text" placeholder="5号厅" maxLength="100" />
+                        {errors.classLocation1 && touched.classLocation1 ? <div>{errors.classLocation1}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -354,25 +357,31 @@ class CourseInformation extends React.Component {
             courseBio: Yup.string()
                 .required('Course Bio is required'),
             courseHighlights: Yup.string()
-                .required('Course Bio is required'),
+                .required('Course Highlights is required'),
             courseBenefits: Yup.string()
-                .required('Course Bio is required'),
+                .required('Course Benefits is required'),
             contactEmail: Yup.string()
                 .email('Valid email is required'),
             contactWechat: Yup.string()
-                .matches(/^[0-9]+$/, { message: 'WeChat Number is required', excludeEmptyString: false }),
+                .matches(/^[0-9]+$/,{message:'WeChat Number needs to be a valid phone number', excludeEmptyString: false }),
             contactNumber: Yup.string()
-                .matches(/^[0-9]+$/, { message: 'Contact Number is required', excludeEmptyString: false }),
+                .matches(/^[0-9]+$/,{message:'Contact Number needs to be a valid phone number', excludeEmptyString: false }),
             courseSpots: Yup.string()
-                .matches(/^[0-9]+$/, { message: 'Course Spots is required', excludeEmptyString: false }),
+                .matches(/^[0-9]+$/,{message:'Course Spots needs to be a valid number', excludeEmptyString: false }),
             courseCredits: Yup.string()
-                .matches(/^[0-9]+$/, { message: 'Course Credits is required', excludeEmptyString: false }),
+                .matches(/^[0-9]+$/,{message:'Course Credits needs to be a valid number', excludeEmptyString: false }),
             courseFees: Yup.string()
-                .required('Fees is required'),
+                .matches(/^[0-9]+$/,{message:'Course Fees needs to be a valid number', excludeEmptyString: false }),
             projectedFees: Yup.string()
-                .required('Projected Fees is required'),
+                .matches(/^[0-9]+$/,{message:'Projected Fees needs to be a valid number', excludeEmptyString: false }),
             actualFees: Yup.string()
-                .required('Actual Fees is required'),
+                .matches(/^[0-9]+$/,{message:'Actual Fees needs to be a valid number', excludeEmptyString: false }),
+            className1: Yup.string()
+                .required('Class Name is required'),
+            classDate1: Yup.string()
+                .required('Class Date is required'),
+            classLocation1: Yup.string()
+                .required('Class Location is required'),
             className2: Yup.string()
                 .required('Class Name is required'),
             classDate2: Yup.string()
@@ -409,6 +418,9 @@ class CourseInformation extends React.Component {
                                         courseFees: '',
                                         projectedFees: '',
                                         actualFees: '',
+                                        className1: '',
+                                        classDate1: '',
+                                        classLocation1: '',
                                         className2: '',
                                         classDate2: '',
                                         classLocation2: '',
