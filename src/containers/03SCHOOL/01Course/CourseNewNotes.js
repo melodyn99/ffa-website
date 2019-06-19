@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -21,7 +22,8 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 
 // Utils
-
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
@@ -30,8 +32,86 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 
 class CourseNewNotes extends React.Component {
 
-    render() {
+    // render() {
         // const { classes } = this.props;
+
+    _handleInput = (value, key) => {
+        console.log(value);
+        this.setState({
+            ...this.state,
+            [key]: value
+        })
+    }
+
+    _handleSelect = () => {
+
+    }    
+
+    form = ({ values, errors, touched, handleChange }) => {
+        const { classes
+            //, t, i18n 
+        } = this.props;
+
+            return (
+                <Form>
+                    <Grid container spacing={16} alignItems="center">
+                        <Grid item xs={1} >
+                            记录标题
+                        </Grid>
+                        <Grid item xs={11}>
+                            <Field name="notesName" type="text" placeholder="课程编号 123" maxLength="100" />
+                            {errors.notesName && touched.notesName ? <div>{errors.notesName}</div> : null}
+                        </Grid>
+
+                        <Grid item xs={1} >
+                            记录内容
+                        </Grid>
+                        <Grid item xs={11}>
+                            <Field name="notesContent" type="text" placeholder="课程编号 123" maxLength="100" />
+                            {errors.notesContent && touched.notesContent ? <div>{errors.notesContent}</div> : null}
+                        </Grid>
+
+                        <Grid item xs={1} >
+                            记录文件
+                        </Grid>
+                        <Grid item xs={11} >
+                            <div className="bottomControl clearfix">
+                                <Button type="submit" className={classes.editButton}>上载文件</Button>
+                                <Button type="submit" className={classes.editButton}>下载</Button>
+                                <Button type="submit" className={classes.editButton}>删除</Button>
+                            </div>
+                        </Grid>
+
+                        <Grid item xs={1} >
+                        </Grid>
+                        <Grid item xs={11}>
+                            
+                        </Grid>
+
+                    </Grid>
+                    <div className="bottomControl clearfix">
+                        <Button type="submit" className={classes.editButton}>取消</Button>
+                        <span className="right"><Button type="submit" className={classes.editButton}>确认</Button></span>
+                    </div>
+                </Form>
+            )
+        }
+
+        handleSubmit = (values, { setFieldError }) => {
+            // call api
+            // TODO
+            console.log('GREAT!');
+        }
+
+        render() {
+            // const { classes, t, i18n } = this.props;
+
+            const Schema = Yup.object().shape({
+                notesName: Yup.string()
+                    .required('Notes Name is required'),
+                notesContent: Yup.string()
+                    .required('Notes Content is required'),
+            })
 
         return (
             <div>
@@ -45,25 +125,15 @@ class CourseNewNotes extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-                                <Grid container spacing={16} alignItems="center">
-                                    <Grid item xs={1} >
-                                        记录标题
-                                   </Grid>
-                                    <Grid item xs={11}>
-                                        <input type="text" />
-                                    </Grid>
-
-                                    <Grid item xs={1} >
-                                        记录内容
-                                   </Grid>
-                                    <Grid item xs={11}>
-                                        <input type="text" />
-                                    </Grid>
-
-                                    <Grid item xs={12} >
-                                        记录文件
-                                   </Grid>
-                                </Grid>
+                                <Formik
+                                    initialValues={{
+                                        notesName: '',
+                                        notesContent: '',
+                                    }}
+                                    validationSchema={Schema}
+                                    onSubmit={this.handleSubmit}
+                                    component={this.form}
+                                />
                             </div>
                         </div>
                     </div>
