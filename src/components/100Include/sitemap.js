@@ -47,25 +47,25 @@ function Sitemap(props) {
                     <h2>Form views</h2>
 
                     <h3>Courses Management</h3>
-                    <li><Link to={'/' + i18n.language + '/course-information'}>Course Information (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-new-notes'}>Course New Notes (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-information'}>Course Information (Melody done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-new-notes'}>Course New Notes (Melody)</Link></li>
 
                     <h3>Students Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-student'}>New Student (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-student'}>New Student (Him)</Link></li>
 
                     <h3>News Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-news'}>New News (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-news'}>New News ()</Link></li>
 
                     <h3>Activities Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-activity'}>New Activity (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-activity'}>New Activity ()</Link></li>
 
                     <h3>Resources Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-material'}>New Material (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/new-homework'}>New Homework (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/new-question'}>New Question (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-material'}>New Material ()</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-homework'}>New Homework ()</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-question'}>New Question ()</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/new-account'}>New Account (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-account'}>New Account ()</Link></li>
 
                 </ul>
             </div>

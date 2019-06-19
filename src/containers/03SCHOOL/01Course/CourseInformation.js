@@ -28,6 +28,7 @@ import * as Yup from 'yup';
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class CourseInformation extends React.Component {
@@ -115,7 +116,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseCode" type="text" placeholder="课程编号 123" maxLength="100" />
-                        {errors.courseCode && touched.courseCode ? <div>{errors.courseCode}</div> : null}
+                        {errors.courseCode && touched.courseCode ? <ErrorMessage message={errors.courseCode} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -377,16 +378,16 @@ class CourseInformation extends React.Component {
                 .required('Contact Email is required'),
             contactWechat: Yup.number()
                 .typeError('Wechat number must be a valid phone number')
-                .required('WeChat number is required'), 
+                .required('WeChat number is required'),
             contactNumber: Yup.number()
                 .typeError('Contact Number must be a valid phone number')
-                .required('Contact Number is required'), 
+                .required('Contact Number is required'),
             courseSpots: Yup.number()
                 .typeError('Course Spots must be a number')
-                .required('Course Spots is required'), 
+                .required('Course Spots is required'),
             courseCredits: Yup.number()
                 .typeError('Course Credits must be a number')
-                .required('Course Credits is required'), 
+                .required('Course Credits is required'),
             courseFees: Yup.number()
                 .typeError('Course Fees must be a number')
                 .required('Course Fees is required'),
