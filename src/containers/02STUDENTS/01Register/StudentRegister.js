@@ -32,6 +32,7 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class BeforeStudentRegister extends React.Component {
+
     render() {
         const { classes } = this.props;
 
