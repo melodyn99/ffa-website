@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -21,7 +22,8 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 
 // Utils
-
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
@@ -29,99 +31,171 @@ import BreadCrumb from '../../../components/100Include/breadcrumb';
 
 class NewAccount extends React.Component {
 
-   render() {
-       // const { classes } = this.props;
+    form = ({ values, errors, touched, handleChange }) => {
+        const { classes
+            //, t, i18n 
+        } = this.props;
+    
+        return (
+            <Form>
+                <Grid container spacing={16} alignItems="center">
+                    <Grid item xs={1} >
+                        姓*
+                    </Grid>
+                    <Grid item xs={11}>
+                        <Field name="lastName" type="text" placeholder="赵" maxLength="100" />
+                        {errors.lastName && touched.lastName ? <div>{errors.lastName}</div> : null}
+                    </Grid>
 
-       return (
-           <div>
-               <div className="wrapper-container-main">
-                   <div className="container-main">
+                    <Grid item xs={1} >
+                        名*
+                    </Grid>
+                    <Grid item xs={11}>
+                        <Field name="firstName" type="text" placeholder="小红" maxLength="100" />
+                        {errors.firstName && touched.firstName ? <div>{errors.firstName}</div> : null}
+                    </Grid>
 
-                       <h2 className="pageTitle">账户管理</h2>
+                    <Grid item xs={1} >
+                        账户类型*
+                    </Grid>
+                    <Grid item xs={11}>
+                        <select>
+                            <option value="1">老师</option>
+                            <option value="2">老师</option>
+                            <option value="3">老师</option>
+                            <option value="4">老师</option>
+                        </select>
+                    </Grid>
 
-                       <div className="wrapper-content">
-                           <BreadCrumb />
+                    <Grid item xs={1} >
+                        性别*
+                    </Grid>
+                    <Grid item xs={11}>
+                        <select>
+                            <option value="boy">男</option>
+                            <option value="girl">女</option>
+                        </select>
+                    </Grid>
 
-                           <div className="content">
-                               <Grid container spacing={16} alignItems="center">
-                                   <Grid item xs={1} >
-                                       姓*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
+                    <Grid item xs={1} >
+                        联络电话*
+                    </Grid>
+                    <Grid item xs={11}>
+                        <Field name="contactNumber" type="text" placeholder="12345678" maxLength="100" />
+                        {errors.contactNumber && touched.contactNumber ? <div>{errors.contactNumber}</div> : null}
+                    </Grid>
 
-                                   <Grid item xs={1} >
-                                       名*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
+                    <Grid item xs={1} >
+                        电邮*
+                    </Grid>
+                    <Grid item xs={11}>
+                        <Field name="contactEmail" type="text" placeholder="abc@gmail.com" maxLength="100" />
+                        {errors.contactEmail && touched.contactEmail ? <div>{errors.contactEmail}</div> : null}
+                    </Grid>
 
-                                   <Grid item xs={1} >
-                                       账户类型*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <select>
-                                           <option value="1">老师</option>
-                                           <option value="2">老师</option>
-                                           <option value="3">老师</option>
-                                           <option value="4">老师</option>
-                                       </select>
-                                   </Grid>
+                    <Grid item xs={1} >
+                        微信
+                    </Grid>
+                    <Grid item xs={11}>
+                        <Field name="contactWechat" type="text" placeholder="12345678" maxLength="100" />
+                        {errors.contactWechat && touched.contactWechat ? <div>{errors.contactWechat}</div> : null}
+                    </Grid>
 
-                                   <Grid item xs={1} >
-                                       性别*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <select>
-                                           <option value="boy">男</option>
-                                           <option value="girl">女</option>
-                                       </select>
-                                   </Grid>
+                    <Grid item xs={1} >
+                        省市区
+                    </Grid>
+                    <Grid item xs={11}>
+                        <Field name="area" type="text" placeholder="" maxLength="100" />
+                        {errors.area && touched.area ? <div>{errors.area}</div> : null}
+                    </Grid>
 
-                                   <Grid item xs={1} >
-                                       联络电话*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
+                    <Grid item xs={1} >
+                        联络住址
+                    </Grid>
+                    <Grid item xs={11}>
+                        <Field name="contactAddress" type="text" placeholder="" maxLength="100" />
+                        {errors.contactAddress && touched.contactAddress ? <div>{errors.contactAddress}</div> : null}
+                    </Grid>
 
-                                   <Grid item xs={1} >
-                                       电邮*
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
+                    <Grid item xs={1} >
+                        状态*
+                    </Grid>
+                    <Grid item xs={11}>
+                        <select>
+                            <option value="worker">在职</option>
+                            <option value="student">学生</option>
+                            <option value="unemployed">无工作</option>
+                        </select>
+                    </Grid>
+                </Grid>
+                <div className="bottomControl clearfix">
+                    <Button type="submit" className={classes.editButton}>取消</Button>
+                    <span className="right"><Button type="submit" className={classes.editButton}>确认</Button></span>
+                </div>
+            </Form>
+        )
+    }
 
-                                   <Grid item xs={1} >
-                                       微信
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
+    handleSubmit = (values, { setFieldError }) => {
+        // call api
+        // TODO
+        console.log('GREAT!');
+    }
 
-                                   <Grid item xs={1} >
-                                       省市区
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
+    render() {
+        // const { classes, t, i18n } = this.props;
 
-                                   <Grid item xs={1} >
-                                       联络住址
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-                               </Grid>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       );
-   }
+        const Schema = Yup.object().shape({
+            lastName: Yup.string()
+                .required('Last Name is required'),
+            firstName: Yup.string()
+                .required('First Name is required'),
+            contactNumber: Yup.number()
+                .typeError('Contact Number must be a valid phone number')
+                .required('Contact Number is required'),
+            contactEmail: Yup.string()
+                .email('Contact Email must be a valid email')
+                .required('Contact Email is required'),
+            contactWechat: Yup.number()
+                .typeError('Wechat number must be a valid phone number')
+                .required('WeChat number is required'), 
+        })
+
+        return (
+            <div>
+                <div className="wrapper-container-main">
+                    <div className="container-main">
+
+                        <h2 className="pageTitle">账户管理</h2>
+
+                        <div className="wrapper-content">
+                            <BreadCrumb />
+
+                            <div className="content">
+                                <Formik
+                                    initialValues={{
+                                        lastName: '',
+                                        firstName: '',
+                                        accountType: '',
+                                        gender: '',
+                                        contactNumber: '',
+                                        contactEmail: '',
+                                        contactWechat: '',
+                                        area: '',
+                                        contactAddress: '',
+                                        status: '',
+                                    }}
+                                    validationSchema={Schema}
+                                    onSubmit={this.handleSubmit}
+                                    component={this.form}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 NewAccount.propTypes = {
