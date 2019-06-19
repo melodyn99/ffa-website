@@ -232,10 +232,10 @@ class CourseInformation extends React.Component {
                         </select>
                     </Grid>
                     <Grid item xs={12}>
-
+                        <Button type="submit" className={classes.editButton}>編輯</Button>
+                        <Button type="submit" className={classes.editButton}>編輯</Button>
                     </Grid>
                 </Grid>
-                <Button type="submit" className={classes.editButton}>編輯</Button>
             </Form>
         )
     }
