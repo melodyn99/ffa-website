@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -28,38 +28,38 @@ import * as Yup from 'yup';
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
 // import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
-// import ErrorMessage from '../../../components/01General/ErrorMessage';
+import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class LoginNoRegister extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
-        const { classes
-            //, t, i18n 
-        } = this.props;
+        const {
+            // t,
+            classes, i18n } = this.props;
 
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={2} >
-                        学期
+                    <Grid item xs={6}>
+                        登入FFA网上报名系统
                     </Grid>
-                    <Grid item xs={10}>
-                        <Field name="email" type="text" placeholder="5号厅" maxLength="100" />
-                        {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                    <Grid item xs={6} className="align-right">
+                        <Link to={'/' + i18n.language + ''}>忘记密码</Link>
                     </Grid>
 
-                    <Grid item xs={2} >
-                        上课城市
+                    <Grid item xs={12}>
+                        <Field name="email" type="text" placeholder="登记电邮地址" maxLength="100" />
+                        {errors.email && touched.email ? <ErrorMessage message={errors.email} /> : null}
                     </Grid>
-                    <Grid item xs={10}>
-                        <Field name="password" type="text" placeholder="5号厅" maxLength="100" />
-                        {errors.password && touched.password ? <div>{errors.password}</div> : null}
+
+                    <Grid item xs={12}>
+                        <Field name="password" type="text" placeholder="密码" maxLength="100" />
+                        {errors.password && touched.password ? <ErrorMessage message={errors.password} /> : null}
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton}>提交</Button>
-                    {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
+                    <Button type="submit" className={classes.editButton} fullWidth={true}>登入</Button>
                 </div>
             </Form>
         )
@@ -75,10 +75,10 @@ class LoginNoRegister extends React.Component {
         // const { classes, t, i18n } = this.props;
 
         const Schema = Yup.object().shape({
-            courseCode: Yup.string()
-                .required('Course Code is required'),
-            courseName: Yup.string()
-                .required('Course Name is required')
+            email: Yup.string()
+                .required('Email is required'),
+            password: Yup.string()
+                .required('Password is required')
         })
 
         return (
@@ -95,8 +95,8 @@ class LoginNoRegister extends React.Component {
                                 <div className="narrow">
                                     <Formik
                                         initialValues={{
-                                            courseCode: '',
-                                            courseName: '',
+                                            email: '',
+                                            password: '',
                                         }}
                                         validationSchema={Schema}
                                         onSubmit={this.handleSubmit}

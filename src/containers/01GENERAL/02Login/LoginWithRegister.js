@@ -50,12 +50,12 @@ class LoginWithRegister extends React.Component {
 
                     <Grid item xs={12}>
                         <Field name="email" type="text" placeholder="登记电邮地址" maxLength="100" />
-                        {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                        {errors.email && touched.email ? <ErrorMessage message={errors.email} /> : null}
                     </Grid>
 
                     <Grid item xs={12}>
                         <Field name="password" type="text" placeholder="密码" maxLength="100" />
-                        {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                        {errors.password && touched.password ? <ErrorMessage message={errors.password} /> : null}
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
