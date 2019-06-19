@@ -55,7 +55,7 @@ class Breadcrumb extends Component {
 
             // Student
             case 'new-student': {
-                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-student-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
             }
 
             // Enrollment
