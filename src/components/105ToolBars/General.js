@@ -30,45 +30,49 @@ class General extends Component {
                 {this.props.backButton &&
                     <Button
                         className={classes.createButton}
-                        onClick={() => this.props.history.go(-1)}
+                        onClick={() => this.props.backButtonAction(this.props.backButtonActionUrl)}
                     >{this.props.backButtonText}</Button>
                 }
 
                 {this.props.createButton &&
                     <Button
                         className={classes.createButton}
-                        onClick={() => this.props.history.push(this.props.createButtonUrl)}
+                        onClick={() => this.props.createButtonAction(this.props.createButtonActionUrl)}
                     >{this.props.createButtonText}</Button>
                 }
 
                 {this.props.editButton &&
                     <Button
                         className={classes.editButton}
-                    // onClick={() => this.props.history.push(this.props.editButtonUrl)}
+                        onClick={() => this.props.editButtonAction()}
                     >{this.props.editButtonText}</Button>
                 }
 
                 {this.props.deleteButton &&
                     <Button
                         className={classes.editButton}
+                        onClick={() => this.props.deleteButtonAction()}
                     >{this.props.deleteButtonText}</Button>
                 }
 
                 {this.props.importButton &&
                     <Button
                         className={classes.editButton}
+                        onClick={() => this.props.importButtonAction()}
                     >{this.props.importButtonText}</Button>
                 }
 
                 {this.props.copyButton &&
                     <Button
                         className={classes.editButton}
+                        onClick={() => this.props.copyButtonAction()}
                     >{this.props.copyButtonText}</Button>
                 }
 
                 {this.props.reportButton &&
                     <Button
                         className={classes.editButton}
+                        onClick={() => this.props.reportButtonAction()}
                     >{this.props.reportButtonText}</Button>
                 }
             </div>
