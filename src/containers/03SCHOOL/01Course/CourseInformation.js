@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -54,7 +55,9 @@ class CourseInformation extends React.Component {
     }
 
     form = ({ values, errors, touched, handleChange }) => {
-        // const { t, i18n } = this.props;
+        const { classes
+            //, t, i18n 
+        } = this.props;
 
         return (
             <Form>
@@ -232,7 +235,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="projectedFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.projectedFees && touched.projectedFees ? <div>{errors.projectedFees}</div> : null}                    
+                        {errors.projectedFees && touched.projectedFees ? <div>{errors.projectedFees}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -240,7 +243,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="actualFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.actualFees && touched.actualFees ? <div>{errors.actualFees}</div> : null}         
+                        {errors.actualFees && touched.actualFees ? <div>{errors.actualFees}</div> : null}
                     </Grid>
 
                     <Grid item xs={12} >
@@ -293,7 +296,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="className2" type="text" placeholder="第一课" maxLength="100" />
-                        {errors.className2 && touched.className2 ? <div>{errors.className2}</div> : null}     
+                        {errors.className2 && touched.className2 ? <div>{errors.className2}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -301,7 +304,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="classDate2" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
-                        {errors.classDate2 && touched.classDate2 ? <div>{errors.classDate2}</div> : null}    
+                        {errors.classDate2 && touched.classDate2 ? <div>{errors.classDate2}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -309,7 +312,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="classLocation2" type="text" placeholder="5号厅" maxLength="100" />
-                        {errors.classLocation2 && touched.classLocation2 ? <div>{errors.classLocation2}</div> : null}    
+                        {errors.classLocation2 && touched.classLocation2 ? <div>{errors.classLocation2}</div> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -324,7 +327,10 @@ class CourseInformation extends React.Component {
                         </select>
                     </Grid>
                 </Grid>
-                <button type="submit" className="button">Submit</button>
+                <div className="bottomControl clearfix">
+                    <Button type="submit" className={classes.editButton}>提交</Button>
+                    {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
+                </div>
             </Form>
         )
     }
@@ -354,13 +360,13 @@ class CourseInformation extends React.Component {
             contactEmail: Yup.string()
                 .email('Valid email is required'),
             contactWechat: Yup.string()
-                .matches(/^[0-9]+$/,{message:'WeChat Number is required', excludeEmptyString: false }),
+                .matches(/^[0-9]+$/, { message: 'WeChat Number is required', excludeEmptyString: false }),
             contactNumber: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Contact Number is required', excludeEmptyString: false }),
+                .matches(/^[0-9]+$/, { message: 'Contact Number is required', excludeEmptyString: false }),
             courseSpots: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Course Spots is required', excludeEmptyString: false }),
+                .matches(/^[0-9]+$/, { message: 'Course Spots is required', excludeEmptyString: false }),
             courseCredits: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Course Credits is required', excludeEmptyString: false }),
+                .matches(/^[0-9]+$/, { message: 'Course Credits is required', excludeEmptyString: false }),
             courseFees: Yup.string()
                 .required('Fees is required'),
             projectedFees: Yup.string()
@@ -393,7 +399,7 @@ class CourseInformation extends React.Component {
                                         courseName: '',
                                         courseAddress: '',
                                         courseBio: '',
-                                        courseHighlights:'',
+                                        courseHighlights: '',
                                         courseBenefits: '',
                                         contactEmail: '',
                                         contactWechat: '',
