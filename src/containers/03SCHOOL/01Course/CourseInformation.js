@@ -183,6 +183,18 @@ class CourseInformation extends React.Component {
                     </Grid>
 
                     <Grid item xs={1} >
+                        先修课程
+                    </Grid>
+                    <Grid item xs={11}>
+                        <select>
+                            <option value="1">课程1</option>
+                            <option value="2">课程2</option>
+                            <option value="3">课程3</option>
+                            <option value="4">课程4</option>
+                        </select>
+                    </Grid>
+
+                    <Grid item xs={1} >
                         报名开始
                     </Grid>
                     <Grid item xs={11}>
@@ -361,21 +373,29 @@ class CourseInformation extends React.Component {
             courseBenefits: Yup.string()
                 .required('Course Benefits is required'),
             contactEmail: Yup.string()
-                .email('Valid email is required'),
-            contactWechat: Yup.string()
-                .matches(/^[0-9]+$/,{message:'WeChat Number needs to be a valid phone number', excludeEmptyString: false }),
-            contactNumber: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Contact Number needs to be a valid phone number', excludeEmptyString: false }),
-            courseSpots: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Course Spots needs to be a valid number', excludeEmptyString: false }),
-            courseCredits: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Course Credits needs to be a valid number', excludeEmptyString: false }),
-            courseFees: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Course Fees needs to be a valid number', excludeEmptyString: false }),
-            projectedFees: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Projected Fees needs to be a valid number', excludeEmptyString: false }),
-            actualFees: Yup.string()
-                .matches(/^[0-9]+$/,{message:'Actual Fees needs to be a valid number', excludeEmptyString: false }),
+                .email('Contact Email must be a valid email')
+                .required('Contact Email is required'),
+            contactWechat: Yup.number()
+                .typeError('Wechat number must be a valid phone number')
+                .required('WeChat number is required'), 
+            contactNumber: Yup.number()
+                .typeError('Contact Number must be a valid phone number')
+                .required('Contact Number is required'), 
+            courseSpots: Yup.number()
+                .typeError('Course Spots must be a number')
+                .required('Course Spots is required'), 
+            courseCredits: Yup.number()
+                .typeError('Course Credits must be a number')
+                .required('Course Credits is required'), 
+            courseFees: Yup.number()
+                .typeError('Course Fees must be a number')
+                .required('Course Fees is required'),
+            projectedFees: Yup.number()
+                .typeError('Projected Fees must be a number')
+                .required('Projected Fees is required'),
+            actualFees: Yup.number()
+                .typeError('Actual Fees must be a number')
+                .required('Actual Fees is required'),
             className1: Yup.string()
                 .required('Class Name is required'),
             classDate1: Yup.string()
