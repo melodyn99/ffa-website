@@ -28,6 +28,7 @@ import * as Yup from 'yup';
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class CourseNewNotes extends React.Component {
@@ -60,7 +61,7 @@ class CourseNewNotes extends React.Component {
                         </Grid>
                         <Grid item xs={11}>
                             <Field name="notesName" type="text" placeholder="课程编号 123" maxLength="100" />
-                            {errors.notesName && touched.notesName ? <div>{errors.notesName}</div> : null}
+                            {errors.notesName && touched.notesName ? <ErrorMessage message={errors.notesName} /> : null}
                         </Grid>
 
                         <Grid item xs={1} >
@@ -68,7 +69,7 @@ class CourseNewNotes extends React.Component {
                         </Grid>
                         <Grid item xs={11}>
                             <Field name="notesContent" type="text" placeholder="课程编号 123" maxLength="100" />
-                            {errors.notesContent && touched.notesContent ? <div>{errors.notesContent}</div> : null}
+                            {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                         </Grid>
 
                         <Grid item xs={1} >
