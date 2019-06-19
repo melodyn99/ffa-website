@@ -69,6 +69,8 @@ function Sitemap(props) {
 
                 </ul>
 
+                <div className="sep-20"></div>
+
                 <ul>
                     <h2>New Pages</h2>
 
