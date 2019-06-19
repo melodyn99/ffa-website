@@ -130,13 +130,16 @@ class CourseStudentManagement extends React.Component {
                                 <div className="toolBar">
                                     <Button
                                         className={classes.createButton}
-                                    >登入</Button>
+                                    >创建</Button>
                                     <Button
                                         className={classes.editButton}
-                                    >編輯</Button>
+                                    >编辑</Button>
                                     <Button
                                         className={classes.editButton}
-                                    >導入CSV</Button>
+                                    >导入CSV</Button>
+                                    <Button
+                                        className={classes.editButton}
+                                    >学生报告</Button>
                                 </div>
 
                                 <Paper className={classes.paper}>

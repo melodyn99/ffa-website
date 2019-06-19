@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -54,30 +55,26 @@ class CourseInformation extends React.Component {
     }
 
     form = ({ values, errors, touched, handleChange }) => {
-        // const { t, i18n } = this.props;
+        const { classes
+            //, t, i18n 
+        } = this.props;
 
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={1} >
-                        课程编号
-                    </Grid>
+                    <Grid item xs={1} >课程编号</Grid>
                     <Grid item xs={11}>
                         <Field name="courseCode" type="text" placeholder="课程编号 123" maxLength="100" />
                         {errors.courseCode && touched.courseCode ? <div>{errors.courseCode}</div> : null}
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程名称
-                    </Grid>
+                    <Grid item xs={1} >课程名称</Grid>
                     <Grid item xs={11}>
                         <Field name="courseName" type="text" placeholder="课程名称 456" maxLength="100" />
                         {errors.courseName && touched.courseName ? <div>{errors.courseName}</div> : null}
                     </Grid>
 
-                    <Grid item xs={1} >
-                        学科名称
-                    </Grid>
+                    <Grid item xs={1} >学科名称</Grid>
                     <Grid item xs={11}>
                         <select>
                             <option value="1">战略课程</option>
@@ -87,9 +84,7 @@ class CourseInformation extends React.Component {
                         </select>
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程类型
-                    </Grid>
+                    <Grid item xs={1} >课程类型</Grid>
                     <Grid item xs={11}>
                         <select>
                             <option value="1">大商品公开课程1</option>
@@ -99,61 +94,42 @@ class CourseInformation extends React.Component {
                         </select>
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程地址
-                    </Grid>
+                    <Grid item xs={1} >课程地址</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程简介
-                    </Grid>
+                    <Grid item xs={1} >课程简介</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程重点
-                    </Grid>
-                    <Grid item xs={11}>
-                        <input type="text"
-                        // onChange={(e) => this._handleInput(e.target.value, 'courseName')}
-                        // value={this.state.courseName}
-                        />
-                    </Grid>
-
-                    <Grid item xs={1} >
-                        课程收益
-                    </Grid>
+                    <Grid item xs={1} >课程重点</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        联系电邮
-                    </Grid>
+                    <Grid item xs={1} >课程收益</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        联系微信
-                    </Grid>
+                    <Grid item xs={1} >联系电邮</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        联系电话
-                    </Grid>
+                    <Grid item xs={1} >联系微信</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        报名开始
+                    <Grid item xs={1} >联系电话</Grid>
+                    <Grid item xs={11}>
+                        <input type="text" />
                     </Grid>
+
+                    <Grid item xs={1} >报名开始</Grid>
                     <Grid item xs={11}>
                         <select>
                             <option value="1">2019</option>
@@ -163,9 +139,7 @@ class CourseInformation extends React.Component {
                         </select>
                     </Grid>
 
-                    <Grid item xs={1} >
-                        报名结束
-                    </Grid>
+                    <Grid item xs={1} >报名结束</Grid>
                     <Grid item xs={11}>
                         <select>
                             <option value="1">2019</option>
@@ -175,16 +149,12 @@ class CourseInformation extends React.Component {
                         </select>
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程名额
-                    </Grid>
+                    <Grid item xs={1} >课程名额</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程学分
-                    </Grid>
+                    <Grid item xs={1} >课程学分</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
@@ -196,52 +166,36 @@ class CourseInformation extends React.Component {
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        预计学费
-                    </Grid>
+                    <Grid item xs={1} >预计学费</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        实际收费
-                    </Grid>
+                    <Grid item xs={1} >实际收费</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={12} >
-                        课程日期和时间
-                    </Grid>
+                    <Grid item xs={12} >课程日期和时间</Grid>
 
-                    <Grid item xs={12} >
-                        #1
-                    </Grid>
+                    <Grid item xs={12} >#1</Grid>
 
-                    <Grid item xs={1} >
-                        课程标题
-                    </Grid>
+                    <Grid item xs={1} >课程标题</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程日期
-                    </Grid>
+                    <Grid item xs={1} >课程日期</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程地点
-                    </Grid>
+                    <Grid item xs={1} >课程地点</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        授课老师
-                    </Grid>
+                    <Grid item xs={1} >授课老师</Grid>
                     <Grid item xs={11}>
                         <select>
                             <option value="1">A</option>
@@ -251,34 +205,24 @@ class CourseInformation extends React.Component {
                         </select>
                     </Grid>
 
-                    <Grid item xs={12} >
-                        #2
-                    </Grid>
+                    <Grid item xs={12} >#2</Grid>
 
-                    <Grid item xs={1} >
-                        课程标题
-                    </Grid>
+                    <Grid item xs={1} >课程标题</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程日期
-                    </Grid>
+                    <Grid item xs={1} >课程日期</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程地点
-                    </Grid>
+                    <Grid item xs={1} >课程地点</Grid>
                     <Grid item xs={11}>
                         <input type="text" />
                     </Grid>
 
-                    <Grid item xs={1} >
-                        授课老师
-                    </Grid>
+                    <Grid item xs={1} >授课老师</Grid>
                     <Grid item xs={11}>
                         <select>
                             <option value="1">A</option>
@@ -286,9 +230,12 @@ class CourseInformation extends React.Component {
                             <option value="3">C</option>
                             <option value="4">D</option>
                         </select>
+                    </Grid>
+                    <Grid item xs={12}>
+
                     </Grid>
                 </Grid>
-                <button type="submit" className="button">Submit</button>
+                <Button type="submit" className={classes.editButton}>編輯</Button>
             </Form>
         )
     }
