@@ -158,7 +158,7 @@ class CourseStudentManagement extends React.Component {
                             <div className="content">
 
                                 <ToolBar
-                                    backButton={true}
+                                    backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
                                     backButtonActionUrl='course-student-management'
@@ -177,14 +177,14 @@ class CourseStudentManagement extends React.Component {
                                     deleteButtonAction={this._deleteButtonAction}
 
                                     importButton={true}
-                                    importButtonText="导入CSV"
+                                    importButtonText="导入123"
                                     importButtonAction={this._importButtonAction}
 
                                     copyButton={true}
                                     copyButtonText="拷贝"
                                     copyButtonAction={this._copyButtonAction}
 
-                                    reportButton={true}
+                                    reportButton={false}
                                     reportButtonText="学生报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />

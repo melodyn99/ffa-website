@@ -233,7 +233,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    {/* <Button type="submit" className={classes.editButton}>編輯</Button> */}
+                    <Button type="submit" className={classes.editButton}>編輯</Button>
                     <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span>
                 </div>
             </Form>

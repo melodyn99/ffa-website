@@ -133,6 +133,10 @@
 
 		.bottomControl { margin-top:20px;
 			.right { float:right; }
+			
+			button { margin-left:10px; 
+				&:first-child { margin-left:0; } 
+			}
 		}
 
 		.wrapper-content { position:relative; background:#fff; 
