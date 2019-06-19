@@ -31,7 +31,43 @@ import BreadCrumb from '../../../components/100Include/breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
+class BeforeStudentRegister extends React.Component {
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <div>
+
+                Do you agree?
+
+
+                <Button
+                    className={classes.createButton}
+                    onClick={() => this.props.handleAgree()}
+                >Yes
+                </Button>
+
+            </div>
+        )
+    }
+}
+
+
 class StudentRegister extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            agree: false
+        }
+    }
+
+    _handleAgree = () => {
+        this.setState({
+            agree: true
+        })
+    }
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -336,7 +372,9 @@ class StudentRegister extends React.Component {
     }
 
     render() {
-        // const { classes, t, i18n } = this.props;
+        const { classes
+            // , t, i18n 
+        } = this.props;
 
         const Schema = Yup.object().shape({
             courseCode: Yup.string()
@@ -400,33 +438,40 @@ class StudentRegister extends React.Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <Formik
-                                    initialValues={{
-                                        courseCode: '',
-                                        courseName: '',
-                                        courseAddress: '',
-                                        courseBio: '',
-                                        courseHighlights: '',
-                                        courseBenefits: '',
-                                        contactEmail: '',
-                                        contactWechat: '',
-                                        contactNumber: '',
-                                        courseSpots: '',
-                                        courseCredits: '',
-                                        courseFees: '',
-                                        projectedFees: '',
-                                        actualFees: '',
-                                        className1: '',
-                                        classDate1: '',
-                                        classLocation1: '',
-                                        className2: '',
-                                        classDate2: '',
-                                        classLocation2: '',
-                                    }}
-                                    validationSchema={Schema}
-                                    onSubmit={this.handleSubmit}
-                                    component={this.form}
-                                />
+
+                                {this.state.agree ?
+                                    <Formik
+                                        initialValues={{
+                                            courseCode: '',
+                                            courseName: '',
+                                            courseAddress: '',
+                                            courseBio: '',
+                                            courseHighlights: '',
+                                            courseBenefits: '',
+                                            contactEmail: '',
+                                            contactWechat: '',
+                                            contactNumber: '',
+                                            courseSpots: '',
+                                            courseCredits: '',
+                                            courseFees: '',
+                                            projectedFees: '',
+                                            actualFees: '',
+                                            className1: '',
+                                            classDate1: '',
+                                            classLocation1: '',
+                                            className2: '',
+                                            classDate2: '',
+                                            classLocation2: '',
+                                        }}
+                                        validationSchema={Schema}
+                                        onSubmit={this.handleSubmit}
+                                        component={this.form}
+                                    /> :
+                                    <BeforeStudentRegister
+                                        handleAgree={this._handleAgree}
+                                        classes={classes}
+                                    />
+                                }
                             </div>
                         </div>
                     </div>
