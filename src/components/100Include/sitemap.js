@@ -47,8 +47,8 @@ function Sitemap(props) {
                     <h2>Form views</h2>
 
                     <h3>Courses Management</h3>
-                    <li><Link to={'/' + i18n.language + '/course-information'}>Course Information (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-new-notes'}>Course New Notes (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-information'}>Course Information (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/course-new-notes'}>Course New Notes (Melody) (done)</Link></li>
 
                     <h3>Students Management</h3>
                     <li><Link to={'/' + i18n.language + '/new-student'}>New Student (done)</Link></li>
@@ -65,7 +65,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/new-question'}>New Question (done)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/new-account'}>New Account (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/new-account'}>New Account (Melody) (done)</Link></li>
 
                 </ul>
             </div>
