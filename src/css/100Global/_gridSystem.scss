@@ -26,6 +26,9 @@
 .sixty					{ width:60%; }
 .seventy				{ width:70%; }
 
+.align-center           {display: flex; align-items: center; justify-content: center;}
+.align-right             {display: flex; align-items: flex-end; justify-content: flex-end;}
+
 /* sep */
 .sep-0					{ height:0px; clear:both; padding:0; }
 .sep-5					{ height:0px; clear:both; padding:2px 0 3px; }
