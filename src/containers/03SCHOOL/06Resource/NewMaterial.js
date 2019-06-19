@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -21,16 +22,89 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 
 // Utils
-
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
+import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class NewMaterial extends React.Component {
 
+    form = ({ values, errors, touched, handleChange }) => {
+        const { classes
+            //, t, i18n 
+        } = this.props;
+
+        return (
+            <Form>
+                <Grid container spacing={16} alignItems="center">
+                    <Grid item xs={1} >
+                        教材标题
+                    </Grid>
+                    <Grid item xs={11}>
+                        <Field name="name" type="text" placeholder="4" maxLength="100" />
+                        {errors.name && touched.name ? <ErrorMessage message={errors.name} /> : null}
+                    </Grid>
+
+                    <Grid item xs={1} >
+                        学科
+                    </Grid>
+                    <Grid item xs={11}>
+                    <select>
+                            <option value="1">战略课程</option>
+                            <option value="2">战略课程</option>
+                            <option value="3">战略课程</option>
+                            <option value="4">战略课程</option>
+                        </select>
+                    </Grid>
+
+                    <Grid item xs={1} >
+                        编辑用户#1
+                    </Grid>
+                    <Grid item xs={11}>
+                        <select>
+                            <option value="1">请选择</option>
+                            <option value="2">选择1</option>
+                            <option value="3">选择2</option>
+                            <option value="4">选择3</option>
+                        </select>
+                    </Grid>
+
+                    <Grid item xs={1} >
+                        一般用户#1
+                    </Grid>
+                    <Grid item xs={11}>
+                        <select>
+                            <option value="1">请选择</option>
+                            <option value="2">选择1</option>
+                            <option value="3">选择2</option>
+                            <option value="4">选择3</option>
+                        </select>
+                    </Grid>
+                </Grid>
+                <div className="bottomControl clearfix">
+                    <Button type="submit" className={classes.editButton}>取消</Button>
+                    <span className="right"><Button type="submit" className={classes.editButton}>确认</Button></span>
+                </div>
+            </Form>
+        )
+    }
+
+    handleSubmit = (values, { setFieldError }) => {
+        // call api
+        // TODO
+        console.log('GREAT!');
+    }
+
    render() {
        // const { classes } = this.props;
+
+        const Schema = Yup.object().shape({
+            name: Yup.string()
+                .required('Material is required'),
+        })
 
        return (
            <div>
@@ -43,50 +117,17 @@ class NewMaterial extends React.Component {
                            <BreadCrumb />
 
                            <div className="content">
-                               <Grid container spacing={16} alignItems="center">
-                                   <Grid item xs={1} >
-                                       教材标题
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <input type="text" />
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       学科
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                   <select>
-                                           <option value="1">战略课程</option>
-                                           <option value="2">战略课程</option>
-                                           <option value="3">战略课程</option>
-                                           <option value="4">战略课程</option>
-                                       </select>
-                                   </Grid>
-                                  
-                                   <Grid item xs={1} >
-                                       编辑用户#1
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <select>
-                                           <option value="1">请选择</option>
-                                           <option value="2">选择1</option>
-                                           <option value="3">选择2</option>
-                                           <option value="4">选择3</option>
-                                       </select>
-                                   </Grid>
-
-                                   <Grid item xs={1} >
-                                       一般用户#1
-                                   </Grid>
-                                   <Grid item xs={11}>
-                                       <select>
-                                           <option value="1">请选择</option>
-                                           <option value="2">选择1</option>
-                                           <option value="3">选择2</option>
-                                           <option value="4">选择3</option>
-                                       </select>
-                                   </Grid>
-                               </Grid>
+                                <Formik
+                                    initialValues={{
+                                        name: '',
+                                        subject: '',
+                                        editor1: '',
+                                        user1: '',
+                                    }}
+                                    validationSchema={Schema}
+                                    onSubmit={this.handleSubmit}
+                                    component={this.form}
+                                />
                            </div>
                        </div>
                    </div>

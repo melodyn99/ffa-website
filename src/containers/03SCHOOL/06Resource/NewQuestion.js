@@ -117,21 +117,21 @@ class NewQuestion extends React.Component {
     render() {
        // const { classes } = this.props;
 
-       const Schema = Yup.object().shape({
-        question: Yup.string()
-            .required('Question is required'),
-        points: Yup.string()
-            .required('Points is required'),
-        choiceA: Yup.string()
-            .required('Choice A is required'),
-        choiceB: Yup.string()
-            .required('Choice B is required'),
-        choiceC: Yup.string()
-            .required('Choice C is required'),
-        choiceD: Yup.string()
-            .required('Choice D is required'),
-        answer: Yup.string()
-            .required('Answer is required'),
+        const Schema = Yup.object().shape({
+            question: Yup.string()
+                .required('Question is required'),
+            points: Yup.string()
+                .required('Points is required'),
+            choiceA: Yup.string()
+                .required('Choice A is required'),
+            choiceB: Yup.string()
+                .required('Choice B is required'),
+            choiceC: Yup.string()
+                .required('Choice C is required'),
+            choiceD: Yup.string()
+                .required('Choice D is required'),
+            answer: Yup.string()
+                .required('Answer is required'),
         })
 
         return (
