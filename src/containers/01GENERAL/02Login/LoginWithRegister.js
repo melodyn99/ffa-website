@@ -61,7 +61,7 @@ class LoginWithRegister extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton} fullWidth={true} onClick={() => { this._signInAsync() }}>
+                    <Button type="submit" className={classes.blueButton} fullWidth={true} onClick={() => { this._signInAsync() }}>
                         登入
           </Button>
                 </div>
