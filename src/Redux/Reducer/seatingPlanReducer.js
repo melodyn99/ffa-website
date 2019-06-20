@@ -26,7 +26,7 @@ const seatingPlanReducer = (state = INITIAL_STATE, action) => {
                 plan: action.plan,
                 plan_seat,
                 plan_id
-            };
+            }
         }
 
         case SeatingPlanActionTypes.SET_EDIT_PLAN_TYPE: {
