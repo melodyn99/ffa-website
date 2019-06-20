@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -15,11 +16,12 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+import { apiAuth } from '../../../Api/ApiAuth';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { login, verifyToken } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -49,37 +51,61 @@ class LoginWithRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Field name="email" type="text" placeholder="登记电邮地址" maxLength="100" />
+                        <Field name="email" type="email" placeholder="登记电邮地址" maxLength="100" />
                         {errors.email && touched.email ? <ErrorMessage message={errors.email} /> : null}
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Field name="password" type="text" placeholder="密码" maxLength="100" />
+                        <Field name="password" type="password" placeholder="密码" maxLength="100" />
                         {errors.password && touched.password ? <ErrorMessage message={errors.password} /> : null}
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.blackButton} fullWidth={true}>登入</Button>
+                    <Button type="submit" className={classes.editButton} fullWidth={true} onClick={() => { this._signInAsync() }}>
+                        登入
+          </Button>
                 </div>
                 <div className="sep-40"></div>
                 <Grid container spacing={16} alignItems="center">
                     <Grid item xs={12} className="align-center">
                         首次登入前建立新账户
-                    </Grid>
+          </Grid>
                 </Grid>
             </Form>
         )
     }
 
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
+    _signInAsync = (values) => {
+        //  ToDO: research the double calling here
+        // console.log(values);
+        if (typeof (values) !== 'undefined') {
+            let email = values.email.toString();
+            let pw = values.password.toString();
+
+            apiAuth.authenticate(email, pw).then((res) => {
+                // console.log(res);
+                this.props.loginP(res.access_token);
+                this._getConference();
+            })
+        }
+    };
+
+    _getConference = () => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = null;
+
+        apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
     }
 
     render() {
         const { classes
-            //, t, i18n 
+            // , t, i18n
         } = this.props;
 
         const Schema = Yup.object().shape({
@@ -104,15 +130,17 @@ class LoginWithRegister extends React.Component {
                                 <div className="narrow">
                                     <Formik
                                         initialValues={{
-                                            email: '',
-                                            password: '',
+                                            email: 'admin@joyaether.test',
+                                            password: 'abcd1234',
                                         }}
                                         validationSchema={Schema}
-                                        onSubmit={this.handleSubmit}
+                                        onSubmit={(values) => this._signInAsync(values)}
                                         component={this.form}
                                     />
                                     <div className="bottomControl clearfix">
-                                        <Button type="submit" className={classes.blueButton} fullWidth={true}>建立新帐户</Button>
+                                        <Button className={classes.editButton} fullWidth={true}
+                                            onClick={() => this.props.history.push('student-register')}
+                                        >建立新帐户</Button>
                                     </div>
                                 </div>
                             </div>
@@ -133,10 +161,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
+    loginP: data => dispatch(login(data)),
+    verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(LoginWithRegister)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(LoginWithRegister))));
