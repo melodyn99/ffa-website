@@ -32,14 +32,17 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/RelatedCourses';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/Account';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../../data/09Account/RelatedCourses';
 
 // Define column names
 const rows = [
-    { id: 'subject', numeric: false, disablePadding: false, label: '学科' },
-    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
+    { id: 'semester', numeric: false, disablePadding: false, label: '学期' },
+    { id: 'subject', numeric: false, disablePadding: false, label: '学科名称' },
+    { id: 'courseType', numeric: true, disablePadding: false, label: '课程类型' },
+    { id: 'courseCode', numeric: true, disablePadding: false, label: '课程编号' },
+    { id: 'courseName', numeric: true, disablePadding: false, label: '课程名称' },
     { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
     { id: 'location', numeric: true, disablePadding: false, label: '地点' },
     { id: 'date', numeric: true, disablePadding: false, label: '开课日期' },
@@ -155,8 +158,11 @@ class RelatedCourses extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.subject}</TableCell>
-                                                                <TableCell>{n.course}</TableCell>
+                                                                >{n.semester}</TableCell>
+                                                                <TableCell>{n.subject}</TableCell>
+                                                                <TableCell>{n.courseType}</TableCell>
+                                                                <TableCell>{n.courseCode}</TableCell>
+                                                                <TableCell>{n.courseName}</TableCell>
                                                                 <TableCell>{n.teacher}</TableCell>
                                                                 <TableCell>{n.location}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
@@ -165,7 +171,7 @@ class RelatedCourses extends React.Component {
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={5} />
+                                                        <TableCell colSpan={8} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>

@@ -146,6 +146,9 @@ class Breadcrumb extends Component {
             case 'related-courses': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
+            case 'user-access': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            }
             case 'enrollment-history': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>账户管理</span></div>);
             }
