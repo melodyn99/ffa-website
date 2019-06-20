@@ -185,7 +185,6 @@ class App extends Component {
                     return <StudentRegisterNotification />
                 }
 
-
                 // Scheduling
                 case 'scheduling': {
                     return <Scheduling />;

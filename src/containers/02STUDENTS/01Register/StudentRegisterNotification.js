@@ -22,6 +22,7 @@ import { connect } from 'react-redux';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
+import SubMenu from '../../../components/104SubMenus/02STUDENTS/01Register/Register';
 
 class StudentRegisterNotification extends Component {
     constructor(props) {
@@ -48,6 +49,7 @@ class StudentRegisterNotification extends Component {
 
                         <div className="wrapper-content">
                             <BreadCrumb />
+                            <SubMenu />
 
                             <div className="content">
                                 <p>This is StudentRegisterNotification</p>

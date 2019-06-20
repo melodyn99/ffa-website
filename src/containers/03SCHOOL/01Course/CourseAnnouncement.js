@@ -32,7 +32,7 @@ import { connect } from 'react-redux';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+import SubMenu from '../../../components/104SubMenus/02STUDENTS/01Register/Register';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
 class CourseAnnouncement extends React.Component {
