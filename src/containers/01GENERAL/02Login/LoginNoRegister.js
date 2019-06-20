@@ -60,7 +60,7 @@ class LoginNoRegister extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.blueButton} fullWidth={true} onClick={() => { this._signInAsync() }}>登入</Button>
+                    <Button type="submit" className={classes.blackButton} fullWidth={true} onClick={() => { this._signInAsync() }}>登入</Button>
                 </div>
             </Form>
         )

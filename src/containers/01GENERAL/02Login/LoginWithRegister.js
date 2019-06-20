@@ -61,7 +61,7 @@ class LoginWithRegister extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.blueButton} fullWidth={true} onClick={() => { this._signInAsync() }}>
+                    <Button type="submit" className={classes.blackButton} fullWidth={true} onClick={() => { this._signInAsync() }}>
                         登入
           </Button>
                 </div>
@@ -138,7 +138,7 @@ class LoginWithRegister extends React.Component {
                                         component={this.form}
                                     />
                                     <div className="bottomControl clearfix">
-                                        <Button className={classes.blackButton} fullWidth={true}
+                                        <Button className={classes.blueButton} fullWidth={true}
                                             onClick={() => this.props.history.push('student-register')}
                                         >建立新帐户</Button>
                                     </div>
