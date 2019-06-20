@@ -53,6 +53,8 @@ const seatMapReducer = (state = initialState, action) => {
         ...state,
         seats: action.seats,
       };
+
+    //unknown
     case 'SET_DRAG':
       return {
         ...state,
