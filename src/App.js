@@ -75,6 +75,7 @@ import NewActivity from './containers/03SCHOOL/05Activity/NewActivity';
 import AllResourcesManagement from './containers/03SCHOOL/06Resource/AllResourcesManagement';
 import ResourceManagementCourse from './containers/03SCHOOL/06Resource/ResourceManagementCourse';
 import ResourceManagementHomework from './containers/03SCHOOL/06Resource/ResourceManagementHomework';
+import ResourceCourse from './containers/03SCHOOL/06Resource/ResourceCourse';
 import NewMaterial from './containers/03SCHOOL//06Resource/NewMaterial';
 import NewHomework from './containers/03SCHOOL//06Resource/NewHomework';
 import NewQuestion from './containers/03SCHOOL//06Resource/NewQuestion';
@@ -282,6 +283,9 @@ class App extends Component {
                 }
                 case 'resources-management-homework': {
                     return <ResourceManagementHomework />;
+                }
+                case 'resources-course': {
+                    return <ResourceCourse />;
                 }
                 case 'new-material': {
                     return <NewMaterial />;

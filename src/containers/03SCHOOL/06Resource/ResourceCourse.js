@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -34,20 +35,17 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import BreadCrumb from '../../../components/100Include/breadcrumb';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03Enrollment/EnrollmentManagement';
+import data from '../../../data/06Resource/ResourceCourse';
 
 // Define column names
 const rows = [
-    { id: 'year', numeric: false, disablePadding: false, label: '学年' },
-    { id: 'department', numeric: true, disablePadding: false, label: '学院' },
-    { id: 'subject', numeric: true, disablePadding: false, label: '学科' },
-    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
-    { id: 'student', numeric: true, disablePadding: false, label: '学生' },
-    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
-    { id: 'date', numeric: true, disablePadding: false, label: '报名日期' },
+    { id: 'material', numeric: false, disablePadding: false, label: '教材' },
+    { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
+    { id: 'fileSize', numeric: true, disablePadding: false, label: '文件大小' },
+    { id: 'date', numeric: true, disablePadding: false, label: '上载日期' },
 ];
 
-class EnrollmentManagement extends React.Component {
+class ResourceCourse extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -146,28 +144,28 @@ class EnrollmentManagement extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">报名管理</h2>
+                        <h2 className="pageTitle">资源库管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
 
                             <div className="content">
-                                <ToolBar
+                            <ToolBar
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
                                     backButtonActionUrl='course-materials'
 
                                     createButton={true}
-                                    createButtonText="创建"
+                                    createButtonText="上载文件"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='new-course-materials'
 
                                     editButton={true}
-                                    editButtonText="编辑"
+                                    editButtonText="下载"
                                     editButtonAction={this._editButtonAction}
 
-                                    deleteButton={false}
+                                    deleteButton={true}
                                     deleteButtonText="删除"
                                     deleteButtonAction={this._deleteButtonAction}
 
@@ -179,7 +177,7 @@ class EnrollmentManagement extends React.Component {
                                     copyButtonText="拷贝"
                                     copyButtonAction={this._copyButtonAction}
 
-                                    reportButton={true}
+                                    reportButton={false}
                                     reportButtonText="报名报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
@@ -216,19 +214,16 @@ class EnrollmentManagement extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.year}</TableCell>
-                                                                <TableCell>{n.department}</TableCell>
-                                                                <TableCell>{n.subject}</TableCell>
-                                                                <TableCell>{n.course}</TableCell>
-                                                                <TableCell>{n.student}</TableCell>
-                                                                <TableCell>{n.status}</TableCell>
+                                                                >{n.material}</TableCell>
+                                                                <TableCell>{n.teacher}</TableCell>
+                                                                <TableCell>{n.fileSize}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={7} />
+                                                        <TableCell colSpan={4} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -249,6 +244,9 @@ class EnrollmentManagement extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
+                                <div className="bottomControl clearfix">
+                                    <span className="right"><Button type="submit" className={classes.greyButton}>编辑文件夹</Button></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -258,7 +256,7 @@ class EnrollmentManagement extends React.Component {
     }
 }
 
-EnrollmentManagement.propTypes = {
+ResourceCourse.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -273,4 +271,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(EnrollmentManagement)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(ResourceCourse)));
