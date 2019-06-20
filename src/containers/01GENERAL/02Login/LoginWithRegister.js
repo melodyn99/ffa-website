@@ -82,17 +82,18 @@ class LoginWithRegister extends React.Component {
     // }
 
     _signInAsync = (values) => {
-        //admin@joyaether.test
-        //abcd1234
-        let email = values.email.toString();
-        let pw = values.password.toString();
-        // console.log(email);
-        // console.log(pw);
-        apiAuth.authenticate(email, pw).then((res) => {
-            // console.log(res);
-            this.props.loginP(res.access_token);
-            this._getConference();
-        })
+
+        console.log(values);
+        if (typeof (values) !== 'undefined') {
+            let email = values.email.toString();
+            let pw = values.password.toString();
+
+            apiAuth.authenticate(email, pw).then((res) => {
+                // console.log(res);
+                this.props.loginP(res.access_token);
+                this._getConference();
+            })
+        }
     };
 
     _getConference = () => {
@@ -135,8 +136,8 @@ class LoginWithRegister extends React.Component {
                                 <div className="narrow">
                                     <Formik
                                         initialValues={{
-                                            email: '',
-                                            password: '',
+                                            email: 'admin@joyaether.test',
+                                            password: 'abcd1234',
                                         }}
                                         validationSchema={Schema}
                                         onSubmit={(values) => this._signInAsync(values)}
