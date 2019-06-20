@@ -75,6 +75,8 @@ import NewActivity from './containers/03SCHOOL/05Activity/NewActivity';
 import AllResourcesManagement from './containers/03SCHOOL/06Resource/AllResourcesManagement';
 import ResourceManagementCourse from './containers/03SCHOOL/06Resource/ResourceManagementCourse';
 import ResourceManagementHomework from './containers/03SCHOOL/06Resource/ResourceManagementHomework';
+import ResourceCourse from './containers/03SCHOOL/06Resource/ResourceCourse';
+import ResourceHomework from './containers/03SCHOOL/06Resource/ResourceHomework';
 import NewMaterial from './containers/03SCHOOL//06Resource/NewMaterial';
 import NewHomework from './containers/03SCHOOL//06Resource/NewHomework';
 import NewQuestion from './containers/03SCHOOL//06Resource/NewQuestion';
@@ -89,7 +91,8 @@ import Report from './containers/03SCHOOL/08Report/Report';
 import RelatedCourses from './containers/03SCHOOL/09Account/RelatedCourses';
 import EnrollmentHistory from './containers/03SCHOOL/09Account/EnrollmentHistory';
 import NewAccount from './containers/03SCHOOL/09Account/NewAccount';
-
+import AccountAccess from './containers/03SCHOOL/09Account/AccountAccess';
+import AccountInformation from './containers/03SCHOOL/09Account/AccountInformation';
 
 // Notes
 import NotesTaking from './containers/03SCHOOL/Notes/NotesTaking';
@@ -283,6 +286,12 @@ class App extends Component {
                 case 'resources-management-homework': {
                     return <ResourceManagementHomework />;
                 }
+                case 'resources-course': {
+                    return <ResourceCourse />;
+                }
+                case 'resources-homework': {
+                    return <ResourceHomework />;
+                }
                 case 'new-material': {
                     return <NewMaterial />;
                 }
@@ -313,7 +322,12 @@ class App extends Component {
                 case 'new-account': {
                     return <NewAccount />
                 }
-
+                case 'account-access': {
+                    return <AccountAccess />
+                }
+                case 'account-information': {
+                    return <AccountInformation />
+                }
 
                 // Notes Taking
                 case 'notes-taking': {

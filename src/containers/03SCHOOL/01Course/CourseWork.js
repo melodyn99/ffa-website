@@ -154,7 +154,7 @@ class CourseWorks extends React.Component {
 
                             <div className="content">
 
-                            <ToolBar
+                                <ToolBar
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}

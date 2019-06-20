@@ -25,10 +25,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/course-notes'}>Course Notes (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/course-assessment'}>Course Assessment (done)</Link></li>
 
-                    <h3>Student Management</h3>
-                    <li><Link to={'/' + i18n.language + '/student-related-courses'}>Student Related Courses (done)</Link></li>
-
-                    <h3>Enromment Management</h3>
+                    <h3>Enrollment Management</h3>
                     <li><Link to={'/' + i18n.language + '/enrollment-management'}>Enrollment Management (done)</Link></li>
 
                     <h3>News Management</h3>
@@ -77,11 +74,25 @@ function Sitemap(props) {
                 <ul>
                     <h2>New Pages</h2>
 
+                    <h3>Courses Management</h3>
+                    <li><Link to={'/' + i18n.language + '/course-reply-q-and-a'}>Course Reply Q and A (Melody)</Link></li>
+
                     <h3>Student Account</h3>
                     <li><Link to={'/' + i18n.language + '/login-with-register'}>Login with Register (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/login-no-register'}>Login no Register (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-register'}>Student Register (Melody)</Link></li>
 
+                    <h3>Student Management</h3>
+                    <li><Link to={'/' + i18n.language + '/student-related-courses'}>Student Related Courses (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-information'}>Student Information (Melody)</Link></li>
+
+                    <h3>Resources Management</h3>
+                    <li><Link to={'/' + i18n.language + '/resources-course'}>Resource Course (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/resources-homework'}>Resource Homework (Melody)</Link></li>
+                
+                    <h3>Accounts</h3>
+                    <li><Link to={'/' + i18n.language + '/account-access'}>Account Access (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/account-information'}>Account Information (Melody)</Link></li>
                 </ul>
             </div>
         </div >

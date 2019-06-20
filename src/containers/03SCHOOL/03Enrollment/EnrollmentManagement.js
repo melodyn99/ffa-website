@@ -32,6 +32,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
+import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../../data/03Enrollment/EnrollmentManagement';
 
@@ -106,6 +107,35 @@ class EnrollmentManagement extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _editButtonAction = () => {
+        console.log('edit button pressed');
+    }
+
+    _deleteButtonAction = () => {
+        console.log('delete button pressed');
+    }
+
+    _importButtonAction = () => {
+        console.log('import button pressed');
+    }
+
+    _copyButtonAction = () => {
+        console.log('copy button pressed');
+    }
+
+    _reportButtonAction = () => {
+        console.log('report button pressed');
+    }
+
     render() {
         const { classes } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -122,6 +152,37 @@ class EnrollmentManagement extends React.Component {
                             <BreadCrumb />
 
                             <div className="content">
+                                <ToolBar
+                                    backButton={false}
+                                    backButtonText="返回"
+                                    backButtonAction={this._backButtonAction}
+                                    backButtonActionUrl='course-materials'
+
+                                    createButton={true}
+                                    createButtonText="创建"
+                                    createButtonAction={this._createButtonAction}
+                                    createButtonActionUrl='new-course-materials'
+
+                                    editButton={true}
+                                    editButtonText="编辑"
+                                    editButtonAction={this._editButtonAction}
+
+                                    deleteButton={false}
+                                    deleteButtonText="删除"
+                                    deleteButtonAction={this._deleteButtonAction}
+
+                                    importButton={false}
+                                    importButtonText="导入123"
+                                    importButtonAction={this._importButtonAction}
+
+                                    copyButton={false}
+                                    copyButtonText="拷贝"
+                                    copyButtonAction={this._copyButtonAction}
+
+                                    reportButton={true}
+                                    reportButtonText="报名报告"
+                                    reportButtonAction={this._reportButtonAction}
+                                />
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">

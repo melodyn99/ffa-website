@@ -175,7 +175,7 @@ class StudentRelatedCourses extends React.Component {
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={5} />
+                                                        <TableCell colSpan={10} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>

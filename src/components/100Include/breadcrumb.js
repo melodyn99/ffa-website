@@ -121,6 +121,12 @@ class Breadcrumb extends Component {
             case 'resources-management-homework': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span>课程作业</span></div>);
             }
+            case 'resources-course': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-course"}>课程教材</Link></span> > <span>战略课程教材</span></div>);
+            }
+            case 'resources-homework': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-homework"}>课程作业</Link></span> > <span>战略课程作业</span></div>);
+            }
             case 'new-material': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-course"}>课程教材</Link></span> > <span>新增教材</span></div>);
             }
@@ -138,6 +144,12 @@ class Breadcrumb extends Component {
 
             // Account
             case 'related-courses': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            }
+            case 'account-access': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            }
+            case 'account-information': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
             case 'enrollment-history': {
