@@ -1,10 +1,17 @@
+// Essential for all components
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
-// import { bindActionCreators } from 'redux';
+// Styling
+import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
+import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
+import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
+
+// Redux
 import { connect } from 'react-redux';
-// import * as AnimationsActionCreators from '../../actions/animations';
 
 class Header extends Component {
 
@@ -24,7 +31,7 @@ class Header extends Component {
 
     render() {
         const { //t, 
-            i18n } = this.props;
+            i18n, classes } = this.props;
 
         let pathname = this.props.router.location.pathname,
             urlArray = pathname.split("/"),
@@ -37,19 +44,19 @@ class Header extends Component {
 
                     <div className="logo"></div>
 
-                    <div className="desktop-menu general clearfix">
-                        <li><Link to={"/" + i18n.language + "/"} className={(currentPath === '123') ? 'active' : ''}>入学</Link></li>
+                    <ul className="desktop-menu general clearfix">
+                        <li><Link to={"/" + i18n.language + "/login-with-register"} className={(currentPath === 'login-with-register') ? 'active' : ''}>入学</Link></li>
                         <li><Link to={"/" + i18n.language + "/"} className={(currentPath === '123') ? 'active' : ''}>品牌</Link></li>
-                    </div>
+                    </ul>
 
-                    <div className="desktop-menu student clearfix">
+                    <ul className="desktop-menu student clearfix">
                         <li><Link to={"/" + i18n.language + "/"} className={currentPath === '123' ? 'active' : ''}>报名申请</Link></li>
                         <li><Link to={"/" + i18n.language + "/"} className={currentPath === '123' ? 'active' : ''}>我的课程</Link></li>
                         <li><Link to={"/" + i18n.language + "/"} className={currentPath === '123' ? 'active' : ''}>我的报名</Link></li>
                         <li><Link to={"/" + i18n.language + "/"} className={currentPath === '123' ? 'active' : ''}>我的提醒</Link></li>
-                    </div>
+                    </ul>
 
-                    <div className="desktop-menu clearfix">
+                    <ul className="desktop-menu clearfix">
                         <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'all-courses' ? 'active' : ''}>课程管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/all-students-management"} className={(currentPath === 'all-students-management') || (currentPath === 'new-student') ? 'active' : ''}>学生管理</Link></li>
                         <li><Link to={"/" + i18n.language + "/enrollment-management"} className={currentPath === 'enrollment-management' ? 'active' : ''}>报名管理</Link></li>
@@ -67,6 +74,18 @@ class Header extends Component {
                         <li><Link to={"/" + i18n.language + "/related-courses"}
                             className={(currentPath === 'related-courses')
                                 || currentPath === ('new-account') ? 'active' : ''}>账户管理</Link></li>
+                    </ul>
+
+                    <div className="desktop-control">
+                        <Button
+                            className={classes.createButton}
+                            onClick={() => this.props.history.push('student-register')}
+                        >报名</Button>
+
+                        <Button
+                            className={classes.createButton}
+                            onClick={() => this.props.history.push('login-no-register')}
+                        >登入</Button>
                     </div>
                 </div>
             </div>
@@ -81,4 +100,6 @@ const mapStateToProps = (state) => (
     }
 );
 
-export default withTranslation()(connect(mapStateToProps)(Header));
+const combinedStyles = combineStyles(CommonStyles);
+
+export default withTranslation()(connect(mapStateToProps)(withStyles(combinedStyles)(withRouter(Header))));
