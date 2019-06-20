@@ -77,9 +77,9 @@ class CourseNewNotes extends React.Component {
                         </Grid>
                         <Grid item xs={11} >
                             <div className="bottomControl clearfix">
-                                <Button type="submit" className={classes.editButton}>上载文件</Button>
-                                <Button type="submit" className={classes.editButton}>下载</Button>
-                                <Button type="submit" className={classes.editButton}>删除</Button>
+                                <Button type="submit" className={classes.blueGreenButton}>上载文件</Button>
+                                <Button type="submit" className={classes.greyButton}>下载</Button>
+                                <Button type="submit" className={classes.greyButton}>删除</Button>
                             </div>
                         </Grid>
 
@@ -91,8 +91,8 @@ class CourseNewNotes extends React.Component {
 
                     </Grid>
                     <div className="bottomControl clearfix">
-                        <Button type="submit" className={classes.editButton}>取消</Button>
-                        <span className="right"><Button type="submit" className={classes.editButton}>确认</Button></span>
+                        <Button type="submit" className={classes.greyButton}>取消</Button>
+                        <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
                     </div>
                 </Form>
             )

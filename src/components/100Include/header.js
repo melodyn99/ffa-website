@@ -78,12 +78,12 @@ class Header extends Component {
 
                     <div className="desktop-control">
                         <Button
-                            className={classes.createButton}
+                            className={classes.silverButton}
                             onClick={() => this.props.history.push('student-register')}
                         >报名</Button>
 
                         <Button
-                            className={classes.createButton}
+                            className={classes.goldButton}
                             onClick={() => this.props.history.push('login-no-register')}
                         >登入</Button>
                     </div>

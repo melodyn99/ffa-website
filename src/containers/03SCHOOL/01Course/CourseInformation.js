@@ -344,8 +344,7 @@ class CourseInformation extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton}>提交</Button>
-                    {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
+                    <span className="right"><Button type="submit" className={classes.greyButton}>编辑资料</Button></span>
                 </div>
             </Form>
         )

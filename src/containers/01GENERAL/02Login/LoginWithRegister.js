@@ -59,7 +59,7 @@ class LoginWithRegister extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton} fullWidth={true}>登入</Button>
+                    <Button type="submit" className={classes.blackButton} fullWidth={true}>登入</Button>
                 </div>
                 <div className="sep-40"></div>
                 <Grid container spacing={16} alignItems="center">
@@ -68,7 +68,7 @@ class LoginWithRegister extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton} fullWidth={true}>建立新帐户</Button>
+                    <Button type="submit" className={classes.blueButton} fullWidth={true}>建立新帐户</Button>
                 </div>
             </Form>
         )

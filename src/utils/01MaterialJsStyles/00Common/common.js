@@ -11,63 +11,21 @@ export const CommonStyles = theme => ({
     //     color: 'red',
     // },
 
-    // to delete start
-    createButton: {
-        fontSize: '16px',
-        lineHeight: '1em',
-        display: 'inline-block',
-        border: 0,
-        borderRadius: 0,
-        padding: '12px 40px 10px',
-        color: 'white',
-        backgroundColor: '#02de72',
-        '&:hover': {
-            backgroundColor: '#02de72',
-        },
-    },
-    editButton: {
-        fontSize: '16px',
-        lineHeight: '1em',
-        display: 'inline-block',
-        border: 0,
-        borderRadius: 0,
-        padding: '12px 40px 10px',
-        color: 'white',
-        backgroundColor: '#cccccc',
-        '&:hover': {
-            backgroundColor: '#02de72',
-        },
-    },
-    deleteButton: {
-        fontSize: '16px',
-        lineHeight: '1em',
-        display: 'inline-block',
-        border: 0,
-        borderRadius: 0,
-        padding: '12px 40px 10px',
-        color: 'white',
-        backgroundColor: '#cccccc',
-        '&:hover': {
-            backgroundColor: '#02de72',
-        },
-    },
-    submitButton: {
-        fontSize: '16px',
-        lineHeight: '1em',
-        display: 'inline-block',
-        border: 0,
-        borderRadius: 0,
-        padding: '12px 40px 10px',
-        color: 'white',
-        backgroundColor: '#02de72',
-        '&:hover': {
-            backgroundColor: '#02de72',
-        },
-    },
-    // to delete end
-
     // to add start
-    lightGreenButton: {
+    yellowGreenButton: {
+        fontSize: '16px',
+        lineHeight: '1em',
+        display: 'inline-block',
+        border: 0,
+        borderRadius: 0,
+        padding: '12px 40px 10px',
+        color: 'white',
+        backgroundColor: '#dcfe00',
+        '&:hover': {
+            backgroundColor: '#dcfe00',
+        },
+    },
+    blueGreenButton: {
         fontSize: '16px',
         lineHeight: '1em',
         display: 'inline-block',
@@ -101,9 +59,61 @@ export const CommonStyles = theme => ({
         borderRadius: 0,
         padding: '12px 40px 10px',
         color: 'white',
-        backgroundColor: '#cccccc',
+        backgroundColor: '#858484',
         '&:hover': {
-            backgroundColor: '#02de72',
+            backgroundColor: '#858484',
+        },
+    },
+    blueButton: {
+        fontSize: '16px',
+        lineHeight: '1em',
+        display: 'inline-block',
+        border: 0,
+        borderRadius: 0,
+        padding: '12px 40px 10px',
+        color: 'white',
+        backgroundColor: '#306eff',
+        '&:hover': {
+            backgroundColor: '#306eff',
+        },
+    },
+    blackButton: {
+        fontSize: '16px',
+        lineHeight: '1em',
+        display: 'inline-block',
+        border: 0,
+        borderRadius: 0,
+        padding: '12px 40px 10px',
+        color: 'white',
+        backgroundColor: '#000000',
+        '&:hover': {
+            backgroundColor: '#000000',
+        },
+    },
+    silverButton: {
+        fontSize: '16px',
+        lineHeight: '1em',
+        display: 'inline-block',
+        border: 0,
+        borderRadius: 0,
+        padding: '12px 40px 10px',
+        color: 'white',
+        backgroundColor: '#9fa0a0',
+        '&:hover': {
+            backgroundColor: '#9fa0a0',
+        },
+    },
+    goldButton: {
+        fontSize: '16px',
+        lineHeight: '1em',
+        display: 'inline-block',
+        border: 0,
+        borderRadius: 0,
+        padding: '12px 40px 10px',
+        color: 'white',
+        backgroundColor: '#be8915',
+        '&:hover': {
+            backgroundColor: '#be8915',
         },
     },
 });

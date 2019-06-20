@@ -59,7 +59,7 @@ class LoginNoRegister extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton} fullWidth={true}>登入</Button>
+                    <Button type="submit" className={classes.blackButton} fullWidth={true}>登入</Button>
                 </div>
             </Form>
         )

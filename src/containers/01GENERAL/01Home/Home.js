@@ -82,7 +82,7 @@ class Home extends Component {
 
                             <div className="content">
                                 <Button
-                                    className={classes.createButton}
+                                    className={classes.blueGreenButton}
                                     onClick={() => { this._signInAsync() }}
                                 >登入</Button>
                             </div>

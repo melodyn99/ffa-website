@@ -49,7 +49,7 @@ class BeforeStudentRegister extends React.Component {
                 <div className="sep-20"></div>
 
                 <Button
-                    className={classes.createButton}
+                    className={classes.blueButton}
                     onClick={() => this.props.handleAgree()}
                 >Agree
                 </Button>
@@ -204,7 +204,7 @@ class StudentRegister extends React.Component {
                 /> */}
                 </div>
                 <div className="bottomControl clearfix">
-                    <span className="right"><Button type="submit" className={classes.editButton}>提交</Button></span>
+                    <span className="right"><Button type="submit" className={classes.blueButton}>提交</Button></span>
                     {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
                 </div>
             </Form>

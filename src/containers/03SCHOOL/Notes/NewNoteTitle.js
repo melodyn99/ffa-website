@@ -159,7 +159,7 @@ class NewNoteTitle extends Component {
                                     {
                                         !this.props.location.search && (
                                             <Button
-                                                className={classes.createButton}
+                                                className={classes.blueGreenButton}
                                                 disabled={!title}
                                                 onClick={() => this._toNoteCreateContent()}
                                             >创建</Button>
