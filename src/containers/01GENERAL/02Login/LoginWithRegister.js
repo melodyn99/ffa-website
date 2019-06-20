@@ -138,7 +138,7 @@ class LoginWithRegister extends React.Component {
                                         component={this.form}
                                     />
                                     <div className="bottomControl clearfix">
-                                        <Button className={classes.editButton} fullWidth={true}
+                                        <Button className={classes.blackButton} fullWidth={true}
                                             onClick={() => this.props.history.push('student-register')}
                                         >建立新帐户</Button>
                                     </div>
