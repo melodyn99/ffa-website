@@ -101,8 +101,8 @@ class NewQuestion extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton}>取消</Button>
-                    <span className="right"><Button type="submit" className={classes.editButton}>确认</Button></span>
+                    <Button type="submit" className={classes.greyButton}>取消</Button>
+                    <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
                 </div>
             </Form>
         )

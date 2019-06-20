@@ -49,12 +49,15 @@ import CourseStudentManagementAttendance from './containers/03SCHOOL/01Course/Co
 import CourseStudentManagementHomework from './containers/03SCHOOL/01Course/CourseStudentManagementHomework';
 import CourseAnnouncement from './containers/03SCHOOL/01Course/CourseAnnouncement';
 import CourseQandA from './containers/03SCHOOL/01Course/CourseQandA';
+import CourseReplyQandA from './containers/03SCHOOL/01Course/CourseReplyQandA';
 import CourseNotes from './containers/03SCHOOL/01Course/CourseNotes';
 import CourseNewNotes from './containers/03SCHOOL/01Course/CourseNewNotes';
 import CourseAssessment from './containers/03SCHOOL/01Course/CourseAssessment';
 
 // Student Management
 import AllStudentsManagement from './containers/03SCHOOL/02Student/AllStudentsManagement';
+import StudentInformation from './containers/03SCHOOL/02Student/StudentInformation';
+import StudentRelatedCourses from './containers/03SCHOOL/02Student/StudentRelatedCourses';
 import NewStudent from './containers/03SCHOOL/02Student/NewStudent';
 
 // Enrollment Management
@@ -222,6 +225,9 @@ class App extends Component {
                 case 'course-q-and-a': {
                     return <CourseQandA />;
                 }
+                case 'course-reply-q-and-a': {
+                    return <CourseReplyQandA />;
+                }
                 case 'course-notes': {
                     return <CourseNotes />;
                 }
@@ -235,6 +241,12 @@ class App extends Component {
                 // Student Management
                 case 'all-students-management': {
                     return <AllStudentsManagement />
+                }
+                case 'student-information': {
+                    return <StudentInformation />
+                }
+                case 'student-related-courses': {
+                    return <StudentRelatedCourses />
                 }
                 case 'new-student': {
                     return <NewStudent />;

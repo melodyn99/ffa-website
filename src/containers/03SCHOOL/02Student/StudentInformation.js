@@ -27,11 +27,11 @@ import * as Yup from 'yup';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-// import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/02Student/Student';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewStudent extends React.Component {
+class StudentInformation extends React.Component {
 
   _handleInput = (value, key) => {
     console.log(value);
@@ -209,8 +209,7 @@ class NewStudent extends React.Component {
           </Grid>
         </Grid>
         <div className="bottomControl clearfix">
-          <Button type="submit" className={classes.greyButton}>取消</Button>
-          <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
+          <span className="right"><Button type="submit" className={classes.greyButton}>编辑学生</Button></span>
         </div>
       </Form>
     )
@@ -266,7 +265,7 @@ class NewStudent extends React.Component {
 
             <div className="wrapper-content">
               <BreadCrumb />
-              {/* <SubMenu /> */}
+              <SubMenu />
               <div className="content">
                 <Formik
                   initialValues={{
@@ -297,7 +296,7 @@ class NewStudent extends React.Component {
   }
 }
 
-NewStudent.propTypes = {
+StudentInformation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -312,4 +311,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewStudent)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentInformation)));
