@@ -242,7 +242,7 @@ class StudentRegister extends React.Component {
                 .required('Confirm Email is required'),
             password: Yup.string()
                 .typeError('Password must be a valid string')
-                .matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", "Does not match Password requirements!")
+                .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, "Does not match Password requirements!")
                 .required('Password is required'),
             passwordConfirm: Yup.string()
                 .typeError('Confirm Password must be a valid string')
