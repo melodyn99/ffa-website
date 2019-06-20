@@ -21,11 +21,20 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 /*** GENERAL ***/
 // Home
 import Home from './containers/01GENERAL/01Home/Home';
+
+// Login
 import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
 import LoginNoRegister from './containers/01GENERAL/02Login/LoginNoRegister';
 
+
 /*** STUDENT ***/
+// Register
 import StudentRegister from './containers/02STUDENTS/01Register/StudentRegister';
+import StudentRegisterPersonalInformation from './containers/02STUDENTS/01Register/StudentRegisterPersonalInformation';
+import StudentRegisterDocumentUpload from './containers/02STUDENTS/01Register/StudentRegisterDocumentUpload';
+import StudentRegisterQuestionnaire from './containers/02STUDENTS/01Register/StudentRegisterQuestionnaire';
+import StudentRegisterFee from './containers/02STUDENTS/01Register/StudentRegisterFee';
+import StudentRegisterNotification from './containers/02STUDENTS/01Register/StudentRegisterNotification';
 
 
 /*** SCHOOL ***/
@@ -156,9 +165,24 @@ class App extends Component {
                 }
 
                 /*** STUDENT ***/
-                // Account
+                // Register
                 case 'student-register': {
                     return <StudentRegister />
+                }
+                case 'student-register-personal-information': {
+                    return <StudentRegisterPersonalInformation />
+                }
+                case 'student-register-document-upload': {
+                    return <StudentRegisterDocumentUpload />
+                }
+                case 'student-register-questionnaire': {
+                    return <StudentRegisterQuestionnaire />
+                }
+                case 'student-register-fee': {
+                    return <StudentRegisterFee />
+                }
+                case 'student-register-notification': {
+                    return <StudentRegisterNotification />
                 }
 
 
@@ -168,7 +192,7 @@ class App extends Component {
                 }
 
                 /*** SCHOOL ***/
-                // Course
+                // Course Management  
                 case 'all-courses': {
                     return <AllCourses />;
                 }
@@ -209,7 +233,7 @@ class App extends Component {
                     return <CourseAssessment />;
                 }
 
-                // Student
+                // Student Management
                 case 'all-students-management': {
                     return <AllStudentsManagement />
                 }
@@ -217,12 +241,12 @@ class App extends Component {
                     return <NewStudent />;
                 }
 
-                // Enrollment
+                // Enrollment Management
                 case 'enrollment-management': {
                     return <EnrollmentManagement />;
                 }
 
-                // News
+                // News Management
                 case 'news-management': {
                     return <NewsManagement />;
                 }
@@ -230,7 +254,7 @@ class App extends Component {
                     return <NewNews />;
                 }
 
-                // Activity
+                // Activities Management
                 case 'activities-management': {
                     return <ActivityManagement />;
                 }
@@ -238,7 +262,7 @@ class App extends Component {
                     return <NewActivity />;
                 }
 
-                // Resource
+                // Resources Management
                 case 'all-resources-management': {
                     return <AllResourcesManagement />;
                 }

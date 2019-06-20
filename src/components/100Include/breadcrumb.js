@@ -15,17 +15,36 @@ class Breadcrumb extends Component {
 
         switch (currentPath) {
 
+            /*** GENERAL ***/
             // Login
             case 'login-with-register': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span>报名</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span>报名</span></div >);
+            }
+            case 'student-register-personal-information': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+            }
+            case 'student-register-document-upload': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+            }
+            case 'student-register-questionnaire': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+            }
+            case 'student-register-fee': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+            }
+            case 'student-register-notification': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
             }
 
+            /*** STUDENT ***/
             // Register
             case 'student-register': {
-                return (<div><span><Link to ="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to={"/" + i18n.language + "/login-with-register"}>报名</Link></span> > <span>建立新账户</span></div>)
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to={"/" + i18n.language + "/login-with-register"}>报名</Link></span> > <span>建立新账户</span></div>)
             }
 
-            // Course
+
+            /*** SCHOOL ***/
+            // Course Management  
             case 'all-courses': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>课程管理</span></div>);
             }
@@ -63,17 +82,17 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程评分</span></div>);
             }
 
-            // Student
+            // Student Management
             case 'new-student': {
                 return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
             }
 
-            // Enrollment
+            // Enrollment Management
             case 'enrollment-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>报名管理</span></div>);
             }
 
-            // News
+            // News Management
             case 'news-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>新闻管理</span></div>);
             }
@@ -81,7 +100,7 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>新闻管理</span></div>);
             }
 
-            // Activities
+            // Activities Management
             case 'activities-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>活动管理</span></div>);
             }
@@ -89,7 +108,7 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>活动管理</span></div>);
             }
 
-            // Resources
+            // Resources Management
             case 'resources-management-course': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span>课程教材</span></div>);
             }
@@ -106,6 +125,11 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-homework"}>课程作业</Link></span> > <span><Link to="/">战略课程作业</Link></span> > <span>新增问题</span></div>);
             }
 
+            // My Alerts
+            case 'my-alerts': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span>我的提醒(6)</span></div>);
+            }
+
             // Account
             case 'related-courses': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
@@ -115,10 +139,6 @@ class Breadcrumb extends Component {
             }
             case 'new-account': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span>新增账户</span></div>);
-            }
-
-            case 'my-alerts': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span>我的提醒(6)</span></div>);
             }
 
             default: {
