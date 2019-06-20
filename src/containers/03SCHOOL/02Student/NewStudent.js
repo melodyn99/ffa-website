@@ -183,19 +183,6 @@ class NewStudent extends React.Component {
               <option value="4">学院名称</option>
             </select>
           </Grid>
-
-          {/* <Grid item xs={1} >
-            学科
-          </Grid>
-          <Grid item xs={11}>
-            <select>
-              <option value="1">战略课程</option>
-              <option value="2">战略课程</option>
-              <option value="3">战略课程</option>
-              <option value="4">战略课程</option>
-            </select>
-          </Grid> */}
-
           <Grid item xs={1} >
             状态
           </Grid>

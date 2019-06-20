@@ -15,11 +15,12 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+import { apiAuth } from '../../../Api/ApiAuth';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { login, verifyToken } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -59,7 +60,7 @@ class LoginNoRegister extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton} fullWidth={true}>登入</Button>
+                    <Button type="submit" className={classes.editButton} fullWidth={true} onClick={() => { this._signInAsync() }}>登入</Button>
                 </div>
             </Form>
         )
@@ -69,6 +70,27 @@ class LoginNoRegister extends React.Component {
         // call api
         // TODO
         console.log('GREAT!');
+    }
+
+    _signInAsync = async () => {
+        apiAuth.authenticate('admin@joyaether.test', 'abcd1234').then((res) => {
+            // console.log(res);
+            this.props.loginP(res.access_token);
+            this._getConference();
+        })
+    };
+
+    _getConference = () => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = null;
+
+        apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
     }
 
     render() {
@@ -121,8 +143,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
+    loginP: data => dispatch(login(data)),
+    verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

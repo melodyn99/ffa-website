@@ -16,11 +16,12 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+import { apiAuth } from '../../../Api/ApiAuth';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { login, verifyToken } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -50,37 +51,66 @@ class LoginWithRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Field name="email" type="text" placeholder="登记电邮地址" maxLength="100" />
+                        <Field name="email" type="email" placeholder="登记电邮地址" maxLength="100" />
                         {errors.email && touched.email ? <ErrorMessage message={errors.email} /> : null}
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Field name="password" type="text" placeholder="密码" maxLength="100" />
+                        <Field name="password" type="password" placeholder="密码" maxLength="100" />
                         {errors.password && touched.password ? <ErrorMessage message={errors.password} /> : null}
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton} fullWidth={true}>登入</Button>
+                    <Button type="submit" className={classes.editButton} fullWidth={true} onClick={() => { this._signInAsync() }}>
+                        登入
+          </Button>
                 </div>
                 <div className="sep-40"></div>
                 <Grid container spacing={16} alignItems="center">
                     <Grid item xs={12} className="align-center">
                         首次登入前建立新账户
-                    </Grid>
+          </Grid>
                 </Grid>
             </Form>
         )
     }
 
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
+    // handleSubmit = (values, { setFieldError }) => {
+    //   // call api
+    //   // TODO
+    //   console.log('GREAT!');
+    // }
+
+    _signInAsync = (values) => {
+        //admin@joyaether.test
+        //abcd1234
+        let email = values.email.toString();
+        let pw = values.password.toString();
+        // console.log(email);
+        // console.log(pw);
+        apiAuth.authenticate(email, pw).then((res) => {
+            // console.log(res);
+            this.props.loginP(res.access_token);
+            this._getConference();
+        })
+    };
+
+    _getConference = () => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = null;
+
+        apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
     }
 
     render() {
         const { classes
-            // , t, i18n 
+            // , t, i18n
         } = this.props;
 
         const Schema = Yup.object().shape({
@@ -109,7 +139,7 @@ class LoginWithRegister extends React.Component {
                                             password: '',
                                         }}
                                         validationSchema={Schema}
-                                        onSubmit={this.handleSubmit}
+                                        onSubmit={(values) => this._signInAsync(values)}
                                         component={this.form}
                                     />
                                     <div className="bottomControl clearfix">
@@ -136,8 +166,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
+    loginP: data => dispatch(login(data)),
+    verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
