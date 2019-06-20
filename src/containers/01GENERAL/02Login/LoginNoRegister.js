@@ -66,18 +66,19 @@ class LoginNoRegister extends React.Component {
         )
     }
 
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
-    }
+    _signInAsync = (values) => {
+        //  ToDO: research the double calling here
+        // console.log(values);
+        if (typeof (values) !== 'undefined') {
+            let email = values.email.toString();
+            let pw = values.password.toString();
 
-    _signInAsync = async () => {
-        apiAuth.authenticate('admin@joyaether.test', 'abcd1234').then((res) => {
-            // console.log(res);
-            this.props.loginP(res.access_token);
-            this._getConference();
-        })
+            apiAuth.authenticate(email, pw).then((res) => {
+                // console.log(res);
+                this.props.loginP(res.access_token);
+                this._getConference();
+            })
+        }
     };
 
     _getConference = () => {
@@ -117,11 +118,11 @@ class LoginNoRegister extends React.Component {
                                 <div className="narrow">
                                     <Formik
                                         initialValues={{
-                                            email: '',
-                                            password: '',
+                                            email: 'admin@joyaether.test',
+                                            password: 'abcd1234',
                                         }}
                                         validationSchema={Schema}
-                                        onSubmit={this.handleSubmit}
+                                        onSubmit={(values) => this._signInAsync(values)}
                                         component={this.form}
                                     />
                                 </div>

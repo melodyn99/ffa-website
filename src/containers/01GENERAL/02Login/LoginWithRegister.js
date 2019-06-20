@@ -75,15 +75,9 @@ class LoginWithRegister extends React.Component {
         )
     }
 
-    // handleSubmit = (values, { setFieldError }) => {
-    //   // call api
-    //   // TODO
-    //   console.log('GREAT!');
-    // }
-
     _signInAsync = (values) => {
-
-        console.log(values);
+        //  ToDO: research the double calling here
+        // console.log(values);
         if (typeof (values) !== 'undefined') {
             let email = values.email.toString();
             let pw = values.password.toString();
