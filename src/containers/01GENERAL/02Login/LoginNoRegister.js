@@ -67,13 +67,13 @@ class LoginNoRegister extends React.Component {
     }
 
     _signInAsync = (values) => {
-        //  ToDO: research the double calling here
+        //  TODO: research the double calling here
         // console.log(values);
         if (typeof (values) !== 'undefined') {
-            let email = values.email.toString();
-            let pw = values.password.toString();
+            let submitEmail = values.email;
+            let submitPassword = values.password;
 
-            apiAuth.authenticate(email, pw).then((res) => {
+            apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
                 // console.log(res);
                 this.props.loginP(res.access_token);
                 this._getConference();
@@ -122,7 +122,7 @@ class LoginNoRegister extends React.Component {
                                             password: 'abcd1234',
                                         }}
                                         validationSchema={Schema}
-                                        onSubmit={(values) => this._signInAsync(values)}
+                                        onSubmit={this._signInAsync}
                                         component={this.form}
                                     />
                                 </div>
