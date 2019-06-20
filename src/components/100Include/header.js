@@ -46,7 +46,18 @@ class Header extends Component {
 
                     <ul className="desktop-menu general clearfix">
                         <li><Link to={"/" + i18n.language + "/login-with-register"} className={(currentPath === 'login-with-register') ? 'active' : ''}>入学</Link></li>
-                        <li><Link to={"/" + i18n.language + "/"} className={(currentPath === '123') ? 'active' : ''}>品牌</Link></li>
+                        <li><Link to={"/" + i18n.language + "/"} className={(currentPath === '123') ? 'active' : ''}>品牌</Link>
+                            <ul>
+                                <li><Link to={"/" + i18n.language + "/school-introduction"} className={(currentPath === 'school-introduction') ? 'active' : ''}>学院简介</Link></li>
+                                <li><Link to={"/" + i18n.language + "/school-advantage"} className={(currentPath === 'school-advantage') ? 'active' : ''}>在菲力尚学学习的优点</Link></li>
+                                <li><Link to={"/" + i18n.language + "/school-learning"} className={(currentPath === 'school-learning') ? 'active' : ''}>学生学习相关介绍</Link></li>
+                                <li><Link to={"/" + i18n.language + "/news"} className={(currentPath === 'news') ? 'active' : ''}>学院故事及新闻</Link></li>
+                                <li><Link to={"/" + i18n.language + "/activities"} className={(currentPath === 'activities') ? 'active' : ''}>学院相关活动</Link></li>
+                                <li><Link to={"/" + i18n.language + "/activities"} className={(currentPath === 'activities') ? 'active' : ''}>学院相關的企業發展和創新</Link></li>
+                                <li><Link to={"/" + i18n.language + "/school-cases"} className={(currentPath === 'school-cases') ? 'active' : ''}>和学院合作的案例</Link></li>
+                            </ul>
+
+                        </li>
                     </ul>
 
                     <ul className="desktop-menu student clearfix">

@@ -45,7 +45,7 @@ class SchoolLearning extends Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">在菲力尚学学习的优点</h2>
+                        <h2 className="pageTitle">学生学习相关介绍</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
