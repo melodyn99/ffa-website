@@ -26,6 +26,13 @@ import Home from './containers/01GENERAL/01Home/Home';
 import SchoolIntroduction from './containers/01GENERAL/03Brand/SchoolIntroduction';
 import SchoolAdvantage from './containers/01GENERAL/03Brand/SchoolAdvantage';
 import SchoolLearning from './containers/01GENERAL/03Brand/SchoolLearning';
+import SchoolCase from './containers/01GENERAL/03Brand/SchoolCase';
+
+// News
+import News from './containers/01GENERAL/04News/News';
+
+// Activity
+import Activity from './containers/01GENERAL/05Activity/Activity';
 
 // Login
 import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
@@ -180,6 +187,19 @@ class App extends Component {
                 }
                 case 'school-learning': {
                     return <SchoolLearning />
+                }
+                case 'school-cases': {
+                    return <SchoolCase />
+                }
+
+                // News
+                case 'news': {
+                    return <News />
+                }
+
+                // Activity
+                case 'activities': {
+                    return <Activity />
                 }
 
                 // Login
