@@ -204,7 +204,7 @@ class StudentRegister extends React.Component {
                 /> */}
                 </div>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton}>提交</Button>
+                    <span className="right"><Button type="submit" className={classes.editButton}>提交</Button></span>
                     {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
                 </div>
             </Form>
