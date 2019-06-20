@@ -24,6 +24,8 @@ import Home from './containers/01GENERAL/01Home/Home';
 
 // Introduction
 import SchoolIntroduction from './containers/01GENERAL/03Brand/SchoolIntroduction';
+import SchoolAdvantage from './containers/01GENERAL/03Brand/SchoolAdvantage';
+import SchoolLearning from './containers/01GENERAL/03Brand/SchoolLearning';
 
 // Login
 import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
@@ -172,6 +174,12 @@ class App extends Component {
                 // School Introduction
                 case 'school-introduction': {
                     return <SchoolIntroduction />
+                }
+                case 'school-advantage': {
+                    return <SchoolAdvantage />
+                }
+                case 'school-learning': {
+                    return <SchoolLearning />
                 }
 
                 // Login
