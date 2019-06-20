@@ -91,7 +91,7 @@ import Report from './containers/03SCHOOL/08Report/Report';
 import RelatedCourses from './containers/03SCHOOL/09Account/RelatedCourses';
 import EnrollmentHistory from './containers/03SCHOOL/09Account/EnrollmentHistory';
 import NewAccount from './containers/03SCHOOL/09Account/NewAccount';
-import UserAccess from './containers/03SCHOOL/09Account/UserAccess';
+import AccountAccess from './containers/03SCHOOL/09Account/AccountAccess';
 
 // Notes
 import NotesTaking from './containers/03SCHOOL/Notes/NotesTaking';
@@ -321,8 +321,8 @@ class App extends Component {
                 case 'new-account': {
                     return <NewAccount />
                 }
-                case 'user-access': {
-                    return <UserAccess />
+                case 'account-access': {
+                    return <AccountAccess />
                 }
 
 

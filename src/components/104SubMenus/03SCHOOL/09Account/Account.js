@@ -23,7 +23,7 @@ class RelatedCourses extends Component {
                 <ul className="clearfix">
                     <li><Link to={"/" + i18n.language + "/account-information"} className={currentPath === 'new-account' ? 'active' : ''}>账户资料</Link></li>
                     <li><Link to={"/" + i18n.language + "/related-courses"} className={currentPath === 'related-courses' ? 'active' : ''}>相关课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/user-access"} className={currentPath === 'user-access' ? 'active' : ''}>使用权限</Link></li>
+                    <li><Link to={"/" + i18n.language + "/account-access"} className={currentPath === 'account-access' ? 'active' : ''}>使用权限</Link></li>
                 </ul>
             </div>
         );

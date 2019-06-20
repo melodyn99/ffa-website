@@ -91,7 +91,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/resources-homework'}>Resource Homework (Melody)</Link></li>
                 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/user-access'}>User Access (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/account-access'}>Account Access (Melody)</Link></li>
                 </ul>
             </div>
         </div >
