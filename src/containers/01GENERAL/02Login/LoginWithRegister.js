@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -67,9 +68,6 @@ class LoginWithRegister extends React.Component {
                         首次登入前建立新账户
                     </Grid>
                 </Grid>
-                <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.editButton} fullWidth={true}>建立新帐户</Button>
-                </div>
             </Form>
         )
     }
@@ -81,7 +79,9 @@ class LoginWithRegister extends React.Component {
     }
 
     render() {
-        // const { classes, t, i18n } = this.props;
+        const { classes
+            // , t, i18n 
+        } = this.props;
 
         const Schema = Yup.object().shape({
             email: Yup.string()
@@ -112,6 +112,11 @@ class LoginWithRegister extends React.Component {
                                         onSubmit={this.handleSubmit}
                                         component={this.form}
                                     />
+                                    <div className="bottomControl clearfix">
+                                        <Button className={classes.editButton} fullWidth={true}
+                                            onClick={() => this.props.history.push('student-register')}
+                                        >建立新帐户</Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -137,4 +142,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(LoginWithRegister)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(LoginWithRegister))));

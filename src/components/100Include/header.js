@@ -45,7 +45,7 @@ class Header extends Component {
                     <div className="logo"></div>
 
                     <ul className="desktop-menu general clearfix">
-                        <li><Link to={"/" + i18n.language + "/login-with-register"} className={(currentPath === 'login-with-register') ? 'active' : ''}>入学</Link></li>
+                        <li><Link to={"/" + i18n.language + "/login-with-register"} className={(currentPath === 'login-with-register') ? 'active' : ''}>入学 (Him)</Link></li>
                         <li><Link to={"/" + i18n.language + "/"} className={(currentPath === '123') ? 'active' : ''}>品牌</Link></li>
                     </ul>
 
@@ -80,12 +80,12 @@ class Header extends Component {
                         <Button
                             className={classes.createButton}
                             onClick={() => this.props.history.push('student-register')}
-                        >报名</Button>
+                        >报名 (Him)</Button>
 
                         <Button
                             className={classes.createButton}
                             onClick={() => this.props.history.push('login-no-register')}
-                        >登入</Button>
+                        >登入 (Him)</Button>
                     </div>
                 </div>
             </div>
