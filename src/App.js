@@ -36,6 +36,9 @@ import StudentRegisterQuestionnaire from './containers/02STUDENTS/01Register/Stu
 import StudentRegisterFee from './containers/02STUDENTS/01Register/StudentRegisterFee';
 import StudentRegisterNotification from './containers/02STUDENTS/01Register/StudentRegisterNotification';
 
+// Scheduling
+import Scheduling from './containers/02STUDENTS/Schedule/Scheduling';
+
 
 /*** SCHOOL ***/
 // Course Management
@@ -99,9 +102,6 @@ import NotesTaking from './containers/03SCHOOL/Notes/NotesTaking';
 import NotesContent from './containers/03SCHOOL/Notes/NotesContent';
 import NewNoteTitle from './containers/03SCHOOL/Notes/NewNoteTitle';
 import NewNoteContent from './containers/03SCHOOL/Notes/NewNoteContent';
-
-// Scheduling
-import Scheduling from './containers/02STUDENTS/Schedule/Scheduling';
 
 // Seating Plan
 import SeatingPlan from './containers/03SCHOOL/01Course/SeatingPlan/SeatingPlan';
