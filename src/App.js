@@ -22,18 +22,6 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 // Home
 import Home from './containers/01GENERAL/01Home/Home';
 
-// Introduction
-import SchoolIntroduction from './containers/01GENERAL/03Brand/SchoolIntroduction';
-import SchoolAdvantage from './containers/01GENERAL/03Brand/SchoolAdvantage';
-import SchoolLearning from './containers/01GENERAL/03Brand/SchoolLearning';
-import SchoolCase from './containers/01GENERAL/03Brand/SchoolCase';
-
-// News
-import News from './containers/01GENERAL/04News/News';
-
-// Activity
-import Activity from './containers/01GENERAL/05Activity/Activity';
-
 // Login
 import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
 import LoginNoRegister from './containers/01GENERAL/02Login/LoginNoRegister';
@@ -48,9 +36,9 @@ import StudentRegisterQuestionnaire from './containers/02STUDENTS/01Register/Stu
 import StudentRegisterFee from './containers/02STUDENTS/01Register/StudentRegisterFee';
 import StudentRegisterNotification from './containers/02STUDENTS/01Register/StudentRegisterNotification';
 
-// Scheduling
-import Scheduling from './containers/02STUDENTS/Schedule/Scheduling';
-
+// Course
+import StudentCourseDate from './containers/02STUDENTS/02Course/StudentCourseDate';
+import StudentCourseInformation from './containers/02STUDENTS/02Course/StudentCourseInformation';
 
 /*** SCHOOL ***/
 // Course Management
@@ -115,6 +103,9 @@ import NotesContent from './containers/03SCHOOL/Notes/NotesContent';
 import NewNoteTitle from './containers/03SCHOOL/Notes/NewNoteTitle';
 import NewNoteContent from './containers/03SCHOOL/Notes/NewNoteContent';
 
+// Scheduling
+import Scheduling from './containers/02STUDENTS/Schedule/Scheduling';
+
 // Seating Plan
 import SeatingPlan from './containers/03SCHOOL/01Course/SeatingPlan/SeatingPlan';
 
@@ -172,37 +163,9 @@ class App extends Component {
             // console.log(params);
 
             switch (component) {
-                /*** GENERAL ***/
-                // Home
                 case 'home': {
                     return <Home />;
                 }
-
-                // School Introduction
-                case 'school-introduction': {
-                    return <SchoolIntroduction />
-                }
-                case 'school-advantage': {
-                    return <SchoolAdvantage />
-                }
-                case 'school-learning': {
-                    return <SchoolLearning />
-                }
-                case 'school-cases': {
-                    return <SchoolCase />
-                }
-
-                // News
-                case 'news': {
-                    return <News />
-                }
-
-                // Activity
-                case 'activities': {
-                    return <Activity />
-                }
-
-                // Login
                 case 'login-with-register': {
                     return <LoginWithRegister />
                 }
@@ -229,6 +192,14 @@ class App extends Component {
                 }
                 case 'student-register-notification': {
                     return <StudentRegisterNotification />
+                }
+
+                // Course
+                case 'student-course-date': {
+                    return <StudentCourseDate />
+                }
+                case 'student-course-information': {
+                    return <StudentCourseInformation />
                 }
 
                 // Scheduling
