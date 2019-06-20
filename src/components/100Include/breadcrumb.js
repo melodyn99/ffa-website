@@ -42,6 +42,14 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to={"/" + i18n.language + "/login-with-register"}>报名</Link></span> > <span>建立新账户</span></div>)
             }
 
+            // Course
+            case 'student-course-information': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-course">我的课程</Link></span> > <span>S1-001品牌盈利模式</span></div>)
+            }
+            case 'student-course-date': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-course">我的课程</Link></span> > <span>S1-001品牌盈利模式</span></div>)
+            }
+
 
             /*** SCHOOL ***/
             // Course Management  

@@ -93,6 +93,10 @@ function Sitemap(props) {
                     <h3>Accounts</h3>
                     <li><Link to={'/' + i18n.language + '/account-access'}>Account Access (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/account-information'}>Account Information (Melody)</Link></li>
+                
+                    <h3>Student UI</h3>
+                    <li><Link to={'/' + i18n.language + '/student-course-information'}>Student Course Information (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-course-date'}>Student Course Date (Melody)</Link></li>
                 </ul>
             </div>
         </div >

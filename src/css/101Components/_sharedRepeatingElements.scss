@@ -1,0 +1,13 @@
+// ListType1
+.ListType1 { 
+	.LeftColumn { background:#fff; position:relative;
+        h4 { color:#000; font-size:16px; display:block; }
+        h5 { color:grey; font-size:16px; display:block; }
+    }
+}
+    
+.ListType2 {
+    .RightColumn { background:#fff; position:relative; 
+        h4 { color:#000; font-size:18px; display:block; text-align: right; }
+    }
+}

@@ -36,6 +36,9 @@ import StudentRegisterQuestionnaire from './containers/02STUDENTS/01Register/Stu
 import StudentRegisterFee from './containers/02STUDENTS/01Register/StudentRegisterFee';
 import StudentRegisterNotification from './containers/02STUDENTS/01Register/StudentRegisterNotification';
 
+// Course
+import StudentCourseDate from './containers/02STUDENTS/02Course/StudentCourseDate';
+import StudentCourseInformation from './containers/02STUDENTS/02Course/StudentCourseInformation';
 
 /*** SCHOOL ***/
 // Course Management
@@ -189,6 +192,14 @@ class App extends Component {
                 }
                 case 'student-register-notification': {
                     return <StudentRegisterNotification />
+                }
+
+                // Course
+                case 'student-course-date': {
+                    return <StudentCourseDate />
+                }
+                case 'student-course-information': {
+                    return <StudentCourseInformation />
                 }
 
                 // Scheduling
