@@ -16,6 +16,11 @@ class Breadcrumb extends Component {
         switch (currentPath) {
 
             /*** GENERAL ***/
+            // Introduction
+            case 'school-introduction': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">品牌</Link></span> > <span>学院简介</span></div >);
+            }
+
             // Login
             case 'login-with-register': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span>报名</span></div >);

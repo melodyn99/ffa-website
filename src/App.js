@@ -22,6 +22,9 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 // Home
 import Home from './containers/01GENERAL/01Home/Home';
 
+// Introduction
+import SchoolIntroduction from './containers/01GENERAL/03Brand/SchoolIntroduction';
+
 // Login
 import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
 import LoginNoRegister from './containers/01GENERAL/02Login/LoginNoRegister';
@@ -160,9 +163,18 @@ class App extends Component {
             // console.log(params);
 
             switch (component) {
+                /*** GENERAL ***/
+                // Home
                 case 'home': {
                     return <Home />;
                 }
+
+                // School Introduction
+                case 'school-introduction': {
+                    return <SchoolIntroduction />
+                }
+
+                // Login
                 case 'login-with-register': {
                     return <LoginWithRegister />
                 }

@@ -62,3 +62,14 @@
 
 .n20					{ margin:0 0 0 -20px; }
 .p20					{ margin:0 0 20px 20px; }
+
+/* template 4 */
+.template-4 {
+    &.leftColumn { width:100%;
+        img { width:100%; }
+    }
+
+    &.rightColumn { width:100%;
+        img { width:100%; }
+    }
+}
