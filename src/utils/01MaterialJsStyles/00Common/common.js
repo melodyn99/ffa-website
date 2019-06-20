@@ -96,7 +96,7 @@ export const CommonStyles = theme => ({
         display: 'inline-block',
         border: 0,
         borderRadius: 0,
-        padding: '12px 40px 10px',
+        padding: '12px 20px 10px',
         color: 'white',
         backgroundColor: '#9fa0a0',
         '&:hover': {
@@ -109,7 +109,7 @@ export const CommonStyles = theme => ({
         display: 'inline-block',
         border: 0,
         borderRadius: 0,
-        padding: '12px 40px 10px',
+        padding: '12px 20px 10px',
         color: 'white',
         backgroundColor: '#be8915',
         '&:hover': {
