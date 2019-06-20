@@ -67,9 +67,6 @@ class LoginWithRegister extends React.Component {
                         首次登入前建立新账户
                     </Grid>
                 </Grid>
-                <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.blueButton} fullWidth={true}>建立新帐户</Button>
-                </div>
             </Form>
         )
     }
@@ -81,7 +78,9 @@ class LoginWithRegister extends React.Component {
     }
 
     render() {
-        // const { classes, t, i18n } = this.props;
+        const { classes
+            //, t, i18n 
+        } = this.props;
 
         const Schema = Yup.object().shape({
             email: Yup.string()
@@ -112,6 +111,9 @@ class LoginWithRegister extends React.Component {
                                         onSubmit={this.handleSubmit}
                                         component={this.form}
                                     />
+                                    <div className="bottomControl clearfix">
+                                        <Button type="submit" className={classes.blueButton} fullWidth={true}>建立新帐户</Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
