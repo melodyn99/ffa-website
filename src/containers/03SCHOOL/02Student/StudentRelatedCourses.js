@@ -4,7 +4,6 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom'
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -22,8 +21,8 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../../Api/ApiAuth';
-// import { apiConferences } from '../../../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -33,24 +32,25 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
-import ToolBar from '../../../components/105ToolBars/General';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/02Student/Student';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/01Course/CourseStudentManagement';
+import data from '../../../data/02Student/StudentRelatedCourses';
 
 // Define column names
 const rows = [
-    { id: 'student', numeric: false, disablePadding: false, label: '学生' },
-    { id: 'fee', numeric: true, disablePadding: false, label: '学费' },
-    { id: 'actualfee', numeric: true, disablePadding: false, label: '实际收费' },
+    { id: 'semester', numeric: false, disablePadding: false, label: '学期' },
+    { id: 'subject', numeric: true, disablePadding: false, label: '学科名称' },
+    { id: 'courseType', numeric: true, disablePadding: false, label: '课程类型' },
+    { id: 'courseCode', numeric: true, disablePadding: false, label: '课程编号' },
+    { id: 'courseName', numeric: true, disablePadding: false, label: '课程名称' },
+    { id: 'fees', numeric: true, disablePadding: false, label: '学费' },
+    { id: 'actualFees', numeric: true, disablePadding: false, label: '实际收费' },
+    { id: 'credits', numeric: true, disablePadding: false, label: '学分' },
+    { id: 'grade', numeric: true, disablePadding: false, label: '成绩' },
     { id: 'status', numeric: true, disablePadding: false, label: '状态' },
-    { id: 'attendance', numeric: true, disablePadding: false, label: '点名' },
-    { id: 'homework', numeric: true, disablePadding: false, label: '作业' },
-    { id: 'score', numeric: true, disablePadding: false, label: '总分数' },
-    { id: 'date', numeric: true, disablePadding: false, label: '添加日期' },
 ];
 
-class CourseStudentManagement extends React.Component {
+class StudentRelatedCourses extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -110,35 +110,6 @@ class CourseStudentManagement extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
-    }
-
     render() {
         const { classes } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -149,46 +120,13 @@ class CourseStudentManagement extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
+                        <h2 className="pageTitle">学生管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
                             <SubMenu />
 
                             <div className="content">
-
-                                <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-student-management'
-
-                                    createButton={true}
-                                    createButtonText="创建"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-course-student-management'
-
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={true}
-                                    deleteButtonText="删除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={true}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={true}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
-                                />
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -222,20 +160,22 @@ class CourseStudentManagement extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.student}</TableCell>
-                                                                <TableCell>{n.fee}</TableCell>
-                                                                <TableCell>{n.actualfee}</TableCell>
+                                                                >{n.semester}</TableCell>
+                                                                <TableCell>{n.subject}</TableCell>
+                                                                <TableCell>{n.courseType}</TableCell>
+                                                                <TableCell>{n.courseCode}</TableCell>
+                                                                <TableCell>{n.courseName}</TableCell>
+                                                                <TableCell>{n.fees}</TableCell>
+                                                                <TableCell>{n.actualFees}</TableCell>
+                                                                <TableCell>{n.credits}</TableCell>
+                                                                <TableCell>{n.grade}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
-                                                                <TableCell>{n.attendance}</TableCell>
-                                                                <TableCell>{n.homework}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={8} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -265,7 +205,7 @@ class CourseStudentManagement extends React.Component {
     }
 }
 
-CourseStudentManagement.propTypes = {
+StudentRelatedCourses.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -280,4 +220,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(CourseStudentManagement))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentRelatedCourses)));

@@ -67,6 +67,12 @@ class Breadcrumb extends Component {
             case 'new-student': {
                 return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
             }
+            case 'student-information': {
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>学生资料</span></div>)
+            }
+            case 'student-related-courses': {
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>相关课程</span></div>)
+            }
 
             // Enrollment
             case 'enrollment-management': {
