@@ -1,4 +1,4 @@
-export const SchedulingStyles = theme => ({
+export const StudentSchedulingStyles = theme => ({
     root: {
         flexShrink: '1',
         marginBottom: '120px',

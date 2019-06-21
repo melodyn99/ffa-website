@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
-import { SchedulingStyles } from '../../../utils/01MaterialJsStyles/Schedule/Scheduling'
+import { StudentSchedulingStyles } from '../../../utils/01MaterialJsStyles/Schedule/StudentScheduling'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -45,7 +45,7 @@ import {
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import Calendar from '../../../components/Calendar';
 
-class Scheduling extends React.Component {
+class StudentScheduling extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -377,7 +377,7 @@ class Scheduling extends React.Component {
     }
 }
 
-Scheduling.propTypes = {
+StudentScheduling.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
@@ -391,6 +391,6 @@ const mapDispatchToProps = dispatch => ({
     addEvent: data => dispatch(addEvent(data)),
 });
 
-const combinedStyles = combineStyles(CommonStyles, SchedulingStyles);
+const combinedStyles = combineStyles(CommonStyles, StudentSchedulingStyles);
 
-export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Scheduling))));
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentScheduling))));

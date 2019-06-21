@@ -24,17 +24,21 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 import Home from './containers/01GENERAL/01Home/Home';
 import HomeImages from './containers/01GENERAL/01Home/HomeImages';
 
+// Login
+import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
+import LoginNoRegister from './containers/01GENERAL/02Login/LoginNoRegister';
+
+// Brand
+import SchoolIntroduction from './containers/01GENERAL/03Brand/SchoolIntroduction';
+import SchoolAdvantage from './containers/01GENERAL/03Brand/SchoolAdvantage';
+import SchoolLearning from './containers/01GENERAL/03Brand/SchoolLearning';
+import SchoolCase from './containers/01GENERAL/03Brand/SchoolCase';
+
 // Admission
 import AdmissionProcess from './containers/01GENERAL/06Admission/AdmissionProcess';
 import AdmissionSubjectCatalog from './containers/01GENERAL/06Admission/AdmissionSubjectCatalog';
 import AdmissionCourseCatalog from './containers/01GENERAL/06Admission/AdmissionCourseCatalog';
 import AdmissionCourseInformation from './containers/01GENERAL/06Admission/AdmissionCourseInformation';
-
-// Introduction
-import SchoolIntroduction from './containers/01GENERAL/03Brand/SchoolIntroduction';
-import SchoolAdvantage from './containers/01GENERAL/03Brand/SchoolAdvantage';
-import SchoolLearning from './containers/01GENERAL/03Brand/SchoolLearning';
-import SchoolCase from './containers/01GENERAL/03Brand/SchoolCase';
 
 // News
 import News from './containers/01GENERAL/04News/News';
@@ -42,13 +46,9 @@ import News from './containers/01GENERAL/04News/News';
 // Activity
 import Activity from './containers/01GENERAL/05Activity/Activity';
 
-// Login
-import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
-import LoginNoRegister from './containers/01GENERAL/02Login/LoginNoRegister';
-
 
 /*** STUDENT ***/
-// Register
+// Student Register
 import StudentRegister from './containers/02STUDENTS/01Register/StudentRegister';
 import StudentRegisterPersonalInformation from './containers/02STUDENTS/01Register/StudentRegisterPersonalInformation';
 import StudentRegisterDocumentUpload from './containers/02STUDENTS/01Register/StudentRegisterDocumentUpload';
@@ -56,16 +56,16 @@ import StudentRegisterQuestionnaire from './containers/02STUDENTS/01Register/Stu
 import StudentRegisterFee from './containers/02STUDENTS/01Register/StudentRegisterFee';
 import StudentRegisterNotification from './containers/02STUDENTS/01Register/StudentRegisterNotification';
 
-// Course
+// Student Course
 import StudentCourse from './containers/02STUDENTS/02Course/StudentCourse';
 import StudentCourseDate from './containers/02STUDENTS/02Course/StudentCourseDate';
 import StudentCourseInformation from './containers/02STUDENTS/02Course/StudentCourseInformation';
 import StudentCourseAnnouncements from './containers/02STUDENTS/02Course/StudentCourseAnnouncements';
 
-// Scheduling
-import Scheduling from './containers/02STUDENTS/Schedule/Scheduling';
+// Student Scheduling
+import StudentScheduling from './containers/02STUDENTS/Schedule/StudentScheduling';
 
-// Enrollment
+// Stuednt Enrollment
 import StudentEnrollmentHistory from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistory';
 import StudentEnrollmentHistoryForm from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryForm';
 import StudentEnrollmentHistoryDetail from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryDetail';
@@ -73,11 +73,12 @@ import StudentEnrollmentHistoryCancelForm from './containers/02STUDENTS/03Enroll
 import StudentEnrollmentHistoryCancelRequest from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryCancelRequest';
 import StudentEnrollmentHistoryCancelled from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryCancelled';
 
-// Alert
+// Student Alert
 import StudentAlert from './containers/02STUDENTS/04Alert/StudentAlert';
 
+
 /*** SCHOOL ***/
-// Course Management
+// School Course Management
 import AllCourses from './containers/03SCHOOL/01Course/AllCourses';
 import CourseInformation from './containers/03SCHOOL/01Course/CourseInformation';
 import CoursePreparations from './containers/03SCHOOL/01Course/CoursePreparations';
@@ -93,24 +94,24 @@ import CourseNotes from './containers/03SCHOOL/01Course/CourseNotes';
 import CourseNewNotes from './containers/03SCHOOL/01Course/CourseNewNotes';
 import CourseAssessment from './containers/03SCHOOL/01Course/CourseAssessment';
 
-// Student Management
+// School Student Management
 import AllStudentsManagement from './containers/03SCHOOL/02Student/AllStudentsManagement';
-import StudentInformation from './containers/03SCHOOL/02Student/StudentInformation';
-import StudentRelatedCourses from './containers/03SCHOOL/02Student/StudentRelatedCourses';
-import NewStudent from './containers/03SCHOOL/02Student/NewStudent';
+import StudentInformation from './containers/03SCHOOL/02Student/StudentInformation'; // this
+import StudentRelatedCourses from './containers/03SCHOOL/02Student/StudentRelatedCourses'; // this
+import NewStudent from './containers/03SCHOOL/02Student/NewStudent'; // this
 
-// Enrollment Management
+// School Enrollment Management
 import EnrollmentManagement from './containers/03SCHOOL/03Enrollment/EnrollmentManagement';
 
-// News Management
+// School News Management
 import NewsManagement from './containers/03SCHOOL/04News/NewsManagement';
 import NewNews from './containers/03SCHOOL/04News/NewNews';
 
-// Activities Management
+// School Activities Management
 import ActivityManagement from './containers/03SCHOOL/05Activity/ActivityManagement';
 import NewActivity from './containers/03SCHOOL/05Activity/NewActivity';
 
-// Resources Management
+// School Resources Management
 import AllResourcesManagement from './containers/03SCHOOL/06Resource/AllResourcesManagement';
 import ResourceManagementCourse from './containers/03SCHOOL/06Resource/ResourceManagementCourse';
 import ResourceManagementHomework from './containers/03SCHOOL/06Resource/ResourceManagementHomework';
@@ -120,13 +121,13 @@ import NewMaterial from './containers/03SCHOOL/06Resource/NewMaterial';
 import NewHomework from './containers/03SCHOOL/06Resource/NewHomework';
 import NewQuestion from './containers/03SCHOOL/06Resource/NewQuestion';
 
-// My Alerts
+// School Alert
 import SchoolAlert from './containers/03SCHOOL/07Alert/SchoolAlert';
 
-// Report
+// School Report
 import Report from './containers/03SCHOOL/08Report/Report';
 
-// Account
+// School Account
 import RelatedCourses from './containers/03SCHOOL/09Account/RelatedCourses';
 import EnrollmentHistory from './containers/03SCHOOL/09Account/EnrollmentHistory';
 import NewAccount from './containers/03SCHOOL/09Account/NewAccount';
@@ -187,7 +188,29 @@ class App extends Component {
                     return <Home />;
                 }
                 case 'home-images': {
-                    return <HomeImages/>;
+                    return <HomeImages />;
+                }
+
+                // Login
+                case 'login-with-register': {
+                    return <LoginWithRegister />
+                }
+                case 'login-no-register': {
+                    return <LoginNoRegister />
+                }
+
+                // Brand
+                case 'school-introduction': {
+                    return <SchoolIntroduction />
+                }
+                case 'school-advantage': {
+                    return <SchoolAdvantage />
+                }
+                case 'school-learning': {
+                    return <SchoolLearning />
+                }
+                case 'school-cases': {
+                    return <SchoolCase />
                 }
 
                 // Admission
@@ -204,20 +227,6 @@ class App extends Component {
                     return <AdmissionCourseInformation />;
                 }
 
-                // School Introduction
-                case 'school-introduction': {
-                    return <SchoolIntroduction />
-                }
-                case 'school-advantage': {
-                    return <SchoolAdvantage />
-                }
-                case 'school-learning': {
-                    return <SchoolLearning />
-                }
-                case 'school-cases': {
-                    return <SchoolCase />
-                }
-
                 // News
                 case 'news': {
                     return <News />
@@ -228,16 +237,9 @@ class App extends Component {
                     return <Activity />
                 }
 
-                // Login
-                case 'login-with-register': {
-                    return <LoginWithRegister />
-                }
-                case 'login-no-register': {
-                    return <LoginNoRegister />
-                }
 
                 /*** STUDENT ***/
-                // Register
+                // Student Register
                 case 'student-register': {
                     return <StudentRegister />
                 }
@@ -257,7 +259,7 @@ class App extends Component {
                     return <StudentRegisterNotification />
                 }
 
-                // Course
+                // Student Course
                 case 'student-course': {
                     return <StudentCourse />
                 }
@@ -271,12 +273,12 @@ class App extends Component {
                     return <StudentCourseAnnouncements />
                 }
 
-                // Scheduling
-                case 'scheduling': {
-                    return <Scheduling />;
+                // Student Scheduling
+                case 'student-scheduling': {
+                    return <StudentScheduling />;
                 }
 
-                // Enrollment
+                // Student Enrollment
                 case 'student-enrollment-history': {
                     return <StudentEnrollmentHistory />;
                 }
@@ -296,13 +298,14 @@ class App extends Component {
                     return <StudentEnrollmentHistoryCancelled />;
                 }
 
-                // Alert
+                // Student Alert
                 case 'student-alerts': {
                     return <StudentAlert />;
                 }
 
+
                 /*** SCHOOL ***/
-                // Course Management  
+                // School Course Management  
                 case 'all-courses': {
                     return <AllCourses />;
                 }
@@ -346,7 +349,7 @@ class App extends Component {
                     return <CourseAssessment />;
                 }
 
-                // Student Management
+                // School Student Management
                 case 'all-students-management': {
                     return <AllStudentsManagement />
                 }
@@ -360,12 +363,12 @@ class App extends Component {
                     return <NewStudent />;
                 }
 
-                // Enrollment Management
+                // School Enrollment Management
                 case 'enrollment-management': {
                     return <EnrollmentManagement />;
                 }
 
-                // News Management
+                // School News Management
                 case 'news-management': {
                     return <NewsManagement />;
                 }
@@ -373,7 +376,7 @@ class App extends Component {
                     return <NewNews />;
                 }
 
-                // Activities Management
+                // School Activities Management
                 case 'activities-management': {
                     return <ActivityManagement />;
                 }
@@ -381,7 +384,7 @@ class App extends Component {
                     return <NewActivity />;
                 }
 
-                // Resources Management
+                // School Resources Management
                 case 'all-resources-management': {
                     return <AllResourcesManagement />;
                 }
@@ -407,17 +410,17 @@ class App extends Component {
                     return <NewQuestion />;
                 }
 
-                // Alert
+                // School Alert
                 case 'school-alerts': {
                     return <SchoolAlert />;
                 }
 
-                // Report
+                // School Report
                 case 'reports': {
                     return <Report />;
                 }
 
-                // Account
+                // School Account
                 case 'related-courses': {
                     return <RelatedCourses />;
                 }
@@ -434,7 +437,7 @@ class App extends Component {
                     return <AccountInformation />
                 }
 
-                // Notes Taking
+                // Notes
                 case 'notes-taking': {
                     return <NotesTaking />;
                 }
