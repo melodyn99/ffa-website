@@ -55,6 +55,14 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
             }
 
+            // News
+            case 'news-catalog': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">品牌</Link></span> > <span>学院故事及新闻</span></div >);
+            }
+            case 'news': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">品牌</Link></span> > <span><Link to={"/" + i18n.language + "/news-catalog"}>学院故事及新闻</Link></span> > <span>新闻标题</span></div >);
+            }
+
             /*** STUDENT ***/
             // Register
             case 'student-register': {
@@ -234,7 +242,7 @@ class Breadcrumb extends Component {
         // console.log(currentPath);
 
         return (
-            <div className="breadcrumb">
+            <div className="Breadcrumb">
                 {this.renderSwitch(currentPath)}
             </div>
         );

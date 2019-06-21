@@ -2,7 +2,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom'
 
@@ -140,7 +140,7 @@ class CourseStudentManagement extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -164,7 +164,7 @@ class CourseStudentManagement extends React.Component {
                                     backButtonActionUrl='course-student-management'
 
                                     createButton={true}
-                                    createButtonText="创建"
+                                    createButtonText="添加"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='new-course-student-management'
 
@@ -173,11 +173,11 @@ class CourseStudentManagement extends React.Component {
                                     editButtonAction={this._editButtonAction}
 
                                     deleteButton={true}
-                                    deleteButtonText="删除"
+                                    deleteButtonText="移除"
                                     deleteButtonAction={this._deleteButtonAction}
 
                                     importButton={true}
-                                    importButtonText="导入123"
+                                    importButtonText="导入名单"
                                     importButtonAction={this._importButtonAction}
 
                                     copyButton={false}
@@ -188,6 +188,12 @@ class CourseStudentManagement extends React.Component {
                                     reportButtonText="学生报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
+
+                                <Link to={"/" + i18n.language + "/course-student-management-attendance"}>Go to Course Student Management Attendance</Link>
+                                <div className="sep-20"></div>
+
+                                <Link to={"/" + i18n.language + "/course-student-management-homework"}>Go to Course Student Management Homework</Link>
+                                <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>

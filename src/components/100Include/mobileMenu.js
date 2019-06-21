@@ -17,11 +17,11 @@ import 'react-accessible-accordion/dist/minimal-example.css';
 import { connect } from 'react-redux';
 // import * as AnimationsActionCreators from '../../actions/animations';
 
-function MobileMenu(props) {
+function mobileMenu(props) {
 	const { //t, 
 		i18n } = props;
 
-	// let handleMobileMenuReset = () => {
+	// let handlemobileMenuReset = () => {
 	// 	HelperMobileHandle.MobileHandle.menuReset();
 	// }
 
@@ -65,4 +65,4 @@ const mapStateToProps = (state) => (
 	}
 );
 
-export default withTranslation()(connect(mapStateToProps)(MobileMenu));
+export default withTranslation()(connect(mapStateToProps)(mobileMenu));

@@ -26,7 +26,7 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
-class SchoolAdvantage extends Component {
+class Activity extends Component {
     constructor(props) {
         super(props);
 
@@ -45,22 +45,20 @@ class SchoolAdvantage extends Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学院相关活动</h2>
+                        <h2 className="pageTitle">学院故事及新闻</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
 
                             <div className="content">
+                                <h5>活动标题</h5>
+                                <h6>发出日期</h6>
                                 <Grid container spacing={16}>
-                                    <Grid item sm={3} xs={12}>
-                                        <div className="template-4 leftColumn">
-                                            <img src={require('../../../images/600-400.png')} alt="" />
-                                        </div>
+                                    <Grid item xs={12} className="template-7">
+                                        <img src={require('../../../images/600-400.png')} alt=""/>
                                     </Grid>
-                                    <Grid item sm={9} xs={12}>
-                                        <div className="template-4 rightColumn">
-                                            <p>This is Activity</p>
-                                        </div>
+                                    <Grid item xs={12}>
+                                        <p>This is Activities</p>
                                     </Grid>
                                 </Grid>
                             </div>
@@ -84,4 +82,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolAdvantage)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Activity)));

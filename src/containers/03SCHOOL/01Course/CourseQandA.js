@@ -2,7 +2,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -104,7 +104,7 @@ class CourseQandA extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes } = this.props;
+        const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -120,6 +120,10 @@ class CourseQandA extends React.Component {
                             <SubMenu />
 
                             <div className="content">
+
+                            <Link to={"/" + i18n.language + "/course-reply-q-and-a"}>Go to Course Reply Q and A</Link>
+                            <div className="sep-20"></div>
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">

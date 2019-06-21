@@ -60,6 +60,7 @@ class AdmissionCourseCatalog extends Component {
                                     <Grid item sm={9} xs={12}>
                                         <div className="template-4 rightColumn">
                                             <p>This is Admission Course Catalog</p>
+                                            <Link to={"/" + i18n.language + "/admission-course-information"}>Go to Course Information</Link>
                                         </div>
                                     </Grid>
                                 </Grid>

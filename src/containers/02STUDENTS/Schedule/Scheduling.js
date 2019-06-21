@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -230,7 +230,7 @@ class Scheduling extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, i18n } = this.props;
         const { seminars, sortType, enableSearch } = this.state;
 
         return (
@@ -244,6 +244,7 @@ class Scheduling extends React.Component {
                             <BreadCrumb />
 
                             <div className="content">
+                                <Link to={"/" + i18n.language + "/student-course-information"}>Go to Student Course Information</Link>
                                 <div className={classes.root}>
                                     <div className={classes.content}>
                                         <div className={classes.middleContent}>

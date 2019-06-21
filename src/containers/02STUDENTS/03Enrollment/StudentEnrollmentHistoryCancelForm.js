@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -107,7 +108,9 @@ class StudentEnrollmentHistoryCancelForm extends React.Component {
                     </Grid>
                     <div className="bottomControl clearfix">
                         <Button type="submit" className={classes.greyButton}>取消</Button>
-                        <span className="right"><Button type="submit" className={classes.blackButton}>提交</Button></span>
+                        <span className="right"><Button className={classes.blackButton}
+                                        onClick={() => this.props.history.push('student-enrollment-history-cancel-request')}
+                        >提交</Button></span>
                     </div>
                 </Form>
             )
@@ -171,4 +174,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentEnrollmentHistoryCancelForm)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(StudentEnrollmentHistoryCancelForm))));
