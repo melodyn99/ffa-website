@@ -456,7 +456,9 @@ class App extends Component {
 
                     {this.getComponent(component, params)}
 
-                    <Footer />
+                    {component !== '' &&
+                        <Footer />
+                    }
 
                     {this.state.debug &&
                         <Sitemap />

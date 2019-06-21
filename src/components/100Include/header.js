@@ -38,15 +38,15 @@ class Header extends Component {
             currentPath = urlArray[2];
 
         return (
-            <div className="wrapper-header">
+            <div className={"wrapper-header" + (currentPath === '' ? ' home' : '')}>
                 <div className="header">
                     <div className="mobile-menu-btn">MENU</div>
 
                     <h1 className="logo">
-                        <Link to={"/" + i18n.language}><img src={require('../../images/600-400.png')} alt="" /></Link>
+                        <Link to={"/" + i18n.language + '/'}><img src={require('../../images/600-400.png')} alt="" /></Link>
                     </h1>
 
-                    <ul className="desktop-menu general clearfix">
+                    <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' general' : '')}>
                         <li className={(currentPath === 'login-with-register') ? 'active' : ''}><Link to={"/" + i18n.language + "/login-with-register"}>入学</Link>
                             <ul className="first">
                                 <div className="arrow">need image</div>
@@ -72,30 +72,32 @@ class Header extends Component {
                             </ul>
                         </li>
                     </ul>
-
-                    <ul className="desktop-menu student clearfix">
-                        <li className={currentPath === 'student-register-personal-information' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-register-personal-information"}>报名申请</Link></li>
-                        <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-course"}>我的课程</Link></li>
-                        <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>我的报名</Link></li>
-                        <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>我的提醒</Link></li>
-                    </ul>
-
-                    <ul className="desktop-menu school clearfix">
-                        <li className={currentPath === 'all-courses' ? 'active' : ''}><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></li>
-                        <li className={(currentPath === 'all-students-management') || (currentPath === 'new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></li>
-                        <li className={currentPath === 'enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/enrollment-management"}>报名管理</Link></li>
-                        <li className={(currentPath === 'news-management') || (currentPath === 'new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/news-management"}>新闻管理</Link></li>
-                        <li className={(currentPath === 'activities-management') || (currentPath === 'new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/activities-management"}>活动管理</Link></li>
-                        <li className={(currentPath === 'all-resources-management')
-                            || (currentPath === 'resources-management-course')
-                            || (currentPath === 'resources-management-homework')
-                            || (currentPath === 'new-material')
-                            || (currentPath === 'new-homework')
-                            || (currentPath === 'new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-resources-management"}>资源管理</Link></li>
-                        <li className={currentPath === 'my-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/my-alerts"}>我的提醒 (6)</Link></li>
-                        <li className={currentPath === 'reports' ? 'active' : ''}><Link to={"/" + i18n.language + "/reports"}>项目报告</Link></li>
-                        <li className={(currentPath === 'related-courses') || (currentPath === 'new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/related-courses"}>账户管理</Link></li>
-                    </ul>
+                    {(currentPath !== '') &&
+                        <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' student' : '')}>
+                            <li className={currentPath === 'student-register-personal-information' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-register-personal-information"}>报名申请</Link></li>
+                            <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-course"}>我的课程</Link></li>
+                            <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>我的报名</Link></li>
+                            <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>我的提醒</Link></li>
+                        </ul>
+                    }
+                    {(currentPath !== '') &&
+                        <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' school' : '')}>
+                            <li className={currentPath === 'all-courses' ? 'active' : ''}><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></li>
+                            <li className={(currentPath === 'all-students-management') || (currentPath === 'new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></li>
+                            <li className={currentPath === 'enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/enrollment-management"}>报名管理</Link></li>
+                            <li className={(currentPath === 'news-management') || (currentPath === 'new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/news-management"}>新闻管理</Link></li>
+                            <li className={(currentPath === 'activities-management') || (currentPath === 'new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/activities-management"}>活动管理</Link></li>
+                            <li className={(currentPath === 'all-resources-management')
+                                || (currentPath === 'resources-management-course')
+                                || (currentPath === 'resources-management-homework')
+                                || (currentPath === 'new-material')
+                                || (currentPath === 'new-homework')
+                                || (currentPath === 'new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-resources-management"}>资源管理</Link></li>
+                            <li className={currentPath === 'my-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/my-alerts"}>我的提醒 (6)</Link></li>
+                            <li className={currentPath === 'reports' ? 'active' : ''}><Link to={"/" + i18n.language + "/reports"}>项目报告</Link></li>
+                            <li className={(currentPath === 'related-courses') || (currentPath === 'new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/related-courses"}>账户管理</Link></li>
+                        </ul>
+                    }
 
                     <div className="desktop-control">
                         <Button

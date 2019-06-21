@@ -47,6 +47,8 @@
 
 	&.active { left: 300px; @include transition(0.1s); }
 
+	&.home { box-shadow:none; }
+
 	.header { width:100%; max-width:1640px; height:100px; margin:0 auto; padding:10px 20px; position:relative;
 		@media (max-width: 980px) { height:50px; } 
 
@@ -54,7 +56,7 @@
 			@media (max-width: 980px) { display:block; } 
 		}
 
-		.logo { width:96px; background-color:#fff000; position:absolute; top:20px; left:20px; margin:0; 
+		.logo { width:96px; position:absolute; top:20px; left:20px; margin:0; 
 			@media (max-width: 980px) { display:none;}
 			
 			a { display:block; 
@@ -140,6 +142,7 @@
 .wrapper-container-main { position:relative; width:100%; background:#ecc879; background-size:100%;
 
 	.container-main { position:relative; padding:20px; max-width:1640px; margin:0 auto; min-height:600px; 
+		&.home { background:#e6e400; max-width:1100%; }
 		
 		.pageTitle { font-size:60px; color:#fff; }
 		
