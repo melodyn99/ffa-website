@@ -64,6 +64,9 @@ import StudentEnrollmentHistoryCancelForm from './containers/02STUDENTS/03Enroll
 import StudentEnrollmentHistoryCancelRequest from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryCancelRequest';
 import StudentEnrollmentHistoryCancelled from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryCancelled';
 
+// Alert
+import StudentAlert from './containers/02STUDENTS/04Alert/StudentAlert';
+
 /*** SCHOOL ***/
 // Course Management
 import AllCourses from './containers/03SCHOOL/01Course/AllCourses';
@@ -277,6 +280,11 @@ class App extends Component {
                 }
                 case 'student-enrollment-history-cancelled': {
                     return <StudentEnrollmentHistoryCancelled />;
+                }
+
+                // Alert
+                case 'student-alert': {
+                    return <StudentAlert />;
                 }
 
                 /*** SCHOOL ***/

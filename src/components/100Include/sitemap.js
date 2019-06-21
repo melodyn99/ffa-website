@@ -106,6 +106,9 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancel-form'}>Student Enrollment History Cancel Form (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancel-request'}>Student Enrollment History Cancel Request (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancelled'}>Student Enrollment History Cancelled (Melody)</Link></li>
+                
+                    <h3>Student UI Alert</h3>
+                    <li><Link to={'/' + i18n.language + '/student-alert'}>Student Alert (Melody)</Link></li>
                 </ul>
 
                 <ul>

@@ -78,6 +78,11 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-enrollment-history">报名历史</Link></span> > <span>报名</span></div>)
             }
 
+            // Alert
+            case 'student-alert': {
+                return (<div><span><Link to="/">主页</Link></span> / <span>我的提醒</span></div>)
+            }
+
             /*** SCHOOL ***/
             // Course Management  
             case 'all-courses': {
