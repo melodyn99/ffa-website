@@ -73,3 +73,35 @@
         img { width:100%; }
     }
 }
+
+/* template 5 */
+.template-5l { text-align:left;
+    img { width:600px; }
+    img { width:600px; }
+}
+
+.template-5r { text-align:right;
+    img { width:600px; }
+    img { width:600px; }
+}
+
+/* template 5 */
+.template-6 { text-align:center; 
+    img { width:1200px; }
+}
+
+// .template-5 {
+//     &.topRow { width:100%;
+//         img { width:100%; }
+//     }
+//     &.bottomRow { width:100%;
+//         &.leftColumn { width:50%;
+//             img { width:100%; }
+//             img {  width:100%; }
+//         }
+//         &.rightColumn { width:50%;
+//             img { width:100%; }
+//             img {  width:100%; }
+//         }
+//     }
+// }

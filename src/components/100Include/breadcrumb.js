@@ -21,6 +21,20 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">品牌</Link></span> > <span>学院简介</span></div >);
             }
 
+            // Admission
+            case 'admission-process': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span>入学申请流程</span></div >);
+            }
+            case 'admission-subject-catalog': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span>学科目录</span></div >);
+            }
+            case 'admission-course-catalog': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/admission-subject-catalog">学科目录</Link></span> > <span>商品管理系列课程</span></div >);
+            }
+            case 'admission-course-information': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/admission-subject-catalog">学科目录</Link></span> > <span><Link to="/admission-course-catalog">商品管理系列课程</Link></span> > <span>快反商品力企划</span></div >);
+            }
+
             // Login
             case 'login-with-register': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span>报名</span></div >);

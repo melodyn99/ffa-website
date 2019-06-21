@@ -21,6 +21,13 @@ import * as HelperPopup from './utils/00JqueryControl/Popup';
 /*** GENERAL ***/
 // Home
 import Home from './containers/01GENERAL/01Home/Home';
+import HomeImages from './containers/01GENERAL/01Home/HomeImages';
+
+// Admission
+import AdmissionProcess from './containers/01GENERAL/06Admission/AdmissionProcess';
+import AdmissionSubjectCatalog from './containers/01GENERAL/06Admission/AdmissionSubjectCatalog';
+import AdmissionCourseCatalog from './containers/01GENERAL/06Admission/AdmissionCourseCatalog';
+import AdmissionCourseInformation from './containers/01GENERAL/06Admission/AdmissionCourseInformation';
 
 // Introduction
 import SchoolIntroduction from './containers/01GENERAL/03Brand/SchoolIntroduction';
@@ -191,6 +198,23 @@ class App extends Component {
                 // Home
                 case 'home': {
                     return <Home />;
+                }
+                case 'home-images': {
+                    return <HomeImages/>;
+                }
+
+                // Admission
+                case 'admission-process': {
+                    return <AdmissionProcess />;
+                }
+                case 'admission-subject-catalog': {
+                    return <AdmissionSubjectCatalog />;
+                }
+                case 'admission-course-catalog': {
+                    return <AdmissionCourseCatalog />;
+                }
+                case 'admission-course-information': {
+                    return <AdmissionCourseInformation />;
                 }
 
                 // School Introduction

@@ -119,6 +119,15 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-advantage'}>School Advantage</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-learning'}>School Learning</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-cases'}>School Cases</Link></li>
+                
+                    <h3>Admission</h3>
+                    <li><Link to={'/' + i18n.language + '/admission-process'}>Admission Process (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/admission-subject-catalog'}>Admission Subject Catalog (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/admission-course-catalog'}>Admission Course Catalog (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/admission-course-information'}>Admission Course Information (Melody)</Link></li>
+                
+                    <h3>Home</h3>
+                    <li><Link to={'/' + i18n.language + '/home-images'}>Home Images (Melody)</Link></li>
                 </ul>
             </div>
         </div >
