@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -97,8 +98,12 @@ class NewHomework extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.greyButton}>取消</Button>
-                    <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
+                    <Button className={classes.greyButton}
+                        onClick={() => this.props.history.push('resources-management-homework')}
+                    >取消</Button>
+                    <span className="right"><Button className={classes.blackButton}
+                        onClick={() => this.props.history.push('resources-homework')}
+                    >确认</Button></span>
                 </div>
             </Form>
         )
@@ -165,4 +170,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewHomework)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(NewHomework))));
