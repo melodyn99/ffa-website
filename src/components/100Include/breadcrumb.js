@@ -54,7 +54,29 @@ class Breadcrumb extends Component {
             case 'student-course-date': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-course">我的课程</Link></span> > <span>S1-001品牌盈利模式</span></div>)
             }
+            case 'student-course-announcements': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-course">我的课程</Link></span> > <span>S1-001品牌盈利模式</span></div>)
+            }
 
+            // Enrollment
+            case 'student-enrollment-history': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span>报名历史</span></div>)
+            }
+            case 'student-enrollment-history-form': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-enrollment-history">报名历史</Link></span> > <span>报名</span></div>)
+            }
+            case 'student-enrollment-history-detail': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-enrollment-history">报名历史</Link></span> > <span>报名</span></div>)
+            }
+            case 'student-enrollment-history-cancel-form': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-enrollment-history">报名历史</Link></span> > <span><Link to="student-enrollment-history-detail">报名</Link></span> > <span>申请取消</span></div>)
+            }
+            case 'student-enrollment-history-cancel-request': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-enrollment-history">报名历史</Link></span> > <span>报名</span></div>)
+            }
+            case 'student-enrollment-history-cancelled': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-enrollment-history">报名历史</Link></span> > <span>报名</span></div>)
+            }
 
             /*** SCHOOL ***/
             // Course Management  

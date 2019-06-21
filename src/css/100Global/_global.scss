@@ -66,5 +66,7 @@ em { font-style:italic; }
 
 .color-white { color:white!important; }
 
-.color-green { color: $majorGreen !important; }
+.color-green { color: $majorGreen!important; }
+.color-lightgreen { color: #02de72!important; display:inline-block; padding-right: 8px}
+.color-red { color: red !important; display:inline-block; padding-right: 8px}
 .border-green { border-color: $majorGreen !important; }

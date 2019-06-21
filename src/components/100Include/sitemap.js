@@ -94,9 +94,18 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/account-access'}>Account Access (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/account-information'}>Account Information (Melody)</Link></li>
                 
-                    <h3>Student UI</h3>
+                    <h3>Student UI Course</h3>
                     <li><Link to={'/' + i18n.language + '/student-course-information'}>Student Course Information (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-course-date'}>Student Course Date (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-course-announcements'}>Student Course Announcements (Melody)</Link></li>
+                
+                    <h3>Student UI Enrollment</h3>
+                    <li><Link to={'/' + i18n.language + '/student-enrollment-history'}>Student Enrollment History (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-enrollment-history-form'}>Student Enrollment History Form (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-enrollment-history-detail'}>Student Enrollment History Detail (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancel-form'}>Student Enrollment History Cancel Form (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancel-request'}>Student Enrollment History Cancel Request (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancelled'}>Student Enrollment History Cancelled (Melody)</Link></li>
                 </ul>
 
                 <ul>
