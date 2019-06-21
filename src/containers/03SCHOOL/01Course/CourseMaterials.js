@@ -35,7 +35,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/01Course/CourseMaterials';
+import data from '../../../data/03SCHOOL/01Course/CourseMaterials';
 
 // Define column names
 const rows = [
@@ -151,7 +151,7 @@ class CourseMaterials extends React.Component {
 
                             <div className="content">
 
-                            <ToolBar
+                                <ToolBar
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}

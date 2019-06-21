@@ -34,7 +34,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03Enrollment/EnrollmentManagement';
+import data from '../../../data/03SCHOOL/03Enrollment/EnrollmentManagement';
 
 // Define column names
 const rows = [

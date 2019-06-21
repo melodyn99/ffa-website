@@ -35,7 +35,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/01Course/CourseWork';
+import data from '../../../data/03SCHOOL/01Course/CourseWork';
 
 // Define column names
 const rows = [
