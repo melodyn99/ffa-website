@@ -80,7 +80,7 @@ class Header extends Component {
                         <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>我的提醒</Link></li>
                     </ul>
 
-                    <ul className="desktop-menu clearfix">
+                    <ul className="desktop-menu school clearfix">
                         <li className={currentPath === 'all-courses' ? 'active' : ''}><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></li>
                         <li className={(currentPath === 'all-students-management') || (currentPath === 'new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></li>
                         <li className={currentPath === 'enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/enrollment-management"}>报名管理</Link></li>
