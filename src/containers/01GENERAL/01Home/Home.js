@@ -10,11 +10,14 @@ import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import { HeaderStyles } from '../../../utils/01MaterialJsStyles/00Common/header'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 
 // Api
 import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
+
+// Material UI
+import Grid from '@material-ui/core/Grid';
 
 // Redux
 import { connect } from 'react-redux';
@@ -23,7 +26,7 @@ import { login, verifyToken } from '../../../Redux/Action/authAction';
 // Utils
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+// import BreadCrumb from '../../../components/100Include/breadcrumb';
 
 class Home extends Component {
     constructor(props) {
@@ -68,26 +71,17 @@ class Home extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        // const { classes } = this.props;
 
         return (
             <div>
                 <div className="wrapper-container-main">
-                    <div className="container-main">
-
-                        <h2 className="pageTitle">報名歷史</h2>
-
-                        <div className="wrapper-content">
-                            <BreadCrumb />
-
-                            <div className="content">
-                                <Button
-                                    className={classes.blueGreenButton}
-                                    onClick={() => { this._signInAsync() }}
-                                >登入</Button>
-                            </div>
-                        </div>
-
+                    <div className="container-main home">
+                        <Grid container spacing={16} alignItems="center" height="100%">
+                            <Grid item xs={12}>
+                                <img src={require('../../../images/600-400.png')} alt="" />
+                            </Grid>
+                        </Grid>
                     </div>
                 </div>
             </div>

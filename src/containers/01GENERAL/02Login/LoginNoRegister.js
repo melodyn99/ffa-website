@@ -62,24 +62,31 @@ class LoginNoRegister extends React.Component {
                 </div>
                 <div className="sep-40"></div>
                 <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={4} className="align-center">
+                    <Grid item xs={3} className="align-center">
                         <div className="hints">
-                            <h4>Admin Role</h4>
-                            <p>admin@joyaether.test</p>
+                            <h4>Manager Role</h4>
+                            <p>manager@ffa.test</p>
                             <p>abcd1234</p>
                         </div>
                     </Grid>
-                    <Grid item xs={4} className="align-center">
+                    <Grid item xs={3} className="align-center">
+                        <div className="hints">
+                            <h4>Officer Role</h4>
+                            <p>officer@ffa.test</p>
+                            <p>abcd1234</p>
+                        </div>
+                    </Grid>
+                    <Grid item xs={3} className="align-center">
                         <div className="hints">
                             <h4>Teacher Role</h4>
-                            <p>teacher@joyaether.test</p>
+                            <p>teacher@ffa.test</p>
                             <p>abcd1234</p>
                         </div>
                     </Grid>
-                    <Grid item xs={4} className="align-center">
+                    <Grid item xs={3} className="align-center">
                         <div className="hints">
                             <h4>Student Role</h4>
-                            <p>student@joyaether.test</p>
+                            <p>student@ffa.test</p>
                             <p>abcd1234</p>
                         </div>
                     </Grid>

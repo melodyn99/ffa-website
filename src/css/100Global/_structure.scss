@@ -1,9 +1,9 @@
-/* ROOT */
+// ROOT
 #root { 
 	>div { overflow:hidden; z-index:0; }
 }
 
-/* WRAP */
+// WRAP
 #wrap { position:relative; padding-top:95px; left:0; background:#e6e400; z-index:1; @include transition(0.1s); height:100%;
 	
 	@media (max-width: 980px) { padding-top:50px; } 
@@ -15,10 +15,12 @@
 	}
 }
 
-//MOBILE MENU
+// MOBILE MENU
 .wrapper-mobile-menu { position:fixed; top:0; left:0; height:100%; width:300px; background:white; overflow-y:scroll; -webkit-overflow-scrolling: touch; z-index:1; display:none;
 	
 	&.active { display:block; }
+
+	&.home { top:60px; }
 	
 	>.mobile-menu { padding:15px 30px; background:white; 
 		
@@ -42,10 +44,24 @@
 	}
 }
 
-//HEAD
+// HOMEPAGE TOPBAR
+.wrapper-topbar { position:fixed; top:0; width:100%; z-index:1000; background:#000; left:0; @include transition(0.1s);
+	&.active { left: 300px; @include transition(0.1s); }
+	
+	.topbar { width:100%; max-width:1640px; height:60px; margin:0 auto; padding:10px 20px; position:relative; color:#fff;
+		@media (max-width: 980px) { height:50px; } 
+	}
+}
+
+
+// HEADER
 .wrapper-header { position:fixed; top:0; width:100%; z-index:1000; background:#e6e400; box-shadow: 2px 0 2px #666; left:0; @include transition(0.1s); 
 
 	&.active { left: 300px; @include transition(0.1s); }
+
+	&.home { box-shadow:none; top:60px; 
+		@media (max-width: 980px) { top:50px; } 
+	}
 
 	.header { width:100%; max-width:1640px; height:100px; margin:0 auto; padding:10px 20px; position:relative;
 		@media (max-width: 980px) { height:50px; } 
@@ -54,7 +70,7 @@
 			@media (max-width: 980px) { display:block; } 
 		}
 
-		.logo { width:96px; background-color:#fff000; position:absolute; top:20px; left:20px; margin:0; 
+		.logo { width:96px; position:absolute; top:18px; left:20px; margin:0; 
 			@media (max-width: 980px) { display:none;}
 			
 			a { display:block; 
@@ -109,7 +125,7 @@
 	}
 }
 
-//FOOTER
+// FOOTER
 .wrapper-footer { background:#1b1718; width:100%; height:auto; position:relative;
 
 	.footer { position:relative; max-width:1640px; margin:0 auto; padding:10px 20px; color:#fff;
@@ -125,7 +141,7 @@
 	}
 }
 
-//SITEMAP
+// SITEMAP
 .wrapper-sitemap {
 
 	.sitemap { position:relative; max-width:1640px; margin:0 auto; padding:20px; color:#fff; 
@@ -136,10 +152,11 @@
 	}
 }
 
-//CONTAINER
+// CONTAINER
 .wrapper-container-main { position:relative; width:100%; background:#ecc879; background-size:100%;
 
-	.container-main { position:relative; padding:20px; max-width:1640px; margin:0 auto; min-height:600px; 
+	.container-main { position:relative; padding:20px; max-width:1640px; margin:0 auto; min-height:750px; 
+		&.home { background:#e6e400; max-width:100%; }
 		
 		.pageTitle { font-size:60px; color:#fff; }
 		
