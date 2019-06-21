@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { withTranslation } from 'react-i18next';
 
-function GridType1(props) {
+function ListType1(props) {
     return (
         <Grid container spacing={16} alignItems="center" className="ListType1">
             <Grid item xs={4}>
@@ -24,4 +24,4 @@ function GridType1(props) {
     )
 }
 
-export default withTranslation()(GridType1);
+export default withTranslation()(ListType1);

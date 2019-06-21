@@ -9,7 +9,6 @@ import { withTranslation } from 'react-i18next';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import GridType1 from '../../../components/102Grids/GridType1';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -35,10 +34,11 @@ import { connect } from 'react-redux';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/02STUDENTS/02Course/Course';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
+import ListType1 from '../../../components/102Grids/ListType1';
 
 function Block(props) {
     return (
-        <GridType1
+        <ListType1
             id={props.id}
             name={props.name}
             location={props.location}
@@ -92,9 +92,9 @@ class StudentCourseDate extends React.Component {
 
                             <div className="content">
                                 <Cluster
-                                name={this.state.name}
-                                location={this.state.location}
-                                date={this.state.date}
+                                    name={this.state.name}
+                                    location={this.state.location}
+                                    date={this.state.date}
                                 />
                             </div>
                         </div>

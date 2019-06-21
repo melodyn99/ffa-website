@@ -2,9 +2,9 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { withTranslation } from 'react-i18next';
 
-function GridType2(props) {
+function ListType2(props) {
     return (
-        <Grid container spacing={16} alignItems="center" className="ListType1">
+        <Grid container spacing={16} alignItems="center" className="ListType2">
             <Grid item xs={4}>
                 <div>
                     <div className="LeftColumn">
@@ -15,9 +15,9 @@ function GridType2(props) {
             </Grid>
             <Grid item xs={8}>
                 <div>
-                    <div className="RightColumn2">
+                    <div className="RightColumn">
                         <h4>{props.date}</h4>
-                        <h5> {props.delete} </h5>
+                        <h5>{props.delete} </h5>
                     </div>
                 </div>
             </Grid>
@@ -25,4 +25,4 @@ function GridType2(props) {
     )
 }
 
-export default withTranslation()(GridType2);
+export default withTranslation()(ListType2);

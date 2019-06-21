@@ -8,7 +8,15 @@
     .RightColumn { background:#fff; position:relative; 
         h4 { color:#000; font-size:18px; display:block; text-align: right; }
     }
-    .RightColumn2 { background:#fff; position:relative;
+}
+
+// ListType2
+.ListType2 { 
+	.LeftColumn { background:#fff; position:relative;
+        h4 { color:#000; font-size:16px; display:block; }
+        h5 { color:grey; font-size:16px; display:block; }
+    }
+    .RightColumn { background:#fff; position:relative;
         h4 { color:#000; font-size:16px; display:block; text-align: right; }
         h5 { color:grey; font-size:16px; display:block; text-align: right;  }
     }
