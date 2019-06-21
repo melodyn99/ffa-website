@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -36,7 +36,10 @@ class AdmissionCourseCatalog extends Component {
     }
 
     render() {
-        // const { i18n, classes } = this.props;
+        const { 
+            i18n
+            // , classes 
+        } = this.props;
 
         return (
             <div>

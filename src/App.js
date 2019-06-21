@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import querySearch from "stringquery";
 
-import mobileMenu from './components/100Include/mobileMenu';
+import MobileMenu from './components/100Include/MobileMenu';
 import Header from './components/100Include/Header';
 import Footer from './components/100Include/Footer';
 import Sitemap from './components/100Include/Sitemap';
@@ -487,7 +487,7 @@ class App extends Component {
 
         return (
             <div>
-                <mobileMenu />
+                <MobileMenu />
 
                 <div id="wrap">
                     {(
