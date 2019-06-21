@@ -93,7 +93,7 @@ class Breadcrumb extends Component {
             }
 
             // Alert
-            case 'student-alert': {
+            case 'student-alerts': {
                 return (<div><span><Link to="/">主页</Link></span> / <span>我的提醒</span></div>)
             }
 
@@ -192,7 +192,7 @@ class Breadcrumb extends Component {
             }
 
             // My Alerts
-            case 'my-alerts': {
+            case 'school-alerts': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>我的提醒(6)</span></div>);
             }
 

@@ -115,12 +115,12 @@ import ResourceManagementCourse from './containers/03SCHOOL/06Resource/ResourceM
 import ResourceManagementHomework from './containers/03SCHOOL/06Resource/ResourceManagementHomework';
 import ResourceCourse from './containers/03SCHOOL/06Resource/ResourceCourse';
 import ResourceHomework from './containers/03SCHOOL/06Resource/ResourceHomework';
-import NewMaterial from './containers/03SCHOOL//06Resource/NewMaterial';
-import NewHomework from './containers/03SCHOOL//06Resource/NewHomework';
-import NewQuestion from './containers/03SCHOOL//06Resource/NewQuestion';
+import NewMaterial from './containers/03SCHOOL/06Resource/NewMaterial';
+import NewHomework from './containers/03SCHOOL/06Resource/NewHomework';
+import NewQuestion from './containers/03SCHOOL/06Resource/NewQuestion';
 
 // My Alerts
-import MyAlert from './containers/03SCHOOL/07Alert/MyAlert';
+import SchoolAlert from './containers/03SCHOOL/07Alert/SchoolAlert';
 
 // Report
 import Report from './containers/03SCHOOL/08Report/Report';
@@ -293,7 +293,7 @@ class App extends Component {
                 }
 
                 // Alert
-                case 'student-alert': {
+                case 'student-alerts': {
                     return <StudentAlert />;
                 }
 
@@ -404,8 +404,8 @@ class App extends Component {
                 }
 
                 // Alert
-                case 'my-alerts': {
-                    return <MyAlert />;
+                case 'school-alerts': {
+                    return <SchoolAlert />;
                 }
 
                 // Report

@@ -174,7 +174,7 @@ class CourseAssessment extends React.Component {
                                     deleteButtonAction={this._deleteButtonAction}
 
                                     importButton={false}
-                                    importButtonText="导入123"
+                                    importButtonText="导入"
                                     importButtonAction={this._importButtonAction}
 
                                     copyButton={false}

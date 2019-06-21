@@ -46,7 +46,7 @@ function MobileMenu(props) {
 					<li><Link to={"/" + i18n.language + "/news-management"}>新闻管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/activities-management"}>活动管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/resources-management"}>资源管理</Link></li>
-					<li><Link to={"/" + i18n.language + "/my-alerts"}>我的提醒 (3)</Link></li>
+					<li><Link to={"/" + i18n.language + "/school-alerts"}>我的提醒 (3)</Link></li>
 					<li><Link to={"/" + i18n.language + "/reports"}>项目报告</Link></li>
 				</ul>
 

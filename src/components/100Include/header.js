@@ -51,9 +51,9 @@ class Header extends Component {
                             <ul className="first">
                                 <div className="arrow">need image</div>
                                 <div className="wrap">
-                                    <li className={(currentPath === 'school-introduction') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-introduction"}>入學申請流程</Link></li>
-                                    <li className={(currentPath === '/') ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>學科目錄</Link></li>
-                                    <li className={(currentPath === 'student-register') ? 'active' : ''}><Link to={"/" + i18n.language + "/student-register"}>報名</Link></li>
+                                    <li className={(currentPath === 'admission-process') ? 'active' : ''}><Link to={"/" + i18n.language + "/admission-process"}>入學申請流程</Link></li>
+                                    <li className={(currentPath === 'admission-subject-catalog') ? 'active' : ''}><Link to={"/" + i18n.language + "/admission-subject-catalog"}>學科目錄</Link></li>
+                                    <li className={(currentPath === 'login-with-register') ? 'active' : ''}><Link to={"/" + i18n.language + "/login-with-register"}>報名</Link></li>
                                 </div>
                             </ul>
                         </li>
@@ -75,9 +75,9 @@ class Header extends Component {
                     {(currentPath !== '') &&
                         <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' student' : '')}>
                             <li className={currentPath === 'student-register-personal-information' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-register-personal-information"}>报名申请</Link></li>
-                            <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-course"}>我的课程</Link></li>
-                            <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>我的报名</Link></li>
-                            <li className={currentPath === '123' ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>我的提醒</Link></li>
+                            <li className={currentPath === 'scheduling' ? 'active' : ''}><Link to={"/" + i18n.language + "/scheduling"}>我的课程</Link></li>
+                            <li className={currentPath === 'student-enrollment-history' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-enrollment-history"}>我的报名</Link></li>
+                            <li className={currentPath === 'student-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-alerts"}>我的提醒</Link></li>
                         </ul>
                     }
                     {(currentPath !== '') &&
@@ -93,9 +93,9 @@ class Header extends Component {
                                 || (currentPath === 'new-material')
                                 || (currentPath === 'new-homework')
                                 || (currentPath === 'new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-resources-management"}>资源管理</Link></li>
-                            <li className={currentPath === 'my-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/my-alerts"}>我的提醒 (6)</Link></li>
+                            <li className={currentPath === 'school-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alerts"}>我的提醒 (6)</Link></li>
                             <li className={currentPath === 'reports' ? 'active' : ''}><Link to={"/" + i18n.language + "/reports"}>项目报告</Link></li>
-                            <li className={(currentPath === 'related-courses') || (currentPath === 'new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/related-courses"}>账户管理</Link></li>
+                            <li className={(currentPath === 'account-information') || (currentPath === 'new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/account-information"}>账户管理</Link></li>
                         </ul>
                     }
 
