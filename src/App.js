@@ -51,10 +51,18 @@ import StudentRegisterNotification from './containers/02STUDENTS/01Register/Stud
 // Course
 import StudentCourseDate from './containers/02STUDENTS/02Course/StudentCourseDate';
 import StudentCourseInformation from './containers/02STUDENTS/02Course/StudentCourseInformation';
+import StudentCourseAnnouncements from './containers/02STUDENTS/02Course/StudentCourseAnnouncements';
 
 // Scheduling
 import Scheduling from './containers/02STUDENTS/Schedule/Scheduling';
 
+// Enrollment
+import StudentEnrollmentHistory from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistory';
+import StudentEnrollmentHistoryForm from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryForm';
+import StudentEnrollmentHistoryDetail from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryDetail';
+import StudentEnrollmentHistoryCancelForm from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryCancelForm';
+import StudentEnrollmentHistoryCancelRequest from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryCancelRequest';
+import StudentEnrollmentHistoryCancelled from './containers/02STUDENTS/03Enrollment/StudentEnrollmentHistoryCancelled';
 
 /*** SCHOOL ***/
 // Course Management
@@ -242,10 +250,33 @@ class App extends Component {
                 case 'student-course-information': {
                     return <StudentCourseInformation />
                 }
+                case 'student-course-announcements': {
+                    return <StudentCourseAnnouncements />
+                }
 
                 // Scheduling
                 case 'scheduling': {
                     return <Scheduling />;
+                }
+
+                // Enrollment
+                case 'student-enrollment-history': {
+                    return <StudentEnrollmentHistory />;
+                }
+                case 'student-enrollment-history-form': {
+                    return <StudentEnrollmentHistoryForm />;
+                }
+                case 'student-enrollment-history-detail': {
+                    return <StudentEnrollmentHistoryDetail />;
+                }
+                case 'student-enrollment-history-cancel-form': {
+                    return <StudentEnrollmentHistoryCancelForm />;
+                }
+                case 'student-enrollment-history-cancel-request': {
+                    return <StudentEnrollmentHistoryCancelRequest />;
+                }
+                case 'student-enrollment-history-cancelled': {
+                    return <StudentEnrollmentHistoryCancelled />;
                 }
 
                 /*** SCHOOL ***/
