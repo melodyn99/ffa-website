@@ -56,6 +56,7 @@ import StudentRegisterFee from './containers/02STUDENTS/01Register/StudentRegist
 import StudentRegisterNotification from './containers/02STUDENTS/01Register/StudentRegisterNotification';
 
 // Course
+import StudentCourse from './containers/02STUDENTS/02Course/StudentCourse';
 import StudentCourseDate from './containers/02STUDENTS/02Course/StudentCourseDate';
 import StudentCourseInformation from './containers/02STUDENTS/02Course/StudentCourseInformation';
 import StudentCourseAnnouncements from './containers/02STUDENTS/02Course/StudentCourseAnnouncements';
@@ -271,6 +272,9 @@ class App extends Component {
                 }
 
                 // Course
+                case 'student-course': {
+                    return <StudentCourse />
+                }
                 case 'student-course-date': {
                     return <StudentCourseDate />
                 }
