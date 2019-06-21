@@ -48,7 +48,7 @@ class LoginNoRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Field name="email" type="text" placeholder="登记电邮地址" maxLength="100" />
+                        <Field name="email" type="email" placeholder="登记电邮地址" maxLength="100" />
                         {errors.email && touched.email ? <ErrorMessage message={errors.email} /> : null}
                     </Grid>
 
