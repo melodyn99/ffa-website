@@ -29,6 +29,23 @@ class Header extends Component {
         this.props.i18n.changeLanguage(param);
     }
 
+    _handleRegister = (language, currentPath) => {
+        if (typeof currentPath === 'undefined') {
+            this.props.history.push(language + '/student-register');
+        } else {
+            this.props.history.push('student-register');
+        }
+    }
+
+    _handleLogin = (language, currentPath) => {
+        if (typeof currentPath === 'undefined') {
+            this.props.history.push(language + '/login-no-register');
+        } else {
+            this.props.history.push('login-no-register');
+        }
+
+    }
+
     render() {
         const { //t, 
             i18n, classes } = this.props;
@@ -102,12 +119,12 @@ class Header extends Component {
                     <div className="desktop-control">
                         <Button
                             className={classes.silverButton}
-                            onClick={() => this.props.history.push('student-register')}
+                            onClick={() => this._handleRegister(i18n.language, currentPath)}
                         >报名</Button>
 
                         <Button
                             className={classes.goldButton}
-                            onClick={() => this.props.history.push('login-no-register')}
+                            onClick={() => this._handleLogin(i18n.language, currentPath)}
                         >登入</Button>
                     </div>
                 </div>
