@@ -13,6 +13,7 @@ import MobileMenu from './components/100Include/mobileMenu';
 import Header from './components/100Include/header';
 import Footer from './components/100Include/footer';
 import Sitemap from './components/100Include/sitemap';
+import HomePageTopBar from './components/100Include/HomePageTopBar';
 
 import * as HelperDesktopHandle from './utils/00JqueryControl/DesktopHandle';
 import * as HelperMobileHandle from './utils/00JqueryControl/MobileHandle';
@@ -166,12 +167,12 @@ class App extends Component {
         HelperPopup.Popup.containersSize();
     }
 
-    getComponent = (component, params) => {
+    getComponent = (currentURL, params) => {
 
-        if (component) {
+        if (currentURL) {
             // console.log(params);
 
-            switch (component) {
+            switch (currentURL) {
                 /*** GENERAL ***/
                 // Home
                 case 'home': {
@@ -439,7 +440,7 @@ class App extends Component {
         let pathname = this.props.route.location.pathname,
             search = this.props.route.location.search,
             urlArray = pathname.split("/"),
-            component = urlArray[2],
+            currentURL = urlArray[2],
             params = null;
 
         if (search !== "")
@@ -450,13 +451,16 @@ class App extends Component {
                 <MobileMenu />
 
                 <div id="wrap">
+                    {currentURL === '' &&
+                        <HomePageTopBar />
+                    }
                     <Header />
 
                     <div className="blackPlane"></div>
 
-                    {this.getComponent(component, params)}
+                    {this.getComponent(currentURL, params)}
 
-                    {component !== '' &&
+                    {currentURL !== '' &&
                         <Footer />
                     }
 

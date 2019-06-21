@@ -10,7 +10,7 @@ export const MobileHandle = {
                 $('#root').css('margin-top', -$(window).scrollTop());
                 $('body').css('position', 'fixed');
 
-                $('#wrap, .wrapper-header').addClass('active');
+                $('#wrap, .wrapper-header, .wrapper-topbar').addClass('active');
 
 
                 setTimeout(function () {
@@ -34,7 +34,7 @@ export const MobileHandle = {
         $('#root').css('margin-top', '');
         $(window).scrollTop($('#root').attr('rel'));
 
-        $('#wrap, .wrapper-header').removeClass('active');
+        $('#wrap, .wrapper-header, .wrapper-topbar').removeClass('active');
         $('.wrapper-mobile-menu').css('display', 'none');
 
         setTimeout(function () {
