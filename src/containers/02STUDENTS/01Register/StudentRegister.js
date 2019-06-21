@@ -84,7 +84,7 @@ class StudentRegister extends React.Component {
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={0.8} className="border-bottom">
+                    <Grid item xs={12} className="border-bottom">
                         填写个人资料
                     </Grid>
 
@@ -197,8 +197,8 @@ class StudentRegister extends React.Component {
                     <div className="sep-60"></div>
                 </Grid>
                 <div>
-                <FormControlLabel control={<Checkbox value="checkedterms" />} label="本人同意FFA及其机构成员使用我提供的个人资料，包括姓名、电话号码、手机号码、电邮地址、通讯地址及教育程度。提供有关FFA及其机构成员的任何课程、招生及活动推广资讯。" />
-                {/* <Checkbox
+                    <FormControlLabel control={<Checkbox value="checkedterms" />} label="本人同意FFA及其机构成员使用我提供的个人资料，包括姓名、电话号码、手机号码、电邮地址、通讯地址及教育程度。提供有关FFA及其机构成员的任何课程、招生及活动推广资讯。" />
+                    {/* <Checkbox
                     value="checkedterms"
                     inputProps={{ 'aria-labelledby': '' } }
                 /> */}
