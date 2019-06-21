@@ -166,22 +166,7 @@ class App extends Component {
         HelperPopup.Popup.containersSize();
     }
 
-    // change URL
-    renderSwitch = (route) => {
-        let pathname = route.location.pathname,
-            search = route.location.search,
-            urlArray = pathname.split("/"),
-            params = null;
-
-        if (search !== "")
-            params = querySearch(search);
-
-        return this.getComponent(urlArray, params);
-    }
-
-    getComponent = (urlArray, params) => {
-        // let language = urlArray[1],
-        let component = urlArray[2];
+    getComponent = (component, params) => {
 
         if (component) {
             // console.log(params);
@@ -451,6 +436,15 @@ class App extends Component {
     render() {
         // console.log(this.props.route.location.pathname);
 
+        let pathname = this.props.route.location.pathname,
+            search = this.props.route.location.search,
+            urlArray = pathname.split("/"),
+            component = urlArray[2],
+            params = null;
+
+        if (search !== "")
+            params = querySearch(search);
+
         return (
             <div>
                 <MobileMenu />
@@ -460,7 +454,7 @@ class App extends Component {
 
                     <div className="blackPlane"></div>
 
-                    {this.renderSwitch(this.props.route)}
+                    {this.getComponent(component, params)}
 
                     <Footer />
 
