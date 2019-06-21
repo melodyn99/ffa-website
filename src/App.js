@@ -482,7 +482,9 @@ class App extends Component {
                 <MobileMenu />
 
                 <div id="wrap">
-                    {currentURL === '' &&
+                    {(
+                        (currentURL === '' || typeof currentURL === 'undefined')
+                    ) &&
                         <HomePageTopBar />
                     }
                     <Header />

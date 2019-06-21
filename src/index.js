@@ -117,14 +117,14 @@ function WrapperApp() {
         let param = '';
 
         switch (urlArray[1]) {
-            case 'zh-HK':
-                param = 'zh-HK';
+            case 'zh-CN':
+                param = 'zh-CN';
                 break;
             case 'en-US':
                 param = 'en-US';
                 break;
             default:
-                param = 'zh-HK';
+                param = 'zh-CN';
         }
 
         i18n.changeLanguage(param);

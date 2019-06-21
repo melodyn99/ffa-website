@@ -38,7 +38,7 @@ class Header extends Component {
             currentPath = urlArray[2];
 
         return (
-            <div className={"wrapper-header" + (currentPath === '' ? ' home' : '')}>
+            <div className={"wrapper-header" + (currentPath === '' || typeof currentPath === 'undefined' ? ' home' : '')}>
                 <div className="header">
                     <div className="mobile-menu-btn">MENU</div>
 
@@ -46,7 +46,7 @@ class Header extends Component {
                         <Link to={"/" + i18n.language + '/'}><img src={require('../../images/600-400.png')} alt="" /></Link>
                     </h1>
 
-                    <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' general' : '')}>
+                    <ul className={"desktop-menu clearfix" + (currentPath !== '' && typeof currentPath !== 'undefined' ? ' general' : '')}>
                         <li className={(currentPath === 'login-with-register') ? 'active' : ''}><Link to={"/" + i18n.language + "/login-with-register"}>入学</Link>
                             <ul className="first">
                                 <div className="arrow">need image</div>
@@ -72,7 +72,7 @@ class Header extends Component {
                             </ul>
                         </li>
                     </ul>
-                    {(currentPath !== '') &&
+                    {(currentPath !== '' && typeof currentPath !== 'undefined') &&
                         <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' student' : '')}>
                             <li className={currentPath === 'student-register-personal-information' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-register-personal-information"}>报名申请</Link></li>
                             <li className={currentPath === 'scheduling' ? 'active' : ''}><Link to={"/" + i18n.language + "/scheduling"}>我的课程</Link></li>
@@ -80,7 +80,7 @@ class Header extends Component {
                             <li className={currentPath === 'student-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-alerts"}>我的提醒</Link></li>
                         </ul>
                     }
-                    {(currentPath !== '') &&
+                    {(currentPath !== '' && typeof currentPath !== 'undefined') &&
                         <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' school' : '')}>
                             <li className={currentPath === 'all-courses' ? 'active' : ''}><Link to={"/" + i18n.language + "/all-courses"}>课程管理</Link></li>
                             <li className={(currentPath === 'all-students-management') || (currentPath === 'new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></li>
