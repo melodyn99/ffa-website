@@ -42,7 +42,7 @@ import {
 } from 'lodash-es';
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import Calendar from '../../../components/Calendar';
 
 class Scheduling extends React.Component {

@@ -24,7 +24,7 @@ import { autoScrollTop } from '../../../Util/ScrollToTop';
 // import { emitter, EventTypes } from '../../../Util/EventEmitter';
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
 class NewNoteTitle extends Component {
     state = {

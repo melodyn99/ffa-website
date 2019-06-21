@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-doms';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
 // Utils
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
 class AdmissionCourseCatalog extends Component {
     constructor(props) {
@@ -36,9 +36,9 @@ class AdmissionCourseCatalog extends Component {
     }
 
     render() {
-        // const { i18n,
-        //     //classes 
-        // } = this.props;
+        const { i18n,
+            //classes 
+        } = this.props;
 
         return (
             <div>

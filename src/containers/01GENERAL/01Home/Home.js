@@ -26,7 +26,7 @@ import { login, verifyToken } from '../../../Redux/Action/authAction';
 // Utils
 
 // Children components
-// import BreadCrumb from '../../../components/100Include/breadcrumb';
+// import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
 class Home extends Component {
     constructor(props) {

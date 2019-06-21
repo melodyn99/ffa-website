@@ -26,7 +26,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 

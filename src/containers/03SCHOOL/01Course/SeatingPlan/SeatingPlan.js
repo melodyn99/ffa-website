@@ -23,7 +23,7 @@ import { setPlan, setEditPlanType } from '../../../../Redux/Action/seatingPlanAc
 import { autoScrollTop } from '../../../../Util/ScrollToTop';
 
 // Children components
-import BreadCrumb from '../../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../../components/100Include/Breadcrumb';
 import SeatingPlanPanel from "./SeatingPlanPanel";
 import SeatPlanView from './SeatPlanView';
 

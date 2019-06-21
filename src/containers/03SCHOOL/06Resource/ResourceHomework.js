@@ -32,7 +32,7 @@ import { connect } from 'react-redux';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../../data/06Resource/ResourceHomework';

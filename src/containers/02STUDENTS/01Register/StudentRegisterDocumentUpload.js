@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 // Utils
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/02STUDENTS/01Register/Register';
 
 class StudentRegisterDocumentUpload extends Component {

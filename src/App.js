@@ -9,10 +9,10 @@ import { connect } from 'react-redux';
 
 import querySearch from "stringquery";
 
-import MobileMenu from './components/100Include/mobileMenu';
-import Header from './components/100Include/header';
-import Footer from './components/100Include/footer';
-import Sitemap from './components/100Include/sitemap';
+import MobileMenu from './components/100Include/MobileMenu';
+import Header from './components/100Include/Header';
+import Footer from './components/100Include/Footer';
+import Sitemap from './components/100Include/Sitemap';
 import HomePageTopBar from './components/100Include/HomePageTopBar';
 
 import * as HelperDesktopHandle from './utils/00JqueryControl/DesktopHandle';

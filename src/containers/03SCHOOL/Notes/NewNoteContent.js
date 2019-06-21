@@ -26,7 +26,7 @@ import { autoScrollTop } from '../../../Util/ScrollToTop';
 import DocumentList from '../../Library/DocumentList';
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
 class NewNoteContent extends Component {
     constructor(props) {

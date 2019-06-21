@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
 // Utils
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
 class AdmissionProcess extends Component {
     constructor(props) {

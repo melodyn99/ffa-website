@@ -33,7 +33,7 @@ import { connect } from 'react-redux';
 // import { Formik, Form } from 'formik';
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
 class StudentEnrollmentHistoryCancelled extends React.Component {

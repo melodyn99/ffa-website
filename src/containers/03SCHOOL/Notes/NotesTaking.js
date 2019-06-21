@@ -24,7 +24,7 @@ import { autoScrollTop } from '../../../Util/ScrollToTop';
 import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
-import BreadCrumb from '../../../components/100Include/breadcrumb';
+import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
 class NotesTaking extends React.Component {
     state = {
