@@ -55,7 +55,6 @@
 		}
 
 		.logo { width:96px; background-color:#fff000; position:absolute; top:20px; left:20px; margin:0; 
-			
 			@media (max-width: 980px) { display:none;}
 			
 			a { display:block; 
@@ -74,8 +73,6 @@
 					@media (max-width: 1180px) { padding: 10px 8px; } 
 					@media (max-width: 1040px) { font-size:12px; } 
 			}
-
-
 
 			>li { display:block; margin:0 0 0 -1px; padding:0; float:left; position:relative;
 				>a { display:block; padding: 10px 20px; color:$aColor; border:solid 1px $aColor; font-size:16px; }

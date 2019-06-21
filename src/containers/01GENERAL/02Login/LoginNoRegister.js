@@ -42,9 +42,7 @@ class LoginNoRegister extends React.Component {
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={6}>
-                        登入FFA网上报名系统
-                    </Grid>
+                    <Grid item xs={6}>登入FFA网上报名系统</Grid>
                     <Grid item xs={6} className="align-right">
                         <Link to={'/' + i18n.language + ''}>忘记密码</Link>
                     </Grid>
@@ -55,13 +53,37 @@ class LoginNoRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Field name="password" type="text" placeholder="密码" maxLength="100" />
+                        <Field name="password" type="password" placeholder="密码" maxLength="100" />
                         {errors.password && touched.password ? <ErrorMessage message={errors.password} /> : null}
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button type="submit" className={classes.blackButton} fullWidth={true} onClick={() => { this._signInAsync() }}>登入</Button>
                 </div>
+                <div className="sep-40"></div>
+                <Grid container spacing={16} alignItems="center">
+                    <Grid item xs={4} className="align-center">
+                        <div className="hints">
+                            <h4>Admin Role</h4>
+                            <p>admin@joyaether.test</p>
+                            <p>abcd1234</p>
+                        </div>
+                    </Grid>
+                    <Grid item xs={4} className="align-center">
+                        <div className="hints">
+                            <h4>Teacher Role</h4>
+                            <p>teacher@joyaether.test</p>
+                            <p>abcd1234</p>
+                        </div>
+                    </Grid>
+                    <Grid item xs={4} className="align-center">
+                        <div className="hints">
+                            <h4>Student Role</h4>
+                            <p>student@joyaether.test</p>
+                            <p>abcd1234</p>
+                        </div>
+                    </Grid>
+                </Grid>
             </Form>
         )
     }
