@@ -16,6 +16,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
+// Material UI
+import Grid from '@material-ui/core/Grid';
+
 // Redux
 import { connect } from 'react-redux';
 import { login, verifyToken } from '../../../Redux/Action/authAction';
@@ -74,9 +77,11 @@ class Home extends Component {
             <div>
                 <div className="wrapper-container-main">
                     <div className="container-main home">
-
-                        hello
-
+                        <Grid container spacing={16} alignItems="center" height="100%">
+                            <Grid item xs={12}>
+                                <img src={require('../../../images/600-400.png')} alt="" />
+                            </Grid>
+                        </Grid>
                     </div>
                 </div>
             </div>
