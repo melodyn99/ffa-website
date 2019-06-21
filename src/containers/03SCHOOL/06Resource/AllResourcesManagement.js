@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -38,7 +39,7 @@ class AllStudentsManagement extends Component {
     }
 
     render() {
-        // const { classes } = this.props;
+        const { i18n } = this.props;
 
         return (
             <div>
@@ -53,6 +54,8 @@ class AllStudentsManagement extends Component {
                             <div className="content">
                                 <p>This is All Resources Management</p>
                                 <p>REQUIRES MOCKUP</p>
+                                <Link to={"/" + i18n.language + "/resource-management-course"}>Go to Resource Management Course</Link>
+                                <Link to={"/" + i18n.language + "/resource-management-homework"}>Go to Resource Management Homework</Link>
                             </div>
                         </div>
 
@@ -74,4 +77,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(AllStudentsManagement)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(AllStudentsManagement))));

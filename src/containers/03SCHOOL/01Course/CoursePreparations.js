@@ -2,7 +2,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -194,6 +194,9 @@ class CoursePreparations extends React.Component {
                                     reportButtonText="学生报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
+
+                                <Link to={"/" + i18n.language + "/seating-plan"}>Go to Seating Plan</Link>
+                                <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>

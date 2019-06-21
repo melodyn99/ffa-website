@@ -7,10 +7,12 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
-import { HeaderStyles } from '../../../utils/01MaterialJsStyles/00Common/header'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 // import { Button } from '@material-ui/core';
+
+// Material UI
+import Grid from '@material-ui/core/Grid';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
@@ -24,7 +26,7 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
-class AllStudentsManagement extends Component {
+class NewsCatalog extends Component {
     constructor(props) {
         super(props);
 
@@ -33,26 +35,35 @@ class AllStudentsManagement extends Component {
         }
     }
 
-    componentDidMount = () => {
-
-    }
-
     render() {
-        const { i18n } = this.props;
+        const { i18n,
+            //classes 
+        } = this.props;
 
         return (
             <div>
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学生管理</h2>
+                        <h2 className="pageTitle">学院故事及新闻</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
 
                             <div className="content">
-                                <p>This is All Students Management</p>
-                                <Link to={"/" + i18n.language + "/new-student"}>Go to New Student</Link>
+                                <Grid container spacing={16}>
+                                    <Grid item sm={3} xs={12}>
+                                        <div className="template-4 leftColumn">
+                                            <img src={require('../../../images/600-400.png')} alt="" />
+                                        </div>
+                                    </Grid>
+                                    <Grid item sm={9} xs={12}>
+                                        <div className="template-4 rightColumn">
+                                            <p>This is News Catalog</p>
+                                            <Link to={"/" + i18n.language + "/news"}>Go to News</Link>
+                                        </div>
+                                    </Grid>
+                                </Grid>
                             </div>
                         </div>
 
@@ -72,6 +83,6 @@ const mapDispatchToProps = dispatch => ({
     // verifyT: token => dispatch(verifyToken(token)),
 });
 
-const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
+const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(AllStudentsManagement)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewsCatalog)));

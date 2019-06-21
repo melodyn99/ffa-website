@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import querySearch from "stringquery";
 
-import MobileMenu from './components/100Include/MobileMenu';
+import mobileMenu from './components/100Include/mobileMenu';
 import Header from './components/100Include/Header';
 import Footer from './components/100Include/Footer';
 import Sitemap from './components/100Include/Sitemap';
@@ -41,9 +41,11 @@ import AdmissionCourseCatalog from './containers/01GENERAL/06Admission/Admission
 import AdmissionCourseInformation from './containers/01GENERAL/06Admission/AdmissionCourseInformation';
 
 // News
+import NewsCatalog from './containers/01GENERAL/04News/NewsCatalog';
 import News from './containers/01GENERAL/04News/News';
 
 // Activity
+import ActivityCatalog from './containers/01GENERAL/05Activity/ActivityCatalog';
 import Activity from './containers/01GENERAL/05Activity/Activity';
 
 
@@ -228,11 +230,17 @@ class App extends Component {
                 }
 
                 // News
+                case 'news-catalog': {
+                    return <NewsCatalog />
+                }
                 case 'news': {
                     return <News />
                 }
 
                 // Activity
+                case 'activities-catalog': {
+                    return <ActivityCatalog />
+                }
                 case 'activities': {
                     return <Activity />
                 }
@@ -479,7 +487,7 @@ class App extends Component {
 
         return (
             <div>
-                <MobileMenu />
+                <mobileMenu />
 
                 <div id="wrap">
                     {(

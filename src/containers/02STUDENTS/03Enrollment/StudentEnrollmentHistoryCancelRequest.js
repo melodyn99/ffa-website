@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -39,8 +39,9 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 class StudentEnrollmentHistoryCancelRequest extends React.Component {
 
     render() {
-        const { classes
-            //, t, i18n 
+        const { classes,
+            //, t, 
+            i18n 
         } = this.props;
 
         return (
@@ -54,6 +55,8 @@ class StudentEnrollmentHistoryCancelRequest extends React.Component {
                             <BreadCrumb />
 
                             <div className="content">
+                            <Link to={"/" + i18n.language + "/student-enrollment-history-cancelled"}>Go to Cancelled Student Enrollment History</Link>
+                            <div className="sep-20"></div>
                             <Grid container spacing={16} alignItems="center">
                                 <Grid item xs={1} >
                                     学期

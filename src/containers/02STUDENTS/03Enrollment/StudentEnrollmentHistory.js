@@ -1,17 +1,18 @@
 // Essential for all components
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
-import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -193,6 +194,12 @@ class StudentEnrollmentHistory extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
+                                <div className="bottomControl clearfix">
+                                    <span className="right"><Button className={classes.blackButton}
+                                        onClick={() => this.props.history.push('student-enrollment-history-form')}
+                                    >报名</Button></span>
+                                    {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -217,4 +224,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentEnrollmentHistory)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(StudentEnrollmentHistory))));

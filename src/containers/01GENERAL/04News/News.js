@@ -51,16 +51,14 @@ class News extends Component {
                             <BreadCrumb />
 
                             <div className="content">
+                                <h5>新闻标题</h5>
+                                <h6>发出日期</h6>
                                 <Grid container spacing={16}>
-                                    <Grid item sm={3} xs={12}>
-                                        <div className="template-4 leftColumn">
-                                            <img src={require('../../../images/600-400.png')} alt="" />
-                                        </div>
+                                    <Grid item xs={12} className="template-7">
+                                        <img src={require('../../../images/600-400.png')} alt=""/>
                                     </Grid>
-                                    <Grid item sm={9} xs={12}>
-                                        <div className="template-4 rightColumn">
-                                            <p>This is News</p>
-                                        </div>
+                                    <Grid item xs={12}>
+                                        <p>This is News</p>
                                     </Grid>
                                 </Grid>
                             </div>
