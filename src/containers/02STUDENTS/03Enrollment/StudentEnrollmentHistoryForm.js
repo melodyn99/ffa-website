@@ -249,7 +249,9 @@ class StudentEnrollmentHistoryForm extends React.Component {
                                 </Grid>
                                 </Grid>
                                 <div className="bottomControl clearfix">
-                                    <Button type="cancel" className={classes.greyButton}>取消</Button>
+                                    <Button className={classes.greyButton}
+                                        onClick={() => this.props.history.push('student-enrollment-history')}
+                                    >取消</Button>
                                     <span className="right"><Button className={classes.blackButton}
                                         onClick={() => this.props.history.push('student-enrollment-history-detail')}
                                     >报名 (click)</Button></span>

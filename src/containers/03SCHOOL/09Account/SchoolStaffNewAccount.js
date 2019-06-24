@@ -31,13 +31,13 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class SchoolStaffNewAccount extends React.Component {
+class SchoolNewAccount extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
             //, t, i18n 
         } = this.props;
-
+    
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
@@ -92,7 +92,7 @@ class SchoolStaffNewAccount extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactEmail" type="text" placeholder="abc@gmail.com" maxLength="100" />
-                        {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} /> : null}
+                        {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} />: null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -132,11 +132,11 @@ class SchoolStaffNewAccount extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('school-staff-account-management')}
+                        onClick={() => this.props.history.push('school-account-management')}
                     >取消</Button>
                     <span className="right"><Button className={classes.blackButton}
-                        onClick={() => this.props.history.push('school-staff-account-information')}
-                    >确认</Button></span>
+                        onClick={() => this.props.history.push('school-account-information')}
+                    >确认 (CLICK ME)</Button></span>
                 </div>
             </Form>
         )
@@ -201,19 +201,19 @@ class SchoolStaffNewAccount extends React.Component {
     }
 }
 
-SchoolStaffNewAccount.propTypes = {
-    classes: PropTypes.object.isRequired,
+SchoolNewAccount.propTypes = {
+   classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+   auth: state.auth
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
+   // loginP: data => dispatch(login(data)),
+   // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolStaffNewAccount))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNewAccount))));

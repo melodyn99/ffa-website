@@ -189,10 +189,10 @@ class SchoolCourseStudentManagement extends React.Component {
                                     reportButtonAction={this._reportButtonAction}
                                 />
 
-                                <Link to={"/" + i18n.language + "/school-course-student-management-attendance"}>Go to Course Student Management Attendance</Link>
+                                <Link to={"/" + i18n.language + "/school-course-student-management-attendance"} className="dummy">Go to Course Student Management Attendance</Link>
                                 <div className="sep-20"></div>
 
-                                <Link to={"/" + i18n.language + "/school-course-student-management-homework"}>Go to Course Student Management Homework</Link>
+                                <Link to={"/" + i18n.language + "/school-course-student-management-homework"} className="dummy">Go to Course Student Management Homework</Link>
                                 <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>

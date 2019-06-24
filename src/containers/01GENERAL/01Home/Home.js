@@ -81,7 +81,11 @@ class Home extends Component {
                             <Grid item xs={12}>
                                 <img src={require('../../../images/600-400.png')} alt="" />
                             </Grid>
-                            <div><Link to={"/" + i18n.language + "/home-images"}>Go to Home Images page</Link></div>
+                            <Grid item xs={4}>
+                            </Grid>
+                            <Grid item xs={8}>
+                                <Link to={"/" + i18n.language + "/home-images"} className="dummy1">Go to Home Images page</Link>
+                            </Grid>
                         </Grid>
                     </div>
                 </div>
