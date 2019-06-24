@@ -97,53 +97,53 @@ import SchoolCourseNewNotes from './containers/03SCHOOL/01Course/SchoolCourseNew
 import SchoolCourseAssessment from './containers/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // School Student Management
-import AllStudentsManagement from './containers/03SCHOOL/02Student/AllStudentsManagement';
-import StudentInformation from './containers/03SCHOOL/02Student/StudentInformation'; // this
-import StudentRelatedCourses from './containers/03SCHOOL/02Student/StudentRelatedCourses'; // this
-import NewStudent from './containers/03SCHOOL/02Student/NewStudent'; // this
+import SchoolStudentsManagement from './containers/03SCHOOL/02Student/SchoolStudentsManagement';
+import SchoolStudentInformation from './containers/03SCHOOL/02Student/SchoolStudentInformation'; // this
+import SchoolStudentRelatedCourses from './containers/03SCHOOL/02Student/SchoolStudentRelatedCourses'; // this
+import SchoolNewStudent from './containers/03SCHOOL/02Student/SchoolNewStudent'; // this
 
 // School Enrollment Management
-import EnrollmentManagement from './containers/03SCHOOL/03Enrollment/EnrollmentManagement';
+import SchoolEnrollmentManagement from './containers/03SCHOOL/03Enrollment/SchoolEnrollmentManagement';
 
 // School News Management
-import NewsManagement from './containers/03SCHOOL/04News/NewsManagement';
-import NewNews from './containers/03SCHOOL/04News/NewNews';
+import SchoolNewsManagement from './containers/03SCHOOL/04News/SchoolNewsManagement';
+import SchoolNewNews from './containers/03SCHOOL/04News/SchoolNewNews';
 
 // School Activities Management
-import ActivityManagement from './containers/03SCHOOL/05Activity/ActivityManagement';
-import NewActivity from './containers/03SCHOOL/05Activity/NewActivity';
+import SchoolActivitiesManagement from './containers/03SCHOOL/05Activity/SchoolActivitiesManagement';
+import SchoolNewActivity from './containers/03SCHOOL/05Activity/SchoolNewActivity';
 
 // School Resources Management
-import AllResourcesManagement from './containers/03SCHOOL/06Resource/AllResourcesManagement';
-import ResourceManagementCourse from './containers/03SCHOOL/06Resource/ResourceManagementCourse';
-import ResourceManagementHomework from './containers/03SCHOOL/06Resource/ResourceManagementHomework';
-import ResourceCourse from './containers/03SCHOOL/06Resource/ResourceCourse';
-import ResourceHomework from './containers/03SCHOOL/06Resource/ResourceHomework';
-import NewMaterial from './containers/03SCHOOL/06Resource/NewMaterial';
-import NewHomework from './containers/03SCHOOL/06Resource/NewHomework';
-import NewQuestion from './containers/03SCHOOL/06Resource/NewQuestion';
+import SchoolResourcesManagement from './containers/03SCHOOL/06Resource/SchoolResourcesManagement';
+import SchoolResourcesManagementCourse from './containers/03SCHOOL/06Resource/SchoolResourcesManagementCourse';
+import SchoolResourcesManagementHomework from './containers/03SCHOOL/06Resource/SchoolResourcesManagementHomework';
+import SchoolResourcesCourse from './containers/03SCHOOL/06Resource/SchoolResourcesCourse';
+import SchoolResourcesHomework from './containers/03SCHOOL/06Resource/SchoolResourcesHomework';
+import SchoolNewMaterial from './containers/03SCHOOL/06Resource/SchoolNewMaterial';
+import SchoolNewHomework from './containers/03SCHOOL/06Resource/SchoolNewHomework';
+import SchoolNewQuestion from './containers/03SCHOOL/06Resource/SchoolNewQuestion';
 
 // School Alert
 import SchoolAlert from './containers/03SCHOOL/07Alert/SchoolAlert';
 
-// School Report
-import Report from './containers/03SCHOOL/08Report/Report';
+// School SchoolReports
+import SchoolReports from './containers/03SCHOOL/08Report/SchoolReports';
 
 // School Account
-import RelatedCourses from './containers/03SCHOOL/09Account/RelatedCourses';
-import EnrollmentHistory from './containers/03SCHOOL/09Account/EnrollmentHistory';
-import NewAccount from './containers/03SCHOOL/09Account/NewAccount';
-import AccountAccess from './containers/03SCHOOL/09Account/AccountAccess';
-import AccountInformation from './containers/03SCHOOL/09Account/AccountInformation';
+import SchoolRelatedCourses from './containers/03SCHOOL/09Account/SchoolRelatedCourses';
+import SchoolAccountManagement from './containers/03SCHOOL/09Account/SchoolAccountManagement';
+import SchoolNewAccount from './containers/03SCHOOL/09Account/SchoolNewAccount';
+import SchoolAccountAccess from './containers/03SCHOOL/09Account/SchoolAccountAccess';
+import SchoolAccountInformation from './containers/03SCHOOL/09Account/SchoolAccountInformation';
 
 // Notes
-import NotesTaking from './containers/03SCHOOL/Notes/NotesTaking';
-import NotesContent from './containers/03SCHOOL/Notes/NotesContent';
-import NewNoteTitle from './containers/03SCHOOL/Notes/NewNoteTitle';
-import NewNoteContent from './containers/03SCHOOL/Notes/NewNoteContent';
+import SchoolNotesTaking from './containers/03SCHOOL/Notes/SchoolNotesTaking';
+import SchoolNotesContent from './containers/03SCHOOL/Notes/SchoolNotesContent';
+import SchoolNewNoteTitle from './containers/03SCHOOL/Notes/SchoolNewNoteTitle';
+import SchoolNewNoteContent from './containers/03SCHOOL/Notes/SchoolNewNoteContent';
 
 // Seating Plan
-import SeatingPlan from './containers/03SCHOOL/01Course/SeatingPlan/SeatingPlan';
+import SchoolSeatingPlan from './containers/03SCHOOL/01Course/SeatingPlan/SchoolSeatingPlan';
 
 // 404
 import PageNotFound from './containers/PageNotFound';
@@ -350,7 +350,7 @@ class App extends Component {
                 case 'school-course-notes': {
                     return <SchoolCourseNotes />;
                 }
-                case 'school-course-new-notes': {
+                case 'school-course-school-school-new-notes': {
                     return <SchoolCourseNewNotes />;
                 }
                 case 'school-course-assessment': {
@@ -358,64 +358,64 @@ class App extends Component {
                 }
 
                 // School Student Management
-                case 'all-students-management': {
-                    return <AllStudentsManagement />
+                case 'school-students-management': {
+                    return <SchoolStudentsManagement />
                 }
-                case 'student-information': {
-                    return <StudentInformation />
+                case 'school-student-information': {
+                    return <SchoolStudentInformation />
                 }
-                case 'student-related-courses': {
-                    return <StudentRelatedCourses />
+                case 'school-student-related-courses': {
+                    return <SchoolStudentRelatedCourses />
                 }
-                case 'new-student': {
-                    return <NewStudent />;
+                case 'school-new-student': {
+                    return <SchoolNewStudent />;
                 }
 
                 // School Enrollment Management
-                case 'enrollment-management': {
-                    return <EnrollmentManagement />;
+                case 'school-enrollment-management': {
+                    return <SchoolEnrollmentManagement />;
                 }
 
                 // School News Management
-                case 'news-management': {
-                    return <NewsManagement />;
+                case 'school-news-management': {
+                    return <SchoolNewsManagement />;
                 }
-                case 'new-news': {
-                    return <NewNews />;
+                case 'school-new-news': {
+                    return <SchoolNewNews />;
                 }
 
                 // School Activities Management
-                case 'activities-management': {
-                    return <ActivityManagement />;
+                case 'school-activities-management': {
+                    return <SchoolActivitiesManagement />;
                 }
-                case 'new-activity': {
-                    return <NewActivity />;
+                case 'school-new-activity': {
+                    return <SchoolNewActivity />;
                 }
 
                 // School Resources Management
-                case 'all-resources-management': {
-                    return <AllResourcesManagement />;
+                case 'school-resources-management': {
+                    return <SchoolResourcesManagement />;
                 }
-                case 'resources-management-course': {
-                    return <ResourceManagementCourse />;
+                case 'school-resources-management-course': {
+                    return <SchoolResourcesManagementCourse />;
                 }
-                case 'resources-management-homework': {
-                    return <ResourceManagementHomework />;
+                case 'school-resources-management-homework': {
+                    return <SchoolResourcesManagementHomework />;
                 }
-                case 'resources-course': {
-                    return <ResourceCourse />;
+                case 'school-resources-course': {
+                    return <SchoolResourcesCourse />;
                 }
-                case 'resources-homework': {
-                    return <ResourceHomework />;
+                case 'school-resources-homework': {
+                    return <SchoolResourcesHomework />;
                 }
-                case 'new-material': {
-                    return <NewMaterial />;
+                case 'school-new-material': {
+                    return <SchoolNewMaterial />;
                 }
-                case 'new-homework': {
-                    return <NewHomework />;
+                case 'school-new-homework': {
+                    return <SchoolNewHomework />;
                 }
-                case 'new-question': {
-                    return <NewQuestion />;
+                case 'school-new-question': {
+                    return <SchoolNewQuestion />;
                 }
 
                 // School Alert
@@ -423,45 +423,45 @@ class App extends Component {
                     return <SchoolAlert />;
                 }
 
-                // School Report
-                case 'reports': {
-                    return <Report />;
+                // School Reports
+                case 'school-reports': {
+                    return <SchoolReports />;
                 }
 
                 // School Account
-                case 'related-courses': {
-                    return <RelatedCourses />;
+                case 'school-related-courses': {
+                    return <SchoolRelatedCourses />;
                 }
-                case 'enrollment-history': {
-                    return <EnrollmentHistory />;
+                case 'school-account-management': {
+                    return <SchoolAccountManagement />;
                 }
-                case 'new-account': {
-                    return <NewAccount />
+                case 'school-new-account': {
+                    return <SchoolNewAccount />
                 }
-                case 'account-access': {
-                    return <AccountAccess />
+                case 'school-account-access': {
+                    return <SchoolAccountAccess />
                 }
-                case 'account-information': {
-                    return <AccountInformation />
+                case 'school-account-information': {
+                    return <SchoolAccountInformation />
                 }
 
                 // Notes
-                case 'notes-taking': {
-                    return <NotesTaking />;
+                case 'school-notes-taking': {
+                    return <SchoolNotesTaking />;
                 }
-                case 'notes-content': {
-                    return <NotesContent params={params} />;
+                case 'school-notes-content': {
+                    return <SchoolNotesContent params={params} />;
                 }
-                case 'new-note': {
-                    return <NewNoteTitle />
+                case 'school-new-note': {
+                    return <SchoolNewNoteTitle />
                 }
-                case 'new-note-content': {
-                    return <NewNoteContent />
+                case 'school-new-note-content': {
+                    return <SchoolNewNoteContent />
                 }
 
                 // Seating Plan
-                case 'seating-plan': {
-                    return <SeatingPlan />;
+                case 'school-seating-plan': {
+                    return <SchoolSeatingPlan />;
                 }
 
                 default: {

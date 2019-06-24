@@ -144,7 +144,7 @@ class Breadcrumb extends Component {
             case 'school-course-notes': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>及时记录</span></div>);
             }
-            case 'school-course-new-notes': {
+            case 'school-course-school-school-new-notes': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-courses"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to={"/" + i18n.language + "/school-course-notes"}>及时记录</Link></span> > <span>及时记录1</span></div>);
             }
             case 'school-course-assessment': {
@@ -152,58 +152,61 @@ class Breadcrumb extends Component {
             }
 
             // School Student Management
-            case 'new-student': {
-                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
+            case 'school-new-student': {
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
             }
-            case 'student-information': {
-                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>学生资料</span></div>)
+            case 'school-student-information': {
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>学生资料</span></div>)
             }
-            case 'student-related-courses': {
-                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>相关课程</span></div>)
+            case 'school-student-related-courses': {
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>相关课程</span></div>)
             }
 
             // School Enrollment Management
-            case 'enrollment-management': {
+            case 'school-enrollment-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>报名管理</span></div>);
             }
 
             // School News Management
-            case 'news-management': {
+            case 'school-news-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>新闻管理</span></div>);
             }
-            case 'new-news': {
+            case 'school-new-news': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>新闻管理</span></div>);
             }
 
             // School Activities Management
-            case 'activities-management': {
+            case 'school-activities-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>活动管理</span></div>);
             }
-            case 'new-activity': {
+            case 'school-new-activity': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>活动管理</span></div>);
             }
 
             // School Resources Management
-            case 'resources-management-course': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span>课程教材</span></div>);
+            case 'school-resources-management': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span>资源库管理</span></div>);
             }
-            case 'resources-management-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span>课程作业</span></div>);
+            case 'school-resources-management-course': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resources-management"}>资源库管理</Link></span> > <span>课程教材</span></div>);
             }
-            case 'resources-course': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-course"}>课程教材</Link></span> > <span>战略课程教材</span></div>);
+            case 'school-resources-management-homework': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resources-management"}>资源库管理</Link></span> > <span>课程作业</span></div>);
             }
-            case 'resources-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-homework"}>课程作业</Link></span> > <span>战略课程作业</span></div>);
+            case 'school-resources-course': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resources-management-course"}>课程教材</Link></span> > <span>战略课程教材</span></div>);
             }
-            case 'new-material': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-course"}>课程教材</Link></span> > <span>新增教材</span></div>);
+            case 'school-resources-homework': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resources-management-homework"}>课程作业</Link></span> > <span>战略课程作业</span></div>);
             }
-            case 'new-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-homework"}>课程作业</Link></span> > <span>新增作业</span></div>);
+            case 'school-new-material': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resources-management-course"}>课程教材</Link></span> > <span>新增教材</span></div>);
+            }
+            case 'school-new-homework': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resources-management-homework"}>课程作业</Link></span> > <span>新增作业</span></div>);
             }
             case 'new-question': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/all-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/resources-management-homework"}>课程作业</Link></span> > <span><Link to="/">战略课程作业</Link></span> > <span>新增问题</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resources-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resources-management-homework"}>课程作业</Link></span> > <span><Link to={"/" + i18n.language + "/school-resources-homework"}>战略课程作业</Link></span> > <span>新增问题</span></div>);
             }
 
             // School Alert
@@ -212,20 +215,20 @@ class Breadcrumb extends Component {
             }
 
             // School Account
-            case 'related-courses': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            case 'school-related-courses': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
-            case 'account-access': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            case 'school-account-access': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
-            case 'account-information': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            case 'school-account-information': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
-            case 'enrollment-history': {
+            case 'school-account-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>账户管理</span></div>);
             }
-            case 'new-account': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></span> > <span>新增账户</span></div>);
+            case 'school-new-account': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></span> > <span>新增账户</span></div>);
             }
 
             default: {

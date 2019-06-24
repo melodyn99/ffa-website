@@ -28,7 +28,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/02Student/Student';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class StudentInformation extends React.Component {
+class SchoolStudentInformation extends React.Component {
 
   render() {
     const { classes } = this.props;
@@ -201,7 +201,7 @@ class StudentInformation extends React.Component {
   }
 }
 
-StudentInformation.propTypes = {
+SchoolStudentInformation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -216,4 +216,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentInformation)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolStudentInformation)));

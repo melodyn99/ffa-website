@@ -33,21 +33,22 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/EnrollmentHistory';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/09Account/EnrollmentHistory';
+import data from '../../../data/03SCHOOL/03Enrollment/SchoolEnrollmentManagement';
 
 // Define column names
 const rows = [
-    { id: 'account', numeric: false, disablePadding: false, label: '账户' },
-    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
-    { id: 'relatedcourses', numeric: true, disablePadding: false, label: '相关课程' },
+    { id: 'year', numeric: false, disablePadding: false, label: '学年' },
+    { id: 'department', numeric: true, disablePadding: false, label: '学院' },
+    { id: 'subject', numeric: true, disablePadding: false, label: '学科' },
+    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
+    { id: 'student', numeric: true, disablePadding: false, label: '学生' },
     { id: 'status', numeric: true, disablePadding: false, label: '状态' },
-    { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
+    { id: 'date', numeric: true, disablePadding: false, label: '报名日期' },
 ];
 
-class EnrollmentHistory extends React.Component {
+class SchoolEnrollmentManagement extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -146,11 +147,10 @@ class EnrollmentHistory extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">账户管理</h2>
+                        <h2 className="pageTitle">报名管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
-                            <SubMenu />
 
                             <div className="content">
                                 <ToolBar
@@ -162,7 +162,7 @@ class EnrollmentHistory extends React.Component {
                                     createButton={true}
                                     createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-account'
+                                    createButtonActionUrl='new-school-course-materials'
 
                                     editButton={true}
                                     editButtonText="编辑"
@@ -173,18 +173,17 @@ class EnrollmentHistory extends React.Component {
                                     deleteButtonAction={this._deleteButtonAction}
 
                                     importButton={false}
-                                    importButtonText="导入csv"
+                                    importButtonText="导入123"
                                     importButtonAction={this._importButtonAction}
 
                                     copyButton={false}
                                     copyButtonText="拷贝"
                                     copyButtonAction={this._copyButtonAction}
 
-                                    reportButton={false}
+                                    reportButton={true}
                                     reportButtonText="报名报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -218,9 +217,11 @@ class EnrollmentHistory extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.account}</TableCell>
-                                                                <TableCell>{n.type}</TableCell>
-                                                                <TableCell>{n.relatedcourses}</TableCell>
+                                                                >{n.year}</TableCell>
+                                                                <TableCell>{n.department}</TableCell>
+                                                                <TableCell>{n.subject}</TableCell>
+                                                                <TableCell>{n.course}</TableCell>
+                                                                <TableCell>{n.student}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
@@ -228,7 +229,7 @@ class EnrollmentHistory extends React.Component {
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={5} />
+                                                        <TableCell colSpan={7} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -258,7 +259,7 @@ class EnrollmentHistory extends React.Component {
     }
 }
 
-EnrollmentHistory.propTypes = {
+SchoolEnrollmentManagement.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -273,4 +274,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(EnrollmentHistory))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolEnrollmentManagement))));

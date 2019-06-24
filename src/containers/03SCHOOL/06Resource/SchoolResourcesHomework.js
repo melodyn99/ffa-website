@@ -36,7 +36,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/06Resource/ResourceHomework';
+import data from '../../../data/03SCHOOL/06Resource/SchoolResourcesHomework';
 
 // Define column names
 const rows = [
@@ -46,7 +46,7 @@ const rows = [
     { id: 'lastDate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class ResourceHomework extends React.Component {
+class SchoolResourcesHomework extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -160,7 +160,7 @@ class ResourceHomework extends React.Component {
                                     createButton={true}
                                     createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-question'
+                                    createButtonActionUrl='school-new-question'
 
                                     editButton={true}
                                     editButtonText="编辑"
@@ -257,7 +257,7 @@ class ResourceHomework extends React.Component {
     }
 }
 
-ResourceHomework.propTypes = {
+SchoolResourcesHomework.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -272,4 +272,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(ResourceHomework))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolResourcesHomework))));

@@ -31,7 +31,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewAccount extends React.Component {
+class SchoolNewAccount extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -132,10 +132,10 @@ class NewAccount extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('enrollment-history')}
+                        onClick={() => this.props.history.push('school-account-management')}
                     >取消</Button>
                     <span className="right"><Button className={classes.blackButton}
-                        onClick={() => this.props.history.push('account-information')}
+                        onClick={() => this.props.history.push('school-account-information')}
                     >确认</Button></span>
                 </div>
             </Form>
@@ -201,7 +201,7 @@ class NewAccount extends React.Component {
     }
 }
 
-NewAccount.propTypes = {
+SchoolNewAccount.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -216,4 +216,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(NewAccount))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNewAccount))));

@@ -4,6 +4,7 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -34,20 +35,16 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/03Enrollment/EnrollmentManagement';
+import data from '../../../data/03SCHOOL/05Activity/SchoolActivitiesManagement';
 
 // Define column names
 const rows = [
-    { id: 'year', numeric: false, disablePadding: false, label: '学年' },
-    { id: 'department', numeric: true, disablePadding: false, label: '学院' },
-    { id: 'subject', numeric: true, disablePadding: false, label: '学科' },
-    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
-    { id: 'student', numeric: true, disablePadding: false, label: '学生' },
-    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
-    { id: 'date', numeric: true, disablePadding: false, label: '报名日期' },
+    { id: 'title', numeric: false, disablePadding: false, label: '标题' },
+    { id: 'author', numeric: true, disablePadding: false, label: '创建者' },
+    { id: 'date', numeric: true, disablePadding: false, label: '发出日期' },
 ];
 
-class EnrollmentManagement extends React.Component {
+class SchoolActivitiesManagement extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -111,11 +108,11 @@ class EnrollmentManagement extends React.Component {
     _backButtonAction = (url) => {
         this.props.history.push(url);
     }
-
+    
     _createButtonAction = (url) => {
         this.props.history.push(url);
     }
-
+    
     _editButtonAction = () => {
         console.log('edit button pressed');
     }
@@ -146,43 +143,45 @@ class EnrollmentManagement extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">报名管理</h2>
+                        <h2 className="pageTitle">活动管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
 
                             <div className="content">
-                                <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
 
-                                    createButton={true}
-                                    createButtonText="创建"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-materials'
+                            <ToolBar
+                                backButton={false}
+                                backButtonText="返回"
+                                backButtonAction={this._backButtonAction}
+                                backButtonActionUrl='school-course-preparations'
 
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
+                                createButton={true}
+                                createButtonText="创建"
+                                createButtonAction={this._createButtonAction}
+                                createButtonActionUrl='school-new-activity'
 
-                                    deleteButton={false}
-                                    deleteButtonText="删除"
-                                    deleteButtonAction={this._deleteButtonAction}
+                                editButton={true}
+                                editButtonText="编辑"
+                                editButtonAction={this._editButtonAction}
 
-                                    importButton={false}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
+                                deleteButton={true}
+                                deleteButtonText="删除"
+                                deleteButtonAction={this._deleteButtonAction}
 
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
+                                importButton={false}
+                                importButtonText="导入123"
+                                importButtonAction={this._importButtonAction}
 
-                                    reportButton={true}
-                                    reportButtonText="报名报告"
-                                    reportButtonAction={this._reportButtonAction}
-                                />
+                                copyButton={false}
+                                copyButtonText="拷贝"
+                                copyButtonAction={this._copyButtonAction}
+
+                                reportButton={false}
+                                reportButtonText="学生报告"
+                                reportButtonAction={this._reportButtonAction}
+                            />
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -216,19 +215,15 @@ class EnrollmentManagement extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.year}</TableCell>
-                                                                <TableCell>{n.department}</TableCell>
-                                                                <TableCell>{n.subject}</TableCell>
-                                                                <TableCell>{n.course}</TableCell>
-                                                                <TableCell>{n.student}</TableCell>
-                                                                <TableCell>{n.status}</TableCell>
+                                                                >{n.title}</TableCell>
+                                                                <TableCell>{n.author}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={7} />
+                                                        <TableCell colSpan={3} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -258,7 +253,7 @@ class EnrollmentManagement extends React.Component {
     }
 }
 
-EnrollmentManagement.propTypes = {
+SchoolActivitiesManagement.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -273,4 +268,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(EnrollmentManagement)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolActivitiesManagement))));

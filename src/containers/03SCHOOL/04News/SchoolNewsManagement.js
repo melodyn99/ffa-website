@@ -4,12 +4,12 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -35,17 +35,16 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/06Resource/ResourceCourse';
+import data from '../../../data/03SCHOOL/04News/SchoolNewsManagement';
 
 // Define column names
 const rows = [
-    { id: 'material', numeric: false, disablePadding: false, label: '教材' },
-    { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
-    { id: 'fileSize', numeric: true, disablePadding: false, label: '文件大小' },
-    { id: 'date', numeric: true, disablePadding: false, label: '上载日期' },
+    { id: 'title', numeric: false, disablePadding: false, label: '标题' },
+    { id: 'author', numeric: true, disablePadding: false, label: '创建者' },
+    { id: 'date', numeric: true, disablePadding: false, label: '发出日期' },
 ];
 
-class ResourceCourse extends React.Component {
+class SchoolNewsManagement extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -109,11 +108,11 @@ class ResourceCourse extends React.Component {
     _backButtonAction = (url) => {
         this.props.history.push(url);
     }
-
+    
     _createButtonAction = (url) => {
         this.props.history.push(url);
     }
-
+    
     _editButtonAction = () => {
         console.log('edit button pressed');
     }
@@ -144,43 +143,44 @@ class ResourceCourse extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">资源库管理</h2>
+                        <h2 className="pageTitle">新闻管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
 
                             <div className="content">
                             <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
+                                backButton={false}
+                                backButtonText="返回"
+                                backButtonAction={this._backButtonAction}
+                                backButtonActionUrl='school-course-preparations'
 
-                                    createButton={true}
-                                    createButtonText="上载文件"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-materials'
+                                createButton={true}
+                                createButtonText="创建"
+                                createButtonAction={this._createButtonAction}
+                                createButtonActionUrl='school-new-news'
 
-                                    editButton={true}
-                                    editButtonText="下载"
-                                    editButtonAction={this._editButtonAction}
+                                editButton={true}
+                                editButtonText="编辑"
+                                editButtonAction={this._editButtonAction}
 
-                                    deleteButton={true}
-                                    deleteButtonText="删除"
-                                    deleteButtonAction={this._deleteButtonAction}
+                                deleteButton={true}
+                                deleteButtonText="删除"
+                                deleteButtonAction={this._deleteButtonAction}
 
-                                    importButton={false}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
+                                importButton={false}
+                                importButtonText="导入123"
+                                importButtonAction={this._importButtonAction}
 
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
+                                copyButton={false}
+                                copyButtonText="拷贝"
+                                copyButtonAction={this._copyButtonAction}
 
-                                    reportButton={false}
-                                    reportButtonText="报名报告"
-                                    reportButtonAction={this._reportButtonAction}
-                                />
+                                reportButton={false}
+                                reportButtonText="学生报告"
+                                reportButtonAction={this._reportButtonAction}
+                            />
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -214,16 +214,15 @@ class ResourceCourse extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.material}</TableCell>
-                                                                <TableCell>{n.teacher}</TableCell>
-                                                                <TableCell>{n.fileSize}</TableCell>
+                                                                >{n.title}</TableCell>
+                                                                <TableCell>{n.author}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={4} />
+                                                        <TableCell colSpan={3} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -244,9 +243,6 @@ class ResourceCourse extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
-                                <div className="bottomControl clearfix">
-                                    <span className="right"><Button type="submit" className={classes.greyButton}>编辑文件夹</Button></span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -256,7 +252,7 @@ class ResourceCourse extends React.Component {
     }
 }
 
-ResourceCourse.propTypes = {
+SchoolNewsManagement.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -271,4 +267,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(ResourceCourse)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNewsManagement))));

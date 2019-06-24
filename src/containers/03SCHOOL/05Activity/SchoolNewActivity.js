@@ -31,7 +31,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewNews extends React.Component {
+class SchoolNewActivity extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -42,28 +42,28 @@ class NewNews extends React.Component {
             <Form>
                 <Grid container spacing={16} alignItems="center">
                     <Grid item xs={1} >
-                        新闻标题
+                        活动标题
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="newsName" type="text" placeholder="活动1" maxLength="100" />
-                        {errors.newsName && touched.newsName ? <ErrorMessage message={errors.newsName} /> : null}
+                        <Field name="activityName" type="text" placeholder="活动1" maxLength="100" />
+                        {errors.activityName && touched.activityName ? <ErrorMessage message={errors.activityName} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
-                        新闻内容
+                        活动内容
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="newsContent" type="text" placeholder="活动内容1" maxLength="100" />
-                        {errors.newsContent && touched.newsContent ? <ErrorMessage message={errors.newsContent} /> : null}
+                        <Field name="activityContent" type="text" placeholder="活动内容1" maxLength="100" />
+                        {errors.activityContent && touched.activityContent ? <ErrorMessage message={errors.activityContent} /> : null}
                     </Grid>
 
                     <Grid item xs={12} >
-                        新闻图片
+                        活动图片
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('news-management')}
+                        onClick={() => this.props.history.push('school-activities-management')}
                     >取消</Button>
                     <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
                 </div>
@@ -81,10 +81,10 @@ class NewNews extends React.Component {
        // const { classes } = this.props;
 
        const Schema = Yup.object().shape({
-            newsName: Yup.string()
-                .required('News Name is required'),
-            newsContent: Yup.string()
-                .required('News Content is required')
+            activityName: Yup.string()
+                .required('Activity Name is required'),
+            activityContent: Yup.string()
+                .required('Activity Content is required')
         })
 
         return (
@@ -92,7 +92,7 @@ class NewNews extends React.Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
  
-                        <h2 className="pageTitle">新闻管理</h2>
+                        <h2 className="pageTitle">活动管理</h2>
  
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -100,8 +100,8 @@ class NewNews extends React.Component {
                             <div className="content">
                                  <Formik
                                      initialValues={{
-                                         newsName: '',
-                                         newsContent: '',
+                                         activityName: '',
+                                         activityContent: '',
                                      }}
                                      validationSchema={Schema}
                                      onSubmit={this.handleSubmit}
@@ -116,7 +116,7 @@ class NewNews extends React.Component {
     }
 }
 
-NewNews.propTypes = {
+SchoolNewActivity.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -131,4 +131,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(NewNews))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNewActivity))));

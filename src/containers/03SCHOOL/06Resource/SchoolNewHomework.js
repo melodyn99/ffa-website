@@ -31,7 +31,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewHomework extends React.Component {
+class SchoolNewHomework extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -99,10 +99,10 @@ class NewHomework extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('resources-management-homework')}
+                        onClick={() => this.props.history.push('school-resources-management-homework')}
                     >取消</Button>
                     <span className="right"><Button className={classes.blackButton}
-                        onClick={() => this.props.history.push('resources-homework')}
+                        onClick={() => this.props.history.push('school-resources-homework')}
                     >确认</Button></span>
                 </div>
             </Form>
@@ -155,7 +155,7 @@ class NewHomework extends React.Component {
    }
 }
 
-NewHomework.propTypes = {
+SchoolNewHomework.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -170,4 +170,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(NewHomework))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNewHomework))));

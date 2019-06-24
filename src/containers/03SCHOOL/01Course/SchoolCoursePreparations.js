@@ -149,7 +149,7 @@ class SchoolCoursePreparations extends React.Component {
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/seating-plan"} />;
+            return <Redirect push to={"/" + i18n.language + "/school-seating-plan"} />;
         }
 
         return (
@@ -196,7 +196,7 @@ class SchoolCoursePreparations extends React.Component {
                                     reportButtonAction={this._reportButtonAction}
                                 />
 
-                                <Link to={"/" + i18n.language + "/seating-plan"}>Go to Seating Plan</Link>
+                                <Link to={"/" + i18n.language + "/school-seating-plan"}>Go to Seating Plan</Link>
                                 <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -24,7 +25,7 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
-class AllStudentsManagement extends Component {
+class SchoolStudentsManagement extends Component {
     constructor(props) {
         super(props);
 
@@ -45,14 +46,16 @@ class AllStudentsManagement extends Component {
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学生管理</h2>
+                        <h2 className="pageTitle">资源库管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
 
                             <div className="content">
-                                <p>This is All Students Management</p>
-                                <Link to={"/" + i18n.language + "/new-student"}>Go to New Student</Link>
+                                <p>This is All Resources Management</p>
+                                <p>REQUIRES MOCKUP</p>
+                                <Link to={"/" + i18n.language + "/school-resources-management-course"}>Go to Resource Management Course</Link>
+                                <Link to={"/" + i18n.language + "/school-resources-management-homework"}>Go to Resource Management Homework</Link>
                             </div>
                         </div>
 
@@ -74,4 +77,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(AllStudentsManagement)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolStudentsManagement))));

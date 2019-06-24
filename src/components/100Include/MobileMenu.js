@@ -42,12 +42,12 @@ function mobileMenu(props) {
 				<ul>
 					<li><Link to={"/" + i18n.language + "/courses-management"}>课程管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/school-course-student-management"} className="active">学生管理</Link></li>
-					<li><Link to={"/" + i18n.language + "/enrollment-management"}>报名管理</Link></li>
-					<li><Link to={"/" + i18n.language + "/news-management"}>新闻管理</Link></li>
-					<li><Link to={"/" + i18n.language + "/activities-management"}>活动管理</Link></li>
+					<li><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
+					<li><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
+					<li><Link to={"/" + i18n.language + "/school-activities-management"}>活动管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/resources-management"}>资源管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/school-alerts"}>我的提醒 (3)</Link></li>
-					<li><Link to={"/" + i18n.language + "/reports"}>项目报告</Link></li>
+					<li><Link to={"/" + i18n.language + "/school-reports"}>项目报告</Link></li>
 				</ul>
 
 				<div className="sep-30"></div>

@@ -4,6 +4,7 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -32,23 +33,21 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/Account';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/SchoolAccountManagement';
+import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/09Account/RelatedCourses';
+import data from '../../../data/03SCHOOL/09Account/SchoolAccountManagement';
 
 // Define column names
 const rows = [
-    { id: 'semester', numeric: false, disablePadding: false, label: '学期' },
-    { id: 'subject', numeric: false, disablePadding: false, label: '学科名称' },
-    { id: 'courseType', numeric: true, disablePadding: false, label: '课程类型' },
-    { id: 'courseCode', numeric: true, disablePadding: false, label: '课程编号' },
-    { id: 'courseName', numeric: true, disablePadding: false, label: '课程名称' },
-    { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
-    { id: 'location', numeric: true, disablePadding: false, label: '地点' },
-    { id: 'date', numeric: true, disablePadding: false, label: '开课日期' },
+    { id: 'account', numeric: false, disablePadding: false, label: '账户' },
+    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
+    { id: 'relatedcourses', numeric: true, disablePadding: false, label: '相关课程' },
+    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
+    { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
 ];
 
-class RelatedCourses extends React.Component {
+class EnrollmentHistory extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -108,6 +107,35 @@ class RelatedCourses extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _editButtonAction = () => {
+        console.log('edit button pressed');
+    }
+
+    _deleteButtonAction = () => {
+        console.log('delete button pressed');
+    }
+
+    _importButtonAction = () => {
+        console.log('import button pressed');
+    }
+
+    _copyButtonAction = () => {
+        console.log('copy button pressed');
+    }
+
+    _reportButtonAction = () => {
+        console.log('report button pressed');
+    }
+
     render() {
         const { classes } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -125,6 +153,38 @@ class RelatedCourses extends React.Component {
                             <SubMenu />
 
                             <div className="content">
+                                <ToolBar
+                                    backButton={false}
+                                    backButtonText="返回"
+                                    backButtonAction={this._backButtonAction}
+                                    backButtonActionUrl='school-course-materials'
+
+                                    createButton={true}
+                                    createButtonText="创建"
+                                    createButtonAction={this._createButtonAction}
+                                    createButtonActionUrl='school-new-account'
+
+                                    editButton={true}
+                                    editButtonText="编辑"
+                                    editButtonAction={this._editButtonAction}
+
+                                    deleteButton={false}
+                                    deleteButtonText="删除"
+                                    deleteButtonAction={this._deleteButtonAction}
+
+                                    importButton={false}
+                                    importButtonText="导入csv"
+                                    importButtonAction={this._importButtonAction}
+
+                                    copyButton={false}
+                                    copyButtonText="拷贝"
+                                    copyButtonAction={this._copyButtonAction}
+
+                                    reportButton={false}
+                                    reportButtonText="报名报告"
+                                    reportButtonAction={this._reportButtonAction}
+                                />
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -158,20 +218,17 @@ class RelatedCourses extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.semester}</TableCell>
-                                                                <TableCell>{n.subject}</TableCell>
-                                                                <TableCell>{n.courseType}</TableCell>
-                                                                <TableCell>{n.courseCode}</TableCell>
-                                                                <TableCell>{n.courseName}</TableCell>
-                                                                <TableCell>{n.teacher}</TableCell>
-                                                                <TableCell>{n.location}</TableCell>
+                                                                >{n.account}</TableCell>
+                                                                <TableCell>{n.type}</TableCell>
+                                                                <TableCell>{n.relatedcourses}</TableCell>
+                                                                <TableCell>{n.status}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={8} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -201,7 +258,7 @@ class RelatedCourses extends React.Component {
     }
 }
 
-RelatedCourses.propTypes = {
+EnrollmentHistory.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -216,4 +273,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(RelatedCourses)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(EnrollmentHistory))));

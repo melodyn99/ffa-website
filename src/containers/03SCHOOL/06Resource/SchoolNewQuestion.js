@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -30,7 +31,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewQuestion extends React.Component {
+class SchoolNewQuestion extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -101,7 +102,9 @@ class NewQuestion extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <Button type="submit" className={classes.greyButton}>取消</Button>
+                    <Button className={classes.greyButton}
+                        onClick={() => this.props.history.push('school-resources-homework')}
+                    >取消</Button>
                     <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
                 </div>
             </Form>
@@ -168,7 +171,7 @@ class NewQuestion extends React.Component {
    }
 }
 
-NewQuestion.propTypes = {
+SchoolNewQuestion.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -183,4 +186,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewQuestion)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNewQuestion))));

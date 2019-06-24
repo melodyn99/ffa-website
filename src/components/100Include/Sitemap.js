@@ -26,21 +26,21 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-course-assessment'}>Course Assessment (done)</Link></li>
 
                     <h3>Enrollment Management</h3>
-                    <li><Link to={'/' + i18n.language + '/enrollment-management'}>Enrollment Management (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-enrollment-management'}>Enrollment Management (done)</Link></li>
 
                     <h3>News Management</h3>
-                    <li><Link to={'/' + i18n.language + '/news-management'}>News Management (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-news-management'}>News Management (done)</Link></li>
 
                     <h3>Activities Management</h3>
-                    <li><Link to={'/' + i18n.language + '/activities-management'}>Activity Management (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-activities-management'}>Activity Management (done)</Link></li>
 
                     <h3>Resources Management</h3>
-                    <li><Link to={'/' + i18n.language + '/resources-management-course'}>Resource Management Course (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/resources-management-homework'}>Resource Management Homework (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-resources-management'}>Resource Management Course (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-resources-management-homework'}>Resource Management Homework (done)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/related-courses'}>Related Courses (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/enrollment-history'}>Entrollment History (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-related-courses'}>Related Courses (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-account-management'}>Entrollment History (done)</Link></li>
                 </ul>
 
                 <ul>
@@ -48,24 +48,24 @@ function Sitemap(props) {
 
                     <h3>Courses Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-course-information'}>Course Information (Melody) (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-course-new-notes'}>Course New Notes (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-school-school-new-notes'}>Course New Notes (Melody) (done)</Link></li>
 
                     <h3>Students Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-student'}>New Student (Him) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-new-student'}>New Student (Him) (done)</Link></li>
 
                     <h3>News Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-news'}>New News (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-new-news'}>New News (Melody) (done)</Link></li>
 
                     <h3>Activities Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-activity'}>New Activity (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-new-activity'}>New Activity (Melody) (done)</Link></li>
 
                     <h3>Resources Management</h3>
-                    <li><Link to={'/' + i18n.language + '/new-material'}>New Material (Melody) (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/new-homework'}>New Homework (Melody) (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/new-question'}>New Question (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-new-material'}>New Material (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-new-homework'}>New Homework (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-new-question'}>New Question (Melody) (done)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/new-account'}>New Account (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-new-account'}>New Account (Melody) (done)</Link></li>
 
                 </ul>
 
@@ -83,16 +83,16 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/student-register'}>Student Register (Melody)</Link></li>
 
                     <h3>Student Management</h3>
-                    <li><Link to={'/' + i18n.language + '/student-related-courses'}>Student Related Courses (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/student-information'}>Student Information (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-student-school-related-courses'}>Student Related Courses (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-student-information'}>Student Information (Melody)</Link></li>
 
                     <h3>Resources Management</h3>
-                    <li><Link to={'/' + i18n.language + '/resources-course'}>Resource Course (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/resources-homework'}>Resource Homework (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-resources-course'}>Resource Course (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-resources-homework'}>Resource Homework (Melody)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/account-access'}>Account Access (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/account-information'}>Account Information (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-account-access'}>Account Access (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-account-information'}>Account Information (Melody)</Link></li>
                 
                     <h3>Student UI Course</h3>
                     <li><Link to={'/' + i18n.language + '/student-course'}>Student Course (Melody)</Link></li>

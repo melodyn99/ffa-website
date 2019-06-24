@@ -148,7 +148,7 @@ class SchoolCourseNotes extends React.Component {
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/notes-taking"} />;
+            return <Redirect push to={"/" + i18n.language + "/school-notes-taking"} />;
         }
 
         return (
@@ -173,7 +173,7 @@ class SchoolCourseNotes extends React.Component {
                                     createButton={true}
                                     createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='school-course-new-notes'
+                                    createButtonActionUrl='school-course-school-school-new-notes'
 
                                     editButton={true}
                                     editButtonText="编辑"

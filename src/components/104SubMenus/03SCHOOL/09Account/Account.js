@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 // Redux
 import { connect } from 'react-redux';
 
-class RelatedCourses extends Component {
+class SchoolRelatedCourses extends Component {
 
     render() {
         const { //t, 
@@ -21,9 +21,9 @@ class RelatedCourses extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/account-information"} className={currentPath === 'account-information' ? 'active' : ''}>账户资料</Link></li>
-                    <li><Link to={"/" + i18n.language + "/related-courses"} className={currentPath === 'related-courses' ? 'active' : ''}>相关课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/account-access"} className={currentPath === 'account-access' ? 'active' : ''}>使用权限</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-account-information"} className={currentPath === 'school-account-information' ? 'active' : ''}>账户资料</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-related-courses"} className={currentPath === 'school-related-courses' ? 'active' : ''}>相关课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-account-access"} className={currentPath === 'school-account-access' ? 'active' : ''}>使用权限</Link></li>
                 </ul>
             </div>
         );
@@ -34,4 +34,4 @@ const mapStateToProps = (state) => ({
     route: state.router
 });
 
-export default withTranslation()(connect(mapStateToProps)(RelatedCourses));
+export default withTranslation()(connect(mapStateToProps)(SchoolRelatedCourses));

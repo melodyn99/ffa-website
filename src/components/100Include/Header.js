@@ -100,19 +100,19 @@ class Header extends Component {
                     {(currentPath !== '' && typeof currentPath !== 'undefined') &&
                         <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' school' : '')}>
                             <li className={currentPath === 'school-all-courses' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-courses"}>课程管理</Link></li>
-                            <li className={(currentPath === 'all-students-management') || (currentPath === 'new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-students-management"}>学生管理</Link></li>
-                            <li className={currentPath === 'enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/enrollment-management"}>报名管理</Link></li>
-                            <li className={(currentPath === 'news-management') || (currentPath === 'new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/news-management"}>新闻管理</Link></li>
-                            <li className={(currentPath === 'activities-management') || (currentPath === 'new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/activities-management"}>活动管理</Link></li>
-                            <li className={(currentPath === 'all-resources-management')
-                                || (currentPath === 'resources-management-course')
-                                || (currentPath === 'resources-management-homework')
-                                || (currentPath === 'new-material')
-                                || (currentPath === 'new-homework')
-                                || (currentPath === 'new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-resources-management"}>资源管理</Link></li>
+                            <li className={(currentPath === 'school-students-management') || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></li>
+                            <li className={currentPath === 'school-enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
+                            <li className={(currentPath === 'school-news-management') || (currentPath === 'school-new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
+                            <li className={(currentPath === 'school-activities-management') || (currentPath === 'school-new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-activities-management"}>活动管理</Link></li>
+                            <li className={(currentPath === 'school-resources-management')
+                                || (currentPath === 'school-resources-management')
+                                || (currentPath === 'school-resources-management-homework')
+                                || (currentPath === 'school-new-material')
+                                || (currentPath === 'school-new-homework')
+                                || (currentPath === 'school-new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-resources-management"}>资源管理</Link></li>
                             <li className={currentPath === 'school-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alerts"}>我的提醒 (6)</Link></li>
-                            <li className={currentPath === 'reports' ? 'active' : ''}><Link to={"/" + i18n.language + "/reports"}>项目报告</Link></li>
-                            <li className={(currentPath === 'account-information') || (currentPath === 'new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></li>
+                            <li className={currentPath === 'school-reports' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-reports"}>项目报告</Link></li>
+                            <li className={(currentPath === 'school-account-information') || (currentPath === 'school-new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></li>
                         </ul>
                     }
 

@@ -31,7 +31,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class NewMaterial extends React.Component {
+class SchoolNewMaterial extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -87,10 +87,10 @@ class NewMaterial extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('resources-management-course')}
+                        onClick={() => this.props.history.push('school-resources-management-course')}
                     >取消</Button>
                     <span className="right"><Button className={classes.blackButton}
-                        onClick={() => this.props.history.push('resources-course')}
+                        onClick={() => this.props.history.push('school-resources-course')}
                     >确认</Button></span>
                 </div>
             </Form>
@@ -142,7 +142,7 @@ class NewMaterial extends React.Component {
    }
 }
 
-NewMaterial.propTypes = {
+SchoolNewMaterial.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -157,4 +157,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(NewMaterial))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNewMaterial))));

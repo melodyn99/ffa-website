@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -33,22 +34,19 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/06Resource/Resource';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/06Resource/ResourceManagementHomework';
+import data from '../../../data/03SCHOOL/06Resource/SchoolResourcesCourse';
 
 // Define column names
 const rows = [
-    { id: 'SchoolCourseWork', numeric: false, disablePadding: false, label: '课程作业' },
-    { id: 'subjec', numeric: true, disablePadding: false, label: '学科' },
+    { id: 'material', numeric: false, disablePadding: false, label: '教材' },
     { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
-    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
-    { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
-    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'fileSize', numeric: true, disablePadding: false, label: '文件大小' },
+    { id: 'date', numeric: true, disablePadding: false, label: '上载日期' },
 ];
 
-class ResourceManagementHomework extends React.Component {
+class SchoolResourcesCourse extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -111,31 +109,31 @@ class ResourceManagementHomework extends React.Component {
     // ToolBar
     _backButtonAction = (url) => {
         this.props.history.push(url);
-        }
-    
-        _createButtonAction = (url) => {
-            this.props.history.push(url);
-        }
-    
-        _editButtonAction = () => {
-            console.log('edit button pressed');
-        }
-    
-        _deleteButtonAction = () => {
-            console.log('delete button pressed');
-        }
-    
-        _importButtonAction = () => {
-            console.log('import button pressed');
-        }
-    
-        _copyButtonAction = () => {
-            console.log('copy button pressed');
-        }
-    
-        _reportButtonAction = () => {
-            console.log('report button pressed');
-        } 
+    }
+
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _editButtonAction = () => {
+        console.log('edit button pressed');
+    }
+
+    _deleteButtonAction = () => {
+        console.log('delete button pressed');
+    }
+
+    _importButtonAction = () => {
+        console.log('import button pressed');
+    }
+
+    _copyButtonAction = () => {
+        console.log('copy button pressed');
+    }
+
+    _reportButtonAction = () => {
+        console.log('report button pressed');
+    }
 
     render() {
         const { classes } = this.props;
@@ -151,23 +149,21 @@ class ResourceManagementHomework extends React.Component {
 
                         <div className="wrapper-content">
                             <BreadCrumb />
-                            <SubMenu />
 
                             <div className="content">
-
-                                <ToolBar
+                            <ToolBar
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-student-management'
+                                    backButtonActionUrl='school-course-materials'
 
                                     createButton={true}
-                                    createButtonText="创建"
+                                    createButtonText="上载文件"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-homework'
+                                    createButtonActionUrl='new-school-course-materials'
 
                                     editButton={true}
-                                    editButtonText="编辑"
+                                    editButtonText="下载"
                                     editButtonAction={this._editButtonAction}
 
                                     deleteButton={true}
@@ -175,7 +171,7 @@ class ResourceManagementHomework extends React.Component {
                                     deleteButtonAction={this._deleteButtonAction}
 
                                     importButton={false}
-                                    importButtonText="导入名单"
+                                    importButtonText="导入123"
                                     importButtonAction={this._importButtonAction}
 
                                     copyButton={false}
@@ -183,10 +179,9 @@ class ResourceManagementHomework extends React.Component {
                                     copyButtonAction={this._copyButtonAction}
 
                                     reportButton={false}
-                                    reportButtonText="学生报告"
+                                    reportButtonText="报名报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -220,18 +215,16 @@ class ResourceManagementHomework extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.SchoolCourseWork}</TableCell>
-                                                                <TableCell>{n.subject}</TableCell>
+                                                                >{n.material}</TableCell>
                                                                 <TableCell>{n.teacher}</TableCell>
-                                                                <TableCell>{n.type}</TableCell>
-                                                                <TableCell>{n.questions}</TableCell>
-                                                                <TableCell>{n.lastdate}</TableCell>
+                                                                <TableCell>{n.fileSize}</TableCell>
+                                                                <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
+                                                        <TableCell colSpan={4} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -252,6 +245,9 @@ class ResourceManagementHomework extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
+                                <div className="bottomControl clearfix">
+                                    <span className="right"><Button type="submit" className={classes.greyButton}>编辑文件夹</Button></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -261,7 +257,7 @@ class ResourceManagementHomework extends React.Component {
     }
 }
 
-ResourceManagementHomework.propTypes = {
+SchoolResourcesCourse.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -276,4 +272,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(ResourceManagementHomework))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolResourcesCourse))));
