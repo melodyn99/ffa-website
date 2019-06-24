@@ -34,7 +34,7 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 class StudentEnrollmentHistoryCancelForm extends React.Component {
 
     // render() {
-        // const { classes } = this.props;
+    // const { classes } = this.props;
 
     _handleInput = (value, key) => {
         console.log(value);
@@ -46,89 +46,89 @@ class StudentEnrollmentHistoryCancelForm extends React.Component {
 
     _handleSelect = () => {
 
-    }    
+    }
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
             //, t, i18n 
         } = this.props;
 
-            return (
-                <Form>
-                    <Grid container spacing={16} alignItems="center">
-                        <Grid item xs={1} >
-                            学期
+        return (
+            <Form>
+                <Grid container spacing={16} alignItems="center">
+                    <Grid item xs={1} >
+                        学期
                         </Grid>
-                        <Grid item xs={11}>
-                            2019-01
-                        </Grid>
-
-                        <Grid item xs={1} >
-                            上课城市
-                        </Grid>
-                        <Grid item xs={11}>
-                            杭州
+                    <Grid item xs={11}>
+                        2019-01
                         </Grid>
 
-                        <Grid item xs={1} >
-                            学科名称
+                    <Grid item xs={1} >
+                        上课城市
                         </Grid>
-                        <Grid item xs={11} >
-                            战略课程
-                        </Grid>
-
-                        <Grid item xs={1} >
-                            课程类型
-                        </Grid>
-                        <Grid item xs={11}>
-                            大商品公开课程
+                    <Grid item xs={11}>
+                        杭州
                         </Grid>
 
-                        <Grid item xs={1} >
-                            课程编号
+                    <Grid item xs={1} >
+                        学科名称
                         </Grid>
-                        <Grid item xs={11}>
-                            s1-001-DP-FFA
-                        </Grid>
-
-                        <Grid item xs={1} >
-                            课程名称
-                        </Grid>
-                        <Grid item xs={11}>
-                            品牌盈利模式
+                    <Grid item xs={11} >
+                        战略课程
                         </Grid>
 
-                        <Grid item xs={1} >
-                            取消原因
+                    <Grid item xs={1} >
+                        课程类型
                         </Grid>
-                        <Grid item xs={11}>
-                            <Field name="cancelReason" type="text" placeholder="个人日程冲突" maxLength="100" />
-                            {errors.cancelReason && touched.cancelReason ? <ErrorMessage message={errors.cancelReason} /> : null}
+                    <Grid item xs={11}>
+                        大商品公开课程
                         </Grid>
+
+                    <Grid item xs={1} >
+                        课程编号
+                        </Grid>
+                    <Grid item xs={11}>
+                        s1-001-DP-FFA
+                        </Grid>
+
+                    <Grid item xs={1} >
+                        课程名称
+                        </Grid>
+                    <Grid item xs={11}>
+                        品牌盈利模式
+                        </Grid>
+
+                    <Grid item xs={1} >
+                        取消原因
+                        </Grid>
+                    <Grid item xs={11}>
+                        <Field name="cancelReason" type="text" placeholder="个人日程冲突" maxLength="100" />
+                        {errors.cancelReason && touched.cancelReason ? <ErrorMessage message={errors.cancelReason} /> : null}
                     </Grid>
-                    <div className="bottomControl clearfix">
-                        <Button type="submit" className={classes.greyButton}>取消</Button>
-                        <span className="right"><Button className={classes.blackButton}
-                                        onClick={() => this.props.history.push('student-enrollment-history-cancel-request')}
-                        >提交</Button></span>
-                    </div>
-                </Form>
-            )
-        }
+                </Grid>
+                <div className="bottomControl clearfix">
+                    <Button type="submit" className={classes.greyButton}>取消</Button>
+                    <span className="right"><Button className={classes.blackButton}
+                        onClick={() => this.props.history.push('student-enrollment-history-cancel-request')}
+                    >提交 (click)</Button></span>
+                </div>
+            </Form>
+        )
+    }
 
-        handleSubmit = (values, { setFieldError }) => {
-            // call api
-            // TODO
-            console.log('GREAT!');
-        }
+    handleSubmit = (values, { setFieldError }) => {
+        // call api
+        // TODO
+        console.log('GREAT!');
+    }
 
-        render() {
-            // const { classes, t, i18n } = this.props;
+    render() {
+        // const { classes, t, i18n } = this.props;
 
-            const Schema = Yup.object().shape({
-                cancelReason: Yup.string()
-                    .required('Cancel Reason is required'),
-            })
+        const Schema = Yup.object().shape({
+            cancelReason: Yup.string()
+                .required('Cancel Reason is required'),
+        })
 
         return (
             <div>

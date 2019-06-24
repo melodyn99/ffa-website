@@ -244,7 +244,7 @@ class StudentScheduling extends React.Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <Link to={"/" + i18n.language + "/student-course-information"}>Go to Student Course Information</Link>
+                                <Link to={"/" + i18n.language + "/student-course-information"} className="dummy">Go to Student Course Information</Link>
                                 <div className={classes.root}>
                                     <div className={classes.content}>
                                         <div className={classes.middleContent}>

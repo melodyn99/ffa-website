@@ -59,8 +59,8 @@ class ActivityCatalog extends Component {
                                     </Grid>
                                     <Grid item sm={9} xs={12}>
                                         <div className="template-4 rightColumn">
-                                            <p>This is Activity</p>
-                                            <Link to={"/" + i18n.language + "/activities"}>Go to Activity</Link>
+                                            <p>This is Activity listing page</p>
+                                            <Link to={"/" + i18n.language + "/activities"} className="dummy">Go to Activity detail page</Link>
                                         </div>
                                     </Grid>
                                 </Grid>

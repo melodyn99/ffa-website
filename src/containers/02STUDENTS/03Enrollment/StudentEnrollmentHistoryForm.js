@@ -55,205 +55,205 @@ class StudentEnrollmentHistoryForm extends React.Component {
                             <BreadCrumb />
 
                             <div className="content">
-                            <Grid container spacing={16} alignItems="center">
-                                <Grid item xs={1} >
-                                    学期
+                                <Grid container spacing={16} alignItems="center">
+                                    <Grid item xs={1} >
+                                        学期
                                 </Grid>
-                                <Grid item xs={11}>
-                                    2019-01
-                                </Grid>
-
-                                <Grid item xs={1} >
-                                    上课城市
-                                </Grid>
-                                <Grid item xs={11}>
-                                    <select>
-                                        <option value="1">杭州</option>
-                                        <option value="2">杭州</option>
-                                        <option value="3">杭州</option>
-                                        <option value="4">杭州</option>
-                                    </select>
+                                    <Grid item xs={11}>
+                                        2019-01
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    学科名称
+                                    <Grid item xs={1} >
+                                        上课城市
                                 </Grid>
-                                <Grid item xs={11}>
-                                    <select>
-                                        <option value="1">战略课程</option>
-                                        <option value="2">战略课程</option>
-                                        <option value="3">战略课程</option>
-                                        <option value="4">战略课程</option>
-                                    </select>
+                                    <Grid item xs={11}>
+                                        <select>
+                                            <option value="1">杭州</option>
+                                            <option value="2">杭州</option>
+                                            <option value="3">杭州</option>
+                                            <option value="4">杭州</option>
+                                        </select>
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        学科名称
+                                </Grid>
+                                    <Grid item xs={11}>
+                                        <select>
+                                            <option value="1">战略课程</option>
+                                            <option value="2">战略课程</option>
+                                            <option value="3">战略课程</option>
+                                            <option value="4">战略课程</option>
+                                        </select>
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        课程类型
+                                </Grid>
+                                    <Grid item xs={11}>
+                                        <select>
+                                            <option value="big">大商品公开课程</option>
+                                            <option value="small">小商品公开课程</option>
+                                        </select>
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        课程编号
+                                </Grid>
+                                    <Grid item xs={11}>
+                                        <select>
+                                            <option value="1">s1-001-DP-FFA</option>
+                                            <option value="2">s1-001-DP-FFA</option>
+                                            <option value="3">s1-001-DP-FFA</option>
+                                            <option value="4">s1-001-DP-FFA</option>
+                                        </select>
+                                    </Grid>
+
+                                    <Grid item xs={1} >
+                                        课程名称
+                                </Grid>
+                                    <Grid item xs={11}>
+                                        品牌盈利模式
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    课程类型
+                                    <Grid item xs={1} >
+                                        课程地址
                                 </Grid>
-                                <Grid item xs={11}>
-                                    <select>
-                                        <option value="big">大商品公开课程</option>
-                                        <option value="small">小商品公开课程</option>
-                                    </select>
+                                    <Grid item xs={11}>
+                                        杭州市
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    课程编号
+                                    <Grid item xs={1} >
+                                        先修课程
                                 </Grid>
-                                <Grid item xs={11}>
-                                    <select>
-                                        <option value="1">s1-001-DP-FFA</option>
-                                        <option value="2">s1-001-DP-FFA</option>
-                                        <option value="3">s1-001-DP-FFA</option>
-                                        <option value="4">s1-001-DP-FFA</option>
-                                    </select>
+                                    <Grid item xs={11}>
+                                        P1-001-DP-FFA, D1-001-DP-FFA
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    课程名称
+                                    <Grid item xs={1} >
+                                        报名开始
                                 </Grid>
-                                <Grid item xs={11}>
-                                    品牌盈利模式
-                                </Grid>
-
-                                <Grid item xs={1} >
-                                    课程地址
-                                </Grid>
-                                <Grid item xs={11}>
-                                    杭州市
+                                    <Grid item xs={11}>
+                                        2019 / 3 / 1
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    先修课程
+                                    <Grid item xs={1} >
+                                        报名结束
                                 </Grid>
-                                <Grid item xs={11}>
-                                    P1-001-DP-FFA, D1-001-DP-FFA
-                                </Grid>
-
-                                <Grid item xs={1} >
-                                    报名开始
-                                </Grid>
-                                <Grid item xs={11}>
-                                    2019 / 3 / 1
+                                    <Grid item xs={11}>
+                                        2019 / 3 / 12
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    报名结束
+                                    <Grid item xs={1} >
+                                        课程名额
                                 </Grid>
-                                <Grid item xs={11}>
-                                    2019 / 3 / 12
-                                </Grid>
-
-                                <Grid item xs={1} >
-                                    课程名额
-                                </Grid>
-                                <Grid item xs={11}>
-                                    10
+                                    <Grid item xs={11}>
+                                        10
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    余下名额
+                                    <Grid item xs={1} >
+                                        余下名额
                                 </Grid>
-                                <Grid item xs={11}>
-                                    4
-                                </Grid>
-
-                                <Grid item xs={1} >
-                                    课程学分
-                                </Grid>
-                                <Grid item xs={11}>
-                                    1
+                                    <Grid item xs={11}>
+                                        4
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    课程费用
+                                    <Grid item xs={1} >
+                                        课程学分
                                 </Grid>
-                                <Grid item xs={11}>
-                                    1000
-                                </Grid>
-
-                                <Grid item xs={1} >
-                                    报名状态
-                                </Grid>
-                                <Grid item xs={11}>
+                                    <Grid item xs={11}>
+                                        1
                                 </Grid>
 
-                                <div className="sep-20"></div>
-
-                                <Grid item xs={12} >
-                                    课程日期和时间
+                                    <Grid item xs={1} >
+                                        课程费用
+                                </Grid>
+                                    <Grid item xs={11}>
+                                        1000
                                 </Grid>
 
-                                <Grid item xs={12}>
-                                    #1
+                                    <Grid item xs={1} >
+                                        报名状态
+                                </Grid>
+                                    <Grid item xs={11}>
+                                    </Grid>
+
+                                    <div className="sep-20"></div>
+
+                                    <Grid item xs={12} >
+                                        课程日期和时间
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    课程标题
-                                </Grid>
-                                <Grid item xs={11}>
-                                    第1课 - 介绍
+                                    <Grid item xs={12}>
+                                        #1
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    课程日期
+                                    <Grid item xs={1} >
+                                        课程标题
                                 </Grid>
-                                <Grid item xs={11}>
-                                    2019 / 3 / 22 上午 9:00 - 下午 5:00
-                                </Grid>
-
-                                <Grid item xs={1} >
-                                    授课地点
-                                </Grid>
-                                <Grid item xs={11}>
-                                    新城东方君悦水星厅
+                                    <Grid item xs={11}>
+                                        第1课 - 介绍
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    授课老师
+                                    <Grid item xs={1} >
+                                        课程日期
                                 </Grid>
-                                <Grid item xs={11}>
-                                    彭菲文
-                                </Grid>
-
-                                <Grid item xs={12}>
-                                    #2
+                                    <Grid item xs={11}>
+                                        2019 / 3 / 22 上午 9:00 - 下午 5:00
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    课程标题
+                                    <Grid item xs={1} >
+                                        授课地点
                                 </Grid>
-                                <Grid item xs={11}>
-                                    第2课 - 案例研究
-                                </Grid>
-
-                                <Grid item xs={1} >
-                                    课程日期
-                                </Grid>
-                                <Grid item xs={11}>
-                                    2019 / 3 / 29 上午 9:00 - 下午 5:00
+                                    <Grid item xs={11}>
+                                        新城东方君悦水星厅
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    授课地点
+                                    <Grid item xs={1} >
+                                        授课老师
                                 </Grid>
-                                <Grid item xs={11}>
-                                    新城东方君悦水星厅
+                                    <Grid item xs={11}>
+                                        彭菲文
                                 </Grid>
 
-                                <Grid item xs={1} >
-                                    授课老师
+                                    <Grid item xs={12}>
+                                        #2
                                 </Grid>
-                                <Grid item xs={11}>
-                                    彭菲文
+
+                                    <Grid item xs={1} >
+                                        课程标题
                                 </Grid>
-                            </Grid>
-                            <div className="bottomControl clearfix">
-                                <Button type="cancel" className={classes.greyButton}>取消</Button>
-                                <span className="right"><Button className={classes.blackButton}
+                                    <Grid item xs={11}>
+                                        第2课 - 案例研究
+                                </Grid>
+
+                                    <Grid item xs={1} >
+                                        课程日期
+                                </Grid>
+                                    <Grid item xs={11}>
+                                        2019 / 3 / 29 上午 9:00 - 下午 5:00
+                                </Grid>
+
+                                    <Grid item xs={1} >
+                                        授课地点
+                                </Grid>
+                                    <Grid item xs={11}>
+                                        新城东方君悦水星厅
+                                </Grid>
+
+                                    <Grid item xs={1} >
+                                        授课老师
+                                </Grid>
+                                    <Grid item xs={11}>
+                                        彭菲文
+                                </Grid>
+                                </Grid>
+                                <div className="bottomControl clearfix">
+                                    <Button type="cancel" className={classes.greyButton}>取消</Button>
+                                    <span className="right"><Button className={classes.blackButton}
                                         onClick={() => this.props.history.push('student-enrollment-history-detail')}
-                                >报名</Button></span>
-                            </div>
+                                    >报名 (click)</Button></span>
+                                </div>
                             </div>
                         </div>
                     </div>
