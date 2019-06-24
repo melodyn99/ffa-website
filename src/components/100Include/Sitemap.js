@@ -39,8 +39,8 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-resources-management-homework'}>Resource Management Homework (done)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/school-related-courses'}>Related Courses (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-account-management'}>Entrollment History (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-staff-related-courses'}>Related Courses (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-staff-account-management'}>Entrollment History (done)</Link></li>
                 </ul>
 
                 <ul>
@@ -65,7 +65,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-new-question'}>New Question (Melody) (done)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/school-new-account'}>New Account (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-staff-new-account'}>New Account (Melody) (done)</Link></li>
 
                 </ul>
 
@@ -83,7 +83,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/student-register'}>Student Register (Melody)</Link></li>
 
                     <h3>Student Management</h3>
-                    <li><Link to={'/' + i18n.language + '/school-student-school-related-courses'}>Student Related Courses (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-student-school-staff-related-courses'}>Student Related Courses (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-student-information'}>Student Information (Melody)</Link></li>
 
                     <h3>Resources Management</h3>
@@ -91,15 +91,15 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-resources-homework'}>Resource Homework (Melody)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/school-account-access'}>Account Access (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-account-information'}>Account Information (Melody)</Link></li>
-                
+                    <li><Link to={'/' + i18n.language + '/school-staff-account-access'}>Account Access (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-staff-account-information'}>Account Information (Melody)</Link></li>
+
                     <h3>Student UI Course</h3>
                     <li><Link to={'/' + i18n.language + '/student-course'}>Student Course (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-school-course-information'}>Student Course Information (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-course-date'}>Student Course Date (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-school-course-announcements'}>Student Course Announcements (Melody)</Link></li>
-                
+
                     <h3>Student UI Enrollment</h3>
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history'}>Student Enrollment History (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history-form'}>Student Enrollment History Form (Melody)</Link></li>
@@ -107,7 +107,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancel-form'}>Student Enrollment History Cancel Form (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancel-request'}>Student Enrollment History Cancel Request (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history-cancelled'}>Student Enrollment History Cancelled (Melody)</Link></li>
-                
+
                     <h3>Student UI Alert</h3>
                     <li><Link to={'/' + i18n.language + '/student-alerts'}>Student Alert (Melody)</Link></li>
                 </ul>
@@ -120,13 +120,13 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-advantage'}>School Advantage</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-learning'}>School Learning</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-cases'}>School Cases</Link></li>
-                
+
                     <h3>Admission</h3>
                     <li><Link to={'/' + i18n.language + '/admission-process'}>Admission Process (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/admission-subject-catalog'}>Admission Subject Catalog (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/admission-course-catalog'}>Admission Course Catalog (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/admission-school-course-information'}>Admission Course Information (Melody)</Link></li>
-                
+
                     <h3>Home</h3>
                     <li><Link to={'/' + i18n.language + '/home-images'}>Home Images (Melody)</Link></li>
                 </ul>

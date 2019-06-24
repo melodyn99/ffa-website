@@ -162,7 +162,7 @@ class SchoolStaffAccountManagement extends React.Component {
                                     createButton={true}
                                     createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='school-new-account'
+                                    createButtonActionUrl='school-staff-new-account'
 
                                     editButton={true}
                                     editButtonText="编辑"

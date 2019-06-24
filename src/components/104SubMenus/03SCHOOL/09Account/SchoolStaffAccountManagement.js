@@ -21,10 +21,10 @@ class SchoolStaffAccountManagement extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/school-account-management"} className={currentPath === 'school-account-management' ? 'active' : ''}>全部</Link></li>
-                    <li><Link to={"/" + i18n.language + "/school-account-management"} className={currentPath === '' ? 'active' : ''}>老师</Link></li>
-                    <li><Link to={"/" + i18n.language + "/school-account-management"} className={currentPath === '' ? 'active' : ''}>课程人员</Link></li>
-                    <li><Link to={"/" + i18n.language + "/school-account-management"} className={currentPath === '' ? 'active' : ''}>管理员</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-staff-account-management"} className={currentPath === 'school-staff-account-management' ? 'active' : ''}>全部</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-staff-account-management"} className={currentPath === '' ? 'active' : ''}>老师</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-staff-account-management"} className={currentPath === '' ? 'active' : ''}>课程人员</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-staff-account-management"} className={currentPath === '' ? 'active' : ''}>管理员</Link></li>
                 </ul>
             </div>
         );

@@ -140,7 +140,7 @@ class SchoolStaffAccountInformation extends React.Component {
                                 </Grid>
                                 <div className="bottomControl clearfix">
                                     <span className="right"><Button className={classes.greyButton}
-                                        onClick={() => this.props.history.push('school-account-information')}
+                                        onClick={() => this.props.history.push('school-staff-account-information')}
                                     >编辑账户</Button></span>
                                 </div>
                             </div>

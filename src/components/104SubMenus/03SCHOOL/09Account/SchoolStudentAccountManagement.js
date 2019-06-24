@@ -21,8 +21,8 @@ class SchoolStudentAccountManagement extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/school-account-information"} className={currentPath === 'school-account-information' ? 'active' : ''}>账户资料</Link></li>
-                    <li><Link to={"/" + i18n.language + "/school-related-courses"} className={currentPath === 'school-related-courses' ? 'active' : ''}>相关课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-staff-account-information"} className={currentPath === 'school-staff-account-information' ? 'active' : ''}>账户资料</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-staff-related-courses"} className={currentPath === 'school-staff-related-courses' ? 'active' : ''}>相关课程</Link></li>
                     <li><Link to={"/" + i18n.language + "/school-account-access"} className={currentPath === 'school-account-access' ? 'active' : ''}>使用权限</Link></li>
                 </ul>
             </div>

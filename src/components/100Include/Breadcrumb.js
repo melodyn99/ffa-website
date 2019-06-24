@@ -215,20 +215,20 @@ class Breadcrumb extends Component {
             }
 
             // School Account
-            case 'school-related-courses': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            case 'school-staff-related-courses': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
-            case 'school-account-access': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            case 'school-staff-account-access': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
-            case 'school-account-information': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+            case 'school-staff-account-information': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
-            case 'school-account-management': {
+            case 'school-staff-account-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>账户管理</span></div>);
             }
-            case 'school-new-account': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-account-management"}>账户管理</Link></span> > <span>新增账户</span></div>);
+            case 'school-staff-new-account': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span>新增账户</span></div>);
             }
 
             default: {
