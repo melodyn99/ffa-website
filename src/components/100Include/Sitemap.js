@@ -31,8 +31,8 @@ function Sitemap(props) {
                     <h3>News Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-news-management'}>News Management (done)</Link></li>
 
-                    <h3>Activities Management</h3>
-                    <li><Link to={'/' + i18n.language + '/school-activities-management'}>Activity Management (done)</Link></li>
+                    <h3>activity Management</h3>
+                    <li><Link to={'/' + i18n.language + '/school-activity-management'}>Activity Management (done)</Link></li>
 
                     <h3>Resources Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-resources-management'}>Resource Management Course (done)</Link></li>
@@ -56,7 +56,7 @@ function Sitemap(props) {
                     <h3>News Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-new-news'}>New News (Melody) (done)</Link></li>
 
-                    <h3>Activities Management</h3>
+                    <h3>activity Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-new-activity'}>New Activity (Melody) (done)</Link></li>
 
                     <h3>Resources Management</h3>

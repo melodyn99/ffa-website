@@ -35,7 +35,7 @@ import { connect } from 'react-redux';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/Account';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/SchoolUserAccountManagement';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
 class SchoolAccountInformation extends React.Component {

@@ -35,7 +35,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/05Activity/SchoolActivitiesManagement';
+import data from '../../../data/03SCHOOL/05Activity/SchoolActivityManagement';
 
 // Define column names
 const rows = [
@@ -44,7 +44,7 @@ const rows = [
     { id: 'date', numeric: true, disablePadding: false, label: '发出日期' },
 ];
 
-class SchoolActivitiesManagement extends React.Component {
+class SchoolActivityManagement extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -253,7 +253,7 @@ class SchoolActivitiesManagement extends React.Component {
     }
 }
 
-SchoolActivitiesManagement.propTypes = {
+SchoolActivityManagement.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -268,4 +268,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolActivitiesManagement))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolActivityManagement))));

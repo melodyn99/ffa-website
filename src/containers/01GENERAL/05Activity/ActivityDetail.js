@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -26,7 +26,7 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
-class NewsCatalog extends Component {
+class ActivityDetail extends Component {
     constructor(props) {
         super(props);
 
@@ -36,9 +36,9 @@ class NewsCatalog extends Component {
     }
 
     render() {
-        const { i18n,
-            //classes 
-        } = this.props;
+        // const { i18n,
+        //     //classes 
+        // } = this.props;
 
         return (
             <div>
@@ -51,17 +51,14 @@ class NewsCatalog extends Component {
                             <BreadCrumb />
 
                             <div className="content">
+                                <h5>活动标题</h5>
+                                <h6>发出日期</h6>
                                 <Grid container spacing={16}>
-                                    <Grid item sm={3} xs={12}>
-                                        <div className="template-4 leftColumn">
-                                            <img src={require('../../../images/600-400.png')} alt="" />
-                                        </div>
+                                    <Grid item xs={12} className="template-7">
+                                        <img src={require('../../../images/600-400.png')} alt=""/>
                                     </Grid>
-                                    <Grid item sm={9} xs={12}>
-                                        <div className="template-4 rightColumn">
-                                            <p>This is News listing page</p>
-                                            <Link to={"/" + i18n.language + "/news"} className="dummy">Go to News Detail page</Link>
-                                        </div>
+                                    <Grid item xs={12}>
+                                        <p>This is activity</p>
                                     </Grid>
                                 </Grid>
                             </div>
@@ -85,4 +82,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewsCatalog)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(ActivityDetail)));

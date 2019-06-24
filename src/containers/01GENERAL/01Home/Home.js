@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
-import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import { HeaderStyles } from '../../../utils/01MaterialJsStyles/00Common/header'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { withTranslation } from 'react-i18next';
 // import { Button } from '@material-ui/core';
 
 // Api
@@ -71,7 +71,7 @@ class Home extends Component {
     }
 
     render() {
-        // const { classes } = this.props;
+        const { i18n } = this.props;
 
         return (
             <div>
@@ -81,6 +81,7 @@ class Home extends Component {
                             <Grid item xs={12}>
                                 <img src={require('../../../images/600-400.png')} alt="" />
                             </Grid>
+                            <div><Link to={"/" + i18n.language + "/home-images"}>Go to Home Images page</Link></div>
                         </Grid>
                     </div>
                 </div>

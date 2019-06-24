@@ -78,7 +78,7 @@ class Header extends Component {
                             || (currentPath === 'school-advantage')
                             || (currentPath === 'school-learning')
                             || (currentPath === 'news')
-                            || (currentPath === 'activities')
+                            || (currentPath === 'activity')
                             || (currentPath === 'school-cases') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-introduction"}>品牌</Link>
                             <ul className="second">
                                 <div className="arrow">need image</div>
@@ -87,8 +87,8 @@ class Header extends Component {
                                     <li className={(currentPath === 'school-advantage') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-advantage"}>在菲力尚学学习的优点</Link></li>
                                     <li className={(currentPath === 'school-learning') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-learning"}>学生学习相关介绍</Link></li>
                                     <li className={(currentPath === 'news') ? 'active' : ''}><Link to={"/" + i18n.language + "/news-catalog"}>学院故事及新闻</Link></li>
-                                    <li className={(currentPath === 'activities') ? 'active' : ''}><Link to={"/" + i18n.language + "/activities-catalog"}>学院相关活动</Link></li>
-                                    <li className={(currentPath === 'activities') ? 'active' : ''}><Link to={"/" + i18n.language + "/activities-catalog"}>学院相關的企業發展和創新</Link></li>
+                                    <li className={(currentPath === 'activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/activity-catalog"}>学院相关活动</Link></li>
+                                    <li className={(currentPath === 'activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/activity-catalog"}>学院相關的企業發展和創新</Link></li>
                                     <li className={(currentPath === 'school-cases') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-cases"}>和学院合作的案例</Link></li>
                                 </div>
                             </ul>
@@ -108,7 +108,7 @@ class Header extends Component {
                             <li className={(currentPath === 'school-students-management') || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></li>
                             <li className={currentPath === 'school-enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
                             <li className={(currentPath === 'school-news-management') || (currentPath === 'school-new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
-                            <li className={(currentPath === 'school-activities-management') || (currentPath === 'school-new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-activities-management"}>活动管理</Link></li>
+                            <li className={(currentPath === 'school-activity-management') || (currentPath === 'school-new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-activity-management"}>活动管理</Link></li>
                             <li className={(currentPath === 'school-resources-management')
                                 || (currentPath === 'school-resources-management')
                                 || (currentPath === 'school-resources-management-homework')
