@@ -202,7 +202,7 @@ class NewStudent extends React.Component {
           >取消</Button>
           <span className="right"><Button className={classes.blackButton}
             onClick={() => this.props.history.push('student-information')}
-            >确认</Button></span>
+          >确认 (click)</Button></span>
         </div>
       </Form>
     )
