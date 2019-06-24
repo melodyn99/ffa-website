@@ -64,7 +64,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [Using Third Party Assertion Libraries](#using-third-party-assertion-libraries)
   - [Initializing Test Environment](#initializing-test-environment)
   - [Focusing and Excluding Tests](#focusing-and-excluding-tests)
-  - [Coverage SchoolReportsing](#coverage-reporting)
+  - [Coverage SchoolReporting](#coverage-reporting)
   - [Continuous Integration](#continuous-integration)
   - [Disabling jsdom](#disabling-jsdom)
   - [Snapshot Testing](#snapshot-testing)
@@ -1504,7 +1504,7 @@ global.localStorage = localStorageMock;
 You can replace `it()` with `xit()` to temporarily exclude a test from being executed.<br>
 Similarly, `fit()` lets you focus on a specific test without running any other tests.
 
-### Coverage SchoolReportsing
+### Coverage SchoolReporting
 
 Jest has an integrated coverage reporter that works well with ES6 and requires no configuration.<br>
 Run `npm test -- --coverage` (note extra `--` in the middle) to include a coverage report like this:
@@ -1520,7 +1520,7 @@ The default Jest coverage configuration can be overridden by adding any of the f
 Supported overrides:
 
 - [`collectCoverageFrom`](https://facebook.github.io/jest/docs/en/configuration.html#collectcoveragefrom-array)
-- [`coverageSchoolReportsers`](https://facebook.github.io/jest/docs/en/configuration.html#coveragereporters-array-string)
+- [`coverageSchoolReporters`](https://facebook.github.io/jest/docs/en/configuration.html#coveragereporters-array-string)
 - [`coverageThreshold`](https://facebook.github.io/jest/docs/en/configuration.html#coveragethreshold-object)
 - [`snapshotSerializers`](https://facebook.github.io/jest/docs/en/configuration.html#snapshotserializers-array-string)
 
@@ -1543,7 +1543,7 @@ Example package.json:
         "statements": 90
       }
     },
-    "coverageSchoolReportsers": ["text"],
+    "coverageSchoolReporters": ["text"],
     "snapshotSerializers": ["my-serializer-module"]
   }
 }
@@ -2454,7 +2454,7 @@ You can find [other installation methods](https://facebook.github.io/watchman/do
 
 If this still doesn’t help, try running `launchctl unload -F ~/Library/LaunchAgents/com.github.facebook.watchman.plist`.
 
-There are also school-reports that _uninstalling_ Watchman fixes the issue. So if nothing else helps, remove it from your system and try again.
+There are also school-report that _uninstalling_ Watchman fixes the issue. So if nothing else helps, remove it from your system and try again.
 
 ### `npm run build` exits too early
 

@@ -125,8 +125,8 @@ import SchoolNewQuestion from './containers/03SCHOOL/06Resource/SchoolNewQuestio
 // School Alert
 import SchoolAlert from './containers/03SCHOOL/07Alert/SchoolAlert';
 
-// School SchoolReports
-import SchoolReports from './containers/03SCHOOL/08Report/SchoolReports';
+// School SchoolReport
+import SchoolReport from './containers/03SCHOOL/08Report/SchoolReport';
 
 // School Account
 import SchoolStaffRelatedCourse from './containers/03SCHOOL/09Account/SchoolStaffRelatedCourse';
@@ -420,8 +420,8 @@ class App extends Component {
                 }
 
                 // School Reports
-                case 'school-reports': {
-                    return <SchoolReports />;
+                case 'school-report': {
+                    return <SchoolReport />;
                 }
 
                 // School Account
