@@ -153,7 +153,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            debug: true
+            debug: false
         }
     }
 
