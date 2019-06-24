@@ -22,7 +22,7 @@ class Student extends Component {
             <div className="subMenu">
                 <ul className="clearfix">
                     <li><Link to={"/" + i18n.language + "/school-student-information"} className={currentPath === 'school-student-information' ? 'active' : ''}>学生资料</Link></li>
-                    <li><Link to={"/" + i18n.language + "/school-student-related-courses"} className={currentPath === 'school-student-school-related-courses' ? 'active' : ''}>相关课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-student-related-courses"} className={currentPath === 'school-student-related-courses' ? 'active' : ''}>相关课程</Link></li>
                 </ul>
             </div>
         );
