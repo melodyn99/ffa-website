@@ -115,7 +115,7 @@ class Header extends Component {
                                 || (currentPath === 'school-new-material')
                                 || (currentPath === 'school-new-homework')
                                 || (currentPath === 'school-new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-resources-management"}>资源管理</Link></li>
-                            <li className={currentPath === 'school-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alerts"}>我的提醒 (6)</Link></li>
+                            <li className={currentPath === 'school-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alert"}>我的提醒 (6)</Link></li>
                             <li className={currentPath === 'school-reports' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-reports"}>项目报告</Link></li>
                             <li className={(currentPath === 'school-staff-account-information') || (currentPath === 'school-staff-new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></li>
                         </ul>

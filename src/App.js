@@ -415,7 +415,7 @@ class App extends Component {
                 }
 
                 // School Alert
-                case 'school-alerts': {
+                case 'school-alert': {
                     return <SchoolAlert />;
                 }
 

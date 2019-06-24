@@ -210,7 +210,7 @@ class Breadcrumb extends Component {
             }
 
             // School Alert
-            case 'school-alerts': {
+            case 'school-alert': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>我的提醒(6)</span></div>);
             }
 
