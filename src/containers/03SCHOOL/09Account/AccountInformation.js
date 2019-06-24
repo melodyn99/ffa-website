@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -138,7 +139,9 @@ class AccountInformation extends React.Component {
                                 </Grid>
                             </Grid>
                             <div className="bottomControl clearfix">
-                                <span className="right"><Button type="submit" className={classes.greyButton}>编辑账户</Button></span>
+                                <span className="right"><Button className={classes.greyButton}
+                                    onClick={() => this.props.history.push('account-information')}
+                                >编辑账户</Button></span>
                             </div>
                             </div>
                         </div>
@@ -164,4 +167,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(AccountInformation)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(AccountInformation))));

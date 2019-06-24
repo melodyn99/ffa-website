@@ -112,7 +112,7 @@ class Header extends Component {
                                 || (currentPath === 'new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/all-resources-management"}>资源管理</Link></li>
                             <li className={currentPath === 'school-alerts' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alerts"}>我的提醒 (6)</Link></li>
                             <li className={currentPath === 'reports' ? 'active' : ''}><Link to={"/" + i18n.language + "/reports"}>项目报告</Link></li>
-                            <li className={(currentPath === 'account-information') || (currentPath === 'new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/account-information"}>账户管理</Link></li>
+                            <li className={(currentPath === 'account-information') || (currentPath === 'new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/enrollment-history"}>账户管理</Link></li>
                         </ul>
                     }
 
