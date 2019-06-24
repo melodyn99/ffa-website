@@ -136,7 +136,7 @@ class SchoolNewAccount extends React.Component {
                     >取消</Button>
                     <span className="right"><Button className={classes.blackButton}
                         onClick={() => this.props.history.push('school-account-information')}
-                    >确认</Button></span>
+                    >确认 (CLICK ME)</Button></span>
                 </div>
             </Form>
         )

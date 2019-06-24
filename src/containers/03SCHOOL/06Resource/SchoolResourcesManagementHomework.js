@@ -162,7 +162,7 @@ class SchoolResourcesManagementHomework extends React.Component {
                                     backButtonActionUrl='school-course-student-management'
 
                                     createButton={true}
-                                    createButtonText="创建"
+                                    createButtonText="创建 (CLICK ME)"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-new-homework'
 

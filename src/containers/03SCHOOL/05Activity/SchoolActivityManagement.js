@@ -157,7 +157,7 @@ class SchoolActivityManagement extends React.Component {
                                 backButtonActionUrl='school-course-preparations'
 
                                 createButton={true}
-                                createButtonText="创建"
+                                createButtonText="创建 (CLICK ME)"
                                 createButtonAction={this._createButtonAction}
                                 createButtonActionUrl='school-new-activity'
 

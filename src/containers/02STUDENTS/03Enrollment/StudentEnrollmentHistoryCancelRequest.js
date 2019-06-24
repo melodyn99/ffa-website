@@ -239,7 +239,7 @@ class StudentEnrollmentHistoryCancelRequest extends React.Component {
                                     <Button className={classes.greyButton}
                                         onClick={() => this.props.history.push('student-enrollment-history')}
                                     >返回</Button>
-                                    <span className="right"><Button type="submit" className={classes.blackButton}>申请取消 (click)</Button></span>
+                                    <span className="right"><Button type="submit" className={classes.blackButton}>申请取消</Button></span>
                                 </div>
                             </div>
                         </div>
