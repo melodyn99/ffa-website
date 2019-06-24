@@ -22,7 +22,7 @@ import { connect } from 'react-redux';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/02STUDENTS/01Register/Register';
+import SubMenu from '../../../components/104SubMenus/02STUDENTS/01Register/StudentRegister';
 
 class StudentRegisterPersonalInformation extends Component {
     constructor(props) {

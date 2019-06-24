@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -36,29 +36,32 @@ class Activity extends Component {
     }
 
     render() {
-        // const { i18n,
-        //     //classes 
-        // } = this.props;
+        const { i18n,
+            //classes 
+        } = this.props;
 
         return (
             <div>
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">学院故事及新闻</h2>
+                        <h2 className="pageTitle">学院相关的活动</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
 
                             <div className="content">
-                                <h5>活动标题</h5>
-                                <h6>发出日期</h6>
                                 <Grid container spacing={16}>
-                                    <Grid item xs={12} className="template-7">
-                                        <img src={require('../../../images/600-400.png')} alt=""/>
+                                    <Grid item sm={3} xs={12}>
+                                        <div className="template-4 leftColumn">
+                                            <img src={require('../../../images/600-400.png')} alt="" />
+                                        </div>
                                     </Grid>
-                                    <Grid item xs={12}>
-                                        <p>This is Activities</p>
+                                    <Grid item sm={9} xs={12}>
+                                        <div className="template-4 rightColumn">
+                                            <p>This is Activity listing page</p>
+                                            <Link to={"/" + i18n.language + "/activity"} className="dummy">Go to Activity detail page</Link>
+                                        </div>
                                     </Grid>
                                 </Grid>
                             </div>

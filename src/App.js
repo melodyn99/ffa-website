@@ -41,12 +41,12 @@ import AdmissionCourseCatalog from './containers/01GENERAL/06Admission/Admission
 import AdmissionCourseInformation from './containers/01GENERAL/06Admission/AdmissionCourseInformation';
 
 // News
-import NewsListing from './containers/01GENERAL/04News/NewsListing';
-import NewsDetails from './containers/01GENERAL/04News/NewsDetails';
+import News from './containers/01GENERAL/04News/News';
+import NewsDetail from './containers/01GENERAL/04News/NewsDetail';
 
 // Activity
-import ActivityCatalog from './containers/01GENERAL/05Activity/ActivityCatalog';
 import Activity from './containers/01GENERAL/05Activity/Activity';
+import ActivityDetail from './containers/01GENERAL/05Activity/ActivityDetail';
 
 
 /*** STUDENT ***/
@@ -109,8 +109,8 @@ import SchoolEnrollmentManagement from './containers/03SCHOOL/03Enrollment/Schoo
 import SchoolNewsManagement from './containers/03SCHOOL/04News/SchoolNewsManagement';
 import SchoolNewNews from './containers/03SCHOOL/04News/SchoolNewNews';
 
-// School Activities Management
-import SchoolActivitiesManagement from './containers/03SCHOOL/05Activity/SchoolActivitiesManagement';
+// School Activity Management
+import SchoolActivityManagement from '././containers/03SCHOOL/05Activity/SchoolActivityManagement';
 import SchoolNewActivity from './containers/03SCHOOL/05Activity/SchoolNewActivity';
 
 // School Resources Management
@@ -231,18 +231,18 @@ class App extends Component {
 
                 // News
                 case 'news': {
-                    return <NewsCatalog />
-                }
-                case 'news-details': {
                     return <News />
+                }
+                case 'news-detail': {
+                    return <NewsDetail />
                 }
 
                 // Activity
                 case 'activity': {
-                    return <ActivityCatalog />
-                }
-                case 'activity-details': {
                     return <Activity />
+                }
+                case 'activity-detail': {
+                    return <ActivityDetail />
                 }
 
 
@@ -384,9 +384,9 @@ class App extends Component {
                     return <SchoolNewNews />;
                 }
 
-                // School Activities Management
-                case 'school-activities-management': {
-                    return <SchoolActivitiesManagement />;
+                // School activity Management
+                case 'school-activity-management': {
+                    return <SchoolActivityManagement />;
                 }
                 case 'school-new-activity': {
                     return <SchoolNewActivity />;
