@@ -121,7 +121,7 @@ class SchoolCourseQandA extends React.Component {
 
                             <div className="content">
 
-                            <Link to={"/" + i18n.language + "/school-course-reply-q-and-a"}>Go to Course Reply Q and A</Link>
+                            <Link to={"/" + i18n.language + "/school-course-reply-q-and-a"} className="dummy">Go to Course Reply Q and A</Link>
                             <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>
