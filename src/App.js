@@ -129,7 +129,7 @@ import SchoolAlert from './containers/03SCHOOL/07Alert/SchoolAlert';
 import SchoolReports from './containers/03SCHOOL/08Report/SchoolReports';
 
 // School Account
-import SchoolStaffRelatedCourses from './containers/03SCHOOL/09Account/SchoolStaffRelatedCourses';
+import SchoolStaffRelatedCourse from './containers/03SCHOOL/09Account/SchoolStaffRelatedCourse';
 import SchoolStaffAccountManagement from './containers/03SCHOOL/09Account/SchoolStaffAccountManagement';
 import SchoolStaffNewAccount from './containers/03SCHOOL/09Account/SchoolStaffNewAccount';
 import SchoolStaffAccountAccess from './containers/03SCHOOL/09Account/SchoolStaffAccountAccess';
@@ -425,8 +425,8 @@ class App extends Component {
                 }
 
                 // School Account
-                case 'school-staff-related-courses': {
-                    return <SchoolStaffRelatedCourses />;
+                case 'school-staff-related-course': {
+                    return <SchoolStaffRelatedCourse />;
                 }
                 case 'school-staff-account-management': {
                     return <SchoolStaffAccountManagement />;

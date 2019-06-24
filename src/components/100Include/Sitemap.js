@@ -39,7 +39,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-resources-management-homework'}>Resource Management Homework (done)</Link></li>
 
                     <h3>Accounts</h3>
-                    <li><Link to={'/' + i18n.language + '/school-staff-related-courses'}>Related Courses (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-staff-related-course'}>Related Courses (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-staff-account-management'}>Entrollment History (done)</Link></li>
                 </ul>
 
@@ -83,7 +83,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/student-register'}>Student Register (Melody)</Link></li>
 
                     <h3>Student Management</h3>
-                    <li><Link to={'/' + i18n.language + '/school-student-school-staff-related-courses'}>Student Related Courses (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-student-school-staff-related-course'}>Student Related Courses (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-student-information'}>Student Information (Melody)</Link></li>
 
                     <h3>Resources Management</h3>

@@ -215,7 +215,7 @@ class Breadcrumb extends Component {
             }
 
             // School Account
-            case 'school-staff-related-courses': {
+            case 'school-staff-related-course': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
             case 'school-staff-account-access': {
