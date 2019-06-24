@@ -79,7 +79,7 @@ class Header extends Component {
                             || (currentPath === 'school-learning')
                             || (currentPath === 'news')
                             || (currentPath === 'activity')
-                            || (currentPath === 'school-cases') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-introduction"}>品牌</Link>
+                            || (currentPath === 'school-case') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-introduction"}>品牌</Link>
                             <ul className="second">
                                 <div className="arrow">need image</div>
                                 <div className="wrap">
@@ -89,7 +89,7 @@ class Header extends Component {
                                     <li className={(currentPath === 'news') ? 'active' : ''}><Link to={"/" + i18n.language + "/news-catalog"}>学院故事及新闻</Link></li>
                                     <li className={(currentPath === 'activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/activity-catalog"}>学院相关活动</Link></li>
                                     <li className={(currentPath === 'activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/activity-catalog"}>学院相關的企業發展和創新</Link></li>
-                                    <li className={(currentPath === 'school-cases') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-cases"}>和学院合作的案例</Link></li>
+                                    <li className={(currentPath === 'school-case') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-case"}>和学院合作的案例</Link></li>
                                 </div>
                             </ul>
                         </li>

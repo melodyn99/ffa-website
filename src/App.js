@@ -210,7 +210,7 @@ class App extends Component {
                 case 'school-learning': {
                     return <SchoolLearning />
                 }
-                case 'school-cases': {
+                case 'school-case': {
                     return <SchoolCase />
                 }
 
