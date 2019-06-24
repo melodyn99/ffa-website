@@ -21,19 +21,19 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span>报名</span></div >);
             }
             case 'student-register-personal-information': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/login-with-register">报名</Link></span> > <span>報名申請</span></div >);
             }
             case 'student-register-document-upload': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/login-with-register">报名</Link></span> > <span>報名申請</span></div >);
             }
             case 'student-register-questionnaire': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/login-with-register">报名</Link></span> > <span>報名申請</span></div >);
             }
             case 'student-register-fee': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/login-with-register">报名</Link></span> > <span>報名申請</span></div >);
             }
             case 'student-register-notification': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/">报名</Link></span> > <span>報名申請</span></div >);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="/">入学</Link></span> > <span><Link to="/login-with-register">报名</Link></span> > <span>報名申請</span></div >);
             }
 
             // Brand

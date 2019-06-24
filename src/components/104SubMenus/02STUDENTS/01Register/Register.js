@@ -21,11 +21,11 @@ class Register extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/student-register-personal-information"} className={currentPath === 'student-register-personal-information' ? 'active' : ''}>所有课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/student-register-document-upload"} className={currentPath === 'student-register-document-upload' ? 'active' : ''}>战略课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/student-register-questionnaire"} className={currentPath === 'student-register-questionnaire' ? 'active' : ''}>商品管理系列课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/student-register-fee"} className={currentPath === 'student-register-fee' ? 'active' : ''}>设计应用系列课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/student-register-notification"} className={currentPath === 'student-register-notification' ? 'active' : ''}>开发流程系列课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/student-register-personal-information"} className={currentPath === 'student-register-personal-information' ? 'active' : ''}>个人资料</Link></li>
+                    <li><Link to={"/" + i18n.language + "/student-register-document-upload"} className={currentPath === 'student-register-document-upload' ? 'active' : ''}>上载文件</Link></li>
+                    <li><Link to={"/" + i18n.language + "/student-register-questionnaire"} className={currentPath === 'student-register-questionnaire' ? 'active' : ''}>问卷调查</Link></li>
+                    <li><Link to={"/" + i18n.language + "/student-register-fee"} className={currentPath === 'student-register-fee' ? 'active' : ''}>缴付费用</Link></li>
+                    <li><Link to={"/" + i18n.language + "/student-register-notification"} className={currentPath === 'student-register-notification' ? 'active' : ''}>录取通知</Link></li>
                 </ul>
             </div>
         );
