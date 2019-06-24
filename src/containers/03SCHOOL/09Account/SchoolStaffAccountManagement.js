@@ -33,10 +33,10 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/SchoolAccountManagement';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/SchoolStaffAccountManagement';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/09Account/SchoolAccountManagement';
+import data from '../../../data/03SCHOOL/09Account/SchoolStaffAccountManagement';
 
 // Define column names
 const rows = [
@@ -47,7 +47,7 @@ const rows = [
     { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
 ];
 
-class EnrollmentHistory extends React.Component {
+class SchoolStaffAccountManagement extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -258,7 +258,7 @@ class EnrollmentHistory extends React.Component {
     }
 }
 
-EnrollmentHistory.propTypes = {
+SchoolStaffAccountManagement.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -273,4 +273,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(EnrollmentHistory))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolStaffAccountManagement))));
