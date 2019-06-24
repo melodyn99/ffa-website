@@ -32,9 +32,9 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolAllCourses';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolAllCourse';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolAllCourses';
+import data from '../../../data/03SCHOOL/01Course/SchoolAllCourse';
 
 // Define column names
 const rows = [
@@ -45,7 +45,7 @@ const rows = [
     { id: 'startdate', numeric: true, disablePadding: false, label: '开课日期' },
 ];
 
-class SchoolAllCourses extends React.Component {
+class SchoolAllCourse extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -209,7 +209,7 @@ class SchoolAllCourses extends React.Component {
     }
 }
 
-SchoolAllCourses.propTypes = {
+SchoolAllCourse.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -224,4 +224,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolAllCourses)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolAllCourse)));

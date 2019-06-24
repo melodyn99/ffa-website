@@ -104,7 +104,7 @@ class Header extends Component {
                     }
                     {(currentPath !== '' && typeof currentPath !== 'undefined') &&
                         <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' school' : '')}>
-                            <li className={currentPath === 'school-all-courses' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-courses"}>课程管理</Link></li>
+                            <li className={currentPath === 'school-all-course' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></li>
                             <li className={(currentPath === 'school-students-management') || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></li>
                             <li className={currentPath === 'school-enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
                             <li className={(currentPath === 'school-news-management') || (currentPath === 'school-new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
