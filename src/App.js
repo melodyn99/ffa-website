@@ -303,7 +303,7 @@ class App extends Component {
                 }
 
                 // Student Alert
-                case 'student-alerts': {
+                case 'student-alert': {
                     return <StudentAlert />;
                 }
 
