@@ -41,8 +41,8 @@ import AdmissionCourseCatalog from './containers/01GENERAL/06Admission/Admission
 import AdmissionCourseInformation from './containers/01GENERAL/06Admission/AdmissionCourseInformation';
 
 // News
-import NewsCatalog from './containers/01GENERAL/04News/NewsCatalog';
-import News from './containers/01GENERAL/04News/News';
+import NewsListing from './containers/01GENERAL/04News/NewsListing';
+import NewsDetails from './containers/01GENERAL/04News/NewsDetails';
 
 // Activity
 import ActivityCatalog from './containers/01GENERAL/05Activity/ActivityCatalog';
@@ -230,18 +230,18 @@ class App extends Component {
                 }
 
                 // News
-                case 'news-catalog': {
+                case 'news': {
                     return <NewsCatalog />
                 }
-                case 'news': {
+                case 'news-details': {
                     return <News />
                 }
 
                 // Activity
-                case 'activities-catalog': {
+                case 'activity': {
                     return <ActivityCatalog />
                 }
-                case 'activities': {
+                case 'activity-details': {
                     return <Activity />
                 }
 
