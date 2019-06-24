@@ -1,7 +1,7 @@
 // Essential for all components
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
@@ -57,6 +57,7 @@ class StudentEnrollmentHistory extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
+        tempGoDetail: false
     };
 
     handleRequestSort = (event, property) => {
@@ -109,11 +110,21 @@ class StudentEnrollmentHistory extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    _tempDetail = () => {
+        this.setState({
+            ...this.state,
+            tempGoDetail: true
+        });
+    }
+
     render() {
-        const { classes } = this.props;
+        const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
+        if (this.state.tempGoDetail) {
+            return <Redirect push to={"/" + i18n.language + "/student-enrollment-history-form"} />;
+        }
         return (
             <div>
                 <div className="wrapper-container-main">

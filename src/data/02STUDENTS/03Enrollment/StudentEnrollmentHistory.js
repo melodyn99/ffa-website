@@ -1,7 +1,7 @@
 export default [
     {
         "id":1,
-        "semester": "Summer",
+        "semester": "Summer (click me)",
         "subject": "2017 - 2018",
         "courseType": "good",
         "courseCode": 456,
@@ -13,7 +13,7 @@ export default [
     },
     {
         "id": 2,
-        "semester": "Summer",
+        "semester": "Summer (click me)",
         "subject": "2017 - 2018",
         "courseType": "good",
         "courseCode": 456,
@@ -25,7 +25,7 @@ export default [
     },
     {
         "id": 3,
-        "semester": "Summer",
+        "semester": "Summer (click me)",
         "subject": "2017 - 2018",
         "courseType": "good",
         "courseCode": 456,
