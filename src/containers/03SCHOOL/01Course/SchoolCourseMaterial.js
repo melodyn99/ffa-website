@@ -36,7 +36,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseMaterials';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseMaterial';
 
 // Define column names
 const rows = [
@@ -45,7 +45,7 @@ const rows = [
     { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改时间' },
 ];
 
-class SchoolCourseMaterials extends React.Component {
+class SchoolCourseMaterial extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -255,7 +255,7 @@ class SchoolCourseMaterials extends React.Component {
     }
 }
 
-SchoolCourseMaterials.propTypes = {
+SchoolCourseMaterial.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -270,4 +270,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseMaterials))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseMaterial))));
