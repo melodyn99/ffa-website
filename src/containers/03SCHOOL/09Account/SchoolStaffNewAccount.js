@@ -31,7 +31,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class SchoolNewAccount extends React.Component {
+class SchoolStaffNewAccount extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -201,7 +201,7 @@ class SchoolNewAccount extends React.Component {
     }
 }
 
-SchoolNewAccount.propTypes = {
+SchoolStaffNewAccount.propTypes = {
    classes: PropTypes.object.isRequired,
 };
 
@@ -216,4 +216,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNewAccount))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolStaffNewAccount))));
