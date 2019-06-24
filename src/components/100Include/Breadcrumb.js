@@ -141,11 +141,11 @@ class Breadcrumb extends Component {
             case 'school-course-q-and-a': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程问答</span></div>);
             }
-            case 'school-course-notes': {
+            case 'school-course-note': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>及时记录</span></div>);
             }
-            case 'school-course-school-school-new-notes': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to={"/" + i18n.language + "/school-course-notes"}>及时记录</Link></span> > <span>及时记录1</span></div>);
+            case 'school-course-new-note': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span><Link to={"/" + i18n.language + "/school-course-note"}>及时记录</Link></span> > <span>及时记录1</span></div>);
             }
             case 'school-course-assessment': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程评分</span></div>);
@@ -158,7 +158,7 @@ class Breadcrumb extends Component {
             case 'school-student-information': {
                 return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>学生资料</span></div>)
             }
-            case 'school-student-related-courses': {
+            case 'school-student-related-course': {
                 return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>相关课程</span></div>)
             }
 

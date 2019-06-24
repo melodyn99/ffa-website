@@ -32,10 +32,10 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCou
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class SchoolCourseNewNotes extends React.Component {
+class SchoolCourseNewNote extends React.Component {
 
     // render() {
-        // const { classes } = this.props;
+    // const { classes } = this.props;
 
     _handleInput = (value, key) => {
         console.log(value);
@@ -47,75 +47,75 @@ class SchoolCourseNewNotes extends React.Component {
 
     _handleSelect = () => {
 
-    }    
+    }
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
             //, t, i18n 
         } = this.props;
 
-            return (
-                <Form>
-                    <Grid container spacing={16} alignItems="center">
-                        <Grid item xs={1} >
-                            记录标题
+        return (
+            <Form>
+                <Grid container spacing={16} alignItems="center">
+                    <Grid item xs={1} >
+                        记录标题
                         </Grid>
-                        <Grid item xs={11}>
-                            <Field name="notesName" type="text" placeholder="课程编号 123" maxLength="100" />
-                            {errors.notesName && touched.notesName ? <ErrorMessage message={errors.notesName} /> : null}
-                        </Grid>
+                    <Grid item xs={11}>
+                        <Field name="notesName" type="text" placeholder="课程编号 123" maxLength="100" />
+                        {errors.notesName && touched.notesName ? <ErrorMessage message={errors.notesName} /> : null}
+                    </Grid>
 
-                        <Grid item xs={1} >
-                            记录内容
+                    <Grid item xs={1} >
+                        记录内容
                         </Grid>
-                        <Grid item xs={11}>
-                            <Field name="notesContent" type="text" placeholder="课程编号 123" maxLength="100" />
-                            {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
-                        </Grid>
+                    <Grid item xs={11}>
+                        <Field name="notesContent" type="text" placeholder="课程编号 123" maxLength="100" />
+                        {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
+                    </Grid>
 
-                        <Grid item xs={1} >
-                            记录文件
+                    <Grid item xs={1} >
+                        记录文件
                         </Grid>
-                        <Grid item xs={11} >
-                            <div className="bottomControl clearfix">
-                                <Button type="submit" className={classes.blueGreenButton}>上载文件</Button>
-                                <Button type="submit" className={classes.greyButton}>下载</Button>
-                                <Button type="submit" className={classes.greyButton}>删除</Button>
-                            </div>
-                        </Grid>
+                    <Grid item xs={11} >
+                        <div className="bottomControl clearfix">
+                            <Button type="submit" className={classes.blueGreenButton}>上载文件</Button>
+                            <Button type="submit" className={classes.greyButton}>下载</Button>
+                            <Button type="submit" className={classes.greyButton}>删除</Button>
+                        </div>
+                    </Grid>
 
-                        <Grid item xs={1} >
-                        </Grid>
-                        <Grid item xs={11}>
-                            
-                        </Grid>
+                    <Grid item xs={1} >
+                    </Grid>
+                    <Grid item xs={11}>
 
                     </Grid>
-                    <div className="bottomControl clearfix">
-                        <Button className={classes.greyButton}
-                            onClick={() => this.props.history.push('school-course-notes')}
-                        >取消</Button>
-                        <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
-                    </div>
-                </Form>
-            )
-        }
 
-        handleSubmit = (values, { setFieldError }) => {
-            // call api
-            // TODO
-            console.log('GREAT!');
-        }
+                </Grid>
+                <div className="bottomControl clearfix">
+                    <Button className={classes.greyButton}
+                        onClick={() => this.props.history.push('school-course-note')}
+                    >取消</Button>
+                    <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
+                </div>
+            </Form>
+        )
+    }
 
-        render() {
-            // const { classes, t, i18n } = this.props;
+    handleSubmit = (values, { setFieldError }) => {
+        // call api
+        // TODO
+        console.log('GREAT!');
+    }
 
-            const Schema = Yup.object().shape({
-                notesName: Yup.string()
-                    .required('Notes Name is required'),
-                notesContent: Yup.string()
-                    .required('Notes Content is required'),
-            })
+    render() {
+        // const { classes, t, i18n } = this.props;
+
+        const Schema = Yup.object().shape({
+            notesName: Yup.string()
+                .required('Notes Name is required'),
+            notesContent: Yup.string()
+                .required('Notes Content is required'),
+        })
 
         return (
             <div>
@@ -147,7 +147,7 @@ class SchoolCourseNewNotes extends React.Component {
     }
 }
 
-SchoolCourseNewNotes.propTypes = {
+SchoolCourseNewNote.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -162,4 +162,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseNewNotes))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseNewNote))));

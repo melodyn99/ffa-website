@@ -91,14 +91,14 @@ import SchoolCourseStudentManagementHomework from './containers/03SCHOOL/01Cours
 import SchoolCourseAnnouncement from './containers/03SCHOOL/01Course/SchoolCourseAnnouncement';
 import SchoolCourseQandA from './containers/03SCHOOL/01Course/SchoolCourseQandA';
 import SchoolCourseReplyQandA from './containers/03SCHOOL/01Course/SchoolCourseReplyQandA';
-import SchoolCourseNotes from './containers/03SCHOOL/01Course/SchoolCourseNotes';
-import SchoolCourseNewNotes from './containers/03SCHOOL/01Course/SchoolCourseNewNotes';
+import SchoolCourseNote from './containers/03SCHOOL/01Course/SchoolCourseNote';
+import SchoolCourseNewNote from './containers/03SCHOOL/01Course/SchoolCourseNewNote';
 import SchoolCourseAssessment from './containers/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // School Student Management
 import SchoolStudentsManagement from './containers/03SCHOOL/02Student/SchoolStudentsManagement';
 import SchoolStudentInformation from './containers/03SCHOOL/02Student/SchoolStudentInformation'; // this
-import SchoolStudentRelatedCourses from './containers/03SCHOOL/02Student/SchoolStudentRelatedCourses'; // this
+import SchoolStudentRelatedCourse from './containers/03SCHOOL/02Student/SchoolStudentRelatedCourse'; // this
 import SchoolNewStudent from './containers/03SCHOOL/02Student/SchoolNewStudent'; // this
 
 // School Enrollment Management
@@ -343,11 +343,11 @@ class App extends Component {
                 case 'school-course-reply-q-and-a': {
                     return <SchoolCourseReplyQandA />;
                 }
-                case 'school-course-notes': {
-                    return <SchoolCourseNotes />;
+                case 'school-course-note': {
+                    return <SchoolCourseNote />;
                 }
-                case 'school-course-school-school-new-notes': {
-                    return <SchoolCourseNewNotes />;
+                case 'school-course-new-note': {
+                    return <SchoolCourseNewNote />;
                 }
                 case 'school-course-assessment': {
                     return <SchoolCourseAssessment />;
@@ -360,8 +360,8 @@ class App extends Component {
                 case 'school-student-information': {
                     return <SchoolStudentInformation />
                 }
-                case 'school-student-related-courses': {
-                    return <SchoolStudentRelatedCourses />
+                case 'school-student-related-course': {
+                    return <SchoolStudentRelatedCourse />
                 }
                 case 'school-new-student': {
                     return <SchoolNewStudent />;

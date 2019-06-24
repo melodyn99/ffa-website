@@ -1,10 +1,9 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -33,19 +32,25 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
-import ToolBar from '../../../components/105ToolBars/General';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/02Student/SchoolStudent';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseNotes';
+import data from '../../../data/03SCHOOL/02Student/SchoolStudentRelatedCourse';
 
 // Define column names
 const rows = [
-    { id: 'notes', numeric: false, disablePadding: false, label: '及时记录' },
-    { id: 'file', numeric: true, disablePadding: false, label: '文件' },
-    { id: 'lastedit', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'semester', numeric: false, disablePadding: false, label: '学期' },
+    { id: 'subject', numeric: true, disablePadding: false, label: '学科名称' },
+    { id: 'courseType', numeric: true, disablePadding: false, label: '课程类型' },
+    { id: 'courseCode', numeric: true, disablePadding: false, label: '课程编号' },
+    { id: 'courseName', numeric: true, disablePadding: false, label: '课程名称' },
+    { id: 'fees', numeric: true, disablePadding: false, label: '学费' },
+    { id: 'actualFees', numeric: true, disablePadding: false, label: '实际收费' },
+    { id: 'credits', numeric: true, disablePadding: false, label: '学分' },
+    { id: 'grade', numeric: true, disablePadding: false, label: '成绩' },
+    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
 ];
 
-class SchoolCourseNotes extends React.Component {
+class SchoolStudentRelatedCourse extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -53,7 +58,6 @@ class SchoolCourseNotes extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false
     };
 
     handleRequestSort = (event, property) => {
@@ -106,95 +110,23 @@ class SchoolCourseNotes extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = () => {
-        this.setState({
-            ...this.state,
-            tempGoDetail: true
-        });
-    }
-
-    // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
-    }
-
     render() {
-        const { classes, i18n } = this.props;
+        const { classes } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
-        if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/school-note-taking"} />;
-        }
 
         return (
             <div>
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
+                        <h2 className="pageTitle">学生管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
                             <SubMenu />
 
                             <div className="content">
-
-                            <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
-
-                                    createButton={true}
-                                    createButtonText="创建 (click)"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='school-course-school-school-new-notes'
-
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={true}
-                                    deleteButtonText="删除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={false}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={false}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
-                                />
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -216,8 +148,7 @@ class SchoolCourseNotes extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail()}
+                                                                onClick={event => this.handleClick(event, n.id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -229,15 +160,22 @@ class SchoolCourseNotes extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.notes}</TableCell>
-                                                                <TableCell>{n.file}</TableCell>
-                                                                <TableCell>{n.lastedit}</TableCell>
+                                                                >{n.semester}</TableCell>
+                                                                <TableCell>{n.subject}</TableCell>
+                                                                <TableCell>{n.courseType}</TableCell>
+                                                                <TableCell>{n.courseCode}</TableCell>
+                                                                <TableCell>{n.courseName}</TableCell>
+                                                                <TableCell>{n.fees}</TableCell>
+                                                                <TableCell>{n.actualFees}</TableCell>
+                                                                <TableCell>{n.credits}</TableCell>
+                                                                <TableCell>{n.grade}</TableCell>
+                                                                <TableCell>{n.status}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={3} />
+                                                        <TableCell colSpan={10} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -267,7 +205,7 @@ class SchoolCourseNotes extends React.Component {
     }
 }
 
-SchoolCourseNotes.propTypes = {
+SchoolStudentRelatedCourse.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -282,4 +220,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseNotes))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolStudentRelatedCourse)));
