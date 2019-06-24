@@ -61,7 +61,7 @@ import StudentRegisterNotification from './containers/02STUDENTS/01Register/Stud
 // Student Course
 import StudentCourseDate from './containers/02STUDENTS/02Course/StudentCourseDate';
 import StudentCourseInformation from './containers/02STUDENTS/02Course/StudentCourseInformation';
-import StudentCourseAnnouncements from './containers/02STUDENTS/02Course/StudentCourseAnnouncements';
+import StudentCourseAnnouncement from './containers/02STUDENTS/02Course/StudentCourseAnnouncement';
 
 // Student Scheduling
 import StudentScheduling from './containers/02STUDENTS/Schedule/StudentScheduling';
@@ -274,7 +274,7 @@ class App extends Component {
                     return <StudentCourseInformation />
                 }
                 case 'student-course-announcements': {
-                    return <StudentCourseAnnouncements />
+                    return <StudentCourseAnnouncement />
                 }
 
                 // Student Scheduling

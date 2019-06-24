@@ -35,7 +35,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/02STUDENTS/02Course/StudentCourse';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
-class StudentCourseAnnouncements extends React.Component {
+class StudentCourseAnnouncement extends React.Component {
 
     render() {
         return (
@@ -60,7 +60,7 @@ class StudentCourseAnnouncements extends React.Component {
     }
 }
 
-StudentCourseAnnouncements.propTypes = {
+StudentCourseAnnouncement.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -75,4 +75,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentCourseAnnouncements)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentCourseAnnouncement)));
