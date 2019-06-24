@@ -60,7 +60,7 @@ class NewsCatalog extends Component {
                                     <Grid item sm={9} xs={12}>
                                         <div className="template-4 rightColumn">
                                             <p>This is News Catalog</p>
-                                            <Link to={"/" + i18n.language + "/news"}>Go to News</Link>
+                                            <Link to={"/" + i18n.language + "/news"} className="dummy">Go to News</Link>
                                         </div>
                                     </Grid>
                                 </Grid>

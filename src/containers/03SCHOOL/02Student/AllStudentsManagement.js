@@ -52,7 +52,7 @@ class AllStudentsManagement extends Component {
 
                             <div className="content">
                                 <p>This is All Students Management</p>
-                                <Link to={"/" + i18n.language + "/new-student"}>Go to New Student</Link>
+                                <Link to={"/" + i18n.language + "/new-student"} className="dummy">Go to New Student</Link>
                             </div>
                         </div>
 

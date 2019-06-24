@@ -54,8 +54,9 @@ class AllStudentsManagement extends Component {
                             <div className="content">
                                 <p>This is All Resources Management</p>
                                 <p>REQUIRES MOCKUP</p>
-                                <Link to={"/" + i18n.language + "/resources-management-course"}>Go to Resource Management Course</Link>
-                                <Link to={"/" + i18n.language + "/resources-management-homework"}>Go to Resource Management Homework</Link>
+                                <Link to={"/" + i18n.language + "/resources-management-course"} className="dummy">Go to Resource Management Course</Link>
+                                <div className="sep-0"></div>
+                                <Link to={"/" + i18n.language + "/resources-management-homework"} className="dummy">Go to Resource Management Homework</Link>
                             </div>
                         </div>
 
