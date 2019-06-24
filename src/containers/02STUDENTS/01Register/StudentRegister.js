@@ -207,7 +207,7 @@ class StudentRegister extends React.Component {
                 <div className="bottomControl clearfix">
                     <span className="right"><Button className={classes.blueButton}
                         onClick={() => this.props.history.push('student-register-personal-information')}
-                    >提交</Button></span>
+                    >提交 (click)</Button></span>
                     {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
                 </div>
             </Form>

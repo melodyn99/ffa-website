@@ -64,7 +64,7 @@ class Header extends Component {
                     </h1>
 
                     <ul className={"desktop-menu clearfix" + (currentPath !== '' && typeof currentPath !== 'undefined' ? ' general' : '')}>
-                        <li className={(currentPath === 'login-with-register') ? 'active' : ''}><Link to={"/" + i18n.language + "/login-with-register"}>入学</Link>
+                        <li className={(currentPath === 'admission-process') ? 'active' : ''}><Link to={"/" + i18n.language + "/admission-process"}>入学</Link>
                             <ul className="first">
                                 <div className="arrow">need image</div>
                                 <div className="wrap">
@@ -74,7 +74,12 @@ class Header extends Component {
                                 </div>
                             </ul>
                         </li>
-                        <li className={(currentPath === '123') ? 'active' : ''}><Link to={"/" + i18n.language + "/"}>品牌</Link>
+                        <li className={(currentPath === 'school-introduction')
+                            || (currentPath === 'school-advantage')
+                            || (currentPath === 'school-learning')
+                            || (currentPath === 'news')
+                            || (currentPath === 'activities')
+                            || (currentPath === 'school-cases') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-introduction"}>品牌</Link>
                             <ul className="second">
                                 <div className="arrow">need image</div>
                                 <div className="wrap">

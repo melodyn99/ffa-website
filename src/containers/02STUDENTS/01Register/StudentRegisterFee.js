@@ -52,7 +52,7 @@ class StudentRegisterFee extends Component {
                             <SubMenu />
 
                             <div className="content">
-                                <p>This is StudentRegisterFee</p>
+                                <p>This is 缴付费用</p>
                             </div>
                         </div>
 

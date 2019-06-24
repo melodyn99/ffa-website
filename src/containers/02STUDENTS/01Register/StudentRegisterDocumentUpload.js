@@ -52,7 +52,7 @@ class StudentRegisterDocumentUpload extends Component {
                             <SubMenu />
 
                             <div className="content">
-                                <p>This is StudentRegisterDocumentUpload</p>
+                                <p>This is 上载文件</p>
                             </div>
                         </div>
 

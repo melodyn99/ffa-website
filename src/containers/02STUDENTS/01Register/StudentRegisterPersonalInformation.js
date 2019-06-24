@@ -52,7 +52,7 @@ class StudentRegisterPersonalInformation extends Component {
                             <SubMenu />
 
                             <div className="content">
-                                <p>This is StudentRegisterPersonalInformation</p>
+                                <p>This is 个人资料</p>
                             </div>
                         </div>
 

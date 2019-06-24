@@ -52,7 +52,7 @@ class StudentRegisterNotification extends Component {
                             <SubMenu />
 
                             <div className="content">
-                                <p>This is StudentRegisterNotification</p>
+                                <p>This is 录取通知</p>
                             </div>
                         </div>
 
