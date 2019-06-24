@@ -110,31 +110,31 @@ class SchoolResourcesManagementCourse extends React.Component {
     // ToolBar
     _backButtonAction = (url) => {
         this.props.history.push(url);
-        }
+    }
 
-        _createButtonAction = (url) => {
-            this.props.history.push(url);
-        }
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
 
-        _editButtonAction = () => {
-            console.log('edit button pressed');
-        }
+    _editButtonAction = () => {
+        console.log('edit button pressed');
+    }
 
-        _deleteButtonAction = () => {
-            console.log('delete button pressed');
-        }
+    _deleteButtonAction = () => {
+        console.log('delete button pressed');
+    }
 
-        _importButtonAction = () => {
-            console.log('import button pressed');
-        }
+    _importButtonAction = () => {
+        console.log('import button pressed');
+    }
 
-        _copyButtonAction = () => {
-            console.log('copy button pressed');
-        }
+    _copyButtonAction = () => {
+        console.log('copy button pressed');
+    }
 
-        _reportButtonAction = () => {
-            console.log('report button pressed');
-        }        
+    _reportButtonAction = () => {
+        console.log('report button pressed');
+    }
 
     render() {
         const { classes } = this.props;
@@ -185,7 +185,7 @@ class SchoolResourcesManagementCourse extends React.Component {
                                     reportButtonText="学生报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
-                                
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">

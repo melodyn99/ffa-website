@@ -34,7 +34,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/SchoolStaffAccountManagement';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/09Account/SchoolStaffRelatedCourses';
+import data from '../../../data/03SCHOOL/09Account/SchoolStaffRelatedCourse';
 
 // Define column names
 const rows = [
@@ -48,7 +48,7 @@ const rows = [
     { id: 'date', numeric: true, disablePadding: false, label: '开课日期' },
 ];
 
-class SchoolStaffRelatedCourses extends React.Component {
+class SchoolStaffRelatedCourse extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -201,7 +201,7 @@ class SchoolStaffRelatedCourses extends React.Component {
     }
 }
 
-SchoolStaffRelatedCourses.propTypes = {
+SchoolStaffRelatedCourse.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -216,4 +216,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolStaffRelatedCourses)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolStaffRelatedCourse)));

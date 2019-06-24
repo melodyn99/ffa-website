@@ -48,7 +48,7 @@ const rows = [
     { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class SchoolCourseWorks extends React.Component {
+class SchoolCourseWork extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -261,7 +261,7 @@ class SchoolCourseWorks extends React.Component {
     }
 }
 
-SchoolCourseWorks.propTypes = {
+SchoolCourseWork.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -276,4 +276,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseWorks))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseWork))));
