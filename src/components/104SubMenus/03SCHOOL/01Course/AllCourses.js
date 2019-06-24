@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 // Redux
 import { connect } from 'react-redux';
 
-class AllCourses extends Component {
+class SchoolAllCourses extends Component {
 
     render() {
         const { //t, 
@@ -21,11 +21,11 @@ class AllCourses extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'all-courses' ? 'active' : ''}>所有课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'course-a' ? 'active' : ''}>战略课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'course-b' ? 'active' : ''}>商品管理系列课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'course-c' ? 'active' : ''}>设计应用系列课程</Link></li>
-                    <li><Link to={"/" + i18n.language + "/all-courses"} className={currentPath === 'course-d' ? 'active' : ''}>开发流程系列课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-all-courses"} className={currentPath === 'school-all-courses' ? 'active' : ''}>所有课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-all-courses"} className={currentPath === 'course-a' ? 'active' : ''}>战略课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-all-courses"} className={currentPath === 'course-b' ? 'active' : ''}>商品管理系列课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-all-courses"} className={currentPath === 'course-c' ? 'active' : ''}>设计应用系列课程</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-all-courses"} className={currentPath === 'course-d' ? 'active' : ''}>开发流程系列课程</Link></li>
                 </ul>
             </div>
         );
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => ({
     route: state.router
 });
 
-export default withTranslation()(connect(mapStateToProps)(AllCourses));
+export default withTranslation()(connect(mapStateToProps)(SchoolAllCourses));

@@ -21,8 +21,8 @@ class Course extends Component {
         return (
             <div className="subMenu">
                 <ul className="clearfix">
-                    <li><Link to={"/" + i18n.language + "/resources-management-course"} className={currentPath === 'resources-management-course' ? 'active' : ''}>课程教材</Link></li>
-                    <li><Link to={"/" + i18n.language + "/resources-management-homework"} className={currentPath === 'resources-management-homework' ? 'active' : ''}>课程作业</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-resources-management-course"} className={currentPath === 'school-resources-management-course' ? 'active' : ''}>课程教材</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-resources-management-homework"} className={currentPath === 'school-resources-management-homework' ? 'active' : ''}>课程作业</Link></li>
                 </ul>
             </div>
         );
