@@ -40,7 +40,7 @@ import data from '../../../data/03SCHOOL/06Resource/ResourceManagementHomework';
 
 // Define column names
 const rows = [
-    { id: 'coursework', numeric: false, disablePadding: false, label: '课程作业' },
+    { id: 'SchoolCourseWork', numeric: false, disablePadding: false, label: '课程作业' },
     { id: 'subjec', numeric: true, disablePadding: false, label: '学科' },
     { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
     { id: 'type', numeric: true, disablePadding: false, label: '类型' },
@@ -159,7 +159,7 @@ class ResourceManagementHomework extends React.Component {
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-student-management'
+                                    backButtonActionUrl='school-course-student-management'
 
                                     createButton={true}
                                     createButtonText="创建"
@@ -220,7 +220,7 @@ class ResourceManagementHomework extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.coursework}</TableCell>
+                                                                >{n.SchoolCourseWork}</TableCell>
                                                                 <TableCell>{n.subject}</TableCell>
                                                                 <TableCell>{n.teacher}</TableCell>
                                                                 <TableCell>{n.type}</TableCell>

@@ -1,7 +1,7 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
@@ -36,16 +36,19 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/CourseNotes';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseStudentManagementHomework';
 
 // Define column names
 const rows = [
-    { id: 'notes', numeric: false, disablePadding: false, label: '及时记录' },
-    { id: 'file', numeric: true, disablePadding: false, label: '文件' },
-    { id: 'lastedit', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'SchoolCourseWork', numeric: false, disablePadding: false, label: '课程作业' },
+    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
+    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
+    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
+    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
+    { id: 'handin', numeric: true, disablePadding: false, label: '提交日期' },
 ];
 
-class CourseNotes extends React.Component {
+class SchoolCourseStudentManagementHomework extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -53,7 +56,6 @@ class CourseNotes extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false
     };
 
     handleRequestSort = (event, property) => {
@@ -106,13 +108,6 @@ class CourseNotes extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = () => {
-        this.setState({
-            ...this.state,
-            tempGoDetail: true
-        });
-    }
-
     // ToolBar
     _backButtonAction = (url) => {
         this.props.history.push(url);
@@ -143,13 +138,9 @@ class CourseNotes extends React.Component {
     }
 
     render() {
-        const { classes, i18n } = this.props;
+        const { classes } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
-        if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/notes-taking"} />;
-        }
 
         return (
             <div>
@@ -165,36 +156,37 @@ class CourseNotes extends React.Component {
                             <div className="content">
 
                             <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-materials'
+                                backButton={true}
+                                backButtonText="返回"
+                                backButtonAction={this._backButtonAction}
+                                backButtonActionUrl='school-course-student-management'
 
-                                    createButton={true}
-                                    createButtonText="创建"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='course-new-notes'
+                                createButton={false}
+                                createButtonText="添加"
+                                createButtonAction={this._createButtonAction}
+                                createButtonActionUrl='new-school-course-student-management'
 
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
+                                editButton={false}
+                                editButtonText="编辑"
+                                editButtonAction={this._editButtonAction}
 
-                                    deleteButton={true}
-                                    deleteButtonText="删除"
-                                    deleteButtonAction={this._deleteButtonAction}
+                                deleteButton={false}
+                                deleteButtonText="移除"
+                                deleteButtonAction={this._deleteButtonAction}
 
-                                    importButton={false}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
+                                importButton={false}
+                                importButtonText="导入名单"
+                                importButtonAction={this._importButtonAction}
 
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
+                                copyButton={false}
+                                copyButtonText="拷贝"
+                                copyButtonAction={this._copyButtonAction}
 
-                                    reportButton={false}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
-                                />
+                                reportButton={false}
+                                reportButtonText="学生报告"
+                                reportButtonAction={this._reportButtonAction}
+                            />
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -216,8 +208,7 @@ class CourseNotes extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail()}
+                                                                onClick={event => this.handleClick(event, n.id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -229,15 +220,18 @@ class CourseNotes extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.notes}</TableCell>
-                                                                <TableCell>{n.file}</TableCell>
-                                                                <TableCell>{n.lastedit}</TableCell>
+                                                                >{n.SchoolCourseWork}</TableCell>
+                                                                <TableCell>{n.type}</TableCell>
+                                                                <TableCell>{n.status}</TableCell>
+                                                                <TableCell>{n.score}</TableCell>
+                                                                <TableCell>{n.deadline}</TableCell>
+                                                                <TableCell>{n.handin}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={3} />
+                                                        <TableCell colSpan={6} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -267,7 +261,7 @@ class CourseNotes extends React.Component {
     }
 }
 
-CourseNotes.propTypes = {
+SchoolCourseStudentManagementHomework.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -282,4 +276,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(CourseNotes))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseStudentManagementHomework))));

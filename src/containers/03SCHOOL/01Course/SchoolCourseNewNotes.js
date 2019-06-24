@@ -32,7 +32,7 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class CourseNewNotes extends React.Component {
+class SchoolCourseNewNotes extends React.Component {
 
     // render() {
         // const { classes } = this.props;
@@ -93,7 +93,7 @@ class CourseNewNotes extends React.Component {
                     </Grid>
                     <div className="bottomControl clearfix">
                         <Button className={classes.greyButton}
-                            onClick={() => this.props.history.push('course-notes')}
+                            onClick={() => this.props.history.push('school-course-notes')}
                         >取消</Button>
                         <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
                     </div>
@@ -147,7 +147,7 @@ class CourseNewNotes extends React.Component {
     }
 }
 
-CourseNewNotes.propTypes = {
+SchoolCourseNewNotes.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -162,4 +162,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(CourseNewNotes))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseNewNotes))));

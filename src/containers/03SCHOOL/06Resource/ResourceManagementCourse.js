@@ -158,7 +158,7 @@ class ResourceManagementCourse extends React.Component {
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-student-management'
+                                    backButtonActionUrl='school-course-student-management'
 
                                     createButton={true}
                                     createButtonText="创建"

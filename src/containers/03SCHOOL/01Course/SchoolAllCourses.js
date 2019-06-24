@@ -1,8 +1,8 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -32,18 +32,20 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/AllCourses';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/CourseQandA';
+import data from '../../../data/03SCHOOL/01Course/SchoolAllCourses';
 
 // Define column names
 const rows = [
-    { id: 'student', numeric: false, disablePadding: false, label: '学生' },
-    { id: 'messages', numeric: true, disablePadding: false, label: '信息（未读）' },
-    { id: 'lastsend', numeric: true, disablePadding: false, label: '最后发送日期' },
+    { id: 'subject', numeric: false, disablePadding: false, label: '学科' },
+    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
+    { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
+    { id: 'location', numeric: true, disablePadding: false, label: '地点' },
+    { id: 'startdate', numeric: true, disablePadding: false, label: '开课日期' },
 ];
 
-class CourseQandA extends React.Component {
+class SchoolAllCourses extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -51,6 +53,7 @@ class CourseQandA extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
+        tempGoDetail: false
     };
 
     handleRequestSort = (event, property) => {
@@ -73,6 +76,7 @@ class CourseQandA extends React.Component {
     };
 
     handleClick = (event, id) => {
+        console.log(id);
         const { selected } = this.state;
         const selectedIndex = selected.indexOf(id);
         let newSelected = [];
@@ -103,27 +107,34 @@ class CourseQandA extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    _tempDetail = () => {
+        this.setState({
+            ...this.state,
+            tempGoDetail: true
+        });
+    }
+
     render() {
         const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
+        if (this.state.tempGoDetail) {
+            return <Redirect push to={"/" + i18n.language + "/school-course-information"} />;
+        }
 
         return (
             <div>
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
+                        <h2 className="pageTitle">课程管理</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
                             <SubMenu />
 
                             <div className="content">
-
-                            <Link to={"/" + i18n.language + "/course-reply-q-and-a"}>Go to Course Reply Q and A</Link>
-                            <div className="sep-20"></div>
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -145,7 +156,8 @@ class CourseQandA extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                // onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={() => this._tempDetail()}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -157,15 +169,17 @@ class CourseQandA extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.student}</TableCell>
-                                                                <TableCell>{n.messages}</TableCell>
-                                                                <TableCell>{n.lastsend}</TableCell>
+                                                                >{n.subject}</TableCell>
+                                                                <TableCell>{n.course}</TableCell>
+                                                                <TableCell>{n.teacher}</TableCell>
+                                                                <TableCell>{n.location}</TableCell>
+                                                                <TableCell>{n.startdate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={3} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -195,7 +209,7 @@ class CourseQandA extends React.Component {
     }
 }
 
-CourseQandA.propTypes = {
+SchoolAllCourses.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -210,4 +224,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseQandA)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolAllCourses)));

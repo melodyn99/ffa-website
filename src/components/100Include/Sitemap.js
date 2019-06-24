@@ -14,16 +14,16 @@ function Sitemap(props) {
                     <h2>Table views</h2>
 
                     <h3>Courses Management</h3>
-                    <li><Link to={'/' + i18n.language + '/all-courses'}>All Courses (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-preparations'}>Course Preparations (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-materials'}>Course Materials (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-work'}>Course Work (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-student-management'}>Course Student Management (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-student-management-attendance'}>Course Student Management Attendance (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-student-management-homework'}>Course Student Management Homework (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-q-and-a'}>Course Q & A (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-notes'}>Course Notes (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-assessment'}>Course Assessment (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-all-courses'}>All Courses (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-preparations'}>Course Preparations (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-materials'}>Course Materials (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-work'}>Course Work (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-student-management'}>Course Student Management (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-student-management-attendance'}>Course Student Management Attendance (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-student-management-homework'}>Course Student Management Homework (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-q-and-a'}>Course Q & A (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-notes'}>Course Notes (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-assessment'}>Course Assessment (done)</Link></li>
 
                     <h3>Enrollment Management</h3>
                     <li><Link to={'/' + i18n.language + '/enrollment-management'}>Enrollment Management (done)</Link></li>
@@ -47,8 +47,8 @@ function Sitemap(props) {
                     <h2>Form views</h2>
 
                     <h3>Courses Management</h3>
-                    <li><Link to={'/' + i18n.language + '/course-information'}>Course Information (Melody) (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/course-new-notes'}>Course New Notes (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-information'}>Course Information (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-new-notes'}>Course New Notes (Melody) (done)</Link></li>
 
                     <h3>Students Management</h3>
                     <li><Link to={'/' + i18n.language + '/new-student'}>New Student (Him) (done)</Link></li>
@@ -75,7 +75,7 @@ function Sitemap(props) {
                     <h2>New Pages</h2>
 
                     <h3>Courses Management</h3>
-                    <li><Link to={'/' + i18n.language + '/course-reply-q-and-a'}>Course Reply Q and A (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-reply-q-and-a'}>Course Reply Q and A (Melody)</Link></li>
 
                     <h3>Student Account</h3>
                     <li><Link to={'/' + i18n.language + '/login-with-register'}>Login with Register (Melody)</Link></li>
@@ -96,9 +96,9 @@ function Sitemap(props) {
                 
                     <h3>Student UI Course</h3>
                     <li><Link to={'/' + i18n.language + '/student-course'}>Student Course (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/student-course-information'}>Student Course Information (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-school-course-information'}>Student Course Information (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/student-course-date'}>Student Course Date (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/student-course-announcements'}>Student Course Announcements (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/student-school-course-announcements'}>Student Course Announcements (Melody)</Link></li>
                 
                     <h3>Student UI Enrollment</h3>
                     <li><Link to={'/' + i18n.language + '/student-enrollment-history'}>Student Enrollment History (Melody)</Link></li>
@@ -125,7 +125,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/admission-process'}>Admission Process (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/admission-subject-catalog'}>Admission Subject Catalog (Melody)</Link></li>
                     <li><Link to={'/' + i18n.language + '/admission-course-catalog'}>Admission Course Catalog (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/admission-course-information'}>Admission Course Information (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/admission-school-course-information'}>Admission Course Information (Melody)</Link></li>
                 
                     <h3>Home</h3>
                     <li><Link to={'/' + i18n.language + '/home-images'}>Home Images (Melody)</Link></li>

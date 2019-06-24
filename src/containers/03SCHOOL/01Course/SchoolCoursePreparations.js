@@ -1,9 +1,10 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -35,19 +36,17 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/CourseWork';
+import data from '../../../data/03SCHOOL/01Course/SchoolCoursePreparations';
 
 // Define column names
 const rows = [
-    { id: 'coursework', numeric: false, disablePadding: false, label: '课程作业' },
-    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
-    { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
-    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
+    { id: 'topic', numeric: false, disablePadding: false, label: '准备项目' },
     { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
-    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'reminder', numeric: true, disablePadding: false, label: '发送提醒' },
+    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
 ];
 
-class CourseWorks extends React.Component {
+class SchoolCoursePreparations extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -55,6 +54,7 @@ class CourseWorks extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
+        tempGoDetail: false
     };
 
     handleRequestSort = (event, property) => {
@@ -107,15 +107,22 @@ class CourseWorks extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    _tempDetail = () => {
+        this.setState({
+            ...this.state,
+            tempGoDetail: true
+        })
+    }
+
     // ToolBar
     _backButtonAction = (url) => {
         this.props.history.push(url);
     }
-
+    
     _createButtonAction = (url) => {
         this.props.history.push(url);
     }
-
+    
     _editButtonAction = () => {
         console.log('edit button pressed');
     }
@@ -137,9 +144,13 @@ class CourseWorks extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
+        if (this.state.tempGoDetail) {
+            return <Redirect push to={"/" + i18n.language + "/seating-plan"} />;
+        }
 
         return (
             <div>
@@ -153,24 +164,23 @@ class CourseWorks extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-
-                                <ToolBar
+                            <ToolBar
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-materials'
+                                    backButtonActionUrl='school-course-preparations'
 
                                     createButton={true}
-                                    createButtonText="添加"
+                                    createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-course-materials'
+                                    createButtonActionUrl='new-school-course-preparations'
 
                                     editButton={true}
                                     editButtonText="编辑"
                                     editButtonAction={this._editButtonAction}
 
                                     deleteButton={true}
-                                    deleteButtonText="移除"
+                                    deleteButtonText="删除"
                                     deleteButtonAction={this._deleteButtonAction}
 
                                     importButton={false}
@@ -185,6 +195,9 @@ class CourseWorks extends React.Component {
                                     reportButtonText="学生报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
+
+                                <Link to={"/" + i18n.language + "/seating-plan"}>Go to Seating Plan</Link>
+                                <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
@@ -207,7 +220,8 @@ class CourseWorks extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                // onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={() => this._tempDetail()}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -219,18 +233,16 @@ class CourseWorks extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.coursework}</TableCell>
-                                                                <TableCell>{n.type}</TableCell>
-                                                                <TableCell>{n.questions}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
+                                                                >{n.topic}</TableCell>
                                                                 <TableCell>{n.deadline}</TableCell>
-                                                                <TableCell>{n.lastdate}</TableCell>
+                                                                <TableCell>{n.reminder}</TableCell>
+                                                                <TableCell>{n.status}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
+                                                        <TableCell colSpan={4} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -260,7 +272,7 @@ class CourseWorks extends React.Component {
     }
 }
 
-CourseWorks.propTypes = {
+SchoolCoursePreparations.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -275,4 +287,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseWorks)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCoursePreparations))));

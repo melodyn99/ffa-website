@@ -35,16 +35,19 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/CourseMaterials';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // Define column names
 const rows = [
-    { id: 'materials', numeric: false, disablePadding: false, label: '课程教材' },
-    { id: 'files', numeric: true, disablePadding: false, label: '文件' },
-    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改时间' },
+    { id: 'student', numeric: false, disablePadding: false, label: '学生' },
+    { id: 'teacherassess', numeric: true, disablePadding: false, label: '讲师评价' },
+    { id: 'materialassess', numeric: true, disablePadding: false, label: '资料评价' },
+    { id: 'assessment', numeric: true, disablePadding: false, label: '综合评价' },
+    { id: 'other', numeric: true, disablePadding: false, label: '其他意见' },
+    { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
 ];
 
-class CourseMaterials extends React.Component {
+class SchoolCourseAssessment extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -155,34 +158,33 @@ class CourseMaterials extends React.Component {
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-materials'
+                                    backButtonActionUrl='school-course-materials'
 
-                                    createButton={true}
+                                    createButton={false}
                                     createButtonText="添加"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-course-materials'
+                                    createButtonActionUrl='new-school-course-materials'
 
                                     editButton={true}
                                     editButtonText="编辑"
                                     editButtonAction={this._editButtonAction}
 
                                     deleteButton={true}
-                                    deleteButtonText="移除"
+                                    deleteButtonText="删除"
                                     deleteButtonAction={this._deleteButtonAction}
 
                                     importButton={false}
-                                    importButtonText="导入123"
+                                    importButtonText="导入"
                                     importButtonAction={this._importButtonAction}
 
                                     copyButton={false}
                                     copyButtonText="拷贝"
                                     copyButtonAction={this._copyButtonAction}
 
-                                    reportButton={false}
-                                    reportButtonText="学生报告"
+                                    reportButton={true}
+                                    reportButtonText="评分报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -216,15 +218,18 @@ class CourseMaterials extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.materials}</TableCell>
-                                                                <TableCell>{n.files}</TableCell>
-                                                                <TableCell>{n.lastdate}</TableCell>
+                                                                >{n.student}</TableCell>
+                                                                <TableCell>{n.teacherassess}</TableCell>
+                                                                <TableCell>{n.materialassess}</TableCell>
+                                                                <TableCell>{n.assessment}</TableCell>
+                                                                <TableCell>{n.other}</TableCell>
+                                                                <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={3} />
+                                                        <TableCell colSpan={6} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -254,7 +259,7 @@ class CourseMaterials extends React.Component {
     }
 }
 
-CourseMaterials.propTypes = {
+SchoolCourseAssessment.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -269,4 +274,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseMaterials)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolCourseAssessment)));

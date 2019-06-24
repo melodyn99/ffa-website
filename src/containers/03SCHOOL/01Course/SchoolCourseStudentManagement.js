@@ -1,9 +1,10 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
+// import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom'
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -21,8 +22,8 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
+// import { apiAuth } from '../../../../Api/ApiAuth';
+// import { apiConferences } from '../../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -32,20 +33,24 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
-import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/AllCourses';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
+import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/AllCourses';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseStudentManagement';
 
 // Define column names
 const rows = [
-    { id: 'subject', numeric: false, disablePadding: false, label: '学科' },
-    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
-    { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
-    { id: 'location', numeric: true, disablePadding: false, label: '地点' },
-    { id: 'startdate', numeric: true, disablePadding: false, label: '开课日期' },
+    { id: 'student', numeric: false, disablePadding: false, label: '学生' },
+    { id: 'fee', numeric: true, disablePadding: false, label: '学费' },
+    { id: 'actualfee', numeric: true, disablePadding: false, label: '实际收费' },
+    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
+    { id: 'attendance', numeric: true, disablePadding: false, label: '点名' },
+    { id: 'homework', numeric: true, disablePadding: false, label: '作业' },
+    { id: 'score', numeric: true, disablePadding: false, label: '总分数' },
+    { id: 'date', numeric: true, disablePadding: false, label: '添加日期' },
 ];
 
-class AllCourses extends React.Component {
+class SchoolCourseStudentManagement extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -53,7 +58,6 @@ class AllCourses extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false
     };
 
     handleRequestSort = (event, property) => {
@@ -76,7 +80,6 @@ class AllCourses extends React.Component {
     };
 
     handleClick = (event, id) => {
-        console.log(id);
         const { selected } = this.state;
         const selectedIndex = selected.indexOf(id);
         let newSelected = [];
@@ -107,11 +110,33 @@ class AllCourses extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = () => {
-        this.setState({
-            ...this.state,
-            tempGoDetail: true
-        });
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _editButtonAction = () => {
+        console.log('edit button pressed');
+    }
+
+    _deleteButtonAction = () => {
+        console.log('delete button pressed');
+    }
+
+    _importButtonAction = () => {
+        console.log('import button pressed');
+    }
+
+    _copyButtonAction = () => {
+        console.log('copy button pressed');
+    }
+
+    _reportButtonAction = () => {
+        console.log('report button pressed');
     }
 
     render() {
@@ -119,22 +144,57 @@ class AllCourses extends React.Component {
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/course-information"} />;
-        }
-
         return (
             <div>
                 <div className="wrapper-container-main">
                     <div className="container-main">
 
-                        <h2 className="pageTitle">课程管理</h2>
+                        <h2 className="pageTitle">S1-001品牌盈利模式</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
                             <SubMenu />
 
                             <div className="content">
+
+                                <ToolBar
+                                    backButton={false}
+                                    backButtonText="返回"
+                                    backButtonAction={this._backButtonAction}
+                                    backButtonActionUrl='school-course-student-management'
+
+                                    createButton={true}
+                                    createButtonText="添加"
+                                    createButtonAction={this._createButtonAction}
+                                    createButtonActionUrl='new-school-course-student-management'
+
+                                    editButton={true}
+                                    editButtonText="编辑"
+                                    editButtonAction={this._editButtonAction}
+
+                                    deleteButton={true}
+                                    deleteButtonText="移除"
+                                    deleteButtonAction={this._deleteButtonAction}
+
+                                    importButton={true}
+                                    importButtonText="导入名单"
+                                    importButtonAction={this._importButtonAction}
+
+                                    copyButton={false}
+                                    copyButtonText="拷贝"
+                                    copyButtonAction={this._copyButtonAction}
+
+                                    reportButton={true}
+                                    reportButtonText="学生报告"
+                                    reportButtonAction={this._reportButtonAction}
+                                />
+
+                                <Link to={"/" + i18n.language + "/school-course-student-management-attendance"}>Go to Course Student Management Attendance</Link>
+                                <div className="sep-20"></div>
+
+                                <Link to={"/" + i18n.language + "/school-course-student-management-homework"}>Go to Course Student Management Homework</Link>
+                                <div className="sep-20"></div>
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -156,8 +216,7 @@ class AllCourses extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail()}
+                                                                onClick={event => this.handleClick(event, n.id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -169,17 +228,20 @@ class AllCourses extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.subject}</TableCell>
-                                                                <TableCell>{n.course}</TableCell>
-                                                                <TableCell>{n.teacher}</TableCell>
-                                                                <TableCell>{n.location}</TableCell>
-                                                                <TableCell>{n.startdate}</TableCell>
+                                                                >{n.student}</TableCell>
+                                                                <TableCell>{n.fee}</TableCell>
+                                                                <TableCell>{n.actualfee}</TableCell>
+                                                                <TableCell>{n.status}</TableCell>
+                                                                <TableCell>{n.attendance}</TableCell>
+                                                                <TableCell>{n.homework}</TableCell>
+                                                                <TableCell>{n.score}</TableCell>
+                                                                <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={5} />
+                                                        <TableCell colSpan={8} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -209,7 +271,7 @@ class AllCourses extends React.Component {
     }
 }
 
-AllCourses.propTypes = {
+SchoolCourseStudentManagement.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -224,4 +286,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(AllCourses)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseStudentManagement))));

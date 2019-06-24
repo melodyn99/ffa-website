@@ -4,7 +4,6 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom'
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -22,8 +21,8 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../../Api/ApiAuth';
-// import { apiConferences } from '../../../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -34,23 +33,17 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
-import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/CourseStudentManagement';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseQandA';
 
 // Define column names
 const rows = [
     { id: 'student', numeric: false, disablePadding: false, label: '学生' },
-    { id: 'fee', numeric: true, disablePadding: false, label: '学费' },
-    { id: 'actualfee', numeric: true, disablePadding: false, label: '实际收费' },
-    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
-    { id: 'attendance', numeric: true, disablePadding: false, label: '点名' },
-    { id: 'homework', numeric: true, disablePadding: false, label: '作业' },
-    { id: 'score', numeric: true, disablePadding: false, label: '总分数' },
-    { id: 'date', numeric: true, disablePadding: false, label: '添加日期' },
+    { id: 'messages', numeric: true, disablePadding: false, label: '信息（未读）' },
+    { id: 'lastsend', numeric: true, disablePadding: false, label: '最后发送日期' },
 ];
 
-class CourseStudentManagement extends React.Component {
+class SchoolCourseQandA extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -110,35 +103,6 @@ class CourseStudentManagement extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
-    }
-
     render() {
         const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -157,43 +121,8 @@ class CourseStudentManagement extends React.Component {
 
                             <div className="content">
 
-                                <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-student-management'
-
-                                    createButton={true}
-                                    createButtonText="添加"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-course-student-management'
-
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={true}
-                                    deleteButtonText="移除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={true}
-                                    importButtonText="导入名单"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={true}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
-                                />
-
-                                <Link to={"/" + i18n.language + "/course-student-management-attendance"}>Go to Course Student Management Attendance</Link>
-                                <div className="sep-20"></div>
-
-                                <Link to={"/" + i18n.language + "/course-student-management-homework"}>Go to Course Student Management Homework</Link>
-                                <div className="sep-20"></div>
+                            <Link to={"/" + i18n.language + "/school-course-reply-q-and-a"}>Go to Course Reply Q and A</Link>
+                            <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
@@ -229,19 +158,14 @@ class CourseStudentManagement extends React.Component {
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
                                                                 >{n.student}</TableCell>
-                                                                <TableCell>{n.fee}</TableCell>
-                                                                <TableCell>{n.actualfee}</TableCell>
-                                                                <TableCell>{n.status}</TableCell>
-                                                                <TableCell>{n.attendance}</TableCell>
-                                                                <TableCell>{n.homework}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.date}</TableCell>
+                                                                <TableCell>{n.messages}</TableCell>
+                                                                <TableCell>{n.lastsend}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={8} />
+                                                        <TableCell colSpan={3} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -271,7 +195,7 @@ class CourseStudentManagement extends React.Component {
     }
 }
 
-CourseStudentManagement.propTypes = {
+SchoolCourseQandA.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -286,4 +210,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(CourseStudentManagement))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolCourseQandA)));

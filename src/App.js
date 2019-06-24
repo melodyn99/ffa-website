@@ -81,20 +81,20 @@ import StudentAlert from './containers/02STUDENTS/04Alert/StudentAlert';
 
 /*** SCHOOL ***/
 // School Course Management
-import AllCourses from './containers/03SCHOOL/01Course/AllCourses';
-import CourseInformation from './containers/03SCHOOL/01Course/CourseInformation';
-import CoursePreparations from './containers/03SCHOOL/01Course/CoursePreparations';
-import CourseMaterials from './containers/03SCHOOL/01Course/CourseMaterials';
-import CourseWork from './containers/03SCHOOL/01Course/CourseWork';
-import CourseStudentManagement from './containers/03SCHOOL/01Course/CourseStudentManagement';
-import CourseStudentManagementAttendance from './containers/03SCHOOL/01Course/CourseStudentManagementAttendance';
-import CourseStudentManagementHomework from './containers/03SCHOOL/01Course/CourseStudentManagementHomework';
-import CourseAnnouncement from './containers/03SCHOOL/01Course/CourseAnnouncement';
-import CourseQandA from './containers/03SCHOOL/01Course/CourseQandA';
-import CourseReplyQandA from './containers/03SCHOOL/01Course/CourseReplyQandA';
-import CourseNotes from './containers/03SCHOOL/01Course/CourseNotes';
-import CourseNewNotes from './containers/03SCHOOL/01Course/CourseNewNotes';
-import CourseAssessment from './containers/03SCHOOL/01Course/CourseAssessment';
+import SchoolAllCourses from './containers/03SCHOOL/01Course/SchoolAllCourses';
+import SchoolCourseInformation from './containers/03SCHOOL/01Course/SchoolCourseInformation';
+import SchoolCoursePreparations from './containers/03SCHOOL/01Course/SchoolCoursePreparations';
+import SchoolCourseMaterials from './containers/03SCHOOL/01Course/SchoolCourseMaterials';
+import SchoolCourseWork from './containers/03SCHOOL/01Course/SchoolCourseWork';
+import SchoolCourseStudentManagement from './containers/03SCHOOL/01Course/SchoolCourseStudentManagement';
+import SchoolCourseStudentManagementAttendance from './containers/03SCHOOL/01Course/SchoolCourseStudentManagementAttendance';
+import SchoolCourseStudentManagementHomework from './containers/03SCHOOL/01Course/SchoolCourseStudentManagementHomework';
+import SchoolCourseAnnouncement from './containers/03SCHOOL/01Course/SchoolCourseAnnouncement';
+import SchoolCourseQandA from './containers/03SCHOOL/01Course/SchoolCourseQandA';
+import SchoolCourseReplyQandA from './containers/03SCHOOL/01Course/SchoolCourseReplyQandA';
+import SchoolCourseNotes from './containers/03SCHOOL/01Course/SchoolCourseNotes';
+import SchoolCourseNewNotes from './containers/03SCHOOL/01Course/SchoolCourseNewNotes';
+import SchoolCourseAssessment from './containers/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // School Student Management
 import AllStudentsManagement from './containers/03SCHOOL/02Student/AllStudentsManagement';
@@ -314,47 +314,47 @@ class App extends Component {
 
                 /*** SCHOOL ***/
                 // School Course Management  
-                case 'all-courses': {
-                    return <AllCourses />;
+                case 'school-all-courses': {
+                    return <SchoolAllCourses />;
                 }
-                case 'course-information': {
-                    return <CourseInformation />
+                case 'school-course-information': {
+                    return <SchoolCourseInformation />
                 }
-                case 'course-preparations': {
-                    return <CoursePreparations />;
+                case 'school-course-preparations': {
+                    return <SchoolCoursePreparations />;
                 }
-                case 'course-materials': {
-                    return <CourseMaterials />;
+                case 'school-course-materials': {
+                    return <SchoolCourseMaterials />;
                 }
-                case 'course-work': {
-                    return <CourseWork />;
+                case 'school-course-work': {
+                    return <SchoolCourseWork />;
                 }
-                case 'course-student-management': {
-                    return <CourseStudentManagement />;
+                case 'school-course-student-management': {
+                    return <SchoolCourseStudentManagement />;
                 }
-                case 'course-student-management-attendance': {
-                    return <CourseStudentManagementAttendance />;
+                case 'school-course-student-management-attendance': {
+                    return <SchoolCourseStudentManagementAttendance />;
                 }
-                case 'course-student-management-homework': {
-                    return <CourseStudentManagementHomework />;
+                case 'school-course-student-management-homework': {
+                    return <SchoolCourseStudentManagementHomework />;
                 }
-                case 'course-announcement': {
-                    return <CourseAnnouncement />
+                case 'school-course-announcement': {
+                    return <SchoolCourseAnnouncement />
                 }
-                case 'course-q-and-a': {
-                    return <CourseQandA />;
+                case 'school-course-q-and-a': {
+                    return <SchoolCourseQandA />;
                 }
-                case 'course-reply-q-and-a': {
-                    return <CourseReplyQandA />;
+                case 'school-course-reply-q-and-a': {
+                    return <SchoolCourseReplyQandA />;
                 }
-                case 'course-notes': {
-                    return <CourseNotes />;
+                case 'school-course-notes': {
+                    return <SchoolCourseNotes />;
                 }
-                case 'course-new-notes': {
-                    return <CourseNewNotes />;
+                case 'school-course-new-notes': {
+                    return <SchoolCourseNewNotes />;
                 }
-                case 'course-assessment': {
-                    return <CourseAssessment />;
+                case 'school-course-assessment': {
+                    return <SchoolCourseAssessment />;
                 }
 
                 // School Student Management

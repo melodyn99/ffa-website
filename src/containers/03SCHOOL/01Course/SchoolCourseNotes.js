@@ -2,8 +2,9 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -35,17 +36,16 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/CoursePreparations';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseNotes';
 
 // Define column names
 const rows = [
-    { id: 'topic', numeric: false, disablePadding: false, label: '准备项目' },
-    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
-    { id: 'reminder', numeric: true, disablePadding: false, label: '发送提醒' },
-    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
+    { id: 'notes', numeric: false, disablePadding: false, label: '及时记录' },
+    { id: 'file', numeric: true, disablePadding: false, label: '文件' },
+    { id: 'lastedit', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class CoursePreparations extends React.Component {
+class SchoolCourseNotes extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -110,18 +110,18 @@ class CoursePreparations extends React.Component {
         this.setState({
             ...this.state,
             tempGoDetail: true
-        })
+        });
     }
 
     // ToolBar
     _backButtonAction = (url) => {
         this.props.history.push(url);
     }
-    
+
     _createButtonAction = (url) => {
         this.props.history.push(url);
     }
-    
+
     _editButtonAction = () => {
         console.log('edit button pressed');
     }
@@ -148,7 +148,7 @@ class CoursePreparations extends React.Component {
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/seating-plan"} />;
+            return <Redirect push to={"/" + i18n.language + "/notes-taking"} />;
         }
 
         return (
@@ -163,16 +163,17 @@ class CoursePreparations extends React.Component {
                             <SubMenu />
 
                             <div className="content">
+
                             <ToolBar
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-preparations'
+                                    backButtonActionUrl='school-course-materials'
 
                                     createButton={true}
                                     createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-course-preparations'
+                                    createButtonActionUrl='school-course-new-notes'
 
                                     editButton={true}
                                     editButtonText="编辑"
@@ -194,10 +195,6 @@ class CoursePreparations extends React.Component {
                                     reportButtonText="学生报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
-
-                                <Link to={"/" + i18n.language + "/seating-plan"}>Go to Seating Plan</Link>
-                                <div className="sep-20"></div>
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -232,16 +229,15 @@ class CoursePreparations extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.topic}</TableCell>
-                                                                <TableCell>{n.deadline}</TableCell>
-                                                                <TableCell>{n.reminder}</TableCell>
-                                                                <TableCell>{n.status}</TableCell>
+                                                                >{n.notes}</TableCell>
+                                                                <TableCell>{n.file}</TableCell>
+                                                                <TableCell>{n.lastedit}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={4} />
+                                                        <TableCell colSpan={3} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -271,7 +267,7 @@ class CoursePreparations extends React.Component {
     }
 }
 
-CoursePreparations.propTypes = {
+SchoolCourseNotes.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -286,4 +282,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CoursePreparations)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseNotes))));

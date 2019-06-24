@@ -4,6 +4,7 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -35,16 +36,19 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/CourseStudentManagementAttendance';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseWork';
 
 // Define column names
 const rows = [
-    { id: 'date', numeric: false, disablePadding: false, label: '课程日期' },
-    { id: 'admin', numeric: true, disablePadding: false, label: '操作人员' },
-    { id: 'deadline', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'SchoolCourseWork', numeric: false, disablePadding: false, label: '课程作业' },
+    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
+    { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
+    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
+    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
+    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class CourseStudentManagementAttendance extends React.Component {
+class SchoolCourseWorks extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -106,7 +110,7 @@ class CourseStudentManagementAttendance extends React.Component {
 
     // ToolBar
     _backButtonAction = (url) => {
-    this.props.history.push(url);
+        this.props.history.push(url);
     }
 
     _createButtonAction = (url) => {
@@ -151,37 +155,37 @@ class CourseStudentManagementAttendance extends React.Component {
 
                             <div className="content">
 
-                            <ToolBar
-                                backButton={true}
-                                backButtonText="返回"
-                                backButtonAction={this._backButtonAction}
-                                backButtonActionUrl='course-student-management'
+                                <ToolBar
+                                    backButton={false}
+                                    backButtonText="返回"
+                                    backButtonAction={this._backButtonAction}
+                                    backButtonActionUrl='school-course-materials'
 
-                                createButton={false}
-                                createButtonText="添加"
-                                createButtonAction={this._createButtonAction}
-                                createButtonActionUrl='new-course-student-management'
+                                    createButton={true}
+                                    createButtonText="添加"
+                                    createButtonAction={this._createButtonAction}
+                                    createButtonActionUrl='new-school-course-work'
 
-                                editButton={false}
-                                editButtonText="编辑"
-                                editButtonAction={this._editButtonAction}
+                                    editButton={true}
+                                    editButtonText="编辑"
+                                    editButtonAction={this._editButtonAction}
 
-                                deleteButton={false}
-                                deleteButtonText="移除"
-                                deleteButtonAction={this._deleteButtonAction}
+                                    deleteButton={true}
+                                    deleteButtonText="移除"
+                                    deleteButtonAction={this._deleteButtonAction}
 
-                                importButton={false}
-                                importButtonText="导入名单"
-                                importButtonAction={this._importButtonAction}
+                                    importButton={false}
+                                    importButtonText="导入123"
+                                    importButtonAction={this._importButtonAction}
 
-                                copyButton={false}
-                                copyButtonText="拷贝"
-                                copyButtonAction={this._copyButtonAction}
+                                    copyButton={false}
+                                    copyButtonText="拷贝"
+                                    copyButtonAction={this._copyButtonAction}
 
-                                reportButton={false}
-                                reportButtonText="学生报告"
-                                reportButtonAction={this._reportButtonAction}
-                            />
+                                    reportButton={false}
+                                    reportButtonText="学生报告"
+                                    reportButtonAction={this._reportButtonAction}
+                                />
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
@@ -216,15 +220,18 @@ class CourseStudentManagementAttendance extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.date}</TableCell>
-                                                                <TableCell>{n.admin}</TableCell>
+                                                                >{n.SchoolCourseWork}</TableCell>
+                                                                <TableCell>{n.type}</TableCell>
+                                                                <TableCell>{n.questions}</TableCell>
+                                                                <TableCell>{n.score}</TableCell>
                                                                 <TableCell>{n.deadline}</TableCell>
+                                                                <TableCell>{n.lastdate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={3} />
+                                                        <TableCell colSpan={6} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -254,7 +261,7 @@ class CourseStudentManagementAttendance extends React.Component {
     }
 }
 
-CourseStudentManagementAttendance.propTypes = {
+SchoolCourseWorks.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -269,4 +276,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseStudentManagementAttendance)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseWorks))));

@@ -154,7 +154,7 @@ class ActivityManagement extends React.Component {
                                 backButton={false}
                                 backButtonText="返回"
                                 backButtonAction={this._backButtonAction}
-                                backButtonActionUrl='course-preparations'
+                                backButtonActionUrl='school-course-preparations'
 
                                 createButton={true}
                                 createButtonText="创建"

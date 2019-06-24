@@ -1,7 +1,7 @@
 export default [
     {
         "id": 1,
-        "coursework": "Coursework 1",
+        "SchoolCourseWork": "SchoolCourseWork 1",
         "type": 123,
         "questions": 456,
         "score": "Material 1",
@@ -10,7 +10,7 @@ export default [
     },
     {
         "id": 2,
-        "coursework": "Coursework 2",
+        "SchoolCourseWork": "SchoolCourseWork 2",
         "type": 123,
         "questions": 456,
         "score": "Material 1",
@@ -19,7 +19,7 @@ export default [
     },
     {
         "id": 3,
-        "coursework": "Coursework 3",
+        "SchoolCourseWork": "SchoolCourseWork 3",
         "type": 123,
         "questions": 456,
         "score": "Material 1",

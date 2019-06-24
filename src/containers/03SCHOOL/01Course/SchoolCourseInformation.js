@@ -31,7 +31,7 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
-class CourseInformation extends React.Component {
+class SchoolCourseInformation extends React.Component {
 
     // constructor(props) {
     //     super(props);
@@ -458,7 +458,7 @@ class CourseInformation extends React.Component {
     }
 }
 
-CourseInformation.propTypes = {
+SchoolCourseInformation.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -473,4 +473,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseInformation)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolCourseInformation)));

@@ -4,6 +4,7 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -35,19 +36,16 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/Course';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/CourseStudentManagementHomework';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseStudentManagementAttendance';
 
 // Define column names
 const rows = [
-    { id: 'coursework', numeric: false, disablePadding: false, label: '课程作业' },
-    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
-    { id: 'status', numeric: true, disablePadding: false, label: '状态' },
-    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
-    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
-    { id: 'handin', numeric: true, disablePadding: false, label: '提交日期' },
+    { id: 'date', numeric: false, disablePadding: false, label: '课程日期' },
+    { id: 'admin', numeric: true, disablePadding: false, label: '操作人员' },
+    { id: 'deadline', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class CourseStudentManagementHomework extends React.Component {
+class SchoolCourseStudentManagementAttendance extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -109,7 +107,7 @@ class CourseStudentManagementHomework extends React.Component {
 
     // ToolBar
     _backButtonAction = (url) => {
-        this.props.history.push(url);
+    this.props.history.push(url);
     }
 
     _createButtonAction = (url) => {
@@ -158,12 +156,12 @@ class CourseStudentManagementHomework extends React.Component {
                                 backButton={true}
                                 backButtonText="返回"
                                 backButtonAction={this._backButtonAction}
-                                backButtonActionUrl='course-student-management'
+                                backButtonActionUrl='school-course-student-management'
 
                                 createButton={false}
                                 createButtonText="添加"
                                 createButtonAction={this._createButtonAction}
-                                createButtonActionUrl='new-course-student-management'
+                                createButtonActionUrl='new-school-course-student-management'
 
                                 editButton={false}
                                 editButtonText="编辑"
@@ -219,18 +217,15 @@ class CourseStudentManagementHomework extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.coursework}</TableCell>
-                                                                <TableCell>{n.type}</TableCell>
-                                                                <TableCell>{n.status}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
+                                                                >{n.date}</TableCell>
+                                                                <TableCell>{n.admin}</TableCell>
                                                                 <TableCell>{n.deadline}</TableCell>
-                                                                <TableCell>{n.handin}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
+                                                        <TableCell colSpan={3} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -260,7 +255,7 @@ class CourseStudentManagementHomework extends React.Component {
     }
 }
 
-CourseStudentManagementHomework.propTypes = {
+SchoolCourseStudentManagementAttendance.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -275,4 +270,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(CourseStudentManagementHomework)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseStudentManagementAttendance))));

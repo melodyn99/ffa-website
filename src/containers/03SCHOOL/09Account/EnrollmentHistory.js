@@ -157,7 +157,7 @@ class EnrollmentHistory extends React.Component {
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='course-materials'
+                                    backButtonActionUrl='school-course-materials'
 
                                     createButton={true}
                                     createButtonText="创建"
