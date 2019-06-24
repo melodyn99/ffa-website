@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
-import { SchoolNotesTakingStyles } from '../../../utils/01MaterialJsStyles/Notes/SchoolNotesTaking'
+import { SchoolNoteTakingStyles } from '../../../utils/01MaterialJsStyles/Notes/SchoolNoteTaking'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText, Typography, } from '@material-ui/core';
@@ -26,7 +26,7 @@ import { dateToDayAndMonth } from '../../../Util/DateUtils';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
-class SchoolNotesTaking extends React.Component {
+class SchoolNoteTaking extends React.Component {
     state = {
         listNote: [],
     }
@@ -114,7 +114,7 @@ class SchoolNotesTaking extends React.Component {
     }
 }
 
-SchoolNotesTaking.propTypes = {
+SchoolNoteTaking.propTypes = {
     classes: PropTypes.object.isRequired,
     viewingSeminar: PropTypes.object.isRequired,
     // dispatch: PropTypes.func.isRequired,
@@ -130,6 +130,6 @@ const mapDispatchToProps = dispatch => ({
     viewingNoteAction: data => dispatch(viewingNoteAction(data)),
 });
 
-const combinedStyles = combineStyles(CommonStyles, SchoolNotesTakingStyles);
+const combinedStyles = combineStyles(CommonStyles, SchoolNoteTakingStyles);
 
-export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolNotesTaking))));
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolNoteTaking))));

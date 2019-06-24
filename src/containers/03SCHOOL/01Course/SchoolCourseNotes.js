@@ -148,7 +148,7 @@ class SchoolCourseNotes extends React.Component {
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/school-notes-taking"} />;
+            return <Redirect push to={"/" + i18n.language + "/school-note-taking"} />;
         }
 
         return (

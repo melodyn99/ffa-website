@@ -136,7 +136,7 @@ import SchoolStaffAccountAccess from './containers/03SCHOOL/09Account/SchoolStaf
 import SchoolStaffAccountInformation from './containers/03SCHOOL/09Account/SchoolStaffAccountInformation';
 
 // Notes
-import SchoolNotesTaking from './containers/03SCHOOL/Notes/SchoolNotesTaking';
+import SchoolNoteTaking from './containers/03SCHOOL/Notes/SchoolNoteTaking';
 import SchoolNotesContent from './containers/03SCHOOL/Notes/SchoolNotesContent';
 import SchoolNewNoteTitle from './containers/03SCHOOL/Notes/SchoolNewNoteTitle';
 import SchoolNewNoteContent from './containers/03SCHOOL/Notes/SchoolNewNoteContent';
@@ -442,8 +442,8 @@ class App extends Component {
                 }
 
                 // Notes
-                case 'school-notes-taking': {
-                    return <SchoolNotesTaking />;
+                case 'school-note-taking': {
+                    return <SchoolNoteTaking />;
                 }
                 case 'school-notes-content': {
                     return <SchoolNotesContent params={params} />;
