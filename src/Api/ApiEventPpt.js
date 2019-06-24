@@ -1,4 +1,4 @@
-// AKA Event SchoolCoursePreparations.
+// AKA Event SchoolCoursePreparation.
 import { api } from './_ApiFactoryWithHeader';
 
 import { apiGeneral } from './_General';

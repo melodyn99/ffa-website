@@ -82,7 +82,7 @@ import StudentAlert from './containers/02STUDENTS/04Alert/StudentAlert';
 // School Course Management
 import SchoolAllCourse from './containers/03SCHOOL/01Course/SchoolAllCourse';
 import SchoolCourseInformation from './containers/03SCHOOL/01Course/SchoolCourseInformation';
-import SchoolCoursePreparations from './containers/03SCHOOL/01Course/SchoolCoursePreparations';
+import SchoolCoursePreparation from './containers/03SCHOOL/01Course/SchoolCoursePreparation';
 import SchoolCourseMaterial from './containers/03SCHOOL/01Course/SchoolCourseMaterial';
 import SchoolCourseWork from './containers/03SCHOOL/01Course/SchoolCourseWork';
 import SchoolCourseStudentManagement from './containers/03SCHOOL/01Course/SchoolCourseStudentManagement';
@@ -316,8 +316,8 @@ class App extends Component {
                 case 'school-course-information': {
                     return <SchoolCourseInformation />
                 }
-                case 'school-course-preparations': {
-                    return <SchoolCoursePreparations />;
+                case 'school-course-preparation': {
+                    return <SchoolCoursePreparation />;
                 }
                 case 'school-course-material': {
                     return <SchoolCourseMaterial />;
