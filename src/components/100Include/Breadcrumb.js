@@ -80,7 +80,7 @@ class Breadcrumb extends Component {
             case 'student-course-date': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-scheduling">我的课程</Link></span> > <span>S1-001品牌盈利模式</span></div>)
             }
-            case 'student-course-announcements': {
+            case 'student-course-announcement': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to="student-scheduling">我的课程</Link></span> > <span>S1-001品牌盈利模式</span></div>)
             }
 

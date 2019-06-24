@@ -273,7 +273,7 @@ class App extends Component {
                 case 'student-course-information': {
                     return <StudentCourseInformation />
                 }
-                case 'student-course-announcements': {
+                case 'student-course-announcement': {
                     return <StudentCourseAnnouncement />
                 }
 
