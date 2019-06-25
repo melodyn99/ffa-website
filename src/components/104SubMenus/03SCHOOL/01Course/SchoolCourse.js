@@ -28,7 +28,7 @@ class SchoolCourse extends Component {
                     <li><Link to={"/" + i18n.language + "/school-course-student-management"} className={(currentPath === 'school-course-student-management') || (currentPath === 'school-course-student-management-attendance') || (currentPath === 'school-course-student-management-homework') ? 'active' : ''}>学生管理</Link></li>
                     <li><Link to={"/" + i18n.language + "/school-course-announcement"} className={currentPath === 'school-course-announcement' ? 'active' : ''}>课程公告</Link></li>
                     <li><Link to={"/" + i18n.language + "/school-course-q-and-a"} className={(currentPath === 'school-course-q-and-a') || (currentPath === 'school-course-reply-q-and-a') ? 'active' : ''}>课程问答</Link></li>
-                    <li><Link to={"/" + i18n.language + "/school-course-note"} className={(currentPath === 'school-course-note') || (currentPath === 'school-course-new-note') ? 'active' : ''}>及时记录</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-course-note"} className={(currentPath === 'school-course-note') || (currentPath === 'school-course-new-note') || (currentPath === 'school-note-taking') ? 'active' : ''}>及时记录</Link></li>
                     <li><Link to={"/" + i18n.language + "/school-course-assessment"} className={currentPath === 'school-course-assessment' ? 'active' : ''}>课程评分</Link></li>
                 </ul>
             </div>
