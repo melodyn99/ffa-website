@@ -215,6 +215,7 @@ class SchoolCourseNote extends React.Component {
                                                         const isSelected = this.isSelected(n.id);
                                                         return (
                                                             <TableRow
+                                                                className={classes.nthOfTypeRow}
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
                                                                 onClick={() => this._tempDetail()}
