@@ -13,7 +13,6 @@ import { withTranslation } from 'react-i18next';
 
 // Api
 import { apiAuth } from '../../../Api/ApiAuth';
-import { apiConferences } from '../../../Api/ApiConferences';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -52,11 +51,11 @@ class Home extends Component {
         apiAuth.authenticate('admin@joyaether.test', 'abcd1234').then((res) => {
             // console.log(res);
             this.props.loginP(res.access_token);
-            this._getConference();
+            this._getUserInfo();
         })
     };
 
-    _getConference = () => {
+    _getUserInfo = () => {
 
         const cb = (obj) => {
             console.log("cb : ", obj);
@@ -66,7 +65,7 @@ class Home extends Component {
         }
         const params = null;
 
-        apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
+        apiAuth.getUserInfo(params, this.props.auth.token, cb, eCb);
     }
 
     render() {
