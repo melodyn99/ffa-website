@@ -21,3 +21,15 @@
         h5 { color:grey; font-size:16px; display:block; text-align: right;  }
     }
 }
+
+// ListType3
+.ListType3 { background:lightgrey; 
+    .LeftColumn {
+        img { width:100%; }
+    }
+    .RightColumn { position:relative;
+        h4 { color:blue; font-size:20px; display:block; }
+        h5 { color:black; font-size:6px; display:block; }
+        h6 { color:black; font-size:20px; display:block; }
+    }
+}

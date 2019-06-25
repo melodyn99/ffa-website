@@ -25,13 +25,45 @@ import { connect } from 'react-redux';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
+import ListType3 from '../../../components/102Grids/ListType3';
+
+function Block(props) {
+    return (
+        <ListType3
+            title={props.title}
+            date={props.date}
+            content={props.content}
+        />
+    )
+}
+
+function Cluster(props) {
+    let rows = [];
+    for (let i = 0; i < 3; i++) {
+        rows.push(
+            <div key={i}>
+                <Block
+                    key={i}
+                    title={props.title}
+                    date={props.date}
+                    content={props.content}
+                />
+                <div className="sep-40"></div>
+            </div>
+        )
+    }
+    return (rows);
+}
 
 class News extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            formSubmitted: false
+            formSubmitted: false,
+            title: ['新闻标题'],
+            date: ['发出日期'],
+            content: ['新闻内容第1行'],
         }
     }
 
@@ -53,14 +85,18 @@ class News extends Component {
                             <div className="content">
                                 <Grid container spacing={16}>
                                     <Grid item sm={3} xs={12}>
-                                        <div className="template-4 leftColumn">
+                                        <div className="template-8 leftColumn">
                                             <img src={require('../../../images/600-400.png')} alt="" />
+                                            <Link to={"/" + i18n.language + "/news-detail"} className="dummy">Go to News Detail page</Link>
                                         </div>
                                     </Grid>
                                     <Grid item sm={9} xs={12}>
-                                        <div className="template-4 rightColumn">
-                                            <p>This is News listing page</p>
-                                            <Link to={"/" + i18n.language + "/news-detail"} className="dummy">Go to News Detail page</Link>
+                                        <div className="template-8 rightColumn">
+                                            <Cluster
+                                                title={this.state.title}
+                                                date={this.state.date}
+                                                content={this.state.content}
+                                            />
                                         </div>
                                     </Grid>
                                 </Grid>
