@@ -173,7 +173,7 @@ class SchoolCourseNote extends React.Component {
                                     createButton={true}
                                     createButtonText="创建 (click)"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='school-course-new-notes'
+                                    createButtonActionUrl='school-course-new-note'
 
                                     editButton={true}
                                     editButtonText="编辑"

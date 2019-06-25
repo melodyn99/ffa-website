@@ -319,34 +319,34 @@ class App extends Component {
                 case 'school-course-material': { // OK
                     return <SchoolCourseMaterial />;
                 }
-                case 'school-course-work': {
+                case 'school-course-work': { // OK
                     return <SchoolCourseWork />;
                 }
-                case 'school-course-student-management': {
+                case 'school-course-student-management': { // OK
                     return <SchoolCourseStudentManagement />;
                 }
-                case 'school-course-student-management-attendance': {
+                case 'school-course-student-management-attendance': { // OK
                     return <SchoolCourseStudentManagementAttendance />;
                 }
-                case 'school-course-student-management-homework': {
+                case 'school-course-student-management-homework': { // OK
                     return <SchoolCourseStudentManagementHomework />;
                 }
-                case 'school-course-announcement': {
+                case 'school-course-announcement': { // OK
                     return <SchoolCourseAnnouncement />
                 }
-                case 'school-course-q-and-a': {
+                case 'school-course-q-and-a': { // OK
                     return <SchoolCourseQandA />;
                 }
-                case 'school-course-reply-q-and-a': {
+                case 'school-course-reply-q-and-a': { // OK
                     return <SchoolCourseReplyQandA />;
                 }
-                case 'school-course-note': {
+                case 'school-course-note': { // OK
                     return <SchoolCourseNote />;
                 }
-                case 'school-course-new-note': {
+                case 'school-course-new-note': { // OK
                     return <SchoolCourseNewNote />;
                 }
-                case 'school-course-assessment': {
+                case 'school-course-assessment': { // OK
                     return <SchoolCourseAssessment />;
                 }
 
