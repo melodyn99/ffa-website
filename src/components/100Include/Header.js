@@ -144,7 +144,8 @@ class Header extends Component {
                             <li className={currentPath === 'school-enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
                             <li className={(currentPath === 'school-news-management') || (currentPath === 'school-new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
                             <li className={(currentPath === 'school-activity-management') || (currentPath === 'school-new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-activity-management"}>活动管理</Link></li>
-                            <li className={(currentPath === 'school-all-resource-management')
+                            <li className={(currentPath === 'school-resource-management')
+                                || (currentPath === 'school-resource-management-course')
                                 || (currentPath === 'school-all-resource-management')
                                 || (currentPath === 'school-resource-management-homework')
                                 || (currentPath === 'school-resource-course')
