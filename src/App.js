@@ -95,7 +95,7 @@ import SchoolCourseNewNote from './containers/03SCHOOL/01Course/SchoolCourseNewN
 import SchoolCourseAssessment from './containers/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // School Student Management
-import SchoolStudentManagement from './containers/03SCHOOL/02Student/SchoolStudentManagement';
+import SchoolAllStudentManagement from './containers/03SCHOOL/02Student/SchoolAllStudentManagement';
 import SchoolStudentInformation from './containers/03SCHOOL/02Student/SchoolStudentInformation'; // this
 import SchoolStudentRelatedCourse from './containers/03SCHOOL/02Student/SchoolStudentRelatedCourse'; // this
 import SchoolNewStudent from './containers/03SCHOOL/02Student/SchoolNewStudent'; // this
@@ -351,78 +351,80 @@ class App extends Component {
                 }
 
                 // School Student Management
-                case 'school-students-management': {
-                    return <SchoolStudentManagement />
+                case 'school-all-student-management': { // OK
+                    return <SchoolAllStudentManagement />
                 }
-                case 'school-student-information': {
+                case 'school-new-student': { // OK
+                    return <SchoolNewStudent />;
+                }
+                case 'school-student-information': { // OK
                     return <SchoolStudentInformation />
                 }
-                case 'school-student-related-course': {
+                case 'school-student-related-course': { // OK
                     return <SchoolStudentRelatedCourse />
-                }
-                case 'school-new-student': {
-                    return <SchoolNewStudent />;
                 }
 
                 // School Enrollment Management
-                case 'school-enrollment-management': {
+                case 'school-enrollment-management': { // OK
                     return <SchoolEnrollmentManagement />;
                 }
 
                 // School News Management
-                case 'school-news-management': {
+                case 'school-news-management': { // OK
                     return <SchoolNewsManagement />;
                 }
-                case 'school-new-news': {
+                case 'school-new-news': { // OK
                     return <SchoolNewNews />;
                 }
 
                 // School activity Management
-                case 'school-activity-management': {
+                case 'school-activity-management': { // OK
                     return <SchoolActivityManagement />;
                 }
-                case 'school-new-activity': {
+                case 'school-new-activity': { // OK
                     return <SchoolNewActivity />;
                 }
 
                 // School Resource Management
-                case 'school-resource-management': {
+                case 'school-resource-management': { // OK
                     return <SchoolResourceManagement />;
                 }
-                case 'school-resource-management-course': {
+
+                case 'school-resource-management-course': { // OK
                     return <SchoolResourceManagementCourse />;
                 }
-                case 'school-resource-management-homework': {
-                    return <SchoolResourceManagementHomework />;
-                }
-                case 'school-resource-course': {
-                    return <SchoolResourceCourse />;
-                }
-                case 'school-resource-homework': {
-                    return <SchoolResourceHomework />;
-                }
-                case 'school-new-material': {
+                case 'school-new-material': { // OK
                     return <SchoolNewMaterial />;
                 }
-                case 'school-new-homework': {
+                case 'school-resource-course': { // OK
+                    return <SchoolResourceCourse />;
+                }
+
+                case 'school-resource-management-homework': { // OK
+                    return <SchoolResourceManagementHomework />;
+                }
+                case 'school-new-homework': { // OK
                     return <SchoolNewHomework />;
                 }
-                case 'school-new-question': {
+                case 'school-resource-homework': { // OK
+                    return <SchoolResourceHomework />;
+                }
+                case 'school-new-question': { // OK
                     return <SchoolNewQuestion />;
                 }
 
                 // School Alert
-                case 'school-alert': {
+                case 'school-alert': { // OK
                     return <SchoolAlert />;
                 }
 
                 // School Reports
-                case 'school-report': {
+                case 'school-report': { // OK
                     return <SchoolReport />;
                 }
 
                 // School Account
-                case 'school-staff-account-management': {
+                case 'school-all-staff-account-management': {
                     return <SchoolAllStaffAccountManagement />;
                 }
                 case 'school-staff-account-information': {

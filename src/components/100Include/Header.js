@@ -105,7 +105,7 @@ class Header extends Component {
                     {(currentPath !== '' && typeof currentPath !== 'undefined') &&
                         <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' school' : '')}>
                             <li className={currentPath === 'school-all-course' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></li>
-                            <li className={(currentPath === 'school-students-management') || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></li>
+                            <li className={(currentPath === 'school-all-student-management') || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-student-management"}>学生管理</Link></li>
                             <li className={currentPath === 'school-enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
                             <li className={(currentPath === 'school-news-management') || (currentPath === 'school-new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
                             <li className={(currentPath === 'school-activity-management') || (currentPath === 'school-new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-activity-management"}>活动管理</Link></li>
@@ -117,7 +117,7 @@ class Header extends Component {
                                 || (currentPath === 'school-new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-resource-management"}>资源管理</Link></li>
                             <li className={currentPath === 'school-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alert"}>我的提醒 (6)</Link></li>
                             <li className={currentPath === 'school-report' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-report"}>项目报告</Link></li>
-                            <li className={(currentPath === 'school-staff-account-information') || (currentPath === 'school-staff-new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></li>
+                            <li className={(currentPath === 'school-staff-account-information') || (currentPath === 'school-staff-new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-staff-account-management"}>账户管理</Link></li>
                         </ul>
                     }
 

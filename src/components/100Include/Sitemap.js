@@ -40,7 +40,7 @@ function Sitemap(props) {
 
                     <h3>Accounts</h3>
                     <li><Link to={'/' + i18n.language + '/school-staff-related-course'}>Related Courses (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-staff-account-management'}>Entrollment History (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-all-staff-account-management'}>Entrollment History (done)</Link></li>
                 </ul>
 
                 <ul>

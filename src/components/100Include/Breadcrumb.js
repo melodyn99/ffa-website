@@ -153,13 +153,13 @@ class Breadcrumb extends Component {
 
             // School Student Management
             case 'school-new-student': {
-                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-student-management"}>学生管理</Link></span> > <span>新增学生</span></div>)
             }
             case 'school-student-information': {
-                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>学生资料</span></div>)
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-student-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>学生资料</span></div>)
             }
             case 'school-student-related-course': {
-                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-students-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>相关课程</span></div>)
+                return (<div><span><Link to="/">主页</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-student-management"}>学生管理</Link></span> > <span><Link to="/">陈大文</Link></span> > <span>相关课程</span></div>)
             }
 
             // School Enrollment Management
@@ -216,19 +216,19 @@ class Breadcrumb extends Component {
 
             // School Account
             case 'school-staff-related-course': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
             case 'school-staff-account-access': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
             case 'school-staff-account-information': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-staff-account-management"}>账户管理</Link></span> > <span><Link to="/">用户名</Link></span> > <span>账户资料</span></div>);
             }
-            case 'school-staff-account-management': {
+            case 'school-all-staff-account-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>账户管理</span></div>);
             }
             case 'school-staff-new-account': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-staff-account-management"}>账户管理</Link></span> > <span>新增账户</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-staff-account-management"}>账户管理</Link></span> > <span>新增账户</span></div>);
             }
 
             default: {

@@ -50,7 +50,7 @@ class SchoolAlert extends Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <p>This is My Alert</p>
+                                <p>This is School Alert</p>
                             </div>
                         </div>
 

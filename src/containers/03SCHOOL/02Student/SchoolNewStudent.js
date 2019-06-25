@@ -198,7 +198,7 @@ class SchoolNewStudent extends React.Component {
         </Grid>
         <div className="bottomControl clearfix">
           <Button className={classes.greyButton}
-            onClick={() => this.props.history.push('school-students-management')}
+            onClick={() => this.props.history.push('school-all-student-management')}
           >取消</Button>
           <span className="right"><Button className={classes.blackButton}
             onClick={() => this.props.history.push('school-student-information')}
