@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
-import { HeaderStyles } from '../../../utils/01MaterialJsStyles/00Common/header'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 import { withTranslation } from 'react-i18next';
@@ -103,6 +102,6 @@ const mapDispatchToProps = dispatch => ({
     verifyT: token => dispatch(verifyToken(token)),
 });
 
-const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
+const combinedStyles = combineStyles(CommonStyles);
 
 export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(Home)));
