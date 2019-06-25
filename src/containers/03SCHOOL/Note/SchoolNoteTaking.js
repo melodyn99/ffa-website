@@ -35,6 +35,7 @@ import { autoScrollTop } from '../../../Util/ScrollToTop';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { formatFileSizeToString, formatDate } from '../../../Util/CommonUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -183,25 +184,6 @@ class SchoolNoteTaking extends React.Component {
         console.log('delete button pressed');
     }
 
-    /* to move to Utils */
-    formatDocSize = (docSize) => {
-        let formatedResult = docSize + " KB";
-        if (docSize >= 102.4) {
-            formatedResult = docSize / 1024 + " MB";
-        } else if (docSize >= 104857.6) {
-            formatedResult = docSize / 1048576 + " GB";
-        }
-        return formatedResult;
-    }
-
-    formatDate = (date) => {
-        let formatedDate = date;
-        let resultArray;
-        resultArray = date.split("/");
-        formatedDate = resultArray[0] + "年" + resultArray[1] + "月" + resultArray[2] + "日";
-        return formatedDate;
-    }
-
     form = ({
         // values, 
         errors, touched
@@ -332,8 +314,8 @@ class SchoolNoteTaking extends React.Component {
                                                         // padding="none"
                                                         >{n.docName}</TableCell>
                                                         <TableCell>{n.teacher}</TableCell>
-                                                        <TableCell>{this.formatDocSize(n.docSize)}</TableCell>
-                                                        <TableCell>{this.formatDate(n.createdDate)}</TableCell>
+                                                        <TableCell>{formatFileSizeToString(n.docSize)}</TableCell>
+                                                        <TableCell>{formatDate(n.createdDate)}</TableCell>
                                                     </TableRow>
                                                 );
                                             })}
