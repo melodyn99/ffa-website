@@ -19,7 +19,7 @@ import {
 import { apiMaterial } from '../../Api/ApiMaterial';
 import { apiEventPptFile } from '../../Api/ApiEventPptFile';
 import { apiNoteFile } from '../../Api/ApiNoteFile';
-// import { apiStudents } from '../../Api/ApiStudents';
+// import { apiStudent } from '../../Api/ApiStudent';
 
 // Redux
 import { connect } from 'react-redux';
@@ -56,7 +56,7 @@ class DocumentList extends React.Component {
         // const student_mails = [];
 
         // try {
-        //     const companies = await apiStudents.getConferenceStudent(viewingSeminar.conference_id);
+        //     const companies = await apiStudent.getConferenceStudent(viewingSeminar.conference_id);
         //     for (const company of companies) {
         //         student_mails.push(...company.students.map(s => s.email));
         //     }
@@ -69,19 +69,19 @@ class DocumentList extends React.Component {
 
     getPermissionObject() {
         let permission = {
-            sendToAllStudents: false,
+            sendToAllStudent: false,
             sendToStudent: false,
             download: true,
             deleteFile: false
         };
         const { profile, viewingSeminar } = this.props;
         if (profile.role === 1) {
-            permission.sendToAllStudents = true;
+            permission.sendToAllStudent = true;
             permission.sendToStudent = true;
             permission.download = true;
             permission.deleteFile = true;
         } else if (profile.role === 2) {
-            permission.sendToAllStudents = true;
+            permission.sendToAllStudent = true;
             permission.sendToStudent = true;
             permission.download = true;
             permission.deleteFile = false;
@@ -99,12 +99,12 @@ class DocumentList extends React.Component {
             });
 
             if (isSeminarTeacher) {
-                permission.sendToAllStudents = true;
+                permission.sendToAllStudent = true;
                 permission.sendToStudent = true;
                 permission.download = true;
                 permission.deleteFile = true;
             } else {
-                permission.sendToAllStudents = false;
+                permission.sendToAllStudent = false;
                 permission.sendToStudent = false;
                 permission.download = true;
                 permission.deleteFile = false;
@@ -192,7 +192,7 @@ class DocumentList extends React.Component {
 
     renderItem(d, i) {
         const {
-            classes, hasCheckbox, handleCheckbox, sendStudents,
+            classes, hasCheckbox, handleCheckbox, sendStudent,
             // profile,
         } = this.props;
         const { expandControl, check, student_mails } = this.state;
@@ -252,7 +252,7 @@ class DocumentList extends React.Component {
                 {
                     expandControl[i] && (
                         <div className={classes.editBar} onClick={() => this.handleClick(i)}>
-                            {permission.sendToAllStudents && student_mails && sendStudents && (
+                            {permission.sendToAllStudent && student_mails && sendStudent && (
                                 <Button
                                     classes={{ label: classes.label }}
                                     onClick={() => {

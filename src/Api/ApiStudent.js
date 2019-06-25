@@ -4,20 +4,20 @@ import { api } from './_ApiFactoryWithHeader';
 
 import { apiGeneral } from './_General';
 
-export const apiStudents = {
+export const apiStudent = {
 
     postStudent: data => api.post('students', data),
 
-    getStudents: () => api.get('students?$expand=contacts'),
+    getStudent: () => api.get('students?$expand=contacts'),
 
     editStudent: (studentId, params) => api.post(`students/${studentId}?$expand=contacts`, params),
 
     // OLD
     // getConferenceStudent: (conferenceId) => {
     //     const url = `conference_students?conference=${encodeURIComponent(conferenceId)}&$expand=student,students/contacts,student/business_license_copy`;
-    //     return api.get(url).then(conferenceStudents => {
+    //     return api.get(url).then(conferenceStudent => {
     //         const nameIteratee = getLowerCaseIteratee('name');
-    //         return sortBy(conferenceStudents, getLowerCaseIteratee('brand')).map(conferenceStudent => {
+    //         return sortBy(conferenceStudent, getLowerCaseIteratee('brand')).map(conferenceStudent => {
     //             const students = conferenceStudent.students;
     //             if (students && students.length > 0) {
     //                 conferenceStudent.students = sortBy(students, nameIteratee);
@@ -42,11 +42,11 @@ export const apiStudents = {
 
     editConferenceStudent: (conferenceStudentId, params) => api.put(`conference_students/${conferenceStudentId}`, { ...params, $expand: 'student' }),
 
-    getStudentsByCompany: companyId => api.get(`students?company=${companyId}&$expand=contacts`),
+    getStudentByCompany: companyId => api.get(`students?company=${companyId}&$expand=contacts`),
 
-    getStudentsByCompanyCustom: (params, cancelToken) => api.get('students', params, null, cancelToken),
+    getStudentByCompanyCustom: (params, cancelToken) => api.get('students', params, null, cancelToken),
 
-    getCurrnetStudentsByCompany: params => api.get('students', params),
+    getCurrnetStudentByCompany: params => api.get('students', params),
 
     deleteStudent: id => api.delete(`students/${id}`),
 

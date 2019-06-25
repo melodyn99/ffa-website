@@ -50,7 +50,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-course-information'}>Course Information (Melody) (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-course-new-note'}>Course New Note (Melody) (done)</Link></li>
 
-                    <h3>Students Management</h3>
+                    <h3>Student Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-new-student'}>New Student (Him) (done)</Link></li>
 
                     <h3>News Management</h3>

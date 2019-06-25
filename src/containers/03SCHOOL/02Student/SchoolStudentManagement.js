@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
-class SchoolStudentsManagement extends Component {
+class SchoolStudentManagement extends Component {
     constructor(props) {
         super(props);
 
@@ -51,7 +51,7 @@ class SchoolStudentsManagement extends Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <p>This is All Students Management</p>
+                                <p>This is All Student Management</p>
                                 <Link to={"/" + i18n.language + "/school-new-student"} className="dummy">Go to New Student</Link>
                             </div>
                         </div>
@@ -74,4 +74,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles, HeaderStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolStudentsManagement)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolStudentManagement)));

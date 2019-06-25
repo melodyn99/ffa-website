@@ -17,7 +17,6 @@ import HomePageTopBar from './components/100Include/HomePageTopBar';
 
 import * as HelperDesktopHandle from './utils/00JqueryControl/DesktopHandle';
 import * as HelperMobileHandle from './utils/00JqueryControl/MobileHandle';
-import * as HelperPopup from './utils/00JqueryControl/Popup';
 
 /*** GENERAL ***/
 // Home
@@ -96,7 +95,7 @@ import SchoolCourseNewNote from './containers/03SCHOOL/01Course/SchoolCourseNewN
 import SchoolCourseAssessment from './containers/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // School Student Management
-import SchoolStudentsManagement from './containers/03SCHOOL/02Student/SchoolStudentsManagement';
+import SchoolStudentManagement from './containers/03SCHOOL/02Student/SchoolStudentManagement';
 import SchoolStudentInformation from './containers/03SCHOOL/02Student/SchoolStudentInformation'; // this
 import SchoolStudentRelatedCourse from './containers/03SCHOOL/02Student/SchoolStudentRelatedCourse'; // this
 import SchoolNewStudent from './containers/03SCHOOL/02Student/SchoolNewStudent'; // this
@@ -160,21 +159,17 @@ class App extends Component {
         HelperDesktopHandle.DesktopHandle.init();
         HelperMobileHandle.MobileHandle.init();
         HelperMobileHandle.MobileHandle.containersSize();
-        HelperPopup.Popup.init();
-        HelperPopup.Popup.containersSize();
         window.addEventListener("resize", this.windowResize);
     }
 
     componentDidUpdate = () => {
         window.scrollTo(0, 0);
-        HelperPopup.Popup.init();
     }
 
     windowResize = () => {
         HelperDesktopHandle.DesktopHandle.resetDesktopMenu();
         HelperDesktopHandle.DesktopHandle.maxHeightDesktopMenu();
         HelperMobileHandle.MobileHandle.containersSize();
-        HelperPopup.Popup.containersSize();
     }
 
     getComponent = (currentURL, params) => {
@@ -355,7 +350,7 @@ class App extends Component {
 
                 // School Student Management
                 case 'school-students-management': {
-                    return <SchoolStudentsManagement />
+                    return <SchoolStudentManagement />
                 }
                 case 'school-student-information': {
                     return <SchoolStudentInformation />

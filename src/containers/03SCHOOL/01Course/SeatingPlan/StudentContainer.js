@@ -15,7 +15,7 @@ import { ChevronRight } from '@material-ui/icons';
 
 // Api
 import { apiEventPpt } from '../../../../Api/ApiEventPpt';
-// import { apiStudents } from '../../../../Api/ApiStudents';
+// import { apiStudent } from '../../../../Api/ApiStudent';
 // import { apiSeatingPlan } from '../../../../Api/ApiSeatingPlan';
 
 // Redux

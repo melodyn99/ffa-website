@@ -13,7 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Api
 import { apiSeatingPlan } from '../../../../Api/ApiSeatingPlan';
-import { apiStudents } from '../../../../Api/ApiStudents';
+import { apiStudent } from '../../../../Api/ApiStudent';
 
 // Redux
 import { connect } from 'react-redux';
@@ -69,7 +69,7 @@ class SchoolSeatingPlan extends React.Component {
         }
         const eCb = (obj) => { console.log("eCb : ", obj) }
         const params = null;
-        apiStudents.getConferenceStudent(id, params, this.props.auth.token, cb, eCb);
+        apiStudent.getConferenceStudent(id, params, this.props.auth.token, cb, eCb);
     }
 
     handleCompanyColorChanged(rgb, company) {

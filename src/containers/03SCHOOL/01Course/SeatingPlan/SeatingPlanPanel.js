@@ -15,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Api
 import { apiSeatingPlan } from '../../../../Api/ApiSeatingPlan';
-// import { apiStudents } from '../../../../Api/ApiStudents';
+// import { apiStudent } from '../../../../Api/ApiStudent';
 
 // Redux
 import { connect } from 'react-redux';
@@ -85,7 +85,7 @@ class SeatingPlanPanel extends React.Component {
         }
     }
 
-    getStudentsWithoutSeat(companies, { seating_plan }) {
+    getStudentWithoutSeat(companies, { seating_plan }) {
         const assignedStudentIds = keyBy(seating_plan, 'conference_student');
         const remainingStudentLists = map(companies, company => filter(company.students, student => !assignedStudentIds.hasOwnProperty(student.conference_student_id)));
         return flatten(remainingStudentLists);
@@ -224,7 +224,7 @@ class SeatingPlanPanel extends React.Component {
                 sequence: seat.row + 1,
             };
         }
-        const remainingStudents = [];
+        const remainingStudent = [];
         studentLists.forEach(students => {
             let index = 0;
             let isAssigned = false;
@@ -239,7 +239,7 @@ class SeatingPlanPanel extends React.Component {
                     const remainingSeats = [];
                     orphaned.forEach(entry => {
                         if (entry[0]) {
-                            remainingStudents.push(entry[0]);
+                            remainingStudent.push(entry[0]);
                         }
                         if (entry[1]) {
                             remainingSeats.push(entry[1]);
@@ -259,14 +259,14 @@ class SeatingPlanPanel extends React.Component {
             }
             if (!isAssigned) {
                 students.forEach(student => {
-                    remainingStudents.push(student);
+                    remainingStudent.push(student);
                 });
             }
         });
 
         // assign remaining students in case there are still empty seats but in different tables
-        if (remainingStudents.length > 0 && emptySeatGroups.length > 0) {
-            zip(remainingStudents, flatMap(emptySeatGroups, 'seats')).forEach(pair => {
+        if (remainingStudent.length > 0 && emptySeatGroups.length > 0) {
+            zip(remainingStudent, flatMap(emptySeatGroups, 'seats')).forEach(pair => {
                 if (pair[0] && pair[1]) {
                     postBodies.push(createPostBody.apply(null, pair));
                 }
@@ -325,7 +325,7 @@ class SeatingPlanPanel extends React.Component {
         this.setState({ assigning: true });
         try {
             const { column, row, student_per_table } = plan.seating_plan_type;
-            const students = this.getStudentsWithoutSeat(companies, plan);
+            const students = this.getStudentWithoutSeat(companies, plan);
             await this.assignSeats(students, event_preparation_id, row, column, student_per_table);
         } catch (e) {
             console.error(e);
