@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -10,7 +10,7 @@ import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import { SchoolNoteTakingStyles } from '../../../utils/01MaterialJsStyles/Note/SchoolNoteTaking'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemText, Typography, } from '@material-ui/core';
+// import { List, ListItem, ListItemText, Typography, } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 
 // Material UI
@@ -31,7 +31,7 @@ import { setNoteTitle, viewingNoteAction } from '../../../Redux/Action/eventActi
 
 // Utils
 import { autoScrollTop } from '../../../Util/ScrollToTop';
-import { dateToDayAndMonth } from '../../../Util/DateUtils';
+// import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -62,7 +62,8 @@ class SchoolNoteTaking extends React.Component {
         rowsPerPage: 10,
         tempGoDetail: false
     }
-    /** form content */
+
+    /** form content start */
     componentDidMount() {
         this._getNoteTakingList();
     }
@@ -107,11 +108,9 @@ class SchoolNoteTaking extends React.Component {
         // TODO
         console.log('GREAT!');
     }
-    /** form content */
+    /** form content end */
 
-
-
-    /** scroll list */
+    /** Material UI table style start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -161,6 +160,7 @@ class SchoolNoteTaking extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
+    /** Material UI table style end  **/
 
     _tempDetail = () => {
         this.setState({
@@ -198,6 +198,7 @@ class SchoolNoteTaking extends React.Component {
         console.log('report button pressed');
     }
 
+    /* to move to Utils */
     formatDocSize = (docSize) => {
         let formatedResult = docSize + " KB";
         if (docSize >= 102.4) {
@@ -207,6 +208,7 @@ class SchoolNoteTaking extends React.Component {
         }
         return formatedResult;
     }
+
     formatDate = (date) => {
         let formatedDate = date;
         let resultArray;
@@ -214,11 +216,18 @@ class SchoolNoteTaking extends React.Component {
         formatedDate = resultArray[0] + "年" + resultArray[1] + "月" + resultArray[2] + "日";
         return formatedDate;
     }
-    //scroll list*/
 
-    form = ({ values, errors, touched, handleChange }) => {
-        const { i18n, classes } = this.props;
-        const { listNote, data, order, orderBy, selected, rowsPerPage, page } = this.state;
+    form = ({
+        // values, 
+        errors, touched
+        // , handleChange 
+    }) => {
+        const {
+            // i18n, 
+            classes } = this.props;
+        const {
+            // listNote, 
+            data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
