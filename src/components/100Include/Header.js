@@ -64,8 +64,8 @@ class Header extends Component {
                     </h1>
 
                     <ul className={"desktop-menu clearfix" + (currentPath !== '' && typeof currentPath !== 'undefined' ? ' general' : '')}>
-                        <li className={(currentPath === 'admission-process') 
-                            || (currentPath === 'login-with-register') 
+                        <li className={(currentPath === 'admission-process')
+                            || (currentPath === 'login-with-register')
                             || (currentPath === 'admission-subject-catalog')
                             || (currentPath === 'admission-course-catalog')
                             || (currentPath === 'admission-course-information') ? 'active' : ''}><Link to={"/" + i18n.language + "/admission-process"}>入学</Link>
@@ -110,10 +110,10 @@ class Header extends Component {
                                 || (currentPath === 'student-course-information')
                                 || (currentPath === 'student-course-date')
                                 || (currentPath === 'student-course-announcement') ? 'active' : ''}><Link to={"/" + i18n.language + "/student-scheduling"}>我的课程</Link></li>
-                            <li className={(currentPath === 'student-enrollment-history') 
+                            <li className={(currentPath === 'student-enrollment-history')
                                 || (currentPath === 'student-enrollment-history-form')
                                 || (currentPath === 'student-enrollment-history-detail')
-                                || (currentPath === 'student-enrollment-history-cancel-form') 
+                                || (currentPath === 'student-enrollment-history-cancel-form')
                                 || (currentPath === 'student-enrollment-history-cancel-request')
                                 || (currentPath === 'student-enrollment-history-cancelled') ? 'active' : ''}><Link to={"/" + i18n.language + "/student-enrollment-history"}>我的报名</Link></li>
                             <li className={currentPath === 'student-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-alert"}>我的提醒</Link></li>
@@ -137,20 +137,15 @@ class Header extends Component {
                                 || (currentPath === 'school-course-note')
                                 || (currentPath === 'school-course-new-note')
                                 || (currentPath === 'school-course-assessment') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></li>
-                            <li className={(currentPath === 'school-all-student-management') 
+                            <li className={(currentPath === 'school-all-student-management')
                                 || (currentPath === 'school-student-information')
                                 || (currentPath === 'school-student-related-course')
                                 || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-student-management"}>学生管理</Link></li>
                             <li className={currentPath === 'school-enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
                             <li className={(currentPath === 'school-news-management') || (currentPath === 'school-new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
                             <li className={(currentPath === 'school-activity-management') || (currentPath === 'school-new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-activity-management"}>活动管理</Link></li>
-<<<<<<< HEAD
-                            <li className={(currentPath === 'school-resource-management')
-                                || (currentPath === 'school-resource-management-course')
-=======
                             <li className={(currentPath === 'school-all-resource-management')
                                 || (currentPath === 'school-all-resource-management')
->>>>>>> f9ad131b183b15153daee5b5548026e0102dc08b
                                 || (currentPath === 'school-resource-management-homework')
                                 || (currentPath === 'school-resource-course')
                                 || (currentPath === 'school-resource-homework')
@@ -159,7 +154,7 @@ class Header extends Component {
                                 || (currentPath === 'school-new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源管理</Link></li>
                             <li className={currentPath === 'school-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alert"}>我的提醒 (6)</Link></li>
                             <li className={currentPath === 'school-report' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-report"}>项目报告</Link></li>
-                            <li className={(currentPath === 'school-staff-account-information') 
+                            <li className={(currentPath === 'school-staff-account-information')
                                 || (currentPath === 'school-all-staff-account-management')
                                 || (currentPath === 'school-staff-related-course')
                                 || (currentPath === 'school-staff-account-access')
