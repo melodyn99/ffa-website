@@ -1,4 +1,4 @@
-export const SchoolNotesContentStyles = () => ({
+export const SchoolNoteContentStyles = () => ({
     root: {
         height: '88vh',
         overflowY: 'hidden',

@@ -112,9 +112,9 @@ class SchoolCourseNewNote extends React.Component {
 
         const Schema = Yup.object().shape({
             notesName: Yup.string()
-                .required('Notes Name is required'),
+                .required('Note Name is required'),
             notesContent: Yup.string()
-                .required('Notes Content is required'),
+                .required('Note Content is required'),
         })
 
         return (

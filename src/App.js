@@ -129,17 +129,17 @@ import SchoolAlert from './containers/03SCHOOL/07Alert/SchoolAlert';
 import SchoolReport from './containers/03SCHOOL/08Report/SchoolReport';
 
 // School Account
-import SchoolStaffRelatedCourse from './containers/03SCHOOL/09Account/SchoolStaffRelatedCourse';
 import SchoolAllStaffAccountManagement from './containers/03SCHOOL/09Account/SchoolAllStaffAccountManagement';
-import SchoolStaffNewAccount from './containers/03SCHOOL/09Account/SchoolStaffNewAccount';
-import SchoolStaffAccountAccess from './containers/03SCHOOL/09Account/SchoolStaffAccountAccess';
 import SchoolStaffAccountInformation from './containers/03SCHOOL/09Account/SchoolStaffAccountInformation';
+import SchoolStaffRelatedCourse from './containers/03SCHOOL/09Account/SchoolStaffRelatedCourse';
+import SchoolStaffAccountAccess from './containers/03SCHOOL/09Account/SchoolStaffAccountAccess';
+import SchoolStaffNewAccount from './containers/03SCHOOL/09Account/SchoolStaffNewAccount';
 
-// Notes
-import SchoolNoteTaking from './containers/03SCHOOL/Notes/SchoolNoteTaking';
-import SchoolNotesContent from './containers/03SCHOOL/Notes/SchoolNotesContent';
-import SchoolNewNoteTitle from './containers/03SCHOOL/Notes/SchoolNewNoteTitle';
-import SchoolNewNoteContent from './containers/03SCHOOL/Notes/SchoolNewNoteContent';
+// Note
+import SchoolNoteTaking from './containers/03SCHOOL/Note/SchoolNoteTaking';
+import SchoolNoteContent from './containers/03SCHOOL/Note/SchoolNoteContent';
+import SchoolNewNoteTitle from './containers/03SCHOOL/Note/SchoolNewNoteTitle';
+import SchoolNewNoteContent from './containers/03SCHOOL/Note/SchoolNewNoteContent';
 
 // Seating Plan
 import SchoolSeatingPlan from './containers/03SCHOOL/01Course/SeatingPlan/SchoolSeatingPlan';
@@ -441,12 +441,12 @@ class App extends Component {
                     return <SchoolStaffAccountInformation />
                 }
 
-                // Notes
+                // Note
                 case 'school-note-taking': {
                     return <SchoolNoteTaking />;
                 }
                 case 'school-notes-content': {
-                    return <SchoolNotesContent params={params} />;
+                    return <SchoolNoteContent params={params} />;
                 }
                 case 'school-new-note': {
                     return <SchoolNewNoteTitle />

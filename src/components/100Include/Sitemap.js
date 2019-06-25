@@ -22,7 +22,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-course-student-management-attendance'}>Course Student Management Attendance (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-course-student-management-homework'}>Course Student Management Homework (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-course-q-and-a'}>Course Q & A (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-course-note'}>Course Notes (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-note'}>Course Note (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-course-assessment'}>Course Assessment (done)</Link></li>
 
                     <h3>Enrollment Management</h3>
@@ -48,7 +48,7 @@ function Sitemap(props) {
 
                     <h3>Courses Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-course-information'}>Course Information (Melody) (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-course-new-note'}>Course New Notes (Melody) (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-new-note'}>Course New Note (Melody) (done)</Link></li>
 
                     <h3>Students Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-new-student'}>New Student (Him) (done)</Link></li>
