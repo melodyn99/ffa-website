@@ -60,7 +60,7 @@ class Activity extends Component {
                                     <Grid item sm={9} xs={12}>
                                         <div className="template-4 rightColumn">
                                             <p>This is Activity listing page</p>
-                                            <Link to={"/" + i18n.language + "/activity"} className="dummy">Go to Activity detail page</Link>
+                                            <Link to={"/" + i18n.language + "/activity-detail"} className="dummy">Go to Activity detail page</Link>
                                         </div>
                                     </Grid>
                                 </Grid>

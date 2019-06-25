@@ -179,126 +179,124 @@ class App extends Component {
 
             switch (currentURL) {
                 /*** GENERAL ***/
-                // Home
+                // Home // OK
                 case 'home': {
                     return <Home />;
                 }
-                case 'home-images': {
+                case 'home-images': { // OK
                     return <HomeImages />;
                 }
 
                 // Login
-                case 'login-with-register': {
+                case 'login-with-register': { // OK
                     return <LoginWithRegister />
                 }
-                case 'login-no-register': {
+                case 'login-no-register': { // OK
                     return <LoginNoRegister />
                 }
 
                 // Brand
-                case 'school-introduction': {
+                case 'school-introduction': { // OK
                     return <SchoolIntroduction />
                 }
-                case 'school-advantage': {
+                case 'school-advantage': { // OK
                     return <SchoolAdvantage />
                 }
-                case 'school-learning': {
+                case 'school-learning': { // OK
                     return <SchoolLearning />
                 }
-                case 'school-case': {
+                case 'school-case': { // OK
                     return <SchoolCase />
                 }
 
                 // Admission
-                case 'admission-process': {
+                case 'admission-process': { // OK
                     return <AdmissionProcess />;
                 }
-                case 'admission-subject-catalog': {
+                case 'admission-subject-catalog': { // OK
                     return <AdmissionSubjectCatalog />;
                 }
-                case 'admission-course-catalog': {
+                case 'admission-course-catalog': { // OK
                     return <AdmissionCourseCatalog />;
                 }
-                case 'admission-course-information': {
+                case 'admission-course-information': { // OK
                     return <AdmissionCourseInformation />;
                 }
 
                 // News
-                case 'news': {
+                case 'news': { // OK
                     return <News />
                 }
-                case 'news-detail': {
+                case 'news-detail': { // OK
                     return <NewsDetail />
                 }
 
                 // Activity
-                case 'activity': {
+                case 'activity': { // OK
                     return <Activity />
                 }
-                case 'activity-detail': {
+                case 'activity-detail': { // OK
                     return <ActivityDetail />
                 }
 
 
                 /*** STUDENT ***/
                 // Student Register
-                case 'student-register': {
+                case 'student-register': { // OK
                     return <StudentRegister />
                 }
-                case 'student-register-personal-information': {
+                case 'student-register-personal-information': { // OK
                     return <StudentRegisterPersonalInformation />
                 }
-                case 'student-register-document-upload': {
+                case 'student-register-document-upload': { // OK
                     return <StudentRegisterDocumentUpload />
                 }
-                case 'student-register-questionnaire': {
+                case 'student-register-questionnaire': { // OK
                     return <StudentRegisterQuestionnaire />
                 }
-                case 'student-register-fee': {
+                case 'student-register-fee': { // OK
                     return <StudentRegisterFee />
                 }
-                case 'student-register-notification': {
+                case 'student-register-notification': { // OK
                     return <StudentRegisterNotification />
                 }
 
                 // Student Course
-                case 'student-course-date': {
-                    return <StudentCourseDate />
+                case 'student-scheduling': { // OK
+                    return <StudentScheduling />;
                 }
-                case 'student-course-information': {
+                case 'student-course-information': { // OK
                     return <StudentCourseInformation />
                 }
-                case 'student-course-announcement': {
+                case 'student-course-date': { // OK
+                    return <StudentCourseDate />
+                }
+                case 'student-course-announcement': { // OK
                     return <StudentCourseAnnouncement />
                 }
 
-                // Student Scheduling
-                case 'student-scheduling': {
-                    return <StudentScheduling />;
-                }
-
                 // Student Enrollment
-                case 'student-enrollment-history': {
+                case 'student-enrollment-history': { // OK
                     return <StudentEnrollmentHistory />;
                 }
-                case 'student-enrollment-history-form': {
+                case 'student-enrollment-history-form': { // OK
                     return <StudentEnrollmentHistoryForm />;
                 }
-                case 'student-enrollment-history-detail': {
+                case 'student-enrollment-history-detail': { // OK
                     return <StudentEnrollmentHistoryDetail />;
                 }
-                case 'student-enrollment-history-cancel-form': {
+                case 'student-enrollment-history-cancel-form': { // OK
                     return <StudentEnrollmentHistoryCancelForm />;
                 }
-                case 'student-enrollment-history-cancel-request': {
+                case 'student-enrollment-history-cancel-request': { // OK
                     return <StudentEnrollmentHistoryCancelRequest />;
                 }
-                case 'student-enrollment-history-cancelled': {
+                case 'student-enrollment-history-cancelled': { // OK
                     return <StudentEnrollmentHistoryCancelled />;
                 }
 
                 // Student Alert
-                case 'student-alert': {
+                case 'student-alert': { // OK
                     return <StudentAlert />;
                 }
 
