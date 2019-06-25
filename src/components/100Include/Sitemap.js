@@ -35,7 +35,7 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-activity-management'}>Activity Management (done)</Link></li>
 
                     <h3>Resource Management</h3>
-                    <li><Link to={'/' + i18n.language + '/school-resource-management'}>Resource Management Course (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-all-resource-management'}>Resource Management Course (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-resource-management-homework'}>Resource Management Homework (done)</Link></li>
 
                     <h3>Accounts</h3>

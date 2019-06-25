@@ -109,12 +109,12 @@ class Header extends Component {
                             <li className={currentPath === 'school-enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
                             <li className={(currentPath === 'school-news-management') || (currentPath === 'school-new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
                             <li className={(currentPath === 'school-activity-management') || (currentPath === 'school-new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-activity-management"}>活动管理</Link></li>
-                            <li className={(currentPath === 'school-resource-management')
-                                || (currentPath === 'school-resource-management')
+                            <li className={(currentPath === 'school-all-resource-management')
+                                || (currentPath === 'school-all-resource-management')
                                 || (currentPath === 'school-resource-management-homework')
                                 || (currentPath === 'school-new-material')
                                 || (currentPath === 'school-new-homework')
-                                || (currentPath === 'school-new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-resource-management"}>资源管理</Link></li>
+                                || (currentPath === 'school-new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源管理</Link></li>
                             <li className={currentPath === 'school-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alert"}>我的提醒 (6)</Link></li>
                             <li className={currentPath === 'school-report' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-report"}>项目报告</Link></li>
                             <li className={(currentPath === 'school-staff-account-information') || (currentPath === 'school-staff-new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-staff-account-management"}>账户管理</Link></li>

@@ -184,29 +184,29 @@ class Breadcrumb extends Component {
             }
 
             // School Resource Management
-            case 'school-resource-management': {
+            case 'school-all-resource-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>资源库管理</span></div>);
             }
             case 'school-resource-management-course': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resource-management"}>资源库管理</Link></span> > <span>课程教材</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源库管理</Link></span> > <span>课程教材</span></div>);
             }
             case 'school-resource-management-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resource-management"}>资源库管理</Link></span> > <span>课程作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源库管理</Link></span> > <span>课程作业</span></div>);
             }
             case 'school-resource-course': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-course"}>课程教材</Link></span> > <span>战略课程教材</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-course"}>课程教材</Link></span> > <span>战略课程教材</span></div>);
             }
             case 'school-resource-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-homework"}>课程作业</Link></span> > <span>战略课程作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-homework"}>课程作业</Link></span> > <span>战略课程作业</span></div>);
             }
             case 'school-new-material': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-course"}>课程教材</Link></span> > <span>新增教材</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-course"}>课程教材</Link></span> > <span>新增教材</span></div>);
             }
             case 'school-new-homework': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-homework"}>课程作业</Link></span> > <span>新增作业</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-homework"}>课程作业</Link></span> > <span>新增作业</span></div>);
             }
             case 'new-question': {
-                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-homework"}>课程作业</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-homework"}>战略课程作业</Link></span> > <span>新增问题</span></div>);
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源库管理</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-management-homework"}>课程作业</Link></span> > <span><Link to={"/" + i18n.language + "/school-resource-homework"}>战略课程作业</Link></span> > <span>新增问题</span></div>);
             }
 
             // School Alert
