@@ -3,7 +3,14 @@ import { clearLoginData } from '../../Util/AuthService';
 
 const initialState = {
 	auth: false,
-	token: null
+	token: null,
+	userInfo: {
+		"role": null,
+		"first_name": "",
+		"last_name": "",
+		"display_name": "",
+		"email": ""
+	}
 };
 
 const authReducer = (state = initialState, action) => {

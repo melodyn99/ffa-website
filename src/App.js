@@ -112,7 +112,7 @@ import SchoolActivityManagement from '././containers/03SCHOOL/05Activity/SchoolA
 import SchoolNewActivity from './containers/03SCHOOL/05Activity/SchoolNewActivity';
 
 // School Resource Management
-import SchoolResourceManagement from './containers/03SCHOOL/06Resource/SchoolResourceManagement';
+import SchoolAllResourceManagement from './containers/03SCHOOL/06Resource/SchoolAllResourceManagement';
 import SchoolResourceManagementCourse from './containers/03SCHOOL/06Resource/SchoolResourceManagementCourse';
 import SchoolResourceManagementHomework from './containers/03SCHOOL/06Resource/SchoolResourceManagementHomework';
 import SchoolResourceCourse from './containers/03SCHOOL/06Resource/SchoolResourceCourse';
@@ -386,8 +386,8 @@ class App extends Component {
                 }
 
                 // School Resource Management
-                case 'school-resource-management': { // OK
-                    return <SchoolResourceManagement />;
+                case 'school-all-resource-management': { // OK
+                    return <SchoolAllResourceManagement />;
                 }
 
                 case 'school-resource-management-course': { // OK
