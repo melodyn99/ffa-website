@@ -116,4 +116,9 @@ export const CommonStyles = theme => ({
             backgroundColor: '#be8915',
         },
     },
+    nthOfTypeRow: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background.default,
+        },
+    },
 });
