@@ -26,7 +26,7 @@ class General extends Component {
         // console.log(currentPath);
 
         return (
-            <div className="toolBar">
+            <div className={"toolBar" + (this.props.noMargin ? ' noMargin' : '')}>
                 {this.props.backButton &&
                     <Button
                         className={classes.greyButton}
@@ -46,6 +46,20 @@ class General extends Component {
                         className={classes.greyButton}
                         onClick={() => this.props.editButtonAction()}
                     >{this.props.editButtonText}</Button>
+                }
+
+                {this.props.uploadButton &&
+                    <Button
+                        className={classes.blueGreenButton}
+                        onClick={() => this.props.uploadButtonAction()}
+                    >{this.props.uploadButtonText}</Button>
+                }
+
+                {this.props.downloadButton &&
+                    <Button
+                        className={classes.greyButton}
+                        onClick={() => this.props.downloadButtonAction()}
+                    >{this.props.downloadButtonText}</Button>
                 }
 
                 {this.props.deleteButton &&

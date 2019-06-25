@@ -185,6 +185,8 @@
 		}
 
 		.toolBar { margin-bottom:20px; 
+			&.noMargin { margin:0; }
+
 			button { margin-left:10px; 
 				&:first-child { margin-left:0; } 
 			}

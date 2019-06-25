@@ -168,12 +168,12 @@ class SchoolCourseNote extends React.Component {
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-material'
+                                    backButtonActionUrl=''
 
                                     createButton={true}
                                     createButtonText="创建 (click)"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='school-course-new-note'
+                                    createButtonActionUrl='school-note-taking'
 
                                     editButton={true}
                                     editButtonText="编辑"
@@ -215,6 +215,7 @@ class SchoolCourseNote extends React.Component {
                                                         const isSelected = this.isSelected(n.id);
                                                         return (
                                                             <TableRow
+                                                                className={classes.nthOfTypeRow}
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
                                                                 onClick={() => this._tempDetail()}
