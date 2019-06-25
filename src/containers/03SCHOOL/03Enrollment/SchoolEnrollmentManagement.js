@@ -157,12 +157,12 @@ class SchoolEnrollmentManagement extends React.Component {
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
+                                    backButtonActionUrl='school-course-material'
 
                                     createButton={true}
                                     createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-materials'
+                                    createButtonActionUrl='new-school-course-material'
 
                                     editButton={true}
                                     editButtonText="编辑"

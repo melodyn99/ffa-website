@@ -16,7 +16,7 @@ function Sitemap(props) {
                     <h3>Courses Management</h3>
                     <li><Link to={'/' + i18n.language + '/school-all-courses'}>All Courses (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-course-preparations'}>Course Preparations (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-course-materials'}>Course Materials (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-course-material'}>Course Materials (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-course-work'}>Course Work (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-course-student-management'}>Course Student Management (done)</Link></li>
                     <li><Link to={'/' + i18n.language + '/school-course-student-management-attendance'}>Course Student Management Attendance (done)</Link></li>

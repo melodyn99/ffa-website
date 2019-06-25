@@ -159,7 +159,7 @@ class SchoolCourseWork extends React.Component {
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
+                                    backButtonActionUrl='school-course-material'
 
                                     createButton={true}
                                     createButtonText="添加"

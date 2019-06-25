@@ -303,16 +303,20 @@ class App extends Component {
 
                 /*** SCHOOL ***/
                 // School Course Management  
-                case 'school-all-course': {
+                case 'school-all-course': { // OK
                     return <SchoolAllCourse />;
                 }
-                case 'school-course-information': {
+                case 'school-course-information': { // OK
                     return <SchoolCourseInformation />
                 }
-                case 'school-course-preparation': {
+                case 'school-course-preparation': { // OK
                     return <SchoolCoursePreparation />;
                 }
-                case 'school-course-material': {
+                case 'school-seating-plan': { // OK
+                    return <SchoolSeatingPlan />;
+                }
+
+                case 'school-course-material': { // OK
                     return <SchoolCourseMaterial />;
                 }
                 case 'school-course-work': {
@@ -446,11 +450,6 @@ class App extends Component {
                 }
                 case 'school-new-note-content': {
                     return <SchoolNewNoteContent />
-                }
-
-                // Seating Plan
-                case 'school-seating-plan': {
-                    return <SchoolSeatingPlan />;
                 }
 
                 default: {

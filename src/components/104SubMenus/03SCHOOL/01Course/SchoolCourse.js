@@ -23,7 +23,7 @@ class SchoolCourse extends Component {
                 <ul className="clearfix">
                     <li><Link to={"/" + i18n.language + "/school-course-information"} className={currentPath === 'school-course-information' ? 'active' : ''}>课程资料</Link></li>
                     <li><Link to={"/" + i18n.language + "/school-course-preparation"} className={currentPath === 'school-course-preparation' ? 'active' : ''}>预先准备</Link></li>
-                    <li><Link to={"/" + i18n.language + "/school-course-materials"} className={currentPath === 'school-course-materials' ? 'active' : ''}>课程教材</Link></li>
+                    <li><Link to={"/" + i18n.language + "/school-course-material"} className={currentPath === 'school-course-material' ? 'active' : ''}>课程教材</Link></li>
                     <li><Link to={"/" + i18n.language + "/school-course-work"} className={currentPath === 'school-course-work' ? 'active' : ''}>课程作业</Link></li>
                     <li><Link to={"/" + i18n.language + "/school-course-student-management"} className={(currentPath === 'school-course-student-management') || (currentPath === 'school-course-student-management-attendance') || (currentPath === 'school-course-student-management-homework') ? 'active' : ''}>学生管理</Link></li>
                     <li><Link to={"/" + i18n.language + "/school-course-announcement"} className={currentPath === 'school-course-announcement' ? 'active' : ''}>课程公告</Link></li>

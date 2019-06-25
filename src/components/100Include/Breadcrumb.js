@@ -120,7 +120,7 @@ class Breadcrumb extends Component {
             case 'school-course-preparations': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>预先准备</span></div>);
             }
-            case 'school-course-materials': {
+            case 'school-course-material': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程教材</span></div>);
             }
             case 'school-course-work': {
