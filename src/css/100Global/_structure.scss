@@ -48,8 +48,15 @@
 .wrapper-topbar { position:fixed; top:0; width:100%; z-index:1000; background:#000; left:0; @include transition(0.1s);
 	&.active { left: 300px; @include transition(0.1s); }
 	
-	.topbar { width:100%; max-width:1640px; height:60px; margin:0 auto; padding:10px 20px; position:relative; color:#fff;
+	.topbar { width:100%; max-width:1640px; height:60px; margin:0 auto; padding:0px 20px; position:relative; color:#fff;
 		@media (max-width: 980px) { height:50px; } 
+		
+		.schoolSelector { height:60px; float:right; display:table;
+			@media (max-width: 980px) { display:none; } 
+			>div { display:table-cell; height:100%; vertical-align: middle; padding-left:20px;
+				select { min-width:280px; height:38px; background:#858484; border-color:#fff; color:#fff; }
+			}
+		}
 	}
 }
 
