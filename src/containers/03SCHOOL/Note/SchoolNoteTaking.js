@@ -35,11 +35,11 @@ import { autoScrollTop } from '../../../Util/ScrollToTop';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
-import { formatFileSizeToString, formatDate } from '../../../Util/CommonUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
+import ToolBar from '../../../components/105ToolBars/General';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../../data/03SCHOOL/01Course/SchoolNoteTaking';
@@ -171,44 +171,47 @@ class SchoolNoteTaking extends React.Component {
     }
 
     // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
+    _uploadButtonAction = () => {
+        console.log('upload button pressed');
     }
 
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
+    _downloadButtonAction = () => {
+        console.log('download button pressed');
     }
 
     _deleteButtonAction = () => {
         console.log('delete button pressed');
     }
 
-    _importButtonAction = () => {
-        console.log('import button pressed');
+    /* to move to Utils */
+    formatDocSize = (docSize) => {
+        let formatedResult = docSize + " KB";
+        if (docSize >= 102.4) {
+            formatedResult = docSize / 1024 + " MB";
+        } else if (docSize >= 104857.6) {
+            formatedResult = docSize / 1048576 + " GB";
+        }
+        return formatedResult;
     }
 
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
+    formatDate = (date) => {
+        let formatedDate = date;
+        let resultArray;
+        resultArray = date.split("/");
+        formatedDate = resultArray[0] + "年" + resultArray[1] + "月" + resultArray[2] + "日";
+        return formatedDate;
     }
 
     form = ({
-        // values,
+        // values, 
         errors, touched
-        // , handleChange
+        // , handleChange 
     }) => {
         const {
-            // i18n,
+            // i18n, 
             classes } = this.props;
         const {
-            // listNote,
+            // listNote, 
             data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -231,17 +234,31 @@ class SchoolNoteTaking extends React.Component {
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
 
-                    <Grid item xs={1} >
-                        <div className="bottomControl clearfix">
-                            记录文件
-                        </div>
-                    </Grid>
+                    <Grid item xs={1} >记录文件</Grid>
                     <Grid item xs={11} >
-                        <div className="bottomControl clearfix">
+                        <ToolBar
+                            noMargin={true}
+
+                            uploadButton={true}
+                            uploadButtonText="上载文件"
+                            uploadButtonAction={this._uploadButtonAction}
+                            uploadButtonActionUrl='school-course-preparations'
+
+                            downloadButton={true}
+                            downloadButtonText="下载"
+                            downloadButtonAction={this._downloadButtonAction}
+                            downloadButtonActionUrl='school-new-activity'
+
+                            deleteButton={true}
+                            deleteButtonText="刪除"
+                            deleteButtonAction={this._deleteButtonAction}
+                        />
+
+                        {/* <div className="bottomControl clearfix">
                             <Button type="submit" className={classes.blueGreenButton}>上载文件</Button>
                             <Button type="submit" className={classes.greyButton}>下载</Button>
                             <Button type="submit" className={classes.greyButton}>删除</Button>
-                        </div>
+                        </div> */}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -315,8 +332,8 @@ class SchoolNoteTaking extends React.Component {
                                                         // padding="none"
                                                         >{n.docName}</TableCell>
                                                         <TableCell>{n.teacher}</TableCell>
-                                                        <TableCell>{formatFileSizeToString(n.docSize)}</TableCell>
-                                                        <TableCell>{formatDate(n.createdDate)}</TableCell>
+                                                        <TableCell>{this.formatDocSize(n.docSize)}</TableCell>
+                                                        <TableCell>{this.formatDate(n.createdDate)}</TableCell>
                                                     </TableRow>
                                                 );
                                             })}
