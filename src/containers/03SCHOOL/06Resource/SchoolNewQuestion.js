@@ -103,7 +103,7 @@ class SchoolNewQuestion extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('school-resources-homework')}
+                        onClick={() => this.props.history.push('school-resource-homework')}
                     >取消</Button>
                     <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
                 </div>

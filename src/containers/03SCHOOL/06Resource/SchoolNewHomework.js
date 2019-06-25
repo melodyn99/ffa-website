@@ -99,10 +99,10 @@ class SchoolNewHomework extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('school-resources-management-homework')}
+                        onClick={() => this.props.history.push('school-resource-management-homework')}
                     >取消</Button>
                     <span className="right"><Button className={classes.blackButton}
-                        onClick={() => this.props.history.push('school-resources-homework')}
+                        onClick={() => this.props.history.push('school-resource-homework')}
                     >确认 (CLICK ME)</Button></span>
                 </div>
             </Form>

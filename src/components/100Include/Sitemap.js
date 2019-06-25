@@ -35,8 +35,8 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-activity-management'}>Activity Management (done)</Link></li>
 
                     <h3>Resource Management</h3>
-                    <li><Link to={'/' + i18n.language + '/school-resources-management'}>Resource Management Course (done)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-resources-management-homework'}>Resource Management Homework (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-resource-management'}>Resource Management Course (done)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-resource-management-homework'}>Resource Management Homework (done)</Link></li>
 
                     <h3>Accounts</h3>
                     <li><Link to={'/' + i18n.language + '/school-staff-related-course'}>Related Courses (done)</Link></li>
@@ -87,8 +87,8 @@ function Sitemap(props) {
                     <li><Link to={'/' + i18n.language + '/school-student-information'}>Student Information (Melody)</Link></li>
 
                     <h3>Resource Management</h3>
-                    <li><Link to={'/' + i18n.language + '/school-resources-course'}>Resource Course (Melody)</Link></li>
-                    <li><Link to={'/' + i18n.language + '/school-resources-homework'}>Resource Homework (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-resource-course'}>Resource Course (Melody)</Link></li>
+                    <li><Link to={'/' + i18n.language + '/school-resource-homework'}>Resource Homework (Melody)</Link></li>
 
                     <h3>Accounts</h3>
                     <li><Link to={'/' + i18n.language + '/school-staff-account-access'}>Account Access (Melody)</Link></li>

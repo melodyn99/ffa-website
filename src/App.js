@@ -389,19 +389,19 @@ class App extends Component {
                 }
 
                 // School Resource Management
-                case 'school-resources-management': {
+                case 'school-resource-management': {
                     return <SchoolResourceManagement />;
                 }
-                case 'school-resources-management-course': {
+                case 'school-resource-management-course': {
                     return <SchoolResourceManagementCourse />;
                 }
-                case 'school-resources-management-homework': {
+                case 'school-resource-management-homework': {
                     return <SchoolResourceManagementHomework />;
                 }
-                case 'school-resources-course': {
+                case 'school-resource-course': {
                     return <SchoolResourceCourse />;
                 }
-                case 'school-resources-homework': {
+                case 'school-resource-homework': {
                     return <SchoolResourceHomework />;
                 }
                 case 'school-new-material': {

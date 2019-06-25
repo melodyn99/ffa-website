@@ -45,7 +45,7 @@ function MobileMenu(props) {
 					<li><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/school-activity-management"}>活动管理</Link></li>
-					<li><Link to={"/" + i18n.language + "/resources-management"}>资源管理</Link></li>
+					<li><Link to={"/" + i18n.language + "/resource-management"}>资源管理</Link></li>
 					<li><Link to={"/" + i18n.language + "/school-alerts"}>我的提醒 (3)</Link></li>
 					<li><Link to={"/" + i18n.language + "/school-report"}>项目报告</Link></li>
 				</ul>

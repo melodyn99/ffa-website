@@ -54,8 +54,8 @@ class SchoolResourceManagement extends Component {
                             <div className="content">
                                 <p>This is All Resource Management</p>
                                 <p>REQUIRES MOCKUP</p>
-                                <p><Link to={"/" + i18n.language + "/school-resources-management-course"} className="dummy">Go to Resource Management Course</Link></p>
-                                <p><Link to={"/" + i18n.language + "/school-resources-management-homework"} className="dummy">Go to Resource Management Homework</Link></p>
+                                <p><Link to={"/" + i18n.language + "/school-resource-management-course"} className="dummy">Go to Resource Management Course</Link></p>
+                                <p><Link to={"/" + i18n.language + "/school-resource-management-homework"} className="dummy">Go to Resource Management Homework</Link></p>
                             </div>
                         </div>
 

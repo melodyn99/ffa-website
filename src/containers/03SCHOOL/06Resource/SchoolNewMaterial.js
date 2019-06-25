@@ -87,10 +87,10 @@ class SchoolNewMaterial extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('school-resources-management-course')}
+                        onClick={() => this.props.history.push('school-resource-management-course')}
                     >取消</Button>
                     <span className="right"><Button className={classes.blackButton}
-                        onClick={() => this.props.history.push('school-resources-course')}
+                        onClick={() => this.props.history.push('school-resource-course')}
                     >确认 (CLICK ME)</Button></span>
                 </div>
             </Form>
