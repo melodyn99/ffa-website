@@ -36,7 +36,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/06Resource/SchoolResource';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/06Resource/SchoolResourcesManagementHomework';
+import data from '../../../data/03SCHOOL/06Resource/SchoolResourceManagementHomework';
 
 // Define column names
 const rows = [
@@ -48,7 +48,7 @@ const rows = [
     { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class SchoolResourcesManagementHomework extends React.Component {
+class SchoolResourceManagementHomework extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -261,7 +261,7 @@ class SchoolResourcesManagementHomework extends React.Component {
     }
 }
 
-SchoolResourcesManagementHomework.propTypes = {
+SchoolResourceManagementHomework.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -276,4 +276,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolResourcesManagementHomework))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolResourceManagementHomework))));

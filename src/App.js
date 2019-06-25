@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import {Redirect} from 'react-router'; hello
+// import {Redirect} from 'react-router';
 import './css/App.scss';
 import { withTranslation } from 'react-i18next';
 
@@ -112,12 +112,12 @@ import SchoolNewNews from './containers/03SCHOOL/04News/SchoolNewNews';
 import SchoolActivityManagement from '././containers/03SCHOOL/05Activity/SchoolActivityManagement';
 import SchoolNewActivity from './containers/03SCHOOL/05Activity/SchoolNewActivity';
 
-// School Resources Management
-import SchoolResourcesManagement from './containers/03SCHOOL/06Resource/SchoolResourcesManagement';
-import SchoolResourcesManagementCourse from './containers/03SCHOOL/06Resource/SchoolResourcesManagementCourse';
-import SchoolResourcesManagementHomework from './containers/03SCHOOL/06Resource/SchoolResourcesManagementHomework';
-import SchoolResourcesCourse from './containers/03SCHOOL/06Resource/SchoolResourcesCourse';
-import SchoolResourcesHomework from './containers/03SCHOOL/06Resource/SchoolResourcesHomework';
+// School Resource Management
+import SchoolResourceManagement from './containers/03SCHOOL/06Resource/SchoolResourceManagement';
+import SchoolResourceManagementCourse from './containers/03SCHOOL/06Resource/SchoolResourceManagementCourse';
+import SchoolResourceManagementHomework from './containers/03SCHOOL/06Resource/SchoolResourceManagementHomework';
+import SchoolResourceCourse from './containers/03SCHOOL/06Resource/SchoolResourceCourse';
+import SchoolResourceHomework from './containers/03SCHOOL/06Resource/SchoolResourceHomework';
 import SchoolNewMaterial from './containers/03SCHOOL/06Resource/SchoolNewMaterial';
 import SchoolNewHomework from './containers/03SCHOOL/06Resource/SchoolNewHomework';
 import SchoolNewQuestion from './containers/03SCHOOL/06Resource/SchoolNewQuestion';
@@ -388,21 +388,21 @@ class App extends Component {
                     return <SchoolNewActivity />;
                 }
 
-                // School Resources Management
+                // School Resource Management
                 case 'school-resources-management': {
-                    return <SchoolResourcesManagement />;
+                    return <SchoolResourceManagement />;
                 }
                 case 'school-resources-management-course': {
-                    return <SchoolResourcesManagementCourse />;
+                    return <SchoolResourceManagementCourse />;
                 }
                 case 'school-resources-management-homework': {
-                    return <SchoolResourcesManagementHomework />;
+                    return <SchoolResourceManagementHomework />;
                 }
                 case 'school-resources-course': {
-                    return <SchoolResourcesCourse />;
+                    return <SchoolResourceCourse />;
                 }
                 case 'school-resources-homework': {
-                    return <SchoolResourcesHomework />;
+                    return <SchoolResourceHomework />;
                 }
                 case 'school-new-material': {
                     return <SchoolNewMaterial />;

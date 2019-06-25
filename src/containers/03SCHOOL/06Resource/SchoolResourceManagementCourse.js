@@ -10,7 +10,6 @@ import { withRouter } from 'react-router-dom';
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -34,19 +33,21 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
+import SubMenu from '../../../components/104SubMenus/03SCHOOL/06Resource/SchoolResource';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/06Resource/SchoolResourcesHomework';
+import data from '../../../data/03SCHOOL/06Resource/SchoolResourceManagementCourse';
 
 // Define column names
 const rows = [
-    { id: 'number', numeric: false, disablePadding: false, label: '#' },
-    { id: 'question', numeric: true, disablePadding: false, label: '问题' },
-    { id: 'score', numeric: true, disablePadding: false, label: '分数' },
-    { id: 'lastDate', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'material', numeric: false, disablePadding: false, label: '课程教材' },
+    { id: 'subject', numeric: true, disablePadding: false, label: '学科' },
+    { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
+    { id: 'file', numeric: true, disablePadding: false, label: '文件' },
+    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class SchoolResourcesHomework extends React.Component {
+class SchoolResourceManagementCourse extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'calories',
@@ -149,18 +150,20 @@ class SchoolResourcesHomework extends React.Component {
 
                         <div className="wrapper-content">
                             <BreadCrumb />
+                            <SubMenu />
 
                             <div className="content">
-                            <ToolBar
+
+                                <ToolBar
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
+                                    backButtonActionUrl='school-course-student-management'
 
                                     createButton={true}
                                     createButtonText="创建 (CLICK ME)"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='school-new-question'
+                                    createButtonActionUrl='school-new-material'
 
                                     editButton={true}
                                     editButtonText="编辑"
@@ -170,8 +173,8 @@ class SchoolResourcesHomework extends React.Component {
                                     deleteButtonText="删除"
                                     deleteButtonAction={this._deleteButtonAction}
 
-                                    importButton={true}
-                                    importButtonText="导入csv"
+                                    importButton={false}
+                                    importButtonText="导入名单"
                                     importButtonAction={this._importButtonAction}
 
                                     copyButton={false}
@@ -179,9 +182,10 @@ class SchoolResourcesHomework extends React.Component {
                                     copyButtonAction={this._copyButtonAction}
 
                                     reportButton={false}
-                                    reportButtonText="报名报告"
+                                    reportButtonText="学生报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -215,16 +219,17 @@ class SchoolResourcesHomework extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.number}</TableCell>
-                                                                <TableCell>{n.question}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.lastDate}</TableCell>
+                                                                >{n.material}</TableCell>
+                                                                <TableCell>{n.subject}</TableCell>
+                                                                <TableCell>{n.teacher}</TableCell>
+                                                                <TableCell>{n.file}</TableCell>
+                                                                <TableCell>{n.lastdate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={4} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -245,9 +250,6 @@ class SchoolResourcesHomework extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
-                                <div className="bottomControl clearfix">
-                                    <span className="right"><Button type="submit" className={classes.greyButton}>编辑文件夹</Button></span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -257,7 +259,7 @@ class SchoolResourcesHomework extends React.Component {
     }
 }
 
-SchoolResourcesHomework.propTypes = {
+SchoolResourceManagementCourse.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -272,4 +274,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolResourcesHomework))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolResourceManagementCourse))));

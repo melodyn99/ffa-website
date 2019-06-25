@@ -183,7 +183,7 @@ class Breadcrumb extends Component {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>活动管理</span></div>);
             }
 
-            // School Resources Management
+            // School Resource Management
             case 'school-resources-management': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span>资源库管理</span></div>);
             }
