@@ -10,9 +10,6 @@ import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
-// Material UI
-import Grid from '@material-ui/core/Grid';
-
 // Redux
 import { connect } from 'react-redux';
 

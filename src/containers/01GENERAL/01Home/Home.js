@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -69,7 +69,7 @@ class Home extends Component {
     }
 
     render() {
-        const { i18n } = this.props;
+        // const { i18n } = this.props;
 
         return (
             <div>
