@@ -425,20 +425,20 @@ class App extends Component {
                 }
 
                 // School Account
-                case 'school-staff-related-course': {
-                    return <SchoolStaffRelatedCourse />;
-                }
                 case 'school-staff-account-management': {
                     return <SchoolAllStaffAccountManagement />;
                 }
-                case 'school-staff-new-account': {
-                    return <SchoolStaffNewAccount />
+                case 'school-staff-account-information': {
+                    return <SchoolStaffAccountInformation />
+                }
+                case 'school-staff-related-course': {
+                    return <SchoolStaffRelatedCourse />;
                 }
                 case 'school-staff-account-access': {
                     return <SchoolStaffAccountAccess />
                 }
-                case 'school-staff-account-information': {
-                    return <SchoolStaffAccountInformation />
+                case 'school-staff-new-account': {
+                    return <SchoolStaffNewAccount />
                 }
 
                 // Note

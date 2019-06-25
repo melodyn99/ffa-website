@@ -67,7 +67,7 @@ function Cluster(props) {
     return (rows);
 }
 
-class StudentCourseDate extends React.Component {
+class StudentAlert extends React.Component {
 
     constructor(props) {
         super(props);
@@ -116,7 +116,7 @@ class StudentCourseDate extends React.Component {
     }
 }
 
-StudentCourseDate.propTypes = {
+StudentAlert.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -131,4 +131,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentCourseDate)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentAlert)));

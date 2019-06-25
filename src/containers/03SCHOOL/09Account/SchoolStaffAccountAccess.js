@@ -37,7 +37,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/09Account/SchoolStaffAccountManagement';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
-class UserAccess extends React.Component {
+class SchoolStaffAccountAccess extends React.Component {
 
     render() {
         return (
@@ -72,7 +72,7 @@ class UserAccess extends React.Component {
     }
 }
 
-UserAccess.propTypes = {
+SchoolStaffAccountAccess.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -87,4 +87,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(UserAccess)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolStaffAccountAccess)));
