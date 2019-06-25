@@ -198,20 +198,20 @@ class SchoolNoteTaking extends React.Component {
         console.log('report button pressed');
     }
 
-    formatDocSize = ( docSize ) =>{
-        let formatedResult = docSize+" KB";
-        if(docSize >= 102.4){
-            formatedResult = docSize / 1024 +" MB";
-        }else if(docSize >= 104857.6){
-            formatedResult = docSize / 1048576+" GB";
+    formatDocSize = (docSize) => {
+        let formatedResult = docSize + " KB";
+        if (docSize >= 102.4) {
+            formatedResult = docSize / 1024 + " MB";
+        } else if (docSize >= 104857.6) {
+            formatedResult = docSize / 1048576 + " GB";
         }
         return formatedResult;
     }
-    formatDate = ( date ) =>{
+    formatDate = (date) => {
         let formatedDate = date;
         let resultArray;
         resultArray = date.split("/");
-        formatedDate = resultArray[0]+"年" + resultArray[1]+"月" + resultArray[2]+"日";
+        formatedDate = resultArray[0] + "年" + resultArray[1] + "月" + resultArray[2] + "日";
         return formatedDate;
     }
     //scroll list*/
@@ -241,8 +241,10 @@ class SchoolNoteTaking extends React.Component {
                     </Grid>
 
                     <Grid item xs={1} >
-                        记录文件
-                        </Grid>
+                        <div className="bottomControl clearfix">
+                            记录文件
+                        </div>
+                    </Grid>
                     <Grid item xs={11} >
                         <div className="bottomControl clearfix">
                             <Button type="submit" className={classes.blueGreenButton}>上载文件</Button>
@@ -286,75 +288,76 @@ class SchoolNoteTaking extends React.Component {
                             </List>
                         </div> */}
                         <Paper className={classes.paper}>
-                                    <div className={classes.tableWrapper}>
-                                        <Table className={classes.table} aria-labelledby="tableTitle">
-                                            <EnhancedTableHead
-                                                numSelected={selected.length}
-                                                order={order}
-                                                orderBy={orderBy}
-                                                onSelectAllClick={this.handleSelectAllClick}
-                                                onRequestSort={this.handleRequestSort}
-                                                rowCount={data.length}
-                                                rows={rows}
-                                            />
-                                            <TableBody>
-                                                {data
-                                                    .sort(getSorting(order, orderBy))
-                                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                                    .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
-                                                        return (
-                                                            <TableRow
-                                                                hover
-                                                                // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail()}
-                                                                role="checkbox"
-                                                                aria-checked={isSelected}
-                                                                tabIndex={-1}
-                                                                key={n.id}
-                                                                selected={isSelected}
-                                                            >
-                                                                {/* <TableCell padding="checkbox">
+                            <div className={classes.tableWrapper}>
+                                <Table className={classes.table} aria-labelledby="tableTitle">
+                                    <EnhancedTableHead
+                                        numSelected={selected.length}
+                                        order={order}
+                                        orderBy={orderBy}
+                                        onSelectAllClick={this.handleSelectAllClick}
+                                        onRequestSort={this.handleRequestSort}
+                                        rowCount={data.length}
+                                        rows={rows}
+                                    />
+                                    <TableBody>
+                                        {data
+                                            .sort(getSorting(order, orderBy))
+                                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                            .map(n => {
+                                                const isSelected = this.isSelected(n.id);
+                                                return (
+                                                    <TableRow
+                                                        className={classes.nthOfTypeRow}
+                                                        hover
+                                                        // onClick={event => this.handleClick(event, n.id)}
+                                                        onClick={() => this._tempDetail()}
+                                                        role="checkbox"
+                                                        aria-checked={isSelected}
+                                                        tabIndex={-1}
+                                                        key={n.id}
+                                                        selected={isSelected}
+                                                    >
+                                                        {/* <TableCell padding="checkbox">
                                                                     <Checkbox checked={isSelected} />
                                                                 </TableCell> */}
-                                                                <TableCell component="th" scope="row"
-                                                                // padding="none"
-                                                                >{n.docName}</TableCell>
-                                                                <TableCell>{n.teacher}</TableCell>
-                                                                <TableCell>{this.formatDocSize(n.docSize)}</TableCell>
-                                                                <TableCell>{this.formatDate(n.createdDate)}</TableCell>
-                                                            </TableRow>
-                                                        );
-                                                    })}
-                                                {emptyRows > 0 && (
-                                                    <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={3} />
+                                                        <TableCell component="th" scope="row"
+                                                        // padding="none"
+                                                        >{n.docName}</TableCell>
+                                                        <TableCell>{n.teacher}</TableCell>
+                                                        <TableCell>{this.formatDocSize(n.docSize)}</TableCell>
+                                                        <TableCell>{this.formatDate(n.createdDate)}</TableCell>
                                                     </TableRow>
-                                                )}
-                                            </TableBody>
-                                        </Table>
-                                    </div>
-                                    <TablePagination
-                                        component="div"
-                                        count={data.length}
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        backIconButtonProps={{
-                                            'aria-label': 'Previous Page',
-                                        }}
-                                        nextIconButtonProps={{
-                                            'aria-label': 'Next Page',
-                                        }}
-                                        onChangePage={this.handleChangePage}
-                                        onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                                    />
-                                </Paper>
+                                                );
+                                            })}
+                                        {emptyRows > 0 && (
+                                            <TableRow style={{ height: 49 * emptyRows }}>
+                                                <TableCell colSpan={4} />
+                                            </TableRow>
+                                        )}
+                                    </TableBody>
+                                </Table>
+                            </div>
+                            <TablePagination
+                                component="div"
+                                count={data.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                backIconButtonProps={{
+                                    'aria-label': 'Previous Page',
+                                }}
+                                nextIconButtonProps={{
+                                    'aria-label': 'Next Page',
+                                }}
+                                onChangePage={this.handleChangePage}
+                                onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                            />
+                        </Paper>
                     </Grid>
 
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        // onClick={() => this.props.history.push('school-course-note')}
+                    // onClick={() => this.props.history.push('school-course-note')}
                     >取消</Button>
                     <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
                 </div>
