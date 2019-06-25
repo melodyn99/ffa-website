@@ -64,8 +64,8 @@ class Header extends Component {
                     </h1>
 
                     <ul className={"desktop-menu clearfix" + (currentPath !== '' && typeof currentPath !== 'undefined' ? ' general' : '')}>
-                        <li className={(currentPath === 'admission-process') 
-                            || (currentPath === 'login-with-register') 
+                        <li className={(currentPath === 'admission-process')
+                            || (currentPath === 'login-with-register')
                             || (currentPath === 'admission-subject-catalog')
                             || (currentPath === 'admission-course-catalog')
                             || (currentPath === 'admission-course-information') ? 'active' : ''}><Link to={"/" + i18n.language + "/admission-process"}>入学</Link>
@@ -110,10 +110,10 @@ class Header extends Component {
                                 || (currentPath === 'student-course-information')
                                 || (currentPath === 'student-course-date')
                                 || (currentPath === 'student-course-announcement') ? 'active' : ''}><Link to={"/" + i18n.language + "/student-scheduling"}>我的课程</Link></li>
-                            <li className={(currentPath === 'student-enrollment-history') 
+                            <li className={(currentPath === 'student-enrollment-history')
                                 || (currentPath === 'student-enrollment-history-form')
                                 || (currentPath === 'student-enrollment-history-detail')
-                                || (currentPath === 'student-enrollment-history-cancel-form') 
+                                || (currentPath === 'student-enrollment-history-cancel-form')
                                 || (currentPath === 'student-enrollment-history-cancel-request')
                                 || (currentPath === 'student-enrollment-history-cancelled') ? 'active' : ''}><Link to={"/" + i18n.language + "/student-enrollment-history"}>我的报名</Link></li>
                             <li className={currentPath === 'student-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-alert"}>我的提醒</Link></li>
@@ -137,7 +137,7 @@ class Header extends Component {
                                 || (currentPath === 'school-course-note')
                                 || (currentPath === 'school-course-new-note')
                                 || (currentPath === 'school-course-assessment') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></li>
-                            <li className={(currentPath === 'school-all-student-management') 
+                            <li className={(currentPath === 'school-all-student-management')
                                 || (currentPath === 'school-student-information')
                                 || (currentPath === 'school-student-related-course')
                                 || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-student-management"}>学生管理</Link></li>
@@ -155,7 +155,7 @@ class Header extends Component {
                                 || (currentPath === 'school-new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-resource-management"}>资源管理</Link></li>
                             <li className={currentPath === 'school-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alert"}>我的提醒 (6)</Link></li>
                             <li className={currentPath === 'school-report' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-report"}>项目报告</Link></li>
-                            <li className={(currentPath === 'school-staff-account-information') 
+                            <li className={(currentPath === 'school-staff-account-information')
                                 || (currentPath === 'school-all-staff-account-management')
                                 || (currentPath === 'school-staff-related-course')
                                 || (currentPath === 'school-staff-account-access')
