@@ -83,7 +83,7 @@ class Home extends Component {
                             <Grid item xs={4}>
                             </Grid>
                             <Grid item xs={8}>
-                                <Link to={"/" + i18n.language + "/home-images"} className="dummy1">Go to Home Images page</Link>
+                                {/* <Link to={"/" + i18n.language + "/home-images"} className="dummy1">Go to Home Images page</Link> */}
                             </Grid>
                         </Grid>
                     </div>
