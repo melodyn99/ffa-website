@@ -64,7 +64,11 @@ class Header extends Component {
                     </h1>
 
                     <ul className={"desktop-menu clearfix" + (currentPath !== '' && typeof currentPath !== 'undefined' ? ' general' : '')}>
-                        <li className={(currentPath === 'admission-process') ? 'active' : ''}><Link to={"/" + i18n.language + "/admission-process"}>入学</Link>
+                        <li className={(currentPath === 'admission-process') 
+                            || (currentPath === 'login-with-register') 
+                            || (currentPath === 'admission-subject-catalog')
+                            || (currentPath === 'admission-course-catalog')
+                            || (currentPath === 'admission-course-information') ? 'active' : ''}><Link to={"/" + i18n.language + "/admission-process"}>入学</Link>
                             <ul className="first">
                                 <div className="arrow">need image</div>
                                 <div className="wrap">
@@ -96,28 +100,65 @@ class Header extends Component {
                     </ul>
                     {(currentPath !== '' && typeof currentPath !== 'undefined') &&
                         <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' student' : '')}>
-                            <li className={currentPath === 'student-register-personal-information' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-register-personal-information"}>报名申请</Link></li>
-                            <li className={currentPath === 'student-scheduling' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-scheduling"}>我的课程</Link></li>
-                            <li className={currentPath === 'student-enrollment-history' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-enrollment-history"}>我的报名</Link></li>
+                            <li className={(currentPath === 'student-register-personal-information')
+                                || (currentPath === 'student-register')
+                                || (currentPath === 'student-register-document-upload')
+                                || (currentPath === 'student-register-questionnaire')
+                                || (currentPath === 'student-register-fee')
+                                || (currentPath === 'student-register-notification') ? 'active' : ''}><Link to={"/" + i18n.language + "/student-register-personal-information"}>报名申请</Link></li>
+                            <li className={(currentPath === 'student-scheduling')
+                                || (currentPath === 'student-course-information')
+                                || (currentPath === 'student-course-date')
+                                || (currentPath === 'student-course-announcement') ? 'active' : ''}><Link to={"/" + i18n.language + "/student-scheduling"}>我的课程</Link></li>
+                            <li className={(currentPath === 'student-enrollment-history') 
+                                || (currentPath === 'student-enrollment-history-form')
+                                || (currentPath === 'student-enrollment-history-detail')
+                                || (currentPath === 'student-enrollment-history-cancel-form') 
+                                || (currentPath === 'student-enrollment-history-cancel-request')
+                                || (currentPath === 'student-enrollment-history-cancelled') ? 'active' : ''}><Link to={"/" + i18n.language + "/student-enrollment-history"}>我的报名</Link></li>
                             <li className={currentPath === 'student-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/student-alert"}>我的提醒</Link></li>
                         </ul>
                     }
                     {(currentPath !== '' && typeof currentPath !== 'undefined') &&
                         <ul className={"desktop-menu clearfix" + (currentPath !== '' ? ' school' : '')}>
-                            <li className={currentPath === 'school-all-course' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></li>
-                            <li className={(currentPath === 'school-all-student-management') || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-student-management"}>学生管理</Link></li>
+                            <li className={(currentPath === 'school-all-course')
+                                || (currentPath === 'school-course-information')
+                                || (currentPath === 'school-course-preparation')
+                                || (currentPath === 'school-course-announcement')
+                                || (currentPath === 'school-seating-plan')
+                                || (currentPath === 'school-course-material')
+                                || (currentPath === 'school-course-work')
+                                || (currentPath === 'school-course-student-management')
+                                || (currentPath === 'school-course-student-management-attendance')
+                                || (currentPath === 'school-course-student-management-homework')
+                                || (currentPath === 'school-course-announcement')
+                                || (currentPath === 'school-course-q-and-a')
+                                || (currentPath === 'school-course-reply-q-and-a')
+                                || (currentPath === 'school-course-note')
+                                || (currentPath === 'school-course-new-note')
+                                || (currentPath === 'school-course-assessment') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></li>
+                            <li className={(currentPath === 'school-all-student-management') 
+                                || (currentPath === 'school-student-information')
+                                || (currentPath === 'school-student-related-course')
+                                || (currentPath === 'school-new-student') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-student-management"}>学生管理</Link></li>
                             <li className={currentPath === 'school-enrollment-management' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-enrollment-management"}>报名管理</Link></li>
                             <li className={(currentPath === 'school-news-management') || (currentPath === 'school-new-news') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-news-management"}>新闻管理</Link></li>
                             <li className={(currentPath === 'school-activity-management') || (currentPath === 'school-new-activity') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-activity-management"}>活动管理</Link></li>
                             <li className={(currentPath === 'school-resource-management')
-                                || (currentPath === 'school-resource-management')
+                                || (currentPath === 'school-resource-management-course')
                                 || (currentPath === 'school-resource-management-homework')
+                                || (currentPath === 'school-resource-course')
+                                || (currentPath === 'school-resource-homework')
                                 || (currentPath === 'school-new-material')
                                 || (currentPath === 'school-new-homework')
                                 || (currentPath === 'school-new-question') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-resource-management"}>资源管理</Link></li>
                             <li className={currentPath === 'school-alert' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-alert"}>我的提醒 (6)</Link></li>
                             <li className={currentPath === 'school-report' ? 'active' : ''}><Link to={"/" + i18n.language + "/school-report"}>项目报告</Link></li>
-                            <li className={(currentPath === 'school-staff-account-information') || (currentPath === 'school-staff-new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-staff-account-management"}>账户管理</Link></li>
+                            <li className={(currentPath === 'school-staff-account-information') 
+                                || (currentPath === 'school-all-staff-account-management')
+                                || (currentPath === 'school-staff-related-course')
+                                || (currentPath === 'school-staff-account-access')
+                                || (currentPath === 'school-staff-new-account') ? 'active' : ''}><Link to={"/" + i18n.language + "/school-all-staff-account-management"}>账户管理</Link></li>
                         </ul>
                     }
 
