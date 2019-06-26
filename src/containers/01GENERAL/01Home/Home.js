@@ -1,5 +1,6 @@
 // Essential for all components
 import React, { Component } from 'react';
+import Slider from "react-slick";
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
@@ -70,6 +71,13 @@ class Home extends Component {
 
     render() {
         // const { i18n } = this.props;
+        var settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
 
         return (
             <div>
@@ -83,6 +91,22 @@ class Home extends Component {
                             </Grid>
                             <Grid item xs={8}>
                                 {/* <Link to={"/" + i18n.language + "/home-images"} className="dummy1">Go to Home Images page</Link> */}
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Slider {...settings}>
+                                    <div>
+                                        <img src={require('../../../images/600-400.png')} alt="" />
+                                    </div>
+                                    <div>
+                                        <img src={require('../../../images/600-400.png')} alt="" />
+                                    </div>
+                                    <div>
+                                        <img src={require('../../../images/600-400.png')} alt="" />
+                                    </div>
+                                    <div>
+                                        <img src={require('../../../images/600-400.png')} alt="" />
+                                    </div>
+                                </Slider>
                             </Grid>
                         </Grid>
                     </div>

@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 function Footer(props) {
-	// const { t, i18n } = props;
+	const { i18n } = props;
 
 	return (
 		<div className="wrapper-footer">
 			<div className="footer">
 				<ul className="clearfix">
 					<li>
-						<Link to={"/"}>联系我们</Link>
+						<Link to={"/" + i18n + "/contact-us"}>联系我们</Link>
 					</li>
 					<li>
-						<Link to={"/"}>隐私政策</Link>
+						<Link to={"/" + i18n + "/privacy-policy"}>隐私政策</Link>
 					</li>
 					<li>
-						<Link to={"/"}>版权和免责声明</Link>
+						<Link to={"/" + i18n + "/copyright"}>版权和免责声明</Link>
 					</li>
 				</ul>
 				<div className="copyright">
