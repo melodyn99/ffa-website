@@ -120,5 +120,13 @@ export const CommonStyles = theme => ({
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.background.default,
         },
+        '&:hover': {
+            backgroundColor: 'rgba(163, 211, 253, 0.8) !important',
+        },
+    },
+    selectedRow: {
+        '&:nth-of-type(n)': {
+            backgroundColor: 'rgba(163, 211, 253, 0.8)',
+        },
     },
 });

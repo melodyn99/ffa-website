@@ -133,23 +133,23 @@ class SchoolNoteTaking extends React.Component {
     };
 
     handleClick = (event, id) => {
-        const { selected } = this.state;
-        const selectedIndex = selected.indexOf(id);
+        // const { selected } = this.state;
+        // const selectedIndex = selected.indexOf(id);
         let newSelected = [];
 
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-
+        // if (selectedIndex === -1) {
+        //     newSelected = newSelected.concat(selected, id);
+        // } else if (selectedIndex === 0) {
+        //     newSelected = newSelected.concat(selected.slice(1));
+        // } else if (selectedIndex === selected.length - 1) {
+        //     newSelected = newSelected.concat(selected.slice(0, -1));
+        // } else if (selectedIndex > 0) {
+        //     newSelected = newSelected.concat(
+        //         selected.slice(0, selectedIndex),
+        //         selected.slice(selectedIndex + 1),
+        //     );
+        // }
+        newSelected.push(id);
         this.setState({ selected: newSelected });
     };
 
@@ -161,15 +161,19 @@ class SchoolNoteTaking extends React.Component {
         this.setState({ rowsPerPage: event.target.value });
     };
 
-    isSelected = id => this.state.selected.indexOf(id) !== -1;
+    // isSelected = id => this.state.selected.indexOf(id) !== -1;
+    isSelected = id => {
+        return this.state.selected[0] === id;
+    }
+
     /** Material UI table style end  **/
 
-    _tempDetail = () => {
-        this.setState({
-            ...this.state,
-            tempGoDetail: true
-        });
-    }
+    // _tempDetail = () => {
+    //     this.setState({
+    //         ...this.state,
+    //         tempGoDetail: true
+    //     });
+    // }
 
     // ToolBar
     _uploadButtonAction = () => {
@@ -185,15 +189,15 @@ class SchoolNoteTaking extends React.Component {
     }
 
     form = ({
-        // values, 
+        // values,
         errors, touched
-        // , handleChange 
+        // , handleChange
     }) => {
         const {
-            // i18n, 
+            // i18n,
             classes } = this.props;
         const {
-            // listNote, 
+            // listNote,
             data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -297,10 +301,9 @@ class SchoolNoteTaking extends React.Component {
                                                 const isSelected = this.isSelected(n.id);
                                                 return (
                                                     <TableRow
-                                                        className={classes.nthOfTypeRow}
+                                                        className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                         hover
-                                                        // onClick={event => this.handleClick(event, n.id)}
-                                                        onClick={() => this._tempDetail()}
+                                                        onClick={event => this.handleClick(event, n.id)}
                                                         role="checkbox"
                                                         aria-checked={isSelected}
                                                         tabIndex={-1}
