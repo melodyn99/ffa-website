@@ -33,9 +33,45 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
+import ListType5 from '../../../components/102Grids/ListType5';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
+function Block(props) {
+    return (
+        <ListType5
+            name={props.name}
+            content={props.content}
+        />
+    )
+}
+
+function Cluster(props) {
+    let rows = [];
+    for (let i = 0; i < 3; i++) {
+        rows.push(
+            <div key={i}>
+                <div className="align-center">4分钟前</div>
+                <Block
+                    key={i}
+                    name={props.name}
+                    content={props.content}
+                />
+                <div className="sep-10"></div>
+            </div>
+        )
+    }
+    return (rows);
+}
+
 class SchoolCourseAnnouncement extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            name: ['彭'],
+            content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
+        }
+    }
 
     render() {
         return (
@@ -50,8 +86,10 @@ class SchoolCourseAnnouncement extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-                                This is Course Announcement
-                            </div>
+                                <Cluster
+                                    name={this.state.name}
+                                    content={this.state.content}
+                            /></div>
                         </div>
                     </div>
                 </div>

@@ -33,3 +33,34 @@
         h6 { color:black; font-size:20px; display:block; }
     }
 }
+
+// ListType4
+.ListType4 { 
+    .LeftColumn { padding-top:5px;
+        h2 { background:navy; color:white; font-size:20px; text-align:center; padding:10px; border-radius:25px; }
+    }
+    .RightColumn { position:relative; padding:5px; 
+        h2 { background:blue; color:white; font-size:14px; padding:10px; border-radius:15px }
+    }
+}
+
+// ListType5
+.ListType5 { 
+    .LeftColumn { position:relative; padding:5px; 
+        h2 { background:blue; color:white; font-size:14px; padding:10px; border-radius:15px }
+    }
+    .RightColumn { padding-top:5px;
+        h2 { background:navy; color:white; font-size:20px; text-align:center; padding:10px; border-radius:25px; }
+    }
+}
+
+// ListType6
+.ListType6 {
+    .LeftColumn { padding-top:40px;
+        h2 { background:lightgrey; color:lightgrey; font-size:20px; text-align:center; padding:10px; border-radius:25px; }
+    }
+    .RightColumn { position:relative; padding:5px; 
+        h1 { font-size:10px; color:grey; padding-left:10px}
+        h2 { background:lightgrey; color:black; font-size:14px; padding:10px; border-radius:15px }
+    }
+}

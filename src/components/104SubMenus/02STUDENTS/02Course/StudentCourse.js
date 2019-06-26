@@ -23,7 +23,7 @@ class StudentCourse extends Component {
                 <ul className="clearfix">
                     <li><Link to={"/" + i18n.language + "/student-course-information"} className={currentPath === 'student-course-information' ? 'active' : ''}>课程资料</Link></li>
                     <li><Link to={"/" + i18n.language + "/student-course-date"} className={currentPath === 'student-course-date' ? 'active' : ''}>课程日期</Link></li>
-                    <li><Link to={"/" + i18n.language + "/student-course-announcement"} className={currentPath === 'student-school-course-announcements' ? 'active' : ''}>课程公告</Link></li>
+                    <li><Link to={"/" + i18n.language + "/student-course-announcement"} className={currentPath === 'student-course-announcements' ? 'active' : ''}>课程公告</Link></li>
                 </ul>
             </div>
         );

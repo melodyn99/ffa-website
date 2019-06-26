@@ -22,6 +22,7 @@ import * as HelperMobileHandle from './utils/00JqueryControl/MobileHandle';
 // Home
 import Home from './containers/01GENERAL/01Home/Home';
 import HomeImages from './containers/01GENERAL/01Home/HomeImages';
+import HomeSlide from './containers/01GENERAL/01Home/HomeSlide';
 
 // Login
 import LoginWithRegister from './containers/01GENERAL/02Login/LoginWithRegister';
@@ -185,6 +186,9 @@ class App extends Component {
                 }
                 case 'home-images': { // OK
                     return <HomeImages />;
+                }
+                case 'home-slide': {
+                    return <HomeSlide />;
                 }
 
                 // Login
