@@ -39,6 +39,7 @@ import ListType4 from '../../../components/102Grids/ListType4';
 function Block(props) {
     return (
         <ListType4
+            role={props.role}
             name={props.name}
             content={props.content}
         />
@@ -47,19 +48,30 @@ function Block(props) {
 
 function Cluster(props) {
     let rows = [];
-    for (let i = 0; i < 3; i++) {
-        rows.push(
-            <div key={i}>
-                <div className="align-center">4分钟前</div>
-                <div className="sep-10"></div>
-                <Block
-                    key={i}
-                    name={props.name}
-                    content={props.content}
-                />
-                <div className="sep-10"></div>
-            </div>
-        )
+    for (let i = 0; i < 5; i++) {
+        if (i % 2 === 0) {
+            rows.push(
+                <div key={i}>
+                    <Block
+                        key={i}
+                        role='me'
+                        name={props.name}
+                        content={props.content}
+                    />
+                </div>
+            )
+        } else {
+            rows.push(
+                <div key={i}>
+                    <Block
+                        key={i}
+                        role='they'
+                        name={props.name}
+                        content={props.content}
+                    />
+                </div>
+            )
+        }
     }
     return (rows);
 }
