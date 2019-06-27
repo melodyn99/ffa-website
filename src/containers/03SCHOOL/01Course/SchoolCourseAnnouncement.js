@@ -33,12 +33,12 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
-import ListType5 from '../../../components/102Grids/ListType5';
+import ListType4 from '../../../components/102Grids/ListType4';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
 function Block(props) {
     return (
-        <ListType5
+        <ListType4
             name={props.name}
             content={props.content}
         />
@@ -90,7 +90,7 @@ class SchoolCourseAnnouncement extends React.Component {
                                 <Cluster
                                     name={this.state.name}
                                     content={this.state.content}
-                            /></div>
+                                /></div>
                         </div>
                     </div>
                 </div>

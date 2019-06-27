@@ -35,23 +35,12 @@ import { connect } from 'react-redux';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
-import ListType5 from '../../../components/102Grids/ListType5';
-import ListType6 from '../../../components/102Grids/ListType6';
+import ListType4 from '../../../components/102Grids/ListType4';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
-function Block1(props) {
+function Block(props) {
     return (
-        <ListType6
-            null={props.null}
-            studentName={props.studentName}
-            studentContent={props.studentContent}
-        />
-    )
-}
-
-function Block2(props) {
-    return (
-        <ListType5
+        <ListType4
             name={props.name}
             content={props.content}
         />
@@ -60,34 +49,18 @@ function Block2(props) {
 
 function Cluster(props) {
     let rows = [];
-    for (let i = 0; i < 3 ; i++) {
-        if (i%2 === 0) {
-            rows.push(
-                <div key={i}>
-                    <div className="align-center">Today at 9:30AM</div>
-                    <Block1
-                        key={i}
-                        null={props.null}
-                        studentName={props.studentName}
-                        studentContent={props.studentContent}
-                    />
-                    <div className="sep-10"></div>
-                </div>
-            )
-        }
-        if (i%2 === 1) {
-            rows.push(
-                <div key={i}>
-                    <div className="align-center">Today at 10:30AM</div>
-                    <Block2
-                        key={i}
-                        name={props.name}
-                        content={props.content}
-                    />
-                    <div className="sep-10"></div>
-                </div>
-            )
-        }
+    for (let i = 0; i < 5; i++) {
+        rows.push(
+            <div key={i}>
+                <div className="align-center">Today at 9:30AM</div>
+                <Block
+                    key={i}
+                    name={props.name}
+                    content={props.content}
+                />
+                <div className="sep-10"></div>
+            </div>
+        )
     }
     return (rows);
 }
@@ -97,11 +70,8 @@ class SchoolCourseReplyQandA extends React.Component {
         super(props);
 
         this.state = {
-            null: ['a'],
-            studentName: ['陈大文（学生）'],
-            studentContent: ['abcabacababcabc', '123456789012345'],
             name: ['彭'],
-            content: ['abcabcabcabcabc']
+            content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
         }
     }
 
