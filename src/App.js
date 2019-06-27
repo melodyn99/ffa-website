@@ -47,6 +47,11 @@ import NewsDetail from './containers/01GENERAL/04News/NewsDetail';
 import Activity from './containers/01GENERAL/05Activity/Activity';
 import ActivityDetail from './containers/01GENERAL/05Activity/ActivityDetail';
 
+// Footer
+import ContactUs from './containers/01GENERAL/07Footer/ContactUs';
+import PrivacyPolicy from './containers/01GENERAL/07Footer/PrivacyPolicy';
+import Copyright from './containers/01GENERAL/07Footer/Copyright';
+
 
 /*** STUDENT ***/
 // Student Register
@@ -237,6 +242,17 @@ class App extends Component {
                 }
                 case 'activity-detail': { // OK
                     return <ActivityDetail />
+                }
+
+                // Footer
+                case 'contact-us': {
+                    return <ContactUs />
+                }
+                case 'privacy-policy': {
+                    return <PrivacyPolicy />
+                }
+                case 'copyright': {
+                    return <Copyright />
                 }
 
 

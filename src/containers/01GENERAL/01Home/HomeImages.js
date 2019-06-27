@@ -1,5 +1,6 @@
 // Essential for all components
 import React, { Component } from 'react';
+import Slider from "react-slick";
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-doms';
@@ -26,6 +27,28 @@ import { connect } from 'react-redux';
 // Children components
 // import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
+function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "black" }}
+        onClick={onClick}
+      />
+    );
+  }
+  
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "black" }}
+        onClick={onClick}
+      />
+    );
+  }  
+
 class HomeImages extends Component {
     constructor(props) {
         super(props);
@@ -40,6 +63,26 @@ class HomeImages extends Component {
         //     //classes 
         // } = this.props;
 
+        var settings = {
+            dots: false,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />
+            // appendDots: dots => (
+            //     <div
+            //       style={{
+            //         backgroundColor: "transparent",
+            //         position:"relative"
+            //       }}
+            //     >
+            //       <ul style={{ margin: "0px" }}> {dots} </ul>
+            //     </div>
+            //   ),
+        }
+
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -48,7 +91,20 @@ class HomeImages extends Component {
                             <div className="content">
                                 <Grid container spacing={16}>
                                     <Grid item xs={12} className="template-6">
-                                        <img src={require('../../../images/1250x450.png')} alt="" />
+                                        <Slider {...settings}>
+                                            <div>
+                                                <img src={require('../../../images/1250x450.png')} alt="" />
+                                            </div>
+                                            <div>
+                                                <img src={require('../../../images/1250x450.png')} alt="" />
+                                            </div>
+                                            <div>
+                                                <img src={require('../../../images/1250x450.png')} alt="" />
+                                            </div>
+                                            <div>
+                                                <img src={require('../../../images/1250x450.png')} alt="" />
+                                            </div>
+                                        </Slider>
                                     </Grid>
                                     <Grid item xs={6} className="template-5r">
                                         <img src={require('../../../images/600-400.png')} alt="" />

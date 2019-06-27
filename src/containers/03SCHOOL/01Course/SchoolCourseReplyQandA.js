@@ -4,6 +4,7 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -33,9 +34,88 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
+import ToolBar from '../../../components/105ToolBars/General';
+import ListType5 from '../../../components/102Grids/ListType5';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
+function Block(props) {
+    return (
+        <ListType5
+            role={props.role}
+            name={props.name}
+            content={props.content}
+        />
+    )
+}
+
+function Cluster(props) {
+    let rows = [];
+    for (let i = 0; i < 5; i++) {
+        if (i % 2 === 0) {
+            rows.push(
+                <div key={i}>
+                    <Block
+                        key={i}
+                        role='me'
+                        name={props.name}
+                        content={props.content}
+                    />
+                </div>
+            )
+        } else {
+            rows.push(
+                <div key={i}>
+                    <Block
+                        key={i}
+                        role='they'
+                        name={props.name}
+                        content={props.content}
+                    />
+                </div>
+            )
+        }
+    }
+    return (rows);
+}
+
 class SchoolCourseReplyQandA extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            name: ['彭'],
+            content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
+        }
+    }
+
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _editButtonAction = () => {
+        console.log('edit button pressed');
+    }
+
+    _deleteButtonAction = () => {
+        console.log('delete button pressed');
+    }
+
+    _importButtonAction = () => {
+        console.log('import button pressed');
+    }
+
+    _copyButtonAction = () => {
+        console.log('copy button pressed');
+    }
+
+    _reportButtonAction = () => {
+        console.log('report button pressed');
+    }
 
     render() {
         return (
@@ -50,7 +130,42 @@ class SchoolCourseReplyQandA extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-                                This is Course Reply Q and A
+                                <ToolBar
+                                    backButton={true}
+                                    backButtonText="返回"
+                                    backButtonAction={this._backButtonAction}
+                                    backButtonActionUrl='school-course-q-and-a'
+
+                                    createButton={false}
+                                    createButtonText="添加"
+                                    createButtonAction={this._createButtonAction}
+                                    createButtonActionUrl='new-school-course-student-management'
+
+                                    editButton={false}
+                                    editButtonText="编辑"
+                                    editButtonAction={this._editButtonAction}
+
+                                    deleteButton={false}
+                                    deleteButtonText="移除"
+                                    deleteButtonAction={this._deleteButtonAction}
+
+                                    importButton={false}
+                                    importButtonText="导入名单"
+                                    importButtonAction={this._importButtonAction}
+
+                                    copyButton={false}
+                                    copyButtonText="拷贝"
+                                    copyButtonAction={this._copyButtonAction}
+
+                                    reportButton={false}
+                                    reportButtonText="学生报告"
+                                    reportButtonAction={this._reportButtonAction}
+                                />
+
+                                <Cluster
+                                    name={this.state.name}
+                                    content={this.state.content}
+                                />
                             </div>
                         </div>
                     </div>
@@ -75,4 +190,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolCourseReplyQandA)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseReplyQandA))));

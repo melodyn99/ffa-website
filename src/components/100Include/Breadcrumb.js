@@ -154,6 +154,9 @@ class Breadcrumb extends Component {
             case 'school-course-q-and-a': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程问答</span></div>);
             }
+            case 'school-course-reply-q-and-a': {
+                return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>课程问答</span></div>);
+            }
             case 'school-course-note': {
                 return (<div><span><Link to="/">主頁</Link></span> / <span><Link to={"/" + i18n.language + "/school-all-course"}>课程管理</Link></span> > <span><Link to="/">S1-001 品牌盈利模式</Link></span> > <span>及时记录</span></div>);
             }
