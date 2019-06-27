@@ -42,13 +42,7 @@ function Block(props) {
     return (
         <ListType5
             role={props.role}
-<<<<<<< Updated upstream
-            hide={props.hide}
-            myName={props.myName}
-            theirName={props.theirName}
-=======
             name={props.name}
->>>>>>> Stashed changes
             content={props.content}
         />
     )
@@ -63,12 +57,7 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='me'
-<<<<<<< Updated upstream
-                        hide={true}
-                        myName={props.myName}
-=======
                         name={props.name}
->>>>>>> Stashed changes
                         content={props.content}
                     />
                 </div>
@@ -79,12 +68,7 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='they'
-<<<<<<< Updated upstream
-                        hide={false}
-                        theirName={props.theirName}
-=======
                         name={props.name}
->>>>>>> Stashed changes
                         content={props.content}
                     />
                 </div>
