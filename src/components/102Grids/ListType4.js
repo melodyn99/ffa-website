@@ -9,12 +9,10 @@ function ListType4(props) {
             <div className="sep-10"></div>
 
             <div className="ListType4">
-                <div className={"wrapper-message " + (props.role)}>
-                    <div className="name">
-                        <div className="content">{props.name}</div>
-                    </div>
-                    <div className="message">
-                        <div className="content">{props.content}</div>
+                <div className={"wrapper-message clearfix " + (props.role)}>
+                    <div>
+                        <div className="name">{props.name}</div>
+                        <div className="message">{props.content}</div>
                     </div>
                 </div>
             </div>

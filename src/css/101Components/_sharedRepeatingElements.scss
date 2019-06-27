@@ -35,21 +35,20 @@
 }
 
 // ListType4 - Message Bubbles
-.ListType4 { 
-    .wrapper-message { margin:0 0 30px 0; 
-            &.me { 
-                .name { width:35px; max-width:35px; height:35px; max-height:35px; display:inline-block; border-radius:35px; background:navy; color:white; margin-right:10px; vertical-align:top; 
-                    
+.ListType4 { background:yellow; 
+    .wrapper-message { margin:0 0 30px 0; background:orange; 
+            &.me { text-align:right; 
+                >div { position:relative; max-width:500px; background:green; display:inline-block;
+                    .name { position:absolute; top:0; right:0; width:35px; height:35px; margin: 0 0 0 10px; padding:8px 10px; color:white; background:#084c9a; display:inline-block; border-radius:50%; }
+                    .message { width:calc(100% - 45px); margin: 0 45px 0 0; padding:10px 15px; color:white; background:#306eff; display:inline-block; border-radius:20px; }
                 }
-                .message { max-width:300px; display:inline-block; text-align:left; background:navy; color:white; border-radius:20px;
-                    .content { padding:10px; display:inline-block; text-align:left; }
-                }
+                
             }
 
-            &.they { 
-                .name { width:35px; max-width:35px; height:35px; max-height:35px; display:inline-block; border-radius:35px; background:lightgrey; margin-right:10px; vertical-align:top; }
-                .message { max-width:300px; display:inline-block; text-align:left; background:lightgrey; color:black; border-radius:20px;
-                    .content { padding:10px; border-radius:3px; display:inline-block; text-align:left; }
+            &.they { text-align:left; 
+                >div { position:relative; max-width:500px; background:green; display:inline-block;
+                    .name { position:absolute; top:0; left:0; width:35px; height:35px; margin: 0 10px 0 0; padding:8px 10px; color:white; background:#084c9a; display:inline-block; border-radius:50%; }
+                    .message { width:calc(100% - 45px); margin: 0 0 0 45px; padding:10px 15px; color:white; background:#306eff; display:inline-block; border-radius:20px; }
                 }
             }
     }
