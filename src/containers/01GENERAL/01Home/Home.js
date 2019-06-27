@@ -16,11 +16,12 @@ import { withTranslation } from 'react-i18next';
 import { apiAuth } from '../../../Api/ApiAuth';
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 
 // Redux
 import { connect } from 'react-redux';
 import { login, verifyToken } from '../../../Redux/Action/authAction';
+import { relative } from 'path';
 
 // Utils
 
@@ -76,39 +77,38 @@ class Home extends Component {
             infinite: true,
             speed: 500,
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            arrows: false,
+            appendDots: dots => (
+                <div
+                  style={{
+                    backgroundColor: "transparent",
+                    position:"relative"
+                  }}
+                >
+                  <ul style={{ margin: "0px" }}> {dots} </ul>
+                </div>
+              ),
         }
 
         return (
             <div>
                 <div className="wrapper-container-main">
                     <div className="container-main home">
-                        <Grid container spacing={16} alignItems="center" height="100%">
-                            <Grid item xs={12}>
+                        <Slider {...settings}>
+                            <div>
                                 <img src={require('../../../images/600-400.png')} alt="" />
-                            </Grid>
-                            <Grid item xs={4}>
-                            </Grid>
-                            <Grid item xs={8}>
-                                {/* <Link to={"/" + i18n.language + "/home-images"} className="dummy1">Go to Home Images page</Link> */}
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Slider {...settings}>
-                                    <div>
-                                        <img src={require('../../../images/600-400.png')} alt="" />
-                                    </div>
-                                    <div>
-                                        <img src={require('../../../images/600-400.png')} alt="" />
-                                    </div>
-                                    <div>
-                                        <img src={require('../../../images/600-400.png')} alt="" />
-                                    </div>
-                                    <div>
-                                        <img src={require('../../../images/600-400.png')} alt="" />
-                                    </div>
-                                </Slider>
-                            </Grid>
-                        </Grid>
+                            </div>
+                            <div>
+                                <img src={require('../../../images/600-400.png')} alt="" />
+                            </div>
+                            <div>
+                                <img src={require('../../../images/600-400.png')} alt="" />
+                            </div>
+                            <div>
+                                <img src={require('../../../images/600-400.png')} alt="" />
+                            </div>
+                        </Slider>
                     </div>
                 </div>
             </div>
