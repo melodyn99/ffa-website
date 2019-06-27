@@ -11,8 +11,8 @@ function ListType5(props) {
             <div className="ListType5">
                 <div className={"wrapper-message clearfix " + (props.role)}>
                     <div>
-                        <div className={"name " + (props.same ? 'same' : '')}></div>
-                        <div className={"nameLong " + (props.hide ? 'hide' : '')}> {props.name}</div>
+                        <div className={"name " + (props.same ? 'same' : '')}>{props.myName}</div>
+                        <div className={"nameLong " + (props.hide ? 'hide' : '')}> {props.theirName}</div>
                         <div className={"message " + (props.same ? 'same' : '')}>{props.content}</div>
                     </div>
                 </div>

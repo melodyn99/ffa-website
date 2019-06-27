@@ -43,7 +43,8 @@ function Block(props) {
         <ListType5
             role={props.role}
             hide={props.hide}
-            name={props.name}
+            myName={props.myName}
+            theirName={props.theirName}
             content={props.content}
         />
     )
@@ -59,7 +60,7 @@ function Cluster(props) {
                         key={i}
                         role='me'
                         hide={true}
-                        name={props.name}
+                        myName={props.myName}
                         content={props.content}
                     />
                 </div>
@@ -71,7 +72,7 @@ function Cluster(props) {
                         key={i}
                         role='they'
                         hide={false}
-                        name={props.name}
+                        theirName={props.theirName}
                         content={props.content}
                     />
                 </div>
@@ -86,7 +87,8 @@ class SchoolCourseReplyQandA extends React.Component {
         super(props);
 
         this.state = {
-            name: ['彭彭彭彭彭彭彭彭彭'],
+            myName: ['彭'],
+            theirName: ['彭彭彭彭彭彭彭彭彭'],
             content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
         }
     }
@@ -169,7 +171,8 @@ class SchoolCourseReplyQandA extends React.Component {
                                     null={this.state.null}
                                     studentName={this.state.studentName}
                                     studentContent={this.state.studentContent}
-                                    name={this.state.name}
+                                    myName={this.state.myName}
+                                    theirName={this.state.theirName}
                                     content={this.state.content}
                                 />
                             </div>
