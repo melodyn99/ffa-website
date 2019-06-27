@@ -47,8 +47,12 @@
 
         &.they { text-align:left; 
             >div { position:relative; max-width:500px; display:inline-block;
-                .name { position:absolute; top:0; left:0; width:35px; height:35px; margin: 0 10px 0 0; padding:8px 10px; color:000; background:#D7D7D7; display:inline-block; border-radius:50%; }
-                .message { width:calc(100% - 45px); margin: 0 0 0 45px; padding:10px 15px; color:000; background:#E7E7EC; display:inline-block; border-radius:20px; text-align:left; }
+                .name { position:absolute; top:0; left:0; width:35px; height:35px; margin: 0 10px 0 0; padding:8px 10px; color:000; background:#D7D7D7; display:inline-block; border-radius:50%; 
+                    &.same {color:white; background:#084c9a;}
+                }
+                .message { width:calc(100% - 45px); margin: 0 0 0 45px; padding:10px 15px; color:000; background:#E7E7EC; display:inline-block; border-radius:20px; text-align:left; 
+                    &.same {color:white; background:#306eff;}
+                }
             }
         }
     }
