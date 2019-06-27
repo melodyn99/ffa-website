@@ -35,13 +35,14 @@ import { connect } from 'react-redux';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
-import ListType4 from '../../../components/102Grids/ListType4';
+import ListType5 from '../../../components/102Grids/ListType5';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
 function Block(props) {
     return (
-        <ListType4
+        <ListType5
             role={props.role}
+            hide={props.hide}
             name={props.name}
             content={props.content}
         />
@@ -57,6 +58,7 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='me'
+                        hide={true}
                         name={props.name}
                         content={props.content}
                     />
@@ -68,6 +70,7 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='they'
+                        hide={false}
                         name={props.name}
                         content={props.content}
                     />
@@ -83,7 +86,7 @@ class SchoolCourseReplyQandA extends React.Component {
         super(props);
 
         this.state = {
-            name: ['彭'],
+            name: ['彭彭彭彭彭彭彭彭彭'],
             content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
         }
     }
