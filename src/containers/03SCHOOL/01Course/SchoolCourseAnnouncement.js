@@ -51,6 +51,7 @@ function Cluster(props) {
         rows.push(
             <div key={i}>
                 <div className="align-center">4分钟前</div>
+                <div className="sep-10"></div>
                 <Block
                     key={i}
                     name={props.name}
