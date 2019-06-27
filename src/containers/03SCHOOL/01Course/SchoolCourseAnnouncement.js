@@ -102,7 +102,8 @@ class SchoolCourseAnnouncement extends React.Component {
                                 <Cluster
                                     name={this.state.name}
                                     content={this.state.content}
-                                /></div>
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

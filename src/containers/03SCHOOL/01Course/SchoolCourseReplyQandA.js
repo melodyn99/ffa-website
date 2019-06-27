@@ -83,8 +83,7 @@ class SchoolCourseReplyQandA extends React.Component {
         super(props);
 
         this.state = {
-            myName: ['彭'],
-            theirName: ['彭彭彭彭彭彭彭彭彭'],
+            name: ['彭'],
             content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
         }
     }
@@ -164,11 +163,7 @@ class SchoolCourseReplyQandA extends React.Component {
                                 />
 
                                 <Cluster
-                                    null={this.state.null}
-                                    studentName={this.state.studentName}
-                                    studentContent={this.state.studentContent}
-                                    myName={this.state.myName}
-                                    theirName={this.state.theirName}
+                                    name={this.state.name}
                                     content={this.state.content}
                                 />
                             </div>
