@@ -40,7 +40,6 @@ function Block(props) {
     return (
         <ListType4
             role={props.role}
-            same={props.same}
             name={props.name}
             content={props.content}
         />
@@ -56,7 +55,6 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='me'
-                        same={true}
                         name={props.name}
                         content={props.content}
                     />
@@ -68,7 +66,6 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='they'
-                        same={true}
                         name={props.name}
                         content={props.content}
                     />
