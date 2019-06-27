@@ -56,7 +56,7 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='me'
-                        same={true}
+                        same={false}
                         name={props.name}
                         content={props.content}
                     />
@@ -68,7 +68,7 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='they'
-                        same={true}
+                        same={false}
                         name={props.name}
                         content={props.content}
                     />

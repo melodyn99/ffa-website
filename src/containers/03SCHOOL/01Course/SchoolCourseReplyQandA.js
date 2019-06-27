@@ -42,9 +42,7 @@ function Block(props) {
     return (
         <ListType5
             role={props.role}
-            hide={props.hide}
-            myName={props.myName}
-            theirName={props.theirName}
+            name={props.name}
             content={props.content}
         />
     )
@@ -59,8 +57,7 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='me'
-                        hide={true}
-                        myName={props.myName}
+                        name={props.name}
                         content={props.content}
                     />
                 </div>
@@ -71,8 +68,7 @@ function Cluster(props) {
                     <Block
                         key={i}
                         role='they'
-                        hide={false}
-                        theirName={props.theirName}
+                        name={props.name}
                         content={props.content}
                     />
                 </div>
@@ -87,8 +83,7 @@ class SchoolCourseReplyQandA extends React.Component {
         super(props);
 
         this.state = {
-            myName: ['彭'],
-            theirName: ['彭彭彭彭彭彭彭彭彭'],
+            name: ['彭'],
             content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
         }
     }
@@ -168,11 +163,7 @@ class SchoolCourseReplyQandA extends React.Component {
                                 />
 
                                 <Cluster
-                                    null={this.state.null}
-                                    studentName={this.state.studentName}
-                                    studentContent={this.state.studentContent}
-                                    myName={this.state.myName}
-                                    theirName={this.state.theirName}
+                                    name={this.state.name}
                                     content={this.state.content}
                                 />
                             </div>
