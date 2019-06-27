@@ -36,19 +36,23 @@
 
 // ListType4 - Message Bubbles
 .ListType4 { background:yellow; 
-    .wrapper-message { margin:0 0 30px 0; background:orange; 
+    .wrapper-message { margin:0 0 30px 0;
             &.me { text-align:right; 
                 >div { position:relative; max-width:500px; background:green; display:inline-block;
                     .name { position:absolute; top:0; right:0; width:35px; height:35px; margin: 0 0 0 10px; padding:8px 10px; color:white; background:#084c9a; display:inline-block; border-radius:50%; }
-                    .message { width:calc(100% - 45px); margin: 0 45px 0 0; padding:10px 15px; color:white; background:#306eff; display:inline-block; border-radius:20px; }
+                    .message { width:calc(100% - 45px); margin: 0 45px 0 0; padding:10px 15px; color:white; background:#306eff; display:inline-block; border-radius:20px; text-align:left; }
                 }
                 
             }
 
             &.they { text-align:left; 
                 >div { position:relative; max-width:500px; background:green; display:inline-block;
-                    .name { position:absolute; top:0; left:0; width:35px; height:35px; margin: 0 10px 0 0; padding:8px 10px; color:white; background:#084c9a; display:inline-block; border-radius:50%; }
-                    .message { width:calc(100% - 45px); margin: 0 0 0 45px; padding:10px 15px; color:white; background:#306eff; display:inline-block; border-radius:20px; }
+                    .name { position:absolute; top:0; left:0; width:35px; height:35px; margin: 0 10px 0 0; padding:8px 10px; color:000; background:#D7D7D7; display:inline-block; border-radius:50%; 
+                        &.same { background:#084c9a;}
+                    }
+                    .message { width:calc(100% - 45px); margin: 0 0 0 45px; padding:10px 15px; color:000; background:#E7E7EC; display:inline-block; border-radius:20px; text-align:left; 
+                        &.same { background:#306eff; }
+                    }
                 }
             }
     }

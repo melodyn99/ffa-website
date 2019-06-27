@@ -11,8 +11,8 @@ function ListType4(props) {
             <div className="ListType4">
                 <div className={"wrapper-message clearfix " + (props.role)}>
                     <div>
-                        <div className="name">{props.name}</div>
-                        <div className="message">{props.content}</div>
+                        <div className={"name " + (props.same ? 'same' : '')}>{props.name}</div>
+                        <div className={"message " + (props.same ? 'same' : '')}>{props.content}</div>
                     </div>
                 </div>
             </div>
