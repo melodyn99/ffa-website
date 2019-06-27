@@ -160,10 +160,10 @@
 }
 
 // CONTAINER
-.wrapper-container-main { position:relative; width:100%; background:#ecc879; background-size:100%;
+.wrapper-container-main { position:relative; width:100%; background:#ecc879; background-size:100%; overflow:hidden;
 
-	.container-main { position:relative; padding:20px; max-width:1640px; margin:0 auto; min-height:750px; 
-		&.home { background:#e6e400; max-width:100%; }
+	.container-main { position:relative; padding:20px; max-width:1640px; margin:0 auto; min-height:750px; overflow:hidden;
+		&.home { background:#e6e400; max-width:100%; overflow:hidden; }
 		
 		.pageTitle { font-size:60px; color:#fff; }
 		
