@@ -17,7 +17,6 @@ import Grid from '@material-ui/core/Grid';
 
 // Api
 import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -117,13 +116,13 @@ class LoginWithRegister extends React.Component {
 
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
                 console.log(res);
-                this.props.loginP(res.access_token);
-                // this._getConference();
+                // this.props.loginP(res.access_token);
+                this._getUserInformation(res.access_token);
             })
         }
     };
 
-    // _getConference = () => {
+    // _authenticate = (submitEmail, submitPassword) => {
 
     //     const cb = (obj) => {
     //         console.log("cb : ", obj);
@@ -131,10 +130,33 @@ class LoginWithRegister extends React.Component {
     //     const eCb = (obj) => {
     //         console.log("eCb : ", obj);
     //     }
-    //     const params = null;
+    //     const params = {
+    //         username: submitEmail,
+    //         password: submitPassword,
+    //         grant_type: 'password',
+    //         audience: 'ffa.joyaether.com'
+    //     };
+    //     const access_token = null;
 
-    //     apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
+    //     console.log('params', params);
+
+    //     apiAuth.authenticate(params, access_token, cb, eCb);
     // }
+
+    _getUserInformation = (access_token) => {
+
+        console.log(access_token);
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = null;
+
+        apiAuth.getUserInformation(params, access_token, cb, eCb);
+    }
 
     render() {
         const { classes

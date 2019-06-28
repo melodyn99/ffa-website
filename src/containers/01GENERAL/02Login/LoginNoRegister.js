@@ -16,7 +16,6 @@ import Grid from '@material-ui/core/Grid';
 
 // Api
 import { apiAuth } from '../../../Api/ApiAuth';
-import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -111,24 +110,23 @@ class LoginNoRegister extends React.Component {
             let submitPassword = values.password;
 
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
-                // console.log(res);
                 this.props.loginP(res.access_token);
-                this._getConference();
+                this._getUserInformation(res.access_token);
             })
         }
     };
 
-    _getConference = () => {
+    _getUserInformation = (access_token) => {
 
         const cb = (obj) => {
-            console.log("cb : ", obj);
+            // console.log("cb : ", obj);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
         const params = null;
 
-        apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
+        apiAuth.getUserInformation(params, access_token, cb, eCb);
     }
 
     render() {

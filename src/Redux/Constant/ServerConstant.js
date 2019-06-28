@@ -10,4 +10,4 @@ export const BASE_URL = 'https://api.fablead-fashion-academy.dev.joyaethercloud.
 
 export const WEB_CLIENT_CREDENTIAL_TOKEN = btoa(`${WEB_CLIENT_ID}:${WEB_CLIENT_SECRET}`);
 
-export const AUDIENCE = 'fablead.joyaether.com';
+export const AUDIENCE = 'ffa.joyaether.com';
