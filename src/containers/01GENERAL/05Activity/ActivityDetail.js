@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import { Button } from '@material-ui/core';
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
@@ -26,7 +26,7 @@ import { connect } from 'react-redux';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 
-class ActivityDetail extends Component {
+class NewsDetail extends Component {
     constructor(props) {
         super(props);
 
@@ -43,7 +43,7 @@ class ActivityDetail extends Component {
         return (
             <div>
                 <div className="wrapper-container-main">
-                    <div className="container-main">
+                    <div className="container-main news-detail">
 
                         <h2 className="pageTitle">学院故事及新闻</h2>
 
@@ -51,16 +51,18 @@ class ActivityDetail extends Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <h5>活动标题</h5>
-                                <h6>发出日期</h6>
-                                <Grid container spacing={16}>
-                                    <Grid item xs={12}>
-                                        <img src={require('../../../images/600-400.png')} alt="" />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <p>This is activity</p>
-                                    </Grid>
-                                </Grid>
+                                <h4>活动标题</h4>
+                                <h5>发出日期</h5>
+
+                                <div className="sep-10"></div>
+
+                                <div className="slider">
+                                    <img src={require('../../../images/600-400.png')} alt="" />
+                                </div>
+
+                                <div className="sep-20"></div>
+
+                                <p>This is Activity</p>
                             </div>
                         </div>
 
@@ -82,4 +84,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(ActivityDetail)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(NewsDetail)));

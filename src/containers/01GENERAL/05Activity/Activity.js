@@ -1,8 +1,8 @@
 // Essential for all components
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -33,6 +33,7 @@ function Block(props) {
             title={props.title}
             date={props.date}
             content={props.content}
+            handleTempDetail={props.handleTempDetail}
         />
     )
 }
@@ -47,8 +48,9 @@ function Cluster(props) {
                     title={props.title}
                     date={props.date}
                     content={props.content}
+                    handleTempDetail={props.handleTempDetail}
                 />
-                <div className="sep-40"></div>
+                <div className="sep-30"></div>
             </div>
         )
     }
@@ -60,11 +62,18 @@ class Activity extends Component {
         super(props);
 
         this.state = {
-            formSubmitted: false,
             title: ['活动标题'],
             date: ['发出日期'],
             content: ['活动内容第1行'],
+            tempGoDetail: false
         }
+    }
+
+    _tempDetail = () => {
+        this.setState({
+            ...this.state,
+            tempGoDetail: true
+        });
     }
 
     render() {
@@ -72,12 +81,16 @@ class Activity extends Component {
             //classes 
         } = this.props;
 
+        if (this.state.tempGoDetail) {
+            return <Redirect push to={"/" + i18n.language + "/news-detail"} />;
+        }
+
         return (
             <div>
                 <div className="wrapper-container-main">
-                    <div className="container-main">
+                    <div className="container-main news">
 
-                        <h2 className="pageTitle">学院相关的活动</h2>
+                        <h2 className="pageTitle">学院故事及新闻</h2>
 
                         <div className="wrapper-content">
                             <BreadCrumb />
@@ -85,24 +98,23 @@ class Activity extends Component {
                             <div className="content">
                                 <Grid container spacing={16}>
                                     <Grid item sm={3} xs={12}>
-                                        <div className="leftColumn">
+                                        <div className="template-4 leftColumn">
                                             <img src={require('../../../images/600-400.png')} alt="" />
-                                            <Link to={"/" + i18n.language + "/activity-detail"} className="dummy">Go to Activity Detail page</Link>
                                         </div>
                                     </Grid>
                                     <Grid item sm={9} xs={12}>
-                                        <div className="rightColumn">
+                                        <div className="template-4 rightColumn">
                                             <Cluster
                                                 title={this.state.title}
                                                 date={this.state.date}
                                                 content={this.state.content}
+                                                handleTempDetail={this._tempDetail}
                                             />
                                         </div>
                                     </Grid>
                                 </Grid>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
