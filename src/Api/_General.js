@@ -9,7 +9,7 @@ export const apiGeneral = {
         if (params)
             fullUrl += "?" + buildParam(params);
 
-        console.log('Full URL : ', fullUrl);
+        // console.log('Full URL : ', fullUrl);
 
         fetch(fullUrl, {
             method: 'get',
@@ -41,7 +41,7 @@ export const apiGeneral = {
 
         let fullUrl = Config.API_URL + url;
 
-        console.log('Full URL : ', fullUrl);
+        // console.log('Full URL : ', fullUrl);
 
         fetch(fullUrl, {
             method: 'post',

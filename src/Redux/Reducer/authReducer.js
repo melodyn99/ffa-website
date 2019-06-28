@@ -36,6 +36,7 @@ const authReducer = (state = initialState, action) => {
 
 		case AuthActionTypes.LOGIN_SUCCESS: {
 			return {
+				...state,
 				auth: true,
 				token: action.data
 			}

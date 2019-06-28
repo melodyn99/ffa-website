@@ -115,8 +115,7 @@ class LoginWithRegister extends React.Component {
             let submitPassword = values.password;
 
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
-                console.log(res);
-                // this.props.loginP(res.access_token);
+                this.props.loginP(res.access_token);
                 this._getUserInformation(res.access_token);
             })
         }
@@ -144,8 +143,6 @@ class LoginWithRegister extends React.Component {
     // }
 
     _getUserInformation = (access_token) => {
-
-        console.log(access_token);
 
         const cb = (obj) => {
             console.log("cb : ", obj);

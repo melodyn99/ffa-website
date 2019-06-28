@@ -116,10 +116,31 @@ class LoginNoRegister extends React.Component {
         }
     };
 
+    // _authenticate = (submitEmail, submitPassword) => {
+
+    //     const cb = (obj) => {
+    //         console.log("cb : ", obj);
+    //     }
+    //     const eCb = (obj) => {
+    //         console.log("eCb : ", obj);
+    //     }
+    //     const params = {
+    //         username: submitEmail,
+    //         password: submitPassword,
+    //         grant_type: 'password',
+    //         audience: 'ffa.joyaether.com'
+    //     };
+    //     const access_token = null;
+
+    //     console.log('params', params);
+
+    //     apiAuth.authenticate(params, access_token, cb, eCb);
+    // }
+
     _getUserInformation = (access_token) => {
 
         const cb = (obj) => {
-            // console.log("cb : ", obj);
+            console.log("cb : ", obj);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
