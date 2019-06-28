@@ -41,7 +41,7 @@ import ListType5 from '../../../components/102Grids/ListType5';
 function Block(props) {
     return (
         <ListType5
-            role={props.role}
+            from={props.from}
             name={props.name}
             content={props.content}
         />
@@ -56,7 +56,7 @@ function Cluster(props) {
                 <div key={i}>
                     <Block
                         key={i}
-                        role='me'
+                        from='me'
                         name={props.name}
                         content={props.content}
                     />
@@ -67,7 +67,7 @@ function Cluster(props) {
                 <div key={i}>
                     <Block
                         key={i}
-                        role='they'
+                        from='they'
                         name={props.name}
                         content={props.content}
                     />

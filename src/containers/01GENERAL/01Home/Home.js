@@ -21,7 +21,6 @@ import { apiAuth } from '../../../Api/ApiAuth';
 // Redux
 import { connect } from 'react-redux';
 import { login, verifyToken } from '../../../Redux/Action/authAction';
-import { relative } from 'path';
 
 // Utils
 
@@ -81,14 +80,14 @@ class Home extends Component {
             arrows: false,
             appendDots: dots => (
                 <div
-                  style={{
-                    backgroundColor: "transparent",
-                    position:"relative"
-                  }}
+                    style={{
+                        backgroundColor: "transparent",
+                        position: "relative"
+                    }}
                 >
-                  <ul style={{ margin: "0px" }}> {dots} </ul>
+                    <ul style={{ margin: "0px" }}> {dots} </ul>
                 </div>
-              ),
+            ),
         }
 
         return (

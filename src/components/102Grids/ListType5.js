@@ -12,7 +12,7 @@ function ListType5(props) {
                 <div className="sep-10"></div>
 
                 <div>
-                    <div className={"wrapper-message clearfix " + (props.role)}>
+                    <div className={"wrapper-message clearfix " + (props.from)}>
                         <div>
                             <div className="name">{props.name}</div>
                             <div className="message">{props.content}</div>
@@ -27,7 +27,7 @@ function ListType5(props) {
                 <div className="sep-10"></div>
 
                 <div>
-                    <div className={"wrapper-message clearfix " + (props.role)}>
+                    <div className={"wrapper-message clearfix " + (props.from)}>
                         <div>
                             <div className="name"></div>
                             <div className="nameLong">{props.name}</div>

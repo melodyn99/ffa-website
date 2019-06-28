@@ -9,7 +9,7 @@ function ListType4(props) {
             <div className="sep-10"></div>
 
             <div>
-                <div className={"wrapper-message clearfix " + (props.role)}>
+                <div className={"wrapper-message clearfix " + (props.from)}>
                     <div>
                         <div className={"name " + (props.same ? 'same' : '')}>{props.name}</div>
                         <div className={"message " + (props.same ? 'same' : '')}>{props.content}</div>

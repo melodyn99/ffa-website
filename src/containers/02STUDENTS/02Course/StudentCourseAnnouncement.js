@@ -39,7 +39,7 @@ import ListType4 from '../../../components/102Grids/ListType4';
 function Block(props) {
     return (
         <ListType4
-            role={props.role}
+            from={props.from}
             same={props.same}
             name={props.name}
             content={props.content}
@@ -55,7 +55,7 @@ function Cluster(props) {
                 <div key={i}>
                     <Block
                         key={i}
-                        role='me'
+                        from='me'
                         same={false}
                         name={props.name}
                         content={props.content}
@@ -67,7 +67,7 @@ function Cluster(props) {
                 <div key={i}>
                     <Block
                         key={i}
-                        role='they'
+                        from='they'
                         same={false}
                         name={props.name}
                         content={props.content}
