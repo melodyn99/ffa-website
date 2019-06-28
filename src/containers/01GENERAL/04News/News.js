@@ -48,7 +48,7 @@ function Cluster(props) {
                     date={props.date}
                     content={props.content}
                 />
-                <div className="sep-40"></div>
+                <div className="sep-30"></div>
             </div>
         )
     }
@@ -102,7 +102,6 @@ class News extends Component {
                                 </Grid>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

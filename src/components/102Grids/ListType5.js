@@ -6,12 +6,12 @@ function ListType5(props) {
 
     return (
         (props.role === 'me') ?
-            <div>
+            <div className="ListType5">
                 <div className="align-center">Today at 9:30AM</div>
 
                 <div className="sep-10"></div>
 
-                <div className="ListType5">
+                <div>
                     <div className={"wrapper-message clearfix " + (props.role)}>
                         <div>
                             <div className="name">{props.name}</div>
@@ -21,12 +21,12 @@ function ListType5(props) {
                 </div>
             </div>
             :
-            <div>
+            <div className="ListType5">
                 <div className="align-center">Today at 9:30AM</div>
 
                 <div className="sep-10"></div>
 
-                <div className="ListType5">
+                <div>
                     <div className={"wrapper-message clearfix " + (props.role)}>
                         <div>
                             <div className="name"></div>

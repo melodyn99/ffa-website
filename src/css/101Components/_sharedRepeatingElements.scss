@@ -23,14 +23,14 @@
 }
 
 // ListType3 - News and Activity Listing
-.ListType3 { background:lightgrey; 
-    .LeftColumn {
-        img { width:100%; }
+.ListType3 { background:lightgrey; display:table; width:100%; margin:0; padding:0; 
+    .LeftColumn { width:200px; display:table-cell; margin:0; padding:0; 
+        img { width:250px; height:250px; }
     }
-    .RightColumn { position:relative;
-        h4 { color:blue; font-size:20px; display:block; }
-        h5 { color:black; font-size:6px; display:block; }
-        h6 { color:black; font-size:20px; display:block; }
+    .RightColumn { display:table-cell; margin:0; padding:0;vertical-align: top; padding:20px;
+        h4 { color:#0000ff; font-size:20px; margin: 0 0 5px 0; }
+        h5 { color:#000; font-size:12px; margin: 0 0 20px 0; }
+        p { color:#000; font-size:20px; }
     }
 }
 
