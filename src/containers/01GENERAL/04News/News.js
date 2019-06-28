@@ -1,7 +1,7 @@
 // Essential for all components
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
@@ -33,6 +33,7 @@ function Block(props) {
             title={props.title}
             date={props.date}
             content={props.content}
+            handleTempDetail={props.handleTempDetail}
         />
     )
 }
@@ -47,6 +48,7 @@ function Cluster(props) {
                     title={props.title}
                     date={props.date}
                     content={props.content}
+                    handleTempDetail={props.handleTempDetail}
                 />
                 <div className="sep-30"></div>
             </div>
@@ -60,17 +62,28 @@ class News extends Component {
         super(props);
 
         this.state = {
-            formSubmitted: false,
             title: ['新闻标题'],
             date: ['发出日期'],
             content: ['新闻内容第1行'],
+            tempGoDetail: false
         }
+    }
+
+    _tempDetail = () => {
+        this.setState({
+            ...this.state,
+            tempGoDetail: true
+        });
     }
 
     render() {
         const { i18n,
             //classes 
         } = this.props;
+
+        if (this.state.tempGoDetail) {
+            return <Redirect push to={"/" + i18n.language + "/news-detail"} />;
+        }
 
         return (
             <div>
@@ -96,6 +109,7 @@ class News extends Component {
                                                 title={this.state.title}
                                                 date={this.state.date}
                                                 content={this.state.content}
+                                                handleTempDetail={this._tempDetail}
                                             />
                                         </div>
                                     </Grid>
