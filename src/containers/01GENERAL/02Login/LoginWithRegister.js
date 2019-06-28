@@ -20,7 +20,7 @@ import { apiAuth } from '../../../Api/ApiAuth';
 
 // Redux
 import { connect } from 'react-redux';
-import { login, verifyToken } from '../../../Redux/Action/authAction';
+import { login, verifyToken, getUserInfo } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -146,6 +146,7 @@ class LoginWithRegister extends React.Component {
 
         const cb = (obj) => {
             console.log("cb : ", obj);
+            this.props.getUserInfoP(obj.body);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -214,6 +215,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     loginP: data => dispatch(login(data)),
+    getUserInfoP: data => dispatch(getUserInfo(data)),
     verifyT: token => dispatch(verifyToken(token)),
 });
 

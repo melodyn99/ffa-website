@@ -4,13 +4,7 @@ import { clearLoginData } from '../../Util/AuthService';
 const initialState = {
 	auth: false,
 	token: null,
-	userInfo: {
-		"role": null,
-		"first_name": "",
-		"last_name": "",
-		"display_name": "",
-		"email": ""
-	}
+	userInfo: []
 };
 
 const authReducer = (state = initialState, action) => {
@@ -34,14 +28,6 @@ const authReducer = (state = initialState, action) => {
 			}
 		}
 
-		case AuthActionTypes.LOGIN_SUCCESS: {
-			return {
-				...state,
-				auth: true,
-				token: action.data
-			}
-		}
-
 		case AuthActionTypes.LOGIN_FAILURE: {
 			return {
 				auth: false
@@ -52,6 +38,22 @@ const authReducer = (state = initialState, action) => {
 			clearLoginData();
 			return {
 				auth: false
+			}
+		}
+
+		// START FROM HERE
+		case AuthActionTypes.LOGIN_SUCCESS: {
+			return {
+				...state,
+				auth: true,
+				token: action.data
+			}
+		}
+
+		case AuthActionTypes.GET_USER_INFO: {
+			return {
+				...state,
+				userInfo: action.data
 			}
 		}
 

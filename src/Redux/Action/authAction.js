@@ -19,12 +19,6 @@ export const loginFailure = ({
   type: AuthActionTypes.LOGIN_FAILURE,
 });
 
-
-export const login = (data) => ({
-  type: AuthActionTypes.LOGIN_SUCCESS,
-  data
-});
-
 // export const login = (id, pw) => dispatch => apiAuth.authenticate(id, pw).then((res) => {
 //   return Promise.resolve(setAccessToken(res.access_token)).then(() => {
 //     return Promise.all([
@@ -48,4 +42,15 @@ export const login = (data) => ({
 
 export const logout = ({
   type: AuthActionTypes.LOGOUT,
+});
+
+// START FROM HERE
+export const login = (data) => ({
+  type: AuthActionTypes.LOGIN_SUCCESS,
+  data
+});
+
+export const getUserInfo = (data) => ({
+  type: AuthActionTypes.GET_USER_INFO,
+  data
 });
