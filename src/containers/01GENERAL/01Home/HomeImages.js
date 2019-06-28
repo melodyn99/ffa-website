@@ -30,24 +30,24 @@ import { connect } from 'react-redux';
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "black" }}
-        onClick={onClick}
-      />
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: "black" }}
+            onClick={onClick}
+        />
     );
-  }
-  
-  function SamplePrevArrow(props) {
+}
+
+function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "black" }}
-        onClick={onClick}
-      />
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: "black" }}
+            onClick={onClick}
+        />
     );
-  }  
+}
 
 class HomeImages extends Component {
     constructor(props) {
@@ -90,7 +90,7 @@ class HomeImages extends Component {
                         <div className="wrapper-content">
                             <div className="content">
                                 <Grid container spacing={16}>
-                                    <Grid item xs={12} className="template-6">
+                                    <Grid item xs={12}>
                                         <Slider {...settings}>
                                             <div>
                                                 <img src={require('../../../images/1250x450.png')} alt="" />
@@ -106,15 +106,15 @@ class HomeImages extends Component {
                                             </div>
                                         </Slider>
                                     </Grid>
-                                    <Grid item xs={6} className="template-5r">
+                                    <Grid item xs={6}>
                                         <img src={require('../../../images/600-400.png')} alt="" />
                                         <img src={require('../../../images/600x300.png')} alt="" />
                                     </Grid>
-                                    <Grid item xs={6} className="template-5l">
+                                    <Grid item xs={6}>
                                         <img src={require('../../../images/600x300.png')} alt="" />
                                         <img src={require('../../../images/600-400.png')} alt="" />
                                     </Grid>
-                                    
+
                                     {/* <Grid item xs={12}>
                                         <div className="topRow">
                                             <img src={require('../../../images/1250x450.png')} alt="" />

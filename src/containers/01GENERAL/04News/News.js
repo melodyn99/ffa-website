@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 // Styling
@@ -88,7 +88,7 @@ class News extends Component {
         return (
             <div>
                 <div className="wrapper-container-main">
-                    <div className="container-main">
+                    <div className="container-main news">
 
                         <h2 className="pageTitle">学院故事及新闻</h2>
 
@@ -98,13 +98,12 @@ class News extends Component {
                             <div className="content">
                                 <Grid container spacing={16}>
                                     <Grid item sm={3} xs={12}>
-                                        <div className="template-8 leftColumn">
+                                        <div className="template-4 leftColumn">
                                             <img src={require('../../../images/600-400.png')} alt="" />
-                                            <Link to={"/" + i18n.language + "/news-detail"} className="dummy">Go to News Detail page</Link>
                                         </div>
                                     </Grid>
                                     <Grid item sm={9} xs={12}>
-                                        <div className="template-8 rightColumn">
+                                        <div className="template-4 rightColumn">
                                             <Cluster
                                                 title={this.state.title}
                                                 date={this.state.date}

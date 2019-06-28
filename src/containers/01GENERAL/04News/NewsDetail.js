@@ -43,7 +43,7 @@ class NewsDetail extends Component {
         return (
             <div>
                 <div className="wrapper-container-main">
-                    <div className="container-main">
+                    <div className="container-main news-detail">
 
                         <h2 className="pageTitle">学院故事及新闻</h2>
 
@@ -51,16 +51,18 @@ class NewsDetail extends Component {
                             <BreadCrumb />
 
                             <div className="content">
-                                <h5>新闻标题</h5>
-                                <h6>发出日期</h6>
-                                <Grid container spacing={16}>
-                                    <Grid item xs={12} className="template-7">
-                                        <img src={require('../../../images/600-400.png')} alt=""/>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <p>This is News</p>
-                                    </Grid>
-                                </Grid>
+                                <h4>新闻标题</h4>
+                                <h5>发出日期</h5>
+
+                                <div className="sep-10"></div>
+
+                                <div className="slider">
+                                    <img src={require('../../../images/600-400.png')} alt="" />
+                                </div>
+
+                                <div className="sep-20"></div>
+
+                                <p>This is News</p>
                             </div>
                         </div>
 

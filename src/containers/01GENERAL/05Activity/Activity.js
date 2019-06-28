@@ -85,13 +85,13 @@ class Activity extends Component {
                             <div className="content">
                                 <Grid container spacing={16}>
                                     <Grid item sm={3} xs={12}>
-                                        <div className="template-8 leftColumn">
+                                        <div className="leftColumn">
                                             <img src={require('../../../images/600-400.png')} alt="" />
                                             <Link to={"/" + i18n.language + "/activity-detail"} className="dummy">Go to Activity Detail page</Link>
                                         </div>
                                     </Grid>
                                     <Grid item sm={9} xs={12}>
-                                        <div className="template-8 rightColumn">
+                                        <div className="rightColumn">
                                             <Cluster
                                                 title={this.state.title}
                                                 date={this.state.date}

@@ -54,8 +54,8 @@ class ActivityDetail extends Component {
                                 <h5>活动标题</h5>
                                 <h6>发出日期</h6>
                                 <Grid container spacing={16}>
-                                    <Grid item xs={12} className="template-7">
-                                        <img src={require('../../../images/600-400.png')} alt=""/>
+                                    <Grid item xs={12}>
+                                        <img src={require('../../../images/600-400.png')} alt="" />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <p>This is activity</p>
