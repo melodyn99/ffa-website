@@ -17,7 +17,7 @@ import Grid from '@material-ui/core/Grid';
 
 // Api
 import { apiAuth } from '../../../Api/ApiAuth';
-import { apiConferences } from '../../../Api/ApiConferences';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -63,34 +63,42 @@ class LoginWithRegister extends React.Component {
                 </div>
                 <div className="sep-40"></div>
                 <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={3} className="align-center">
+                    <Grid item xs={4} className="align-left">
+                        <div className="hints">
+                            <h4>Super Admin Role</h4>
+                            <p>superadmin@ffa.test</p>
+                            <p>abcd1234</p>
+                        </div>
+                    </Grid>
+                    <Grid item xs={4} className="align-left">
                         <div className="hints">
                             <h4>Manager Role</h4>
                             <p>manager@ffa.test</p>
                             <p>abcd1234</p>
                         </div>
                     </Grid>
-                    <Grid item xs={3} className="align-center">
+                    <Grid item xs={4} className="align-left">
                         <div className="hints">
                             <h4>Officer Role</h4>
                             <p>officer@ffa.test</p>
                             <p>abcd1234</p>
                         </div>
                     </Grid>
-                    <Grid item xs={3} className="align-center">
+                    <Grid item xs={4} className="align-left">
                         <div className="hints">
                             <h4>Teacher Role</h4>
                             <p>teacher@ffa.test</p>
                             <p>abcd1234</p>
                         </div>
                     </Grid>
-                    <Grid item xs={3} className="align-center">
+                    <Grid item xs={4} className="align-left">
                         <div className="hints">
                             <h4>Student Role</h4>
                             <p>student@ffa.test</p>
                             <p>abcd1234</p>
                         </div>
                     </Grid>
+                    <Grid item xs={4} className="align-left"></Grid>
                 </Grid>
                 <div className="sep-40"></div>
                 <Grid container spacing={16} alignItems="center">
@@ -108,25 +116,25 @@ class LoginWithRegister extends React.Component {
             let submitPassword = values.password;
 
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
-                // console.log(res);
+                console.log(res);
                 this.props.loginP(res.access_token);
-                this._getConference();
+                // this._getConference();
             })
         }
     };
 
-    _getConference = () => {
+    // _getConference = () => {
 
-        const cb = (obj) => {
-            console.log("cb : ", obj);
-        }
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
-        const params = null;
+    //     const cb = (obj) => {
+    //         console.log("cb : ", obj);
+    //     }
+    //     const eCb = (obj) => {
+    //         console.log("eCb : ", obj);
+    //     }
+    //     const params = null;
 
-        apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
-    }
+    //     apiConferences.getConferenceFullList(params, this.props.auth.token, cb, eCb);
+    // }
 
     render() {
         const { classes
@@ -155,7 +163,7 @@ class LoginWithRegister extends React.Component {
                                 <div className="narrow">
                                     <Formik
                                         initialValues={{
-                                            email: 'admin@joyaether.test',
+                                            email: 'superadmin@ffa.test',
                                             password: 'abcd1234',
                                         }}
                                         validationSchema={Schema}
