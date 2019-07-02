@@ -16,10 +16,13 @@ import Grid from '@material-ui/core/Grid';
 
 // Api
 import { apiAuth } from '../../../Api/ApiAuth';
+import { apiSubject } from '../../../Api/ApiSubject';
 
 // Redux
 import { connect } from 'react-redux';
-import { login, verifyToken, getUserInfo, getSimpleCourse } from '../../../Redux/Action/authAction';
+import { login, verifyToken, getUserInfo } from '../../../Redux/Action/authAction';
+import { getSimpleSubject } from '../../../Redux/Action/subjectAction';
+
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -112,7 +115,9 @@ class LoginNoRegister extends React.Component {
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
                 this.props.loginP(res.access_token);
                 this._getUserInformation(res.access_token);
-                this._getSimpleCourse(res.access_token);
+            })
+            apiSubject.authenticate(submitEmail, submitPassword).then((res) => {
+                this._getSimpleSubject(res.access_token);
             })
         }
     };
@@ -152,18 +157,20 @@ class LoginNoRegister extends React.Component {
         apiAuth.getUserInformation(params, access_token, cb, eCb);
     }
 
-    _getSimpleCourse = (access_token) => {
+    _getSimpleSubject = (access_token) => {
 
         const cb = (obj) => {
             console.log("cb : ", obj);
-            this.props.getSimpleCourseP(obj.body);
+            this.props.getSimpleSubjectP(obj.body);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
         const params = null;
 
-        apiAuth.getSimpleCourse(params, access_token, cb, eCb);
+        const url = "simple/subjects?school=dc81cbfc-efdd-42e9-86e0-0edc603b7777";
+
+        apiSubject.getSimpleSubject(url, params, access_token, cb, eCb);
     }
 
     render() {
@@ -218,7 +225,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     loginP: data => dispatch(login(data)),
     getUserInfoP: data => dispatch(getUserInfo(data)),
-    getSimpleCourseP: data => dispatch(getSimpleCourse(data)),
+    getSimpleSubjectP: data => dispatch(getSimpleSubject(data)),
     verifyT: token => dispatch(verifyToken(token)),
 });
 

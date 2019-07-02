@@ -3,7 +3,7 @@ import { AUDIENCE, WEB_CLIENT_CREDENTIAL_TOKEN } from '../Redux/Constant/ServerC
 
 import { apiGeneral } from './_General';
 
-export const apiAuth = {
+export const apiSubject = {
 	authenticate: (username, password) => api.postUrlFormEncoded('auth', {
 		username, password, audience: AUDIENCE, grant_type: 'password',
 	}, { headers: { Authorization: `Basic ${WEB_CLIENT_CREDENTIAL_TOKEN}` } }),
@@ -14,9 +14,7 @@ export const apiAuth = {
 
 
 	// REAL
-	getUserInformation: (params, token, cb, eCb) => {
-		apiGeneral.apiFetch('user/me', params, token, cb, eCb);
-	},
+	getSimpleSubject: (url, params, token, cb, eCb) => {
+		apiGeneral.apiFetch(url, params, token, cb, eCb);
+	}
 };
-
-
