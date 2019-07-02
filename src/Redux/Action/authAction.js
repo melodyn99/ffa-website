@@ -54,3 +54,8 @@ export const getUserInfo = (data) => ({
   type: AuthActionTypes.GET_USER_INFO,
   data
 });
+
+export const getSimpleCourse = (data) => ({
+  type: AuthActionTypes.GET_SIMPLE_COURSE,
+  data
+})

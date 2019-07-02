@@ -16,6 +16,10 @@ export const apiAuth = {
 	// REAL
 	getUserInformation: (params, token, cb, eCb) => {
 		apiGeneral.apiFetch('user/me', params, token, cb, eCb);
+	},
+
+	getSimpleCourse: (params, token, cb, eCb) => {
+		apiGeneral.apiFetch('simple/subjects?school=dc81cbfc-efdd-42e9-86e0-0edc603b7777', params, token, cb, eCb);
 	}
 };
 

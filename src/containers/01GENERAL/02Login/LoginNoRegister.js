@@ -19,7 +19,7 @@ import { apiAuth } from '../../../Api/ApiAuth';
 
 // Redux
 import { connect } from 'react-redux';
-import { login, verifyToken, getUserInfo } from '../../../Redux/Action/authAction';
+import { login, verifyToken, getUserInfo, getSimpleCourse } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -112,6 +112,7 @@ class LoginNoRegister extends React.Component {
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
                 this.props.loginP(res.access_token);
                 this._getUserInformation(res.access_token);
+                this._getSimpleCourse(res.access_token);
             })
         }
     };
@@ -149,6 +150,20 @@ class LoginNoRegister extends React.Component {
         const params = null;
 
         apiAuth.getUserInformation(params, access_token, cb, eCb);
+    }
+
+    _getSimpleCourse = (access_token) => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            this.props.getSimpleCourseP(obj.body);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = null;
+
+        apiAuth.getSimpleCourse(params, access_token, cb, eCb);
     }
 
     render() {
@@ -203,6 +218,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     loginP: data => dispatch(login(data)),
     getUserInfoP: data => dispatch(getUserInfo(data)),
+    getSimpleCourseP: data => dispatch(getSimpleCourse(data)),
     verifyT: token => dispatch(verifyToken(token)),
 });
 
