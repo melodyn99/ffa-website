@@ -25,10 +25,14 @@ class SchoolAllCourse extends Component {
                 <ul className="clearfix">
                     <li><Link to={"/" + i18n.language + "/school-all-course"} className={currentPath === 'school-all-course' ? 'active' : ''}>所有课程</Link></li>
 
-                    {(subject.simpleSubject.map((oneSubject, i) =>
-                        <li key={oneSubject.subject_id}>
-                            <Link to={"/" + i18n.language + "/school-all-course/" + oneSubject.subject_id} className={currentPath === "/school-all-course/" + oneSubject.subject_id ? 'active' : ''}>{oneSubject.name}</Link>
-                        </li>
+                    {(subject.simpleSubject.map(
+                        (oneSubject, i) => {
+                            return (
+                                <li key={oneSubject.subject_id}>
+                                    <Link to={"/" + i18n.language + "/school-all-course/" + oneSubject.subject_id} className={currentPath === "/school-all-course/" + oneSubject.subject_id ? 'active' : ''}>{oneSubject.name}</Link>
+                                </li>
+                            )
+                        }
                     ))}
 
                     {/* <li><Link to={"/" + i18n.language + "/school-all-course"} className={currentPath === 'course-a' ? 'active' : ''}>战略课程</Link></li>
