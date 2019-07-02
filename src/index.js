@@ -41,6 +41,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 // IMPORT REDUCERS
 import authReducer from './Redux/Reducer/authReducer';
+import subjectReducer from './Redux/Reducer/subjectReducer';
 import profileReducer from './Redux/Reducer/profileReducer';
 import seminarReducer from './Redux/Reducer/seminarReducer';
 import eventReducer from './Redux/Reducer/eventReducer';
@@ -72,6 +73,7 @@ const middleware = routerMiddleware(history)
 const appReducer = combineReducers({
     router: routerReducer,
     auth: authReducer,
+    subjectReducer: subjectReducer,
     seminarReducer: seminarReducer,
     libraryReducer: libraryReducer,
     eventReducer: eventReducer,

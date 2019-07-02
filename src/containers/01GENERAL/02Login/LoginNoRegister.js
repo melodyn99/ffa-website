@@ -115,8 +115,6 @@ class LoginNoRegister extends React.Component {
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
                 this.props.loginP(res.access_token);
                 this._getUserInformation(res.access_token);
-            })
-            apiSubject.authenticate(submitEmail, submitPassword).then((res) => {
                 this._getSimpleSubject(res.access_token);
             })
         }
