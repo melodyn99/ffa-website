@@ -31,6 +31,7 @@ import { connect } from 'react-redux';
 import { setNoteTitle, viewingNoteAction } from '../../../Redux/Action/eventAction';
 
 // Utils
+import Bluebird from 'bluebird';
 import { autoScrollTop } from '../../../Util/ScrollToTop';
 import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import { Formik, Form, Field } from 'formik';
@@ -206,9 +207,11 @@ class SchoolNoteTaking extends React.Component {
         const { selected, listNote } = this.state;
         // console.log('download button pressed');
         // const selectedListLength = selected.length;
-        selected.forEach(i => {
-            const theSelectedFileUrl = listNote[i].file.url;
-            return CommonUtils.forceDownload(theSelectedFileUrl, CommonUtils.extractFileName(theSelectedFileUrl));
+        selected.forEach((i, counter) => {
+            let theSelectedFileUrl = listNote[i].file.url;
+            Bluebird.delay(counter * 1000, theSelectedFileUrl).then((url) => {
+                CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
+            });
         });
     }
 
