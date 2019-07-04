@@ -196,11 +196,4 @@ export function formatFileSizeToString(docSize) {
     return formatedResult;
 }
 
-export function formatDate(date) {
-    let formatedDate = date;
-    let resultArray;
-    resultArray = date.split("/");
-    formatedDate = resultArray[0] + "年" + resultArray[1] + "月" + resultArray[2] + "日";
-    return formatedDate;
-}
 export default CommonUtils;

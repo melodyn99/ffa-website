@@ -24,12 +24,14 @@ import Paper from '@material-ui/core/Paper';
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
 // import { apiConferences } from '../../../Api/ApiConferences';
+import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -47,6 +49,7 @@ const rows = [
 
 class SchoolCourseNote extends React.Component {
     state = {
+        listNote: [],
         order: 'asc',
         orderBy: 'calories',
         selected: [],
@@ -55,6 +58,33 @@ class SchoolCourseNote extends React.Component {
         rowsPerPage: 10,
         tempGoDetail: false
     };
+    /** form content start */
+    componentDidMount() {
+        this._getNoteTakingList();
+    }
+
+    _getNoteTakingList = () => {
+
+        // const { viewingSeminar } = this.props;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.setState({
+                listNote: obj.body,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            conference: 'fa2f9ecd-5336-4d6c-973d-2921d583f822'
+            //viewingSeminar ? viewingSeminar.conference_id : ''
+            , $orderby: 'name'
+        }
+
+        apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
+    }
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -144,7 +174,9 @@ class SchoolCourseNote extends React.Component {
 
     render() {
         const { classes, i18n } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const {
+            // data,
+            listNote , order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         if (this.state.tempGoDetail) {
@@ -208,11 +240,13 @@ class SchoolCourseNote extends React.Component {
                                                 rows={rows}
                                             />
                                             <TableBody>
-                                                {data
+                                                {/* {data */}
+                                                {listNote
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const theIndexNum = listNote.indexOf(n);
+                                                        const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
                                                                 className={classes.nthOfTypeRow}
@@ -222,7 +256,7 @@ class SchoolCourseNote extends React.Component {
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">
@@ -230,9 +264,9 @@ class SchoolCourseNote extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.notes}</TableCell>
-                                                                <TableCell>{n.file}</TableCell>
-                                                                <TableCell>{n.lastedit}</TableCell>
+                                                                >{n.content}</TableCell>
+                                                                <TableCell>{`?`}</TableCell>
+                                                                <TableCell>{dateToDayAndMonth(n.lastmoddate)}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}

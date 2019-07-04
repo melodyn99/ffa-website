@@ -6,8 +6,8 @@ export const apiNoteFile = {
     getNoteFile: () => api.get('note_files?$expand=file/mime_type'),
 
     // getNoteFileForNote: noteId => api.get(`note_files?note=${noteId}&$expand=file/mime_type`),
-    getNoteFileForNote: (noteId, params, token, cb, eCb) => {
-        apiGeneral.apiFetch(`note_files?note=${noteId}&$expand=file/mime_type`, params, token, cb, eCb)
+    getNoteFileForNote: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('note_files', params, token, cb, eCb)
     },
 
     createNoteFile: data => api.post('note_files', data),

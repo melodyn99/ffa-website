@@ -23,7 +23,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 // Api
-import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
+import { apiNoteFile } from '../../../Api/ApiNoteFile';
+import { apiFile } from '../../../Api/ApiFile';
 
 // Redux
 import { connect } from 'react-redux';
@@ -31,11 +32,11 @@ import { setNoteTitle, viewingNoteAction } from '../../../Redux/Action/eventActi
 
 // Utils
 import { autoScrollTop } from '../../../Util/ScrollToTop';
-// import { dateToDayAndMonth } from '../../../Util/DateUtils';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
-import { formatFileSizeToString, formatDate } from '../../../Util/CommonUtils';
+import { formatFileSizeToString } from '../../../Util/CommonUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -47,9 +48,9 @@ import data from '../../../data/03SCHOOL/01Course/SchoolNoteTaking';
 
 // Define column names
 const rows = [
-    { id: 'docName', numeric: false, disablePadding: false, label: '记录文件' },
+    { id: 'name', numeric: false, disablePadding: false, label: '记录文件' },
     { id: 'teacher', numeric: false, disablePadding: false, label: '老师' },
-    { id: 'docSize', numeric: true, disablePadding: false, label: '文件大小' },
+    { id: 'size', numeric: true, disablePadding: false, label: '文件大小' },
     { id: 'createdDate', numeric: false, disablePadding: false, label: '上载日期' },
 ];
 
@@ -62,16 +63,17 @@ class SchoolNoteTaking extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false
+        tempGoDetail: false,
+        hardCode_noteId: '52f8c092-bb58-46a7-a7d2-b482d0ac0b85',
     }
 
     /** form content start */
     componentDidMount() {
-        this._getNoteTakingList();
+        this._getNoteFile();
     }
 
-    _getNoteTakingList = () => {
-
+    _getNoteFile = () => {
+        const { hardCode_noteId } = this.state;
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
@@ -85,12 +87,13 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            conference: 'f0c3b12a-0ec7-4958-8d7c-b31602f4065e'
-            //viewingSeminar ? viewingSeminar.conference_id : ''
-            , $orderby: 'name'
+            note: hardCode_noteId,
+            //viewingSeminar ? viewingSeminar.conference_id : '',
+            $orderby: 'lastmoddate',
+            $expand: 'file/mime_type',
         }
 
-        apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
+        apiNoteFile.getNoteFileForNote(params, this.props.auth.token, cb, eCb);
     }
 
     _handleInput = (value, key) => {
@@ -132,24 +135,24 @@ class SchoolNoteTaking extends React.Component {
         this.setState({ selected: [] });
     };
 
-    handleClick = (event, id) => {
-        // const { selected } = this.state;
-        // const selectedIndex = selected.indexOf(id);
+    handleClick = (event, theIndexNum) => {
+        const { selected } = this.state;
+        const selectedIndex = selected.indexOf(theIndexNum);
         let newSelected = [];
 
-        // if (selectedIndex === -1) {
-        //     newSelected = newSelected.concat(selected, id);
-        // } else if (selectedIndex === 0) {
-        //     newSelected = newSelected.concat(selected.slice(1));
-        // } else if (selectedIndex === selected.length - 1) {
-        //     newSelected = newSelected.concat(selected.slice(0, -1));
-        // } else if (selectedIndex > 0) {
-        //     newSelected = newSelected.concat(
-        //         selected.slice(0, selectedIndex),
-        //         selected.slice(selectedIndex + 1),
-        //     );
-        // }
-        newSelected.push(id);
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, theIndexNum);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1),
+            );
+        }
+
         this.setState({ selected: newSelected });
     };
 
@@ -161,13 +164,9 @@ class SchoolNoteTaking extends React.Component {
         this.setState({ rowsPerPage: event.target.value });
     };
 
-    // isSelected = id => this.state.selected.indexOf(id) !== -1;
-    isSelected = id => {
-        return this.state.selected[0] === id;
-    }
+    isSelected = theIndexNum => this.state.selected.indexOf(theIndexNum) !== -1;
 
     /** Material UI table style end  **/
-
     // _tempDetail = () => {
     //     this.setState({
     //         ...this.state,
@@ -197,7 +196,7 @@ class SchoolNoteTaking extends React.Component {
             // i18n,
             classes } = this.props;
         const {
-            // listNote,
+            listNote,
             data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -250,37 +249,6 @@ class SchoolNoteTaking extends React.Component {
                     <Grid item xs={1} >
                     </Grid>
                     <Grid item xs={11}>
-                        {/* <div className={classes.notesWrapper}>
-                            <List className={classes.list}>
-                                {
-                                    listNote.map((item, i) => (
-                                        <ListItem
-                                            onClick={() => {
-                                                this.props.setNoteTitle(item.name);
-                                                this.props.viewingNoteAction(item);
-                                            }}
-                                            component={Link}
-                                            to={{
-                                                pathname: '/' + i18n.language + '/school-notes-content',
-                                                search: 'notes=' + item.note_id,
-                                                // state: item,
-                                            }}
-                                            className={classes.listItem}
-                                            key={i}
-                                        >
-                                            <ListItemText
-                                                primary={item.name}
-                                                secondary={item.created_by}
-                                                className={classes.listItemText}
-                                            />
-                                            <Typography className={classes.typography}>
-                                                {dateToDayAndMonth(item.createddate)}
-                                            </Typography>
-                                        </ListItem>
-                                    ))
-                                }
-                            </List>
-                        </div> */}
                         <Paper className={classes.paper}>
                             <div className={classes.tableWrapper}>
                                 <Table className={classes.table} aria-labelledby="tableTitle">
@@ -294,20 +262,21 @@ class SchoolNoteTaking extends React.Component {
                                         rows={rows}
                                     />
                                     <TableBody>
-                                        {data
+                                        {listNote
                                             .sort(getSorting(order, orderBy))
                                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                             .map(n => {
-                                                const isSelected = this.isSelected(n.id);
+                                                const theIndexNum = listNote.indexOf(n);
+                                                const isSelected = this.isSelected(theIndexNum);
                                                 return (
                                                     <TableRow
                                                         className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                         hover
-                                                        onClick={event => this.handleClick(event, n.id)}
+                                                        onClick={event => this.handleClick(event, theIndexNum)}
                                                         role="checkbox"
                                                         aria-checked={isSelected}
                                                         tabIndex={-1}
-                                                        key={n.id}
+                                                        key={theIndexNum}
                                                         selected={isSelected}
                                                     >
                                                         {/* <TableCell padding="checkbox">
@@ -315,10 +284,10 @@ class SchoolNoteTaking extends React.Component {
                                                                 </TableCell> */}
                                                         <TableCell component="th" scope="row"
                                                         // padding="none"
-                                                        >{n.docName}</TableCell>
-                                                        <TableCell>{n.teacher}</TableCell>
-                                                        <TableCell>{formatFileSizeToString(n.docSize)}</TableCell>
-                                                        <TableCell>{formatDate(n.createdDate)}</TableCell>
+                                                        >{n.file.name}</TableCell>
+                                                        <TableCell>{n.file.mime_type.created_by}</TableCell>
+                                                        <TableCell>{formatFileSizeToString(n.file.size)}</TableCell>
+                                                        <TableCell>{dateToDayAndMonth(n.file.mime_type.createddate)}</TableCell>
                                                     </TableRow>
                                                 );
                                             })}
@@ -345,6 +314,7 @@ class SchoolNoteTaking extends React.Component {
                                 onChangeRowsPerPage={this.handleChangeRowsPerPage}
                             />
                         </Paper>
+
                     </Grid>
 
                 </Grid>
@@ -354,6 +324,37 @@ class SchoolNoteTaking extends React.Component {
                     >取消</Button>
                     <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
                 </div>
+                {/* <div className={classes.notesWrapper}>
+                    <List className={classes.list}>
+                        {
+                            listNote.map((n, i) => (
+                                <ListItem
+                                    onClick={() => {
+                                        this.props.setNoteTitle(n.name);
+                                        this.props.viewingNoteAction(n);
+                                    }}
+                                    component={Link}
+                                    to={{
+                                        pathname: '/' + i18n.language + '/school-notes-content',
+                                        search: 'notes=' + n.note_id,
+                                        // state: item,
+                                    }}
+                                    className={classes.listItem}
+                                    key={i}
+                                >
+                                    <ListItemText
+                                        primary={n.name}
+                                        secondary={n.created_by}
+                                        className={classes.listItemText}
+                                    />
+                                    <Typography className={classes.typography}>
+                                        {dateToDayAndMonth(n.createddate)}
+                                    </Typography>
+                                </ListItem>
+                            ))
+                        }
+                    </List>
+                </div> */}
             </Form>
         )
     }
