@@ -36,7 +36,7 @@ import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
-import { formatFileSizeToString } from '../../../Util/CommonUtils';
+import CommonUtils,{ formatFileSizeToString } from '../../../Util/CommonUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -176,8 +176,8 @@ class SchoolNoteTaking extends React.Component {
 
     // ToolBar
     _uploadButtonAction = (body) => {
-        const { hardCode_noteId } = this.state;
         // console.log('upload button pressed');
+        const { hardCode_noteId } = this.state;
         const createNoteFileCb = (obj) => {
             console.log("cb2 : ", obj);
             this._getNoteFile();
@@ -203,7 +203,13 @@ class SchoolNoteTaking extends React.Component {
     }
 
     _downloadButtonAction = () => {
-        console.log('download button pressed');
+        const { selected, listNote } = this.state;
+        // console.log('download button pressed');
+        // const selectedListLength = selected.length;
+        selected.forEach(i => {
+            const theSelectedFileUrl = listNote[i].file.url;
+            return CommonUtils.forceDownload(theSelectedFileUrl, CommonUtils.extractFileName(theSelectedFileUrl));
+        });
     }
 
     _deleteButtonAction = () => {
