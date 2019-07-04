@@ -10,7 +10,10 @@ export const apiNoteFile = {
         apiGeneral.apiFetch('note_files', params, token, cb, eCb)
     },
 
-    createNoteFile: data => api.post('note_files', data),
+    // createNoteFile: data => api.post('note_files', data),
+    createNoteFile: (body, token, cb, eCb) => {
+        apiGeneral.apiPost('note_files', body, token, cb, eCb)
+    },
 
     deleteNoteFile: noteFileId => api.delete('note_files', { note_file_id: noteFileId }),
 };

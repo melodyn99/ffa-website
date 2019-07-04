@@ -13,7 +13,39 @@ import { Button } from '@material-ui/core';
 // Redux
 import { connect } from 'react-redux';
 
+//Util
+import FileInput from '../../Util/FileInput';
+import { emitter, EventTypes } from '../../Util/EventEmitter';
+
 class General extends Component {
+
+    // updateFile(pathname, data) {
+    //     if (pathname === '/itinerarymgt') {
+    //         return emitter.emit(EventTypes.ADD_FILE_TO_ITINERAEY_MGT, data);
+    //     }
+    //     if (pathname === '/eventdetails') {
+    //         return emitter.emit(EventTypes.ADD_FILE_TO_EVENT, data);
+    //     }
+
+    //     if (pathname === '/checkindetail') {
+    //         return emitter.emit(EventTypes.ADD_FILE_TO_CHECKIN, data);
+    //     }
+    //     if (pathname === '/newnotecontent') {
+    //         return emitter.emit(EventTypes.ADD_FILE_TO_NOTE, data);
+    //     }
+    //     if (pathname === '/notecontent') {
+    //         return emitter.emit(EventTypes.ADD_FILE_TO_NOTE, data);
+    //     }
+    //     if (pathname === '/companydetail') {
+    //         return emitter.emit(EventTypes.ADD_CSV_FILE, data);
+    //     }
+
+    //     return emitter.emit(EventTypes.ADD_FILE_TO_LIBRARY, data);
+    // }
+
+    customHeaderButtonCallback(eventName, data) {
+        emitter.emit(eventName, data);
+    }
 
     render() {
         const { //t, i18n 
@@ -51,8 +83,13 @@ class General extends Component {
                 {this.props.uploadButton &&
                     <Button
                         className={classes.blueGreenButton}
-                        onClick={() => this.props.uploadButtonAction()}
-                    >{this.props.uploadButtonText}</Button>
+                        onClick={() => this.customHeaderButtonCallback(EventTypes.OPEN_FILE_BROWSER)}>
+                        <FileInput onSelected={(file) => {
+                            this.props.uploadButtonAction(file);
+                        }}
+                        />
+                        {this.props.uploadButtonText}
+                    </Button>
                 }
 
                 {this.props.downloadButton &&

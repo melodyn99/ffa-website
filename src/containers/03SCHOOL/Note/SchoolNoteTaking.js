@@ -175,8 +175,31 @@ class SchoolNoteTaking extends React.Component {
     // }
 
     // ToolBar
-    _uploadButtonAction = () => {
-        console.log('upload button pressed');
+    _uploadButtonAction = (body) => {
+        const { hardCode_noteId } = this.state;
+        // console.log('upload button pressed');
+        const createNoteFileCb = (obj) => {
+            console.log("cb2 : ", obj);
+            this._getNoteFile();
+        }
+        const createNoteFileEcb = (obj) => {
+            console.log("eCb2 : ", obj);
+        }
+
+        const createFileCb = (obj) => {
+            console.log("cb : ", obj);
+            // this.setState({
+            //     ...this.state,
+            //     formSubmitted: true
+            // })
+            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: hardCode_noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
+
+        }
+        const createFileEcb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        apiFile.createFile(body, this.props.auth.token, createFileCb, createFileEcb);
     }
 
     _downloadButtonAction = () => {
