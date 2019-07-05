@@ -6,11 +6,18 @@ export const apiNoteFile = {
     getNoteFile: () => api.get('note_files?$expand=file/mime_type'),
 
     // getNoteFileForNote: noteId => api.get(`note_files?note=${noteId}&$expand=file/mime_type`),
-    getNoteFileForNote: (noteId, params, token, cb, eCb) => {
-        apiGeneral.apiFetch(`note_files?note=${noteId}&$expand=file/mime_type`, params, token, cb, eCb)
+    getNoteFileForNote: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('note_files', params, token, cb, eCb)
     },
 
-    createNoteFile: data => api.post('note_files', data),
+    // createNoteFile: data => api.post('note_files', data),
+    createNoteFile: (body, token, cb, eCb) => {
+        apiGeneral.apiPost('note_files', body, token, cb, eCb)
+    },
 
-    deleteNoteFile: noteFileId => api.delete('note_files', { note_file_id: noteFileId }),
+    // deleteNoteFile: noteFileId => api.delete('note_files', { note_file_id: noteFileId }),
+    deleteNoteFile: (params, token, cb, eCb) => {
+        apiGeneral.apiDelete('note_files', params, token, cb, eCb)
+    },
+
 };

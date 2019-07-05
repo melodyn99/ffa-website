@@ -1,23 +1,23 @@
 export default [
     {
         "id": 1,
-        "docName": "文件1.mp4",
+        "name": "文件1.mp4",
         "teacher": "TeacherA",
-        "docSize": 12595.2,
-        "createdDate": "2019/9/1",
+        "size": 12595.2,
+        "createddate": "2019/9/1",
     },
     {
         "id": 2,
-        "docName": "文件.pdf",
+        "name": "文件.pdf",
         "teacher": "TeacherB",
-        "docSize": 512,
-        "createdDate": "2019/10/1",
+        "size": 512,
+        "createddate": "2019/10/1",
     },
     {
         "id": 3,
-        "docName": "文件.jpg",
+        "name": "文件.jpg",
         "teacher": "TeacherC",
-        "docSize": 24,
-        "createdDate": "2019/11/1",
+        "size": 24,
+        "createddate": "2019/11/1",
     },
 ];
