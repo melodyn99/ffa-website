@@ -156,7 +156,7 @@ export default class FileInput extends React.Component {
                 extension: type.split('/')[1],
             };
             const data = {
-                url: `Content-Type:${fileData.type || 'text/csv'}\r\nContent-Disposition:attachment;filename=${encodeURI(fileName)}\r\nContent-Transfer-Encoding: base64\r\n\r\n${fileData.content}`
+                url: `Content-Type:${fileData.type || 'text/csv'}\r\nContent-Disposition:attachment;filename=\"${encodeURI(fileName)}\"\r\nContent-Transfer-Encoding: base64\r\n\r\n${fileData.content}`
             };
             console.log("data", data)
             onSelected(data);

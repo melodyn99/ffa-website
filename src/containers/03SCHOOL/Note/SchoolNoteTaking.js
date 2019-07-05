@@ -180,15 +180,15 @@ class SchoolNoteTaking extends React.Component {
         // console.log('upload button pressed');
         const { hardCode_noteId } = this.state;
         const createNoteFileCb = (obj) => {
-            console.log("cb2 : ", obj);
+            console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
         }
         const createNoteFileEcb = (obj) => {
-            console.log("eCb2 : ", obj);
+            console.log("createNoteFileEcb : ", obj);
         }
 
         const createFileCb = (obj) => {
-            console.log("cb : ", obj);
+            console.log("createFileCb : ", obj);
             // this.setState({
             //     ...this.state,
             //     formSubmitted: true
@@ -197,7 +197,7 @@ class SchoolNoteTaking extends React.Component {
 
         }
         const createFileEcb = (obj) => {
-            console.log("eCb : ", obj);
+            console.log("createFileEcb : ", obj);
         }
 
         apiFile.createFile(body, this.props.auth.token, createFileCb, createFileEcb);
@@ -216,7 +216,22 @@ class SchoolNoteTaking extends React.Component {
     }
 
     _deleteButtonAction = () => {
-        console.log('delete button pressed');
+        // console.log('delete button pressed');
+        const { selected, listNote } = this.state;
+
+        const deleteNoteFileCb = (obj) => {
+            console.log("deleteNoteFileCb : ", obj);
+            this._getNoteFile();
+            this.setState({ selected: [] });
+        }
+        const deleteNoteFileEcb = (obj) => {
+            console.log("deleteNoteFileEcb : ", obj);
+        }
+
+        selected.forEach(i => {
+            let theSelectedNote_file_id = listNote[i].note_file_id;
+            apiNoteFile.deleteNoteFile(theSelectedNote_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
+        });
     }
 
     form = ({

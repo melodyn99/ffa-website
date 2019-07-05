@@ -15,5 +15,9 @@ export const apiNoteFile = {
         apiGeneral.apiPost('note_files', body, token, cb, eCb)
     },
 
-    deleteNoteFile: noteFileId => api.delete('note_files', { note_file_id: noteFileId }),
+    // deleteNoteFile: noteFileId => api.delete('note_files', { note_file_id: noteFileId }),
+    deleteNoteFile: (params, token, cb, eCb) => {
+        apiGeneral.apiDelete('note_files', params, token, cb, eCb)
+    },
+
 };
