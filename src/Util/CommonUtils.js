@@ -187,11 +187,21 @@ export function formatDecimal(number, place) {
 }
 
 export function formatFileSizeToString(docSize) {
-    let formatedResult = docSize + " KB";
+    let formatedResult;
     if (docSize >= 102.4) {
-        formatedResult = docSize / 1024 + " MB";
+        formatedResult = (docSize / 1024)+"";
+        if (formatedResult.search("\\.") !== -1) {
+            formatedResult = formatedResult.substr(0, formatedResult.search("\\.") + 3);
+        }
+        formatedResult += " MB";
     } else if (docSize >= 104857.6) {
-        formatedResult = docSize / 1048576 + " GB";
+        formatedResult = (docSize / 1048576)+"";
+        if (formatedResult.search("\\.") !== -1) {
+            formatedResult = formatedResult.substr(0, formatedResult.search("\\.") + 3);
+        }
+        formatedResult += " GB";
+    }else{
+        formatedResult = docSize + " KB";
     }
     return formatedResult;
 }
