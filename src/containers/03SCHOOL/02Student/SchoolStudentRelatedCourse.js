@@ -18,6 +18,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import InputBase from "@material-ui/core/InputBase";
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
@@ -58,6 +59,10 @@ class SchoolStudentRelatedCourse extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
+
+        //edit actualFees
+        isTheEditingItem: -1,
+        isEnableEditActualFees: true,
     };
 
     handleRequestSort = (event, property) => {
@@ -110,9 +115,17 @@ class SchoolStudentRelatedCourse extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    handleChangeActualFees = event => {
+        console.log(event.target.value);
+        this.setState({ isTheEditingItem: -1, isEnableEditActualFees: true });
+    }
+    editActualFees = (selectedNum) => {
+        this.setState({ isTheEditingItem: selectedNum, isEnableEditActualFees: false });
+    }
+
     render() {
         const { classes } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const { data, order, orderBy, selected, rowsPerPage, page, isTheEditingItem, isEnableEditActualFees } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -144,15 +157,16 @@ class SchoolStudentRelatedCourse extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const theIndexNum = data.indexOf(n);
+                                                        const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={event => this.handleClick(event, theIndexNum)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">
@@ -166,7 +180,27 @@ class SchoolStudentRelatedCourse extends React.Component {
                                                                 <TableCell>{n.courseCode}</TableCell>
                                                                 <TableCell>{n.courseName}</TableCell>
                                                                 <TableCell>{n.fees}</TableCell>
-                                                                <TableCell>{n.actualFees}</TableCell>
+                                                                <TableCell>
+                                                                    {isTheEditingItem === theIndexNum ?
+                                                                        <div>
+                                                                            <input
+                                                                                type="text"
+                                                                                autoFocus={true}
+                                                                                placeholder="Can not be null"
+                                                                                value={n.actualFees}
+                                                                                // onMouseLeave={(event)=>this.handleChangeActualFees(event)}
+                                                                                onBlur={(event) => this.handleChangeActualFees(event)}
+                                                                            />
+                                                                        </div>
+                                                                        :
+                                                                        <div onDoubleClick={
+                                                                            isEnableEditActualFees ?
+                                                                                () => this.editActualFees(theIndexNum) :
+                                                                                null}>
+                                                                            {n.actualFees}
+                                                                        </div>
+                                                                    }
+                                                                </TableCell>
                                                                 <TableCell>{n.credits}</TableCell>
                                                                 <TableCell>{n.grade}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
