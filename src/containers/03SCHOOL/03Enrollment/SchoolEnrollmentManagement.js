@@ -19,6 +19,12 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from "@material-ui/core/Button";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import Popper from "@material-ui/core/Popper";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
@@ -56,6 +62,11 @@ class SchoolEnrollmentManagement extends React.Component {
         data: data,
         page: 0,
         rowsPerPage: 10,
+
+        //MenuList composition
+        anchorEl: null,
+        selectedIndex: 0,
+        isSelected: false
     };
 
     handleRequestSort = (event, property) => {
@@ -137,9 +148,27 @@ class SchoolEnrollmentManagement extends React.Component {
         console.log('report button pressed');
     }
 
+    //MenuList composition
+    handleClickListItem = event => {
+        const { isSelected } = this.state;
+        if (!isSelected) {
+            this.setState({ anchorEl: event.currentTarget, isSelected: true });
+        } else {
+            this.handleClose();
+        }
+    };
+
+    handleMenuItemClick = (event, index) => {
+        this.setState({ selectedIndex: index, anchorEl: null, isSelected: false });
+    };
+
+    handleClose = () => {
+        this.setState({ anchorEl: null, isSelected: false });
+    }
+
     render() {
         const { classes } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const { data, order, orderBy, selected, rowsPerPage, page, anchorEl } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -222,7 +251,16 @@ class SchoolEnrollmentManagement extends React.Component {
                                                                 <TableCell>{n.subject}</TableCell>
                                                                 <TableCell>{n.course}</TableCell>
                                                                 <TableCell>{n.student}</TableCell>
-                                                                <TableCell>{n.status}</TableCell>
+                                                                <TableCell>
+                                                                    <Button
+                                                                        aria-haspopup="true"
+                                                                        aria-controls="lock-menu"
+                                                                        aria-label="Btn2"
+                                                                        onClick={this.handleClickListItem}
+                                                                    >
+                                                                        {n.status}
+                                                                    </Button>
+                                                                </TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );
@@ -250,11 +288,47 @@ class SchoolEnrollmentManagement extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
+
                             </div>
                         </div>
                     </div>
                 </div>
+                <Popper
+                    id="lock-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={this.handleClose}
+                    transition
+                    disablePortal
+                >
+                    {({ TransitionProps, placement }) => (
+                        <Grow
+                            {...TransitionProps}
+                            style={{
+                                transformOrigin:
+                                    placement === "bottom" ? "center top" : "center bottom"
+                            }}
+                        >
+                            <Paper>
+                                <ClickAwayListener onClickAway={this.handleClose}>
+                                    <MenuList>
+                                        <MenuItem onClick={event => this.handleMenuItemClick(event, 1)} >
+                                            Item1
+                                        </MenuItem>
+                                        <MenuItem onClick={event => this.handleMenuItemClick(event, 2)} >
+                                            Item2
+                                        </MenuItem>
+                                        <MenuItem onClick={event => this.handleMenuItemClick(event, 3)} >
+                                            Item3
+                                        </MenuItem>
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                        </Grow>
+                    )}
+                </Popper>
             </div>
+
         );
     }
 }
