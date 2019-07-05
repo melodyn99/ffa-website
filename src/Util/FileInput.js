@@ -114,25 +114,27 @@ export default class FileInput extends React.Component {
     handleSubmit(e) {
         e.stopPropagation();
         e.preventDefault();
-        const file = e.target.files[0];
-        if (file) {
-            const alertMessages = [];
-            const fileExt = file.name.split('.').pop();
-            const isAllowedMime = ALLOWED_MIME.indexOf(file.type) > -1;
-            if (!isAllowedMime && ALLOWED_EXTENSTIONS.indexOf(fileExt) === -1) {
-                console.log('Unsupported file type: ', file.name, file.type);
-                alertMessages.push('档案类型不支援（只接受doc, ppt, mp4, jpg, pdf, ...）');
-            }
-            if (file.size > 100 * 1024 * 1000) {
-                console.log('Invalid file size: ', file.size);
-                alertMessages.push('档案大小超出上限（必顺小于 100mb）');
-            }
-            if (alertMessages.length > 0) {
-                alert(alertMessages.join('\n'));
-            } else {
-                const type = isAllowedMime ? file.type : mime.lookup(fileExt);
-                this.handleFile(file, type);
-            }
+        if (e.target.files.length !== 0) {
+            for (let i = 0; i < e.target.files.length; i++) {
+                const file = e.target.files[i];
+                const alertMessages = [];
+                const fileExt = file.name.split('.').pop();
+                const isAllowedMime = ALLOWED_MIME.indexOf(file.type) > -1;
+                if (!isAllowedMime && ALLOWED_EXTENSTIONS.indexOf(fileExt) === -1) {
+                    console.log('Unsupported file type: ', file.name, file.type);
+                    alertMessages.push('档案类型不支援（只接受doc, ppt, mp4, jpg, pdf, ...）');
+                }
+                if (file.size > 100 * 1024 * 1000) {
+                    console.log('Invalid file size: ', file.size);
+                    alertMessages.push('档案大小超出上限（必顺小于 100mb）');
+                }
+                if (alertMessages.length > 0) {
+                    alert(alertMessages.join('\n'));
+                } else {
+                    const type = isAllowedMime ? file.type : mime.lookup(fileExt);
+                    this.handleFile(file, type);
+                }
+            };
         }
         e.target.value = null;
     }
