@@ -65,7 +65,7 @@ class SchoolNoteTaking extends React.Component {
         page: 0,
         rowsPerPage: 10,
         tempGoDetail: false,
-        hardCode_noteId: '52f8c092-bb58-46a7-a7d2-b482d0ac0b85',
+        noteId: this.props.id,
     }
 
     /** form content start */
@@ -74,7 +74,7 @@ class SchoolNoteTaking extends React.Component {
     }
 
     _getNoteFile = () => {
-        const { hardCode_noteId } = this.state;
+        const { noteId } = this.state;
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
@@ -88,7 +88,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note: hardCode_noteId,
+            note: noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $orderby: 'lastmoddate',
             $expand: 'file/mime_type',
@@ -178,7 +178,7 @@ class SchoolNoteTaking extends React.Component {
     // ToolBar
     _uploadButtonAction = (body) => {
         // console.log('upload button pressed');
-        const { hardCode_noteId } = this.state;
+        const { noteId } = this.state;
         const createNoteFileCb = (obj) => {
             console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
@@ -193,7 +193,7 @@ class SchoolNoteTaking extends React.Component {
             //     ...this.state,
             //     formSubmitted: true
             // })
-            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: hardCode_noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
+            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
 
         }
         const createFileEcb = (obj) => {

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 class SchoolCourse extends Component {
 
     render() {
-        const { //t, 
+        const { //t,
             i18n } = this.props;
 
         let pathname = this.props.route.location.pathname,

@@ -1,7 +1,7 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
@@ -80,7 +80,7 @@ class SchoolCourseNote extends React.Component {
         const params = {
             conference: 'fa2f9ecd-5336-4d6c-973d-2921d583f822'
             //viewingSeminar ? viewingSeminar.conference_id : ''
-            , $orderby: 'name'
+            , $orderby: 'lastmoddate DESC'
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -136,11 +136,12 @@ class SchoolCourseNote extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = () => {
+    _tempDetail = (noteId) => {
         this.setState({
             ...this.state,
-            tempGoDetail: true
+            // tempGoDetail: true
         });
+        this.props.history.push('school-note-taking/'+noteId);
     }
 
     // ToolBar
@@ -148,8 +149,8 @@ class SchoolCourseNote extends React.Component {
         this.props.history.push(url);
     }
 
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
+    _createButtonAction = () => {
+        this.props.history.push('school-course-new-note');
     }
 
     _editButtonAction = () => {
@@ -173,15 +174,17 @@ class SchoolCourseNote extends React.Component {
     }
 
     render() {
-        const { classes, i18n } = this.props;
+        const { classes
+            // , i18n
+        } = this.props;
         const {
             // data,
             listNote , order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/school-note-taking"} />;
-        }
+        // if (this.state.tempGoDetail) {
+        //     return <Redirect push to={"/" + i18n.language + "/school-note-taking"} />;
+        // }
 
         return (
             <div>
@@ -252,7 +255,7 @@ class SchoolCourseNote extends React.Component {
                                                                 className={classes.nthOfTypeRow}
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail()}
+                                                                onClick={() => this._tempDetail(n.note_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -264,7 +267,7 @@ class SchoolCourseNote extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.content}</TableCell>
+                                                                >{n.name}</TableCell>
                                                                 <TableCell>{`?`}</TableCell>
                                                                 <TableCell>{dateToDayAndMonth(n.lastmoddate)}</TableCell>
                                                             </TableRow>

@@ -320,7 +320,7 @@ class App extends Component {
 
 
                 /*** SCHOOL ***/
-                // School Course Management  
+                // School Course Management
                 case 'school-all-course': { // OK
                     return <SchoolAllCourse />;
                 }
@@ -359,7 +359,7 @@ class App extends Component {
                     return <SchoolCourseReplyQandA />;
                 }
                 case 'school-course-note': { // OK
-                    return <SchoolCourseNote />;
+                    return <SchoolCourseNote id={currentID}/>;
                 }
                 case 'school-course-new-note': { // OK
                     return <SchoolCourseNewNote />;
@@ -461,7 +461,7 @@ class App extends Component {
 
                 // Note
                 case 'school-note-taking': {
-                    return <SchoolNoteTaking />;
+                    return <SchoolNoteTaking id={currentID} />;
                 }
                 case 'school-notes-content': {
                     return <SchoolNoteContent params={params} />;
