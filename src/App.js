@@ -177,7 +177,7 @@ class App extends Component {
         HelperMobileHandle.MobileHandle.containersSize();
     }
 
-    getComponent = (currentURL, params) => {
+    getComponent = (currentURL, currentID, params) => {
 
         if (currentURL) {
             // console.log(params);
@@ -299,7 +299,9 @@ class App extends Component {
                     return <StudentEnrollmentHistoryForm />;
                 }
                 case 'student-enrollment-history-detail': { // OK
-                    return <StudentEnrollmentHistoryDetail />;
+                    return <StudentEnrollmentHistoryDetail
+                        id={currentID}
+                    />;
                 }
                 case 'student-enrollment-history-cancel-form': { // OK
                     return <StudentEnrollmentHistoryCancelForm />;
@@ -487,6 +489,7 @@ class App extends Component {
             search = this.props.route.location.search,
             urlArray = pathname.split("/"),
             currentURL = urlArray[2],
+            currentID = urlArray[3],
             params = null;
 
         if (search !== "")
@@ -506,7 +509,7 @@ class App extends Component {
 
                     <div className="blackPlane"></div>
 
-                    {this.getComponent(currentURL, params)}
+                    {this.getComponent(currentURL, currentID, params)}
 
                     {currentURL !== '' &&
                         <Footer />
