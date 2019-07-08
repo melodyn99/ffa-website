@@ -4,6 +4,7 @@ import { clearLoginData } from '../../Util/AuthService';
 const initialState = {
 	auth: false,
 	token: null,
+	refreshToken: null,
 	userInfo: []
 };
 
@@ -46,7 +47,8 @@ const authReducer = (state = initialState, action) => {
 			return {
 				...state,
 				auth: true,
-				token: action.data
+				token: action.data.access_token,
+				refreshToken: action.data.refresh_token
 			}
 		}
 

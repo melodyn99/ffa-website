@@ -20,7 +20,7 @@ import { apiAuth } from '../../../Api/ApiAuth';
 
 // Redux
 import { connect } from 'react-redux';
-import { login, verifyToken, getUserInfo } from '../../../Redux/Action/authAction';
+import { login, getUserInfo } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -115,32 +115,12 @@ class LoginWithRegister extends React.Component {
             let submitPassword = values.password;
 
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
-                this.props.loginP(res.access_token);
+                console.log(res);
+                this.props.loginP(res);
                 this._getUserInformation(res.access_token);
             })
         }
     };
-
-    // _authenticate = (submitEmail, submitPassword) => {
-
-    //     const cb = (obj) => {
-    //         console.log("cb : ", obj);
-    //     }
-    //     const eCb = (obj) => {
-    //         console.log("eCb : ", obj);
-    //     }
-    //     const params = {
-    //         username: submitEmail,
-    //         password: submitPassword,
-    //         grant_type: 'password',
-    //         audience: 'ffa.joyaether.com'
-    //     };
-    //     const access_token = null;
-
-    //     console.log('params', params);
-
-    //     apiAuth.authenticate(params, access_token, cb, eCb);
-    // }
 
     _getUserInformation = (access_token) => {
 
@@ -216,7 +196,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     loginP: data => dispatch(login(data)),
     getUserInfoP: data => dispatch(getUserInfo(data)),
-    verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
