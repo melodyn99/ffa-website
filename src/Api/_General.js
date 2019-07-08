@@ -1,4 +1,5 @@
 import * as Config from "../config";
+import qs from 'querystringify';
 
 export const apiGeneral = {
 
@@ -99,20 +100,22 @@ export const apiGeneral = {
             });
     },
 
-    apiPostRefreshToken: (url, options, body, callback, errorCallback) => {
+    apiPostRefreshToken: (url, options, token, callback, errorCallback) => {
 
         let fullUrl = Config.API_URL + url;
 
-        console.log('Full URL : ', fullUrl);
-        console.log('Headers : ', options.headers);
-        console.log('Body : ', body);
+        // console.log('Full URL : ', fullUrl);
+        // console.log('Headers : ', options.headers);
 
         fetch(fullUrl, {
             method: 'post',
             // headers: new Headers({
             headers: options.headers,
             // }),
-            body: JSON.stringify(body)
+            body: new URLSearchParams({
+                'grant_type': 'refresh_token',
+                'refresh_token': token
+            })
         })
             .then(r =>
                 r.json().then(data => ({ status: r.status, body: data }))

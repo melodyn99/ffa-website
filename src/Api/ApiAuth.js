@@ -16,18 +16,13 @@ export const apiAuth = {
 	refreshTokenByRefreshToken: (token, cb, eCb) => {
 		console.log('refresh_token2 : ', token);
 
-		const body = {
-			grant_type: 'refresh_token',
-			refresh_token: token
-		}
-
 		apiGeneral.apiPostRefreshToken('auth', {
 			headers: {
 				'Authorization': `Basic ${WEB_CLIENT_CREDENTIAL_TOKEN}`,
 				'Accept': 'application/json',
-				'Content-Type': 'application/x-www-form-urlencoded'
+				'Content-Type': 'application/x-www-form-urlencoded',
 			}
-		}, body, cb, eCb);
+		}, token, cb, eCb);
 	}
 };
 
