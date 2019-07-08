@@ -30,7 +30,7 @@ export const apiGeneral = {
                 }
             })
             .catch(error => {
-                console.log(fullUrl, "error", error);
+                // console.log(fullUrl, "error", error);
                 if (typeof (errorCallback) === "function") {
                     errorCallback(error);
                 }
@@ -56,13 +56,13 @@ export const apiGeneral = {
                 r.json().then(data => ({ status: r.status, body: data }))
             )
             .then((obj) => {
-                console.log(fullUrl, "success", obj);
+                // console.log(fullUrl, "success", obj);
                 if (typeof (callback) === "function") {
                     callback(obj);
                 }
             })
             .catch(error => {
-                console.log(fullUrl, "error", error);
+                // console.log(fullUrl, "error", error);
                 if (typeof (errorCallback) === "function") {
                     errorCallback(error);
                 }
@@ -92,7 +92,39 @@ export const apiGeneral = {
                 }
             })
             .catch(error => {
-                console.log(fullUrl, "error", error);
+                // console.log(fullUrl, "error", error);
+                if (typeof (errorCallback) === "function") {
+                    errorCallback(error);
+                }
+            });
+    },
+
+    apiPostRefreshToken: (url, options, body, callback, errorCallback) => {
+
+        let fullUrl = Config.API_URL + url;
+
+        console.log('Full URL : ', fullUrl);
+        console.log('Headers : ', options.headers);
+        console.log('Body : ', body);
+
+        fetch(fullUrl, {
+            method: 'post',
+            // headers: new Headers({
+            headers: options.headers,
+            // }),
+            body: JSON.stringify(body)
+        })
+            .then(r =>
+                r.json().then(data => ({ status: r.status, body: data }))
+            )
+            .then((obj) => {
+                // console.log(fullUrl, "success", obj);
+                if (typeof (callback) === "function") {
+                    callback(obj);
+                }
+            })
+            .catch(error => {
+                // console.log(fullUrl, "error", error);
                 if (typeof (errorCallback) === "function") {
                     errorCallback(error);
                 }

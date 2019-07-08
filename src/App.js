@@ -1,11 +1,14 @@
+// Essential for all components
 import React, { Component } from 'react';
 // import {Redirect} from 'react-router';
 import './css/App.scss';
 import { withTranslation } from 'react-i18next';
 
-// import { bindActionCreators } from 'redux'; bye
+// Api
+import { apiAuth } from './Api/ApiAuth';
+
+// Redux
 import { connect } from 'react-redux';
-// import * as AnimationsActionCreators from './actions/animations';
 
 import querySearch from "stringquery";
 
@@ -165,6 +168,9 @@ class App extends Component {
         HelperMobileHandle.MobileHandle.init();
         HelperMobileHandle.MobileHandle.containersSize();
         window.addEventListener("resize", this.windowResize);
+
+        // check if token has expired
+        this._getUserInformation(this.props.auth.token);
     }
 
     componentDidUpdate = () => {
@@ -175,6 +181,35 @@ class App extends Component {
         HelperDesktopHandle.DesktopHandle.resetDesktopMenu();
         HelperDesktopHandle.DesktopHandle.maxHeightDesktopMenu();
         HelperMobileHandle.MobileHandle.containersSize();
+    }
+
+    // check if token has expired
+    _getUserInformation = (access_token) => {
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this._refreshTokenByRefreshToken(this.props.auth.refreshToken);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = null;
+
+        apiAuth.getUserInformation(params, access_token, cb, eCb);
+    }
+
+    // refresh token by refresh_token
+    _refreshTokenByRefreshToken = (refresh_token) => {
+        console.log('refresh_token1 : ', refresh_token);
+
+        const cb = (obj) => {
+            console.log("123 cb : ", obj);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        apiAuth.refreshTokenByRefreshToken(refresh_token, cb, eCb);
     }
 
     getComponent = (currentURL, currentID, params) => {
@@ -525,7 +560,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    route: state.router
+    route: state.router,
+    auth: state.auth
 });
 
 export default withTranslation()(connect(mapStateToProps)(App));
