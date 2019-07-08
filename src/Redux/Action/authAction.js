@@ -50,6 +50,11 @@ export const login = (data) => ({
   data
 });
 
+export const refreshToken = (data) => ({
+  type: AuthActionTypes.REFRESH_TOKEN_SUCCESS,
+  data
+});
+
 export const getUserInfo = (data) => ({
   type: AuthActionTypes.GET_USER_INFO,
   data

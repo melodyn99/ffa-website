@@ -51,7 +51,7 @@ class Home extends Component {
     _signInAsync = async () => {
         apiAuth.authenticate('admin@joyaether.test', 'abcd1234').then((res) => {
             // console.log(res);
-            this.props.loginP(res.access_token);
+            this.props.loginP(res);
             this._getUserInfo();
         })
     };

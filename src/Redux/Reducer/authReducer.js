@@ -52,6 +52,14 @@ const authReducer = (state = initialState, action) => {
 			}
 		}
 
+		case AuthActionTypes.REFRESH_TOKEN_SUCCESS: {
+			return {
+				...state,
+				token: action.data.access_token,
+				refreshToken: action.data.refresh_token
+			}
+		}
+
 		case AuthActionTypes.GET_USER_INFO: {
 			return {
 				...state,

@@ -14,8 +14,8 @@ export const apiAuth = {
 
 
 	// REAL
-	getUserInformation: (params, token, cb, eCb) => {
-		apiGeneral.apiFetch('user/me', params, token, cb, eCb);
+	getUserInformation: (params, token, cb, eCb, refreshToken, refreshTokenCallback) => {
+		apiGeneral.apiFetch('user/me', params, token, cb, eCb, refreshToken, refreshTokenCallback);
 	},
 };
 

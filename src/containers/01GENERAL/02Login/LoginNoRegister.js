@@ -20,7 +20,7 @@ import { apiSubject } from '../../../Api/ApiSubject';
 
 // Redux
 import { connect } from 'react-redux';
-import { login, getUserInfo } from '../../../Redux/Action/authAction';
+import { login, getUserInfo, refreshToken } from '../../../Redux/Action/authAction';
 import { getSimpleSubject } from '../../../Redux/Action/subjectAction';
 
 
@@ -114,13 +114,19 @@ class LoginNoRegister extends React.Component {
 
             apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
                 this.props.loginP(res);
-                this._getUserInformation(res.access_token);
-                this._getSimpleSubject(res.access_token);
+                setInterval(() => {
+                    const { token, refreshToken } = this.props.auth;    // token and refreshToken must be get after this.props.loginP is called 
+                    this._getUserInformation(token, refreshToken, this.props.refreshTokenP);
+                    this._getSimpleSubject(token, refreshToken, this.props.refreshTokenP);
+                }, 10000);
+                const { token, refreshToken } = this.props.auth;    // token and refreshToken must be get after this.props.loginP is called 
+                this._getUserInformation(token, refreshToken, this.props.refreshTokenP);
+                this._getSimpleSubject(token, refreshToken, this.props.refreshTokenP);
             })
         }
     };
 
-    _getUserInformation = (access_token) => {
+    _getUserInformation = (access_token, refresh_token, refreshTokenCallback) => {
 
         const cb = (obj) => {
             console.log("cb : ", obj);
@@ -131,10 +137,10 @@ class LoginNoRegister extends React.Component {
         }
         const params = null;
 
-        apiAuth.getUserInformation(params, access_token, cb, eCb);
+        apiAuth.getUserInformation(params, access_token, cb, eCb, refresh_token, refreshTokenCallback);
     }
 
-    _getSimpleSubject = (access_token) => {
+    _getSimpleSubject = (access_token, refresh_token, refreshTokenCallback) => {
 
         const cb = (obj) => {
             console.log("cb : ", obj);
@@ -147,7 +153,7 @@ class LoginNoRegister extends React.Component {
 
         const url = "simple/subjects?school=dc81cbfc-efdd-42e9-86e0-0edc603b7777";
 
-        apiSubject.getSimpleSubject(url, params, access_token, cb, eCb);
+        apiSubject.getSimpleSubject(url, params, access_token, cb, eCb, refresh_token, refreshTokenCallback);
     }
 
     render() {
@@ -201,6 +207,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     loginP: data => dispatch(login(data)),
+    refreshTokenP: data => dispatch(refreshToken(data)),
     getUserInfoP: data => dispatch(getUserInfo(data)),
     getSimpleSubjectP: data => dispatch(getSimpleSubject(data)),
 });
