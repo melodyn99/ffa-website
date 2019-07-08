@@ -44,17 +44,6 @@ export default [
         "lastmoddate": 1561310609000,
     },
     {
-        "note_id": "ID4",
-        "conference": "conference4",
-        "name": "Name4",
-        "content": "content4",
-        "author_display_name": "author4",
-        "created_by": "creator4",
-        "createddate": 1561310602000,
-        "modified_by": "editor4",
-        "lastmoddate": 1561310609000,
-    },
-    {
         "note_id": "ID5",
         "conference": "conference5",
         "name": "Name5",
