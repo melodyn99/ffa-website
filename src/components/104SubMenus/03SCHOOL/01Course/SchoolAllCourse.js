@@ -12,7 +12,7 @@ class SchoolAllCourse extends Component {
         const { //t, 
             i18n, subject } = this.props;
 
-        console.log(subject.simpleSubject);
+        // console.log(subject.simpleSubject);
 
         let pathname = this.props.route.location.pathname,
             urlArray = pathname.split("/"),
