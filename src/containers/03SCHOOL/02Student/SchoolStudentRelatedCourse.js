@@ -18,7 +18,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import InputBase from "@material-ui/core/InputBase";
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
@@ -115,8 +114,8 @@ class SchoolStudentRelatedCourse extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    handleChangeActualFees = event => {
-        console.log(event.target.value);
+    submitChangeActualFees = event => {
+        console.log("Enter: " + event.target.value);
         this.setState({ isTheEditingItem: -1, isEnableEditActualFees: true });
     }
     editActualFees = (selectedNum) => {
@@ -186,10 +185,10 @@ class SchoolStudentRelatedCourse extends React.Component {
                                                                             <input
                                                                                 type="text"
                                                                                 autoFocus={true}
-                                                                                placeholder="Can not be null"
-                                                                                value={n.actualFees}
-                                                                                // onMouseLeave={(event)=>this.handleChangeActualFees(event)}
-                                                                                onBlur={(event) => this.handleChangeActualFees(event)}
+                                                                                placeholder="Can not be empty"
+                                                                                defaultValue={n.actualFees}
+                                                                                // onMouseLeave={event=>this.handleChangeActualFees(event)}
+                                                                                onBlur={event => this.submitChangeActualFees(event)}
                                                                             />
                                                                         </div>
                                                                         :
