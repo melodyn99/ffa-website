@@ -9,6 +9,7 @@ import { apiAuth } from './Api/ApiAuth';
 
 // Redux
 import { connect } from 'react-redux';
+import { refreshTokenByRefreshToken } from './Redux/Action/authAction';
 
 import querySearch from "stringquery";
 
@@ -187,8 +188,11 @@ class App extends Component {
     _getUserInformation = (access_token) => {
 
         const cb = (obj) => {
-            // console.log("cb : ", obj);
-            this._refreshTokenByRefreshToken(this.props.auth.refreshToken);
+            // console.log("check cb : ", obj);
+
+            if (obj.status === 401) {
+                this._refreshTokenByRefreshToken(this.props.auth.refreshToken);
+            }
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -200,10 +204,11 @@ class App extends Component {
 
     // refresh token by refresh_token
     _refreshTokenByRefreshToken = (refresh_token) => {
-        console.log('refresh_token1 : ', refresh_token);
+        // console.log('refresh_token1 : ', refresh_token);
 
         const cb = (obj) => {
-            console.log("123 cb : ", obj);
+            // console.log("123 cb : ", obj);
+            this.props.refreshTokenByRefreshTokenP(obj.body);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -564,4 +569,8 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 
-export default withTranslation()(connect(mapStateToProps)(App));
+const mapDispatchToProps = dispatch => ({
+    refreshTokenByRefreshTokenP: data => dispatch(refreshTokenByRefreshToken(data)),
+});
+
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(App));

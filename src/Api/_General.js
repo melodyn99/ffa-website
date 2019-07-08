@@ -1,5 +1,4 @@
 import * as Config from "../config";
-import qs from 'querystringify';
 
 export const apiGeneral = {
 

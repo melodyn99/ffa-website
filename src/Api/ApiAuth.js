@@ -14,7 +14,7 @@ export const apiAuth = {
 	},
 
 	refreshTokenByRefreshToken: (token, cb, eCb) => {
-		console.log('refresh_token2 : ', token);
+		// console.log('refresh_token2 : ', token);
 
 		apiGeneral.apiPostRefreshToken('auth', {
 			headers: {
@@ -25,5 +25,3 @@ export const apiAuth = {
 		}, token, cb, eCb);
 	}
 };
-
-
