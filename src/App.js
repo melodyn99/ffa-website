@@ -299,9 +299,7 @@ class App extends Component {
                     return <StudentEnrollmentHistoryForm />;
                 }
                 case 'student-enrollment-history-detail': { // OK
-                    return <StudentEnrollmentHistoryDetail
-                        id={currentID}
-                    />;
+                    return <StudentEnrollmentHistoryDetail id={currentID} />;
                 }
                 case 'student-enrollment-history-cancel-form': { // OK
                     return <StudentEnrollmentHistoryCancelForm />;
@@ -325,7 +323,7 @@ class App extends Component {
                     return <SchoolAllCourse />;
                 }
                 case 'school-course-information': { // OK
-                    return <SchoolCourseInformation />
+                    return <SchoolCourseInformation id={currentID} />
                 }
                 case 'school-course-preparation': { // OK
                     return <SchoolCoursePreparation />;
@@ -359,7 +357,7 @@ class App extends Component {
                     return <SchoolCourseReplyQandA />;
                 }
                 case 'school-course-note': { // OK
-                    return <SchoolCourseNote id={currentID}/>;
+                    return <SchoolCourseNote id={currentID} />;
                 }
                 case 'school-course-new-note': { // OK
                     return <SchoolCourseNewNote />;

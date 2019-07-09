@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -45,7 +46,7 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCou
 import ToolBar from '../../../components/105ToolBars/General';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolNoteTaking';
+// import data from '../../../data/03SCHOOL/01Course/SchoolNoteTaking';
 
 // Define column names
 const rows = [
@@ -57,11 +58,11 @@ const rows = [
 
 class SchoolNoteTaking extends React.Component {
     state = {
-        listNote: [],
+        fileList: [],
         order: 'asc',
         orderBy: 'calories',
         selected: [],
-        data: data,
+        // data: data,
         page: 0,
         rowsPerPage: 10,
         tempGoDetail: false,
@@ -80,7 +81,7 @@ class SchoolNoteTaking extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             this.setState({
-                listNote: obj.body,
+                fileList: obj.body,
             });
         }
         const eCb = (obj) => {
@@ -243,8 +244,10 @@ class SchoolNoteTaking extends React.Component {
             // i18n,
             classes } = this.props;
         const {
-            listNote,
-            data, order, orderBy, selected, rowsPerPage, page } = this.state;
+            fileList,
+            // data,
+            order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = fileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -309,11 +312,11 @@ class SchoolNoteTaking extends React.Component {
                                         rows={rows}
                                     />
                                     <TableBody>
-                                        {listNote
+                                        {data
                                             .sort(getSorting(order, orderBy))
                                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                             .map(n => {
-                                                const theIndexNum = listNote.indexOf(n);
+                                                const theIndexNum = data.indexOf(n);
                                                 const isSelected = this.isSelected(theIndexNum);
                                                 return (
                                                     <TableRow
@@ -466,4 +469,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles, SchoolNoteTakingStyles);
 
-export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolNoteTaking))));
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNoteTaking)))));

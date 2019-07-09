@@ -38,7 +38,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseNote';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseNote';
 
 // Define column names
 const rows = [
@@ -49,14 +49,16 @@ const rows = [
 
 class SchoolCourseNote extends React.Component {
     state = {
-        listNote: [],
         order: 'asc',
         orderBy: 'calories',
         selected: [],
-        data: data,
+        // data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false
+        // tempGoDetail: false,
+        noteList: [],
+        conferenceId: '81aac731-9a38-4106-9e77-9e5da5285626',
+        // conferenceId: this.props.id,
     };
     /** form content start */
     componentDidMount() {
@@ -64,13 +66,13 @@ class SchoolCourseNote extends React.Component {
     }
 
     _getNoteTakingList = () => {
-
         // const { viewingSeminar } = this.props;
+        const { conferenceId } = this.state;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             this.setState({
-                listNote: obj.body,
+                noteList: obj.body,
             });
         }
         const eCb = (obj) => {
@@ -78,9 +80,9 @@ class SchoolCourseNote extends React.Component {
         }
 
         const params = {
-            conference: 'fa2f9ecd-5336-4d6c-973d-2921d583f822'
-            //viewingSeminar ? viewingSeminar.conference_id : ''
-            , $orderby: 'lastmoddate DESC'
+            //viewingSeminar ? viewingSeminar.conference_id : '',
+            conference: conferenceId,
+            $orderby: 'lastmoddate DESC'
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -137,10 +139,10 @@ class SchoolCourseNote extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     _tempDetail = (noteId) => {
-        this.setState({
-            ...this.state,
-            // tempGoDetail: true
-        });
+        // this.setState({
+        //     ...this.state,
+        //     tempGoDetail: true
+        // });
         this.props.history.push('school-note-taking/'+noteId);
     }
 
@@ -179,7 +181,8 @@ class SchoolCourseNote extends React.Component {
         } = this.props;
         const {
             // data,
-            listNote , order, orderBy, selected, rowsPerPage, page } = this.state;
+            noteList , order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = noteList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         // if (this.state.tempGoDetail) {
@@ -244,11 +247,11 @@ class SchoolCourseNote extends React.Component {
                                             />
                                             <TableBody>
                                                 {/* {data */}
-                                                {listNote
+                                                {data
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const theIndexNum = listNote.indexOf(n);
+                                                        const theIndexNum = data.indexOf(n);
                                                         const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
