@@ -81,7 +81,7 @@ class SchoolAllCourse extends React.Component {
             $orderby: 'lastmoddate DESC'
         }
 
-        apiConferences.getConferenceByUser(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
     handleRequestSort = (event, property) => {
