@@ -66,7 +66,7 @@ class SchoolNoteTaking extends React.Component {
         page: 0,
         rowsPerPage: 10,
         tempGoDetail: false,
-        noteId: this.props.id,
+        note_Id: this.props.noteId,
     }
 
     /** form content start */
@@ -75,7 +75,7 @@ class SchoolNoteTaking extends React.Component {
     }
 
     _getNoteFile = () => {
-        const { noteId } = this.state;
+        const { note_Id } = this.state;
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
@@ -89,7 +89,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note: noteId,
+            note: note_Id,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $orderby: 'lastmoddate',
             $expand: 'file/mime_type',

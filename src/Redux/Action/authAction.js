@@ -50,7 +50,17 @@ export const login = (data) => ({
   data
 });
 
-export const getUserInfo = (data) => ({
-  type: AuthActionTypes.GET_USER_INFO,
+// export const getUserInfo = (data) => ({
+//   type: AuthActionTypes.GET_USER_INFO,
+//   data
+// });
+
+// export const getConferenceId = (data) => ({
+//   type: AuthActionTypes.GET_CONFERENCE_ID,
+//   data
+// });
+
+export const setConferenceId = (data) => ({
+  type: AuthActionTypes.SET_CONFERENCE_ID,
   data
 });

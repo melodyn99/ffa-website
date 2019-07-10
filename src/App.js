@@ -323,7 +323,7 @@ class App extends Component {
                     return <SchoolAllCourse />;
                 }
                 case 'school-course-information': { // OK
-                    return <SchoolCourseInformation id={currentID} />
+                    return <SchoolCourseInformation conferenceId={currentID} />
                 }
                 case 'school-course-preparation': { // OK
                     return <SchoolCoursePreparation />;
@@ -357,7 +357,7 @@ class App extends Component {
                     return <SchoolCourseReplyQandA />;
                 }
                 case 'school-course-note': { // OK
-                    return <SchoolCourseNote id={currentID} />;
+                    return <SchoolCourseNote conferenceId={currentID} />;
                 }
                 case 'school-course-new-note': { // OK
                     return <SchoolCourseNewNote />;
@@ -459,7 +459,7 @@ class App extends Component {
 
                 // Note
                 case 'school-note-taking': {
-                    return <SchoolNoteTaking id={currentID} />;
+                    return <SchoolNoteTaking noteId={currentID} />;
                 }
                 case 'school-notes-content': {
                     return <SchoolNoteContent params={params} />;

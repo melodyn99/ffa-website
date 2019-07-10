@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -57,7 +58,7 @@ class SchoolCourseInformation extends React.Component {
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
-            //, t, i18n 
+            //, t, i18n
         } = this.props;
 
         return (
@@ -357,8 +358,12 @@ class SchoolCourseInformation extends React.Component {
     }
 
     render() {
-        // const { classes, t, i18n } = this.props;
+        const {
+            // classes, t, i18n ,
+            conferenceId,
+        } = this.props;
 
+        console.log('SchoolCourseInfo_props: ' + JSON.stringify(this.props.auth, null, 2));
         const Schema = Yup.object().shape({
             courseCode: Yup.string()
                 .required('Course Code is required'),
@@ -473,4 +478,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolCourseInformation)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseInformation))));

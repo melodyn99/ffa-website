@@ -55,10 +55,9 @@ class SchoolCourseNote extends React.Component {
         // data: data,
         page: 0,
         rowsPerPage: 10,
-        // tempGoDetail: false,
         noteList: [],
         conferenceId: '81aac731-9a38-4106-9e77-9e5da5285626',
-        // conferenceId: this.props.id,
+        // conferenceId: this.props.conferenceId,
     };
     /** form content start */
     componentDidMount() {
@@ -138,12 +137,9 @@ class SchoolCourseNote extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = (noteId) => {
-        // this.setState({
-        //     ...this.state,
-        //     tempGoDetail: true
-        // });
-        this.props.history.push('school-note-taking/'+noteId);
+    _tempDetail = (note_id) => {
+        const { i18n } = this.props;
+        this.props.history.push('/'+i18n.language+'/school-note-taking/' + note_id);
     }
 
     // ToolBar
@@ -176,19 +172,17 @@ class SchoolCourseNote extends React.Component {
     }
 
     render() {
-        const { classes
+        const {
+            classes,
             // , i18n
         } = this.props;
         const {
             // data,
-            noteList , order, orderBy, selected, rowsPerPage, page } = this.state;
+            noteList, order, orderBy, selected, rowsPerPage, page } = this.state;
         const data = noteList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        // if (this.state.tempGoDetail) {
-        //     return <Redirect push to={"/" + i18n.language + "/school-note-taking"} />;
-        // }
-
+        console.log('SchoolCourseNote_render(): '+ this.props.conferenceId);
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -246,7 +240,6 @@ class SchoolCourseNote extends React.Component {
                                                 rows={rows}
                                             />
                                             <TableBody>
-                                                {/* {data */}
                                                 {data
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
