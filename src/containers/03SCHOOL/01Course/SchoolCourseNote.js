@@ -56,8 +56,8 @@ class SchoolCourseNote extends React.Component {
         page: 0,
         rowsPerPage: 10,
         noteList: [],
-        conferenceId: '81aac731-9a38-4106-9e77-9e5da5285626',
-        // conferenceId: this.props.conferenceId,
+        // conferenceId: '81aac731-9a38-4106-9e77-9e5da5285626',
+        conferenceId: this.props.conferenceId,
     };
     /** form content start */
     componentDidMount() {
@@ -148,7 +148,8 @@ class SchoolCourseNote extends React.Component {
     }
 
     _createButtonAction = () => {
-        this.props.history.push('school-course-new-note');
+        const { i18n } = this.props;
+        this.props.history.push('/'+i18n.language+'/school-course-new-note');
     }
 
     _editButtonAction = () => {

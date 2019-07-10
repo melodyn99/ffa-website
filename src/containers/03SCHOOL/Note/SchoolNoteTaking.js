@@ -179,7 +179,7 @@ class SchoolNoteTaking extends React.Component {
     // ToolBar
     _uploadButtonAction = (body) => {
         // console.log('upload button pressed');
-        const { noteId } = this.state;
+        const { note_Id } = this.state;
         const createNoteFileCb = (obj) => {
             console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
@@ -194,7 +194,7 @@ class SchoolNoteTaking extends React.Component {
             //     ...this.state,
             //     formSubmitted: true
             // })
-            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
+            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: note_Id }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
 
         }
         const createFileEcb = (obj) => {
