@@ -171,7 +171,9 @@ class App extends Component {
         window.addEventListener("resize", this.windowResize);
 
         // check if token has expired
-        this._getUserInformation(this.props.auth.token);
+        if (this.props.auth.auth) {
+            this._getUserInformation(this.props.auth.token);
+        }
     }
 
     componentDidUpdate = () => {
@@ -187,6 +189,8 @@ class App extends Component {
     // check if token has expired
     _getUserInformation = (access_token) => {
 
+        console.log('check if token has expired');
+
         const cb = (obj) => {
             // console.log("check cb : ", obj);
 
@@ -195,7 +199,7 @@ class App extends Component {
             }
         }
         const eCb = (obj) => {
-            console.log("eCb : ", obj);
+            // console.log("eCb : ", obj);
         }
         const params = null;
 
@@ -204,14 +208,15 @@ class App extends Component {
 
     // refresh token by refresh_token
     _refreshTokenByRefreshToken = (refresh_token) => {
-        // console.log('refresh_token1 : ', refresh_token);
+
+        console.log('refresh token by refresh_token');
 
         const cb = (obj) => {
             // console.log("123 cb : ", obj);
             this.props.refreshTokenByRefreshTokenP(obj.body);
         }
         const eCb = (obj) => {
-            console.log("eCb : ", obj);
+            // console.log("eCb : ", obj);
         }
 
         apiAuth.refreshTokenByRefreshToken(refresh_token, cb, eCb);
