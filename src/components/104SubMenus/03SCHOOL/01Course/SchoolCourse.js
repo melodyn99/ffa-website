@@ -19,7 +19,6 @@ class SchoolCourse extends Component {
         // console.log(currentPath);
         console.log('SchoolCourse_render(): ' + JSON.stringify(auth, null, 2));
         const conferenceId = auth.relatedDataId.conferenceId;
-        const noteId = auth.relatedDataId.noteId;
 
         return (
             <div className="subMenu">

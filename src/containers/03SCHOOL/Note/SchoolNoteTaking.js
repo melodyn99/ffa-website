@@ -137,6 +137,21 @@ class SchoolNoteTaking extends React.Component {
 
     }
 
+    handleDeleteNote = () => {
+        const { noteId, history } = this.props;
+
+        console.log("handleDeleteNote : ");
+        const deleteNoteCb = (obj) => {
+            console.log("deleteNoteCb : ", obj);
+            history.goBack();
+        }
+        const deleteNoteEcb = (obj) => {
+            console.log("deleteNoteEcb : ", obj);
+        }
+
+        apiNoteTaking.deleteNoteTaking(noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
+    }
+
     handleSubmit = (event, { setFieldError }) => {
         // console.log('click submit button!');
         console.log('event: ' + JSON.stringify(event.notesName, null, 2));
@@ -301,11 +316,18 @@ class SchoolNoteTaking extends React.Component {
         return (
             <Form>
                 <div className="topControl clearfix">
-                    <Button className={classes.greyButton}
-                        onClick={() => this.props.history.goBack()}
-                    >取消</Button>
-                    <span className="right"><Button type="submit" className={classes.blackButton}
-                    >确认</Button></span>
+                    <Button className={classes.greyButton} onClick={() => this.props.history.goBack()}>
+                        取消
+                    </Button>
+                    <span className="right">
+                        <Button className={classes.blackButton} onClick={() => this.handleDeleteNote()}>
+                            删除
+                        </Button>
+                        <span>&nbsp;</span>
+                        <Button type="submit" className={classes.blackButton}>
+                            确认
+                        </Button>
+                    </span>
                 </div>
                 <Grid container spacing={16} alignItems="center">
                     <Grid item xs={1} >

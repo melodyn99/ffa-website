@@ -108,7 +108,9 @@ class SchoolCourseNote extends React.Component {
     };
 
     handleClick = (event, noteId) => {
-        const { i18n, auth } = this.props;
+        const { i18n,
+            // auth,
+        } = this.props;
         // const {selected} = this.state;
 
         // const selectedIndex = selected.indexOf(theIndexNum);
@@ -129,11 +131,11 @@ class SchoolCourseNote extends React.Component {
 
         // this.setState({ selected: newSelected });
 
-        const data = {
-            ...auth.relatedDataId,
-            "noteId": noteId,
-        }
-        this.props.setRelatedDataId(data);
+        // const data = {
+        //     ...auth.relatedDataId,
+        //     "noteId": noteId,
+        // }
+        // this.props.setRelatedDataId(data);
         this.props.history.push('/' + i18n.language + '/school-note-taking/' + noteId);
     };
 
@@ -175,21 +177,6 @@ class SchoolCourseNote extends React.Component {
 
     _deleteButtonAction = () => {
         console.log('delete button pressed');
-        // const { selected, noteList } = this.state;
-
-        // const deleteNoteCb = (obj) => {
-        //     console.log("deleteNoteCb : ", obj);
-        //     this._getNoteTakingList();
-        //     this.setState({ selected: [] });
-        // }
-        // const deleteNoteEcb = (obj) => {
-        //     console.log("deleteNoteEcb : ", obj);
-        // }
-
-        // selected.forEach(i => {
-        //     let theSelectedNote_id = noteList[i].note_id;
-        //     apiNoteTaking.deleteNoteTaking(theSelectedNote_id, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
-        // });
     }
 
     _importButtonAction = () => {
