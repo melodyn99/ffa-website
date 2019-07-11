@@ -17,8 +17,9 @@ class SchoolCourse extends Component {
             currentPath = urlArray[2];
 
         // console.log(currentPath);
-        // console.log('SchoolCourse_props: ' + JSON.stringify(this.props, null, 2));
-        const conferenceId = auth.relatedTempStorage.conferenceId;
+        console.log('SchoolCourse_render(): ' + JSON.stringify(auth, null, 2));
+        const conferenceId = auth.relatedDataId.conferenceId;
+        const noteId = auth.relatedDataId.noteId;
 
         return (
             <div className="subMenu">

@@ -28,6 +28,7 @@ import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -106,25 +107,34 @@ class SchoolCourseNote extends React.Component {
         this.setState({ selected: [] });
     };
 
-    handleClick = (event, id) => {
-        const { selected } = this.state;
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
+    handleClick = (event, noteId) => {
+        const { i18n, auth } = this.props;
+        // const {selected} = this.state;
 
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
+        // const selectedIndex = selected.indexOf(theIndexNum);
+        // let newSelected = [];
+
+        // if (selectedIndex === -1) {
+        //     newSelected = newSelected.concat(selected, theIndexNum);
+        // } else if (selectedIndex === 0) {
+        //     newSelected = newSelected.concat(selected.slice(1));
+        // } else if (selectedIndex === selected.length - 1) {
+        //     newSelected = newSelected.concat(selected.slice(0, -1));
+        // } else if (selectedIndex > 0) {
+        //     newSelected = newSelected.concat(
+        //         selected.slice(0, selectedIndex),
+        //         selected.slice(selectedIndex + 1),
+        //     );
+        // }
+
+        // this.setState({ selected: newSelected });
+
+        const data = {
+            ...auth.relatedDataId,
+            "noteId": noteId,
         }
-
-        this.setState({ selected: newSelected });
+        this.props.setRelatedDataId(data);
+        this.props.history.push('/' + i18n.language + '/school-note-taking/' + noteId);
     };
 
     handleChangePage = (event, page) => {
@@ -137,27 +147,49 @@ class SchoolCourseNote extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = (note_id) => {
-        const { i18n } = this.props;
-        this.props.history.push('/'+i18n.language+'/school-note-taking/' + note_id);
-    }
-
     // ToolBar
     _backButtonAction = (url) => {
-        this.props.history.push(url);
+        console.log('back button pressed');
     }
 
     _createButtonAction = () => {
         const { i18n } = this.props;
-        this.props.history.push('/'+i18n.language+'/school-course-new-note');
+        this.props.history.push('/' + i18n.language + '/school-course-new-note');
     }
 
     _editButtonAction = () => {
         console.log('edit button pressed');
+        // const { i18n } = this.props;
+        // const { selected, noteList } = this.state;
+        // const selectedLength = selected.length;
+
+        // // console.log(JSON.stringify(noteList, null, 2));
+        // if (selectedLength === 1) {
+        //     const selectedNote = noteList[selected[0]];
+        //     this.props.history.push('/' + i18n.language + '/school-note-taking/' + selectedNote.note_id);
+        // }else {
+        //     //handle more than one selection when click editButton
+        //     console.log('Can not edit more than one note in same time!');
+        // }
     }
 
     _deleteButtonAction = () => {
         console.log('delete button pressed');
+        // const { selected, noteList } = this.state;
+
+        // const deleteNoteCb = (obj) => {
+        //     console.log("deleteNoteCb : ", obj);
+        //     this._getNoteTakingList();
+        //     this.setState({ selected: [] });
+        // }
+        // const deleteNoteEcb = (obj) => {
+        //     console.log("deleteNoteEcb : ", obj);
+        // }
+
+        // selected.forEach(i => {
+        //     let theSelectedNote_id = noteList[i].note_id;
+        //     apiNoteTaking.deleteNoteTaking(theSelectedNote_id, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
+        // });
     }
 
     _importButtonAction = () => {
@@ -183,7 +215,7 @@ class SchoolCourseNote extends React.Component {
         const data = noteList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        console.log('SchoolCourseNote_render(): '+ this.props.conferenceId);
+        console.log('SchoolCourseNote_render(): ' + JSON.stringify(noteList, null, 2));
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -249,10 +281,10 @@ class SchoolCourseNote extends React.Component {
                                                         const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
-                                                                className={classes.nthOfTypeRow}
+                                                                className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail(n.note_id)}
+                                                                onClick={event => this.handleClick(event, n.note_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -313,6 +345,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
+    setRelatedDataId: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

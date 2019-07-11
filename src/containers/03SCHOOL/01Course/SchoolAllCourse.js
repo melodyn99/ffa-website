@@ -27,7 +27,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setConferenceId } from '../../../Redux/Action/authAction';
+import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -137,12 +137,13 @@ class SchoolAllCourse extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     _tempDetail = (conference_id) => {
-        const { i18n } = this.props;
+        const { i18n, auth } = this.props;
         const data = {
+            ...auth.relatedDataId,
             "conferenceId": conference_id,
         }
-        this.props.setConferenceId(data);
-        this.props.history.push('/' + i18n.language + '/school-course-information/');
+        this.props.setRelatedDataId(data);
+        this.props.history.push('/' + i18n.language + '/school-course-information/'+conference_id);
     }
 
     render() {
@@ -258,7 +259,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
-    setConferenceId: data => dispatch(setConferenceId(data)),
+    setRelatedDataId: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

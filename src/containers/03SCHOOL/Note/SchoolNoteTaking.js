@@ -24,6 +24,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 // Api
+import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 import { apiNoteFile } from '../../../Api/ApiNoteFile';
 import { apiFile } from '../../../Api/ApiFile';
 
@@ -38,7 +39,7 @@ import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
-import CommonUtils,{ formatFileSizeToString } from '../../../Util/CommonUtils';
+import CommonUtils, { formatFileSizeToString } from '../../../Util/CommonUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -67,15 +68,41 @@ class SchoolNoteTaking extends React.Component {
         rowsPerPage: 10,
         tempGoDetail: false,
         note_Id: this.props.noteId,
+        // theNoteArray: [],
+        theNoteName: '',
+        theNoteContent: '',
     }
 
     /** form content start */
     componentDidMount() {
+        this._getNoteTakingList();
         this._getNoteFile();
     }
+    _getNoteTakingList = () => {
+        const { noteId } = this.props;
+        console.log();
+        // const { viewingSeminar } = this.props;
 
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.setState({
+                // theNoteArray: obj.body,
+                theNoteName: obj.body[0].name,
+                theNoteContent: obj.body[0].content,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            note_id: noteId,
+        }
+
+        apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
+    }
     _getNoteFile = () => {
-        const { note_Id } = this.state;
+        const { noteId } = this.props;
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
@@ -89,7 +116,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note: note_Id,
+            note: noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $orderby: 'lastmoddate',
             $expand: 'file/mime_type',
@@ -205,11 +232,11 @@ class SchoolNoteTaking extends React.Component {
     }
 
     _downloadButtonAction = () => {
-        const { selected, listNote } = this.state;
+        const { selected, fileList } = this.state;
         // console.log('download button pressed');
         // const selectedListLength = selected.length;
         selected.forEach((i, counter) => {
-            let theSelectedFileUrl = listNote[i].file.url;
+            let theSelectedFileUrl = fileList[i].file.url;
             Bluebird.delay(counter * 1000, theSelectedFileUrl).then((url) => {
                 CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
             });
@@ -218,7 +245,7 @@ class SchoolNoteTaking extends React.Component {
 
     _deleteButtonAction = () => {
         // console.log('delete button pressed');
-        const { selected, listNote } = this.state;
+        const { selected, fileList } = this.state;
 
         const deleteNoteFileCb = (obj) => {
             console.log("deleteNoteFileCb : ", obj);
@@ -230,7 +257,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         selected.forEach(i => {
-            let theSelectedNote_file_id = listNote[i].note_file_id;
+            let theSelectedNote_file_id = fileList[i].note_file_id;
             apiNoteFile.deleteNoteFile(theSelectedNote_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
         });
     }
@@ -244,12 +271,13 @@ class SchoolNoteTaking extends React.Component {
             // i18n,
             classes } = this.props;
         const {
-            fileList,
+            theNoteName, theNoteContent, fileList,
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
         const data = fileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
+        // console.log("theNoteArray: " + JSON.stringify(theNoteArray, null, 2));
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
@@ -370,9 +398,11 @@ class SchoolNoteTaking extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                    // onClick={() => this.props.history.push('school-course-note')}
+                        onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
+                    <span className="right"><Button type="submit" className={classes.blackButton}
+                    // onClick={() => this.handleSubmit}
+                    >确认</Button></span>
                 </div>
                 {/* <div className={classes.notesWrapper}>
                     <List className={classes.list}>

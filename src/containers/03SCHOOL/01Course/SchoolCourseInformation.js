@@ -358,12 +358,9 @@ class SchoolCourseInformation extends React.Component {
     }
 
     render() {
-        const {
-            // classes, t, i18n ,
-            conferenceId,
-        } = this.props;
+        // const { classes, t, i18n } = this.props;
 
-        console.log('SchoolCourseInfo_props: ' + JSON.stringify(this.props.auth, null, 2));
+        // console.log('SchoolCourseInformation_render: ' + JSON.stringify(this.props.auth, null, 2));
         const Schema = Yup.object().shape({
             courseCode: Yup.string()
                 .required('Course Code is required'),

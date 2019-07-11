@@ -49,10 +49,10 @@ const authReducer = (state = initialState, action) => {
 			}
 		}
 
-		case AuthActionTypes.SET_CONFERENCE_ID: {
+		case AuthActionTypes.SET_RELATEDDATAID: {
 			return {
 				...state,
-				relatedTempStorage: action.data
+				relatedDataId: action.data
 			}
 		}
 

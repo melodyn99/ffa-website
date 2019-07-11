@@ -55,12 +55,7 @@ export const login = (data) => ({
 //   data
 // });
 
-// export const getConferenceId = (data) => ({
-//   type: AuthActionTypes.GET_CONFERENCE_ID,
-//   data
-// });
-
-export const setConferenceId = (data) => ({
-  type: AuthActionTypes.SET_CONFERENCE_ID,
+export const setRelatedDataId = (data) => ({
+  type: AuthActionTypes.SET_RELATEDDATAID,
   data
 });
