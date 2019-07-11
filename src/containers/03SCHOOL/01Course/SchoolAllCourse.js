@@ -56,7 +56,8 @@ class SchoolAllCourse extends React.Component {
         page: 0,
         rowsPerPage: 10,
         conferenceList: [],
-        userId: 'admin@joyaether.test',
+        // userId: 'admin@joyaether.test',
+        userId: this.props.auth.userInfo.username,
     };
     componentDidMount() {
         this.getConferenceByUser();
