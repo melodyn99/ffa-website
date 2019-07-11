@@ -149,7 +149,7 @@ class SchoolEnrollmentManagement extends React.Component {
     }
 
     //MenuList composition
-    handleClickListItem = event => {
+    handleClickListItem = (event, index) => {
         const { isSelected } = this.state;
         if (!isSelected) {
             this.setState({ anchorEl: event.currentTarget, isSelected: true });
@@ -159,7 +159,18 @@ class SchoolEnrollmentManagement extends React.Component {
     };
 
     handleMenuItemClick = (event, index) => {
-        this.setState({ selectedIndex: index, anchorEl: null, isSelected: false });
+        // this.setState({ selectedIndex: index, anchorEl: null, isSelected: false });
+        let msg="";
+        if (index === 1) {
+            msg = "申请处理中";
+        } else if (index === 2) {
+            msg = "申请完成";
+        } else if (index === 3) {
+            msg = "申请取消";
+        } else if (index === 4) {
+            msg = "取消完成";
+        }
+        console.log(msg);
     };
 
     handleClose = () => {
@@ -230,15 +241,16 @@ class SchoolEnrollmentManagement extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const theIndexNum = data.indexOf(n);
+                                                        const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={event => this.handleClick(event, theIndexNum)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">
@@ -256,7 +268,7 @@ class SchoolEnrollmentManagement extends React.Component {
                                                                         aria-haspopup="true"
                                                                         aria-controls="lock-menu"
                                                                         aria-label="Btn2"
-                                                                        onClick={this.handleClickListItem}
+                                                                        onClick={event => this.handleClickListItem(event, theIndexNum)}
                                                                     >
                                                                         {n.status}
                                                                     </Button>
@@ -313,13 +325,16 @@ class SchoolEnrollmentManagement extends React.Component {
                                 <ClickAwayListener onClickAway={this.handleClose}>
                                     <MenuList>
                                         <MenuItem onClick={event => this.handleMenuItemClick(event, 1)} >
-                                            Item1
+                                            申请处理中
                                         </MenuItem>
                                         <MenuItem onClick={event => this.handleMenuItemClick(event, 2)} >
-                                            Item2
+                                            申请完成
                                         </MenuItem>
                                         <MenuItem onClick={event => this.handleMenuItemClick(event, 3)} >
-                                            Item3
+                                            申请取消
+                                        </MenuItem>
+                                        <MenuItem onClick={event => this.handleMenuItemClick(event, 4)} >
+                                            取消完成
                                         </MenuItem>
                                     </MenuList>
                                 </ClickAwayListener>

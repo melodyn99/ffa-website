@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -23,6 +24,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 // Api
+import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 import { apiNoteFile } from '../../../Api/ApiNoteFile';
 import { apiFile } from '../../../Api/ApiFile';
 
@@ -37,7 +39,7 @@ import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
-import CommonUtils,{ formatFileSizeToString } from '../../../Util/CommonUtils';
+import CommonUtils, { formatFileSizeToString } from '../../../Util/CommonUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -45,7 +47,7 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCou
 import ToolBar from '../../../components/105ToolBars/General';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolNoteTaking';
+// import data from '../../../data/03SCHOOL/01Course/SchoolNoteTaking';
 
 // Define column names
 const rows = [
@@ -57,30 +59,36 @@ const rows = [
 
 class SchoolNoteTaking extends React.Component {
     state = {
-        listNote: [],
+        fileList: [],
         order: 'asc',
         orderBy: 'calories',
         selected: [],
-        data: data,
+        // data: data,
         page: 0,
         rowsPerPage: 10,
         tempGoDetail: false,
-        hardCode_noteId: '52f8c092-bb58-46a7-a7d2-b482d0ac0b85',
+        note_Id: this.props.noteId,
+        // theNoteArray: [],
+        theNoteName: '',
+        theNoteContent: '',
     }
 
     /** form content start */
     componentDidMount() {
+        this._getNoteTakingList();
         this._getNoteFile();
     }
-
-    _getNoteFile = () => {
-        const { hardCode_noteId } = this.state;
+    _getNoteTakingList = () => {
+        const { noteId } = this.props;
+        console.log();
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             this.setState({
-                listNote: obj.body,
+                // theNoteArray: obj.body,
+                theNoteName: obj.body[0].name,
+                theNoteContent: obj.body[0].content,
             });
         }
         const eCb = (obj) => {
@@ -88,7 +96,27 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note: hardCode_noteId,
+            note_id: noteId,
+        }
+
+        apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
+    }
+    _getNoteFile = () => {
+        const { noteId } = this.props;
+        // const { viewingSeminar } = this.props;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.setState({
+                fileList: obj.body,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            note: noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $orderby: 'lastmoddate',
             $expand: 'file/mime_type',
@@ -109,10 +137,45 @@ class SchoolNoteTaking extends React.Component {
 
     }
 
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
+    handleDeleteNote = () => {
+        const { noteId, history } = this.props;
+
+        console.log("handleDeleteNote : ");
+        const deleteNoteCb = (obj) => {
+            console.log("deleteNoteCb : ", obj);
+            history.goBack();
+        }
+        const deleteNoteEcb = (obj) => {
+            console.log("deleteNoteEcb : ", obj);
+        }
+
+        apiNoteTaking.deleteNoteTaking(noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
+    }
+
+    handleSubmit = (event, { setFieldError }) => {
+        // console.log('click submit button!');
+        console.log('event: ' + JSON.stringify(event.notesName, null, 2));
+        this.editNoteInfo(event);
+    }
+
+    editNoteInfo = (event) => {
+        const { noteId, history } = this.props;
+        // const { viewingSeminar } = this.props;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const body = {
+            name: event.notesName,
+            content: event.notesContent,
+        }
+        console.log('editNoteInfo()_noteId: ' + noteId);
+        apiNoteTaking.editNoteTaking(noteId, body, this.props.auth.token, cb, eCb);
     }
     /** form content end */
 
@@ -178,7 +241,7 @@ class SchoolNoteTaking extends React.Component {
     // ToolBar
     _uploadButtonAction = (body) => {
         // console.log('upload button pressed');
-        const { hardCode_noteId } = this.state;
+        const { note_Id } = this.state;
         const createNoteFileCb = (obj) => {
             console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
@@ -193,7 +256,7 @@ class SchoolNoteTaking extends React.Component {
             //     ...this.state,
             //     formSubmitted: true
             // })
-            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: hardCode_noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
+            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: note_Id }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
 
         }
         const createFileEcb = (obj) => {
@@ -204,11 +267,11 @@ class SchoolNoteTaking extends React.Component {
     }
 
     _downloadButtonAction = () => {
-        const { selected, listNote } = this.state;
+        const { selected, fileList } = this.state;
         // console.log('download button pressed');
         // const selectedListLength = selected.length;
         selected.forEach((i, counter) => {
-            let theSelectedFileUrl = listNote[i].file.url;
+            let theSelectedFileUrl = fileList[i].file.url;
             Bluebird.delay(counter * 1000, theSelectedFileUrl).then((url) => {
                 CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
             });
@@ -217,7 +280,7 @@ class SchoolNoteTaking extends React.Component {
 
     _deleteButtonAction = () => {
         // console.log('delete button pressed');
-        const { selected, listNote } = this.state;
+        const { selected, fileList } = this.state;
 
         const deleteNoteFileCb = (obj) => {
             console.log("deleteNoteFileCb : ", obj);
@@ -229,7 +292,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         selected.forEach(i => {
-            let theSelectedNote_file_id = listNote[i].note_file_id;
+            let theSelectedNote_file_id = fileList[i].note_file_id;
             apiNoteFile.deleteNoteFile(theSelectedNote_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
         });
     }
@@ -243,18 +306,35 @@ class SchoolNoteTaking extends React.Component {
             // i18n,
             classes } = this.props;
         const {
-            listNote,
-            data, order, orderBy, selected, rowsPerPage, page } = this.state;
+            fileList,
+            // data,
+            order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = fileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
+        // console.log("theNoteArray: " + JSON.stringify(theNoteArray, null, 2));
         return (
             <Form>
+                <div className="topControl clearfix">
+                    <Button className={classes.greyButton} onClick={() => this.props.history.goBack()}>
+                        取消
+                    </Button>
+                    <span className="right">
+                        <Button className={classes.blackButton} onClick={() => this.handleDeleteNote()}>
+                            删除
+                        </Button>
+                        <span>&nbsp;</span>
+                        <Button type="submit" className={classes.blackButton}>
+                            确认
+                        </Button>
+                    </span>
+                </div>
                 <Grid container spacing={16} alignItems="center">
                     <Grid item xs={1} >
                         记录标题
                         </Grid>
                     <Grid item xs={11}>
-                        <Field name="notesName" type="text" placeholder="课程编号 123" maxLength="100" />
+                        <Field name="notesName" type="text" placeholder="记录标题" maxLength="100" />
                         {errors.notesName && touched.notesName ? <ErrorMessage message={errors.notesName} /> : null}
                     </Grid>
 
@@ -262,7 +342,7 @@ class SchoolNoteTaking extends React.Component {
                         记录内容
                         </Grid>
                     <Grid item xs={11}>
-                        <Field name="notesContent" type="text" placeholder="课程编号 123" maxLength="100" />
+                        <Field name="notesContent" type="text" placeholder="记录内容" maxLength="100" />
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
 
@@ -309,11 +389,11 @@ class SchoolNoteTaking extends React.Component {
                                         rows={rows}
                                     />
                                     <TableBody>
-                                        {listNote
+                                        {data
                                             .sort(getSorting(order, orderBy))
                                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                             .map(n => {
-                                                const theIndexNum = listNote.indexOf(n);
+                                                const theIndexNum = data.indexOf(n);
                                                 const isSelected = this.isSelected(theIndexNum);
                                                 return (
                                                     <TableRow
@@ -365,48 +445,20 @@ class SchoolNoteTaking extends React.Component {
                     </Grid>
 
                 </Grid>
-                <div className="bottomControl clearfix">
+                {/* <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                    // onClick={() => this.props.history.push('school-course-note')}
+                        onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
-                </div>
-                {/* <div className={classes.notesWrapper}>
-                    <List className={classes.list}>
-                        {
-                            listNote.map((n, i) => (
-                                <ListItem
-                                    onClick={() => {
-                                        this.props.setNoteTitle(n.name);
-                                        this.props.viewingNoteAction(n);
-                                    }}
-                                    component={Link}
-                                    to={{
-                                        pathname: '/' + i18n.language + '/school-notes-content',
-                                        search: 'notes=' + n.note_id,
-                                        // state: item,
-                                    }}
-                                    className={classes.listItem}
-                                    key={i}
-                                >
-                                    <ListItemText
-                                        primary={n.name}
-                                        secondary={n.created_by}
-                                        className={classes.listItemText}
-                                    />
-                                    <Typography className={classes.typography}>
-                                        {dateToDayAndMonth(n.createddate)}
-                                    </Typography>
-                                </ListItem>
-                            ))
-                        }
-                    </List>
+                    <span className="right"><Button type="submit" className={classes.blackButton}
+                    >确认</Button></span>
                 </div> */}
             </Form>
         )
     }
 
     render() {
+        const {
+            theNoteName, theNoteContent } = this.state;
         const Schema = Yup.object().shape({
             notesName: Yup.string()
                 .required('Note Name is required'),
@@ -431,9 +483,10 @@ class SchoolNoteTaking extends React.Component {
 
                             <div className="content">
                                 <Formik
+                                    enableReinitialize
                                     initialValues={{
-                                        notesName: '',
-                                        notesContent: '',
+                                        notesName: theNoteName,
+                                        notesContent: theNoteContent,
                                     }}
                                     validationSchema={Schema}
                                     onSubmit={this.handleSubmit}
@@ -466,4 +519,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles, SchoolNoteTakingStyles);
 
-export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolNoteTaking))));
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNoteTaking)))));

@@ -1,9 +1,10 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -22,27 +23,29 @@ import Paper from '@material-ui/core/Paper';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolAllCourse';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolAllCourse';
+// import data from '../../../data/03SCHOOL/01Course/SchoolAllCourse';
 
 // Define column names
 const rows = [
-    { id: 'subject', numeric: false, disablePadding: false, label: '学科' },
-    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
+    { id: 'type', numeric: false, disablePadding: false, label: '学科' },
+    { id: 'name', numeric: true, disablePadding: false, label: '课程' },
     { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
     { id: 'location', numeric: true, disablePadding: false, label: '地点' },
-    { id: 'startdate', numeric: true, disablePadding: false, label: '开课日期' },
+    { id: 'start_date', numeric: true, disablePadding: false, label: '开课日期' },
 ];
 
 class SchoolAllCourse extends React.Component {
@@ -50,11 +53,37 @@ class SchoolAllCourse extends React.Component {
         order: 'asc',
         orderBy: 'calories',
         selected: [],
-        data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false
+        conferenceList: [],
+        userId: 'admin@joyaether.test',
     };
+    componentDidMount() {
+        this.getConferenceByUser();
+    }
+
+    getConferenceByUser = () => {
+        // const { viewingSeminar } = this.props;
+        const { userId } = this.state;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.setState({
+                conferenceList: obj.body,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            //viewingSeminar ? viewingSeminar.conference_id : '',
+            user_related: userId,
+            $orderby: 'lastmoddate DESC'
+        }
+
+        apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
+    }
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -69,7 +98,7 @@ class SchoolAllCourse extends React.Component {
 
     handleSelectAllClick = event => {
         if (event.target.checked) {
-            this.setState(state => ({ selected: state.data.map(n => n.id) }));
+            this.setState(state => ({ selected: state.conferenceList.map(n => n.id) }));
             return;
         }
         this.setState({ selected: [] });
@@ -107,21 +136,25 @@ class SchoolAllCourse extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = () => {
-        this.setState({
-            ...this.state,
-            tempGoDetail: true
-        });
+    _tempDetail = (conference_id) => {
+        const { i18n, auth } = this.props;
+        const data = {
+            ...auth.relatedDataId,
+            "conferenceId": conference_id,
+        }
+        this.props.setRelatedDataId(data);
+        this.props.history.push('/' + i18n.language + '/school-course-information/'+conference_id);
     }
 
     render() {
-        const { classes, i18n } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-        const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+        const {
+            classes,
+            // i18n
+        } = this.props;
+        const { conferenceList, order, orderBy, selected, rowsPerPage, page } = this.state;
 
-        if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/school-course-information"} />;
-        }
+        const data = conferenceList;
+        const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
             <div>
@@ -152,16 +185,22 @@ class SchoolAllCourse extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const theIndexNum = data.indexOf(n);
+                                                        const isSelected = this.isSelected(theIndexNum);
+                                                        let allTeachers = '';
+                                                        n.teachers.map(name => {
+                                                            return allTeachers = allTeachers + ", " + name
+                                                        });
+                                                        allTeachers = allTeachers.substr(2);
                                                         return (
                                                             <TableRow
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail()}
+                                                                onClick={() => this._tempDetail(n.conference_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">
@@ -169,11 +208,11 @@ class SchoolAllCourse extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.subject}</TableCell>
-                                                                <TableCell>{n.course}</TableCell>
-                                                                <TableCell>{n.teacher}</TableCell>
+                                                                >{n.type}</TableCell>
+                                                                <TableCell>{n.name}</TableCell>
+                                                                <TableCell>{allTeachers}</TableCell>
                                                                 <TableCell>{n.location}</TableCell>
-                                                                <TableCell>{n.startdate}</TableCell>
+                                                                <TableCell>{dateToDayAndMonth(n.start_date)}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
@@ -220,8 +259,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
+    setRelatedDataId: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolAllCourse)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolAllCourse))));

@@ -2,21 +2,21 @@ import * as AuthActionTypes from '../Constant/ActionType';
 // import { refreshTokenInterval } from '../../Util/AuthService';
 
 export const getToken = ({
-    type: AuthActionTypes.GET_TOKEN,
+  type: AuthActionTypes.GET_TOKEN,
 });
 
 export const verifyToken = (data) => ({
-    type: AuthActionTypes.VERIFY_TOKEN,
-    data,
+  type: AuthActionTypes.VERIFY_TOKEN,
+  data,
 });
 
 export const loginSuccess = (data) => ({
-    type: AuthActionTypes.LOGIN_SUCCESS,
-    data
+  type: AuthActionTypes.LOGIN_SUCCESS,
+  data
 });
 
 export const loginFailure = ({
-    type: AuthActionTypes.LOGIN_FAILURE,
+  type: AuthActionTypes.LOGIN_FAILURE,
 });
 
 // export const login = (id, pw) => dispatch => apiAuth.authenticate(id, pw).then((res) => {
@@ -41,21 +41,21 @@ export const loginFailure = ({
 // });
 
 export const logout = ({
-    type: AuthActionTypes.LOGOUT,
+  type: AuthActionTypes.LOGOUT,
 });
 
 // START FROM HERE
 export const login = (data) => ({
-    type: AuthActionTypes.LOGIN_SUCCESS,
-    data
+  type: AuthActionTypes.LOGIN_SUCCESS,
+  data
 });
 
-export const getUserInfo = (data) => ({
-    type: AuthActionTypes.GET_USER_INFO,
-    data
-});
+// export const getUserInfo = (data) => ({
+//   type: AuthActionTypes.GET_USER_INFO,
+//   data
+// });
 
-export const refreshTokenByRefreshToken = (data) => ({
-    type: AuthActionTypes.REFRESH_TOKEN_BY_REFRESH_TOKEN,
-    data
+export const setRelatedDataId = (data) => ({
+  type: AuthActionTypes.SET_RELATEDDATAID,
+  data
 });

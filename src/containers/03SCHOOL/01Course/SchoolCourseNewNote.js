@@ -16,8 +16,8 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+import { apiAuth } from '../../../Api/ApiAuth';
+import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
 import { connect } from 'react-redux';
@@ -46,12 +46,33 @@ class SchoolCourseNewNote extends React.Component {
     }
 
     _handleSelect = () => {
+    }
 
+    handleSubmit = (event, { setFieldError }) => {
+        // console.log('event: ' + JSON.stringify(event, null, 2));
+        const conferenceId = this.props.auth.relatedDataId.conferenceId;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.props.history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            //viewingSeminar ? viewingSeminar.conference_id : '',
+            conference: conferenceId,
+            name: event.notesName,
+            content: event.notesContent,
+        }
+
+        apiNoteTaking.createNoteTaking(params, this.props.auth.token, cb, eCb);
     }
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
-            //, t, i18n 
+            //, t, i18n
         } = this.props;
 
         return (
@@ -93,18 +114,14 @@ class SchoolCourseNewNote extends React.Component {
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
-                        onClick={() => this.props.history.push('school-course-note')}
+                        onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    <span className="right"><Button type="submit" className={classes.blackButton}>确认</Button></span>
+                    <span className="right"><Button type="submit" className={classes.blackButton}
+                        onClick={() => this.handleSubmit}
+                    >确认</Button></span>
                 </div>
             </Form>
         )
-    }
-
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
     }
 
     render() {

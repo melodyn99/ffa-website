@@ -1,7 +1,7 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
@@ -28,6 +28,7 @@ import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -38,7 +39,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseNote';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseNote';
 
 // Define column names
 const rows = [
@@ -49,14 +50,15 @@ const rows = [
 
 class SchoolCourseNote extends React.Component {
     state = {
-        listNote: [],
         order: 'asc',
         orderBy: 'calories',
         selected: [],
-        data: data,
+        // data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false
+        noteList: [],
+        // conferenceId: '81aac731-9a38-4106-9e77-9e5da5285626',
+        conferenceId: this.props.conferenceId,
     };
     /** form content start */
     componentDidMount() {
@@ -64,13 +66,13 @@ class SchoolCourseNote extends React.Component {
     }
 
     _getNoteTakingList = () => {
-
         // const { viewingSeminar } = this.props;
+        const { conferenceId } = this.state;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             this.setState({
-                listNote: obj.body,
+                noteList: obj.body,
             });
         }
         const eCb = (obj) => {
@@ -78,9 +80,9 @@ class SchoolCourseNote extends React.Component {
         }
 
         const params = {
-            conference: 'fa2f9ecd-5336-4d6c-973d-2921d583f822'
-            //viewingSeminar ? viewingSeminar.conference_id : ''
-            , $orderby: 'name'
+            //viewingSeminar ? viewingSeminar.conference_id : '',
+            conference: conferenceId,
+            $orderby: 'lastmoddate DESC'
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -105,25 +107,36 @@ class SchoolCourseNote extends React.Component {
         this.setState({ selected: [] });
     };
 
-    handleClick = (event, id) => {
-        const { selected } = this.state;
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
+    handleClick = (event, noteId) => {
+        const { i18n,
+            // auth,
+        } = this.props;
+        // const {selected} = this.state;
 
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
+        // const selectedIndex = selected.indexOf(theIndexNum);
+        // let newSelected = [];
 
-        this.setState({ selected: newSelected });
+        // if (selectedIndex === -1) {
+        //     newSelected = newSelected.concat(selected, theIndexNum);
+        // } else if (selectedIndex === 0) {
+        //     newSelected = newSelected.concat(selected.slice(1));
+        // } else if (selectedIndex === selected.length - 1) {
+        //     newSelected = newSelected.concat(selected.slice(0, -1));
+        // } else if (selectedIndex > 0) {
+        //     newSelected = newSelected.concat(
+        //         selected.slice(0, selectedIndex),
+        //         selected.slice(selectedIndex + 1),
+        //     );
+        // }
+
+        // this.setState({ selected: newSelected });
+
+        // const data = {
+        //     ...auth.relatedDataId,
+        //     "noteId": noteId,
+        // }
+        // this.props.setRelatedDataId(data);
+        this.props.history.push('/' + i18n.language + '/school-note-taking/' + noteId);
     };
 
     handleChangePage = (event, page) => {
@@ -136,24 +149,30 @@ class SchoolCourseNote extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = () => {
-        this.setState({
-            ...this.state,
-            tempGoDetail: true
-        });
-    }
-
     // ToolBar
     _backButtonAction = (url) => {
-        this.props.history.push(url);
+        console.log('back button pressed');
     }
 
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
+    _createButtonAction = () => {
+        const { i18n } = this.props;
+        this.props.history.push('/' + i18n.language + '/school-course-new-note');
     }
 
     _editButtonAction = () => {
         console.log('edit button pressed');
+        // const { i18n } = this.props;
+        // const { selected, noteList } = this.state;
+        // const selectedLength = selected.length;
+
+        // // console.log(JSON.stringify(noteList, null, 2));
+        // if (selectedLength === 1) {
+        //     const selectedNote = noteList[selected[0]];
+        //     this.props.history.push('/' + i18n.language + '/school-note-taking/' + selectedNote.note_id);
+        // }else {
+        //     //handle more than one selection when click editButton
+        //     console.log('Can not edit more than one note in same time!');
+        // }
     }
 
     _deleteButtonAction = () => {
@@ -173,16 +192,17 @@ class SchoolCourseNote extends React.Component {
     }
 
     render() {
-        const { classes, i18n } = this.props;
+        const {
+            classes,
+            // , i18n
+        } = this.props;
         const {
             // data,
-            listNote , order, orderBy, selected, rowsPerPage, page } = this.state;
+            noteList, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = noteList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/school-note-taking"} />;
-        }
-
+        console.log('SchoolCourseNote_render(): ' + JSON.stringify(noteList, null, 2));
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -240,19 +260,18 @@ class SchoolCourseNote extends React.Component {
                                                 rows={rows}
                                             />
                                             <TableBody>
-                                                {/* {data */}
-                                                {listNote
+                                                {data
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const theIndexNum = listNote.indexOf(n);
+                                                        const theIndexNum = data.indexOf(n);
                                                         const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
-                                                                className={classes.nthOfTypeRow}
+                                                                className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail()}
+                                                                onClick={event => this.handleClick(event, n.note_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -264,7 +283,7 @@ class SchoolCourseNote extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.content}</TableCell>
+                                                                >{n.name}</TableCell>
                                                                 <TableCell>{`?`}</TableCell>
                                                                 <TableCell>{dateToDayAndMonth(n.lastmoddate)}</TableCell>
                                                             </TableRow>
@@ -313,6 +332,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
+    setRelatedDataId: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
