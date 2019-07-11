@@ -29,13 +29,6 @@ const authReducer = (state = initialState, action) => {
 			}
 		}
 
-		case AuthActionTypes.LOGIN_SUCCESS: {
-			return {
-				auth: true,
-				token: action.data
-			}
-		}
-
 		case AuthActionTypes.LOGIN_FAILURE: {
 			return {
 				auth: false
@@ -49,10 +42,20 @@ const authReducer = (state = initialState, action) => {
 			}
 		}
 
-		case AuthActionTypes.SET_RELATEDDATAID: {
+		// START FROM HERE
+		case AuthActionTypes.LOGIN_SUCCESS: {
 			return {
 				...state,
-				relatedDataId: action.data
+				auth: true,
+				token: action.data.access_token,
+				refreshToken: action.data.refresh_token
+			}
+		}
+
+		case AuthActionTypes.GET_USER_INFO: {
+			return {
+				...state,
+				userInfo: action.data
 			}
 		}
 
@@ -61,6 +64,13 @@ const authReducer = (state = initialState, action) => {
 				...state,
 				token: action.data.access_token,
 				refreshToken: action.data.refresh_token
+			}
+		}
+
+		case AuthActionTypes.SET_RELATEDDATAID: {
+			return {
+				...state,
+				relatedDataId: action.data
 			}
 		}
 
