@@ -50,10 +50,15 @@ export const login = (data) => ({
   data
 });
 
-// export const getUserInfo = (data) => ({
-//   type: AuthActionTypes.GET_USER_INFO,
-//   data
-// });
+export const getUserInfo = (data) => ({
+  type: AuthActionTypes.GET_USER_INFO,
+  data
+});
+
+export const refreshTokenByRefreshToken = (data) => ({
+  type: AuthActionTypes.REFRESH_TOKEN_BY_REFRESH_TOKEN,
+  data
+});
 
 export const setRelatedDataId = (data) => ({
   type: AuthActionTypes.SET_RELATEDDATAID,
