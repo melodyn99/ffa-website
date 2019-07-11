@@ -69,6 +69,40 @@ export const apiGeneral = {
             });
     },
 
+    apiPut: (url, body, token, callback, errorCallback) => {
+
+        if (!url) {
+            return;
+        }
+
+        let fullUrl = Config.API_URL + url;
+
+        fetch(fullUrl, {
+            method: 'put',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(body)
+        })
+            .then(r =>
+                r.json().then(data => ({ status: r.status, body: data }))
+            )
+            .then((obj) => {
+                console.log(fullUrl, "success", obj);
+                if (typeof (callback) === "function") {
+                    callback(obj);
+                }
+            })
+            .catch(error => {
+                console.log(fullUrl, "error", error);
+                if (typeof (errorCallback) === "function") {
+                    errorCallback(error);
+                }
+            });
+    },
+
     apiDelete: (url, params, token, callback, errorCallback) => {
 
         if (!params) {

@@ -15,7 +15,10 @@ export const apiNoteTaking = {
     apiGeneral.apiPost('notes', body, token, cb, eCb)
   },
 
-  editNoteTaking: (noteId, data) => api.put(`notes/${noteId}`, data),
+  // editNoteTaking: (noteId, data) => api.put(`notes/${noteId}`, data),
+  editNoteTaking: (noteId, body, token, cb, eCb) => {
+    apiGeneral.apiPut(`notes/${noteId}`, body, token, cb, eCb)
+  },
 
   // deleteNoteTaking: noteId => api.delete(`notes/${noteId}`),
   deleteNoteTaking: (params, token, cb, eCb) => {

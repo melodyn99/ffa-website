@@ -137,10 +137,30 @@ class SchoolNoteTaking extends React.Component {
 
     }
 
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
+    handleSubmit = (event, { setFieldError }) => {
+        // console.log('click submit button!');
+        console.log('event: ' + JSON.stringify(event.notesName, null, 2));
+        this.editNoteInfo(event);
+    }
+
+    editNoteInfo = (event) => {
+        const { noteId, history } = this.props;
+        // const { viewingSeminar } = this.props;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const body = {
+            name: event.notesName,
+            content: event.notesContent,
+        }
+        console.log('editNoteInfo()_noteId: ' + noteId);
+        apiNoteTaking.editNoteTaking(noteId, body, this.props.auth.token, cb, eCb);
     }
     /** form content end */
 
@@ -271,7 +291,7 @@ class SchoolNoteTaking extends React.Component {
             // i18n,
             classes } = this.props;
         const {
-            theNoteName, theNoteContent, fileList,
+            fileList,
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
         const data = fileList;
@@ -280,12 +300,19 @@ class SchoolNoteTaking extends React.Component {
         // console.log("theNoteArray: " + JSON.stringify(theNoteArray, null, 2));
         return (
             <Form>
+                <div className="topControl clearfix">
+                    <Button className={classes.greyButton}
+                        onClick={() => this.props.history.goBack()}
+                    >取消</Button>
+                    <span className="right"><Button type="submit" className={classes.blackButton}
+                    >确认</Button></span>
+                </div>
                 <Grid container spacing={16} alignItems="center">
                     <Grid item xs={1} >
                         记录标题
                         </Grid>
                     <Grid item xs={11}>
-                        <Field name="notesName" type="text" placeholder="课程编号 123" maxLength="100" />
+                        <Field name="notesName" type="text" placeholder="记录标题" maxLength="100" />
                         {errors.notesName && touched.notesName ? <ErrorMessage message={errors.notesName} /> : null}
                     </Grid>
 
@@ -293,7 +320,7 @@ class SchoolNoteTaking extends React.Component {
                         记录内容
                         </Grid>
                     <Grid item xs={11}>
-                        <Field name="notesContent" type="text" placeholder="课程编号 123" maxLength="100" />
+                        <Field name="notesContent" type="text" placeholder="记录内容" maxLength="100" />
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
 
@@ -396,50 +423,20 @@ class SchoolNoteTaking extends React.Component {
                     </Grid>
 
                 </Grid>
-                <div className="bottomControl clearfix">
+                {/* <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
                         onClick={() => this.props.history.goBack()}
                     >取消</Button>
                     <span className="right"><Button type="submit" className={classes.blackButton}
-                    // onClick={() => this.handleSubmit}
                     >确认</Button></span>
-                </div>
-                {/* <div className={classes.notesWrapper}>
-                    <List className={classes.list}>
-                        {
-                            listNote.map((n, i) => (
-                                <ListItem
-                                    onClick={() => {
-                                        this.props.setNoteTitle(n.name);
-                                        this.props.viewingNoteAction(n);
-                                    }}
-                                    component={Link}
-                                    to={{
-                                        pathname: '/' + i18n.language + '/school-notes-content',
-                                        search: 'notes=' + n.note_id,
-                                        // state: item,
-                                    }}
-                                    className={classes.listItem}
-                                    key={i}
-                                >
-                                    <ListItemText
-                                        primary={n.name}
-                                        secondary={n.created_by}
-                                        className={classes.listItemText}
-                                    />
-                                    <Typography className={classes.typography}>
-                                        {dateToDayAndMonth(n.createddate)}
-                                    </Typography>
-                                </ListItem>
-                            ))
-                        }
-                    </List>
                 </div> */}
             </Form>
         )
     }
 
     render() {
+        const {
+            theNoteName, theNoteContent } = this.state;
         const Schema = Yup.object().shape({
             notesName: Yup.string()
                 .required('Note Name is required'),
@@ -464,9 +461,10 @@ class SchoolNoteTaking extends React.Component {
 
                             <div className="content">
                                 <Formik
+                                    enableReinitialize
                                     initialValues={{
-                                        notesName: '',
-                                        notesContent: '',
+                                        notesName: theNoteName,
+                                        notesContent: theNoteContent,
                                     }}
                                     validationSchema={Schema}
                                     onSubmit={this.handleSubmit}
