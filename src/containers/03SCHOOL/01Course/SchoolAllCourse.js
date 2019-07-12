@@ -64,7 +64,7 @@ class SchoolAllCourse extends React.Component {
     getConferenceByUser = () => {
 
         const cb = (obj) => {
-            console.log("cb here : ", obj);
+            // console.log("cb : ", obj);
 
             this.setState({
                 conferenceList: obj.body,
@@ -132,13 +132,14 @@ class SchoolAllCourse extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = (conference_id) => {
-        const { i18n, auth } = this.props;
-        const data = {
-            ...auth.relatedDataId,
-            "conferenceId": conference_id,
-        }
-        this.props.setRelatedDataId(data);
+    _goToDetail = (conference_id) => {
+
+        const { i18n } = this.props;
+
+        // const data = {
+        //     "conferenceId": conference_id,
+        // }
+        this.props.setRelatedDataIdP(conference_id);
         this.props.history.push('/' + i18n.language + '/school-course-information/' + conference_id);
     }
 
@@ -192,7 +193,7 @@ class SchoolAllCourse extends React.Component {
                                                             <TableRow
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail(n.conference_id)}
+                                                                onClick={() => this._goToDetail(n.conference_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -253,7 +254,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setRelatedDataId: data => dispatch(setRelatedDataId(data)),
+    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
