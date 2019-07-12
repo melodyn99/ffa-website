@@ -101,26 +101,26 @@ class SchoolAllCourse extends React.Component {
         this.setState({ selected: [] });
     };
 
-    // handleClick = (event, id) => {
-    //     const { selected } = this.state;
-    //     const selectedIndex = selected.indexOf(id);
-    //     let newSelected = [];
+    handleClick = (event, id) => {
+        const { selected } = this.state;
+        const selectedIndex = selected.indexOf(id);
+        let newSelected = [];
 
-    //     if (selectedIndex === -1) {
-    //         newSelected = newSelected.concat(selected, id);
-    //     } else if (selectedIndex === 0) {
-    //         newSelected = newSelected.concat(selected.slice(1));
-    //     } else if (selectedIndex === selected.length - 1) {
-    //         newSelected = newSelected.concat(selected.slice(0, -1));
-    //     } else if (selectedIndex > 0) {
-    //         newSelected = newSelected.concat(
-    //             selected.slice(0, selectedIndex),
-    //             selected.slice(selectedIndex + 1),
-    //         );
-    //     }
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, id);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1),
+            );
+        }
 
-    //     this.setState({ selected: newSelected });
-    // };
+        this.setState({ selected: newSelected });
+    };
 
     handleChangePage = (event, page) => {
         this.setState({ page });
@@ -136,10 +136,11 @@ class SchoolAllCourse extends React.Component {
 
         const { i18n } = this.props;
 
-        // const data = {
-        //     "conferenceId": conference_id,
-        // }
-        this.props.setRelatedDataIdP(conference_id);
+        const data = {
+            ...this.props.auth.relatedDataId,
+            "conferenceId": conference_id,
+        }
+        this.props.setRelatedDataIdP(data);
         this.props.history.push('/' + i18n.language + '/school-course-information/');
     }
 
