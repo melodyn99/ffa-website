@@ -16,7 +16,7 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 // Api
-import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiAuth } from '../../../Api/ApiAuth';
 import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux

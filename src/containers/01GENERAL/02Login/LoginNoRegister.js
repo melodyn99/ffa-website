@@ -1,6 +1,6 @@
 // Essential for all components
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
@@ -123,7 +123,7 @@ class LoginNoRegister extends React.Component {
     _getUserInformation = (access_token) => {
 
         const cb = (obj) => {
-            console.log("cb : ", obj);
+            console.log("cb here : ", obj);
             this.props.getUserInfoP(obj.body);
         }
         const eCb = (obj) => {
@@ -190,10 +190,6 @@ class LoginNoRegister extends React.Component {
         );
     }
 }
-
-LoginNoRegister.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth

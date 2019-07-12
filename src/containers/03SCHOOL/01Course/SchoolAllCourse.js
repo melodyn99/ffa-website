@@ -22,7 +22,6 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -41,8 +40,8 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'type', numeric: false, disablePadding: false, label: '学科' },
-    { id: 'name', numeric: true, disablePadding: false, label: '课程' },
+    { id: 'subject', numeric: false, disablePadding: false, label: '学科' },
+    { id: 'course', numeric: true, disablePadding: false, label: '课程' },
     { id: 'teacher', numeric: true, disablePadding: false, label: '老师' },
     { id: 'location', numeric: true, disablePadding: false, label: '地点' },
     { id: 'start_date', numeric: true, disablePadding: false, label: '开课日期' },
@@ -50,25 +49,23 @@ const rows = [
 
 class SchoolAllCourse extends React.Component {
     state = {
-        order: 'asc',
-        orderBy: 'calories',
+        order: 'desc',
+        orderBy: 'course',
         selected: [],
         page: 0,
         rowsPerPage: 10,
         conferenceList: [],
-        // userId: 'admin@joyaether.test',
-        userId: this.props.auth.userInfo.username,
     };
+
     componentDidMount() {
         this.getConferenceByUser();
     }
 
     getConferenceByUser = () => {
-        // const { viewingSeminar } = this.props;
-        const { userId } = this.state;
 
         const cb = (obj) => {
-            // console.log("cb : ", obj);
+            console.log("cb here : ", obj);
+
             this.setState({
                 conferenceList: obj.body,
             });
@@ -78,8 +75,7 @@ class SchoolAllCourse extends React.Component {
         }
 
         const params = {
-            //viewingSeminar ? viewingSeminar.conference_id : '',
-            user_related: userId,
+            user_related: this.props.auth.userInfo.username,
             $orderby: 'lastmoddate DESC'
         }
 
@@ -106,7 +102,6 @@ class SchoolAllCourse extends React.Component {
     };
 
     handleClick = (event, id) => {
-        console.log(id);
         const { selected } = this.state;
         const selectedIndex = selected.indexOf(id);
         let newSelected = [];
@@ -144,7 +139,7 @@ class SchoolAllCourse extends React.Component {
             "conferenceId": conference_id,
         }
         this.props.setRelatedDataId(data);
-        this.props.history.push('/' + i18n.language + '/school-course-information/'+conference_id);
+        this.props.history.push('/' + i18n.language + '/school-course-information/' + conference_id);
     }
 
     render() {
@@ -258,8 +253,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
     setRelatedDataId: data => dispatch(setRelatedDataId(data)),
 });
 
