@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 class SchoolCourse extends Component {
 
     render() {
-        const { //t,
-            i18n, auth } = this.props;
+        const { //t, auth
+            i18n } = this.props;
 
         let pathname = this.props.route.location.pathname,
             urlArray = pathname.split("/"),

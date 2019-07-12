@@ -107,37 +107,26 @@ class SchoolCourseNote extends React.Component {
         this.setState({ selected: [] });
     };
 
-    handleClick = (event, noteId) => {
-        const { i18n,
-            // auth,
-        } = this.props;
-        // const {selected} = this.state;
+    // handleClick = (event, id) => {
+    //     const { selected } = this.state;
+    //     const selectedIndex = selected.indexOf(id);
+    //     let newSelected = [];
 
-        // const selectedIndex = selected.indexOf(theIndexNum);
-        // let newSelected = [];
+    //     if (selectedIndex === -1) {
+    //         newSelected = newSelected.concat(selected, id);
+    //     } else if (selectedIndex === 0) {
+    //         newSelected = newSelected.concat(selected.slice(1));
+    //     } else if (selectedIndex === selected.length - 1) {
+    //         newSelected = newSelected.concat(selected.slice(0, -1));
+    //     } else if (selectedIndex > 0) {
+    //         newSelected = newSelected.concat(
+    //             selected.slice(0, selectedIndex),
+    //             selected.slice(selectedIndex + 1),
+    //         );
+    //     }
 
-        // if (selectedIndex === -1) {
-        //     newSelected = newSelected.concat(selected, theIndexNum);
-        // } else if (selectedIndex === 0) {
-        //     newSelected = newSelected.concat(selected.slice(1));
-        // } else if (selectedIndex === selected.length - 1) {
-        //     newSelected = newSelected.concat(selected.slice(0, -1));
-        // } else if (selectedIndex > 0) {
-        //     newSelected = newSelected.concat(
-        //         selected.slice(0, selectedIndex),
-        //         selected.slice(selectedIndex + 1),
-        //     );
-        // }
-
-        // this.setState({ selected: newSelected });
-
-        // const data = {
-        //     ...auth.relatedDataId,
-        //     "noteId": noteId,
-        // }
-        // this.props.setRelatedDataId(data);
-        this.props.history.push('/' + i18n.language + '/school-note-taking/' + noteId);
-    };
+    //     this.setState({ selected: newSelected });
+    // };
 
     handleChangePage = (event, page) => {
         this.setState({ page });
@@ -148,6 +137,17 @@ class SchoolCourseNote extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
+
+    _goToDetail = (noteId) => {
+
+        const { i18n } = this.props;
+
+        // const data = {
+        //     "noteId": note_id,
+        // }
+        // this.props.setRelatedDataIdP(noteId);
+        this.props.history.push('/' + i18n.language + '/school-note-taking/' + noteId);
+    }
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -271,7 +271,7 @@ class SchoolCourseNote extends React.Component {
                                                                 className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
                                                                 // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={event => this.handleClick(event, n.note_id)}
+                                                                onClick={() => this._goToDetail(n.note_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}

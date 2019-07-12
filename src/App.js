@@ -344,7 +344,7 @@ class App extends Component {
                     return <StudentEnrollmentHistoryForm />;
                 }
                 case 'student-enrollment-history-detail': { // OK
-                    return <StudentEnrollmentHistoryDetail id={currentID} />;
+                    return <StudentEnrollmentHistoryDetail />;
                 }
                 case 'student-enrollment-history-cancel-form': { // OK
                     return <StudentEnrollmentHistoryCancelForm />;
@@ -368,7 +368,7 @@ class App extends Component {
                     return <SchoolAllCourse />;
                 }
                 case 'school-course-information': { // OK
-                    return <SchoolCourseInformation conferenceId={currentID} />
+                    return <SchoolCourseInformation />
                 }
                 case 'school-course-preparation': { // OK
                     return <SchoolCoursePreparation />;
@@ -402,7 +402,7 @@ class App extends Component {
                     return <SchoolCourseReplyQandA />;
                 }
                 case 'school-course-note': { // OK
-                    return <SchoolCourseNote conferenceId={currentID} />;
+                    return <SchoolCourseNote />;
                 }
                 case 'school-course-new-note': { // OK
                     return <SchoolCourseNewNote />;
@@ -504,10 +504,10 @@ class App extends Component {
 
                 // Note
                 case 'school-note-taking': {
-                    return <SchoolNoteTaking noteId={currentID} />;
+                    return <SchoolNoteTaking />;
                 }
                 case 'school-notes-content': {
-                    return <SchoolNoteContent params={params} />;
+                    return <SchoolNoteContent />;
                 }
                 case 'school-new-note': {
                     return <SchoolNewNoteTitle />
