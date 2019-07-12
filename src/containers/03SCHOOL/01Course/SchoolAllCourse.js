@@ -50,7 +50,7 @@ const rows = [
 class SchoolAllCourse extends React.Component {
     state = {
         order: 'desc',
-        orderBy: 'course',
+        orderBy: 'start_date',
         selected: [],
         page: 0,
         rowsPerPage: 10,
@@ -74,9 +74,9 @@ class SchoolAllCourse extends React.Component {
             console.log("eCb : ", obj);
         }
 
-        const params = {
+        let params = {
             user_related: this.props.auth.userInfo.username,
-            $orderby: 'lastmoddate DESC'
+            $orderby: 'lastmoddate DESC',
         }
 
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
@@ -133,15 +133,15 @@ class SchoolAllCourse extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     _goToDetail = (conference_id) => {
-
         const { i18n } = this.props;
 
         const data = {
             ...this.props.auth.relatedDataId,
             "conferenceId": conference_id,
         }
+
         this.props.setRelatedDataIdP(data);
-        this.props.history.push('/' + i18n.language + '/school-course-information/');
+        this.props.history.push('/' + i18n.language + '/school-course-information');
     }
 
     render() {
@@ -153,6 +153,8 @@ class SchoolAllCourse extends React.Component {
 
         const data = conferenceList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
+        // console.log('data: ' + data);
 
         return (
             <div>
@@ -180,6 +182,13 @@ class SchoolAllCourse extends React.Component {
                                             />
                                             <TableBody>
                                                 {data
+                                                    .filter(item => {
+                                                        const searchSubject = this.props.searchSubject || null;
+                                                        if (searchSubject) {
+                                                            return item.subject_name === searchSubject;
+                                                        } else
+                                                            return true;
+                                                    })
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
@@ -206,7 +215,7 @@ class SchoolAllCourse extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.type}</TableCell>
+                                                                >{n.subject_name}</TableCell>
                                                                 <TableCell>{n.name}</TableCell>
                                                                 <TableCell>{allTeachers}</TableCell>
                                                                 <TableCell>{n.location}</TableCell>

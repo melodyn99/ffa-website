@@ -99,9 +99,9 @@ class SchoolCourseNewNote extends React.Component {
                         </Grid>
                     <Grid item xs={11} >
                         <div className="bottomControl clearfix">
-                            <Button type="submit" className={classes.blueGreenButton}>上载文件</Button>
-                            <Button type="submit" className={classes.greyButton}>下载</Button>
-                            <Button type="submit" className={classes.greyButton}>删除</Button>
+                            <Button className={classes.blueGreenButton}>上载文件</Button>
+                            <Button className={classes.greyButton}>下载</Button>
+                            <Button className={classes.greyButton}>删除</Button>
                         </div>
                     </Grid>
 

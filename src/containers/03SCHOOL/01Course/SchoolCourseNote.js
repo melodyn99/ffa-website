@@ -45,20 +45,20 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 const rows = [
     { id: 'notes', numeric: false, disablePadding: false, label: '及时记录' },
     { id: 'file', numeric: true, disablePadding: false, label: '文件' },
-    { id: 'lastedit', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
 class SchoolCourseNote extends React.Component {
     state = {
         order: 'asc',
-        orderBy: 'calories',
+        orderBy: 'lastmoddate',
         selected: [],
         // data: data,
         page: 0,
         rowsPerPage: 10,
         noteList: [],
-        // conferenceId: '81aac731-9a38-4106-9e77-9e5da5285626',
-        conferenceId: this.props.conferenceId,
+        // conferenceId: 'df299eea-5ab2-409e-b0f7-866f8de39e75',
+        conferenceId: this.props.auth.relatedDataId.conferenceId,
     };
     /** form content start */
     componentDidMount() {
@@ -107,26 +107,26 @@ class SchoolCourseNote extends React.Component {
         this.setState({ selected: [] });
     };
 
-    // handleClick = (event, id) => {
-    //     const { selected } = this.state;
-    //     const selectedIndex = selected.indexOf(id);
-    //     let newSelected = [];
+    handleClick = (event, id) => {
+        const { selected } = this.state;
+        const selectedIndex = selected.indexOf(id);
+        let newSelected = [];
 
-    //     if (selectedIndex === -1) {
-    //         newSelected = newSelected.concat(selected, id);
-    //     } else if (selectedIndex === 0) {
-    //         newSelected = newSelected.concat(selected.slice(1));
-    //     } else if (selectedIndex === selected.length - 1) {
-    //         newSelected = newSelected.concat(selected.slice(0, -1));
-    //     } else if (selectedIndex > 0) {
-    //         newSelected = newSelected.concat(
-    //             selected.slice(0, selectedIndex),
-    //             selected.slice(selectedIndex + 1),
-    //         );
-    //     }
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, id);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1),
+            );
+        }
 
-    //     this.setState({ selected: newSelected });
-    // };
+        this.setState({ selected: newSelected });
+    };
 
     handleChangePage = (event, page) => {
         this.setState({ page });
@@ -138,15 +138,14 @@ class SchoolCourseNote extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _goToDetail = (noteId) => {
-
+    _goToDetail = (note_id) => {
         const { i18n } = this.props;
-
-        // const data = {
-        //     "noteId": note_id,
-        // }
-        // this.props.setRelatedDataIdP(noteId);
-        this.props.history.push('/' + i18n.language + '/school-note-taking/' + noteId);
+        const data = {
+            ...this.props.auth.relatedDataId,
+            "noteId": note_id,
+        }
+        this.props.setRelatedDataIdP(data);
+        this.props.history.push('/' + i18n.language + '/school-note-taking');
     }
 
     // ToolBar
@@ -202,7 +201,7 @@ class SchoolCourseNote extends React.Component {
         const data = noteList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        console.log('SchoolCourseNote_render(): ' + JSON.stringify(noteList, null, 2));
+        // console.log('SchoolCourseNote_render(): ' + JSON.stringify(noteList, null, 2));
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -332,7 +331,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
-    setRelatedDataId: data => dispatch(setRelatedDataId(data)),
+    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

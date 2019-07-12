@@ -365,7 +365,7 @@ class App extends Component {
                 /*** SCHOOL ***/
                 // School Course Management
                 case 'school-all-course': { // OK
-                    return <SchoolAllCourse />;
+                    return <SchoolAllCourse searchSubject={currentID}/>;
                 }
                 case 'school-course-information': { // OK
                     return <SchoolCourseInformation />

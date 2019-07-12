@@ -39,15 +39,15 @@ class Header extends Component {
 
     _handleLogin = (language, currentPath) => {
         if (typeof currentPath === 'undefined') {
-            this.props.history.push(language + '/login-no-register');
+            this.props.history.push('/'+ language + '/login-no-register');
         } else {
-            this.props.history.push('login-no-register');
+            this.props.history.push('/'+ language +'/login-no-register');
         }
 
     }
 
     render() {
-        const { //t, 
+        const { //t,
             i18n, classes } = this.props;
 
         let pathname = this.props.router.location.pathname,

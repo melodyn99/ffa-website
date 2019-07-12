@@ -61,14 +61,13 @@ class SchoolNoteTaking extends React.Component {
     state = {
         fileList: [],
         order: 'asc',
-        orderBy: 'calories',
+        orderBy: 'createdDate',
         selected: [],
         // data: data,
         page: 0,
         rowsPerPage: 10,
         tempGoDetail: false,
-        note_Id: this.props.noteId,
-        // theNoteArray: [],
+        noteId: this.props.auth.relatedDataId.noteId,
         theNoteName: '',
         theNoteContent: '',
     }
@@ -79,14 +78,12 @@ class SchoolNoteTaking extends React.Component {
         this._getNoteFile();
     }
     _getNoteTakingList = () => {
-        const { noteId } = this.props;
         console.log();
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             this.setState({
-                // theNoteArray: obj.body,
                 theNoteName: obj.body[0].name,
                 theNoteContent: obj.body[0].content,
             });
@@ -96,13 +93,12 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note_id: noteId,
+            note_id: this.state.noteId,
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
     }
     _getNoteFile = () => {
-        const { noteId } = this.props;
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
@@ -116,7 +112,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note: noteId,
+            note: this.state.noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $orderby: 'lastmoddate',
             $expand: 'file/mime_type',
@@ -138,7 +134,7 @@ class SchoolNoteTaking extends React.Component {
     }
 
     handleDeleteNote = () => {
-        const { noteId, history } = this.props;
+        const { history } = this.props;
 
         console.log("handleDeleteNote : ");
         const deleteNoteCb = (obj) => {
@@ -149,7 +145,7 @@ class SchoolNoteTaking extends React.Component {
             console.log("deleteNoteEcb : ", obj);
         }
 
-        apiNoteTaking.deleteNoteTaking(noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
+        apiNoteTaking.deleteNoteTaking(this.state.noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
     }
 
     handleSubmit = (event, { setFieldError }) => {
@@ -159,7 +155,7 @@ class SchoolNoteTaking extends React.Component {
     }
 
     editNoteInfo = (event) => {
-        const { noteId, history } = this.props;
+        const { history } = this.props;
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
@@ -174,8 +170,8 @@ class SchoolNoteTaking extends React.Component {
             name: event.notesName,
             content: event.notesContent,
         }
-        console.log('editNoteInfo()_noteId: ' + noteId);
-        apiNoteTaking.editNoteTaking(noteId, body, this.props.auth.token, cb, eCb);
+
+        apiNoteTaking.editNoteTaking(this.state.noteId, body, this.props.auth.token, cb, eCb);
     }
     /** form content end */
 
@@ -241,7 +237,7 @@ class SchoolNoteTaking extends React.Component {
     // ToolBar
     _uploadButtonAction = (body) => {
         // console.log('upload button pressed');
-        const { note_Id } = this.state;
+        const { noteId } = this.state;
         const createNoteFileCb = (obj) => {
             console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
@@ -252,12 +248,7 @@ class SchoolNoteTaking extends React.Component {
 
         const createFileCb = (obj) => {
             console.log("createFileCb : ", obj);
-            // this.setState({
-            //     ...this.state,
-            //     formSubmitted: true
-            // })
-            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: note_Id }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
-
+            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
         }
         const createFileEcb = (obj) => {
             console.log("createFileEcb : ", obj);
@@ -312,7 +303,6 @@ class SchoolNoteTaking extends React.Component {
         const data = fileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        // console.log("theNoteArray: " + JSON.stringify(theNoteArray, null, 2));
         return (
             <Form>
                 <div className="topControl clearfix">
@@ -469,6 +459,8 @@ class SchoolNoteTaking extends React.Component {
         // if (this.state.tempGoDetail) {
         //     return <Redirect push to={"/" + i18n.language + "/school-note-taking"} />;
         // }
+
+        // console.log("theNoteArray: " + JSON.stringify(theNoteArray, null, 2));
 
         return (
             <div>
