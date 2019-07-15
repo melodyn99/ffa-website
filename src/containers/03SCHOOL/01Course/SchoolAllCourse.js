@@ -35,6 +35,7 @@ import { dateToDayAndMonth } from '../../../Util/DateUtils';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolAllCourse';
+import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 // import data from '../../../data/03SCHOOL/01Course/SchoolAllCourse';
 
@@ -163,6 +164,11 @@ class SchoolAllCourse extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    // ToolBar
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
     render() {
         const {
             classes,
@@ -186,6 +192,13 @@ class SchoolAllCourse extends React.Component {
                             <SubMenu />
 
                             <div className="content">
+                                <ToolBar
+                                    createButton={true}
+                                    createButtonText="創建"
+                                    createButtonAction={this._createButtonAction}
+                                    createButtonActionUrl='school-course-information'
+                                />
+
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
