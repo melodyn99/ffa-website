@@ -50,8 +50,8 @@ const rows = [
 
 class SchoolCourseWork extends React.Component {
     state = {
-        order: 'asc',
-        orderBy: 'calories',
+        order: 'desc',
+        orderBy: 'lastdate',
         selected: [],
         data: data,
         page: 0,
