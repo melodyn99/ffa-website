@@ -50,7 +50,7 @@ const rows = [
 class SchoolAllCourse extends React.Component {
     state = {
         order: 'asc',
-        orderBy: 'start_date',
+        orderBy: 'subject',
         selected: [],
         page: 0,
         rowsPerPage: 10,
@@ -146,7 +146,7 @@ class SchoolAllCourse extends React.Component {
         const conference_id = id;
         const data = {
             ...this.props.auth.relatedDataId,
-            "conferenceId": conference_id,
+            conferenceId: conference_id,
         }
 
         this.props.setRelatedDataIdP(data);
