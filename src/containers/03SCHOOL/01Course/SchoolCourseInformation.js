@@ -17,7 +17,7 @@ import Grid from '@material-ui/core/Grid';
 
 // Api
 // import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -25,6 +25,7 @@ import { connect } from 'react-redux';
 // Utils
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -33,7 +34,6 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class SchoolCourseInformation extends React.Component {
-
     // constructor(props) {
     //     super(props);
 
@@ -43,6 +43,73 @@ class SchoolCourseInformation extends React.Component {
     //         courseAddress: 'Hong Kong'
     //     }
     // }
+    state = {
+        academicTerm: '',
+        courseLocation: '',
+        subjectName: '',
+        subjectType: '',
+
+        courseCode: '',
+        courseName: '',
+        courseAddress: '',
+        courseIntroduction: '',
+        courseEmphasis: '',
+        courseBenefits: '',
+        contactEmail: '',
+        contactWechat: '',
+        contactNumber: '',
+
+        enrollmenetStartDate: '',
+        enrollmenetEndDate: '',
+
+        courseQuota: '',
+        courseScore: '',
+        courseCredits: '',
+
+        courseFees: '',
+        expectedFees: '',
+        actualFees: '',
+    }
+    componentDidMount() {
+        this._getConferenceDefailByUser();
+    }
+
+    _getConferenceDefailByUser = () => {
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body[0];
+            // console.log("theList: " + JSON.stringify(theList, null, 2));
+
+            this.setState({
+                courseCode: theList.code,
+                courseName: theList.name,
+                courseAddress: theList.address,
+                courseIntroduction: theList.introduction,
+                courseEmphasis: theList.emphasis,
+                courseBenefits: theList.benefit,
+                contactEmail: theList.email,
+                contactWechat: theList.wechat,
+                contactNumber: theList.phone,
+                courseQuota: theList.quota,
+                courseCredits: theList.credit_requirement,
+                courseFees: theList.fee,
+                expectedFees: theList.expected_fee,
+                actualFees: theList.actual_fee,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        let params = {
+            conference_id: this.props.auth.relatedDataId.conferenceId,
+            'conference_officers/user': this.props.auth.userInfo.username,
+            $expand: 'subject,conference_sections/teachers/user',
+        }
+
+        apiConferences.getConferenceDefailByUser(params, this.props.auth.token, cb, eCb);
+    }
 
     _handleInput = (value, key) => {
         console.log(value);
@@ -116,7 +183,7 @@ class SchoolCourseInformation extends React.Component {
                         课程编号
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseCode" type="text" placeholder="课程编号 123" maxLength="100" />
+                        <Field name="courseCode" type="text" placeholder="课程编号" maxLength="100" />
                         {errors.courseCode && touched.courseCode ? <ErrorMessage message={errors.courseCode} /> : null}
                     </Grid>
 
@@ -124,7 +191,7 @@ class SchoolCourseInformation extends React.Component {
                         课程名称
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseName" type="text" placeholder="课程名称 456" maxLength="100" />
+                        <Field name="courseName" type="text" placeholder="课程名称" maxLength="100" />
                         {errors.courseName && touched.courseName ? <ErrorMessage message={errors.courseName} /> : null}
                     </Grid>
 
@@ -140,16 +207,16 @@ class SchoolCourseInformation extends React.Component {
                         课程简介
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseBio" type="text" placeholder="Bio 1" maxLength="100" />
-                        {errors.courseBio && touched.courseBio ? <ErrorMessage message={errors.courseBio} /> : null}
+                        <Field name="courseIntroduction" type="text" placeholder="Introduction 1" maxLength="100" />
+                        {errors.courseIntroduction && touched.courseIntroduction ? <ErrorMessage message={errors.courseIntroduction} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         课程重点
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseHighlights" type="text" placeholder="Highlight 1" maxLength="100" />
-                        {errors.courseHighlights && touched.courseHighlights ? <ErrorMessage message={errors.courseHighlights} /> : null}
+                        <Field name="courseEmphasis" type="text" placeholder="Emphasis 1" maxLength="100" />
+                        {errors.courseEmphasis && touched.courseEmphasis ? <ErrorMessage message={errors.courseEmphasis} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -224,8 +291,8 @@ class SchoolCourseInformation extends React.Component {
                         课程名额
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseSpots" type="text" placeholder="100" maxLength="100" />
-                        {errors.courseSpots && touched.courseSpots ? <ErrorMessage message={errors.courseSpots} /> : null}
+                        <Field name="courseQuota" type="text" placeholder="100" maxLength="100" />
+                        {errors.courseQuota && touched.courseQuota ? <ErrorMessage message={errors.courseQuota} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -248,8 +315,8 @@ class SchoolCourseInformation extends React.Component {
                         预计学费
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="projectedFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.projectedFees && touched.projectedFees ? <ErrorMessage message={errors.projectedFees} /> : null}
+                        <Field name="expectedFees" type="text" placeholder="10000" maxLength="100" />
+                        {errors.expectedFees && touched.expectedFees ? <ErrorMessage message={errors.expectedFees} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -359,8 +426,24 @@ class SchoolCourseInformation extends React.Component {
 
     render() {
         // const { classes, t, i18n } = this.props;
-
-        // console.log('SchoolCourseInformation_render: ' + JSON.stringify(this.props.auth, null, 2));
+        const {
+            conferenceList,
+            courseCode,
+            courseName,
+            courseAddress,
+            courseIntroduction,
+            courseEmphasis,
+            courseBenefits,
+            contactEmail,
+            contactWechat,
+            contactNumber,
+            courseQuota,
+            courseCredits,
+            courseFees,
+            expectedFees,
+            actualFees,
+        } = this.state;
+        console.log('SchoolCourseInformation_render: ' + JSON.stringify(conferenceList, null, 2));
         const Schema = Yup.object().shape({
             courseCode: Yup.string()
                 .required('Course Code is required'),
@@ -368,10 +451,10 @@ class SchoolCourseInformation extends React.Component {
                 .required('Course Name is required'),
             courseAddress: Yup.string()
                 .required('Course Address is required'),
-            courseBio: Yup.string()
-                .required('Course Bio is required'),
-            courseHighlights: Yup.string()
-                .required('Course Highlights is required'),
+            courseIntroduction: Yup.string()
+                .required('Course Introduction is required'),
+            courseEmphasis: Yup.string()
+                .required('Course Emphasis is required'),
             courseBenefits: Yup.string()
                 .required('Course Benefits is required'),
             contactEmail: Yup.string()
@@ -383,18 +466,18 @@ class SchoolCourseInformation extends React.Component {
             contactNumber: Yup.number()
                 .typeError('Contact Number must be a valid phone number')
                 .required('Contact Number is required'),
-            courseSpots: Yup.number()
-                .typeError('Course Spots must be a number')
-                .required('Course Spots is required'),
+            courseQuota: Yup.number()
+                .typeError('Course Quota must be a number')
+                .required('Course Quota is required'),
             courseCredits: Yup.number()
                 .typeError('Course Credits must be a number')
                 .required('Course Credits is required'),
             courseFees: Yup.number()
                 .typeError('Course Fees must be a number')
                 .required('Course Fees is required'),
-            projectedFees: Yup.number()
-                .typeError('Projected Fees must be a number')
-                .required('Projected Fees is required'),
+            expectedFees: Yup.number()
+                .typeError('Expected Fees must be a number')
+                .required('Expected Fees is required'),
             actualFees: Yup.number()
                 .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
@@ -425,21 +508,22 @@ class SchoolCourseInformation extends React.Component {
 
                             <div className="content">
                                 <Formik
+                                    enableReinitialize
                                     initialValues={{
-                                        courseCode: '',
-                                        courseName: '',
-                                        courseAddress: '',
-                                        courseBio: '',
-                                        courseHighlights: '',
-                                        courseBenefits: '',
-                                        contactEmail: '',
-                                        contactWechat: '',
-                                        contactNumber: '',
-                                        courseSpots: '',
-                                        courseCredits: '',
-                                        courseFees: '',
-                                        projectedFees: '',
-                                        actualFees: '',
+                                        courseCode: courseCode,
+                                        courseName: courseName,
+                                        courseAddress: courseAddress,
+                                        courseIntroduction: courseIntroduction,
+                                        courseEmphasis: courseEmphasis,
+                                        courseBenefits: courseBenefits,
+                                        contactEmail: contactEmail,
+                                        contactWechat: contactWechat,
+                                        contactNumber: contactNumber,
+                                        courseQuota: courseQuota,
+                                        courseCredits: courseCredits,
+                                        courseFees: courseFees,
+                                        expectedFees: expectedFees,
+                                        actualFees: actualFees,
                                         className1: '',
                                         classDate1: '',
                                         classLocation1: '',
