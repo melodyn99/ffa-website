@@ -50,7 +50,7 @@ const rows = [
 class SchoolAllCourse extends React.Component {
     state = {
         order: 'asc',
-        orderBy: 'subject',
+        orderBy: 'start_date',
         selected: [],
         page: 0,
         rowsPerPage: 10,

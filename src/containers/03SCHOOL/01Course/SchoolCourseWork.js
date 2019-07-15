@@ -166,11 +166,11 @@ class SchoolCourseWork extends React.Component {
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='new-school-course-work'
 
-                                    editButton={true}
+                                    editButton={false}
                                     editButtonText="编辑"
                                     editButtonAction={this._editButtonAction}
 
-                                    deleteButton={true}
+                                    deleteButton={false}
                                     deleteButtonText="移除"
                                     deleteButtonAction={this._deleteButtonAction}
 

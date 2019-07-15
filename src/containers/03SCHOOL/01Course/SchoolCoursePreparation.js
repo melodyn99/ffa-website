@@ -48,7 +48,7 @@ const rows = [
 
 class SchoolCoursePreparation extends React.Component {
     state = {
-        order: 'desc',
+        order: 'asc',
         orderBy: 'deadline',
         selected: [],
         data: data,
@@ -118,11 +118,11 @@ class SchoolCoursePreparation extends React.Component {
     _backButtonAction = (url) => {
         this.props.history.push(url);
     }
-    
+
     _createButtonAction = (url) => {
         this.props.history.push(url);
     }
-    
+
     _editButtonAction = () => {
         console.log('edit button pressed');
     }
@@ -164,7 +164,7 @@ class SchoolCoursePreparation extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-                            <ToolBar
+                                <ToolBar
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
