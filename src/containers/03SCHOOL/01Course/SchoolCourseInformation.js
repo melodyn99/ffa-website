@@ -58,13 +58,13 @@ class SchoolCourseInformation extends React.Component {
         contactEmail: '',
         contactWechat: '',
         contactNumber: '',
+        courseCredits: '',
 
         enrollmenetStartDate: '',
         enrollmenetEndDate: '',
 
         courseQuota: '',
         courseScore: '',
-        courseCredits: '',
 
         courseFees: '',
         expectedFees: '',
@@ -82,6 +82,11 @@ class SchoolCourseInformation extends React.Component {
             // console.log("theList: " + JSON.stringify(theList, null, 2));
 
             this.setState({
+                academicTerm: '',
+                courseLocation: '',
+                subjectName: '',
+                subjectType: '',
+
                 courseCode: theList.code,
                 courseName: theList.name,
                 courseAddress: theList.address,
@@ -91,8 +96,14 @@ class SchoolCourseInformation extends React.Component {
                 contactEmail: theList.email,
                 contactWechat: theList.wechat,
                 contactNumber: theList.phone,
+                courseCredits: '',
+
+                enrollmenetStartDate: '',
+                enrollmenetEndDate: '',
+
                 courseQuota: theList.quota,
-                courseCredits: theList.credit_requirement,
+                courseScore: '',
+
                 courseFees: theList.fee,
                 expectedFees: theList.expected_fee,
                 actualFees: theList.actual_fee,
@@ -428,6 +439,11 @@ class SchoolCourseInformation extends React.Component {
         // const { classes, t, i18n } = this.props;
         const {
             conferenceList,
+            // academicTerm,
+            // courseLocation,
+            // subjectName,
+            // subjectType,
+
             courseCode,
             courseName,
             courseAddress,
@@ -437,8 +453,14 @@ class SchoolCourseInformation extends React.Component {
             contactEmail,
             contactWechat,
             contactNumber,
+            // courseCredits,
+
+            // enrollmenetStartDate,
+            // enrollmenetEndDate,
+
             courseQuota,
-            courseCredits,
+            // courseScore,
+
             courseFees,
             expectedFees,
             actualFees,
@@ -510,6 +532,11 @@ class SchoolCourseInformation extends React.Component {
                                 <Formik
                                     enableReinitialize
                                     initialValues={{
+                                        academicTerm:'',
+                                        courseLocation:'',
+                                        subjectName:'',
+                                        subjectType:'',
+
                                         courseCode: courseCode,
                                         courseName: courseName,
                                         courseAddress: courseAddress,
@@ -519,11 +546,18 @@ class SchoolCourseInformation extends React.Component {
                                         contactEmail: contactEmail,
                                         contactWechat: contactWechat,
                                         contactNumber: contactNumber,
+                                        courseCredits: '',
+
+                                        enrollmenetStartDate: '',
+                                        enrollmenetEndDate: '',
+
                                         courseQuota: courseQuota,
-                                        courseCredits: courseCredits,
+                                        courseScore:'',
+
                                         courseFees: courseFees,
                                         expectedFees: expectedFees,
                                         actualFees: actualFees,
+
                                         className1: '',
                                         classDate1: '',
                                         classLocation1: '',
