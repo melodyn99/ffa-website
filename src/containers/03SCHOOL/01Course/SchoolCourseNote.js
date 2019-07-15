@@ -52,8 +52,8 @@ const rows = [
 
 class SchoolCourseNote extends React.Component {
     state = {
-        order: 'asc',
-        orderBy: 'note_name',
+        order: 'desc',
+        orderBy: 'lastmoddate',
         selected: [],
         // data: data,
         page: 0,
@@ -154,7 +154,7 @@ class SchoolCourseNote extends React.Component {
             "noteId": note_id,
         }
         this.props.setRelatedDataIdP(data);
-        this.props.history.push('/' + i18n.language + '/school-note-taking/');
+        this.props.history.push('/' + i18n.language + '/school-note-taking');
     };
 
     handleChangePage = (event, page) => {

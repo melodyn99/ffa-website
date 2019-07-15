@@ -5,7 +5,8 @@ const initialState = {
 	auth: false,
 	token: null,
 	refreshToken: null,
-	userInfo: []
+	userInfo: [],
+	relatedDataId:[]
 };
 
 const authReducer = (state = initialState, action) => {

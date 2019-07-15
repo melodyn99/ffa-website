@@ -60,8 +60,8 @@ const rows = [
 class SchoolNoteTaking extends React.Component {
     state = {
         fileList: [],
-        order: 'asc',
-        orderBy: 'file_name',
+        order: 'desc',
+        orderBy: 'createddate',
         selected: [],
         // data: data,
         page: 0,
