@@ -21,7 +21,7 @@ export const apiNoteTaking = {
   },
 
   // deleteNoteTaking: noteId => api.delete(`notes/${noteId}`),
-  deleteNoteTaking: (params, token, cb, eCb) => {
-    apiGeneral.apiDelete('notes', params, token, cb, eCb)
+  deleteNoteTaking: (id, token, cb, eCb) => {
+    apiGeneral.apiDelete('notes', id, token, cb, eCb)
   },
 };

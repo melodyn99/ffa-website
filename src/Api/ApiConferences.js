@@ -116,4 +116,8 @@ export const apiConferences = {
         apiGeneral.apiFetch('conference_assignment_list', params, token, cb, eCb)
     },
 
+    deleteConferenceAssignmentList: (id, token, cb, eCb) => {
+        apiGeneral.apiDelete('conference_assignment_list', id, token , cb, eCb)
+    },
+
 };

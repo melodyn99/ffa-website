@@ -103,12 +103,12 @@ export const apiGeneral = {
             });
     },
 
-    apiDelete: (url, params, token, callback, errorCallback) => {
+    apiDelete: (url, id, token, callback, errorCallback) => {
 
-        if (!params) {
+        if (!id) {
             return;
         }
-        let fullUrl = Config.API_URL + url + "/" + params;
+        let fullUrl = Config.API_URL + url + "/" + id;
 
         fetch(fullUrl, {
             method: 'delete',
