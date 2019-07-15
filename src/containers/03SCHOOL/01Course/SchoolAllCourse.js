@@ -49,8 +49,8 @@ const rows = [
 
 class SchoolAllCourse extends React.Component {
     state = {
-        order: 'desc',
-        orderBy: 'start_date',
+        order: 'asc',
+        orderBy: 'subject',
         selected: [],
         page: 0,
         rowsPerPage: 10,
@@ -58,16 +58,37 @@ class SchoolAllCourse extends React.Component {
     };
 
     componentDidMount() {
-        this.getConferenceByUser();
+        this._getConferenceByUser();
     }
 
-    getConferenceByUser = () => {
+    _getConferenceByUser = () => {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
+            const theList = obj.body;
+            const convertedList = [];
+
+            // console.log("theList: " + JSON.stringify(theList,null,2));
+            theList.map(n => {
+                let theTeachers = '';
+                theTeachers = n.teachers.map(name => {
+                    return theTeachers = theTeachers + ", " + name
+                });
+                theTeachers = theTeachers.toString().substr(2);
+                const convertedArray = {
+                    conference: n.conference_id,
+                    subject: n.subject_name,
+                    course: n.name,
+                    teacher: theTeachers,
+                    location: n.location,
+                    start_date: dateToDayAndMonth(n.start_date),
+                }
+                return convertedList.push(convertedArray);
+            });
+            // console.log("convertedList: " + JSON.stringify(convertedList, null, 2));
 
             this.setState({
-                conferenceList: obj.body,
+                conferenceList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -76,7 +97,7 @@ class SchoolAllCourse extends React.Component {
 
         let params = {
             user_related: this.props.auth.userInfo.username,
-            $orderby: 'lastmoddate DESC',
+            // $orderby: 'subject_name ASC',
         }
 
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
@@ -102,24 +123,34 @@ class SchoolAllCourse extends React.Component {
     };
 
     handleClick = (event, id) => {
-        const { selected } = this.state;
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
+        // const { selected } = this.state;
+        // const selectedIndex = selected.indexOf(id);
+        // let newSelected = [];
 
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
+        // if (selectedIndex === -1) {
+        //     newSelected = newSelected.concat(selected, id);
+        // } else if (selectedIndex === 0) {
+        //     newSelected = newSelected.concat(selected.slice(1));
+        // } else if (selectedIndex === selected.length - 1) {
+        //     newSelected = newSelected.concat(selected.slice(0, -1));
+        // } else if (selectedIndex > 0) {
+        //     newSelected = newSelected.concat(
+        //         selected.slice(0, selectedIndex),
+        //         selected.slice(selectedIndex + 1),
+        //     );
+        // }
+
+        // this.setState({ selected: newSelected });
+
+        const { i18n } = this.props;
+        const conference_id = id;
+        const data = {
+            ...this.props.auth.relatedDataId,
+            "conferenceId": conference_id,
         }
 
-        this.setState({ selected: newSelected });
+        this.props.setRelatedDataIdP(data);
+        this.props.history.push('/' + i18n.language + '/school-course-information');
     };
 
     handleChangePage = (event, page) => {
@@ -132,18 +163,6 @@ class SchoolAllCourse extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _goToDetail = (conference_id) => {
-        const { i18n } = this.props;
-
-        const data = {
-            ...this.props.auth.relatedDataId,
-            "conferenceId": conference_id,
-        }
-
-        this.props.setRelatedDataIdP(data);
-        this.props.history.push('/' + i18n.language + '/school-course-information');
-    }
-
     render() {
         const {
             classes,
@@ -153,8 +172,7 @@ class SchoolAllCourse extends React.Component {
 
         const data = conferenceList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
-        // console.log('data: ' + data);
+        // console.log('data: ' + JSON.stringify(data, null, 2));
 
         return (
             <div>
@@ -185,7 +203,7 @@ class SchoolAllCourse extends React.Component {
                                                     .filter(item => {
                                                         const searchSubject = this.props.searchSubject || null;
                                                         if (searchSubject) {
-                                                            return item.subject_name === searchSubject;
+                                                            return item.subject === searchSubject;
                                                         } else
                                                             return true;
                                                     })
@@ -194,16 +212,10 @@ class SchoolAllCourse extends React.Component {
                                                     .map(n => {
                                                         const theIndexNum = data.indexOf(n);
                                                         const isSelected = this.isSelected(theIndexNum);
-                                                        let allTeachers = '';
-                                                        n.teachers.map(name => {
-                                                            return allTeachers = allTeachers + ", " + name
-                                                        });
-                                                        allTeachers = allTeachers.substr(2);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._goToDetail(n.conference_id)}
+                                                                onClick={event => this.handleClick(event, n.conference)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -215,11 +227,11 @@ class SchoolAllCourse extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.subject_name}</TableCell>
-                                                                <TableCell>{n.name}</TableCell>
-                                                                <TableCell>{allTeachers}</TableCell>
+                                                                >{n.subject}</TableCell>
+                                                                <TableCell>{n.course}</TableCell>
+                                                                <TableCell>{n.teacher}</TableCell>
                                                                 <TableCell>{n.location}</TableCell>
-                                                                <TableCell>{dateToDayAndMonth(n.start_date)}</TableCell>
+                                                                <TableCell>{n.start_date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}

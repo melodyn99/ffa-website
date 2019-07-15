@@ -83,7 +83,7 @@ class SchoolNoteContent extends Component {
 
         const params = null;
 
-        apiNoteFile.getNoteFileForNote(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
+        apiNoteFile.getNoteFile(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
     }
 
     _switchTab = (tab) => {
@@ -100,7 +100,7 @@ class SchoolNoteContent extends Component {
     render() {
         const { classes, profile } = this.props;
         const { noteFile, content,
-            // name, 
+            // name,
             activeTab } = this.state;
 
         return (

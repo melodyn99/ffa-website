@@ -37,7 +37,7 @@ import { dateToDayMonthYear, dateToRemainingDays } from '../../../Util/DateUtils
 import moment from 'moment';
 import FuzzySearch from 'fuzzy-search';
 import {
-    // isArray, 
+    // isArray,
     sortBy
 } from 'lodash-es';
 
@@ -145,7 +145,7 @@ class StudentScheduling extends React.Component {
         const params = ({
             conference: conferenceId,
             $expand: 'conference',
-            $orderby: 'createddate desc'
+            // $orderby: 'createddate desc'
         });
 
         apiEventPpt.getEventPptList(params, this.props.auth.token, cb, eCb);

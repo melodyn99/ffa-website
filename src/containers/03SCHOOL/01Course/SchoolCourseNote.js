@@ -24,6 +24,7 @@ import Paper from '@material-ui/core/Paper';
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
 // import { apiConferences } from '../../../Api/ApiConferences';
+// import { apiNoteFile } from '../../../Api/ApiNoteFile';
 import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
@@ -43,15 +44,16 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'notes', numeric: false, disablePadding: false, label: '及时记录' },
-    { id: 'file', numeric: true, disablePadding: false, label: '文件' },
+    { id: 'note_name', numeric: false, disablePadding: false, label: '及时记录' },
+    { id: 'fileCount', numeric: true, disablePadding: false, label: '文件' },
+    { id: 'creator', numeric: true, disablePadding: false, label: '创建人员' },
     { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
 class SchoolCourseNote extends React.Component {
     state = {
         order: 'asc',
-        orderBy: 'lastmoddate',
+        orderBy: 'note_name',
         selected: [],
         // data: data,
         page: 0,
@@ -71,8 +73,26 @@ class SchoolCourseNote extends React.Component {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
+            const theList = obj.body;
+            const convertedList = [];
+
+            theList.map(n => {
+                const convertedArray = {
+                    noteId: n.note_id,
+                    conference: n.conference,
+                    note_name: n.name,
+                    content: n.content,
+                    fileCount: "?",
+                    createddate: dateToDayAndMonth(n.createddate),
+                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                    creator: n.created_by,
+                    editor: n.modified_by,
+                }
+                return convertedList.push(convertedArray);
+            });
+
             this.setState({
-                noteList: obj.body,
+                noteList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -82,7 +102,7 @@ class SchoolCourseNote extends React.Component {
         const params = {
             //viewingSeminar ? viewingSeminar.conference_id : '',
             conference: conferenceId,
-            $orderby: 'lastmoddate DESC'
+            // $orderby: 'lastmoddate DESC'
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -108,24 +128,33 @@ class SchoolCourseNote extends React.Component {
     };
 
     handleClick = (event, id) => {
-        const { selected } = this.state;
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
+        // const { selected } = this.state;
+        // const selectedIndex = selected.indexOf(id);
+        // let newSelected = [];
 
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
+        // if (selectedIndex === -1) {
+        //     newSelected = newSelected.concat(selected, id);
+        // } else if (selectedIndex === 0) {
+        //     newSelected = newSelected.concat(selected.slice(1));
+        // } else if (selectedIndex === selected.length - 1) {
+        //     newSelected = newSelected.concat(selected.slice(0, -1));
+        // } else if (selectedIndex > 0) {
+        //     newSelected = newSelected.concat(
+        //         selected.slice(0, selectedIndex),
+        //         selected.slice(selectedIndex + 1),
+        //     );
+        // }
+
+        // this.setState({ selected: newSelected });
+
+        const { i18n } = this.props;
+        const note_id = id;
+        const data = {
+            ...this.props.auth.relatedDataId,
+            "noteId": note_id,
         }
-
-        this.setState({ selected: newSelected });
+        this.props.setRelatedDataIdP(data);
+        this.props.history.push('/' + i18n.language + '/school-note-taking/');
     };
 
     handleChangePage = (event, page) => {
@@ -137,16 +166,6 @@ class SchoolCourseNote extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
-
-    _goToDetail = (note_id) => {
-        const { i18n } = this.props;
-        const data = {
-            ...this.props.auth.relatedDataId,
-            "noteId": note_id,
-        }
-        this.props.setRelatedDataIdP(data);
-        this.props.history.push('/' + i18n.language + '/school-note-taking');
-    }
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -269,8 +288,7 @@ class SchoolCourseNote extends React.Component {
                                                             <TableRow
                                                                 className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
-                                                                // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._goToDetail(n.note_id)}
+                                                                onClick={event => this.handleClick(event, n.noteId)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -282,9 +300,10 @@ class SchoolCourseNote extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.name}</TableCell>
-                                                                <TableCell>{`?`}</TableCell>
-                                                                <TableCell>{dateToDayAndMonth(n.lastmoddate)}</TableCell>
+                                                                >{n.note_name}</TableCell>
+                                                                <TableCell>{n.fileCount}</TableCell>
+                                                                <TableCell>{n.creator}</TableCell>
+                                                                <TableCell>{n.lastmoddate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}

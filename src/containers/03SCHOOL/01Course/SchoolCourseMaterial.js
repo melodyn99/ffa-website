@@ -48,7 +48,7 @@ const rows = [
 class SchoolCourseMaterial extends React.Component {
     state = {
         order: 'asc',
-        orderBy: 'calories',
+        orderBy: 'materials',
         selected: [],
         data: data,
         page: 0,

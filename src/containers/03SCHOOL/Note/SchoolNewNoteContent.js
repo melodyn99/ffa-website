@@ -75,8 +75,8 @@ class SchoolNewNoteContent extends Component {
         }
 
         const params = null;
-        // apiNoteFile.getNoteFileForNote(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
-        apiNoteFile.getNoteFileForNote('239fd228-ff67-4b5a-abb0-636858f20018', params, this.props.auth.token, cb, eCb);
+        // apiNoteFile.getNoteFile(viewingNote.note_id, params, this.props.auth.token, cb, eCb);
+        apiNoteFile.getNoteFile('239fd228-ff67-4b5a-abb0-636858f20018', params, this.props.auth.token, cb, eCb);
     }
 
     _submitNote = () => {

@@ -51,17 +51,17 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'name', numeric: false, disablePadding: false, label: '记录文件' },
-    { id: 'teacher', numeric: false, disablePadding: false, label: '老师' },
+    { id: 'file_name', numeric: false, disablePadding: false, label: '记录文件' },
+    { id: 'creator', numeric: false, disablePadding: false, label: '创建人员' },
     { id: 'size', numeric: true, disablePadding: false, label: '文件大小' },
-    { id: 'createdDate', numeric: false, disablePadding: false, label: '上载日期' },
+    { id: 'createddate', numeric: false, disablePadding: false, label: '上载日期' },
 ];
 
 class SchoolNoteTaking extends React.Component {
     state = {
         fileList: [],
         order: 'asc',
-        orderBy: 'createdDate',
+        orderBy: 'file_name',
         selected: [],
         // data: data,
         page: 0,
@@ -103,8 +103,23 @@ class SchoolNoteTaking extends React.Component {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
+            const theList = obj.body;
+            const convertedList = [];
+
+            theList.map(n => {
+                const convertedArray = {
+                    note_file_id: n.note_file_id,
+                    file_name: n.file.name,
+                    creator: n.created_by,
+                    size: formatFileSizeToString(n.file.size),
+                    createddate: dateToDayAndMonth(n.createddate),
+                    file_url: n.file.url,
+                }
+                return convertedList.push(convertedArray);
+            });
+
             this.setState({
-                fileList: obj.body,
+                fileList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -114,11 +129,11 @@ class SchoolNoteTaking extends React.Component {
         const params = {
             note: this.state.noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
-            $orderby: 'lastmoddate',
             $expand: 'file/mime_type',
+            // $orderby: 'lastmoddate',
         }
 
-        apiNoteFile.getNoteFileForNote(params, this.props.auth.token, cb, eCb);
+        apiNoteFile.getNoteFile(params, this.props.auth.token, cb, eCb);
     }
 
     _handleInput = (value, key) => {
@@ -262,7 +277,7 @@ class SchoolNoteTaking extends React.Component {
         // console.log('download button pressed');
         // const selectedListLength = selected.length;
         selected.forEach((i, counter) => {
-            let theSelectedFileUrl = fileList[i].file.url;
+            let theSelectedFileUrl = fileList[i].file_url;
             Bluebird.delay(counter * 1000, theSelectedFileUrl).then((url) => {
                 CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
             });
@@ -401,10 +416,10 @@ class SchoolNoteTaking extends React.Component {
                                                                 </TableCell> */}
                                                         <TableCell component="th" scope="row"
                                                         // padding="none"
-                                                        >{n.file.name}</TableCell>
-                                                        <TableCell>{n.file.mime_type.created_by}</TableCell>
-                                                        <TableCell>{formatFileSizeToString(n.file.size)}</TableCell>
-                                                        <TableCell>{dateToDayAndMonth(n.file.mime_type.createddate)}</TableCell>
+                                                        >{n.file_name}</TableCell>
+                                                        <TableCell>{n.creator}</TableCell>
+                                                        <TableCell>{n.size}</TableCell>
+                                                        <TableCell>{n.createddate}</TableCell>
                                                     </TableRow>
                                                 );
                                             })}
