@@ -23,13 +23,14 @@ import Paper from '@material-ui/core/Paper';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -45,18 +46,63 @@ const rows = [
     { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
     { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
     { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
-    { id: 'lastdate', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
 class SchoolCourseWork extends React.Component {
     state = {
         order: 'desc',
-        orderBy: 'lastdate',
+        orderBy: 'lastmoddate',
         selected: [],
         data: data,
         page: 0,
         rowsPerPage: 10,
+        courseAssignmentList: [],
+        // conferenceId: 'df299eea-5ab2-409e-b0f7-866f8de39e75',
+        conferenceId: this.props.auth.relatedDataId.conferenceId,
     };
+
+    componentDidMount() {
+        this._getConferenceAssignmentList();
+    }
+
+    _getConferenceAssignmentList = () => {
+        // const { viewingSeminar } = this.props;
+        const { conferenceId } = this.state;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body;
+
+            const convertedList = [];
+
+            theList.map(n => {
+                const convertedArray = {
+                    SchoolCourseWork: n.name,
+                    type: n.assignment.question_type,
+                    questions: n.assignment.assignment_questions.length,
+                    score: n.total_mark,
+                    deadline: dateToDayAndMonth(n.deadline),
+                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                }
+                return convertedList.push(convertedArray);
+            });
+
+            this.setState({
+                courseAssignmentList: convertedList,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            conference: conferenceId,
+            $expand: 'assignment',
+        }
+
+        apiConferences.getConferenceAssignmentList(params, this.props.auth.token, cb, eCb);
+    }
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -139,9 +185,11 @@ class SchoolCourseWork extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const {
+            // data,
+            courseAssignmentList, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = courseAssignmentList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -204,15 +252,16 @@ class SchoolCourseWork extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const theIndexNum = data.indexOf(n);
+                                                        const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={event => this.handleClick(event, n.conference_assignment_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">
@@ -225,7 +274,7 @@ class SchoolCourseWork extends React.Component {
                                                                 <TableCell>{n.questions}</TableCell>
                                                                 <TableCell>{n.score}</TableCell>
                                                                 <TableCell>{n.deadline}</TableCell>
-                                                                <TableCell>{n.lastdate}</TableCell>
+                                                                <TableCell>{n.lastmoddate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}

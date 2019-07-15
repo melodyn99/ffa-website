@@ -2,15 +2,17 @@
 import { api } from './_ApiFactoryWithHeader';
 // import { sortBy } from 'lodash-es';
 
+
+// Api
 import { apiGeneral } from './_General';
 
 const CONTRACT_TYPE_TERM_ID = '87b8750b-525c-4f73-9509-2b7e3fa6590b';
 
 export const apiConferences = {
 
-    getConferenceFullList: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
-    },
+    // getConferenceFullList: (params, token, cb, eCb) => {
+    //     apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
+    // },
 
     getConferenceFullListHaveSort: params => api.get('conference_list', params),
 
@@ -37,6 +39,10 @@ export const apiConferences = {
     // },
     getConferenceDefail: (conferenceId, params, token, cb, eCb) => {
         apiGeneral.apiFetch(`conferences/${encodeURIComponent(conferenceId)}`, params, token, cb, eCb)
+    },
+
+    getConferenceDefailByUser: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('conferences', params, token, cb, eCb)
     },
 
     createConference: data => api.post('create_conference', data),
@@ -104,5 +110,10 @@ export const apiConferences = {
 
     getContractTypes: () => api.get(`vocabularies?term=${CONTRACT_TYPE_TERM_ID}&$orderby=createddate`),
 
-    createContractType: name => api.post('vocabularies', { text_value: name, term: CONTRACT_TYPE_TERM_ID })
+    createContractType: name => api.post('vocabularies', { text_value: name, term: CONTRACT_TYPE_TERM_ID }),
+
+    getConferenceAssignmentList: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('conference_assignment_list', params, token, cb, eCb)
+    },
+
 };

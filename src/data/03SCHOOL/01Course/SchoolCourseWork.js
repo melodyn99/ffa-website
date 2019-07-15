@@ -6,7 +6,7 @@ export default [
         "questions": 456,
         "score": "Material 1",
         "deadline": 123,
-        "lastdate": 456,
+        "lastmoddate": 456,
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@ export default [
         "questions": 456,
         "score": "Material 1",
         "deadline": 123,
-        "lastdate": 456,
+        "lastmoddate": 456,
     },
     {
         "id": 3,
@@ -24,6 +24,6 @@ export default [
         "questions": 456,
         "score": "Material 1",
         "deadline": 123,
-        "lastdate": 456,
+        "lastmoddate": 456,
     },
 ];

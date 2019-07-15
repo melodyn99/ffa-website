@@ -83,7 +83,7 @@ class SchoolCourseNote extends React.Component {
                     conference: n.conference,
                     note_name: n.name,
                     content: n.content,
-                    fileCount: "?",
+                    fileCount: n.note_files.length,
                     createddate: dateToDayAndMonth(n.createddate),
                     lastmoddate: dateToDayAndMonth(n.lastmoddate),
                     creator: n.created_by,
