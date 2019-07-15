@@ -45,9 +45,6 @@ class SchoolCourseNewNote extends React.Component {
         })
     }
 
-    _handleSelect = () => {
-    }
-
     handleSubmit = (event, { setFieldError }) => {
         // console.log('event: ' + JSON.stringify(event, null, 2));
         const conferenceId = this.props.auth.relatedDataId.conferenceId;
@@ -93,24 +90,6 @@ class SchoolCourseNewNote extends React.Component {
                         <Field name="notesContent" type="text" placeholder="课程编号 123" maxLength="100" />
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
-
-                    <Grid item xs={1} >
-                        记录文件
-                        </Grid>
-                    <Grid item xs={11} >
-                        <div className="bottomControl clearfix">
-                            <Button className={classes.blueGreenButton}>上载文件</Button>
-                            <Button className={classes.greyButton}>下载</Button>
-                            <Button className={classes.greyButton}>删除</Button>
-                        </div>
-                    </Grid>
-
-                    <Grid item xs={1} >
-                    </Grid>
-                    <Grid item xs={11}>
-
-                    </Grid>
-
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button className={classes.greyButton}
