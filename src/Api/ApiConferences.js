@@ -8,9 +8,9 @@ const CONTRACT_TYPE_TERM_ID = '87b8750b-525c-4f73-9509-2b7e3fa6590b';
 
 export const apiConferences = {
 
-    getConferenceFullList: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
-    },
+    // getConferenceFullList: (params, token, cb, eCb) => {
+    //     apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
+    // },
 
     getConferenceFullListHaveSort: params => api.get('conference_list', params),
 
@@ -37,6 +37,10 @@ export const apiConferences = {
     // },
     getConferenceDefail: (conferenceId, params, token, cb, eCb) => {
         apiGeneral.apiFetch(`conferences/${encodeURIComponent(conferenceId)}`, params, token, cb, eCb)
+    },
+
+    getConferenceDefailByUser: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('conferences', params, token, cb, eCb)
     },
 
     createConference: data => api.post('create_conference', data),
