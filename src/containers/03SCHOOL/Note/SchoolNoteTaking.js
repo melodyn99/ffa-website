@@ -40,11 +40,12 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import CommonUtils, { formatFileSizeToString } from '../../../Util/CommonUtils';
+import FileInput from '../../../Util/FileInput';
+import { emitter, EventTypes } from '../../../Util/EventEmitter';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
-import ToolBar from '../../../components/105ToolBars/General';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 // import data from '../../../data/03SCHOOL/01Course/SchoolNoteTaking';
@@ -77,6 +78,7 @@ class SchoolNoteTaking extends React.Component {
         this._getNoteTakingList();
         this._getNoteFile();
     }
+
     _getNoteTakingList = () => {
         console.log();
         // const { viewingSeminar } = this.props;
@@ -148,7 +150,7 @@ class SchoolNoteTaking extends React.Component {
 
     }
 
-    handleDeleteNote = () => {
+    _handleDeleteNote = () => {
         const { history } = this.props;
 
         console.log("handleDeleteNote : ");
@@ -242,14 +244,12 @@ class SchoolNoteTaking extends React.Component {
     isSelected = theIndexNum => this.state.selected.indexOf(theIndexNum) !== -1;
 
     /** Material UI table style end  **/
-    // _tempDetail = () => {
-    //     this.setState({
-    //         ...this.state,
-    //         tempGoDetail: true
-    //     });
-    // }
 
     // ToolBar
+    _backButtonAction = () => {
+        this.props.history.goBack();
+    }
+
     _uploadButtonAction = (body) => {
         // console.log('upload button pressed');
         const { noteId } = this.state;
@@ -303,6 +303,10 @@ class SchoolNoteTaking extends React.Component {
         });
     }
 
+    customHeaderButtonCallback(eventName, data) {
+        emitter.emit(eventName, data);
+    }
+
     form = ({
         // values,
         errors, touched
@@ -320,20 +324,6 @@ class SchoolNoteTaking extends React.Component {
 
         return (
             <Form>
-                <div className="topControl clearfix">
-                    <Button className={classes.greyButton} onClick={() => this.props.history.goBack()}>
-                        取消
-                    </Button>
-                    <span className="right">
-                        <Button className={classes.blackButton} onClick={() => this.handleDeleteNote()}>
-                            删除
-                        </Button>
-                        <span>&nbsp;</span>
-                        <Button type="submit" className={classes.blackButton}>
-                            确认
-                        </Button>
-                    </span>
-                </div>
                 <Grid container spacing={16} alignItems="center">
                     <Grid item xs={1} >
                         记录标题
@@ -353,7 +343,17 @@ class SchoolNoteTaking extends React.Component {
 
                     <Grid item xs={1} >记录文件</Grid>
                     <Grid item xs={11} >
-                        <ToolBar
+                        <Button
+                            className={classes.blueGreenButton}
+                            onClick={() => this.customHeaderButtonCallback(EventTypes.OPEN_FILE_BROWSER)}>
+                            <FileInput onSelected={(file) => {
+                                this._uploadButtonAction(file);
+                            }}
+                            />
+                            上载文件
+                        </Button>
+
+                        {/* <ToolBar
                             noMargin={true}
 
                             uploadButton={true}
@@ -361,17 +361,17 @@ class SchoolNoteTaking extends React.Component {
                             uploadButtonAction={this._uploadButtonAction}
                             uploadButtonActionUrl='school-course-preparations'
 
-                            downloadButton={true}
+                            downloadButton={false}
                             downloadButtonText="下载"
                             downloadButtonAction={this._downloadButtonAction}
                             downloadButtonActionUrl='school-new-activity'
 
-                            deleteButton={true}
+                            deleteButton={false}
                             deleteButtonText="刪除"
                             deleteButtonAction={this._deleteButtonAction}
                         />
 
-                        {/* <div className="bottomControl clearfix">
+                        <div className="bottomControl clearfix">
                             <Button type="submit" className={classes.blueGreenButton}>上载文件</Button>
                             <Button type="submit" className={classes.greyButton}>下载</Button>
                             <Button type="submit" className={classes.greyButton}>删除</Button>
@@ -446,17 +446,22 @@ class SchoolNoteTaking extends React.Component {
                                 onChangeRowsPerPage={this.handleChangeRowsPerPage}
                             />
                         </Paper>
-
                     </Grid>
 
                 </Grid>
-                {/* <div className="bottomControl clearfix">
-                    <Button className={classes.greyButton}
+                <div className="bottomControl clearfix">
+                    <Button
+                        className={classes.greyButton}
                         onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    <span className="right"><Button type="submit" className={classes.blackButton}
-                    >确认</Button></span>
-                </div> */}
+                    <Button
+                        className={classes.blackButton}
+                        onClick={() => this._handleDeleteNote()}
+                    >删除</Button>
+                    <span className="right">
+                        <Button type="submit" className={classes.blackButton}>确认</Button>
+                    </span>
+                </div>
             </Form>
         )
     }

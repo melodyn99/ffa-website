@@ -62,6 +62,7 @@ class SchoolCourseNote extends React.Component {
         // conferenceId: 'df299eea-5ab2-409e-b0f7-866f8de39e75',
         conferenceId: this.props.auth.relatedDataId.conferenceId,
     };
+
     /** form content start */
     componentDidMount() {
         this._getNoteTakingList();
@@ -241,15 +242,15 @@ class SchoolCourseNote extends React.Component {
                                     backButtonActionUrl=''
 
                                     createButton={true}
-                                    createButtonText="创建 (click)"
+                                    createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-note-taking'
 
-                                    editButton={true}
+                                    editButton={false}
                                     editButtonText="编辑"
                                     editButtonAction={this._editButtonAction}
 
-                                    deleteButton={true}
+                                    deleteButton={false}
                                     deleteButtonText="删除"
                                     deleteButtonAction={this._deleteButtonAction}
 
