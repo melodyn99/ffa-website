@@ -1,6 +1,6 @@
 // Essential for all components
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
@@ -64,16 +64,13 @@ class SchoolNoteTaking extends React.Component {
         order: 'asc',
         orderBy: 'file_name',
         selected: [],
-        // data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false,
         noteId: this.props.auth.relatedDataId.noteId,
         theNoteName: '',
         theNoteContent: '',
     }
 
-    /** form content start */
     componentDidMount() {
         this._getNoteTakingList();
         this._getNoteFile();
@@ -100,6 +97,7 @@ class SchoolNoteTaking extends React.Component {
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
     }
+
     _getNoteFile = () => {
         // const { viewingSeminar } = this.props;
 
@@ -124,6 +122,7 @@ class SchoolNoteTaking extends React.Component {
                 fileList: convertedList,
             });
         }
+
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
@@ -138,6 +137,8 @@ class SchoolNoteTaking extends React.Component {
         apiNoteFile.getNoteFile(params, this.props.auth.token, cb, eCb);
     }
 
+    /** Note start **/
+    // form handle input
     _handleInput = (value, key) => {
         console.log(value);
         this.setState({
@@ -146,25 +147,7 @@ class SchoolNoteTaking extends React.Component {
         })
     }
 
-    _handleSelect = () => {
-
-    }
-
-    _handleDeleteNote = () => {
-        const { history } = this.props;
-
-        console.log("handleDeleteNote : ");
-        const deleteNoteCb = (obj) => {
-            console.log("deleteNoteCb : ", obj);
-            history.goBack();
-        }
-        const deleteNoteEcb = (obj) => {
-            console.log("deleteNoteEcb : ", obj);
-        }
-
-        apiNoteTaking.deleteNoteTaking(this.state.noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
-    }
-
+    // form submit
     handleSubmit = (event, { setFieldError }) => {
         // console.log('click submit button!');
         console.log('event: ' + JSON.stringify(event.notesName, null, 2));
@@ -190,7 +173,86 @@ class SchoolNoteTaking extends React.Component {
 
         apiNoteTaking.editNoteTaking(this.state.noteId, body, this.props.auth.token, cb, eCb);
     }
-    /** form content end */
+
+    // delete note
+    _handleDeleteNote = () => {
+        const { history } = this.props;
+
+        console.log("handleDeleteNote : ");
+        const deleteNoteCb = (obj) => {
+            console.log("deleteNoteCb : ", obj);
+            history.goBack();
+        }
+        const deleteNoteEcb = (obj) => {
+            console.log("deleteNoteEcb : ", obj);
+        }
+
+        apiNoteTaking.deleteNoteTaking(this.state.noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
+    }
+
+    // back to listing
+    _backButtonAction = () => {
+        this.props.history.goBack();
+    }
+    /** Note end **/
+
+    /** Files management start **/
+    _uploadFile = (body) => {
+        // console.log('upload button pressed');
+        const { noteId } = this.state;
+        const createNoteFileCb = (obj) => {
+            console.log("createNoteFileCb : ", obj);
+            this._getNoteFile();
+        }
+        const createNoteFileEcb = (obj) => {
+            console.log("createNoteFileEcb : ", obj);
+        }
+
+        const createFileCb = (obj) => {
+            console.log("createFileCb : ", obj);
+            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
+        }
+        const createFileEcb = (obj) => {
+            console.log("createFileEcb : ", obj);
+        }
+
+        apiFile.createFile(body, this.props.auth.token, createFileCb, createFileEcb);
+    }
+    customHeaderButtonCallback(eventName, data) {
+        emitter.emit(eventName, data);
+    }
+
+    _downloadFile = () => {
+        const { selected, fileList } = this.state;
+        // console.log('download button pressed');
+        // const selectedListLength = selected.length;
+        selected.forEach((i, counter) => {
+            let theSelectedFileUrl = fileList[i].file_url;
+            Bluebird.delay(counter * 1000, theSelectedFileUrl).then((url) => {
+                CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
+            });
+        });
+    }
+
+    _deleteFile = () => {
+        // console.log('delete button pressed');
+        const { selected, fileList } = this.state;
+
+        const deleteNoteFileCb = (obj) => {
+            console.log("deleteNoteFileCb : ", obj);
+            this._getNoteFile();
+            this.setState({ selected: [] });
+        }
+        const deleteNoteFileEcb = (obj) => {
+            console.log("deleteNoteFileEcb : ", obj);
+        }
+
+        selected.forEach(i => {
+            let theSelectedNote_file_id = fileList[i].note_file_id;
+            apiNoteFile.deleteNoteFile(theSelectedNote_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
+        });
+    }
+    /** Files management end **/
 
     /** Material UI table style start  **/
     handleRequestSort = (event, property) => {
@@ -242,71 +304,9 @@ class SchoolNoteTaking extends React.Component {
     };
 
     isSelected = theIndexNum => this.state.selected.indexOf(theIndexNum) !== -1;
-
     /** Material UI table style end  **/
 
-    // ToolBar
-    _backButtonAction = () => {
-        this.props.history.goBack();
-    }
-
-    _uploadButtonAction = (body) => {
-        // console.log('upload button pressed');
-        const { noteId } = this.state;
-        const createNoteFileCb = (obj) => {
-            console.log("createNoteFileCb : ", obj);
-            this._getNoteFile();
-        }
-        const createNoteFileEcb = (obj) => {
-            console.log("createNoteFileEcb : ", obj);
-        }
-
-        const createFileCb = (obj) => {
-            console.log("createFileCb : ", obj);
-            apiNoteFile.createNoteFile({ file: obj.body.file_id, note: noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
-        }
-        const createFileEcb = (obj) => {
-            console.log("createFileEcb : ", obj);
-        }
-
-        apiFile.createFile(body, this.props.auth.token, createFileCb, createFileEcb);
-    }
-
-    _downloadButtonAction = () => {
-        const { selected, fileList } = this.state;
-        // console.log('download button pressed');
-        // const selectedListLength = selected.length;
-        selected.forEach((i, counter) => {
-            let theSelectedFileUrl = fileList[i].file_url;
-            Bluebird.delay(counter * 1000, theSelectedFileUrl).then((url) => {
-                CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
-            });
-        });
-    }
-
-    _deleteButtonAction = () => {
-        // console.log('delete button pressed');
-        const { selected, fileList } = this.state;
-
-        const deleteNoteFileCb = (obj) => {
-            console.log("deleteNoteFileCb : ", obj);
-            this._getNoteFile();
-            this.setState({ selected: [] });
-        }
-        const deleteNoteFileEcb = (obj) => {
-            console.log("deleteNoteFileEcb : ", obj);
-        }
-
-        selected.forEach(i => {
-            let theSelectedNote_file_id = fileList[i].note_file_id;
-            apiNoteFile.deleteNoteFile(theSelectedNote_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
-        });
-    }
-
-    customHeaderButtonCallback(eventName, data) {
-        emitter.emit(eventName, data);
-    }
-
+    // Formik form
     form = ({
         // values,
         errors, touched
@@ -346,36 +346,8 @@ class SchoolNoteTaking extends React.Component {
                         <Button
                             className={classes.blueGreenButton}
                             onClick={() => this.customHeaderButtonCallback(EventTypes.OPEN_FILE_BROWSER)}>
-                            <FileInput onSelected={(file) => {
-                                this._uploadButtonAction(file);
-                            }}
-                            />
-                            上载文件
+                            <FileInput onSelected={(file) => this._uploadFile(file)} />上载文件
                         </Button>
-
-                        {/* <ToolBar
-                            noMargin={true}
-
-                            uploadButton={true}
-                            uploadButtonText="上载文件"
-                            uploadButtonAction={this._uploadButtonAction}
-                            uploadButtonActionUrl='school-course-preparations'
-
-                            downloadButton={false}
-                            downloadButtonText="下载"
-                            downloadButtonAction={this._downloadButtonAction}
-                            downloadButtonActionUrl='school-new-activity'
-
-                            deleteButton={false}
-                            deleteButtonText="刪除"
-                            deleteButtonAction={this._deleteButtonAction}
-                        />
-
-                        <div className="bottomControl clearfix">
-                            <Button type="submit" className={classes.blueGreenButton}>上载文件</Button>
-                            <Button type="submit" className={classes.greyButton}>下载</Button>
-                            <Button type="submit" className={classes.greyButton}>删除</Button>
-                        </div> */}
                     </Grid>
 
                     <Grid item xs={1} >
@@ -476,12 +448,6 @@ class SchoolNoteTaking extends React.Component {
                 .required('Note Content is required'),
         })
 
-        // if (this.state.tempGoDetail) {
-        //     return <Redirect push to={"/" + i18n.language + "/school-note-taking"} />;
-        // }
-
-        // console.log("theNoteArray: " + JSON.stringify(theNoteArray, null, 2));
-
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -512,12 +478,6 @@ class SchoolNoteTaking extends React.Component {
         );
     }
 }
-
-SchoolNoteTaking.propTypes = {
-    classes: PropTypes.object.isRequired,
-    viewingSeminar: PropTypes.object.isRequired,
-    // dispatch: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = state => ({
     auth: state.auth,
