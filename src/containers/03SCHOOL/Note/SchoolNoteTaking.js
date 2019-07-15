@@ -52,17 +52,17 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'file_name', numeric: false, disablePadding: false, label: '记录文件' },
+    { id: 'fileName', numeric: false, disablePadding: false, label: '记录文件' },
     { id: 'creator', numeric: false, disablePadding: false, label: '创建人员' },
     { id: 'size', numeric: true, disablePadding: false, label: '文件大小' },
-    { id: 'createddate', numeric: false, disablePadding: false, label: '上载日期' },
+    { id: 'createdDate', numeric: false, disablePadding: false, label: '上载日期' },
 ];
 
 class SchoolNoteTaking extends React.Component {
     state = {
         fileList: [],
-        order: 'asc',
-        orderBy: 'file_name',
+        order: 'desc',
+        orderBy: 'createdDate',
         selected: [],
         page: 0,
         rowsPerPage: 10,
@@ -109,10 +109,10 @@ class SchoolNoteTaking extends React.Component {
             theList.map(n => {
                 const convertedArray = {
                     note_file_id: n.note_file_id,
-                    file_name: n.file.name,
+                    fileName: n.file.name,
                     creator: n.created_by,
                     size: formatFileSizeToString(n.file.size),
-                    createddate: dateToDayAndMonth(n.createddate),
+                    createdDate: dateToDayAndMonth(n.createdDate),
                     file_url: n.file.url,
                 }
                 return convertedList.push(convertedArray);
@@ -388,10 +388,10 @@ class SchoolNoteTaking extends React.Component {
                                                                 </TableCell> */}
                                                         <TableCell component="th" scope="row"
                                                         // padding="none"
-                                                        >{n.file_name}</TableCell>
+                                                        >{n.fileName}</TableCell>
                                                         <TableCell>{n.creator}</TableCell>
                                                         <TableCell>{n.size}</TableCell>
-                                                        <TableCell>{n.createddate}</TableCell>
+                                                        <TableCell>{n.createdDate}</TableCell>
                                                     </TableRow>
                                                 );
                                             })}
