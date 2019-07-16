@@ -52,14 +52,16 @@ const rows = [
 
 class SchoolCourseWork extends React.Component {
     state = {
+        // table settings
         order: 'desc',
         orderBy: 'lastmoddate',
         selected: [],
-        data: data,
         page: 0,
         rowsPerPage: 10,
+
+        // component state
+        // data: data,
         courseAssignmentList: [],
-        // conferenceId: 'df299eea-5ab2-409e-b0f7-866f8de39e75',
         conferenceId: this.props.auth.relatedDataId.conferenceId,
     };
 
@@ -105,48 +107,11 @@ class SchoolCourseWork extends React.Component {
         apiConferences.getConferenceAssignmentList(params, this.props.auth.token, cb, eCb);
     }
 
-    handleRequestSort = (event, property) => {
-        const orderBy = property;
-        let order = 'desc';
-
-        if (this.state.orderBy === property && this.state.order === 'desc') {
-            order = 'asc';
-        }
-
-        this.setState({ order, orderBy });
-    };
-
-    handleSelectAllClick = event => {
-        if (event.target.checked) {
-            this.setState(state => ({ selected: state.data.map(n => n.id) }));
-            return;
-        }
-        this.setState({ selected: [] });
-    };
-
-    handleClick = (event, id) => {
-        // const { selected } = this.state;
-        // const selectedIndex = selected.indexOf(id);
-        // let newSelected = [];
-
-        // if (selectedIndex === -1) {
-        //     newSelected = newSelected.concat(selected, id);
-        // } else if (selectedIndex === 0) {
-        //     newSelected = newSelected.concat(selected.slice(1));
-        // } else if (selectedIndex === selected.length - 1) {
-        //     newSelected = newSelected.concat(selected.slice(0, -1));
-        // } else if (selectedIndex > 0) {
-        //     newSelected = newSelected.concat(
-        //         selected.slice(0, selectedIndex),
-        //         selected.slice(selectedIndex + 1),
-        //     );
-        // }
-
-        // this.setState({ selected: newSelected });
-
+    /** form handle input start **/
+    handleEnterSelection = (event, id) => {
         // const { i18n } = this.props;
         const courseAssignment_id = id;
-        console.log('CourseAssignmentId: '+courseAssignment_id);
+        console.log('CourseAssignmentId: ' + courseAssignment_id);
         // const data = {
         //     ...this.props.auth.relatedDataId,
         //     "courseAssignmentId": courseAssignment_id,
@@ -154,16 +119,6 @@ class SchoolCourseWork extends React.Component {
         // this.props.setRelatedDataIdP(data);
         // this.props.history.push('/' + i18n.language + '/school-note-taking');
     };
-
-    handleChangePage = (event, page) => {
-        this.setState({ page });
-    };
-
-    handleChangeRowsPerPage = event => {
-        this.setState({ rowsPerPage: event.target.value });
-    };
-
-    isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -193,6 +148,60 @@ class SchoolCourseWork extends React.Component {
     _reportButtonAction = () => {
         console.log('report button pressed');
     }
+    /** form handle input end **/
+
+    /** React components 'Material-UI' start  **/
+    handleRequestSort = (event, property) => {
+        const orderBy = property;
+        let order = 'desc';
+
+        if (this.state.orderBy === property && this.state.order === 'desc') {
+            order = 'asc';
+        }
+
+        this.setState({ order, orderBy });
+    };
+
+    handleSelectAllClick = event => {
+        if (event.target.checked) {
+            this.setState(state => ({ selected: state.data.map(n => n.id) }));
+            return;
+        }
+        this.setState({ selected: [] });
+    };
+
+    handleClick = (event, id) => {
+        const { selected } = this.state;
+        const selectedIndex = selected.indexOf(id);
+        let newSelected = [];
+
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, id);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1),
+            );
+        }
+
+        this.setState({ selected: newSelected });
+    };
+
+    handleChangePage = (event, page) => {
+        this.setState({ page });
+    };
+
+    handleChangeRowsPerPage = event => {
+        this.setState({ rowsPerPage: event.target.value });
+    };
+
+    isSelected = id => this.state.selected.indexOf(id) !== -1;
+    /** React components 'Material-UI' end  **/
+
 
     render() {
         const { classes } = this.props;
@@ -268,7 +277,7 @@ class SchoolCourseWork extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.conference_assignment_id)}
+                                                                onClick={event => this.handleEnterSelection(event, n.conference_assignment_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
