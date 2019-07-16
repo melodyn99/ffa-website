@@ -96,7 +96,7 @@ class SchoolCourseInformation extends React.Component {
                 contactEmail: theList.email,
                 contactWechat: theList.wechat,
                 contactNumber: theList.phone,
-                courseCredits: theList.courseCredits,
+                courseCredits: theList.credit,
 
                 enrollmenetStartDate: '',
                 enrollmenetEndDate: '',
