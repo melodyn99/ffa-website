@@ -62,7 +62,6 @@ class SchoolCourseWork extends React.Component {
         // component state
         // data: data,
         courseAssignmentList: [],
-        conferenceId: this.props.auth.relatedDataId.conferenceId,
     };
 
     componentDidMount() {
@@ -71,7 +70,6 @@ class SchoolCourseWork extends React.Component {
 
     _getConferenceAssignmentList = () => {
         // const { viewingSeminar } = this.props;
-        const { conferenceId } = this.state;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -100,7 +98,7 @@ class SchoolCourseWork extends React.Component {
         }
 
         const params = {
-            conference: conferenceId,
+            conference: this.props.auth.relatedDataId.conferenceId,
             $expand: 'assignment',
         }
 

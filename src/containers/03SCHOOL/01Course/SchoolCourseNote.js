@@ -68,7 +68,6 @@ class SchoolCourseNote extends React.Component {
 
     _getNoteTakingList = () => {
         // const { viewingSeminar } = this.props;
-        const { conferenceId } = this.state;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -100,8 +99,7 @@ class SchoolCourseNote extends React.Component {
 
         const params = {
             //viewingSeminar ? viewingSeminar.conference_id : '',
-            conference: conferenceId,
-            // $orderby: 'lastmoddate DESC'
+            conference: this.props.auth.relatedDataId.conferenceId,
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);

@@ -125,7 +125,6 @@ class SchoolCourseAnnouncement extends React.Component {
 
     _getConferenceMessages = () => {
         // const { viewingSeminar } = this.props;
-        const { conferenceId } = this.state;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -140,7 +139,7 @@ class SchoolCourseAnnouncement extends React.Component {
         }
 
         const params = {
-            'conversation/conference': conferenceId,
+            'conversation/conference': this.props.auth.relatedDataId.conferenceId,
             // $expand: 'conversation,image',
             $orderby: 'createddate DESC',
         }

@@ -23,10 +23,6 @@ export const apiConferences = {
         return api.get(url, params, null, cancelToken);
     },
 
-    getConferenceList: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
-    },
-
     // getConferenceDefail: conferenceId => {
     //     const url = `conferences/${encodeURIComponent(conferenceId)}?$expand=conference_officers/user,conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/company,contracts/contract_file,contracts/contract_incomes`;
     //     return api.get(url).then(response => {
@@ -39,10 +35,6 @@ export const apiConferences = {
     // },
     getConferenceDefail: (conferenceId, params, token, cb, eCb) => {
         apiGeneral.apiFetch(`conferences/${encodeURIComponent(conferenceId)}`, params, token, cb, eCb)
-    },
-
-    getConferenceDefailByUser: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('conferences', params, token, cb, eCb)
     },
 
     createConference: data => api.post('create_conference', data),
@@ -112,15 +104,55 @@ export const apiConferences = {
 
     createContractType: name => api.post('vocabularies', { text_value: name, term: CONTRACT_TYPE_TERM_ID }),
 
+    /* All Course start */
+    getConferenceList: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
+    },
+    /* All Course end */
+
+    /* Course Information start */
+    getConferenceDefailByUser: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('conferences', params, token, cb, eCb)
+    },
+    /* Course Information end */
+
+    /* Course preparation start */
+    /* Course preparation end */
+
+    /* Course material start */
+    /* Course material end */
+
+    /* Course work start */
     getConferenceAssignmentList: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('conference_assignment_list', params, token, cb, eCb)
     },
 
     deleteConferenceAssignmentList: (id, token, cb, eCb) => {
-        apiGeneral.apiDelete('conference_assignment_list', id, token , cb, eCb)
+        apiGeneral.apiDelete('conference_assignment_list', id, token, cb, eCb)
     },
+    /* Course work end */
 
+    /* Course student-management start */
     getConferenceMessages: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('messages', params, token, cb, eCb)
     },
+    /* Course student-management end */
+
+    /* Course announcement start */
+    /* Course announcement end */
+
+    /* Course q-and-a start */
+    getConferenceQandA: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('qa_list', params, token, cb, eCb)
+    },
+    /* Course q-and-a end */
+
+    /* Course note start */
+    /* Course note end */
+
+    /* Course assessment start */
+    getConferenceAssessment: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('end_conference_scores', params, token, cb, eCb)
+    },
+    /* Course assessment end */
 };

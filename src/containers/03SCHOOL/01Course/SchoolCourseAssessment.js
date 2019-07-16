@@ -22,7 +22,7 @@ import Paper from '@material-ui/core/Paper';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -49,14 +49,93 @@ const rows = [
 
 class SchoolCourseAssessment extends React.Component {
     state = {
+        // table settings
         order: 'desc',
         orderBy: 'date',
         selected: [],
         data: data,
         page: 0,
         rowsPerPage: 10,
+
+        // component state
+        assessmentList: [],
     };
 
+    componentDidMount() {
+        this._getConferenceAssessment();
+    }
+
+    _getConferenceAssessment = () => {
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body;
+            let convertedList = [];
+
+            theList.map(n => {
+                const convertedArray = {
+                    end_conference_score_id: n.end_conference_score_id,
+                    student: n.user.display_name,
+                    teacherassess: n.tutor_score,
+                    materialassess: n.material_scrore,
+                    assessment: n.general_scrore,
+                    other: n.comment,
+                    date: n.createddate
+                }
+                return convertedList.push(convertedArray);
+            });
+
+            this.setState({
+                assessmentList: convertedList,
+            });
+            // console.log(this.state.assessmentList);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            conference: this.props.auth.relatedDataId.conferenceId,
+            $expand: 'user',
+        }
+        apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
+    }
+    /** form handle input start **/
+    handleEnterSelection = (event, id) => {
+        console.log(id);
+    };
+
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _editButtonAction = () => {
+        console.log('edit button pressed');
+    }
+
+    _deleteButtonAction = () => {
+        console.log('delete button pressed');
+    }
+
+    _importButtonAction = () => {
+        console.log('import button pressed');
+    }
+
+    _copyButtonAction = () => {
+        console.log('copy button pressed');
+    }
+
+    _reportButtonAction = () => {
+        console.log('report button pressed');
+    }
+    /** form handle input end **/
+
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -106,41 +185,15 @@ class SchoolCourseAssessment extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
-
-    // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
-    }
+    /** React components 'Material-UI' end  **/
 
     render() {
         const { classes } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const {
+            // data,
+            order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = this.state.assessmentList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -202,15 +255,16 @@ class SchoolCourseAssessment extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const theIndexNum = data.indexOf(n);
+                                                        const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={event => this.handleEnterSelection(event, n.end_conference_score_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">

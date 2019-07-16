@@ -70,7 +70,6 @@ class SchoolNoteTaking extends React.Component {
         rowsPerPage: 10,
 
         // component state
-        noteId: this.props.auth.relatedDataId.noteId,
         theNoteName: '',
         theNoteContent: '',
         fileList: [],
@@ -97,7 +96,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note_id: this.state.noteId,
+            note_id: this.props.auth.relatedDataId.noteId
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -135,7 +134,6 @@ class SchoolNoteTaking extends React.Component {
             note: this.state.noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $expand: 'file/mime_type',
-            // $orderby: 'lastmoddate',
         }
 
         apiNoteFile.getNoteFile(params, this.props.auth.token, cb, eCb);
