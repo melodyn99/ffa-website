@@ -25,7 +25,7 @@ import { connect } from 'react-redux';
 // Utils
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-// import { dateToDayAndMonth } from '../../../Util/DateUtils';
+import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -82,7 +82,7 @@ class SchoolCourseInformation extends React.Component {
             // console.log("theList: " + JSON.stringify(theList, null, 2));
 
             this.setState({
-                academicTerm: '',
+                academicTerm: theList.academic_term,
                 courseLocation: '',
                 subjectName: '',
                 subjectType: '',
@@ -130,14 +130,27 @@ class SchoolCourseInformation extends React.Component {
         })
     }
 
-    _handleSelect = () => {
+    _handleSelect = (key, selectionString) => {
+        // console.log(selectionString);
 
+        this.setState({
+            [key]: selectionString,
+        });
     }
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
             //, t, i18n
         } = this.props;
+        const {
+            academicTerm,
+            courseLocation,
+            subjectName,
+            subjectType,
+
+            enrollmenetStartDate,
+            enrollmenetEndDate,
+        } = this.state;
 
         return (
             <Form>
@@ -146,11 +159,11 @@ class SchoolCourseInformation extends React.Component {
                         学期
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">2019-20</option>
-                            <option value="2">2020-21</option>
-                            <option value="3">2021-22</option>
-                            <option value="4">2022-23</option>
+                        <select value={academicTerm} onChange={e => { this._handleSelect('academicTerm', e.target.value) }}>
+                            <option value="2019-20">2019-20</option>
+                            <option value="2020-21">2020-21</option>
+                            <option value="2021-22">2021-22</option>
+                            <option value="2022-23">2022-23</option>
                         </select>
                     </Grid>
 
@@ -158,11 +171,11 @@ class SchoolCourseInformation extends React.Component {
                         上课城市
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">杭州</option>
-                            <option value="2">北京</option>
-                            <option value="3">上海</option>
-                            <option value="4">香港</option>
+                        <select value={courseLocation} onChange={e => { this._handleSelect('courseLocation', e.target.value) }}>
+                            <option value="杭州">杭州</option>
+                            <option value="北京">北京</option>
+                            <option value="上海">上海</option>
+                            <option value="香港">香港</option>
                         </select>
                     </Grid>
 
@@ -170,11 +183,11 @@ class SchoolCourseInformation extends React.Component {
                         学科名称
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">战略课程1</option>
-                            <option value="2">战略课程2</option>
-                            <option value="3">战略课程3</option>
-                            <option value="4">战略课程4</option>
+                        <select value={subjectName} onChange={e => { this._handleSelect('subjectName', e.target.value) }}>
+                            <option value="战略课程">战略课程</option>
+                            <option value="商品管理系列课程">商品管理系列课程</option>
+                            <option value="设计应用系列课程">设计应用系列课程</option>
+                            <option value="开发流程系列课程">开发流程系列课程</option>
                         </select>
                     </Grid>
 
@@ -182,11 +195,14 @@ class SchoolCourseInformation extends React.Component {
                         课程类型
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">类型1</option>
-                            <option value="2">类型2</option>
-                            <option value="3">类型3</option>
-                            <option value="4">类型4</option>
+                        <select value={subjectType} onChange={e => { this._handleSelect('subjectType', e.target.value) }}>
+                            <option value="test-type">test-type</option>
+                            <option value="开发流程课程">开发流程课程</option>
+                            <option value="设计应用课程">设计应用课程</option>
+                            <option value="专业人才发展课程">专业人才发展课程</option>
+                            <option value="大商品公开课程">大商品公开课程</option>
+                            <option value="商品管理课程">商品管理课程</option>
+                            <option value="海外联合课程">海外联合课程</option>
                         </select>
                     </Grid>
 
@@ -278,11 +294,9 @@ class SchoolCourseInformation extends React.Component {
                         报名开始
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">2019</option>
-                            <option value="2">2020</option>
-                            <option value="3">2021</option>
-                            <option value="4">2022</option>
+                        <select value={enrollmenetStartDate} onChange={e => { this._handleSelect('enrollmenetStartDate', e.target.value) }}>
+                            <option value="1565798300000">{dateToDayMonthYear(1565798300000)}</option>
+                            <option value="1565798400000">{dateToDayMonthYear(1565798400000)}</option>
                         </select>
                     </Grid>
 
@@ -290,11 +304,9 @@ class SchoolCourseInformation extends React.Component {
                         报名结束
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">2019</option>
-                            <option value="2">2020</option>
-                            <option value="3">2021</option>
-                            <option value="4">2022</option>
+                        <select value={enrollmenetEndDate} onChange={e => { this._handleSelect('enrollmenetEndDate', e.target.value) }}>
+                            <option value="1565798300000">{dateToDayMonthYear(1565798300000)}</option>
+                            <option value="1565798400000">{dateToDayMonthYear(1565798400000)}</option>
                         </select>
                     </Grid>
 
@@ -438,11 +450,7 @@ class SchoolCourseInformation extends React.Component {
     render() {
         // const { classes, t, i18n } = this.props;
         const {
-            conferenceList,
-            // academicTerm,
-            // courseLocation,
-            // subjectName,
-            // subjectType,
+            // conferenceList,
 
             courseCode,
             courseName,
@@ -455,9 +463,6 @@ class SchoolCourseInformation extends React.Component {
             contactNumber,
             // courseCredits,
 
-            // enrollmenetStartDate,
-            // enrollmenetEndDate,
-
             courseQuota,
             // courseScore,
 
@@ -465,7 +470,7 @@ class SchoolCourseInformation extends React.Component {
             expectedFees,
             actualFees,
         } = this.state;
-        console.log('SchoolCourseInformation_render: ' + JSON.stringify(conferenceList, null, 2));
+        // console.log('SchoolCourseInformation_render: ' + JSON.stringify(conferenceList, null, 2));
         const Schema = Yup.object().shape({
             courseCode: Yup.string()
                 .required('Course Code is required'),
@@ -532,10 +537,10 @@ class SchoolCourseInformation extends React.Component {
                                 <Formik
                                     enableReinitialize
                                     initialValues={{
-                                        academicTerm:'',
-                                        courseLocation:'',
-                                        subjectName:'',
-                                        subjectType:'',
+                                        academicTerm: '',
+                                        courseLocation: '',
+                                        subjectName: '',
+                                        subjectType: '',
 
                                         courseCode: courseCode,
                                         courseName: courseName,
@@ -552,7 +557,7 @@ class SchoolCourseInformation extends React.Component {
                                         enrollmenetEndDate: '',
 
                                         courseQuota: courseQuota,
-                                        courseScore:'',
+                                        courseScore: '',
 
                                         courseFees: courseFees,
                                         expectedFees: expectedFees,
