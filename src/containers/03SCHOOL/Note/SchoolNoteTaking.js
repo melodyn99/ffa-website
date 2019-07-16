@@ -72,8 +72,10 @@ class SchoolNoteTaking extends React.Component {
     }
 
     componentDidMount() {
-        this._getNoteTakingList();
-        this._getNoteFile();
+        if (this.state.noteId !== null) {
+            this._getNoteTakingList();
+            this._getNoteFile();
+        }
     }
 
     _getNoteTakingList = () => {
@@ -151,7 +153,34 @@ class SchoolNoteTaking extends React.Component {
     handleSubmit = (event, { setFieldError }) => {
         // console.log('click submit button!');
         console.log('event: ' + JSON.stringify(event.notesName, null, 2));
-        this.editNoteInfo(event);
+        // this.editNoteInfo(event);
+
+        if (this.state.noteId === null) {
+            this.newNoteInfo(event);
+        } else {
+            this.editNoteInfo(event);
+        }
+    }
+
+    newNoteInfo = (event) => {
+        const conferenceId = this.props.auth.relatedDataId.conferenceId;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.props.history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            //viewingSeminar ? viewingSeminar.conference_id : '',
+            conference: conferenceId,
+            name: event.notesName,
+            content: event.notesContent,
+        }
+
+        apiNoteTaking.createNoteTaking(params, this.props.auth.token, cb, eCb);
     }
 
     editNoteInfo = (event) => {
@@ -341,85 +370,91 @@ class SchoolNoteTaking extends React.Component {
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
 
-                    <Grid item xs={1} >记录文件</Grid>
-                    <Grid item xs={11} >
-                        <Button
-                            className={classes.blueGreenButton}
-                            onClick={() => this.customHeaderButtonCallback(EventTypes.OPEN_FILE_BROWSER)}>
-                            <FileInput onSelected={(file) => this._uploadFile(file)} />上载文件
-                        </Button>
-                    </Grid>
+                    {(this.state.noteId !== null) &&
+                        <Grid item xs={1} >记录文件</Grid>
+                    }
+                    {(this.state.noteId !== null) &&
+                        <Grid item xs={11} >
+                            <Button
+                                className={classes.blueGreenButton}
+                                onClick={() => this.customHeaderButtonCallback(EventTypes.OPEN_FILE_BROWSER)}>
+                                <FileInput onSelected={(file) => this._uploadFile(file)} />上载文件
+                            </Button>
+                        </Grid>
+                    }
 
-                    <Grid item xs={1} >
-                    </Grid>
-                    <Grid item xs={11}>
-                        <Paper className={classes.paper}>
-                            <div className={classes.tableWrapper}>
-                                <Table className={classes.table} aria-labelledby="tableTitle">
-                                    <EnhancedTableHead
-                                        numSelected={selected.length}
-                                        order={order}
-                                        orderBy={orderBy}
-                                        onSelectAllClick={this.handleSelectAllClick}
-                                        onRequestSort={this.handleRequestSort}
-                                        rowCount={data.length}
-                                        rows={rows}
-                                    />
-                                    <TableBody>
-                                        {data
-                                            .sort(getSorting(order, orderBy))
-                                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                            .map(n => {
-                                                const theIndexNum = data.indexOf(n);
-                                                const isSelected = this.isSelected(theIndexNum);
-                                                return (
-                                                    <TableRow
-                                                        className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
-                                                        hover
-                                                        onClick={event => this.handleClick(event, theIndexNum)}
-                                                        role="checkbox"
-                                                        aria-checked={isSelected}
-                                                        tabIndex={-1}
-                                                        key={theIndexNum}
-                                                        selected={isSelected}
-                                                    >
-                                                        {/* <TableCell padding="checkbox">
+                    {(this.state.noteId !== null) &&
+                        <Grid item xs={1} ></Grid>
+                    }
+                    {(this.state.noteId !== null) &&
+                        <Grid item xs={11}>
+                            <Paper className={classes.paper}>
+                                <div className={classes.tableWrapper}>
+                                    <Table className={classes.table} aria-labelledby="tableTitle">
+                                        <EnhancedTableHead
+                                            numSelected={selected.length}
+                                            order={order}
+                                            orderBy={orderBy}
+                                            onSelectAllClick={this.handleSelectAllClick}
+                                            onRequestSort={this.handleRequestSort}
+                                            rowCount={data.length}
+                                            rows={rows}
+                                        />
+                                        <TableBody>
+                                            {data
+                                                .sort(getSorting(order, orderBy))
+                                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                .map(n => {
+                                                    const theIndexNum = data.indexOf(n);
+                                                    const isSelected = this.isSelected(theIndexNum);
+                                                    return (
+                                                        <TableRow
+                                                            className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
+                                                            hover
+                                                            onClick={event => this.handleClick(event, theIndexNum)}
+                                                            role="checkbox"
+                                                            aria-checked={isSelected}
+                                                            tabIndex={-1}
+                                                            key={theIndexNum}
+                                                            selected={isSelected}
+                                                        >
+                                                            {/* <TableCell padding="checkbox">
                                                                     <Checkbox checked={isSelected} />
                                                                 </TableCell> */}
-                                                        <TableCell component="th" scope="row"
-                                                        // padding="none"
-                                                        >{n.fileName}</TableCell>
-                                                        <TableCell>{n.creator}</TableCell>
-                                                        <TableCell>{n.size}</TableCell>
-                                                        <TableCell>{n.createdDate}</TableCell>
-                                                    </TableRow>
-                                                );
-                                            })}
-                                        {emptyRows > 0 && (
-                                            <TableRow style={{ height: 49 * emptyRows }}>
-                                                <TableCell colSpan={4} />
-                                            </TableRow>
-                                        )}
-                                    </TableBody>
-                                </Table>
-                            </div>
-                            <TablePagination
-                                component="div"
-                                count={data.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                backIconButtonProps={{
-                                    'aria-label': 'Previous Page',
-                                }}
-                                nextIconButtonProps={{
-                                    'aria-label': 'Next Page',
-                                }}
-                                onChangePage={this.handleChangePage}
-                                onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                            />
-                        </Paper>
-                    </Grid>
-
+                                                            <TableCell component="th" scope="row"
+                                                            // padding="none"
+                                                            >{n.fileName}</TableCell>
+                                                            <TableCell>{n.creator}</TableCell>
+                                                            <TableCell>{n.size}</TableCell>
+                                                            <TableCell>{n.createdDate}</TableCell>
+                                                        </TableRow>
+                                                    );
+                                                })}
+                                            {emptyRows > 0 && (
+                                                <TableRow style={{ height: 49 * emptyRows }}>
+                                                    <TableCell colSpan={4} />
+                                                </TableRow>
+                                            )}
+                                        </TableBody>
+                                    </Table>
+                                </div>
+                                <TablePagination
+                                    component="div"
+                                    count={data.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    backIconButtonProps={{
+                                        'aria-label': 'Previous Page',
+                                    }}
+                                    nextIconButtonProps={{
+                                        'aria-label': 'Next Page',
+                                    }}
+                                    onChangePage={this.handleChangePage}
+                                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                                />
+                            </Paper>
+                        </Grid>
+                    }
                 </Grid>
                 <div className="bottomControl clearfix">
                     <Button
