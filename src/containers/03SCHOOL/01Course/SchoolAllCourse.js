@@ -50,11 +50,14 @@ const rows = [
 
 class SchoolAllCourse extends React.Component {
     state = {
+        // table settings
         order: 'asc',
         orderBy: 'subject',
         selected: [],
         page: 0,
         rowsPerPage: 10,
+
+        // component state
         conferenceList: [],
     };
 

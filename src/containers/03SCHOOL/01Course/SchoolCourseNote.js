@@ -49,14 +49,16 @@ const rows = [
 
 class SchoolCourseNote extends React.Component {
     state = {
+        // table settings
         order: 'desc',
         orderBy: 'lastmoddate',
         selected: [],
-        // data: data,
         page: 0,
         rowsPerPage: 10,
+
+        // component state
+        // data: data,
         noteList: [],
-        // conferenceId: 'df299eea-5ab2-409e-b0f7-866f8de39e75',
         conferenceId: this.props.auth.relatedDataId.conferenceId,
     };
 
