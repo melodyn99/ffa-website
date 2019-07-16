@@ -33,6 +33,42 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCou
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
+function Block(props) {
+    return (
+        <Grid container spacing={16} alignItems="center">
+            <Grid item xs={12} >#2</Grid>
+
+            <Grid item xs={1} >课程标题</Grid>
+            <Grid item xs={11}>
+                <Field name="className2" type="text" placeholder="第一课" maxLength="100" />
+                {props.errors.className2 && props.touched.className2 ? <ErrorMessage message={props.errors.className2} /> : null}
+            </Grid>
+
+            <Grid item xs={1} >课程日期</Grid>
+            <Grid item xs={11}>
+                <Field name="classDate2" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
+                {props.errors.classDate2 && props.touched.classDate2 ? <ErrorMessage message={props.errors.classDate2} /> : null}
+            </Grid>
+
+            <Grid item xs={1} >课程地点</Grid>
+            <Grid item xs={11}>
+                <Field name="classLocation2" type="text" placeholder="5号厅" maxLength="100" />
+                {props.errors.classLocation2 && props.touched.classLocation2 ? <ErrorMessage message={props.errors.classLocation2} /> : null}
+            </Grid>
+
+            <Grid item xs={1} >授课老师</Grid>
+            <Grid item xs={11}>
+                <select>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                    <option value="4">D</option>
+                </select>
+            </Grid>
+        </Grid>
+    )
+}
+
 class SchoolCourseInformation extends React.Component {
     // constructor(props) {
     //     super(props);
@@ -69,7 +105,10 @@ class SchoolCourseInformation extends React.Component {
         courseFees: '',
         expectedFees: '',
         actualFees: '',
+
+        courseAttendance: []
     }
+
     componentDidMount() {
         this._getConferenceDefailByUser();
     }
@@ -109,6 +148,7 @@ class SchoolCourseInformation extends React.Component {
                 actualFees: theList.actual_fee,
             });
         }
+
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
@@ -120,6 +160,13 @@ class SchoolCourseInformation extends React.Component {
         }
 
         apiConferences.getConferenceDefailByUser(params, this.props.auth.token, cb, eCb);
+    }
+
+    _handleAddMore = () => {
+        console.log('AddMore');
+        this.setState(state => ({
+            courseAttendance: [<Block />, ...this.state.courseAttendance]
+        }))
     }
 
     _handleInput = (value, key) => {
@@ -136,6 +183,12 @@ class SchoolCourseInformation extends React.Component {
         this.setState({
             [key]: selectionString,
         });
+    }
+
+    handleSubmit = (values, { setFieldError }) => {
+        // call api
+        // TODO
+        console.log('GREAT!');
     }
 
     form = ({ values, errors, touched, handleChange }) => {
@@ -349,42 +402,73 @@ class SchoolCourseInformation extends React.Component {
                         <Field name="actualFees" type="text" placeholder="实际收费" maxLength="100" />
                         {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null}
                     </Grid>
+                </Grid>
 
-                    <Grid item xs={12} >
-                        课程日期和时间
-                    </Grid>
+                <Grid container spacing={16} alignItems="center">
+                    <Grid item xs={12} ></Grid>
+                    <Grid item xs={12} >课程日期和时间</Grid>
+                </Grid>
 
-                    <Grid item xs={12} >
-                        #1
-                    </Grid>
+                {(this.state.courseAttendance.map(
+                    (data, i) => {
+                        return (
+                            <Grid container spacing={16} alignItems="center" key={i}>
+                                <Grid item xs={12} >#2</Grid>
 
-                    <Grid item xs={1} >
-                        课程标题
-                    </Grid>
+                                <Grid item xs={1} >课程标题</Grid>
+                                <Grid item xs={11}>
+                                    <Field name="className2" type="text" placeholder="第一课" maxLength="100" />
+                                    {errors.className2 && touched.className2 ? <ErrorMessage message={errors.className2} /> : null}
+                                </Grid>
+
+                                <Grid item xs={1} >课程日期</Grid>
+                                <Grid item xs={11}>
+                                    <Field name="classDate2" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
+                                    {errors.classDate2 && touched.classDate2 ? <ErrorMessage message={errors.classDate2} /> : null}
+                                </Grid>
+
+                                <Grid item xs={1} >课程地点</Grid>
+                                <Grid item xs={11}>
+                                    <Field name="classLocation2" type="text" placeholder="5号厅" maxLength="100" />
+                                    {errors.classLocation2 && touched.classLocation2 ? <ErrorMessage message={errors.classLocation2} /> : null}
+                                </Grid>
+
+                                <Grid item xs={1} >授课老师</Grid>
+                                <Grid item xs={11}>
+                                    <select>
+                                        <option value="1">A</option>
+                                        <option value="2">B</option>
+                                        <option value="3">C</option>
+                                        <option value="4">D</option>
+                                    </select>
+                                </Grid>
+                            </Grid>
+                        )
+                    }
+                ))}
+
+                {/* <Grid container spacing={16} alignItems="center">
+                    <Grid item xs={12} >#1</Grid>
+
+                    <Grid item xs={1} >课程标题</Grid>
                     <Grid item xs={11}>
                         <Field name="className1" type="text" placeholder="第一课" maxLength="100" />
                         {errors.className1 && touched.className1 ? <ErrorMessage message={errors.className1} /> : null}
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程日期
-                    </Grid>
+                    <Grid item xs={1} >课程日期</Grid>
                     <Grid item xs={11}>
                         <Field name="classDate1" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
                         {errors.classDate1 && touched.classDate1 ? <ErrorMessage message={errors.classDate1} /> : null}
                     </Grid>
 
-                    <Grid item xs={1} >
-                        课程地点
-                    </Grid>
+                    <Grid item xs={1} >课程地点</Grid>
                     <Grid item xs={11}>
                         <Field name="classLocation1" type="text" placeholder="5号厅" maxLength="100" />
                         {errors.classLocation1 && touched.classLocation1 ? <ErrorMessage message={errors.classLocation1} /> : null}
                     </Grid>
 
-                    <Grid item xs={1} >
-                        授课老师
-                    </Grid>
+                    <Grid item xs={1} >授课老师</Grid>
                     <Grid item xs={11}>
                         <select>
                             <option value="1">A</option>
@@ -393,58 +477,21 @@ class SchoolCourseInformation extends React.Component {
                             <option value="4">D</option>
                         </select>
                     </Grid>
+                </Grid> */}
 
-                    <Grid item xs={12} >
-                        #2
-                    </Grid>
+                {/* 
+                <Block
+                    errors={errors}
+                    touched={touched}
+                /> */}
 
-                    <Grid item xs={1} >
-                        课程标题
-                    </Grid>
-                    <Grid item xs={11}>
-                        <Field name="className2" type="text" placeholder="第一课" maxLength="100" />
-                        {errors.className2 && touched.className2 ? <ErrorMessage message={errors.className2} /> : null}
-                    </Grid>
-
-                    <Grid item xs={1} >
-                        课程日期
-                    </Grid>
-                    <Grid item xs={11}>
-                        <Field name="classDate2" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
-                        {errors.classDate2 && touched.classDate2 ? <ErrorMessage message={errors.classDate2} /> : null}
-                    </Grid>
-
-                    <Grid item xs={1} >
-                        课程地点
-                    </Grid>
-                    <Grid item xs={11}>
-                        <Field name="classLocation2" type="text" placeholder="5号厅" maxLength="100" />
-                        {errors.classLocation2 && touched.classLocation2 ? <ErrorMessage message={errors.classLocation2} /> : null}
-                    </Grid>
-
-                    <Grid item xs={1} >
-                        授课老师
-                    </Grid>
-                    <Grid item xs={11}>
-                        <select>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="4">D</option>
-                        </select>
-                    </Grid>
-                </Grid>
                 <div className="bottomControl clearfix">
+                    <Button className={classes.greyButton} onClick={this._handleAddMore}>Add More</Button>
+
                     <span className="right"><Button type="submit" className={classes.greyButton}>编辑资料</Button></span>
                 </div>
-            </Form>
+            </Form >
         )
-    }
-
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
     }
 
     render() {
@@ -470,7 +517,9 @@ class SchoolCourseInformation extends React.Component {
             expectedFees,
             actualFees,
         } = this.state;
+
         // console.log('SchoolCourseInformation_render: ' + JSON.stringify(conferenceList, null, 2));
+
         const Schema = Yup.object().shape({
             courseCode: Yup.string()
                 .required('Course Code is required'),
@@ -521,6 +570,8 @@ class SchoolCourseInformation extends React.Component {
             classLocation2: Yup.string()
                 .required('Class Location is required'),
         })
+
+        console.log(this.state.courseAttendance);
 
         return (
             <div>
