@@ -168,7 +168,7 @@ class SchoolNoteTaking extends React.Component {
         const conferenceId = this.props.auth.relatedDataId.conferenceId;
 
         const cb = (obj) => {
-            console.log("cb : ", obj);
+            // console.log("cb : ", obj);
 
             const data = {
                 ...this.props.auth.relatedDataId,
@@ -220,9 +220,9 @@ class SchoolNoteTaking extends React.Component {
     _handleDeleteNote = () => {
         const { history } = this.props;
 
-        console.log("handleDeleteNote : ");
+        // console.log("handleDeleteNote : ");
         const deleteNoteCb = (obj) => {
-            console.log("deleteNoteCb : ", obj);
+            // console.log("deleteNoteCb : ", obj);
             history.goBack();
         }
         const deleteNoteEcb = (obj) => {
@@ -230,11 +230,6 @@ class SchoolNoteTaking extends React.Component {
         }
 
         apiNoteTaking.deleteNoteTaking(this.state.noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
-    }
-
-    // back to listing
-    _backButtonAction = () => {
-        this.props.history.goBack();
     }
     /** Note end **/
 

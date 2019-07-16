@@ -247,7 +247,7 @@ class SchoolCourseNote extends React.Component {
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={3} />
+                                                        <TableCell colSpan={4} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
