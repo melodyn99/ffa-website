@@ -144,7 +144,7 @@ class SchoolCourseWork extends React.Component {
 
         // this.setState({ selected: newSelected });
 
-        const { i18n } = this.props;
+        // const { i18n } = this.props;
         const courseAssignment_id = id;
         console.log('CourseAssignmentId: '+courseAssignment_id);
         // const data = {

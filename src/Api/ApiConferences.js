@@ -120,4 +120,7 @@ export const apiConferences = {
         apiGeneral.apiDelete('conference_assignment_list', id, token , cb, eCb)
     },
 
+    getConferenceMessages: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('messages', params, token, cb, eCb)
+    },
 };
