@@ -64,8 +64,8 @@ function Cluster(props) {
                 <Block
                     key={i}
                     from={messageCreator}
-                    same={true}
-                    name={n.display_name}
+                    same={false}
+                    name={n.display_name.substring(0,1)}
                     content={n.message}
                 />
             </div>
@@ -164,8 +164,6 @@ class SchoolCourseAnnouncement extends React.Component {
                                 <Cluster
                                     currLoginUser={this.state.currLoginAccount}
                                     list={this.state.messagesList}
-                                    name={this.state.name}
-                                    content={this.state.content}
                                 />
                             </div>
                         </div>
