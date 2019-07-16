@@ -96,7 +96,7 @@ class SchoolCourseInformation extends React.Component {
                 contactEmail: theList.email,
                 contactWechat: theList.wechat,
                 contactNumber: theList.phone,
-                courseCredits: '',
+                courseCredits: theList.courseCredits,
 
                 enrollmenetStartDate: '',
                 enrollmenetEndDate: '',
@@ -463,7 +463,7 @@ class SchoolCourseInformation extends React.Component {
             contactEmail,
             contactWechat,
             contactNumber,
-            // courseCredits,
+            courseCredits,
 
             courseQuota,
             // courseScore,
@@ -553,7 +553,7 @@ class SchoolCourseInformation extends React.Component {
                                         contactEmail: contactEmail,
                                         contactWechat: contactWechat,
                                         contactNumber: contactNumber,
-                                        courseCredits: '',
+                                        courseCredits: courseCredits,
 
                                         enrollmenetStartDate: '',
                                         enrollmenetEndDate: '',

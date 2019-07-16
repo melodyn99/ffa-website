@@ -57,6 +57,7 @@ const rows = [
     { id: 'creator', numeric: false, disablePadding: false, label: '创建人员' },
     { id: 'size', numeric: true, disablePadding: false, label: '文件大小' },
     { id: 'createdDate', numeric: false, disablePadding: false, label: '上载日期' },
+    { id: '', numeric: false, disablePadding: false, label: '' },
 ];
 
 class SchoolNoteTaking extends React.Component {
@@ -272,7 +273,21 @@ class SchoolNoteTaking extends React.Component {
         });
     }
 
-    _deleteFile = () => {
+    _deleteFile = (note_file_id) => {
+        // console.log('delete button pressed');
+        const deleteNoteFileCb = (obj) => {
+            console.log("deleteNoteFileCb : ", obj);
+            this._getNoteFile();
+            this.setState({ selected: [] });
+        }
+        const deleteNoteFileEcb = (obj) => {
+            console.log("deleteNoteFileEcb : ", obj);
+        }
+
+        apiNoteFile.deleteNoteFile(note_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
+    }
+
+    _deleteMultipleFile = () => {
         // console.log('delete button pressed');
         const { selected, fileList } = this.state;
 
@@ -436,12 +451,15 @@ class SchoolNoteTaking extends React.Component {
                                                             <TableCell>{n.creator}</TableCell>
                                                             <TableCell>{n.size}</TableCell>
                                                             <TableCell>{n.createdDate}</TableCell>
+                                                            <TableCell align="right" >
+                                                                <Button onClick={() => this._deleteFile(n.note_file_id)}>{' X '}</Button>
+                                                            </TableCell>
                                                         </TableRow>
                                                     );
                                                 })}
                                             {emptyRows > 0 && (
                                                 <TableRow style={{ height: 49 * emptyRows }}>
-                                                    <TableCell colSpan={4} />
+                                                    <TableCell colSpan={5} />
                                                 </TableRow>
                                             )}
                                         </TableBody>
