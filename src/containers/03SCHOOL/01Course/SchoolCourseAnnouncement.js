@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -49,44 +49,103 @@ function Block(props) {
 
 function Cluster(props) {
     let rows = [];
-    for (let i = 0; i < 5; i++) {
-        if (i % 2 === 0) {
-            rows.push(
-                <div key={i}>
-                    <Block
-                        key={i}
-                        from='me'
-                        same={false}
-                        name={props.name}
-                        content={props.content}
-                    />
-                </div>
-            )
-        } else {
-            rows.push(
-                <div key={i}>
-                    <Block
-                        key={i}
-                        from='they'
-                        same={true}
-                        name={props.name}
-                        content={props.content}
-                    />
-                </div>
-            )
+    const currLoginUser = props.currLoginUser;
+    const theList = props.list;
+    let i = 0;
+
+    theList.map(n => {
+        const theMessageCreator = n.created_by
+        let messageCreator = 'me';
+        if (currLoginUser !== theMessageCreator) {
+            messageCreator = 'they'
         }
-    }
+        rows.push(
+            <div key={i}>
+                <Block
+                    key={i}
+                    from={messageCreator}
+                    same={false}
+                    name={n.display_name.substring(0,1)}
+                    content={n.message}
+                />
+            </div>
+        )
+        // if (i % 2 === 0) {
+        //     rows.push(
+        //         <div key={i}>
+        //             <Block
+        //                 key={i}
+        //                 from='me'
+        //                 same={false}
+        //                 name={props.name}
+        //                 content={props.content}
+        //             />
+        //         </div>
+        //     )
+        // } else {
+        //     rows.push(
+        //         <div key={i}>
+        //             <Block
+        //                 key={i}
+        //                 from='they'
+        //                 same={true}
+        //                 name={props.name}
+        //                 content={props.content}
+        //             />
+        //         </div>
+        //     )
+        // }
+        return i++;
+    })
     return (rows);
 }
 
 class SchoolCourseAnnouncement extends React.Component {
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.state = {
-            name: ['彭'],
-            content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
+    //     this.state = {
+    //         name: ['彭'],
+    //         content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
+    //     }
+    // }
+
+    state = {
+        currLoginAccount: this.props.auth.userInfo.username,
+        conferenceId: this.props.auth.relatedDataId.conferenceId,
+        // name: ['彭'],
+        // content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd'],
+
+        messagesList: [],
+    }
+
+    componentDidMount() {
+        this._getConferenceMessages();
+    }
+
+    _getConferenceMessages = () => {
+        // const { viewingSeminar } = this.props;
+        const { conferenceId } = this.state;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body;
+            console.log(JSON.stringify(theList, null, 2));
+            this.setState({
+                messagesList: theList,
+            });
         }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            'conversation/conference': conferenceId,
+            // $expand: 'conversation,image',
+            $orderby: 'createddate DESC',
+        }
+
+        apiConferences.getConferenceMessages(params, this.props.auth.token, cb, eCb);
     }
 
     render() {
@@ -103,8 +162,8 @@ class SchoolCourseAnnouncement extends React.Component {
 
                             <div className="content">
                                 <Cluster
-                                    name={this.state.name}
-                                    content={this.state.content}
+                                    currLoginUser={this.state.currLoginAccount}
+                                    list={this.state.messagesList}
                                 />
                             </div>
                         </div>

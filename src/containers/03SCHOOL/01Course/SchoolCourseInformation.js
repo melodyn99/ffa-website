@@ -17,7 +17,7 @@ import Grid from '@material-ui/core/Grid';
 
 // Api
 // import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -25,6 +25,7 @@ import { connect } from 'react-redux';
 // Utils
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -33,13 +34,92 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class SchoolCourseInformation extends React.Component {
+    // constructor(props) {
+    //     super(props);
 
-    constructor(props) {
-        super(props);
+    //     this.state = {
+    //         courseCode: 56789,
+    //         courseName: 'Cooking Course',
+    //         courseAddress: 'Hong Kong'
+    //     }
+    // }
+    state = {
+        academicTerm: '',
+        courseLocation: '',
+        subjectName: '',
+        subjectType: '',
 
-        this.state = {
-            classLocation1: 'HEYHEY',
+        courseCode: '',
+        courseName: '',
+        courseAddress: '',
+        courseIntroduction: '',
+        courseEmphasis: '',
+        courseBenefits: '',
+        contactEmail: '',
+        contactWechat: '',
+        contactNumber: '',
+        courseCredits: '',
+
+        enrollmenetStartDate: '',
+        enrollmenetEndDate: '',
+
+        courseQuota: '',
+        courseScore: '',
+
+        courseFees: '',
+        expectedFees: '',
+        actualFees: '',
+    }
+    componentDidMount() {
+        this._getConferenceDefailByUser();
+    }
+
+    _getConferenceDefailByUser = () => {
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body[0];
+            // console.log("theList: " + JSON.stringify(theList, null, 2));
+
+            this.setState({
+                academicTerm: theList.academic_term,
+                courseLocation: '',
+                subjectName: '',
+                subjectType: '',
+
+                courseCode: theList.code,
+                courseName: theList.name,
+                courseAddress: theList.address,
+                courseIntroduction: theList.introduction,
+                courseEmphasis: theList.emphasis,
+                courseBenefits: theList.benefit,
+                contactEmail: theList.email,
+                contactWechat: theList.wechat,
+                contactNumber: theList.phone,
+                courseCredits: '',
+
+                enrollmenetStartDate: '',
+                enrollmenetEndDate: '',
+
+                courseQuota: theList.quota,
+                courseScore: '',
+
+                courseFees: theList.fee,
+                expectedFees: theList.expected_fee,
+                actualFees: theList.actual_fee,
+            });
         }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        let params = {
+            conference_id: this.props.auth.relatedDataId.conferenceId,
+            'conference_officers/user': this.props.auth.userInfo.username,
+            $expand: 'subject,conference_sections/teachers/user',
+        }
+
+        apiConferences.getConferenceDefailByUser(params, this.props.auth.token, cb, eCb);
     }
 
     _handleInput = (value, key) => {
@@ -50,14 +130,27 @@ class SchoolCourseInformation extends React.Component {
         })
     }
 
-    _handleSelect = () => {
+    _handleSelect = (key, selectionString) => {
+        // console.log(selectionString);
 
+        this.setState({
+            [key]: selectionString,
+        });
     }
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
             //, t, i18n
         } = this.props;
+        const {
+            academicTerm,
+            courseLocation,
+            subjectName,
+            subjectType,
+
+            enrollmenetStartDate,
+            enrollmenetEndDate,
+        } = this.state;
 
         return (
             <Form>
@@ -66,11 +159,11 @@ class SchoolCourseInformation extends React.Component {
                         学期
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">2019-20</option>
-                            <option value="2">2020-21</option>
-                            <option value="3">2021-22</option>
-                            <option value="4">2022-23</option>
+                        <select value={academicTerm} onChange={e => { this._handleSelect('academicTerm', e.target.value) }}>
+                            <option value="2019-20">2019-20</option>
+                            <option value="2020-21">2020-21</option>
+                            <option value="2021-22">2021-22</option>
+                            <option value="2022-23">2022-23</option>
                         </select>
                     </Grid>
 
@@ -78,11 +171,11 @@ class SchoolCourseInformation extends React.Component {
                         上课城市
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">杭州</option>
-                            <option value="2">北京</option>
-                            <option value="3">上海</option>
-                            <option value="4">香港</option>
+                        <select value={courseLocation} onChange={e => { this._handleSelect('courseLocation', e.target.value) }}>
+                            <option value="杭州">杭州</option>
+                            <option value="北京">北京</option>
+                            <option value="上海">上海</option>
+                            <option value="香港">香港</option>
                         </select>
                     </Grid>
 
@@ -90,11 +183,11 @@ class SchoolCourseInformation extends React.Component {
                         学科名称
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">战略课程1</option>
-                            <option value="2">战略课程2</option>
-                            <option value="3">战略课程3</option>
-                            <option value="4">战略课程4</option>
+                        <select value={subjectName} onChange={e => { this._handleSelect('subjectName', e.target.value) }}>
+                            <option value="战略课程">战略课程</option>
+                            <option value="商品管理系列课程">商品管理系列课程</option>
+                            <option value="设计应用系列课程">设计应用系列课程</option>
+                            <option value="开发流程系列课程">开发流程系列课程</option>
                         </select>
                     </Grid>
 
@@ -102,11 +195,14 @@ class SchoolCourseInformation extends React.Component {
                         课程类型
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">类型1</option>
-                            <option value="2">类型2</option>
-                            <option value="3">类型3</option>
-                            <option value="4">类型4</option>
+                        <select value={subjectType} onChange={e => { this._handleSelect('subjectType', e.target.value) }}>
+                            <option value="test-type">test-type</option>
+                            <option value="开发流程课程">开发流程课程</option>
+                            <option value="设计应用课程">设计应用课程</option>
+                            <option value="专业人才发展课程">专业人才发展课程</option>
+                            <option value="大商品公开课程">大商品公开课程</option>
+                            <option value="商品管理课程">商品管理课程</option>
+                            <option value="海外联合课程">海外联合课程</option>
                         </select>
                     </Grid>
 
@@ -114,7 +210,7 @@ class SchoolCourseInformation extends React.Component {
                         课程编号
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseCode" type="text" placeholder="课程编号 123" maxLength="100" />
+                        <Field name="courseCode" type="text" placeholder="课程编号" maxLength="100" />
                         {errors.courseCode && touched.courseCode ? <ErrorMessage message={errors.courseCode} /> : null}
                     </Grid>
 
@@ -122,7 +218,7 @@ class SchoolCourseInformation extends React.Component {
                         课程名称
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseName" type="text" placeholder="课程名称 456" maxLength="100" />
+                        <Field name="courseName" type="text" placeholder="课程名称" maxLength="100" />
                         {errors.courseName && touched.courseName ? <ErrorMessage message={errors.courseName} /> : null}
                     </Grid>
 
@@ -130,7 +226,7 @@ class SchoolCourseInformation extends React.Component {
                         课程地址
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseAddress" type="text" placeholder="Address 1" maxLength="100" />
+                        <Field name="courseAddress" type="text" placeholder="课程地址" maxLength="100" />
                         {errors.courseAddress && touched.courseAddress ? <ErrorMessage message={errors.courseAddress} /> : null}
                     </Grid>
 
@@ -138,23 +234,23 @@ class SchoolCourseInformation extends React.Component {
                         课程简介
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseBio" type="text" placeholder="Bio 1" maxLength="100" />
-                        {errors.courseBio && touched.courseBio ? <ErrorMessage message={errors.courseBio} /> : null}
+                        <Field name="courseIntroduction" type="text" placeholder="课程简介" maxLength="100" />
+                        {errors.courseIntroduction && touched.courseIntroduction ? <ErrorMessage message={errors.courseIntroduction} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         课程重点
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseHighlights" type="text" placeholder="Highlight 1" maxLength="100" />
-                        {errors.courseHighlights && touched.courseHighlights ? <ErrorMessage message={errors.courseHighlights} /> : null}
+                        <Field name="courseEmphasis" type="text" placeholder="课程重点" maxLength="100" />
+                        {errors.courseEmphasis && touched.courseEmphasis ? <ErrorMessage message={errors.courseEmphasis} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         课程收益
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseBenefits" type="text" placeholder="Benefit 1" maxLength="100" />
+                        <Field name="courseBenefits" type="text" placeholder="课程收益" maxLength="100" />
                         {errors.courseBenefits && touched.courseBenefits ? <ErrorMessage message={errors.courseBenefits} /> : null}
                     </Grid>
 
@@ -162,7 +258,7 @@ class SchoolCourseInformation extends React.Component {
                         联系电邮
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactEmail" type="text" placeholder="abc@abc.com" maxLength="100" />
+                        <Field name="contactEmail" type="text" placeholder="联系电邮" maxLength="100" />
                         {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} /> : null}
                     </Grid>
 
@@ -170,7 +266,7 @@ class SchoolCourseInformation extends React.Component {
                         联系微信
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactWechat" type="text" placeholder="user123" maxLength="100" />
+                        <Field name="contactWechat" type="text" placeholder="联系微信" maxLength="100" />
                         {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null}
                     </Grid>
 
@@ -178,7 +274,7 @@ class SchoolCourseInformation extends React.Component {
                         联系电话
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactNumber" type="text" placeholder="12345678" maxLength="100" />
+                        <Field name="contactNumber" type="text" placeholder="联系电话" maxLength="100" />
                         {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null}
                     </Grid>
 
@@ -198,11 +294,9 @@ class SchoolCourseInformation extends React.Component {
                         报名开始
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">2019</option>
-                            <option value="2">2020</option>
-                            <option value="3">2021</option>
-                            <option value="4">2022</option>
+                        <select value={enrollmenetStartDate} onChange={e => { this._handleSelect('enrollmenetStartDate', e.target.value) }}>
+                            <option value="1565798300000">{dateToDayMonthYear(1565798300000)}</option>
+                            <option value="1565798400000">{dateToDayMonthYear(1565798400000)}</option>
                         </select>
                     </Grid>
 
@@ -210,11 +304,9 @@ class SchoolCourseInformation extends React.Component {
                         报名结束
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
-                            <option value="1">2019</option>
-                            <option value="2">2020</option>
-                            <option value="3">2021</option>
-                            <option value="4">2022</option>
+                        <select value={enrollmenetEndDate} onChange={e => { this._handleSelect('enrollmenetEndDate', e.target.value) }}>
+                            <option value="1565798300000">{dateToDayMonthYear(1565798300000)}</option>
+                            <option value="1565798400000">{dateToDayMonthYear(1565798400000)}</option>
                         </select>
                     </Grid>
 
@@ -222,15 +314,15 @@ class SchoolCourseInformation extends React.Component {
                         课程名额
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseSpots" type="text" placeholder="100" maxLength="100" />
-                        {errors.courseSpots && touched.courseSpots ? <ErrorMessage message={errors.courseSpots} /> : null}
+                        <Field name="courseQuota" type="text" placeholder="课程名额" maxLength="100" />
+                        {errors.courseQuota && touched.courseQuota ? <ErrorMessage message={errors.courseQuota} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         课程学分
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseCredits" type="text" placeholder="10" maxLength="100" />
+                        <Field name="courseCredits" type="text" placeholder="课程学分" maxLength="100" />
                         {errors.courseCredits && touched.courseCredits ? <ErrorMessage message={errors.courseCredits} /> : null}
                     </Grid>
 
@@ -238,7 +330,7 @@ class SchoolCourseInformation extends React.Component {
                         课程费用
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseFees" type="text" placeholder="10000" maxLength="100" />
+                        <Field name="courseFees" type="text" placeholder="课程费用" maxLength="100" />
                         {errors.courseFees && touched.courseFees ? <ErrorMessage message={errors.courseFees} /> : null}
                     </Grid>
 
@@ -246,15 +338,15 @@ class SchoolCourseInformation extends React.Component {
                         预计学费
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="projectedFees" type="text" placeholder="10000" maxLength="100" />
-                        {errors.projectedFees && touched.projectedFees ? <ErrorMessage message={errors.projectedFees} /> : null}
+                        <Field name="expectedFees" type="text" placeholder="预计学费" maxLength="100" />
+                        {errors.expectedFees && touched.expectedFees ? <ErrorMessage message={errors.expectedFees} /> : null}
                     </Grid>
 
                     <Grid item xs={1} >
                         实际收费
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="actualFees" type="text" placeholder="10000" maxLength="100" />
+                        <Field name="actualFees" type="text" placeholder="实际收费" maxLength="100" />
                         {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null}
                     </Grid>
 
@@ -357,8 +449,28 @@ class SchoolCourseInformation extends React.Component {
 
     render() {
         // const { classes, t, i18n } = this.props;
+        const {
+            // conferenceList,
 
-        // console.log('SchoolCourseInformation_render: ' + JSON.stringify(this.props.auth, null, 2));
+            courseCode,
+            courseName,
+            courseAddress,
+            courseIntroduction,
+            courseEmphasis,
+            courseBenefits,
+            contactEmail,
+            contactWechat,
+            contactNumber,
+            // courseCredits,
+
+            courseQuota,
+            // courseScore,
+
+            courseFees,
+            expectedFees,
+            actualFees,
+        } = this.state;
+        // console.log('SchoolCourseInformation_render: ' + JSON.stringify(conferenceList, null, 2));
         const Schema = Yup.object().shape({
             courseCode: Yup.string()
                 .required('Course Code is required'),
@@ -366,10 +478,10 @@ class SchoolCourseInformation extends React.Component {
                 .required('Course Name is required'),
             courseAddress: Yup.string()
                 .required('Course Address is required'),
-            courseBio: Yup.string()
-                .required('Course Bio is required'),
-            courseHighlights: Yup.string()
-                .required('Course Highlights is required'),
+            courseIntroduction: Yup.string()
+                .required('Course Introduction is required'),
+            courseEmphasis: Yup.string()
+                .required('Course Emphasis is required'),
             courseBenefits: Yup.string()
                 .required('Course Benefits is required'),
             contactEmail: Yup.string()
@@ -381,18 +493,18 @@ class SchoolCourseInformation extends React.Component {
             contactNumber: Yup.number()
                 .typeError('Contact Number must be a valid phone number')
                 .required('Contact Number is required'),
-            courseSpots: Yup.number()
-                .typeError('Course Spots must be a number')
-                .required('Course Spots is required'),
+            courseQuota: Yup.number()
+                .typeError('Course Quota must be a number')
+                .required('Course Quota is required'),
             courseCredits: Yup.number()
                 .typeError('Course Credits must be a number')
                 .required('Course Credits is required'),
             courseFees: Yup.number()
                 .typeError('Course Fees must be a number')
                 .required('Course Fees is required'),
-            projectedFees: Yup.number()
-                .typeError('Projected Fees must be a number')
-                .required('Projected Fees is required'),
+            expectedFees: Yup.number()
+                .typeError('Expected Fees must be a number')
+                .required('Expected Fees is required'),
             actualFees: Yup.number()
                 .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
@@ -423,24 +535,37 @@ class SchoolCourseInformation extends React.Component {
 
                             <div className="content">
                                 <Formik
+                                    enableReinitialize
                                     initialValues={{
-                                        courseCode: '',
-                                        courseName: '',
-                                        courseAddress: '',
-                                        courseBio: '',
-                                        courseHighlights: '',
-                                        courseBenefits: '',
-                                        contactEmail: '',
-                                        contactWechat: '',
-                                        contactNumber: '',
-                                        courseSpots: '',
+                                        academicTerm: '',
+                                        courseLocation: '',
+                                        subjectName: '',
+                                        subjectType: '',
+
+                                        courseCode: courseCode,
+                                        courseName: courseName,
+                                        courseAddress: courseAddress,
+                                        courseIntroduction: courseIntroduction,
+                                        courseEmphasis: courseEmphasis,
+                                        courseBenefits: courseBenefits,
+                                        contactEmail: contactEmail,
+                                        contactWechat: contactWechat,
+                                        contactNumber: contactNumber,
                                         courseCredits: '',
-                                        courseFees: '',
-                                        projectedFees: '',
-                                        actualFees: '',
+
+                                        enrollmenetStartDate: '',
+                                        enrollmenetEndDate: '',
+
+                                        courseQuota: courseQuota,
+                                        courseScore: '',
+
+                                        courseFees: courseFees,
+                                        expectedFees: expectedFees,
+                                        actualFees: actualFees,
+
                                         className1: '',
                                         classDate1: '',
-                                        classLocation1: this.state.classLocation1,
+                                        classLocation1: '',
                                         className2: '',
                                         classDate2: '',
                                         classLocation2: '',

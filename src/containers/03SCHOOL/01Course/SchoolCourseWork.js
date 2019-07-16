@@ -27,6 +27,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -124,24 +125,34 @@ class SchoolCourseWork extends React.Component {
     };
 
     handleClick = (event, id) => {
-        const { selected } = this.state;
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
+        // const { selected } = this.state;
+        // const selectedIndex = selected.indexOf(id);
+        // let newSelected = [];
 
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
+        // if (selectedIndex === -1) {
+        //     newSelected = newSelected.concat(selected, id);
+        // } else if (selectedIndex === 0) {
+        //     newSelected = newSelected.concat(selected.slice(1));
+        // } else if (selectedIndex === selected.length - 1) {
+        //     newSelected = newSelected.concat(selected.slice(0, -1));
+        // } else if (selectedIndex > 0) {
+        //     newSelected = newSelected.concat(
+        //         selected.slice(0, selectedIndex),
+        //         selected.slice(selectedIndex + 1),
+        //     );
+        // }
 
-        this.setState({ selected: newSelected });
+        // this.setState({ selected: newSelected });
+
+        // const { i18n } = this.props;
+        const courseAssignment_id = id;
+        console.log('CourseAssignmentId: '+courseAssignment_id);
+        // const data = {
+        //     ...this.props.auth.relatedDataId,
+        //     "courseAssignmentId": courseAssignment_id,
+        // }
+        // this.props.setRelatedDataIdP(data);
+        // this.props.history.push('/' + i18n.language + '/school-note-taking');
     };
 
     handleChangePage = (event, page) => {
@@ -214,11 +225,11 @@ class SchoolCourseWork extends React.Component {
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='new-school-course-work'
 
-                                    editButton={false}
+                                    editButton={true}
                                     editButtonText="编辑"
                                     editButtonAction={this._editButtonAction}
 
-                                    deleteButton={false}
+                                    deleteButton={true}
                                     deleteButtonText="移除"
                                     deleteButtonAction={this._deleteButtonAction}
 
@@ -321,6 +332,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
+    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
