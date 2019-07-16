@@ -106,6 +106,26 @@ class SchoolCourseNote extends React.Component {
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
     }
 
+    /** form handle input start **/
+    handleEnterSelection = (event, id) => {
+        const { i18n } = this.props;
+        const note_id = id;
+        const data = {
+            ...this.props.auth.relatedDataId,
+            "noteId": note_id,
+        }
+        this.props.setRelatedDataIdP(data);
+        this.props.history.push('/' + i18n.language + '/school-note-taking');
+    };
+
+    _createButtonAction = () => {
+        const { i18n } = this.props;
+        this.props.resetRelatedDataIdP();
+        this.props.history.push('/' + i18n.language + '/school-note-taking');
+    }
+    /** form handle input end **/
+
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -126,33 +146,24 @@ class SchoolCourseNote extends React.Component {
     };
 
     handleClick = (event, id) => {
-        // const { selected } = this.state;
-        // const selectedIndex = selected.indexOf(id);
-        // let newSelected = [];
+        const { selected } = this.state;
+        const selectedIndex = selected.indexOf(id);
+        let newSelected = [];
 
-        // if (selectedIndex === -1) {
-        //     newSelected = newSelected.concat(selected, id);
-        // } else if (selectedIndex === 0) {
-        //     newSelected = newSelected.concat(selected.slice(1));
-        // } else if (selectedIndex === selected.length - 1) {
-        //     newSelected = newSelected.concat(selected.slice(0, -1));
-        // } else if (selectedIndex > 0) {
-        //     newSelected = newSelected.concat(
-        //         selected.slice(0, selectedIndex),
-        //         selected.slice(selectedIndex + 1),
-        //     );
-        // }
-
-        // this.setState({ selected: newSelected });
-
-        const { i18n } = this.props;
-        const note_id = id;
-        const data = {
-            ...this.props.auth.relatedDataId,
-            "noteId": note_id,
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, id);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1),
+            );
         }
-        this.props.setRelatedDataIdP(data);
-        this.props.history.push('/' + i18n.language + '/school-note-taking');
+
+        this.setState({ selected: newSelected });
     };
 
     handleChangePage = (event, page) => {
@@ -164,13 +175,7 @@ class SchoolCourseNote extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
-
-    // ToolBar
-    _createButtonAction = () => {
-        const { i18n } = this.props;
-        this.props.resetRelatedDataIdP();
-        this.props.history.push('/' + i18n.language + '/school-note-taking');
-    }
+    /** React components 'Material-UI' end  **/
 
     render() {
         const {
@@ -226,7 +231,7 @@ class SchoolCourseNote extends React.Component {
                                                             <TableRow
                                                                 className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.noteId)}
+                                                                onClick={event => this.handleEnterSelection(event, n.noteId)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}

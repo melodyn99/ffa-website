@@ -141,7 +141,7 @@ class SchoolNoteTaking extends React.Component {
     }
 
     /** Note start **/
-    // form handle input
+    /** form handle input start **/
     _handleInput = (value, key) => {
         console.log(value);
         this.setState({
@@ -149,6 +149,7 @@ class SchoolNoteTaking extends React.Component {
             [key]: value
         })
     }
+    /** form handle input end **/
 
     // form submit
     handleSubmit = (event, { setFieldError }) => {
@@ -291,7 +292,7 @@ class SchoolNoteTaking extends React.Component {
     }
     /** Files management end **/
 
-    /** Material UI table style start  **/
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -311,13 +312,13 @@ class SchoolNoteTaking extends React.Component {
         this.setState({ selected: [] });
     };
 
-    handleClick = (event, theIndexNum) => {
+    handleClick = (event, id) => {
         const { selected } = this.state;
-        const selectedIndex = selected.indexOf(theIndexNum);
+        const selectedIndex = selected.indexOf(id);
         let newSelected = [];
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, theIndexNum);
+            newSelected = newSelected.concat(selected, id);
         } else if (selectedIndex === 0) {
             newSelected = newSelected.concat(selected.slice(1));
         } else if (selectedIndex === selected.length - 1) {
@@ -341,7 +342,7 @@ class SchoolNoteTaking extends React.Component {
     };
 
     isSelected = theIndexNum => this.state.selected.indexOf(theIndexNum) !== -1;
-    /** Material UI table style end  **/
+    /** React components 'Material-UI' end  **/
 
     // Formik form
     form = ({

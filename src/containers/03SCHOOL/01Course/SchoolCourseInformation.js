@@ -122,7 +122,8 @@ class SchoolCourseInformation extends React.Component {
         apiConferences.getConferenceDefailByUser(params, this.props.auth.token, cb, eCb);
     }
 
-    _handleInput = (value, key) => {
+    //** form handle input start **/
+    _handleInput = (key, value) => {
         console.log(value);
         this.setState({
             ...this.state,
@@ -137,6 +138,7 @@ class SchoolCourseInformation extends React.Component {
             [key]: selectionString,
         });
     }
+    //** form handle input end **/
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
