@@ -226,7 +226,7 @@ class SchoolCourseInformation extends React.Component {
                         课程地址
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseAddress" type="text" placeholder="Address 1" maxLength="100" />
+                        <Field name="courseAddress" type="text" placeholder="课程地址" maxLength="100" />
                         {errors.courseAddress && touched.courseAddress ? <ErrorMessage message={errors.courseAddress} /> : null}
                     </Grid>
 
@@ -234,7 +234,7 @@ class SchoolCourseInformation extends React.Component {
                         课程简介
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseIntroduction" type="text" placeholder="Introduction 1" maxLength="100" />
+                        <Field name="courseIntroduction" type="text" placeholder="课程简介" maxLength="100" />
                         {errors.courseIntroduction && touched.courseIntroduction ? <ErrorMessage message={errors.courseIntroduction} /> : null}
                     </Grid>
 
@@ -242,7 +242,7 @@ class SchoolCourseInformation extends React.Component {
                         课程重点
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseEmphasis" type="text" placeholder="Emphasis 1" maxLength="100" />
+                        <Field name="courseEmphasis" type="text" placeholder="课程重点" maxLength="100" />
                         {errors.courseEmphasis && touched.courseEmphasis ? <ErrorMessage message={errors.courseEmphasis} /> : null}
                     </Grid>
 
@@ -250,7 +250,7 @@ class SchoolCourseInformation extends React.Component {
                         课程收益
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseBenefits" type="text" placeholder="Benefit 1" maxLength="100" />
+                        <Field name="courseBenefits" type="text" placeholder="课程收益" maxLength="100" />
                         {errors.courseBenefits && touched.courseBenefits ? <ErrorMessage message={errors.courseBenefits} /> : null}
                     </Grid>
 
@@ -258,7 +258,7 @@ class SchoolCourseInformation extends React.Component {
                         联系电邮
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactEmail" type="text" placeholder="abc@abc.com" maxLength="100" />
+                        <Field name="contactEmail" type="text" placeholder="联系电邮" maxLength="100" />
                         {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} /> : null}
                     </Grid>
 
@@ -266,7 +266,7 @@ class SchoolCourseInformation extends React.Component {
                         联系微信
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactWechat" type="text" placeholder="user123" maxLength="100" />
+                        <Field name="contactWechat" type="text" placeholder="联系微信" maxLength="100" />
                         {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null}
                     </Grid>
 
@@ -274,7 +274,7 @@ class SchoolCourseInformation extends React.Component {
                         联系电话
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactNumber" type="text" placeholder="12345678" maxLength="100" />
+                        <Field name="contactNumber" type="text" placeholder="联系电话" maxLength="100" />
                         {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null}
                     </Grid>
 
@@ -314,7 +314,7 @@ class SchoolCourseInformation extends React.Component {
                         课程名额
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseQuota" type="text" placeholder="100" maxLength="100" />
+                        <Field name="courseQuota" type="text" placeholder="课程名额" maxLength="100" />
                         {errors.courseQuota && touched.courseQuota ? <ErrorMessage message={errors.courseQuota} /> : null}
                     </Grid>
 
@@ -322,7 +322,7 @@ class SchoolCourseInformation extends React.Component {
                         课程学分
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseCredits" type="text" placeholder="10" maxLength="100" />
+                        <Field name="courseCredits" type="text" placeholder="课程学分" maxLength="100" />
                         {errors.courseCredits && touched.courseCredits ? <ErrorMessage message={errors.courseCredits} /> : null}
                     </Grid>
 
@@ -330,7 +330,7 @@ class SchoolCourseInformation extends React.Component {
                         课程费用
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseFees" type="text" placeholder="10000" maxLength="100" />
+                        <Field name="courseFees" type="text" placeholder="课程费用" maxLength="100" />
                         {errors.courseFees && touched.courseFees ? <ErrorMessage message={errors.courseFees} /> : null}
                     </Grid>
 
@@ -338,7 +338,7 @@ class SchoolCourseInformation extends React.Component {
                         预计学费
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="expectedFees" type="text" placeholder="10000" maxLength="100" />
+                        <Field name="expectedFees" type="text" placeholder="预计学费" maxLength="100" />
                         {errors.expectedFees && touched.expectedFees ? <ErrorMessage message={errors.expectedFees} /> : null}
                     </Grid>
 
@@ -346,7 +346,7 @@ class SchoolCourseInformation extends React.Component {
                         实际收费
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="actualFees" type="text" placeholder="10000" maxLength="100" />
+                        <Field name="actualFees" type="text" placeholder="实际收费" maxLength="100" />
                         {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null}
                     </Grid>
 
