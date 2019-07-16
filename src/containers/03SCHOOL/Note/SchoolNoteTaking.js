@@ -31,6 +31,7 @@ import { apiFile } from '../../../Api/ApiFile';
 // Redux
 import { connect } from 'react-redux';
 import { setNoteTitle, viewingNoteAction } from '../../../Redux/Action/eventAction';
+import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import Bluebird from 'bluebird';
@@ -60,15 +61,18 @@ const rows = [
 
 class SchoolNoteTaking extends React.Component {
     state = {
-        fileList: [],
+        // table settings
         order: 'desc',
         orderBy: 'createdDate',
         selected: [],
         page: 0,
         rowsPerPage: 10,
+
+        // component state
         noteId: this.props.auth.relatedDataId.noteId,
         theNoteName: '',
         theNoteContent: '',
+        fileList: [],
     }
 
     componentDidMount() {
@@ -79,8 +83,6 @@ class SchoolNoteTaking extends React.Component {
     }
 
     _getNoteTakingList = () => {
-        console.log();
-        // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -101,7 +103,6 @@ class SchoolNoteTaking extends React.Component {
     }
 
     _getNoteFile = () => {
-        // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -152,7 +153,7 @@ class SchoolNoteTaking extends React.Component {
     // form submit
     handleSubmit = (event, { setFieldError }) => {
         // console.log('click submit button!');
-        console.log('event: ' + JSON.stringify(event.notesName, null, 2));
+        // console.log('event: ' + JSON.stringify(event.notesName, null, 2));
         // this.editNoteInfo(event);
 
         if (this.state.noteId === null) {
@@ -162,12 +163,23 @@ class SchoolNoteTaking extends React.Component {
         }
     }
 
+    // insert
     newNoteInfo = (event) => {
         const conferenceId = this.props.auth.relatedDataId.conferenceId;
 
         const cb = (obj) => {
-            // console.log("cb : ", obj);
-            this.props.history.goBack();
+            console.log("cb : ", obj);
+
+            const data = {
+                ...this.props.auth.relatedDataId,
+                "noteId": obj.body.note_id,
+            }
+
+            this.props.setRelatedDataIdP(data);
+            this.setState({
+                ...this.state,
+                noteId: obj.body.note_id
+            })
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -183,6 +195,7 @@ class SchoolNoteTaking extends React.Component {
         apiNoteTaking.createNoteTaking(params, this.props.auth.token, cb, eCb);
     }
 
+    // update
     editNoteInfo = (event) => {
         const { history } = this.props;
         // const { viewingSeminar } = this.props;
@@ -203,7 +216,7 @@ class SchoolNoteTaking extends React.Component {
         apiNoteTaking.editNoteTaking(this.state.noteId, body, this.props.auth.token, cb, eCb);
     }
 
-    // delete note
+    // delete
     _handleDeleteNote = () => {
         const { history } = this.props;
 
@@ -230,7 +243,7 @@ class SchoolNoteTaking extends React.Component {
         // console.log('upload button pressed');
         const { noteId } = this.state;
         const createNoteFileCb = (obj) => {
-            console.log("createNoteFileCb : ", obj);
+            // console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
         }
         const createNoteFileEcb = (obj) => {
@@ -238,7 +251,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const createFileCb = (obj) => {
-            console.log("createFileCb : ", obj);
+            // console.log("createFileCb : ", obj);
             apiNoteFile.createNoteFile({ file: obj.body.file_id, note: noteId }, this.props.auth.token, createNoteFileCb, createNoteFileEcb);
         }
         const createFileEcb = (obj) => {
@@ -461,10 +474,12 @@ class SchoolNoteTaking extends React.Component {
                         className={classes.greyButton}
                         onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    <Button
-                        className={classes.blackButton}
-                        onClick={() => this._handleDeleteNote()}
-                    >删除</Button>
+                    {(this.state.noteId !== null) &&
+                        <Button
+                            className={classes.blackButton}
+                            onClick={() => this._handleDeleteNote()}
+                        >删除</Button>
+                    }
                     <span className="right">
                         <Button type="submit" className={classes.blackButton}>确认</Button>
                     </span>
@@ -522,6 +537,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setNoteTitle: data => dispatch(setNoteTitle(data)),
     viewingNoteAction: data => dispatch(viewingNoteAction(data)),
+    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles, SchoolNoteTakingStyles);
