@@ -64,3 +64,7 @@ export const setRelatedDataId = (data) => ({
   type: AuthActionTypes.SET_RELATED_DATA_ID,
   data
 });
+
+export const resetRelatedDataId = () => ({
+  type: AuthActionTypes.RESET_RELATED_DATA_ID,
+});

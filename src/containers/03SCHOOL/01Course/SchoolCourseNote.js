@@ -22,14 +22,11 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
-// import { apiNoteFile } from '../../../Api/ApiNoteFile';
 import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
+import { setRelatedDataId, resetRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -169,45 +166,10 @@ class SchoolCourseNote extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     // ToolBar
-    _backButtonAction = (url) => {
-        console.log('back button pressed');
-    }
-
     _createButtonAction = () => {
         const { i18n } = this.props;
-        this.props.history.push('/' + i18n.language + '/school-course-new-note');
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-        // const { i18n } = this.props;
-        // const { selected, noteList } = this.state;
-        // const selectedLength = selected.length;
-
-        // // console.log(JSON.stringify(noteList, null, 2));
-        // if (selectedLength === 1) {
-        //     const selectedNote = noteList[selected[0]];
-        //     this.props.history.push('/' + i18n.language + '/school-note-taking/' + selectedNote.note_id);
-        // }else {
-        //     //handle more than one selection when click editButton
-        //     console.log('Can not edit more than one note in same time!');
-        // }
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
+        this.props.resetRelatedDataIdP();
+        this.props.history.push('/' + i18n.language + '/school-note-taking');
     }
 
     render() {
@@ -236,35 +198,10 @@ class SchoolCourseNote extends React.Component {
                             <div className="content">
 
                                 <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl=''
-
                                     createButton={true}
                                     createButtonText="创建"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-note-taking'
-
-                                    editButton={false}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={false}
-                                    deleteButtonText="删除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={false}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={false}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
                                 />
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
@@ -349,6 +286,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    resetRelatedDataIdP: data => dispatch(resetRelatedDataId()),
     setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 

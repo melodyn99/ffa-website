@@ -34,15 +34,13 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 
 class SchoolCourseInformation extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     this.state = {
-    //         courseCode: 56789,
-    //         courseName: 'Cooking Course',
-    //         courseAddress: 'Hong Kong'
-    //     }
-    // }
+        this.state = {
+            classLocation1: 'HEYHEY',
+        }
+    }
 
     _handleInput = (value, key) => {
         console.log(value);
@@ -442,7 +440,7 @@ class SchoolCourseInformation extends React.Component {
                                         actualFees: '',
                                         className1: '',
                                         classDate1: '',
-                                        classLocation1: '',
+                                        classLocation1: this.state.classLocation1,
                                         className2: '',
                                         classDate2: '',
                                         classLocation2: '',
