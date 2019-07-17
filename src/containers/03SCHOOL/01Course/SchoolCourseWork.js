@@ -38,7 +38,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-// import data from '../../../data/03SCHOOL/01Course/SchoolCourseWork';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseWork';
 
 // Define column names
 const rows = [
@@ -60,7 +60,7 @@ class SchoolCourseWork extends React.Component {
         rowsPerPage: 10,
 
         // component state
-        // data: data,
+        data: data,
         courseAssignmentList: [],
     };
 
@@ -110,6 +110,7 @@ class SchoolCourseWork extends React.Component {
         // const { i18n } = this.props;
         const courseAssignment_id = id;
         console.log('CourseAssignmentId: ' + courseAssignment_id);
+        this.props.history.push('school-course-work-inside-folder');
         // const data = {
         //     ...this.props.auth.relatedDataId,
         //     "courseAssignmentId": courseAssignment_id,
@@ -206,7 +207,8 @@ class SchoolCourseWork extends React.Component {
         const {
             // data,
             courseAssignmentList, order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = courseAssignmentList;
+        // const data = courseAssignmentList;
+        const data = this.state.data;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
         return (
             <div>
@@ -222,15 +224,10 @@ class SchoolCourseWork extends React.Component {
                             <div className="content">
 
                                 <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-material'
-
                                     createButton={true}
                                     createButtonText="添加"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-work'
+                                    createButtonActionUrl='school-course-work-select-folder'
                                 />
 
                                 <Paper className={classes.paper}>

@@ -222,15 +222,15 @@ class SchoolCourseWorkInsideFolder extends React.Component {
                             <div className="content">
 
                                 <ToolBar
-                                    backButton={false}
+                                    backButton={true}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-material'
+                                    backButtonActionUrl='school-course-work'
 
                                     createButton={true}
                                     createButtonText="添加"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-work'
+                                    createButtonActionUrl='school-course-work-select-file'
                                 />
 
                                 <Paper className={classes.paper}>

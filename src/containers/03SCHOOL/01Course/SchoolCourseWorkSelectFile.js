@@ -20,6 +20,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
+import { Button } from '@material-ui/core';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
@@ -220,19 +221,6 @@ class SchoolCourseWorkSelectFile extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-
-                                <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-material'
-
-                                    createButton={true}
-                                    createButtonText="添加"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-work'
-                                />
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -299,6 +287,12 @@ class SchoolCourseWorkSelectFile extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
+                                <div className="bottomControl clearfix">
+                                    <Button className={classes.greyButton}
+                                        onClick={() => this.props.history.push('school-course-work-inside-folder')}
+                                    >返回</Button>
+                                    <span className="right"><Button type="submit" className={classes.blackButton}>加入作業</Button></span>
+                                </div>
                             </div>
                         </div>
                     </div>
