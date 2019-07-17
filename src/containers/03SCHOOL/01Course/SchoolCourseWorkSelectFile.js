@@ -38,11 +38,11 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-// import data from '../../../data/03SCHOOL/01Course/SchoolCourseWork';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseWorkSelectFile';
 
 // Define column names
 const rows = [
-    { id: 'SchoolCourseWork', numeric: false, disablePadding: false, label: '课程作业' },
+    { id: 'SchoolCourseWorkSelectFile', numeric: false, disablePadding: false, label: '课程作业' },
     { id: 'type', numeric: true, disablePadding: false, label: '类型' },
     { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
     { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
@@ -50,7 +50,7 @@ const rows = [
     { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
-class SchoolCourseWork extends React.Component {
+class SchoolCourseWorkSelectFile extends React.Component {
     state = {
         // table settings
         order: 'desc',
@@ -79,7 +79,7 @@ class SchoolCourseWork extends React.Component {
 
             theList.map(n => {
                 const convertedArray = {
-                    SchoolCourseWork: n.name,
+                    SchoolCourseWorkSelectFile: n.name,
                     type: n.assignment.question_type,
                     questions: n.assignment.assignment_questions.length,
                     score: n.total_mark,
@@ -267,7 +267,7 @@ class SchoolCourseWork extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.SchoolCourseWork}</TableCell>
+                                                                >{n.SchoolCourseWorkSelectFile}</TableCell>
                                                                 <TableCell>{n.type}</TableCell>
                                                                 <TableCell>{n.questions}</TableCell>
                                                                 <TableCell>{n.score}</TableCell>
@@ -308,7 +308,7 @@ class SchoolCourseWork extends React.Component {
     }
 }
 
-SchoolCourseWork.propTypes = {
+SchoolCourseWorkSelectFile.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -324,4 +324,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseWork))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseWorkSelectFile))));

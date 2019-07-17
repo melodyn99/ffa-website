@@ -91,8 +91,17 @@ import StudentAlert from './containers/02STUDENTS/04Alert/StudentAlert';
 import SchoolAllCourse from './containers/03SCHOOL/01Course/SchoolAllCourse';
 import SchoolCourseInformation from './containers/03SCHOOL/01Course/SchoolCourseInformation';
 import SchoolCoursePreparation from './containers/03SCHOOL/01Course/SchoolCoursePreparation';
+
 import SchoolCourseMaterial from './containers/03SCHOOL/01Course/SchoolCourseMaterial';
+import SchoolCourseMaterialSelectFolder from './containers/03SCHOOL/01Course/SchoolCourseMaterialSelectFolder';
+import SchoolCourseMaterialInsideFolder from './containers/03SCHOOL/01Course/SchoolCourseMaterialInsideFolder';
+import SchoolCourseMaterialSelectFile from './containers/03SCHOOL/01Course/SchoolCourseMaterialSelectFile';
+
 import SchoolCourseWork from './containers/03SCHOOL/01Course/SchoolCourseWork';
+import SchoolCourseWorkSelectFolder from './containers/03SCHOOL/01Course/SchoolCourseWorkSelectFolder';
+import SchoolCourseWorkInsideFolder from './containers/03SCHOOL/01Course/SchoolCourseWorkInsideFolder';
+import SchoolCourseWorkSelectFile from './containers/03SCHOOL/01Course/SchoolCourseWorkSelectFile';
+
 import SchoolCourseStudentManagement from './containers/03SCHOOL/01Course/SchoolCourseStudentManagement';
 import SchoolCourseStudentManagementAttendance from './containers/03SCHOOL/01Course/SchoolCourseStudentManagementAttendance';
 import SchoolCourseStudentManagementHomework from './containers/03SCHOOL/01Course/SchoolCourseStudentManagementHomework';
@@ -365,7 +374,7 @@ class App extends Component {
                 /*** SCHOOL ***/
                 // School Course Management
                 case 'school-all-course': { // OK
-                    return <SchoolAllCourse searchSubject={currentID}/>;
+                    return <SchoolAllCourse searchSubject={currentID} />;
                 }
                 case 'school-course-information': { // OK
                     return <SchoolCourseInformation />
@@ -380,9 +389,29 @@ class App extends Component {
                 case 'school-course-material': { // OK
                     return <SchoolCourseMaterial />;
                 }
+                case 'school-course-material-select-folder': { // OK
+                    return <SchoolCourseMaterialSelectFolder />;
+                }
+                case 'school-course-material-inside-folder': { // OK
+                    return <SchoolCourseMaterialInsideFolder />;
+                }
+                case 'school-course-material-select-file': { // OK
+                    return <SchoolCourseMaterialSelectFile />;
+                }
+
                 case 'school-course-work': { // OK
                     return <SchoolCourseWork />;
                 }
+                case 'school-course-work-select-folder': { // OK
+                    return <SchoolCourseWorkSelectFolder />;
+                }
+                case 'school-course-work-inside-folder': { // OK
+                    return <SchoolCourseWorkInsideFolder />;
+                }
+                case 'school-course-work-select-file': { // OK
+                    return <SchoolCourseWorkSelectFile />;
+                }
+
                 case 'school-course-student-management': { // OK
                     return <SchoolCourseStudentManagement />;
                 }

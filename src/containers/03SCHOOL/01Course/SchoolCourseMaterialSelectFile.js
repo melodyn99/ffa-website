@@ -27,7 +27,6 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -38,59 +37,54 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-// import data from '../../../data/03SCHOOL/01Course/SchoolCourseWork';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseMaterialSelectFile';
 
 // Define column names
 const rows = [
-    { id: 'SchoolCourseWork', numeric: false, disablePadding: false, label: '课程作业' },
-    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
-    { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
-    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
-    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
-    { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'material', numeric: false, disablePadding: false, label: '课程教材' },
+    { id: 'fileCount', numeric: true, disablePadding: false, label: '文件' },
+    { id: 'editor', numeric: true, disablePadding: false, label: '操作人員' },
+    { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改时间' },
 ];
 
-class SchoolCourseWork extends React.Component {
+class SchoolCourseMaterialSelectFile extends React.Component {
     state = {
         // table settings
         order: 'desc',
-        orderBy: 'lastmoddate',
+        orderBy: 'lastdate',
         selected: [],
         page: 0,
         rowsPerPage: 10,
 
         // component state
         // data: data,
-        courseAssignmentList: [],
+        materialList: [],
     };
 
     componentDidMount() {
-        this._getConferenceAssignmentList();
+        this._getMaterialList();
     }
 
-    _getConferenceAssignmentList = () => {
-        // const { viewingSeminar } = this.props;
+    _getMaterialList = () => {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
-
             const convertedList = [];
 
             theList.map(n => {
                 const convertedArray = {
-                    SchoolCourseWork: n.name,
-                    type: n.assignment.question_type,
-                    questions: n.assignment.assignment_questions.length,
-                    score: n.total_mark,
-                    deadline: dateToDayAndMonth(n.deadline),
+                    class_material_id: n.class_material_id,
+                    material: n.name,
+                    fileCount: n.class_material_files.length,
+                    editor: n.modified_by,
                     lastmoddate: dateToDayAndMonth(n.lastmoddate),
                 }
                 return convertedList.push(convertedArray);
             });
 
             this.setState({
-                courseAssignmentList: convertedList,
+                materialList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -99,23 +93,14 @@ class SchoolCourseWork extends React.Component {
 
         const params = {
             conference: this.props.auth.relatedDataId.conferenceId,
-            $expand: 'assignment',
         }
 
-        apiConferences.getConferenceAssignmentList(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceMaterial(params, this.props.auth.token, cb, eCb);
     }
 
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
-        // const { i18n } = this.props;
-        const courseAssignment_id = id;
-        console.log('CourseAssignmentId: ' + courseAssignment_id);
-        // const data = {
-        //     ...this.props.auth.relatedDataId,
-        //     "courseAssignmentId": courseAssignment_id,
-        // }
-        // this.props.setRelatedDataIdP(data);
-        // this.props.history.push('/' + i18n.language + '/school-note-taking');
+        console.log(`Clicked class_material_id: ${id}`);
     };
 
     // ToolBar
@@ -147,6 +132,7 @@ class SchoolCourseWork extends React.Component {
         console.log('report button pressed');
     }
     /** form handle input end **/
+
 
     /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
@@ -200,14 +186,14 @@ class SchoolCourseWork extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
     /** React components 'Material-UI' end  **/
 
-
     render() {
         const { classes } = this.props;
         const {
             // data,
-            courseAssignmentList, order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = courseAssignmentList;
+            order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = this.state.materialList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -225,12 +211,32 @@ class SchoolCourseWork extends React.Component {
                                     backButton={false}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-material'
+                                    backButtonActionUrl='school-course-materials'
 
                                     createButton={true}
                                     createButtonText="添加"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-work'
+                                    createButtonActionUrl='new-school-course-materials'
+
+                                    editButton={true}
+                                    editButtonText="编辑"
+                                    editButtonAction={this._editButtonAction}
+
+                                    deleteButton={true}
+                                    deleteButtonText="移除"
+                                    deleteButtonAction={this._deleteButtonAction}
+
+                                    importButton={false}
+                                    importButtonText="导入123"
+                                    importButtonAction={this._importButtonAction}
+
+                                    copyButton={false}
+                                    copyButtonText="拷贝"
+                                    copyButtonAction={this._copyButtonAction}
+
+                                    reportButton={false}
+                                    reportButtonText="学生报告"
+                                    reportButtonAction={this._reportButtonAction}
                                 />
 
                                 <Paper className={classes.paper}>
@@ -255,7 +261,7 @@ class SchoolCourseWork extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.conference_assignment_id)}
+                                                                onClick={event => this.handleEnterSelection(event, n.class_material_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -267,18 +273,16 @@ class SchoolCourseWork extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.SchoolCourseWork}</TableCell>
-                                                                <TableCell>{n.type}</TableCell>
-                                                                <TableCell>{n.questions}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.deadline}</TableCell>
+                                                                >{n.material}</TableCell>
+                                                                <TableCell>{n.fileCount}</TableCell>
+                                                                <TableCell>{n.editor}</TableCell>
                                                                 <TableCell>{n.lastmoddate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
+                                                        <TableCell colSpan={4} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -308,7 +312,7 @@ class SchoolCourseWork extends React.Component {
     }
 }
 
-SchoolCourseWork.propTypes = {
+SchoolCourseMaterialSelectFile.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -319,9 +323,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
-    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseWork))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseMaterialSelectFile))));
