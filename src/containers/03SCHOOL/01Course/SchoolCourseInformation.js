@@ -21,6 +21,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -44,10 +45,10 @@ class SchoolCourseInformation extends React.Component {
     //     }
     // }
     state = {
-        academicTerm: '',
-        courseLocation: '',
-        subjectName: '',
-        subjectType: '',
+        academicTerm: '2019-20',
+        courseLocation: '杭州',
+        subjectName: '4ca84f07-e091-4868-87d2-671b3d1ce0d6',
+        courseType: '开发流程课程',
 
         courseCode: '',
         courseName: '',
@@ -58,13 +59,13 @@ class SchoolCourseInformation extends React.Component {
         contactEmail: '',
         contactWechat: '',
         contactNumber: '',
-        courseCredits: '',
+        essentialCourse: '',
 
-        enrollmenetStartDate: '',
-        enrollmenetEndDate: '',
+        enrollmenetStartDate: 1565798300000,
+        enrollmenetEndDate: 1565798300000,
 
         courseQuota: '',
-        courseScore: '',
+        courseCredits: '',
 
         courseFees: '',
         expectedFees: '',
@@ -89,7 +90,7 @@ class SchoolCourseInformation extends React.Component {
                 academicTerm: theList.academic_term,
                 courseLocation: '',
                 subjectName: '',
-                subjectType: '',
+                courseType: '',
 
                 courseCode: theList.code,
                 courseName: theList.name,
@@ -100,13 +101,13 @@ class SchoolCourseInformation extends React.Component {
                 contactEmail: theList.email,
                 contactWechat: theList.wechat,
                 contactNumber: theList.phone,
-                courseCredits: theList.credit,
+                essentialCourse: '',
 
                 enrollmenetStartDate: '',
                 enrollmenetEndDate: '',
 
                 courseQuota: theList.quota,
-                courseScore: '',
+                courseCredits: theList.credit,
 
                 courseFees: theList.fee,
                 expectedFees: theList.expected_fee,
@@ -130,55 +131,64 @@ class SchoolCourseInformation extends React.Component {
     // post
     createConference = (event) => {
         console.log(event);
-        // const cb = (obj) => {
-        //     // console.log("cb : ", obj);
 
-        //     const data = {
-        //         ...this.props.auth.relatedDataId,
-        //         "noteId": obj.body.note_id,
-        //     }
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
 
-        //     this.props.setRelatedDataIdP(data);
-        //     this.setState({
-        //         ...this.state,
-        //         noteId: obj.body.note_id
-        //     })
-        // }
-        // const eCb = (obj) => {
-        //     console.log("eCb : ", obj);
-        // }
+            const data = {
+                ...this.props.auth.conferenceId,
+                conferenceId: obj.body.conference_id,
+            }
+            this.props.setRelatedDataIdP(data);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
 
-        // const params = {
-        //     active: true,
-        //     name: "Testing01模式",
-        //     academic_year: "2019",
-        //     academic_term: "2019-20",
-        //     location: "杭州",
-        //     subject: "d4314518-5a20-4bc4-ad6a-35ad44c16647",
-        //     type: "test-type",
-        //     code: "test-code",
-        //     address: "杭州市江干区民心路88号钱江新城东方君悦",
-        //     enrollmenet_start_date: 1565797400000,
-        //     enrollment_end_date: 1565798400000,
-        //     credit_requirement: 2019,
-        //     fee: 1000,
-        //     expected_fee: 10000,
-        //     actual_fee: 10000,
-        //     discount: 0,
-        //     quota: 10,
-        //     credit: 3,
-        //     introduction: "introduction01",
-        //     emphasis: "emphasis01",
-        //     benefit: "benefit01",
-        //     email: "email01@fablead.com",
-        //     wechat: "139 2242 9906",
-        //     phone: "139 2242 9906",
-        //     conference_sections: [],
-        //     conference_officers: [
-        //         { user: this.props.auth.userInfo.username }
-        //     ]
-        // }
-        // apiConferences.createConference(params, this.props.auth.token, cb, eCb);
+        const params = {
+            active: true,
+            name: this.state.courseName,
+            academic_year: this.state.academicTerm.substring(0, 4),
+            academic_term: this.state.academicTerm,
+            location: this.state.courseLocation,
+            subject: this.state.subjectName,
+            type: this.state.courseType,
+            code: this.state.courseCode,
+            address: this.state.courseAddress,
+            enrollmenet_start_date: 1565797400000,
+            enrollment_end_date: 1565798400000,
+            credit_requirement: 2019,
+            fee: this.state.courseFees,
+            expected_fee: this.state.expectedFees,
+            actual_fee: this.state.actualFees,
+            discount: 0,
+            quota: this.state.courseQuota,
+            credit: this.state.courseCredits,
+            introduction: this.state.courseIntroduction,
+            emphasis: this.state.courseEmphasis,
+            benefit: this.state.courseBenefits,
+            email: this.state.contactEmail,
+            wechat: this.state.contactWechat,
+            phone: this.state.contactNumber,
+            conference_sections: [
+                {
+                    "title": "第1课 - 介绍",
+                    "sequence": 1,
+                    "start_date": 1570323600000,
+                    "end_date": 1570356000000,
+                    "location": "杭州",
+                    "address": "新城东方君悦水星厅",
+                    "teachers": [
+                        {"user": "teacher@ffa.test", "sequence": 1}
+                    ]
+                }
+            ],
+            conference_officers: [
+                { user: this.props.auth.userInfo.username }
+            ]
+        }
+        console.log(params);
+        apiConferences.createConference(params, this.props.auth.token, cb, eCb);
     }
 
     _handleInput = (key, value) => {
@@ -206,7 +216,7 @@ class SchoolCourseInformation extends React.Component {
             academicTerm,
             courseLocation,
             subjectName,
-            subjectType,
+            courseType,
 
             enrollmenetStartDate,
             enrollmenetEndDate,
@@ -245,10 +255,10 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <select value={subjectName} onChange={e => { this._handleSelect('subjectName', e.target.value) }}>
-                            <option value="战略课程">战略课程</option>
-                            <option value="商品管理系列课程">商品管理系列课程</option>
-                            <option value="设计应用系列课程">设计应用系列课程</option>
-                            <option value="开发流程系列课程">开发流程系列课程</option>
+                            <option value="d4314518-5a20-4bc4-ad6a-35ad44c16647">战略课程</option>
+                            <option value="6e90c530-869d-46d3-8655-b229da34935e">商品管理系列课程</option>
+                            <option value="3de02f4e-1c58-49e5-8b80-390346c94ad2">设计应用系列课程</option>
+                            <option value="4ca84f07-e091-4868-87d2-671b3d1ce0d6">开发流程系列课程</option>
                         </select>
                     </Grid>
 
@@ -256,7 +266,7 @@ class SchoolCourseInformation extends React.Component {
                         课程类型
                     </Grid>
                     <Grid item xs={11}>
-                        <select value={subjectType} onChange={e => { this._handleSelect('subjectType', e.target.value) }}>
+                        <select value={courseType} onChange={e => { this._handleSelect('courseType', e.target.value) }}>
                             <option value="test-type">test-type</option>
                             <option value="开发流程课程">开发流程课程</option>
                             <option value="设计应用课程">设计应用课程</option>
@@ -271,7 +281,8 @@ class SchoolCourseInformation extends React.Component {
                         课程编号
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseCode" type="text" placeholder="课程编号" maxLength="100" />
+                        <Field name="courseCode" type="text" placeholder="课程编号" maxLength="100"
+                        onChange={e => { this._handleSelect('courseCode', e.target.value) }}/>
                         {errors.courseCode && touched.courseCode ? <ErrorMessage message={errors.courseCode} /> : null}
                     </Grid>
 
@@ -279,7 +290,8 @@ class SchoolCourseInformation extends React.Component {
                         课程名称
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseName" type="text" placeholder="课程名称" maxLength="100" />
+                        <Field name="courseName" type="text" placeholder="课程名称" maxLength="100"
+                        onChange={e => { this._handleSelect('courseName', e.target.value) }}/>
                         {errors.courseName && touched.courseName ? <ErrorMessage message={errors.courseName} /> : null}
                     </Grid>
 
@@ -287,7 +299,8 @@ class SchoolCourseInformation extends React.Component {
                         课程地址
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseAddress" type="text" placeholder="课程地址" maxLength="100" />
+                        <Field name="courseAddress" type="text" placeholder="课程地址" maxLength="100"
+                        onChange={e => { this._handleSelect('courseAddress', e.target.value) }}/>
                         {errors.courseAddress && touched.courseAddress ? <ErrorMessage message={errors.courseAddress} /> : null}
                     </Grid>
 
@@ -295,7 +308,8 @@ class SchoolCourseInformation extends React.Component {
                         课程简介
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseIntroduction" type="text" placeholder="课程简介" maxLength="100" />
+                        <Field name="courseIntroduction" type="text" placeholder="课程简介" maxLength="100"
+                        onChange={e => { this._handleSelect('courseIntroduction', e.target.value) }}/>
                         {errors.courseIntroduction && touched.courseIntroduction ? <ErrorMessage message={errors.courseIntroduction} /> : null}
                     </Grid>
 
@@ -303,7 +317,8 @@ class SchoolCourseInformation extends React.Component {
                         课程重点
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseEmphasis" type="text" placeholder="课程重点" maxLength="100" />
+                        <Field name="courseEmphasis" type="text" placeholder="课程重点" maxLength="100"
+                        onChange={e => { this._handleSelect('courseEmphasis', e.target.value) }}/>
                         {errors.courseEmphasis && touched.courseEmphasis ? <ErrorMessage message={errors.courseEmphasis} /> : null}
                     </Grid>
 
@@ -311,7 +326,8 @@ class SchoolCourseInformation extends React.Component {
                         课程收益
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseBenefits" type="text" placeholder="课程收益" maxLength="100" />
+                        <Field name="courseBenefits" type="text" placeholder="课程收益" maxLength="100"
+                        onChange={e => { this._handleSelect('courseBenefits', e.target.value) }}/>
                         {errors.courseBenefits && touched.courseBenefits ? <ErrorMessage message={errors.courseBenefits} /> : null}
                     </Grid>
 
@@ -319,7 +335,8 @@ class SchoolCourseInformation extends React.Component {
                         联系电邮
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactEmail" type="text" placeholder="联系电邮" maxLength="100" />
+                        <Field name="contactEmail" type="text" placeholder="联系电邮" maxLength="100"
+                        onChange={e => { this._handleSelect('contactEmail', e.target.value) }}/>
                         {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} /> : null}
                     </Grid>
 
@@ -327,7 +344,8 @@ class SchoolCourseInformation extends React.Component {
                         联系微信
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactWechat" type="text" placeholder="联系微信" maxLength="100" />
+                        <Field name="contactWechat" type="text" placeholder="联系微信" maxLength="100"
+                        onChange={e => { this._handleSelect('contactWechat', e.target.value) }}/>
                         {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null}
                     </Grid>
 
@@ -335,7 +353,8 @@ class SchoolCourseInformation extends React.Component {
                         联系电话
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="contactNumber" type="text" placeholder="联系电话" maxLength="100" />
+                        <Field name="contactNumber" type="text" placeholder="联系电话" maxLength="100"
+                        onChange={e => { this._handleSelect('contactNumber', e.target.value) }}/>
                         {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null}
                     </Grid>
 
@@ -375,7 +394,8 @@ class SchoolCourseInformation extends React.Component {
                         课程名额
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseQuota" type="text" placeholder="课程名额" maxLength="100" />
+                        <Field name="courseQuota" type="text" placeholder="课程名额" maxLength="100"
+                        onChange={e => { this._handleSelect('courseQuota', e.target.value) }}/>
                         {errors.courseQuota && touched.courseQuota ? <ErrorMessage message={errors.courseQuota} /> : null}
                     </Grid>
 
@@ -383,7 +403,8 @@ class SchoolCourseInformation extends React.Component {
                         课程学分
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseCredits" type="text" placeholder="课程学分" maxLength="100" />
+                        <Field name="courseCredits" type="text" placeholder="课程学分" maxLength="100"
+                        onChange={e => { this._handleSelect('courseCredits', e.target.value) }}/>
                         {errors.courseCredits && touched.courseCredits ? <ErrorMessage message={errors.courseCredits} /> : null}
                     </Grid>
 
@@ -391,7 +412,8 @@ class SchoolCourseInformation extends React.Component {
                         课程费用
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseFees" type="text" placeholder="课程费用" maxLength="100" />
+                        <Field name="courseFees" type="text" placeholder="课程费用" maxLength="100"
+                        onChange={e => { this._handleSelect('courseFees', e.target.value) }}/>
                         {errors.courseFees && touched.courseFees ? <ErrorMessage message={errors.courseFees} /> : null}
                     </Grid>
 
@@ -399,7 +421,8 @@ class SchoolCourseInformation extends React.Component {
                         预计学费
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="expectedFees" type="text" placeholder="预计学费" maxLength="100" />
+                        <Field name="expectedFees" type="text" placeholder="预计学费" maxLength="100"
+                        onChange={e => { this._handleSelect('expectedFees', e.target.value) }}/>
                         {errors.expectedFees && touched.expectedFees ? <ErrorMessage message={errors.expectedFees} /> : null}
                     </Grid>
 
@@ -407,7 +430,8 @@ class SchoolCourseInformation extends React.Component {
                         实际收费
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="actualFees" type="text" placeholder="实际收费" maxLength="100" />
+                        <Field name="actualFees" type="text" placeholder="实际收费" maxLength="100"
+                        onChange={e => { this._handleSelect('actualFees', e.target.value) }}/>
                         {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null}
                     </Grid>
 
@@ -415,7 +439,7 @@ class SchoolCourseInformation extends React.Component {
                         课程日期和时间
                     </Grid>
 
-                    <Grid item xs={12} >
+                    {/* <Grid item xs={12} >
                         #1
                     </Grid>
 
@@ -493,7 +517,7 @@ class SchoolCourseInformation extends React.Component {
                             <option value="3">C</option>
                             <option value="4">D</option>
                         </select>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
                 <div className="bottomControl clearfix">
                     <span className="right">
@@ -518,7 +542,10 @@ class SchoolCourseInformation extends React.Component {
     render() {
         // const { classes, t, i18n } = this.props;
         const {
-            // conferenceList,
+            academicTerm,
+            courseLocation,
+            subjectName,
+            courseType,
 
             courseCode,
             courseName,
@@ -529,10 +556,13 @@ class SchoolCourseInformation extends React.Component {
             contactEmail,
             contactWechat,
             contactNumber,
-            courseCredits,
+            // essentialCourse,
+
+            enrollmenetStartDate,
+            enrollmenetEndDate,
 
             courseQuota,
-            // courseScore,
+            courseCredits,
 
             courseFees,
             expectedFees,
@@ -605,10 +635,10 @@ class SchoolCourseInformation extends React.Component {
                                 <Formik
                                     enableReinitialize
                                     initialValues={{
-                                        academicTerm: '',
-                                        courseLocation: '',
-                                        subjectName: '',
-                                        subjectType: '',
+                                        academicTerm: academicTerm,
+                                        courseLocation: courseLocation,
+                                        subjectName: subjectName,
+                                        courseType: courseType,
 
                                         courseCode: courseCode,
                                         courseName: courseName,
@@ -619,13 +649,13 @@ class SchoolCourseInformation extends React.Component {
                                         contactEmail: contactEmail,
                                         contactWechat: contactWechat,
                                         contactNumber: contactNumber,
-                                        courseCredits: courseCredits,
+                                        essentialCourse: '',
 
-                                        enrollmenetStartDate: '',
-                                        enrollmenetEndDate: '',
+                                        enrollmenetStartDate: enrollmenetStartDate,
+                                        enrollmenetEndDate: enrollmenetEndDate,
 
                                         courseQuota: courseQuota,
-                                        courseScore: '',
+                                        courseCredits: courseCredits,
 
                                         courseFees: courseFees,
                                         expectedFees: expectedFees,
@@ -662,6 +692,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
+    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
