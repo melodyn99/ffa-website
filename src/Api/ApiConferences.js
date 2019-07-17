@@ -37,7 +37,7 @@ export const apiConferences = {
         apiGeneral.apiFetch(`conferences/${encodeURIComponent(conferenceId)}`, params, token, cb, eCb)
     },
 
-    createConference: data => api.post('create_conference', data),
+    // createConference: data => api.post('create_conference', data),
 
     editConference: (conferenceId, data) => api.post(`conferences/${conferenceId}?$expand=conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/contract_file,contracts/contract_incomes`, data),
 
@@ -107,6 +107,10 @@ export const apiConferences = {
     /* All Course start */
     getConferenceList: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
+    },
+
+    createConference: (body, token, cb, eCb) => {
+        apiGeneral.apiPost('create_conference', body, token, cb, eCb)
     },
     /* All Course end */
 

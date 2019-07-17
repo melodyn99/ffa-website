@@ -160,14 +160,14 @@ class SchoolNoteTaking extends React.Component {
         // this.editNoteInfo(event);
         const redux_noteId = this.props.auth.relatedDataId.noteId || null;
         if (redux_noteId === null) {
-            this.newNoteInfo(event);
+            this.createNote(event);
         } else {
             this.editNoteInfo(event);
         }
     }
 
     // post
-    newNoteInfo = (event) => {
+    createNote = (event) => {
         const conferenceId = this.props.auth.relatedDataId.conferenceId;
 
         const cb = (obj) => {

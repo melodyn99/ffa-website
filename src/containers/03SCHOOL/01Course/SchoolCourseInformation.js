@@ -70,8 +70,12 @@ class SchoolCourseInformation extends React.Component {
         expectedFees: '',
         actualFees: '',
     }
+
     componentDidMount() {
-        this._getConferenceDefailByUser();
+        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        if (redux_conferenceId !== null) {
+            this._getConferenceDefailByUser();
+        }
     }
 
     _getConferenceDefailByUser = () => {
@@ -123,6 +127,60 @@ class SchoolCourseInformation extends React.Component {
     }
 
     //** form handle input start **/
+    // post
+    createConference = (event) => {
+        console.log(event);
+        // const cb = (obj) => {
+        //     // console.log("cb : ", obj);
+
+        //     const data = {
+        //         ...this.props.auth.relatedDataId,
+        //         "noteId": obj.body.note_id,
+        //     }
+
+        //     this.props.setRelatedDataIdP(data);
+        //     this.setState({
+        //         ...this.state,
+        //         noteId: obj.body.note_id
+        //     })
+        // }
+        // const eCb = (obj) => {
+        //     console.log("eCb : ", obj);
+        // }
+
+        // const params = {
+        //     active: true,
+        //     name: "Testing01模式",
+        //     academic_year: "2019",
+        //     academic_term: "2019-20",
+        //     location: "杭州",
+        //     subject: "d4314518-5a20-4bc4-ad6a-35ad44c16647",
+        //     type: "test-type",
+        //     code: "test-code",
+        //     address: "杭州市江干区民心路88号钱江新城东方君悦",
+        //     enrollmenet_start_date: 1565797400000,
+        //     enrollment_end_date: 1565798400000,
+        //     credit_requirement: 2019,
+        //     fee: 1000,
+        //     expected_fee: 10000,
+        //     actual_fee: 10000,
+        //     discount: 0,
+        //     quota: 10,
+        //     credit: 3,
+        //     introduction: "introduction01",
+        //     emphasis: "emphasis01",
+        //     benefit: "benefit01",
+        //     email: "email01@fablead.com",
+        //     wechat: "139 2242 9906",
+        //     phone: "139 2242 9906",
+        //     conference_sections: [],
+        //     conference_officers: [
+        //         { user: this.props.auth.userInfo.username }
+        //     ]
+        // }
+        // apiConferences.createConference(params, this.props.auth.token, cb, eCb);
+    }
+
     _handleInput = (key, value) => {
         console.log(value);
         this.setState({
@@ -153,6 +211,7 @@ class SchoolCourseInformation extends React.Component {
             enrollmenetStartDate,
             enrollmenetEndDate,
         } = this.state;
+        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
 
         return (
             <Form>
@@ -437,7 +496,14 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <span className="right"><Button type="submit" className={classes.greyButton}>编辑资料</Button></span>
+                    <span className="right">
+                        {redux_conferenceId
+                            ?
+                            <Button type="submit" className={classes.greyButton}>编辑资料</Button>
+                            :
+                            <Button onClick={e => this.createConference(e)} className={classes.blackButton}>确认</Button>
+                        }
+                    </span>
                 </div>
             </Form>
         )

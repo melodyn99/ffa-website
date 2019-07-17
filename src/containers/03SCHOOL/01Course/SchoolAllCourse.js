@@ -109,6 +109,12 @@ class SchoolAllCourse extends React.Component {
 
     /** form handle input start **/
     _createButtonAction = (url) => {
+        const data = {
+            ...this.props.auth.relatedDataId,
+            conferenceId: '',
+        }
+
+        this.props.setRelatedDataIdP(data);
         this.props.history.push(url);
     }
     handleEnterSelection = (event, id) => {
