@@ -64,7 +64,7 @@ class SchoolCourseInformation extends React.Component {
             expectedFees: '',
             actualFees: '',
 
-            courseAttendance: []
+            conference_sections: []
         }
     }
 
@@ -122,10 +122,18 @@ class SchoolCourseInformation extends React.Component {
     }
 
     _handleAddMore = () => {
-        console.log('AddMore');
-        this.setState(state => ({
-            courseAttendance: [<div>hello</div>, ...this.state.courseAttendance]
-        }))
+        // console.log('AddMore');
+        this.setState({
+            ...this.state,
+            conference_sections: [
+                ...this.state.conference_sections,
+                {
+                    className: '',
+                    classDate: '',
+                    classLocation: '',
+                    classTeacher: '',
+                }]
+        })
     }
 
     _handleInput = (value, key) => {
@@ -368,7 +376,7 @@ class SchoolCourseInformation extends React.Component {
                     <Grid item xs={12} >课程日期和时间</Grid>
                 </Grid>
 
-                {(this.state.courseAttendance.map(
+                {(this.state.conference_sections.map(
                     (data, i) => {
                         return (
                             <Grid container spacing={16} alignItems="center" key={i}>
@@ -376,20 +384,20 @@ class SchoolCourseInformation extends React.Component {
 
                                 <Grid item xs={1} >课程标题</Grid>
                                 <Grid item xs={11}>
-                                    <Field name={"className[" + i + "]"} type="text" placeholder={"第" + (i + 1) + "课"} maxLength="100" />
-                                    {errors.className2 && touched.className2 ? <ErrorMessage message={errors.className2} /> : null}
+                                    <Field name={"className"} type="text" placeholder={"第" + (i + 1) + "课"} maxLength="100" />
+                                    {errors.className && touched.className ? <ErrorMessage message={errors.className} /> : null}
                                 </Grid>
 
                                 <Grid item xs={1} >课程日期</Grid>
                                 <Grid item xs={11}>
-                                    <Field name={"classDate[" + i + "]"} type="text" placeholder="2019 / 3 / 22" maxLength="100" />
-                                    {errors.classDate2 && touched.classDate2 ? <ErrorMessage message={errors.classDate2} /> : null}
+                                    <Field name={"classDate"} type="text" placeholder="2019 / 3 / 22" maxLength="100" />
+                                    {errors.classDate && touched.classDate ? <ErrorMessage message={errors.classDate} /> : null}
                                 </Grid>
 
                                 <Grid item xs={1} >课程地点</Grid>
                                 <Grid item xs={11}>
                                     <Field name={"classLocation[" + i + "]"} type="text" placeholder="5号厅" maxLength="100" />
-                                    {errors.classLocation2 && touched.classLocation2 ? <ErrorMessage message={errors.classLocation2} /> : null}
+                                    {errors.classLocation && touched.classLocation ? <ErrorMessage message={errors.classLocation} /> : null}
                                 </Grid>
 
                                 <Grid item xs={1} >授课老师</Grid>
@@ -478,21 +486,20 @@ class SchoolCourseInformation extends React.Component {
             actualFees: Yup.number()
                 .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
-            className1: Yup.string()
-                .required('Class Name is required'),
-            classDate1: Yup.string()
-                .required('Class Date is required'),
-            classLocation1: Yup.string()
-                .required('Class Location is required'),
-            className2: Yup.string()
-                .required('Class Name is required'),
-            classDate2: Yup.string()
-                .required('Class Date is required'),
-            classLocation2: Yup.string()
-                .required('Class Location is required'),
+
+            conference_sections: Yup
+                .array()
+                .of(
+                    Yup.object().shape({
+                        className: Yup.string().required('Class Name is required'),
+                        classDate: Yup.string().required('Class Date is required'),
+                        classLocation: Yup.string().required('Class Location is required'),
+                        classTeacher: Yup.string().required('Class Location is required'),
+                    })
+                )
         })
 
-        console.log(this.state.courseAttendance);
+        console.log(this.state);
 
         return (
             <div>
@@ -564,8 +571,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
