@@ -208,35 +208,15 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
                             <div className="content">
 
                                 <ToolBar
-                                    backButton={false}
+                                    backButton={true}
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
+                                    backButtonActionUrl='school-course-material'
 
                                     createButton={true}
-                                    createButtonText="添加"
+                                    createButtonText="添加檔案"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-materials'
-
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={true}
-                                    deleteButtonText="移除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={false}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={false}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
+                                    createButtonActionUrl='school-course-material-select-file'
                                 />
 
                                 <Paper className={classes.paper}>

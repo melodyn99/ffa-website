@@ -37,7 +37,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-// import data from '../../../data/03SCHOOL/01Course/SchoolCourseMaterial';
+import data from '../../../data/03SCHOOL/01Course/SchoolCourseMaterial';
 
 // Define column names
 const rows = [
@@ -57,7 +57,7 @@ class SchoolCourseMaterial extends React.Component {
         rowsPerPage: 10,
 
         // component state
-        // data: data,
+        data: data,
         materialList: [],
     };
 
@@ -101,6 +101,7 @@ class SchoolCourseMaterial extends React.Component {
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
         console.log(`Clicked class_material_id: ${id}`);
+        this.props.history.push('school-course-material-inside-folder');
     };
 
     // ToolBar
@@ -191,7 +192,8 @@ class SchoolCourseMaterial extends React.Component {
         const {
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = this.state.materialList;
+        // const data = this.state.materialList;
+        const data = this.state.data;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -208,35 +210,10 @@ class SchoolCourseMaterial extends React.Component {
                             <div className="content">
 
                                 <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
-
                                     createButton={true}
                                     createButtonText="添加"
                                     createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-materials'
-
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={true}
-                                    deleteButtonText="移除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={false}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={false}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
+                                    createButtonActionUrl='school-course-material-select-folder'
                                 />
 
                                 <Paper className={classes.paper}>

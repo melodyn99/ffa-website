@@ -20,6 +20,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
+import { Button } from '@material-ui/core';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
@@ -206,39 +207,6 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-
-                                <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-materials'
-
-                                    createButton={true}
-                                    createButtonText="添加"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-materials'
-
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={true}
-                                    deleteButtonText="移除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={false}
-                                    importButtonText="导入123"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={false}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
-                                />
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -303,6 +271,12 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
+                                <div className="bottomControl clearfix">
+                                    <Button className={classes.greyButton}
+                                        onClick={() => this.props.history.push('school-course-material')}
+                                    >返回</Button>
+                                    <span className="right"><Button type="submit" className={classes.blackButton}>加入檔案</Button></span>
+                                </div>
                             </div>
                         </div>
                     </div>
