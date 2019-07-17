@@ -118,7 +118,11 @@ class SchoolCourseNote extends React.Component {
 
     _createButtonAction = () => {
         const { i18n } = this.props;
-        this.props.resetRelatedDataIdP();
+        const data = {
+            ...this.props.auth.relatedDataId,
+            "noteId": '',
+        }
+        this.props.setRelatedDataIdP(data);
         this.props.history.push('/' + i18n.language + '/school-note-taking');
     }
     /** form handle input end **/

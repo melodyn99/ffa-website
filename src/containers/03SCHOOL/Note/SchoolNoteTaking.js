@@ -76,7 +76,7 @@ class SchoolNoteTaking extends React.Component {
     }
 
     componentDidMount() {
-        if (this.state.noteId !== null) {
+        if (this.props.auth.relatedDataId.noteId !== null) {
             this._getNoteTakingList();
             this._getNoteFile();
         }
@@ -156,7 +156,7 @@ class SchoolNoteTaking extends React.Component {
         // console.log('event: ' + JSON.stringify(event.notesName, null, 2));
         // this.editNoteInfo(event);
 
-        if (this.state.noteId === null) {
+        if (this.props.auth.relatedDataId.noteId === null) {
             this.newNoteInfo(event);
         } else {
             this.editNoteInfo(event);
@@ -213,7 +213,7 @@ class SchoolNoteTaking extends React.Component {
             content: event.notesContent,
         }
 
-        apiNoteTaking.editNoteTaking(this.state.noteId, body, this.props.auth.token, cb, eCb);
+        apiNoteTaking.editNoteTaking(this.props.auth.relatedDataId.noteId, body, this.props.auth.token, cb, eCb);
     }
 
     // delete
@@ -229,7 +229,7 @@ class SchoolNoteTaking extends React.Component {
             console.log("deleteNoteEcb : ", obj);
         }
 
-        apiNoteTaking.deleteNoteTaking(this.state.noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
+        apiNoteTaking.deleteNoteTaking(this.props.auth.relatedDataId.noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
     }
     /** Note end **/
 
@@ -392,10 +392,10 @@ class SchoolNoteTaking extends React.Component {
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
 
-                    {(this.state.noteId !== null) &&
+                    {(this.props.auth.relatedDataId.noteId !== null) &&
                         <Grid item xs={1} >记录文件</Grid>
                     }
-                    {(this.state.noteId !== null) &&
+                    {(this.props.auth.relatedDataId.noteId !== null) &&
                         <Grid item xs={11} >
                             <Button
                                 className={classes.blueGreenButton}
@@ -405,10 +405,10 @@ class SchoolNoteTaking extends React.Component {
                         </Grid>
                     }
 
-                    {(this.state.noteId !== null) &&
+                    {(this.props.auth.relatedDataId.noteId !== null) &&
                         <Grid item xs={1} ></Grid>
                     }
-                    {(this.state.noteId !== null) &&
+                    {(this.props.auth.relatedDataId.noteId !== null) &&
                         <Grid item xs={11}>
                             <Paper className={classes.paper}>
                                 <div className={classes.tableWrapper}>
@@ -486,7 +486,7 @@ class SchoolNoteTaking extends React.Component {
                         className={classes.greyButton}
                         onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    {(this.state.noteId !== null) &&
+                    {(this.props.auth.relatedDataId.noteId !== null) &&
                         <Button
                             className={classes.blackButton}
                             onClick={() => this._handleDeleteNote()}
