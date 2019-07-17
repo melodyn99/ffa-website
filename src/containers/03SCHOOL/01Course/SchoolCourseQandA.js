@@ -76,7 +76,7 @@ class SchoolCourseQandA extends React.Component {
                     conversation_id: n.conversation_id,
                     student: n.name_zh,
                     messages: n.total_message + ` (${n.total_unread_message})`,
-                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                    lastsend: dateToDayAndMonth(n.lastmoddate),
                 }
                 return convertedList.push(convertedArray);
             });
