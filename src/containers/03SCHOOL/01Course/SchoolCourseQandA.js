@@ -35,7 +35,7 @@ import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseQandA';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseQandA';
 
 // Define column names
 const rows = [
@@ -50,11 +50,11 @@ class SchoolCourseQandA extends React.Component {
         order: 'desc',
         orderBy: 'lastsend',
         selected: [],
-        data: data,
         page: 0,
         rowsPerPage: 10,
 
         // component state
+        // data: data,
         courseQandAList: [],
     };
 
@@ -70,7 +70,7 @@ class SchoolCourseQandA extends React.Component {
             const theList = obj.body;
 
             const convertedList = [];
-            console.log(theList);
+            // console.log(theList);
             theList.map(n => {
                 const convertedArray = {
                     conversation_id: n.conversation_id,
@@ -90,6 +90,7 @@ class SchoolCourseQandA extends React.Component {
         }
 
         const params = {
+            //fetching with Hardcore Id
             // conference: this.props.auth.relatedDataId.conferenceId,
             conference: '5322de86-1540-4f35-8951-4872bf0c4b07',
         }

@@ -117,9 +117,15 @@ export const apiConferences = {
     /* Course Information end */
 
     /* Course preparation start */
+    getConferencePreparations: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('event_preparations', params, token, cb, eCb)
+    },
     /* Course preparation end */
 
     /* Course material start */
+    getConferenceMaterial: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('class_materials', params, token, cb, eCb)
+    },
     /* Course material end */
 
     /* Course work start */
@@ -133,12 +139,12 @@ export const apiConferences = {
     /* Course work end */
 
     /* Course student-management start */
-    getConferenceMessages: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('messages', params, token, cb, eCb)
-    },
     /* Course student-management end */
 
     /* Course announcement start */
+    getConferenceMessages: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('messages', params, token, cb, eCb)
+    },
     /* Course announcement end */
 
     /* Course q-and-a start */

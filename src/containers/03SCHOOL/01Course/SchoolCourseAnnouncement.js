@@ -129,7 +129,7 @@ class SchoolCourseAnnouncement extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
-            console.log(JSON.stringify(theList, null, 2));
+            // console.log(theList);
             this.setState({
                 messagesList: theList,
             });

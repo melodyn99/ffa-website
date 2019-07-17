@@ -1,7 +1,7 @@
 // Essential for all components
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
@@ -23,40 +23,129 @@ import Paper from '@material-ui/core/Paper';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { dateToDayAndMonth, dateToRemainingDaysEvent, dateToDayMonthYearTimeMinutes } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCoursePreparation';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCoursePreparation';
 
 // Define column names
 const rows = [
     { id: 'topic', numeric: false, disablePadding: false, label: '准备项目' },
     { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
-    { id: 'reminder', numeric: true, disablePadding: false, label: '发送提醒' },
     { id: 'status', numeric: true, disablePadding: false, label: '状态' },
+    { id: 'operator', numeric: true, disablePadding: false, label: '操作人員' },
+    { id: 'operation_date', numeric: true, disablePadding: false, label: '操作日期' },
 ];
 
 class SchoolCoursePreparation extends React.Component {
     state = {
+        // table settings
         order: 'asc',
         orderBy: 'deadline',
         selected: [],
-        data: data,
         page: 0,
         rowsPerPage: 10,
-        tempGoDetail: false
+        tempGoDetail: false,
+
+        // component state
+        // data: data,
+        preparationList: [],
     };
 
+    componentDidMount() {
+        this._getConferencePreparations();
+    }
+
+    _getConferencePreparations = () => {
+        // const { viewingSeminar } = this.props;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body;
+            const convertedList = [];
+
+            theList.map(n => {
+                const convertedArray = {
+                    event_preparation_id: n.event_preparation_id,
+                    topic: n.name,
+                    deadline: dateToDayAndMonth(n.target_date),
+                    status: n.checked ? '已完成' : dateToRemainingDaysEvent(n.target_date),
+                    operator: n.operator,
+                    operation_date: n.operation_date ? dateToDayMonthYearTimeMinutes(n.operation_date) : '',
+                }
+                return convertedList.push(convertedArray);
+            });
+
+            this.setState({
+                preparationList: convertedList,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            conference: this.props.auth.relatedDataId.conferenceId,
+        }
+
+        apiConferences.getConferencePreparations(params, this.props.auth.token, cb, eCb);
+    }
+
+    /** form handle input start **/
+    handleEnterSelection = (event, id) => {
+        console.log(`Clicked seatingPlan_id: ${id}`);
+        // const { i18n } = this.props;
+        // const seatingPlan_id = id;
+        // const data = {
+        //     ...this.props.auth.relatedDataId,
+        //     "seatingPlan_id": seatingPlan_id,
+        // }
+        // this.props.setRelatedDataIdP(data);
+        // this.props.history.push('/' + i18n.language + '/school-seating-plan');
+    };
+
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _editButtonAction = () => {
+        console.log('edit button pressed');
+    }
+
+    _deleteButtonAction = () => {
+        console.log('delete button pressed');
+    }
+
+    _importButtonAction = () => {
+        console.log('import button pressed');
+    }
+
+    _copyButtonAction = () => {
+        console.log('copy button pressed');
+    }
+
+    _reportButtonAction = () => {
+        console.log('report button pressed');
+    }
+    /** form handle input end **/
+
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -107,50 +196,27 @@ class SchoolCoursePreparation extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    _tempDetail = () => {
-        this.setState({
-            ...this.state,
-            tempGoDetail: true
-        })
-    }
+    // _tempDetail = () => {
+    //     this.setState({
+    //         ...this.state,
+    //         tempGoDetail: true
+    //     })
+    // }
+    /** React components 'Material-UI' end  **/
 
-    // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
 
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
-    }
 
     render() {
         const { classes, i18n } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const {
+            // data,
+            order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = this.state.preparationList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-        if (this.state.tempGoDetail) {
-            return <Redirect push to={"/" + i18n.language + "/school-seating-plan"} />;
-        }
+        // if (this.state.tempGoDetail) {
+        //     return <Redirect push to={"/" + i18n.language + "/school-seating-plan"} />;
+        // }
 
         return (
             <div>
@@ -216,16 +282,16 @@ class SchoolCoursePreparation extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const theIndexNum = data.indexOf(n);
+                                                        const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                // onClick={event => this.handleClick(event, n.id)}
-                                                                onClick={() => this._tempDetail()}
+                                                                onClick={event => this.handleEnterSelection(event, n.event_preparation_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">
@@ -235,14 +301,15 @@ class SchoolCoursePreparation extends React.Component {
                                                                 // padding="none"
                                                                 >{n.topic}</TableCell>
                                                                 <TableCell>{n.deadline}</TableCell>
-                                                                <TableCell>{n.reminder}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
+                                                                <TableCell>{n.operator}</TableCell>
+                                                                <TableCell>{n.operation_date}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={4} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>

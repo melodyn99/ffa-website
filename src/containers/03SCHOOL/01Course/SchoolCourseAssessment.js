@@ -35,7 +35,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseAssessment';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // Define column names
 const rows = [
@@ -53,11 +53,11 @@ class SchoolCourseAssessment extends React.Component {
         order: 'desc',
         orderBy: 'date',
         selected: [],
-        data: data,
         page: 0,
         rowsPerPage: 10,
 
         // component state
+        // data: data,
         assessmentList: [],
     };
 

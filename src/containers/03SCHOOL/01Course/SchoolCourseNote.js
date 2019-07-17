@@ -59,7 +59,6 @@ class SchoolCourseNote extends React.Component {
         // component state
         // data: data,
         noteList: [],
-        conferenceId: this.props.auth.relatedDataId.conferenceId,
     };
 
     componentDidMount() {

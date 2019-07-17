@@ -96,7 +96,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note_id: this.props.auth.relatedDataId.noteId
+            note_id: this.props.auth.relatedDataId.noteId,
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -131,7 +131,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note: this.state.noteId,
+            note: this.props.auth.relatedDataId.noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $expand: 'file/mime_type',
         }
