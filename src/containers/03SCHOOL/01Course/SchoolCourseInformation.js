@@ -34,43 +34,38 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class SchoolCourseInformation extends React.Component {
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     this.state = {
-    //         courseCode: 56789,
-    //         courseName: 'Cooking Course',
-    //         courseAddress: 'Hong Kong'
-    //     }
-    // }
-    state = {
-        academicTerm: '',
-        courseLocation: '',
-        subjectName: '',
-        subjectType: '',
+        this.state = {
+            academicTerm: '',
+            courseLocation: '',
+            subjectName: '',
+            subjectType: '',
 
-        courseCode: '',
-        courseName: '',
-        courseAddress: '',
-        courseIntroduction: '',
-        courseEmphasis: '',
-        courseBenefits: '',
-        contactEmail: '',
-        contactWechat: '',
-        contactNumber: '',
-        courseCredits: '',
+            courseCode: '',
+            courseName: '',
+            courseAddress: '',
+            courseIntroduction: '',
+            courseEmphasis: '',
+            courseBenefits: '',
+            contactEmail: '',
+            contactWechat: '',
+            contactNumber: '',
+            courseCredits: '',
 
-        enrollmenetStartDate: '',
-        enrollmenetEndDate: '',
+            enrollmenetStartDate: '',
+            enrollmenetEndDate: '',
 
-        courseQuota: '',
-        courseScore: '',
+            courseQuota: '',
+            courseScore: '',
 
-        courseFees: '',
-        expectedFees: '',
-        actualFees: '',
+            courseFees: '',
+            expectedFees: '',
+            actualFees: '',
 
-        courseAttendance: []
+            courseAttendance: []
+        }
     }
 
     componentDidMount() {
@@ -129,7 +124,7 @@ class SchoolCourseInformation extends React.Component {
     _handleAddMore = () => {
         console.log('AddMore');
         this.setState(state => ({
-            courseAttendance: [<Block />, ...this.state.courseAttendance]
+            courseAttendance: [<div>hello</div>, ...this.state.courseAttendance]
         }))
     }
 
@@ -377,29 +372,29 @@ class SchoolCourseInformation extends React.Component {
                     (data, i) => {
                         return (
                             <Grid container spacing={16} alignItems="center" key={i}>
-                                <Grid item xs={12} >#2</Grid>
+                                <Grid item xs={12} >#{i + 1}</Grid>
 
                                 <Grid item xs={1} >课程标题</Grid>
                                 <Grid item xs={11}>
-                                    <Field name="className2" type="text" placeholder="第一课" maxLength="100" />
+                                    <Field name={"className[" + i + "]"} type="text" placeholder={"第" + (i + 1) + "课"} maxLength="100" />
                                     {errors.className2 && touched.className2 ? <ErrorMessage message={errors.className2} /> : null}
                                 </Grid>
 
                                 <Grid item xs={1} >课程日期</Grid>
                                 <Grid item xs={11}>
-                                    <Field name="classDate2" type="text" placeholder="2019 / 3 / 22" maxLength="100" />
+                                    <Field name={"classDate[" + i + "]"} type="text" placeholder="2019 / 3 / 22" maxLength="100" />
                                     {errors.classDate2 && touched.classDate2 ? <ErrorMessage message={errors.classDate2} /> : null}
                                 </Grid>
 
                                 <Grid item xs={1} >课程地点</Grid>
                                 <Grid item xs={11}>
-                                    <Field name="classLocation2" type="text" placeholder="5号厅" maxLength="100" />
+                                    <Field name={"classLocation[" + i + "]"} type="text" placeholder="5号厅" maxLength="100" />
                                     {errors.classLocation2 && touched.classLocation2 ? <ErrorMessage message={errors.classLocation2} /> : null}
                                 </Grid>
 
                                 <Grid item xs={1} >授课老师</Grid>
                                 <Grid item xs={11}>
-                                    <select>
+                                    <select name={"classTeacher[" + i + "]"}>
                                         <option value="1">A</option>
                                         <option value="2">B</option>
                                         <option value="3">C</option>
