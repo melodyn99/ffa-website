@@ -163,7 +163,7 @@ class SchoolNoteTaking extends React.Component {
         }
     }
 
-    // insert
+    // post
     newNoteInfo = (event) => {
         const conferenceId = this.props.auth.relatedDataId.conferenceId;
 
@@ -195,7 +195,7 @@ class SchoolNoteTaking extends React.Component {
         apiNoteTaking.createNoteTaking(params, this.props.auth.token, cb, eCb);
     }
 
-    // update
+    // put
     editNoteInfo = (event) => {
         const { history } = this.props;
         // const { viewingSeminar } = this.props;
