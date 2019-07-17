@@ -223,6 +223,7 @@ class SchoolNoteTaking extends React.Component {
     _handleDeleteNote = () => {
         const { history } = this.props;
 
+        const noteId = this.props.auth.relatedDataId.noteId;
         const deleteNoteCb = (obj) => {
             // console.log("deleteNoteCb : ", obj);
             history.goBack();
@@ -231,14 +232,14 @@ class SchoolNoteTaking extends React.Component {
             console.log("deleteNoteEcb : ", obj);
         }
 
-        apiNoteTaking.deleteNoteTaking(this.props.auth.relatedDataId.noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
+        apiNoteTaking.deleteNoteTaking(noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
     }
     /** Note end **/
 
     /** Files management start **/
     _uploadFile = (body) => {
         // console.log('upload button pressed');
-        const { noteId } = this.state;
+        const noteId = this.props.auth.relatedDataId.noteId;
         const createNoteFileCb = (obj) => {
             // console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
