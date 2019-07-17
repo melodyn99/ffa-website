@@ -76,7 +76,10 @@ class SchoolNoteTaking extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.auth.relatedDataId.noteId !== null) {
+        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
+        // console.log(`currenet noteId: '${redux_noteId}'`);
+        if (redux_noteId !== null) {
+            console.log(`Exist noteId`);
             this._getNoteTakingList();
             this._getNoteFile();
         }
@@ -155,8 +158,8 @@ class SchoolNoteTaking extends React.Component {
         // console.log('click submit button!');
         // console.log('event: ' + JSON.stringify(event.notesName, null, 2));
         // this.editNoteInfo(event);
-
-        if (this.props.auth.relatedDataId.noteId === null) {
+        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
+        if (redux_noteId === null) {
             this.newNoteInfo(event);
         } else {
             this.editNoteInfo(event);
@@ -220,7 +223,6 @@ class SchoolNoteTaking extends React.Component {
     _handleDeleteNote = () => {
         const { history } = this.props;
 
-        // console.log("handleDeleteNote : ");
         const deleteNoteCb = (obj) => {
             // console.log("deleteNoteCb : ", obj);
             history.goBack();
@@ -372,7 +374,7 @@ class SchoolNoteTaking extends React.Component {
             order, orderBy, selected, rowsPerPage, page } = this.state;
         const data = fileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-        const isExistNoteId = this.props.auth.relatedDataId.noteId;
+        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
@@ -392,10 +394,10 @@ class SchoolNoteTaking extends React.Component {
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
 
-                    {(isExistNoteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Grid item xs={1} >记录文件</Grid>
                     }
-                    {(isExistNoteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Grid item xs={11} >
                             <Button
                                 className={classes.blueGreenButton}
@@ -405,10 +407,10 @@ class SchoolNoteTaking extends React.Component {
                         </Grid>
                     }
 
-                    {(isExistNoteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Grid item xs={1} ></Grid>
                     }
-                    {(isExistNoteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Grid item xs={11}>
                             <Paper className={classes.paper}>
                                 <div className={classes.tableWrapper}>
@@ -486,7 +488,7 @@ class SchoolNoteTaking extends React.Component {
                         className={classes.greyButton}
                         onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    {(isExistNoteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Button
                             className={classes.blackButton}
                             onClick={() => this._handleDeleteNote()}
