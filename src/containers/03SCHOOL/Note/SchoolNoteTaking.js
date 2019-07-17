@@ -372,7 +372,7 @@ class SchoolNoteTaking extends React.Component {
             order, orderBy, selected, rowsPerPage, page } = this.state;
         const data = fileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
+        const isExistNoteId = this.props.auth.relatedDataId.noteId;
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
@@ -392,10 +392,10 @@ class SchoolNoteTaking extends React.Component {
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
 
-                    {(this.props.auth.relatedDataId.noteId !== null) &&
+                    {(isExistNoteId !== null) &&
                         <Grid item xs={1} >记录文件</Grid>
                     }
-                    {(this.props.auth.relatedDataId.noteId !== null) &&
+                    {(isExistNoteId !== null) &&
                         <Grid item xs={11} >
                             <Button
                                 className={classes.blueGreenButton}
@@ -405,10 +405,10 @@ class SchoolNoteTaking extends React.Component {
                         </Grid>
                     }
 
-                    {(this.props.auth.relatedDataId.noteId !== null) &&
+                    {(isExistNoteId !== null) &&
                         <Grid item xs={1} ></Grid>
                     }
-                    {(this.props.auth.relatedDataId.noteId !== null) &&
+                    {(isExistNoteId !== null) &&
                         <Grid item xs={11}>
                             <Paper className={classes.paper}>
                                 <div className={classes.tableWrapper}>
@@ -486,7 +486,7 @@ class SchoolNoteTaking extends React.Component {
                         className={classes.greyButton}
                         onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    {(this.props.auth.relatedDataId.noteId !== null) &&
+                    {(isExistNoteId !== null) &&
                         <Button
                             className={classes.blackButton}
                             onClick={() => this._handleDeleteNote()}
