@@ -275,7 +275,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                                     <Button className={classes.greyButton}
                                         onClick={() => this.props.history.push('school-course-material')}
                                     >返回</Button>
-                                    <span className="right"><Button type="submit" className={classes.blackButton}>加入檔案</Button></span>
+                                    <span className="right"><Button type="submit" className={classes.blackButton}>加入資料匣</Button></span>
                                 </div>
                             </div>
                         </div>
