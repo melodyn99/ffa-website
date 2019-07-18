@@ -33,6 +33,42 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCou
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
+function Block(props) {
+    return (
+        <Grid container spacing={16} alignItems="center">
+            <Grid item xs={12} >#{props.i + 1}</Grid>
+
+            <Grid item xs={1} >课程标题</Grid>
+            <Grid item xs={11}>
+                <Field name={"className" + props.i} type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100" />
+                {props.errors[props.className] && props.touched[props.className] ? <ErrorMessage message={props.errors[props.className]} /> : null}
+            </Grid>
+
+            <Grid item xs={1} >课程日期</Grid>
+            <Grid item xs={11}>
+                <Field name={"classDate" + props.i} type="text" placeholder="2019 / 3 / 22" maxLength="100" />
+                {props.errors[props.classDate] && props.touched[props.classDate] ? <ErrorMessage message={props.errors[props.classDate]} /> : null}
+            </Grid>
+
+            <Grid item xs={1} >课程地点</Grid>
+            <Grid item xs={11}>
+                <Field name={"classLocation" + props.i} type="text" placeholder="5号厅" maxLength="100" />
+                {props.errors[props.classLocation] && props.touched[props.classLocation] ? <ErrorMessage message={props.errors[props.classLocation]} /> : null}
+            </Grid>
+
+            <Grid item xs={1} >授课老师</Grid>
+            <Grid item xs={11}>
+                <select name={"classTeacher" + props.i}>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                    <option value="4">D</option>
+                </select>
+            </Grid>
+        </Grid>
+    )
+}
+
 class SchoolCourseInformation extends React.Component {
     constructor(props) {
         super(props);
@@ -133,7 +169,7 @@ class SchoolCourseInformation extends React.Component {
                     classLocation: '',
                     classTeacher: '',
                 }]
-        })
+        });
     }
 
     _handleInput = (value, key) => {
@@ -171,6 +207,7 @@ class SchoolCourseInformation extends React.Component {
             enrollmenetStartDate,
             enrollmenetEndDate,
         } = this.state;
+
 
         return (
             <Form>
@@ -379,37 +416,16 @@ class SchoolCourseInformation extends React.Component {
                 {(this.state.conference_sections.map(
                     (data, i) => {
                         return (
-                            <Grid container spacing={16} alignItems="center" key={i}>
-                                <Grid item xs={12} >#{i + 1}</Grid>
-
-                                <Grid item xs={1} >课程标题</Grid>
-                                <Grid item xs={11}>
-                                    <Field name={"className"} type="text" placeholder={"第" + (i + 1) + "课"} maxLength="100" />
-                                    {errors.className && touched.className ? <ErrorMessage message={errors.className} /> : null}
-                                </Grid>
-
-                                <Grid item xs={1} >课程日期</Grid>
-                                <Grid item xs={11}>
-                                    <Field name={"classDate"} type="text" placeholder="2019 / 3 / 22" maxLength="100" />
-                                    {errors.classDate && touched.classDate ? <ErrorMessage message={errors.classDate} /> : null}
-                                </Grid>
-
-                                <Grid item xs={1} >课程地点</Grid>
-                                <Grid item xs={11}>
-                                    <Field name={"classLocation[" + i + "]"} type="text" placeholder="5号厅" maxLength="100" />
-                                    {errors.classLocation && touched.classLocation ? <ErrorMessage message={errors.classLocation} /> : null}
-                                </Grid>
-
-                                <Grid item xs={1} >授课老师</Grid>
-                                <Grid item xs={11}>
-                                    <select name={"classTeacher[" + i + "]"}>
-                                        <option value="1">A</option>
-                                        <option value="2">B</option>
-                                        <option value="3">C</option>
-                                        <option value="4">D</option>
-                                    </select>
-                                </Grid>
-                            </Grid>
+                            <Block
+                                key={i}
+                                i={i}
+                                className={"className" + i}
+                                classDate={"classDate" + i}
+                                classLocation={"classLocation" + i}
+                                classTeacher={"classTeacher" + i}
+                                errors={errors}
+                                touched={touched}
+                            />
                         )
                     }
                 ))}
@@ -487,16 +503,56 @@ class SchoolCourseInformation extends React.Component {
                 .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
 
-            conference_sections: Yup
-                .array()
-                .of(
-                    Yup.object().shape({
-                        className: Yup.string().required('Class Name is required'),
-                        classDate: Yup.string().required('Class Date is required'),
-                        classLocation: Yup.string().required('Class Location is required'),
-                        classTeacher: Yup.string().required('Class Location is required'),
-                    })
-                )
+            // conference_sections: Yup
+            //     .array()
+            //     .of(
+            //         Yup.object().shape({
+            //             className: Yup.string().required('Class Name is required'),
+            //             classDate: Yup.string().required('Class Date is required'),
+            //             classLocation: Yup.string().required('Class Location is required'),
+            //             classTeacher: Yup.string().required('Class Location is required'),
+            //         })
+            //     )
+
+            // className0: Yup.string().required('Class1 Name is required'),
+            // classDate0: Yup.string().required('Class1 Date is required'),
+            // classLocation0: Yup.string().required('Class1 Location is required'),
+            // classTeacher0: Yup.string().required('Class1 Location is required'),
+
+            // className1: Yup.string().required('Class2 Name is required'),
+            // classDate1: Yup.string().required('Class2 Date is required'),
+            // classLocation1: Yup.string().required('Class2 Location is required'),
+            // classTeacher1: Yup.string().required('Class2 Location is required'),
+
+            // className2: Yup.string().required('Class3 Name is required'),
+            // classDate2: Yup.string().required('Class3 Date is required'),
+            // classLocation2: Yup.string().required('Class3 Location is required'),
+            // classTeacher2: Yup.string().required('Class3 Location is required'),
+
+            // className3: Yup.string().required('Class4 Name is required'),
+            // classDate3: Yup.string().required('Class4 Date is required'),
+            // classLocation3: Yup.string().required('Class4 Location is required'),
+            // classTeacher3: Yup.string().required('Class4 Location is required'),
+
+            // className4: Yup.string().required('Class5 Name is required'),
+            // classDate4: Yup.string().required('Class5 Date is required'),
+            // classLocation4: Yup.string().required('Class5 Location is required'),
+            // classTeacher4: Yup.string().required('Class5 Location is required'),
+
+            // className5: Yup.string().required('Class6 Name is required'),
+            // classDate5: Yup.string().required('Class6 Date is required'),
+            // classLocation5: Yup.string().required('Class6 Location is required'),
+            // classTeacher5: Yup.string().required('Class6 Location is required'),
+
+            // className6: Yup.string().required('Class7 Name is required'),
+            // classDate6: Yup.string().required('Class7 Date is required'),
+            // classLocation6: Yup.string().required('Class7 Location is required'),
+            // classTeacher6: Yup.string().required('Class7 Location is required'),
+
+            // className7: Yup.string().required('Class8 Name is required'),
+            // classDate7: Yup.string().required('Class8 Date is required'),
+            // classLocation7: Yup.string().required('Class8 Location is required'),
+            // classTeacher7: Yup.string().required('Class8 Location is required'),
         })
 
         console.log(this.state);
@@ -542,12 +598,37 @@ class SchoolCourseInformation extends React.Component {
                                         expectedFees: expectedFees,
                                         actualFees: actualFees,
 
+                                        className0: '',
+                                        classDate0: '',
+                                        classLocation0: '',
+
                                         className1: '',
                                         classDate1: '',
                                         classLocation1: '',
+
                                         className2: '',
                                         classDate2: '',
                                         classLocation2: '',
+
+                                        className3: '',
+                                        classDate3: '',
+                                        classLocation3: '',
+
+                                        className4: '',
+                                        classDate4: '',
+                                        classLocation4: '',
+
+                                        className5: '',
+                                        classDate5: '',
+                                        classLocation5: '',
+
+                                        className6: '',
+                                        classDate6: '',
+                                        classLocation6: '',
+
+                                        className7: '',
+                                        classDate7: '',
+                                        classLocation7: '',
                                     }}
                                     validationSchema={Schema}
                                     onSubmit={this.handleSubmit}
