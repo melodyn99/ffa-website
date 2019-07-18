@@ -46,18 +46,15 @@ const rows = [
 ];
 
 class SchoolCourseStudentManagementAttendance extends React.Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            order: 'desc',
-            orderBy: 'deadline',
-            selected: [],
-            data: data,
-            page: 0,
-            rowsPerPage: 10,
-        };
-    }
+    state = {
+        order: 'desc',
+        orderBy: 'deadline',
+        selected: [],
+        data: data,
+        page: 0,
+        rowsPerPage: 10,
+    };
 
     handleRequestSort = (event, property) => {
         const orderBy = property;

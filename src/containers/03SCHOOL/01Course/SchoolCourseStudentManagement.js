@@ -180,14 +180,18 @@ class SchoolCourseStudentManagement extends React.Component {
                                                                 <TableCell component="th" scope="row"
                                                                     onClick={() => this._goToDetail('school-course-student-management-attendance')}
                                                                 // padding="none"
-                                                                >{n.student}</TableCell>
+                                                                >
+                                                                    <span className="color-blue">{n.student}</span>
+                                                                </TableCell>
                                                                 <TableCell>{n.fee}</TableCell>
                                                                 <TableCell>{n.actualfee}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
                                                                 <TableCell>{n.attendance}</TableCell>
                                                                 <TableCell
                                                                     onClick={() => this._goToDetail('school-course-student-management-homework')}
-                                                                >{n.homework}</TableCell>
+                                                                >
+                                                                    <span className="color-blue">{n.homework}</span>
+                                                                </TableCell>
                                                                 <TableCell>{n.score}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
