@@ -206,7 +206,8 @@ class SchoolCourseWork extends React.Component {
         const { classes } = this.props;
         const {
             // data,
-            courseAssignmentList, order, orderBy, selected, rowsPerPage, page } = this.state;
+            // courseAssignmentList, 
+            order, orderBy, selected, rowsPerPage, page } = this.state;
         // const data = courseAssignmentList;
         const data = this.state.data;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);

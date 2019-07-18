@@ -2,7 +2,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom'
 
@@ -112,7 +112,9 @@ class SchoolCourseStudentManagementSelectStudent extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes, i18n } = this.props;
+        const { classes
+            //, i18n 
+        } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 

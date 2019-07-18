@@ -4,7 +4,7 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common';
@@ -115,6 +115,10 @@ class SchoolCourseStudentManagement extends React.Component {
         this.props.history.push(url);
     }
 
+    _goToDetail = (url) => {
+        this.props.history.push(url);
+    }
+
     render() {
         const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -167,7 +171,7 @@ class SchoolCourseStudentManagement extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                // onClick={event => this.handleClick(event, n.id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -178,6 +182,7 @@ class SchoolCourseStudentManagement extends React.Component {
                                                                     <Checkbox checked={isSelected} />
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
+                                                                    onClick={this._goToDetail('school-course-student-management-attendance')}
                                                                 // padding="none"
                                                                 >{n.student}</TableCell>
                                                                 <TableCell>{n.fee}</TableCell>
@@ -231,8 +236,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
