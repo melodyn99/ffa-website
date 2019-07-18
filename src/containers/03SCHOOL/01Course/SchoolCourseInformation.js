@@ -32,6 +32,7 @@ import { dateToDayMonthYear } from '../../../Util/DateUtils';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
+// import { ContactsOutlined } from '@material-ui/icons';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 class SchoolCourseInformation extends React.Component {
@@ -88,9 +89,9 @@ class SchoolCourseInformation extends React.Component {
 
             this.setState({
                 academicTerm: theList.academic_term,
-                courseLocation: '',
-                subjectName: '',
-                courseType: '',
+                courseLocation: theList.courseLocation,
+                subjectName: theList.subject,
+                courseType: theList.type,
 
                 courseCode: theList.code,
                 courseName: theList.name,
@@ -103,8 +104,8 @@ class SchoolCourseInformation extends React.Component {
                 contactNumber: theList.phone,
                 essentialCourse: '',
 
-                enrollmenetStartDate: '',
-                enrollmenetEndDate: '',
+                enrollmenetStartDate: theList.enrollmenet_start_date,
+                enrollmenetEndDate: theList.enrollment_end_date,
 
                 courseQuota: theList.quota,
                 courseCredits: theList.credit,
@@ -129,9 +130,7 @@ class SchoolCourseInformation extends React.Component {
 
     //** form handle input start **/
     // post
-    createConference = (event) => {
-        console.log(event);
-
+    createConferenceWithEnterInfo = () => {
         const cb = (obj) => {
             // console.log("cb : ", obj);
 
@@ -179,7 +178,7 @@ class SchoolCourseInformation extends React.Component {
                     "location": "杭州",
                     "address": "新城东方君悦水星厅",
                     "teachers": [
-                        {"user": "teacher@ffa.test", "sequence": 1}
+                        { "user": "teacher@ffa.test", "sequence": 1 }
                     ]
                 }
             ],
@@ -191,6 +190,84 @@ class SchoolCourseInformation extends React.Component {
         apiConferences.createConference(params, this.props.auth.token, cb, eCb);
     }
 
+    // put
+    editConferenceInfo = () => {
+        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+
+        if (redux_conferenceId !== null) {
+            const cb = (obj) => {
+                // console.log("cb : ", obj);
+
+                // const data = {
+                //     ...this.props.auth.conferenceId,
+                //     conferenceId: obj.body.conference_id,
+                // }
+                // this.props.setRelatedDataIdP(data);
+            }
+            const eCb = (obj) => {
+                console.log("eCb : ", obj);
+            }
+
+            const params = {
+                active: true,
+                name: this.state.courseName,
+                academic_year: this.state.academicTerm.substring(0, 4),
+                academic_term: this.state.academicTerm,
+                location: this.state.courseLocation,
+                subject: this.state.subjectName,
+                type: this.state.courseType,
+                code: this.state.courseCode,
+                address: this.state.courseAddress,
+                enrollmenet_start_date: 1565797400000,
+                enrollment_end_date: 1565798400000,
+                credit_requirement: 2019,
+                fee: this.state.courseFees,
+                expected_fee: this.state.expectedFees,
+                actual_fee: this.state.actualFees,
+                discount: 0,
+                quota: this.state.courseQuota,
+                credit: this.state.courseCredits,
+                introduction: this.state.courseIntroduction,
+                emphasis: this.state.courseEmphasis,
+                benefit: this.state.courseBenefits,
+                email: this.state.contactEmail,
+                wechat: this.state.contactWechat,
+                phone: this.state.contactNumber,
+            }
+            console.log(params);
+            apiConferences.editConference(redux_conferenceId, params, this.props.auth.token, cb, eCb);
+        } else
+            console.log('redux_conferenceId is empty');
+    }
+
+    // delete
+    deleteConferenceByConferenceId = () => {
+        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+
+        if (redux_conferenceId !== null) {
+            // const cb = (obj) => {
+            //     // console.log("cb : ", obj);
+            //     this.props.history.goBack();
+            // }
+            // const eCb = (obj) => {
+            //     console.log("eCb : ", obj);
+            // }
+
+            // apiConferences.deleteConference(redux_conferenceId, this.props.auth.token, cb, eCb);
+        } else
+            console.log('redux_conferenceId is empty');
+    }
+
+    handleSubmit = (values, { setFieldError }) => {
+        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        if (redux_conferenceId !== null) {
+            this.editConferenceInfo();
+        } else {
+            this.createConferenceWithEnterInfo();
+        }
+    }
+
+    // Tools
     _handleInput = (key, value) => {
         console.log(value);
         this.setState({
@@ -282,7 +359,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseCode" type="text" placeholder="课程编号" maxLength="100"
-                        onChange={e => { this._handleSelect('courseCode', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseCode', e.target.value) }} />
                         {errors.courseCode && touched.courseCode ? <ErrorMessage message={errors.courseCode} /> : null}
                     </Grid>
 
@@ -291,7 +368,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseName" type="text" placeholder="课程名称" maxLength="100"
-                        onChange={e => { this._handleSelect('courseName', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseName', e.target.value) }} />
                         {errors.courseName && touched.courseName ? <ErrorMessage message={errors.courseName} /> : null}
                     </Grid>
 
@@ -300,7 +377,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseAddress" type="text" placeholder="课程地址" maxLength="100"
-                        onChange={e => { this._handleSelect('courseAddress', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseAddress', e.target.value) }} />
                         {errors.courseAddress && touched.courseAddress ? <ErrorMessage message={errors.courseAddress} /> : null}
                     </Grid>
 
@@ -309,7 +386,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseIntroduction" type="text" placeholder="课程简介" maxLength="100"
-                        onChange={e => { this._handleSelect('courseIntroduction', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseIntroduction', e.target.value) }} />
                         {errors.courseIntroduction && touched.courseIntroduction ? <ErrorMessage message={errors.courseIntroduction} /> : null}
                     </Grid>
 
@@ -318,7 +395,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseEmphasis" type="text" placeholder="课程重点" maxLength="100"
-                        onChange={e => { this._handleSelect('courseEmphasis', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseEmphasis', e.target.value) }} />
                         {errors.courseEmphasis && touched.courseEmphasis ? <ErrorMessage message={errors.courseEmphasis} /> : null}
                     </Grid>
 
@@ -327,7 +404,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseBenefits" type="text" placeholder="课程收益" maxLength="100"
-                        onChange={e => { this._handleSelect('courseBenefits', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseBenefits', e.target.value) }} />
                         {errors.courseBenefits && touched.courseBenefits ? <ErrorMessage message={errors.courseBenefits} /> : null}
                     </Grid>
 
@@ -336,7 +413,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactEmail" type="text" placeholder="联系电邮" maxLength="100"
-                        onChange={e => { this._handleSelect('contactEmail', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('contactEmail', e.target.value) }} />
                         {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} /> : null}
                     </Grid>
 
@@ -345,7 +422,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactWechat" type="text" placeholder="联系微信" maxLength="100"
-                        onChange={e => { this._handleSelect('contactWechat', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('contactWechat', e.target.value) }} />
                         {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null}
                     </Grid>
 
@@ -354,7 +431,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="contactNumber" type="text" placeholder="联系电话" maxLength="100"
-                        onChange={e => { this._handleSelect('contactNumber', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('contactNumber', e.target.value) }} />
                         {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null}
                     </Grid>
 
@@ -395,7 +472,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseQuota" type="text" placeholder="课程名额" maxLength="100"
-                        onChange={e => { this._handleSelect('courseQuota', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseQuota', e.target.value) }} />
                         {errors.courseQuota && touched.courseQuota ? <ErrorMessage message={errors.courseQuota} /> : null}
                     </Grid>
 
@@ -404,7 +481,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseCredits" type="text" placeholder="课程学分" maxLength="100"
-                        onChange={e => { this._handleSelect('courseCredits', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseCredits', e.target.value) }} />
                         {errors.courseCredits && touched.courseCredits ? <ErrorMessage message={errors.courseCredits} /> : null}
                     </Grid>
 
@@ -413,7 +490,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="courseFees" type="text" placeholder="课程费用" maxLength="100"
-                        onChange={e => { this._handleSelect('courseFees', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('courseFees', e.target.value) }} />
                         {errors.courseFees && touched.courseFees ? <ErrorMessage message={errors.courseFees} /> : null}
                     </Grid>
 
@@ -422,7 +499,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="expectedFees" type="text" placeholder="预计学费" maxLength="100"
-                        onChange={e => { this._handleSelect('expectedFees', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('expectedFees', e.target.value) }} />
                         {errors.expectedFees && touched.expectedFees ? <ErrorMessage message={errors.expectedFees} /> : null}
                     </Grid>
 
@@ -431,7 +508,7 @@ class SchoolCourseInformation extends React.Component {
                     </Grid>
                     <Grid item xs={11}>
                         <Field name="actualFees" type="text" placeholder="实际收费" maxLength="100"
-                        onChange={e => { this._handleSelect('actualFees', e.target.value) }}/>
+                            onChange={e => { this._handleSelect('actualFees', e.target.value) }} />
                         {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null}
                     </Grid>
 
@@ -439,7 +516,7 @@ class SchoolCourseInformation extends React.Component {
                         课程日期和时间
                     </Grid>
 
-                    {/* <Grid item xs={12} >
+                    <Grid item xs={12} >
                         #1
                     </Grid>
 
@@ -517,26 +594,25 @@ class SchoolCourseInformation extends React.Component {
                             <option value="3">C</option>
                             <option value="4">D</option>
                         </select>
-                    </Grid> */}
+                    </Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
-                    <span className="right">
-                        {redux_conferenceId
-                            ?
-                            <Button type="submit" className={classes.greyButton}>编辑资料</Button>
-                            :
-                            <Button onClick={e => this.createConference(e)} className={classes.blackButton}>确认</Button>
-                        }
-                    </span>
-                </div>
-            </Form>
-        )
-    }
 
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
+                    {redux_conferenceId
+                        ?
+                        <span className="right">
+                            <Button onClick={() => this.deleteConferenceByConferenceId()} className={classes.blackButton}>删除</Button>
+                            <Button type="submit" className={classes.greyButton}>编辑资料</Button>
+                        </span>
+                        :
+                        <span className="right">
+                            <Button type="submit" className={classes.blackButton}>确认</Button>
+
+                        </span>
+                    }
+                </div>
+            </Form >
+        )
     }
 
     render() {

@@ -39,7 +39,7 @@ export const apiConferences = {
 
     // createConference: data => api.post('create_conference', data),
 
-    editConference: (conferenceId, data) => api.post(`conferences/${conferenceId}?$expand=conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/contract_file,contracts/contract_incomes`, data),
+    // editConference: (conferenceId, data) => api.post(`conferences/${conferenceId}?$expand=conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/contract_file,contracts/contract_incomes`, data),
 
     getTimeManagerment: params => api.get('time_managements', params),
 
@@ -78,7 +78,7 @@ export const apiConferences = {
 
     getConferenceStudentForQrCode: (conferenceId, studentId) => api.get(`conference_students?conference_company/conference=${encodeURIComponent(conferenceId)}&conference_student_id=${encodeURIComponent(studentId)}&$expand=student&$select=student/name`),
 
-    deleteConference: conferenceId => api.delete(`conferences/${conferenceId}`),
+    // deleteConference: conferenceId => api.delete(`conferences/${conferenceId}`),
 
     sendQrCodeToStudent: conferenceId => api.post(`qr_code_emails/${conferenceId}/send`),
 
@@ -112,6 +112,14 @@ export const apiConferences = {
     createConference: (body, token, cb, eCb) => {
         apiGeneral.apiPost('create_conference', body, token, cb, eCb)
     },
+
+    editConference: (conferenceId, body, token, cb, eCb) => {
+        apiGeneral.apiPut(`conferences/${conferenceId}`, body, token, cb, eCb)
+    },
+
+    // deleteConference: (conferenceId, token, cb, eCb) => {
+    //     apiGeneral.apiDelete('conferences', conferenceId, token, cb, eCb)
+    // },
     /* All Course end */
 
     /* Course Information start */

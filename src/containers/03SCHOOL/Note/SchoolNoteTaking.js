@@ -160,14 +160,14 @@ class SchoolNoteTaking extends React.Component {
         // this.editNoteInfo(event);
         const redux_noteId = this.props.auth.relatedDataId.noteId || null;
         if (redux_noteId === null) {
-            this.createNote(event);
+            this.createNoteWithEnterInfo(event);
         } else {
             this.editNoteInfo(event);
         }
     }
 
     // post
-    createNote = (event) => {
+    createNoteWithEnterInfo = (event) => {
         const conferenceId = this.props.auth.relatedDataId.conferenceId;
 
         const cb = (obj) => {
@@ -220,7 +220,7 @@ class SchoolNoteTaking extends React.Component {
     }
 
     // delete
-    _handleDeleteNote = () => {
+    deleteNote = () => {
         const { history } = this.props;
 
         const noteId = this.props.auth.relatedDataId.noteId;
@@ -492,7 +492,7 @@ class SchoolNoteTaking extends React.Component {
                     {(redux_noteId !== null) &&
                         <Button
                             className={classes.blackButton}
-                            onClick={() => this._handleDeleteNote()}
+                            onClick={() => this.deleteNote()}
                         >删除</Button>
                     }
                     <span className="right">
