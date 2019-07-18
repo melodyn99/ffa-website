@@ -110,7 +110,7 @@ class SchoolAllCourse extends React.Component {
     /** form handle input start **/
     _createButtonAction = (url) => {
         const data = {
-            ...this.props.auth.relatedDataId,
+            ...this.props.auth.relatedData,
             conferenceId: '',
         }
 
@@ -121,7 +121,7 @@ class SchoolAllCourse extends React.Component {
         const { i18n } = this.props;
         const conference_id = id;
         const data = {
-            ...this.props.auth.relatedDataId,
+            ...this.props.auth.relatedData,
             conferenceId: conference_id,
         }
 

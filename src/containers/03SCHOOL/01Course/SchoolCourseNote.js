@@ -98,7 +98,7 @@ class SchoolCourseNote extends React.Component {
 
         const params = {
             //viewingSeminar ? viewingSeminar.conference_id : '',
-            conference: this.props.auth.relatedDataId.conferenceId,
+            conference: this.props.auth.relatedData.conferenceId,
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -109,7 +109,7 @@ class SchoolCourseNote extends React.Component {
         const { i18n } = this.props;
         const note_id = id;
         const data = {
-            ...this.props.auth.relatedDataId,
+            ...this.props.auth.relatedData,
             "noteId": note_id,
         }
         this.props.setRelatedDataP(data);
@@ -119,7 +119,7 @@ class SchoolCourseNote extends React.Component {
     _createButtonAction = () => {
         const { i18n } = this.props;
         const data = {
-            ...this.props.auth.relatedDataId,
+            ...this.props.auth.relatedData,
             "noteId": '',
         }
         this.props.setRelatedDataP(data);

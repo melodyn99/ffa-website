@@ -6,7 +6,7 @@ const initialState = {
 	token: null,
 	refreshToken: null,
 	userInfo: [],
-	relatedDataId: []
+	relatedData: []
 };
 
 const authReducer = (state = initialState, action) => {
@@ -71,7 +71,7 @@ const authReducer = (state = initialState, action) => {
 		case AuthActionTypes.SET_RELATED_DATA: {
 			return {
 				...state,
-				relatedDataId: action.data
+				relatedData: action.data
 			}
 		}
 

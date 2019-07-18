@@ -99,7 +99,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedDataId.conferenceId,
+            conference: this.props.auth.relatedData.conferenceId,
             $expand: 'assignment',
         }
 
@@ -112,7 +112,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         const courseAssignment_id = id;
         console.log('CourseAssignmentId: ' + courseAssignment_id);
         // const data = {
-        //     ...this.props.auth.relatedDataId,
+        //     ...this.props.auth.relatedData,
         //     "courseAssignmentId": courseAssignment_id,
         // }
         // this.props.setRelatedDataP(data);

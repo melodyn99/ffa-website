@@ -96,7 +96,7 @@ class SchoolCoursePreparation extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedDataId.conferenceId,
+            conference: this.props.auth.relatedData.conferenceId,
         }
 
         apiConferences.getConferencePreparations(params, this.props.auth.token, cb, eCb);
@@ -108,7 +108,7 @@ class SchoolCoursePreparation extends React.Component {
         // const { i18n } = this.props;
         // const seatingPlan_id = id;
         // const data = {
-        //     ...this.props.auth.relatedDataId,
+        //     ...this.props.auth.relatedData,
         //     "seatingPlan_id": seatingPlan_id,
         // }
         // this.props.setRelatedDataP(data);

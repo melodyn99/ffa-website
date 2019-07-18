@@ -91,7 +91,7 @@ class SchoolCourseAssessmentDetail extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedDataId.conferenceId,
+            conference: this.props.auth.relatedData.conferenceId,
             $expand: 'user',
         }
         apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
@@ -190,7 +190,7 @@ class SchoolCourseAssessmentDetail extends React.Component {
         // const {
         //     academicTerm,
         // } = this.state;
-        // const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        // const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
 
         return (
             <Form>

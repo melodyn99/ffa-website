@@ -91,7 +91,7 @@ class SchoolCourseQandA extends React.Component {
 
         const params = {
             //fetching with Hardcore Id
-            // conference: this.props.auth.relatedDataId.conferenceId,
+            // conference: this.props.auth.relatedData.conferenceId,
             conference: '5322de86-1540-4f35-8951-4872bf0c4b07',
         }
 

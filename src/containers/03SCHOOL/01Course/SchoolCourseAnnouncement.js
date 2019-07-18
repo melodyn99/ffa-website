@@ -112,7 +112,7 @@ class SchoolCourseAnnouncement extends React.Component {
 
     state = {
         currLoginAccount: this.props.auth.userInfo.username,
-        conferenceId: this.props.auth.relatedDataId.conferenceId,
+        conferenceId: this.props.auth.relatedData.conferenceId,
         // name: ['彭'],
         // content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd'],
 
@@ -139,7 +139,7 @@ class SchoolCourseAnnouncement extends React.Component {
         }
 
         const params = {
-            'conversation/conference': this.props.auth.relatedDataId.conferenceId,
+            'conversation/conference': this.props.auth.relatedData.conferenceId,
             // $expand: 'conversation,image',
             $orderby: 'createddate DESC',
         }

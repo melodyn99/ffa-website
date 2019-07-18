@@ -98,7 +98,7 @@ class SchoolCourseWork extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedDataId.conferenceId,
+            conference: this.props.auth.relatedData.conferenceId,
             $expand: 'assignment',
         }
 
@@ -112,7 +112,7 @@ class SchoolCourseWork extends React.Component {
         console.log('CourseAssignmentId: ' + courseAssignment_id);
         this.props.history.push('school-course-work-inside-folder');
         // const data = {
-        //     ...this.props.auth.relatedDataId,
+        //     ...this.props.auth.relatedData,
         //     "courseAssignmentId": courseAssignment_id,
         // }
         // this.props.setRelatedDataP(data);

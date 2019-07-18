@@ -92,7 +92,7 @@ class SchoolCourseMaterial extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedDataId.conferenceId,
+            conference: this.props.auth.relatedData.conferenceId,
         }
 
         apiConferences.getConferenceMaterial(params, this.props.auth.token, cb, eCb);

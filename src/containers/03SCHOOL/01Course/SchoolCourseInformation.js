@@ -112,7 +112,7 @@ class SchoolCourseInformation extends React.Component {
     }
 
     componentDidMount() {
-        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
         if (redux_conferenceId !== null) {
             this._getConferenceDefailByUser();
         }
@@ -164,7 +164,7 @@ class SchoolCourseInformation extends React.Component {
         }
 
         let params = {
-            conference_id: this.props.auth.relatedDataId.conferenceId,
+            conference_id: this.props.auth.relatedData.conferenceId,
             'conference_officers/user': this.props.auth.userInfo.username,
             $expand: 'subject,conference_sections/teachers/user',
         }
@@ -237,7 +237,7 @@ class SchoolCourseInformation extends React.Component {
 
     // put
     editConferenceInfo = () => {
-        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
 
         if (redux_conferenceId !== null) {
             const cb = (obj) => {
@@ -288,7 +288,7 @@ class SchoolCourseInformation extends React.Component {
 
     // delete
     deleteConferenceByConferenceId = () => {
-        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
 
         if (redux_conferenceId !== null) {
             // const cb = (obj) => {
@@ -343,7 +343,7 @@ class SchoolCourseInformation extends React.Component {
     handleSubmit = (values, { setFieldError }) => {
         // console.log('GREAT!');
 
-        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
         if (redux_conferenceId !== null) {
             this.editConferenceInfo();
         } else {
@@ -370,7 +370,7 @@ class SchoolCourseInformation extends React.Component {
             enrollmenetStartDate,
             enrollmenetEndDate,
         } = this.state;
-        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
 
         return (
             <Form>

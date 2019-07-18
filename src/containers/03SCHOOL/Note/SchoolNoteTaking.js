@@ -76,7 +76,7 @@ class SchoolNoteTaking extends React.Component {
     }
 
     componentDidMount() {
-        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
+        const redux_noteId = this.props.auth.relatedData.noteId || null;
         // console.log(`currenet noteId: '${redux_noteId}'`);
         if (redux_noteId !== null) {
             console.log(`Exist noteId`);
@@ -99,7 +99,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note_id: this.props.auth.relatedDataId.noteId,
+            note_id: this.props.auth.relatedData.noteId,
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -134,7 +134,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note: this.props.auth.relatedDataId.noteId,
+            note: this.props.auth.relatedData.noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $expand: 'file/mime_type',
         }
@@ -158,7 +158,7 @@ class SchoolNoteTaking extends React.Component {
         // console.log('click submit button!');
         // console.log('event: ' + JSON.stringify(event.notesName, null, 2));
         // this.editNoteInfo(event);
-        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
+        const redux_noteId = this.props.auth.relatedData.noteId || null;
         if (redux_noteId === null) {
             this.createNoteWithEnterInfo(event);
         } else {
@@ -168,13 +168,13 @@ class SchoolNoteTaking extends React.Component {
 
     // post
     createNoteWithEnterInfo = (event) => {
-        const conferenceId = this.props.auth.relatedDataId.conferenceId;
+        const conferenceId = this.props.auth.relatedData.conferenceId;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
 
             const data = {
-                ...this.props.auth.relatedDataId,
+                ...this.props.auth.relatedData,
                 "noteId": obj.body.note_id,
             }
 
@@ -216,14 +216,14 @@ class SchoolNoteTaking extends React.Component {
             content: event.notesContent,
         }
 
-        apiNoteTaking.editNoteTaking(this.props.auth.relatedDataId.noteId, body, this.props.auth.token, cb, eCb);
+        apiNoteTaking.editNoteTaking(this.props.auth.relatedData.noteId, body, this.props.auth.token, cb, eCb);
     }
 
     // delete
     deleteNote = () => {
         const { history } = this.props;
 
-        const noteId = this.props.auth.relatedDataId.noteId;
+        const noteId = this.props.auth.relatedData.noteId;
         const deleteNoteCb = (obj) => {
             // console.log("deleteNoteCb : ", obj);
             history.goBack();
@@ -239,7 +239,7 @@ class SchoolNoteTaking extends React.Component {
     /** Files management start **/
     _uploadFile = (body) => {
         // console.log('upload button pressed');
-        const noteId = this.props.auth.relatedDataId.noteId;
+        const noteId = this.props.auth.relatedData.noteId;
         const createNoteFileCb = (obj) => {
             // console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
@@ -375,7 +375,7 @@ class SchoolNoteTaking extends React.Component {
             order, orderBy, selected, rowsPerPage, page } = this.state;
         const data = fileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
+        const redux_noteId = this.props.auth.relatedData.noteId || null;
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
