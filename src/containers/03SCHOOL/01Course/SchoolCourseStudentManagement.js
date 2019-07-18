@@ -2,7 +2,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 
@@ -22,8 +22,8 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../../Api/ApiAuth';
-// import { apiConferences } from '../../../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -120,7 +120,9 @@ class SchoolCourseStudentManagement extends React.Component {
     }
 
     render() {
-        const { classes, i18n } = this.props;
+        const { classes
+            //, i18n 
+        } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -143,12 +145,6 @@ class SchoolCourseStudentManagement extends React.Component {
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-course-student-management-select-student'
                                 />
-
-                                <Link to={"/" + i18n.language + "/school-course-student-management-attendance"} className="dummy">Go to Course Student Management Attendance</Link>
-                                <div className="sep-20"></div>
-
-                                <Link to={"/" + i18n.language + "/school-course-student-management-homework"} className="dummy">Go to Course Student Management Homework</Link>
-                                <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
@@ -182,14 +178,16 @@ class SchoolCourseStudentManagement extends React.Component {
                                                                     <Checkbox checked={isSelected} />
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
-                                                                    onClick={this._goToDetail('school-course-student-management-attendance')}
+                                                                    onClick={() => this._goToDetail('school-course-student-management-attendance')}
                                                                 // padding="none"
                                                                 >{n.student}</TableCell>
                                                                 <TableCell>{n.fee}</TableCell>
                                                                 <TableCell>{n.actualfee}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
                                                                 <TableCell>{n.attendance}</TableCell>
-                                                                <TableCell>{n.homework}</TableCell>
+                                                                <TableCell
+                                                                    onClick={() => this._goToDetail('school-course-student-management-homework')}
+                                                                >{n.homework}</TableCell>
                                                                 <TableCell>{n.score}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>

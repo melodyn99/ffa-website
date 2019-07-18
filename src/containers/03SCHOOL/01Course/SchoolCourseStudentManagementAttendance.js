@@ -109,6 +109,11 @@ class SchoolCourseStudentManagementAttendance extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
     render() {
         const { classes } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
