@@ -22,19 +22,20 @@ import Paper from '@material-ui/core/Paper';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseQandA';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseQandA';
 
 // Define column names
 const rows = [
@@ -45,14 +46,59 @@ const rows = [
 
 class SchoolCourseQandA extends React.Component {
     state = {
+        // table settings
         order: 'desc',
         orderBy: 'lastsend',
         selected: [],
-        data: data,
         page: 0,
         rowsPerPage: 10,
+
+        // component state
+        // data: data,
+        courseQandAList: [],
     };
 
+    componentDidMount() {
+        this._getConferenceQandAList();
+    }
+
+    _getConferenceQandAList = () => {
+        // const { viewingSeminar } = this.props;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body;
+
+            const convertedList = [];
+            // console.log(theList);
+            theList.map(n => {
+                const convertedArray = {
+                    conversation_id: n.conversation_id,
+                    student: n.name_zh,
+                    messages: n.total_message + ` (${n.total_unread_message})`,
+                    lastsend: dateToDayAndMonth(n.lastmoddate),
+                }
+                return convertedList.push(convertedArray);
+            });
+
+            this.setState({
+                courseQandAList: convertedList,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            //fetching with Hardcore Id
+            // conference: this.props.auth.relatedDataId.conferenceId,
+            conference: '5322de86-1540-4f35-8951-4872bf0c4b07',
+        }
+
+        apiConferences.getConferenceQandA(params, this.props.auth.token, cb, eCb);
+    }
+
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -102,10 +148,14 @@ class SchoolCourseQandA extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
+    /** React components 'Material-UI' end  **/
 
     render() {
         const { classes, i18n } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const {
+            // data,
+            order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = this.state.courseQandAList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -121,8 +171,8 @@ class SchoolCourseQandA extends React.Component {
 
                             <div className="content">
 
-                            <Link to={"/" + i18n.language + "/school-course-reply-q-and-a"} className="dummy">Go to Course Reply Q and A</Link>
-                            <div className="sep-20"></div>
+                                <Link to={"/" + i18n.language + "/school-course-reply-q-and-a"} className="dummy">Go to Course Reply Q and A</Link>
+                                <div className="sep-20"></div>
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
@@ -141,15 +191,16 @@ class SchoolCourseQandA extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const theIndexNum = data.indexOf(n);
+                                                        const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={event => this.handleClick(event, n.conversation_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">

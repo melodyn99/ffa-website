@@ -57,6 +57,7 @@ const rows = [
     { id: 'creator', numeric: false, disablePadding: false, label: '创建人员' },
     { id: 'size', numeric: true, disablePadding: false, label: '文件大小' },
     { id: 'createdDate', numeric: false, disablePadding: false, label: '上载日期' },
+    { id: '', numeric: false, disablePadding: false, label: '' },
 ];
 
 class SchoolNoteTaking extends React.Component {
@@ -69,14 +70,16 @@ class SchoolNoteTaking extends React.Component {
         rowsPerPage: 10,
 
         // component state
-        noteId: this.props.auth.relatedDataId.noteId,
         theNoteName: '',
         theNoteContent: '',
         fileList: [],
     }
 
     componentDidMount() {
-        if (this.state.noteId !== null) {
+        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
+        // console.log(`currenet noteId: '${redux_noteId}'`);
+        if (redux_noteId !== null) {
+            console.log(`Exist noteId`);
             this._getNoteTakingList();
             this._getNoteFile();
         }
@@ -96,7 +99,7 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note_id: this.state.noteId,
+            note_id: this.props.auth.relatedDataId.noteId,
         }
 
         apiNoteTaking.getNoteTakingList(params, this.props.auth.token, cb, eCb);
@@ -131,17 +134,16 @@ class SchoolNoteTaking extends React.Component {
         }
 
         const params = {
-            note: this.state.noteId,
+            note: this.props.auth.relatedDataId.noteId,
             //viewingSeminar ? viewingSeminar.conference_id : '',
             $expand: 'file/mime_type',
-            // $orderby: 'lastmoddate',
         }
 
         apiNoteFile.getNoteFile(params, this.props.auth.token, cb, eCb);
     }
 
     /** Note start **/
-    // form handle input
+    /** form handle input start **/
     _handleInput = (value, key) => {
         console.log(value);
         this.setState({
@@ -149,22 +151,23 @@ class SchoolNoteTaking extends React.Component {
             [key]: value
         })
     }
+    /** form handle input end **/
 
     // form submit
     handleSubmit = (event, { setFieldError }) => {
         // console.log('click submit button!');
         // console.log('event: ' + JSON.stringify(event.notesName, null, 2));
         // this.editNoteInfo(event);
-
-        if (this.state.noteId === null) {
-            this.newNoteInfo(event);
+        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
+        if (redux_noteId === null) {
+            this.createNoteWithEnterInfo(event);
         } else {
             this.editNoteInfo(event);
         }
     }
 
-    // insert
-    newNoteInfo = (event) => {
+    // post
+    createNoteWithEnterInfo = (event) => {
         const conferenceId = this.props.auth.relatedDataId.conferenceId;
 
         const cb = (obj) => {
@@ -195,7 +198,7 @@ class SchoolNoteTaking extends React.Component {
         apiNoteTaking.createNoteTaking(params, this.props.auth.token, cb, eCb);
     }
 
-    // update
+    // put
     editNoteInfo = (event) => {
         const { history } = this.props;
         // const { viewingSeminar } = this.props;
@@ -213,14 +216,14 @@ class SchoolNoteTaking extends React.Component {
             content: event.notesContent,
         }
 
-        apiNoteTaking.editNoteTaking(this.state.noteId, body, this.props.auth.token, cb, eCb);
+        apiNoteTaking.editNoteTaking(this.props.auth.relatedDataId.noteId, body, this.props.auth.token, cb, eCb);
     }
 
     // delete
-    _handleDeleteNote = () => {
+    deleteNote = () => {
         const { history } = this.props;
 
-        // console.log("handleDeleteNote : ");
+        const noteId = this.props.auth.relatedDataId.noteId;
         const deleteNoteCb = (obj) => {
             // console.log("deleteNoteCb : ", obj);
             history.goBack();
@@ -229,14 +232,14 @@ class SchoolNoteTaking extends React.Component {
             console.log("deleteNoteEcb : ", obj);
         }
 
-        apiNoteTaking.deleteNoteTaking(this.state.noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
+        apiNoteTaking.deleteNoteTaking(noteId, this.props.auth.token, deleteNoteCb, deleteNoteEcb);
     }
     /** Note end **/
 
     /** Files management start **/
     _uploadFile = (body) => {
         // console.log('upload button pressed');
-        const { noteId } = this.state;
+        const noteId = this.props.auth.relatedDataId.noteId;
         const createNoteFileCb = (obj) => {
             // console.log("createNoteFileCb : ", obj);
             this._getNoteFile();
@@ -271,7 +274,21 @@ class SchoolNoteTaking extends React.Component {
         });
     }
 
-    _deleteFile = () => {
+    _deleteFile = (note_file_id) => {
+        // console.log('delete button pressed');
+        const deleteNoteFileCb = (obj) => {
+            console.log("deleteNoteFileCb : ", obj);
+            this._getNoteFile();
+            this.setState({ selected: [] });
+        }
+        const deleteNoteFileEcb = (obj) => {
+            console.log("deleteNoteFileEcb : ", obj);
+        }
+
+        apiNoteFile.deleteNoteFile(note_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
+    }
+
+    _deleteMultipleFile = () => {
         // console.log('delete button pressed');
         const { selected, fileList } = this.state;
 
@@ -291,7 +308,7 @@ class SchoolNoteTaking extends React.Component {
     }
     /** Files management end **/
 
-    /** Material UI table style start  **/
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -311,13 +328,13 @@ class SchoolNoteTaking extends React.Component {
         this.setState({ selected: [] });
     };
 
-    handleClick = (event, theIndexNum) => {
+    handleClick = (event, id) => {
         const { selected } = this.state;
-        const selectedIndex = selected.indexOf(theIndexNum);
+        const selectedIndex = selected.indexOf(id);
         let newSelected = [];
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, theIndexNum);
+            newSelected = newSelected.concat(selected, id);
         } else if (selectedIndex === 0) {
             newSelected = newSelected.concat(selected.slice(1));
         } else if (selectedIndex === selected.length - 1) {
@@ -341,7 +358,7 @@ class SchoolNoteTaking extends React.Component {
     };
 
     isSelected = theIndexNum => this.state.selected.indexOf(theIndexNum) !== -1;
-    /** Material UI table style end  **/
+    /** React components 'Material-UI' end  **/
 
     // Formik form
     form = ({
@@ -358,7 +375,7 @@ class SchoolNoteTaking extends React.Component {
             order, orderBy, selected, rowsPerPage, page } = this.state;
         const data = fileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
+        const redux_noteId = this.props.auth.relatedDataId.noteId || null;
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
@@ -378,10 +395,10 @@ class SchoolNoteTaking extends React.Component {
                         {errors.notesContent && touched.notesContent ? <ErrorMessage message={errors.notesContent} /> : null}
                     </Grid>
 
-                    {(this.state.noteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Grid item xs={1} >记录文件</Grid>
                     }
-                    {(this.state.noteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Grid item xs={11} >
                             <Button
                                 className={classes.blueGreenButton}
@@ -391,10 +408,10 @@ class SchoolNoteTaking extends React.Component {
                         </Grid>
                     }
 
-                    {(this.state.noteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Grid item xs={1} ></Grid>
                     }
-                    {(this.state.noteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Grid item xs={11}>
                             <Paper className={classes.paper}>
                                 <div className={classes.tableWrapper}>
@@ -435,12 +452,15 @@ class SchoolNoteTaking extends React.Component {
                                                             <TableCell>{n.creator}</TableCell>
                                                             <TableCell>{n.size}</TableCell>
                                                             <TableCell>{n.createdDate}</TableCell>
+                                                            <TableCell align="right" >
+                                                                <Button onClick={() => this._deleteFile(n.note_file_id)}>{' X '}</Button>
+                                                            </TableCell>
                                                         </TableRow>
                                                     );
                                                 })}
                                             {emptyRows > 0 && (
                                                 <TableRow style={{ height: 49 * emptyRows }}>
-                                                    <TableCell colSpan={4} />
+                                                    <TableCell colSpan={5} />
                                                 </TableRow>
                                             )}
                                         </TableBody>
@@ -469,10 +489,10 @@ class SchoolNoteTaking extends React.Component {
                         className={classes.greyButton}
                         onClick={() => this.props.history.goBack()}
                     >取消</Button>
-                    {(this.state.noteId !== null) &&
+                    {(redux_noteId !== null) &&
                         <Button
                             className={classes.blackButton}
-                            onClick={() => this._handleDeleteNote()}
+                            onClick={() => this.deleteNote()}
                         >删除</Button>
                     }
                     <span className="right">

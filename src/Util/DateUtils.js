@@ -25,8 +25,7 @@ export function dateToPaymentDueDate(dueDate) {
 }
 
 export function dateToRemainingDaysEvent(deadline) {
-  console.log('deadline', moment(deadline).format('DD MM YYYY'))
-
+  // console.log('deadline', moment(deadline).format('DD MM YYYY'))
   const deadLine = moment(deadline);
   const currentDate = moment();
   const isOver = currentDate.diff(deadLine) > 0;
@@ -40,6 +39,10 @@ export function dateToDayAndMonth(date) {
 
 export function dateToDayMonthYear(date) {
   return moment(date).format('YYYY年 MM月 DD日');
+}
+
+export function dateToDayMonthYearTimeMinutes(date) {
+  return moment(date).format('YYYY年 MM月 DD日 HH:mm');
 }
 
 export function timeStampsToRange(start, end) {

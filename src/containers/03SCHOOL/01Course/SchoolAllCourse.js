@@ -50,11 +50,14 @@ const rows = [
 
 class SchoolAllCourse extends React.Component {
     state = {
+        // table settings
         order: 'asc',
         orderBy: 'subject',
         selected: [],
         page: 0,
         rowsPerPage: 10,
+
+        // component state
         conferenceList: [],
     };
 
@@ -104,6 +107,30 @@ class SchoolAllCourse extends React.Component {
         apiConferences.getConferenceList(params, this.props.auth.token, cb, eCb);
     }
 
+    /** form handle input start **/
+    _createButtonAction = (url) => {
+        const data = {
+            ...this.props.auth.relatedDataId,
+            conferenceId: '',
+        }
+
+        this.props.setRelatedDataIdP(data);
+        this.props.history.push(url);
+    }
+    handleEnterSelection = (event, id) => {
+        const { i18n } = this.props;
+        const conference_id = id;
+        const data = {
+            ...this.props.auth.relatedDataId,
+            conferenceId: conference_id,
+        }
+
+        this.props.setRelatedDataIdP(data);
+        this.props.history.push('/' + i18n.language + '/school-course-information');
+    };
+    /** form handle input end **/
+
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -124,34 +151,24 @@ class SchoolAllCourse extends React.Component {
     };
 
     handleClick = (event, id) => {
-        // const { selected } = this.state;
-        // const selectedIndex = selected.indexOf(id);
-        // let newSelected = [];
+        const { selected } = this.state;
+        const selectedIndex = selected.indexOf(id);
+        let newSelected = [];
 
-        // if (selectedIndex === -1) {
-        //     newSelected = newSelected.concat(selected, id);
-        // } else if (selectedIndex === 0) {
-        //     newSelected = newSelected.concat(selected.slice(1));
-        // } else if (selectedIndex === selected.length - 1) {
-        //     newSelected = newSelected.concat(selected.slice(0, -1));
-        // } else if (selectedIndex > 0) {
-        //     newSelected = newSelected.concat(
-        //         selected.slice(0, selectedIndex),
-        //         selected.slice(selectedIndex + 1),
-        //     );
-        // }
-
-        // this.setState({ selected: newSelected });
-
-        const { i18n } = this.props;
-        const conference_id = id;
-        const data = {
-            ...this.props.auth.relatedDataId,
-            conferenceId: conference_id,
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, id);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1),
+            );
         }
 
-        this.props.setRelatedDataIdP(data);
-        this.props.history.push('/' + i18n.language + '/school-course-information');
+        this.setState({ selected: newSelected });
     };
 
     handleChangePage = (event, page) => {
@@ -163,11 +180,7 @@ class SchoolAllCourse extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
-
-    // ToolBar
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
+    /** React components 'Material-UI' end  **/
 
     render() {
         const {
@@ -228,7 +241,7 @@ class SchoolAllCourse extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.conference)}
+                                                                onClick={event => this.handleEnterSelection(event, n.conference)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
