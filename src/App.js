@@ -111,6 +111,7 @@ import SchoolCourseReplyQandA from './containers/03SCHOOL/01Course/SchoolCourseR
 import SchoolCourseNote from './containers/03SCHOOL/01Course/SchoolCourseNote';
 import SchoolCourseNewNote from './containers/03SCHOOL/01Course/SchoolCourseNewNote';
 import SchoolCourseAssessment from './containers/03SCHOOL/01Course/SchoolCourseAssessment';
+import SchoolCourseAssessmentDetail from './containers/03SCHOOL/01Course/SchoolCourseAssessmentDetail';
 
 // School Student Management
 import SchoolAllStudentManagement from './containers/03SCHOOL/02Student/SchoolAllStudentManagement';
@@ -438,6 +439,9 @@ class App extends Component {
                 }
                 case 'school-course-assessment': { // OK
                     return <SchoolCourseAssessment />;
+                }
+                case 'school-course-assessment-detail': { // OK
+                    return <SchoolCourseAssessmentDetail />;
                 }
 
                 // School Student Management

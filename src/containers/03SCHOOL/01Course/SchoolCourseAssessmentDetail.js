@@ -4,21 +4,22 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 // Material UI
 import PropTypes from 'prop-types';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+// import Table from '@material-ui/core/Table';
+// import TableBody from '@material-ui/core/TableBody';
+// import TableCell from '@material-ui/core/TableCell';
+// import TablePagination from '@material-ui/core/TablePagination';
+// import TableRow from '@material-ui/core/TableRow';
+// import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
@@ -27,29 +28,32 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
+import { Formik, Form, Field } from 'formik';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import * as Yup from 'yup';
+import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
+import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../../data/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // Define column names
-const rows = [
-    { id: 'student', numeric: false, disablePadding: false, label: '学生' },
-    { id: 'teacherassess', numeric: true, disablePadding: false, label: '讲师评价' },
-    { id: 'materialassess', numeric: true, disablePadding: false, label: '资料评价' },
-    { id: 'assessment', numeric: true, disablePadding: false, label: '综合评价' },
-    { id: 'other', numeric: true, disablePadding: false, label: '其他意见' },
-    { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
-];
+// const rows = [
+//     { id: 'student', numeric: false, disablePadding: false, label: '学生' },
+//     { id: 'teacherassess', numeric: true, disablePadding: false, label: '讲师评价' },
+//     { id: 'materialassess', numeric: true, disablePadding: false, label: '资料评价' },
+//     { id: 'assessment', numeric: true, disablePadding: false, label: '综合评价' },
+//     { id: 'other', numeric: true, disablePadding: false, label: '其他意见' },
+//     { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
+// ];
 
-class SchoolCourseAssessment extends React.Component {
+class SchoolCourseAssessmentDetail extends React.Component {
     state = {
         // table settings
         order: 'desc',
@@ -105,14 +109,6 @@ class SchoolCourseAssessment extends React.Component {
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
         console.log(id);
-        const { i18n } = this.props;
-        const end_conference_score_id = id;
-        const data = {
-            ...this.props.auth.relatedDataId,
-            "endConferenceScoreId": end_conference_score_id,
-        }
-        this.props.setRelatedDataIdP(data);
-        this.props.history.push('/' + i18n.language + '/school-course-assessment-detail');
     };
 
     // ToolBar
@@ -197,13 +193,60 @@ class SchoolCourseAssessment extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
     /** React components 'Material-UI' end  **/
 
-    render() {
-        const { classes } = this.props;
+    form = ({ values, errors, touched, handleChange }) => {
+        const { classes
+            //, t, i18n
+        } = this.props;
         const {
-            // data,
-            order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = this.state.assessmentList;
-        const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+            academicTerm,
+        } = this.state;
+        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+
+        return (
+            <Form>
+                <Grid container spacing={32} alignItems="stretch">
+                    <Grid item xs={1} >學生</Grid>
+                    <Grid item xs={11}>{'陈大文'}</Grid>
+
+                    <Grid item xs={1} >創建日期</Grid>
+                    <Grid item xs={11}>{dateToDayMonthYear(1567296000000)}</Grid>
+
+                    <Grid item xs={1} >講師評價</Grid>
+                    <Grid item xs={11}>{4}</Grid>
+
+                    <Grid item xs={1} >資料評價</Grid>
+                    <Grid item xs={11}>{4}</Grid>
+
+                    <Grid item xs={1} >綜合評價</Grid>
+                    <Grid item xs={11}>{5}</Grid>
+
+                    <Grid item xs={1} >其他意見</Grid>
+                    <Grid item xs={11}>{'其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0'}</Grid>
+                </Grid>
+                <div className="bottomControl clearfix">
+
+                    <span>
+                        <Button className={classes.greyButton}>取消</Button>
+                    </span>
+
+                    <span className="right">
+                        <Button className={classes.blackButton}>下载</Button>
+
+                    </span>
+                </div>
+            </Form >
+        )
+    }
+    render() {
+        const {
+            academicTerm,
+        } = this.state;
+        // console.log('SchoolCourseInformation_render: ' + JSON.stringify(conferenceList, null, 2));
+        // const Schema = Yup.object().shape({
+        //     courseCode: Yup.string()
+        //         .required('Course Code is required'),
+        // })
+
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -228,11 +271,11 @@ class SchoolCourseAssessment extends React.Component {
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='new-school-course-material'
 
-                                    editButton={true}
+                                    editButton={false}
                                     editButtonText="编辑"
                                     editButtonAction={this._editButtonAction}
 
-                                    deleteButton={true}
+                                    deleteButton={false}
                                     deleteButtonText="删除"
                                     deleteButtonAction={this._deleteButtonAction}
 
@@ -244,76 +287,22 @@ class SchoolCourseAssessment extends React.Component {
                                     copyButtonText="拷贝"
                                     copyButtonAction={this._copyButtonAction}
 
-                                    reportButton={true}
+                                    reportButton={false}
                                     reportButtonText="评分报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
-                                <Paper className={classes.paper}>
-                                    <div className={classes.tableWrapper}>
-                                        <Table className={classes.table} aria-labelledby="tableTitle">
-                                            <EnhancedTableHead
-                                                numSelected={selected.length}
-                                                order={order}
-                                                orderBy={orderBy}
-                                                onSelectAllClick={this.handleSelectAllClick}
-                                                onRequestSort={this.handleRequestSort}
-                                                rowCount={data.length}
-                                                rows={rows}
-                                            />
-                                            <TableBody>
-                                                {data
-                                                    .sort(getSorting(order, orderBy))
-                                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                                    .map(n => {
-                                                        const theIndexNum = data.indexOf(n);
-                                                        const isSelected = this.isSelected(theIndexNum);
-                                                        return (
-                                                            <TableRow
-                                                                hover
-                                                                onClick={event => this.handleEnterSelection(event, n.end_conference_score_id)}
-                                                                role="checkbox"
-                                                                aria-checked={isSelected}
-                                                                tabIndex={-1}
-                                                                key={theIndexNum}
-                                                                selected={isSelected}
-                                                            >
-                                                                {/* <TableCell padding="checkbox">
-                                                                    <Checkbox checked={isSelected} />
-                                                                </TableCell> */}
-                                                                <TableCell component="th" scope="row"
-                                                                // padding="none"
-                                                                >{n.student}</TableCell>
-                                                                <TableCell>{n.teacherassess}</TableCell>
-                                                                <TableCell>{n.materialassess}</TableCell>
-                                                                <TableCell>{n.assessment}</TableCell>
-                                                                <TableCell>{n.other}</TableCell>
-                                                                <TableCell>{n.date}</TableCell>
-                                                            </TableRow>
-                                                        );
-                                                    })}
-                                                {emptyRows > 0 && (
-                                                    <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
-                                                    </TableRow>
-                                                )}
-                                            </TableBody>
-                                        </Table>
-                                    </div>
-                                    <TablePagination
-                                        component="div"
-                                        count={data.length}
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        backIconButtonProps={{
-                                            'aria-label': 'Previous Page',
+
+                                <div className="content">
+                                    <Formik
+                                        enableReinitialize
+                                        initialValues={{
+                                            academicTerm: academicTerm,
                                         }}
-                                        nextIconButtonProps={{
-                                            'aria-label': 'Next Page',
-                                        }}
-                                        onChangePage={this.handleChangePage}
-                                        onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                                        // validationSchema={Schema}
+                                        // onSubmit={this.handleSubmit}
+                                        component={this.form}
                                     />
-                                </Paper>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -323,7 +312,7 @@ class SchoolCourseAssessment extends React.Component {
     }
 }
 
-SchoolCourseAssessment.propTypes = {
+SchoolCourseAssessmentDetail.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -334,9 +323,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
-    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseAssessment))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolCourseAssessmentDetail)));

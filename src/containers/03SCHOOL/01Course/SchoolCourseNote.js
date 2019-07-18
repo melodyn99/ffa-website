@@ -26,7 +26,7 @@ import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId, resetRelatedDataId } from '../../../Redux/Action/authAction';
+import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -293,7 +293,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    resetRelatedDataIdP: data => dispatch(resetRelatedDataId()),
     setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
 });
 
