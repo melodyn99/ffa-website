@@ -43,8 +43,8 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 // Define column names
 const rows = [
     { id: 'student', numeric: false, disablePadding: false, label: '学生' },
-    { id: 'teacherassess', numeric: true, disablePadding: false, label: '讲师评价' },
-    { id: 'materialassess', numeric: true, disablePadding: false, label: '资料评价' },
+    { id: 'teacher_assess', numeric: true, disablePadding: false, label: '讲师评价' },
+    { id: 'material_assess', numeric: true, disablePadding: false, label: '资料评价' },
     { id: 'assessment', numeric: true, disablePadding: false, label: '综合评价' },
     { id: 'other', numeric: true, disablePadding: false, label: '其他意见' },
     { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
@@ -79,8 +79,8 @@ class SchoolCourseAssessment extends React.Component {
                 const convertedArray = {
                     end_conference_score_id: n.end_conference_score_id,
                     student: n.user.display_name,
-                    teacherassess: n.tutor_score,
-                    materialassess: n.material_scrore,
+                    teacher_assess: n.tutor_score,
+                    material_assess: n.material_scrore,
                     assessment: n.general_scrore,
                     other: n.comment,
                     date: dateToDayMonthYear(n.createddate)
@@ -105,12 +105,15 @@ class SchoolCourseAssessment extends React.Component {
     }
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
-        console.log(id);
+        // console.log(id);
         const { i18n } = this.props;
-        const end_conference_score_id = id;
+        const theList = this.state.assessmentList.find(n=>{
+            return n.end_conference_score_id === id;
+        });
+        console.log(theList);
         const data = {
             ...this.props.auth.relatedData,
-            "endConferenceScoreId": end_conference_score_id,
+            selectedCourseAssessment: theList,
         }
         this.props.setRelatedDataP(data);
         this.props.history.push('/' + i18n.language + '/school-course-assessment-detail');
@@ -284,8 +287,8 @@ class SchoolCourseAssessment extends React.Component {
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
                                                                 >{n.student}</TableCell>
-                                                                <TableCell>{n.teacherassess}</TableCell>
-                                                                <TableCell>{n.materialassess}</TableCell>
+                                                                <TableCell>{n.teacher_assess}</TableCell>
+                                                                <TableCell>{n.material_assess}</TableCell>
                                                                 <TableCell>{n.assessment}</TableCell>
                                                                 <TableCell>{n.other}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>

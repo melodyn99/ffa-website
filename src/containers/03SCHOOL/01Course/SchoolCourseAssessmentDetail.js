@@ -36,8 +36,8 @@ import ToolBar from '../../../components/105ToolBars/General';
 // Define column names
 // const rows = [
 //     { id: 'student', numeric: false, disablePadding: false, label: '学生' },
-//     { id: 'teacherassess', numeric: true, disablePadding: false, label: '讲师评价' },
-//     { id: 'materialassess', numeric: true, disablePadding: false, label: '资料评价' },
+//     { id: 'teacher_assess', numeric: true, disablePadding: false, label: '讲师评价' },
+//     { id: 'material_assess', numeric: true, disablePadding: false, label: '资料评价' },
 //     { id: 'assessment', numeric: true, disablePadding: false, label: '综合评价' },
 //     { id: 'other', numeric: true, disablePadding: false, label: '其他意见' },
 //     { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
@@ -54,48 +54,11 @@ class SchoolCourseAssessmentDetail extends React.Component {
 
         // component state
         // data: data,
-        assessmentList: [],
     };
 
     componentDidMount() {
-        this._getConferenceAssessment();
     }
 
-    _getConferenceAssessment = () => {
-
-        const cb = (obj) => {
-            // console.log("cb : ", obj);
-            const theList = obj.body;
-            let convertedList = [];
-
-            theList.map(n => {
-                const convertedArray = {
-                    end_conference_score_id: n.end_conference_score_id,
-                    student: n.user.display_name,
-                    teacherassess: n.tutor_score,
-                    materialassess: n.material_scrore,
-                    assessment: n.general_scrore,
-                    other: n.comment,
-                    date: n.createddate
-                }
-                return convertedList.push(convertedArray);
-            });
-
-            this.setState({
-                assessmentList: convertedList,
-            });
-            // console.log(this.state.assessmentList);
-        }
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
-
-        const params = {
-            conference: this.props.auth.relatedData.conferenceId,
-            $expand: 'user',
-        }
-        apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
-    }
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
         console.log(id);
@@ -187,40 +150,38 @@ class SchoolCourseAssessmentDetail extends React.Component {
         const { classes
             //, t, i18n
         } = this.props;
-        // const {
-        //     academicTerm,
-        // } = this.state;
-        // const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
+        const data = this.props.auth.relatedData.selectedCourseAssessment;
+        console.log(data);
 
         return (
             <Form>
                 <Grid container spacing={32} alignItems="stretch">
                     <Grid item xs={1} >學生</Grid>
-                    <Grid item xs={11}>{'陈大文'}</Grid>
+                    <Grid item xs={11}>{data.student}</Grid>
 
                     <Grid item xs={1} >創建日期</Grid>
-                    <Grid item xs={11}>{dateToDayMonthYear(1567296000000)}</Grid>
+                    <Grid item xs={11}>{dateToDayMonthYear(data.createddate)}</Grid>
 
                     <Grid item xs={1} >講師評價</Grid>
-                    <Grid item xs={11}>{4}</Grid>
+                    <Grid item xs={11}>{data.teacher_assess}</Grid>
 
                     <Grid item xs={1} >資料評價</Grid>
-                    <Grid item xs={11}>{4}</Grid>
+                    <Grid item xs={11}>{data.material_assess}</Grid>
 
                     <Grid item xs={1} >綜合評價</Grid>
-                    <Grid item xs={11}>{5}</Grid>
+                    <Grid item xs={11}>{data.assessment}</Grid>
 
                     <Grid item xs={1} >其他意見</Grid>
-                    <Grid item xs={11}>{'其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0其他意見0'}</Grid>
+                    <Grid item xs={11}>{data.other}</Grid>
                 </Grid>
                 <div className="bottomControl clearfix">
 
                     <span>
-                        <Button className={classes.greyButton}>取消</Button>
+                        <Button onClick={() => this.props.history.goBack()} className={classes.greyButton}>取消</Button>
                     </span>
 
                     <span className="right">
-                        <Button className={classes.blackButton}>下载</Button>
+                        <Button onClick={() => this.props.history.goBack()} className={classes.blackButton}>下载</Button>
 
                     </span>
                 </div>
