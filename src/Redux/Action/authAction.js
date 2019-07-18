@@ -60,7 +60,7 @@ export const refreshTokenByRefreshToken = (data) => ({
   data
 });
 
-export const setRelatedDataId = (data) => ({
-  type: AuthActionTypes.SET_RELATED_DATA_ID,
+export const setRelatedData = (data) => ({
+  type: AuthActionTypes.SET_RELATED_DATA,
   data
 });

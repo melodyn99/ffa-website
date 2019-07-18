@@ -27,7 +27,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -112,7 +112,7 @@ class SchoolCourseAssessment extends React.Component {
             ...this.props.auth.relatedDataId,
             "endConferenceScoreId": end_conference_score_id,
         }
-        this.props.setRelatedDataIdP(data);
+        this.props.setRelatedDataP(data);
         this.props.history.push('/' + i18n.language + '/school-course-assessment-detail');
     };
 
@@ -335,7 +335,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
-    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

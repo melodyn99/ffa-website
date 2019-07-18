@@ -31,7 +31,7 @@ import { apiFile } from '../../../Api/ApiFile';
 // Redux
 import { connect } from 'react-redux';
 import { setNoteTitle, viewingNoteAction } from '../../../Redux/Action/eventAction';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import Bluebird from 'bluebird';
@@ -178,7 +178,7 @@ class SchoolNoteTaking extends React.Component {
                 "noteId": obj.body.note_id,
             }
 
-            this.props.setRelatedDataIdP(data);
+            this.props.setRelatedDataP(data);
             this.setState({
                 ...this.state,
                 noteId: obj.body.note_id
@@ -552,7 +552,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setNoteTitle: data => dispatch(setNoteTitle(data)),
     viewingNoteAction: data => dispatch(viewingNoteAction(data)),
-    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles, SchoolNoteTakingStyles);

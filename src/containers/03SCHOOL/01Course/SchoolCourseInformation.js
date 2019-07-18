@@ -21,7 +21,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -182,7 +182,7 @@ class SchoolCourseInformation extends React.Component {
                 ...this.props.auth.conferenceId,
                 conferenceId: obj.body.conference_id,
             }
-            this.props.setRelatedDataIdP(data);
+            this.props.setRelatedDataP(data);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -247,7 +247,7 @@ class SchoolCourseInformation extends React.Component {
                 //     ...this.props.auth.conferenceId,
                 //     conferenceId: obj.body.conference_id,
                 // }
-                // this.props.setRelatedDataIdP(data);
+                // this.props.setRelatedDataP(data);
             }
             const eCb = (obj) => {
                 console.log("eCb : ", obj);
@@ -801,7 +801,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
-    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

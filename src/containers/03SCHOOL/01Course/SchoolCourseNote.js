@@ -26,7 +26,7 @@ import { apiNoteTaking } from '../../../Api/ApiNoteTaking';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -112,7 +112,7 @@ class SchoolCourseNote extends React.Component {
             ...this.props.auth.relatedDataId,
             "noteId": note_id,
         }
-        this.props.setRelatedDataIdP(data);
+        this.props.setRelatedDataP(data);
         this.props.history.push('/' + i18n.language + '/school-note-taking');
     };
 
@@ -122,7 +122,7 @@ class SchoolCourseNote extends React.Component {
             ...this.props.auth.relatedDataId,
             "noteId": '',
         }
-        this.props.setRelatedDataIdP(data);
+        this.props.setRelatedDataP(data);
         this.props.history.push('/' + i18n.language + '/school-note-taking');
     }
     /** form handle input end **/
@@ -293,7 +293,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

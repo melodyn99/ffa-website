@@ -26,7 +26,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -114,7 +114,7 @@ class SchoolAllCourse extends React.Component {
             conferenceId: '',
         }
 
-        this.props.setRelatedDataIdP(data);
+        this.props.setRelatedDataP(data);
         this.props.history.push(url);
     }
     handleEnterSelection = (event, id) => {
@@ -125,7 +125,7 @@ class SchoolAllCourse extends React.Component {
             conferenceId: conference_id,
         }
 
-        this.props.setRelatedDataIdP(data);
+        this.props.setRelatedDataP(data);
         this.props.history.push('/' + i18n.language + '/school-course-information');
     };
     /** form handle input end **/
@@ -302,7 +302,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

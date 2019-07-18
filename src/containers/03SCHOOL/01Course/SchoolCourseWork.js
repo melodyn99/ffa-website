@@ -27,7 +27,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedDataId } from '../../../Redux/Action/authAction';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -115,7 +115,7 @@ class SchoolCourseWork extends React.Component {
         //     ...this.props.auth.relatedDataId,
         //     "courseAssignmentId": courseAssignment_id,
         // }
-        // this.props.setRelatedDataIdP(data);
+        // this.props.setRelatedDataP(data);
         // this.props.history.push('/' + i18n.language + '/school-note-taking');
     };
 
@@ -206,7 +206,7 @@ class SchoolCourseWork extends React.Component {
         const { classes } = this.props;
         const {
             // data,
-            // courseAssignmentList, 
+            // courseAssignmentList,
             order, orderBy, selected, rowsPerPage, page } = this.state;
         // const data = courseAssignmentList;
         const data = this.state.data;
@@ -317,7 +317,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     // loginP: data => dispatch(login(data)),
     // verifyT: token => dispatch(verifyToken(token)),
-    setRelatedDataIdP: data => dispatch(setRelatedDataId(data)),
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

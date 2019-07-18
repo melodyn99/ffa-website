@@ -111,7 +111,7 @@ class SchoolCoursePreparation extends React.Component {
         //     ...this.props.auth.relatedDataId,
         //     "seatingPlan_id": seatingPlan_id,
         // }
-        // this.props.setRelatedDataIdP(data);
+        // this.props.setRelatedDataP(data);
         // this.props.history.push('/' + i18n.language + '/school-seating-plan');
     };
 
