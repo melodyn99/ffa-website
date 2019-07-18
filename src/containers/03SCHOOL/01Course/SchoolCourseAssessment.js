@@ -31,6 +31,7 @@ import { setRelatedDataId } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -82,7 +83,7 @@ class SchoolCourseAssessment extends React.Component {
                     materialassess: n.material_scrore,
                     assessment: n.general_scrore,
                     other: n.comment,
-                    date: n.createddate
+                    date: dateToDayMonthYear(n.createddate)
                 }
                 return convertedList.push(convertedArray);
             });

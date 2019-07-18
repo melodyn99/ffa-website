@@ -13,12 +13,6 @@ import { Button } from '@material-ui/core';
 
 // Material UI
 import PropTypes from 'prop-types';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TablePagination from '@material-ui/core/TablePagination';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 // import Checkbox from '@material-ui/core/Checkbox';
 
@@ -30,17 +24,13 @@ import { apiConferences } from '../../../Api/ApiConferences';
 import { connect } from 'react-redux';
 
 // Utils
-import { Formik, Form, Field } from 'formik';
-import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
-import * as Yup from 'yup';
+import { Formik, Form } from 'formik';
 import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
-import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../../data/03SCHOOL/01Course/SchoolCourseAssessment';
 
 // Define column names
@@ -197,10 +187,10 @@ class SchoolCourseAssessmentDetail extends React.Component {
         const { classes
             //, t, i18n
         } = this.props;
-        const {
-            academicTerm,
-        } = this.state;
-        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        // const {
+        //     academicTerm,
+        // } = this.state;
+        // const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
 
         return (
             <Form>

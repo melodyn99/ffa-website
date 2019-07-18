@@ -152,7 +152,10 @@ class SchoolCourseInformation extends React.Component {
                 expectedFees: theList.expected_fee,
                 actualFees: theList.actual_fee,
 
-                conference_sections: theList.conference_sections
+                // conference_sections: theList.conference_sections
+                conference_sections: theList.conference_sections.sort(function (a, b) {
+                    return a.value - b.value;
+                }),
             });
         }
 
@@ -210,19 +213,20 @@ class SchoolCourseInformation extends React.Component {
             email: this.state.contactEmail,
             wechat: this.state.contactWechat,
             phone: this.state.contactNumber,
-            conference_sections: [
-                {
-                    "title": "第1课 - 介绍",
-                    "sequence": 1,
-                    "start_date": 1570323600000,
-                    "end_date": 1570356000000,
-                    "location": "杭州",
-                    "address": "新城东方君悦水星厅",
-                    "teachers": [
-                        { "user": "teacher@ffa.test", "sequence": 1 }
-                    ]
-                }
-            ],
+            // conference_sections: [
+            //     {
+            //         title: "第1课 - 介绍",
+            //         sequence: 1,
+            //         start_date: 1570323600000,
+            //         end_date: 1570356000000,
+            //         location: "杭州",
+            //         address: "新城东方君悦水星厅",
+            //         teachers: [
+            //             { user: "teacher@ffa.test", sequence: 1 }
+            //         ]
+            //     }
+            // ],
+            conference_sections: this.state.conference_sections,
             conference_officers: [
                 { user: this.props.auth.userInfo.username }
             ]
@@ -274,9 +278,10 @@ class SchoolCourseInformation extends React.Component {
                 email: this.state.contactEmail,
                 wechat: this.state.contactWechat,
                 phone: this.state.contactNumber,
+                conference_sections: this.state.conference_sections,
             }
             console.log(params);
-            apiConferences.editConference(redux_conferenceId, params, this.props.auth.token, cb, eCb);
+            // apiConferences.editConference(redux_conferenceId, params, this.props.auth.token, cb, eCb);
         } else
             console.log('redux_conferenceId is empty');
     }
@@ -297,15 +302,6 @@ class SchoolCourseInformation extends React.Component {
             // apiConferences.deleteConference(redux_conferenceId, this.props.auth.token, cb, eCb);
         } else
             console.log('redux_conferenceId is empty');
-    }
-
-    handleSubmit = (values, { setFieldError }) => {
-        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
-        if (redux_conferenceId !== null) {
-            this.editConferenceInfo();
-        } else {
-            this.createConferenceWithEnterInfo();
-        }
     }
 
     // Tools
@@ -345,9 +341,20 @@ class SchoolCourseInformation extends React.Component {
     //** form handle input end **/
 
     handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
+        // console.log('GREAT!');
+
+        const redux_conferenceId = this.props.auth.relatedDataId.conferenceId || null;
+        if (redux_conferenceId !== null) {
+            this.editConferenceInfo();
+        } else {
+            this.createConferenceWithEnterInfo();
+        }
+        // const body = {
+        //     conference_sections:[
+
+        //     ]
+        // };
+        console.log(values);
     }
 
     form = ({ values, errors, touched, handleChange }) => {
@@ -576,32 +583,35 @@ class SchoolCourseInformation extends React.Component {
                             onChange={e => { this._handleSelect('actualFees', e.target.value) }} />
                         {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null}
                     </Grid>
-                </Grid>
 
-                <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={12} ></Grid>
-                    <Grid item xs={12} >课程日期和时间</Grid>
-                </Grid>
+                    <Grid item xs={12} >&nbsp;</Grid>
 
-                {(this.state.conference_sections.map(
-                    (data, i) => {
-                        return (
-                            <Block
-                                key={i}
-                                i={i}
-                                className={"className" + i}
-                                classDate={"classDate" + i}
-                                classLocation={"classLocation" + i}
-                                classTeacher={"classTeacher" + i}
-                                errors={errors}
-                                touched={touched}
-                            />
-                        )
-                    }
-                ))}
+                    <Grid container spacing={16} alignItems="center">
+                        <Grid item xs={12} >课程日期和时间</Grid>
+                        <Grid item xs={12} >
+                            {(this.state.conference_sections.map(
+                                (data, i) => {
+                                    // console.log(data);
+                                    return (
+                                        <Block
+                                            key={i}
+                                            i={i}
+                                            className={this.state.conference_sections.className}
+                                            classDate={"classDate" + i}
+                                            classLocation={"classLocation" + i}
+                                            classTeacher={"classTeacher" + i}
+                                            errors={errors}
+                                            touched={touched}
+                                        />
+                                    )
+                                }
+                            ))}
+                        </Grid>
+                    </Grid>
 
-                <Grid item xs={12} className="mt20">
-                    <Button className={classes.greyButton} onClick={this._handleAddMore}>添加上課日子</Button>
+                    <Grid item xs={12} className="mt20">
+                        <Button className={classes.greyButton} onClick={this._handleAddMore}>添加上課日子</Button>
+                    </Grid>
                 </Grid>
 
                 <div className="bottomControl clearfix">
@@ -694,16 +704,6 @@ class SchoolCourseInformation extends React.Component {
                 .required('Actual Fees is required'),
             className1: Yup.string()
                 .required('Class Name is required'),
-            classDate1: Yup.string()
-                .required('Class Date is required'),
-            classLocation1: Yup.string()
-                .required('Class Location is required'),
-            className2: Yup.string()
-                .required('Class Name is required'),
-            classDate2: Yup.string()
-                .required('Class Date is required'),
-            classLocation2: Yup.string()
-                .required('Class Location is required'),
 
             // conference_sections: Yup
             //     .array()
@@ -726,38 +726,7 @@ class SchoolCourseInformation extends React.Component {
             // classLocation1: Yup.string().required('Class2 Location is required'),
             // classTeacher1: Yup.string().required('Class2 Location is required'),
 
-            // className2: Yup.string().required('Class3 Name is required'),
-            // classDate2: Yup.string().required('Class3 Date is required'),
-            // classLocation2: Yup.string().required('Class3 Location is required'),
-            // classTeacher2: Yup.string().required('Class3 Location is required'),
-
-            // className3: Yup.string().required('Class4 Name is required'),
-            // classDate3: Yup.string().required('Class4 Date is required'),
-            // classLocation3: Yup.string().required('Class4 Location is required'),
-            // classTeacher3: Yup.string().required('Class4 Location is required'),
-
-            // className4: Yup.string().required('Class5 Name is required'),
-            // classDate4: Yup.string().required('Class5 Date is required'),
-            // classLocation4: Yup.string().required('Class5 Location is required'),
-            // classTeacher4: Yup.string().required('Class5 Location is required'),
-
-            // className5: Yup.string().required('Class6 Name is required'),
-            // classDate5: Yup.string().required('Class6 Date is required'),
-            // classLocation5: Yup.string().required('Class6 Location is required'),
-            // classTeacher5: Yup.string().required('Class6 Location is required'),
-
-            // className6: Yup.string().required('Class7 Name is required'),
-            // classDate6: Yup.string().required('Class7 Date is required'),
-            // classLocation6: Yup.string().required('Class7 Location is required'),
-            // classTeacher6: Yup.string().required('Class7 Location is required'),
-
-            // className7: Yup.string().required('Class8 Name is required'),
-            // classDate7: Yup.string().required('Class8 Date is required'),
-            // classLocation7: Yup.string().required('Class8 Location is required'),
-            // classTeacher7: Yup.string().required('Class8 Location is required'),
         })
-
-        console.log(this.state);
 
         return (
             <div>
@@ -807,30 +776,6 @@ class SchoolCourseInformation extends React.Component {
                                         className1: '',
                                         classDate1: '',
                                         classLocation1: '',
-
-                                        className2: '',
-                                        classDate2: '',
-                                        classLocation2: '',
-
-                                        className3: '',
-                                        classDate3: '',
-                                        classLocation3: '',
-
-                                        className4: '',
-                                        classDate4: '',
-                                        classLocation4: '',
-
-                                        className5: '',
-                                        classDate5: '',
-                                        classLocation5: '',
-
-                                        className6: '',
-                                        classDate6: '',
-                                        classLocation6: '',
-
-                                        className7: '',
-                                        classDate7: '',
-                                        classLocation7: '',
                                     }}
                                     validationSchema={Schema}
                                     onSubmit={this.handleSubmit}
