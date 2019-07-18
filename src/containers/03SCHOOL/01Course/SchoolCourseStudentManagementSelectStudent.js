@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom'
 
 // Styling
-import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common';
+import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -20,6 +20,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
+import { Button } from '@material-ui/core';
 
 // Api
 // import { apiAuth } from '../../../../Api/ApiAuth';
@@ -34,7 +35,7 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
-import ToolBar from '../../../components/105ToolBars/General';
+// import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 import data from '../../../data/03SCHOOL/01Course/SchoolCourseStudentManagement';
 
@@ -50,7 +51,7 @@ const rows = [
     { id: 'date', numeric: true, disablePadding: false, label: '添加日期' },
 ];
 
-class SchoolCourseStudentManagement extends React.Component {
+class SchoolCourseStudentManagementSelectStudent extends React.Component {
     state = {
         order: 'desc',
         orderBy: 'date',
@@ -110,11 +111,6 @@ class SchoolCourseStudentManagement extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-    // ToolBar
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
     render() {
         const { classes, i18n } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -132,20 +128,6 @@ class SchoolCourseStudentManagement extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-
-                                <ToolBar
-                                    createButton={true}
-                                    createButtonText="添加"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='school-course-student-management-select-student'
-                                />
-
-                                <Link to={"/" + i18n.language + "/school-course-student-management-attendance"} className="dummy">Go to Course Student Management Attendance</Link>
-                                <div className="sep-20"></div>
-
-                                <Link to={"/" + i18n.language + "/school-course-student-management-homework"} className="dummy">Go to Course Student Management Homework</Link>
-                                <div className="sep-20"></div>
-
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
                                         <Table className={classes.table} aria-labelledby="tableTitle">
@@ -213,6 +195,12 @@ class SchoolCourseStudentManagement extends React.Component {
                                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                     />
                                 </Paper>
+                                <div className="bottomControl clearfix">
+                                    <Button className={classes.greyButton}
+                                        onClick={() => this.props.history.push('school-course-student-management')}
+                                    >返回</Button>
+                                    <span className="right"><Button type="submit" className={classes.blackButton}>加入學生</Button></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -222,7 +210,7 @@ class SchoolCourseStudentManagement extends React.Component {
     }
 }
 
-SchoolCourseStudentManagement.propTypes = {
+SchoolCourseStudentManagementSelectStudent.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -237,4 +225,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseStudentManagement))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseStudentManagementSelectStudent))));
