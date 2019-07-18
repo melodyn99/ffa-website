@@ -35,7 +35,7 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 
 function Block(props) {
     return (
-        <Grid container spacing={16} alignItems="center">
+        <Grid container spacing={16} alignItems="center" className="mt20">
             <Grid item xs={12} >#{props.i + 1}</Grid>
 
             <Grid item xs={1} >课程标题</Grid>
