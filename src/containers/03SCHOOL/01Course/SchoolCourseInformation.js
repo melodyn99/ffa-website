@@ -113,7 +113,8 @@ class SchoolCourseInformation extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body[0];
-            // console.log("theList: " + JSON.stringify(theList, null, 2));
+
+            console.log("theList: " + JSON.stringify(theList, null, 2));
 
             this.setState({
                 academicTerm: theList.academic_term,
@@ -141,6 +142,8 @@ class SchoolCourseInformation extends React.Component {
                 courseFees: theList.fee,
                 expectedFees: theList.expected_fee,
                 actualFees: theList.actual_fee,
+
+                conference_sections: theList.conference_sections
             });
         }
 
@@ -164,10 +167,13 @@ class SchoolCourseInformation extends React.Component {
             conference_sections: [
                 ...this.state.conference_sections,
                 {
-                    className: '',
-                    classDate: '',
-                    classLocation: '',
-                    classTeacher: '',
+                    conference_section_id: '',
+                    conference: '',
+                    sequence: '',
+                    start_date: '',
+                    end_date: '',
+                    location: '',
+                    address: '',
                 }]
         });
     }
@@ -430,9 +436,11 @@ class SchoolCourseInformation extends React.Component {
                     }
                 ))}
 
-                <div className="bottomControl clearfix">
-                    <Button className={classes.greyButton} onClick={this._handleAddMore}>Add More</Button>
+                <Grid item xs={12} className="mt20">
+                    <Button className={classes.greyButton} onClick={this._handleAddMore}>添加上課日子</Button>
+                </Grid>
 
+                <div className="bottomControl clearfix">
                     <span className="right"><Button type="submit" className={classes.greyButton}>编辑资料</Button></span>
                 </div>
             </Form >
