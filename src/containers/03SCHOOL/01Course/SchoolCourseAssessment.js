@@ -103,6 +103,7 @@ class SchoolCourseAssessment extends React.Component {
         }
         apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
     }
+
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
         // console.log(id);
@@ -126,30 +127,6 @@ class SchoolCourseAssessment extends React.Component {
     }
 
     // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
     _reportButtonAction = () => {
         console.log('report button pressed');
     }
@@ -228,32 +205,6 @@ class SchoolCourseAssessment extends React.Component {
                             <div className="content">
 
                                 <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-material'
-
-                                    createButton={false}
-                                    createButtonText="添加"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-material'
-
-                                    editButton={true}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={true}
-                                    deleteButtonText="删除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={false}
-                                    importButtonText="导入"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
                                     reportButton={true}
                                     reportButtonText="评分报告"
                                     reportButtonAction={this._reportButtonAction}
@@ -343,8 +294,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
     setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
