@@ -141,8 +141,8 @@ class SchoolCourseInformation extends React.Component {
                 contactNumber: theList.phone,
                 essentialCourse: '',
 
-                enrollmenetStartDate: theList.enrollmenet_start_date,
-                enrollmenetEndDate: theList.enrollment_end_date,
+                enrollmenetStartDate: theList.enrollmenet_start_date || 1565798300000,
+                enrollmenetEndDate: theList.enrollment_end_date || 1565798300000,
 
                 courseQuota: theList.quota,
                 courseCredits: theList.credit,
@@ -269,8 +269,8 @@ class SchoolCourseInformation extends React.Component {
                 type: this.state.courseType,
                 code: this.state.courseCode,
                 address: this.state.courseAddress,
-                enrollmenet_start_date: 1565797400000,
-                enrollment_end_date: 1565798400000,
+                enrollmenet_start_date: this.state.enrollmenetStartDate,
+                enrollment_end_date: this.state.enrollmenetEndDate,
                 credit_requirement: 2019,
                 fee: this.state.courseFees,
                 expected_fee: this.state.expectedFees,
@@ -708,8 +708,6 @@ class SchoolCourseInformation extends React.Component {
             actualFees: Yup.number()
                 .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
-            className1: Yup.string()
-                .required('Class Name is required'),
 
             // conference_sections: Yup
             //     .array()
@@ -726,12 +724,6 @@ class SchoolCourseInformation extends React.Component {
             // classDate0: Yup.string().required('Class1 Date is required'),
             // classLocation0: Yup.string().required('Class1 Location is required'),
             // classTeacher0: Yup.string().required('Class1 Location is required'),
-
-            // className1: Yup.string().required('Class2 Name is required'),
-            // classDate1: Yup.string().required('Class2 Date is required'),
-            // classLocation1: Yup.string().required('Class2 Location is required'),
-            // classTeacher1: Yup.string().required('Class2 Location is required'),
-
         })
 
         return (
@@ -763,7 +755,7 @@ class SchoolCourseInformation extends React.Component {
                                         contactEmail: contactEmail,
                                         contactWechat: contactWechat,
                                         contactNumber: contactNumber,
-                                        essentialCourse: '',
+                                        // essentialCourse: '',
 
                                         enrollmenetStartDate: enrollmenetStartDate,
                                         enrollmenetEndDate: enrollmenetEndDate,
@@ -775,13 +767,9 @@ class SchoolCourseInformation extends React.Component {
                                         expectedFees: expectedFees,
                                         actualFees: actualFees,
 
-                                        className0: '',
-                                        classDate0: '',
-                                        classLocation0: '',
-
-                                        className1: '',
-                                        classDate1: '',
-                                        classLocation1: '',
+                                        // className0: '',
+                                        // classDate0: '',
+                                        // classLocation0: '',
                                     }}
                                     validationSchema={Schema}
                                     onSubmit={this.handleSubmit}
