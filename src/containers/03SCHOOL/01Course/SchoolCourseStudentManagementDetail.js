@@ -50,7 +50,7 @@ const rows = [
     { id: 'date', numeric: true, disablePadding: false, label: '添加日期' },
 ];
 
-class SchoolCourseStudentManagement extends React.Component {
+class SchoolCourseStudentManagementDetail extends React.Component {
     state = {
         order: 'desc',
         orderBy: 'date',
@@ -111,7 +111,7 @@ class SchoolCourseStudentManagement extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     // ToolBar
-    _createButtonAction = (url) => {
+    _backButtonAction = (url) => {
         this.props.history.push(url);
     }
 
@@ -140,10 +140,10 @@ class SchoolCourseStudentManagement extends React.Component {
                             <div className="content">
 
                                 <ToolBar
-                                    createButton={true}
-                                    createButtonText="添加"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='school-course-student-management-select-student'
+                                    backButton={true}
+                                    backButtonText="返回"
+                                    backButtonAction={this._backButtonAction}
+                                    backButtonActionUrl='school-course-student-management'
                                 />
 
                                 <Paper className={classes.paper}>
@@ -167,6 +167,7 @@ class SchoolCourseStudentManagement extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
+                                                                onClick={() => this._goToDetail('school-course-student-management-detail')}
                                                                 // onClick={event => this.handleClick(event, n.id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
@@ -183,16 +184,8 @@ class SchoolCourseStudentManagement extends React.Component {
                                                                 <TableCell>{n.fee}</TableCell>
                                                                 <TableCell>{n.actualfee}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
-                                                                <TableCell
-                                                                    onClick={() => this._goToDetail('school-course-student-management-attendance')}
-                                                                >
-                                                                    <span className="color-blue">{n.attendance}</span>
-                                                                </TableCell>
-                                                                <TableCell
-                                                                    onClick={() => this._goToDetail('school-course-student-management-homework')}
-                                                                >
-                                                                    <span className="color-blue">{n.homework}</span>
-                                                                </TableCell>
+                                                                <TableCell>{n.attendance}</TableCell>
+                                                                <TableCell>{n.homework}</TableCell>
                                                                 <TableCell>{n.score}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
@@ -230,7 +223,7 @@ class SchoolCourseStudentManagement extends React.Component {
     }
 }
 
-SchoolCourseStudentManagement.propTypes = {
+SchoolCourseStudentManagementDetail.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -243,4 +236,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseStudentManagement))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseStudentManagementDetail))));
