@@ -105,15 +105,15 @@ class SchoolCourseAssessment extends React.Component {
     }
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
-        // console.log(id);
         const { i18n } = this.props;
-        const theList = this.state.assessmentList.find(n => {
-            return n.end_conference_score_id === id;
-        });
-        console.log(theList);
+        const end_conference_score_id = id;
+        // const theList = this.state.assessmentList.find(n => {
+        //     return n.end_conference_score_id === id;
+        // });
+        // console.log(theList);
         const data = {
             ...this.props.auth.relatedData,
-            selectedCourseAssessment: theList,
+            endConferenceScoreId: end_conference_score_id,
         }
         this.props.setRelatedDataP(data);
         this.props.history.push('/' + i18n.language + '/school-course-assessment-detail');

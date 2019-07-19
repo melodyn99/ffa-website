@@ -19,30 +19,19 @@ import Grid from '@material-ui/core/Grid';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
-import { Formik, Form } from 'formik';
+import { Form } from 'formik';
 import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
-// import data from '../../../data/03SCHOOL/01Course/SchoolCourseAssessment';
-
-// Define column names
-// const rows = [
-//     { id: 'student', numeric: false, disablePadding: false, label: '学生' },
-//     { id: 'teacher_assess', numeric: true, disablePadding: false, label: '讲师评价' },
-//     { id: 'material_assess', numeric: true, disablePadding: false, label: '资料评价' },
-//     { id: 'assessment', numeric: true, disablePadding: false, label: '综合评价' },
-//     { id: 'other', numeric: true, disablePadding: false, label: '其他意见' },
-//     { id: 'date', numeric: true, disablePadding: false, label: '创建日期' },
-// ];
 
 class SchoolCourseAssessmentDetail extends React.Component {
     state = {
@@ -55,16 +44,47 @@ class SchoolCourseAssessmentDetail extends React.Component {
 
         // component state
         // data: data,
+        assessmentList: [],
     };
 
     componentDidMount() {
+        this._getConferenceAssessment();
     }
 
-    /** form handle input start **/
-    // handleEnterSelection = (event, id) => {
-    //     console.log(id);
-    // };
+    _getConferenceAssessment = () => {
 
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body[0];
+            // console.log(obj.body);
+
+            let convertedList = [];
+            convertedList = {
+                end_conference_score_id: theList.end_conference_score_id,
+                student: theList.user.display_name,
+                teacher_assess: theList.tutor_score,
+                material_assess: theList.material_scrore,
+                assessment: theList.general_scrore,
+                other: theList.comment,
+                date: dateToDayMonthYear(theList.createddate)
+            }
+
+            this.setState({
+                assessmentList: convertedList,
+            });
+            // console.log(this.state.assessmentList);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            conference: this.props.auth.relatedData.conferenceId,
+            $expand: 'user',
+            end_conference_score_id: this.props.auth.relatedData.endConferenceScoreId,
+        }
+        apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
+    }
     // ToolBar
     downloadTxtFile = () => {
         const data = this.props.auth.relatedData.selectedCourseAssessment;
@@ -169,57 +189,12 @@ class SchoolCourseAssessmentDetail extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
     /** React components 'Material-UI' end  **/
 
-    form = ({ values, errors, touched, handleChange }) => {
+    render() {
         const { classes
             //, t, i18n
         } = this.props;
-        const data = this.props.auth.relatedData.selectedCourseAssessment;
+        const data = this.state.assessmentList;
         // console.log(data);
-
-        return (
-            <Form>
-                <Grid container spacing={32} alignItems="stretch">
-                    <Grid item xs={1} >學生</Grid>
-                    <Grid item xs={11}>{data.student}</Grid>
-
-                    <Grid item xs={1} >創建日期</Grid>
-                    <Grid item xs={11}>{dateToDayMonthYear(data.createddate)}</Grid>
-
-                    <Grid item xs={1} >講師評價</Grid>
-                    <Grid item xs={11}>{data.teacher_assess}</Grid>
-
-                    <Grid item xs={1} >資料評價</Grid>
-                    <Grid item xs={11}>{data.material_assess}</Grid>
-
-                    <Grid item xs={1} >綜合評價</Grid>
-                    <Grid item xs={11}>{data.assessment}</Grid>
-
-                    <Grid item xs={1} >其他意見</Grid>
-                    <Grid item xs={11}>{data.other}</Grid>
-                </Grid>
-                <div className="bottomControl clearfix">
-
-                    <span>
-                        <Button onClick={() => this.props.history.goBack()} className={classes.greyButton}>取消</Button>
-                    </span>
-
-                    <span className="right">
-                        <Button onClick={() => this.downloadTxtFile()} className={classes.blackButton}>下载</Button>
-
-                    </span>
-                </div>
-            </Form >
-        )
-    }
-    render() {
-        const {
-            academicTerm,
-        } = this.state;
-        // console.log('SchoolCourseInformation_render: ' + JSON.stringify(conferenceList, null, 2));
-        // const Schema = Yup.object().shape({
-        //     courseCode: Yup.string()
-        //         .required('Course Code is required'),
-        // })
 
         return (
             <div>
@@ -265,18 +240,38 @@ class SchoolCourseAssessmentDetail extends React.Component {
                                     reportButtonText="评分报告"
                                     reportButtonAction={this._reportButtonAction}
                                 />
+                                <Form>
+                                    <Grid container spacing={32} alignItems="stretch">
+                                        <Grid item xs={1} >學生</Grid>
+                                        <Grid item xs={11}>{data.student}</Grid>
 
-                                <div className="content">
-                                    <Formik
-                                        enableReinitialize
-                                        initialValues={{
-                                            academicTerm: academicTerm,
-                                        }}
-                                        // validationSchema={Schema}
-                                        // onSubmit={this.handleSubmit}
-                                        component={this.form}
-                                    />
-                                </div>
+                                        <Grid item xs={1} >創建日期</Grid>
+                                        <Grid item xs={11}>{dateToDayMonthYear(data.createddate)}</Grid>
+
+                                        <Grid item xs={1} >講師評價</Grid>
+                                        <Grid item xs={11}>{data.teacher_assess}</Grid>
+
+                                        <Grid item xs={1} >資料評價</Grid>
+                                        <Grid item xs={11}>{data.material_assess}</Grid>
+
+                                        <Grid item xs={1} >綜合評價</Grid>
+                                        <Grid item xs={11}>{data.assessment}</Grid>
+
+                                        <Grid item xs={1} >其他意見</Grid>
+                                        <Grid item xs={11}>{data.other}</Grid>
+                                    </Grid>
+                                    <div className="bottomControl clearfix">
+
+                                        <span>
+                                            <Button onClick={() => this.props.history.goBack()} className={classes.greyButton}>取消</Button>
+                                        </span>
+
+                                        <span className="right">
+                                            <Button onClick={() => this.downloadTxtFile()} className={classes.blackButton}>下载</Button>
+
+                                        </span>
+                                    </div>
+                                </Form >
                             </div>
                         </div>
                     </div>
