@@ -107,7 +107,7 @@ class SchoolCourseAssessment extends React.Component {
     handleEnterSelection = (event, id) => {
         // console.log(id);
         const { i18n } = this.props;
-        const theList = this.state.assessmentList.find(n=>{
+        const theList = this.state.assessmentList.find(n => {
             return n.end_conference_score_id === id;
         });
         console.log(theList);
@@ -118,6 +118,12 @@ class SchoolCourseAssessment extends React.Component {
         this.props.setRelatedDataP(data);
         this.props.history.push('/' + i18n.language + '/school-course-assessment-detail');
     };
+
+    checkIsNeedEllipsis = (msg) => {
+        let checkedMsg = msg;
+        checkedMsg = msg.length >= 100 ? checkedMsg.substring(0, 97) + "..." : checkedMsg;
+        return checkedMsg;
+    }
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -271,6 +277,7 @@ class SchoolCourseAssessment extends React.Component {
                                                     .map(n => {
                                                         const theIndexNum = data.indexOf(n);
                                                         const isSelected = this.isSelected(theIndexNum);
+                                                        const other = this.checkIsNeedEllipsis(n.other);
                                                         return (
                                                             <TableRow
                                                                 hover
@@ -290,7 +297,7 @@ class SchoolCourseAssessment extends React.Component {
                                                                 <TableCell>{n.teacher_assess}</TableCell>
                                                                 <TableCell>{n.material_assess}</TableCell>
                                                                 <TableCell>{n.assessment}</TableCell>
-                                                                <TableCell>{n.other}</TableCell>
+                                                                <TableCell>{other}</TableCell>
                                                                 <TableCell>{n.date}</TableCell>
                                                             </TableRow>
                                                         );

@@ -74,9 +74,10 @@ class SchoolCourseAssessmentDetail extends React.Component {
             '讲师评价': data.teacher_assess,
             '资料评价': data.material_assess,
             '综合评价': data.assessment,
-            '其他意见': data.other,
             '创建日期': data.date,
+            '其他意见': data.other,
         }
+        // console.log(convertedList);
         const element = document.createElement("a");
         const file = new Blob([JSON.stringify(convertedList, null, 2)], { type: 'text/plain' });
         element.href = URL.createObjectURL(file);
