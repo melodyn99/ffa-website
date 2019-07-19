@@ -4,6 +4,7 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -18,7 +19,7 @@ import Grid from '@material-ui/core/Grid';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
-import { apiConferences } from '../../../Api/ApiConferences';
+// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -60,11 +61,32 @@ class SchoolCourseAssessmentDetail extends React.Component {
     }
 
     /** form handle input start **/
-    handleEnterSelection = (event, id) => {
-        console.log(id);
-    };
+    // handleEnterSelection = (event, id) => {
+    //     console.log(id);
+    // };
 
     // ToolBar
+    downloadTxtFile = () => {
+        const data = this.props.auth.relatedData.selectedCourseAssessment;
+        const selectedCourseCode = this.props.auth.relatedData.courseCode;
+        const convertedList = {
+            '学生': data.student,
+            '讲师评价': data.teacher_assess,
+            '资料评价': data.material_assess,
+            '综合评价': data.assessment,
+            '其他意见': data.other,
+            '创建日期': data.date,
+        }
+        const element = document.createElement("a");
+        const file = new Blob([JSON.stringify(convertedList, null, 2)], { type: 'text/plain' });
+        element.href = URL.createObjectURL(file);
+        element.download = `${selectedCourseCode}_${data.student}的评价"`;
+        document.body.appendChild(element); // Required for this to work in FireFox
+        element.click();
+    }
+
+
+
     _backButtonAction = (url) => {
         this.props.history.push(url);
     }
@@ -151,7 +173,7 @@ class SchoolCourseAssessmentDetail extends React.Component {
             //, t, i18n
         } = this.props;
         const data = this.props.auth.relatedData.selectedCourseAssessment;
-        console.log(data);
+        // console.log(data);
 
         return (
             <Form>
@@ -181,7 +203,7 @@ class SchoolCourseAssessmentDetail extends React.Component {
                     </span>
 
                     <span className="right">
-                        <Button onClick={() => this.props.history.goBack()} className={classes.blackButton}>下载</Button>
+                        <Button onClick={() => this.downloadTxtFile()} className={classes.blackButton}>下载</Button>
 
                     </span>
                 </div>
@@ -278,4 +300,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolCourseAssessmentDetail)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseAssessmentDetail))));

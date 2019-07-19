@@ -157,6 +157,13 @@ class SchoolCourseInformation extends React.Component {
                     return a.value - b.value;
                 }),
             });
+
+            const data = {
+                ...this.props.auth.relatedData,
+                courseCode: theList.code,
+            }
+            this.props.setRelatedDataP(data);
+
         }
 
         const eCb = (obj) => {
@@ -179,7 +186,7 @@ class SchoolCourseInformation extends React.Component {
             // console.log("cb : ", obj);
 
             const data = {
-                ...this.props.auth.conferenceId,
+                ...this.props.auth.relatedData,
                 conferenceId: obj.body.conference_id,
             }
             this.props.setRelatedDataP(data);
@@ -244,7 +251,7 @@ class SchoolCourseInformation extends React.Component {
                 // console.log("cb : ", obj);
 
                 // const data = {
-                //     ...this.props.auth.conferenceId,
+                //     ...this.props.auth.relatedData,
                 //     conferenceId: obj.body.conference_id,
                 // }
                 // this.props.setRelatedDataP(data);
