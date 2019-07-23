@@ -108,7 +108,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
         // const { i18n } = this.props;
-        const courseAssignment_id = id;
+        // const courseAssignment_id = id;
         // console.log('CourseAssignmentId: ' + courseAssignment_id);
     };
 
