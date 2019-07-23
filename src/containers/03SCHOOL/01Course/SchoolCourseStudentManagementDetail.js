@@ -22,8 +22,6 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';

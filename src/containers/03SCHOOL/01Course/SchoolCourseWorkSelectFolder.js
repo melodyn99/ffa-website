@@ -23,7 +23,6 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -311,8 +310,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
+
     setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 

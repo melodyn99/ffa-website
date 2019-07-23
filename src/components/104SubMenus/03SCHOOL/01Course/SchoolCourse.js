@@ -42,7 +42,5 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
 });
 export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withRouter(SchoolCourse)));

@@ -22,8 +22,6 @@ import PropTypes from 'prop-types';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -184,8 +182,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
+
 });
 
 const combinedStyles = combineStyles(CommonStyles);

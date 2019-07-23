@@ -210,8 +210,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-   // loginP: data => dispatch(login(data)),
-   // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

@@ -22,8 +22,6 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
-// import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -52,14 +50,27 @@ const rows = [
 
 class SchoolCourseStudentManagement extends React.Component {
     state = {
+        // table settings
         order: 'desc',
         orderBy: 'date',
         selected: [],
-        data: data,
         page: 0,
         rowsPerPage: 10,
+
+        // component state
+        data: data,
     };
 
+    // ToolBar
+    _createButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    _goToDetail = (url) => {
+        this.props.history.push(url);
+    }
+
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -109,15 +120,7 @@ class SchoolCourseStudentManagement extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
-
-    // ToolBar
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _goToDetail = (url) => {
-        this.props.history.push(url);
-    }
+    /** React components 'Material-UI' end  **/
 
     render() {
         const { classes

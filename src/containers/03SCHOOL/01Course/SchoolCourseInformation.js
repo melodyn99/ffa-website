@@ -16,7 +16,6 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -806,8 +805,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
+
     setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 

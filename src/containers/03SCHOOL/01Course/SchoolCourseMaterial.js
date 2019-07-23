@@ -22,7 +22,6 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -298,8 +297,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
+
 });
 
 const combinedStyles = combineStyles(CommonStyles);
