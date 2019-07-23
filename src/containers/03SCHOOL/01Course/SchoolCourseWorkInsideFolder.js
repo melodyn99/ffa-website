@@ -199,7 +199,6 @@ class SchoolCourseWorkInsideFolder extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
     /** React components 'Material-UI' end  **/
 
-
     render() {
         const { classes } = this.props;
         const {

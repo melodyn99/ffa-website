@@ -69,31 +69,6 @@ function Cluster(props) {
                 />
             </div>
         )
-        // if (i % 2 === 0) {
-        //     rows.push(
-        //         <div key={i}>
-        //             <Block
-        //                 key={i}
-        //                 from='me'
-        //                 same={false}
-        //                 name={props.name}
-        //                 content={props.content}
-        //             />
-        //         </div>
-        //     )
-        // } else {
-        //     rows.push(
-        //         <div key={i}>
-        //             <Block
-        //                 key={i}
-        //                 from='they'
-        //                 same={true}
-        //                 name={props.name}
-        //                 content={props.content}
-        //             />
-        //         </div>
-        //     )
-        // }
         return i++;
     })
     return (rows);

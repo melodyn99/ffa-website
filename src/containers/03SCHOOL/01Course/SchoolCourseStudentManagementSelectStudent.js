@@ -59,6 +59,7 @@ class SchoolCourseStudentManagementSelectStudent extends React.Component {
         rowsPerPage: 10,
     };
 
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -108,6 +109,7 @@ class SchoolCourseStudentManagementSelectStudent extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
+    /** React components 'Material-UI' end  **/
 
     render() {
         const { classes

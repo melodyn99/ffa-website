@@ -109,13 +109,7 @@ class SchoolCourseWorkSelectFile extends React.Component {
     handleEnterSelection = (event, id) => {
         // const { i18n } = this.props;
         const courseAssignment_id = id;
-        console.log('CourseAssignmentId: ' + courseAssignment_id);
-        // const data = {
-        //     ...this.props.auth.relatedData,
-        //     "courseAssignmentId": courseAssignment_id,
-        // }
-        // this.props.setRelatedDataP(data);
-        // this.props.history.push('/' + i18n.language + '/school-note-taking');
+        // console.log('CourseAssignmentId: ' + courseAssignment_id);
     };
 
     // ToolBar
@@ -199,7 +193,6 @@ class SchoolCourseWorkSelectFile extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
     /** React components 'Material-UI' end  **/
-
 
     render() {
         const { classes } = this.props;

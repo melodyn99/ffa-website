@@ -133,7 +133,6 @@ class SchoolCourseMaterialSelectFile extends React.Component {
     }
     /** form handle input end **/
 
-
     /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;

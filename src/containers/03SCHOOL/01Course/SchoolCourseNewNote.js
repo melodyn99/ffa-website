@@ -33,9 +33,6 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 
 class SchoolCourseNewNote extends React.Component {
 
-    // render() {
-    // const { classes } = this.props;
-
     _handleInput = (value, key) => {
         console.log(value);
         this.setState({

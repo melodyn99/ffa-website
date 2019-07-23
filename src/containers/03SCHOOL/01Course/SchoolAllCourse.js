@@ -117,6 +117,7 @@ class SchoolAllCourse extends React.Component {
         this.props.setRelatedDataP(data);
         this.props.history.push(url);
     }
+
     handleEnterSelection = (event, id) => {
         const { i18n } = this.props;
         const conference_id = id;

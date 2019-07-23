@@ -103,15 +103,7 @@ class SchoolCoursePreparation extends React.Component {
 
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
-        console.log(`Clicked seatingPlan_id: ${id}`);
-        // const { i18n } = this.props;
-        // const seatingPlan_id = id;
-        // const data = {
-        //     ...this.props.auth.relatedData,
-        //     "seatingPlan_id": seatingPlan_id,
-        // }
-        // this.props.setRelatedDataP(data);
-        // this.props.history.push('/' + i18n.language + '/school-seating-plan');
+        // console.log(`Clicked seatingPlan_id: ${id}`);
     };
 
     // ToolBar
@@ -194,16 +186,7 @@ class SchoolCoursePreparation extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
-
-    // _tempDetail = () => {
-    //     this.setState({
-    //         ...this.state,
-    //         tempGoDetail: true
-    //     })
-    // }
     /** React components 'Material-UI' end  **/
-
-
 
     render() {
         const { classes, i18n } = this.props;

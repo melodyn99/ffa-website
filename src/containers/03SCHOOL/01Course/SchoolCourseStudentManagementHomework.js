@@ -56,6 +56,12 @@ class SchoolCourseStudentManagementHomework extends React.Component {
         rowsPerPage: 10,
     };
 
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
+    /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
         let order = 'desc';
@@ -105,11 +111,7 @@ class SchoolCourseStudentManagementHomework extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
-
-    // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
+    /** React components 'Material-UI' end  **/
 
     render() {
         const { classes } = this.props;
