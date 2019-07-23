@@ -23,6 +23,7 @@ import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 
 // Api
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
@@ -94,7 +95,31 @@ class SchoolCourseReplyQandA extends React.Component {
     }
 
     _submitMessage = () => {
-        console.log('submit message');
+        this._insertConferenceQandAList();
+    }
+
+    _insertConferenceQandAList = () => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            this.setState({
+                ...this.state,
+                newMessage: ''
+            });
+        }
+
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const body = {
+            conversation: this.props.auth.relatedData.conversationId,
+            message: this.state.newMessage,
+            read: false,
+            image: null
+        }
+
+        apiConferences.insertConferenceQandA(body, this.props.auth.token, cb, eCb);
     }
 
     _handleStateChange = (e) => {
