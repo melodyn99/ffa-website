@@ -2,8 +2,9 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -25,6 +26,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -95,6 +97,19 @@ class SchoolCourseQandA extends React.Component {
         apiConferences.getConferenceQandA(params, this.props.auth.token, cb, eCb);
     }
 
+    /** form handle input start **/
+    handleEnterSelection = (event, id) => {
+        const { i18n } = this.props;
+        const conversation_id = id;
+        const data = {
+            ...this.props.auth.relatedData,
+            "conversationId": conversation_id,
+        }
+        this.props.setRelatedDataP(data);
+        this.props.history.push('/' + i18n.language + '/school-course-reply-q-and-a');
+    };
+    /** form handle input end **/
+
     /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -148,7 +163,9 @@ class SchoolCourseQandA extends React.Component {
     /** React components 'Material-UI' end  **/
 
     render() {
-        const { classes, i18n } = this.props;
+        const { classes
+            //, i18n 
+        } = this.props;
         const {
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -168,8 +185,8 @@ class SchoolCourseQandA extends React.Component {
 
                             <div className="content">
 
-                                <Link to={"/" + i18n.language + "/school-course-reply-q-and-a"} className="dummy">Go to Course Reply Q and A</Link>
-                                <div className="sep-20"></div>
+                                {/* <Link to={"/" + i18n.language + "/school-course-reply-q-and-a"} className="dummy">Go to Course Reply Q and A</Link>
+                                <div className="sep-20"></div> */}
 
                                 <Paper className={classes.paper}>
                                     <div className={classes.tableWrapper}>
@@ -193,7 +210,7 @@ class SchoolCourseQandA extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.conversation_id)}
+                                                                onClick={event => this.handleEnterSelection(event, n.conversation_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -252,8 +269,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(SchoolCourseQandA)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseQandA))));
