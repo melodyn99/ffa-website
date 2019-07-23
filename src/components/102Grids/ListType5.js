@@ -5,7 +5,7 @@ function ListType5(props) {
 
 
     return (
-        (props.role === 'me') ?
+        (props.from === 'me') ?
             <div className="ListType5">
                 <div className="align-center">Today at 9:30AM</div>
 

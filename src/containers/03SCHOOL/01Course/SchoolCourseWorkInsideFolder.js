@@ -92,6 +92,7 @@ class SchoolCourseWorkInsideFolder extends React.Component {
                 courseAssignmentList: convertedList,
             });
         }
+
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }

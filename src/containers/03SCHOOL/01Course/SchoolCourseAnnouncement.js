@@ -102,8 +102,8 @@ class SchoolCourseAnnouncement extends React.Component {
 
         const params = {
             'conversation/conference': this.props.auth.relatedData.conferenceId,
-            // $expand: 'conversation,image',
-            $orderby: 'createddate DESC',
+            // $orderby: `createddate`,
+            $expand: `conversation,image`
         }
 
         apiConferences.getConferenceMessages(params, this.props.auth.token, cb, eCb);

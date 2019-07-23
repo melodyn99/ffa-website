@@ -20,6 +20,7 @@ import PropTypes from 'prop-types';
 // import TableRow from '@material-ui/core/TableRow';
 // import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
+import { Button } from '@material-ui/core';
 
 // Api
 
@@ -82,7 +83,8 @@ class SchoolCourseReplyQandA extends React.Component {
 
         this.state = {
             name: ['彭'],
-            content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
+            content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd'],
+            newMessage: ''
         }
     }
 
@@ -91,31 +93,22 @@ class SchoolCourseReplyQandA extends React.Component {
         this.props.history.push(url);
     }
 
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
+    _submitMessage = () => {
+        console.log('submit message');
     }
 
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
+    _handleStateChange = (e) => {
+        this.setState({
+            ...this.state,
+            newMessage: e.target.value
+        });
     }
 
     render() {
+
+        const { //t, i18n 
+            classes } = this.props;
+
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -139,6 +132,17 @@ class SchoolCourseReplyQandA extends React.Component {
                                     name={this.state.name}
                                     content={this.state.content}
                                 />
+
+                                <div className="messageBar">
+                                    <input type="text" value="hello"
+                                        onChange={(e) => this._handleStateChange(e)}
+                                        value={this.state.newMessage}
+                                    />
+                                    <Button
+                                        className={classes.greenButton}
+                                        onClick={() => this._submitMessage()}
+                                    >發送</Button>
+                                </div>
                             </div>
                         </div>
                     </div>
