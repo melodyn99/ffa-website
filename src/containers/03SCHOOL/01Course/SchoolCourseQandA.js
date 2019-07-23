@@ -21,7 +21,6 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -63,14 +62,12 @@ class SchoolCourseQandA extends React.Component {
     }
 
     _getConferenceQandAList = () => {
-        // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
+            let convertedList = [];
 
-            const convertedList = [];
-            // console.log(theList);
             theList.map(n => {
                 const convertedArray = {
                     conversation_id: n.conversation_id,
@@ -255,8 +252,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

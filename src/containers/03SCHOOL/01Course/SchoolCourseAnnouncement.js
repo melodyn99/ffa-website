@@ -21,7 +21,6 @@ import PropTypes from 'prop-types';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -65,7 +64,7 @@ function Cluster(props) {
                     key={i}
                     from={messageCreator}
                     same={false}
-                    name={n.display_name.substring(0,1)}
+                    name={n.display_name.substring(0, 1)}
                     content={n.message}
                 />
             </div>
@@ -101,21 +100,9 @@ function Cluster(props) {
 }
 
 class SchoolCourseAnnouncement extends React.Component {
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         name: ['彭'],
-    //         content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd']
-    //     }
-    // }
-
     state = {
         currLoginAccount: this.props.auth.userInfo.username,
         conferenceId: this.props.auth.relatedData.conferenceId,
-        // name: ['彭'],
-        // content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd'],
-
         messagesList: [],
     }
 
@@ -124,7 +111,6 @@ class SchoolCourseAnnouncement extends React.Component {
     }
 
     _getConferenceMessages = () => {
-        // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -134,6 +120,7 @@ class SchoolCourseAnnouncement extends React.Component {
                 messagesList: theList,
             });
         }
+
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
@@ -182,8 +169,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

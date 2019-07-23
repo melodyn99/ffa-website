@@ -142,14 +142,11 @@ class SchoolCourseAssessmentDetail extends React.Component {
                                         <Grid item xs={11}>{data.other}</Grid>
                                     </Grid>
                                     <div className="bottomControl clearfix">
-
                                         <span>
                                             <Button onClick={() => this.props.history.goBack()} className={classes.greyButton}>取消</Button>
                                         </span>
-
                                         <span className="right">
                                             <Button onClick={() => this.downloadTxtFile()} className={classes.blackButton}>下载</Button>
-
                                         </span>
                                     </div>
                                 </Form >
