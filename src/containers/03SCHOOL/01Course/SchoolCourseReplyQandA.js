@@ -133,31 +133,6 @@ class SchoolCourseReplyQandA extends React.Component {
                                     backButtonText="返回"
                                     backButtonAction={this._backButtonAction}
                                     backButtonActionUrl='school-course-q-and-a'
-
-                                    createButton={false}
-                                    createButtonText="添加"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-student-management'
-
-                                    editButton={false}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={false}
-                                    deleteButtonText="移除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={false}
-                                    importButtonText="导入名单"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={false}
-                                    reportButtonText="学生报告"
-                                    reportButtonAction={this._reportButtonAction}
                                 />
 
                                 <Cluster
