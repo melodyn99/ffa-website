@@ -22,7 +22,6 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -93,6 +92,7 @@ class SchoolCourseAssessment extends React.Component {
             });
             // console.log(this.state.assessmentList);
         }
+
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
@@ -101,6 +101,7 @@ class SchoolCourseAssessment extends React.Component {
             conference: this.props.auth.relatedData.conferenceId,
             $expand: 'user',
         }
+
         apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
     }
 

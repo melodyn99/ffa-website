@@ -18,7 +18,6 @@ import Grid from '@material-ui/core/Grid';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -31,19 +30,10 @@ import { dateToDayMonthYear } from '../../../Util/DateUtils';
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
-import ToolBar from '../../../components/105ToolBars/General';
+// import ToolBar from '../../../components/105ToolBars/General';
 
 class SchoolCourseAssessmentDetail extends React.Component {
     state = {
-        // table settings
-        order: 'desc',
-        orderBy: 'date',
-        selected: [],
-        page: 0,
-        rowsPerPage: 10,
-
-        // component state
-        // data: data,
         assessmentList: [],
     };
 
@@ -56,9 +46,8 @@ class SchoolCourseAssessmentDetail extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body[0];
-            // console.log(obj.body);
-
             let convertedList = [];
+
             convertedList = {
                 end_conference_score_id: theList.end_conference_score_id,
                 student: theList.user.display_name,
@@ -74,6 +63,7 @@ class SchoolCourseAssessmentDetail extends React.Component {
             });
             // console.log(this.state.assessmentList);
         }
+
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
@@ -83,9 +73,15 @@ class SchoolCourseAssessmentDetail extends React.Component {
             $expand: 'user',
             end_conference_score_id: this.props.auth.relatedData.endConferenceScoreId,
         }
+
         apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
     }
+
     // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
+    }
+
     downloadTxtFile = () => {
         const data = this.props.auth.relatedData.selectedCourseAssessment;
         const selectedCourseCode = this.props.auth.relatedData.courseCode;
@@ -106,89 +102,6 @@ class SchoolCourseAssessmentDetail extends React.Component {
         element.click();
     }
 
-
-
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _createButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
-    _editButtonAction = () => {
-        console.log('edit button pressed');
-    }
-
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
-    }
-
-    _importButtonAction = () => {
-        console.log('import button pressed');
-    }
-
-    _copyButtonAction = () => {
-        console.log('copy button pressed');
-    }
-
-    _reportButtonAction = () => {
-        console.log('report button pressed');
-    }
-    /** form handle input end **/
-
-    /** React components 'Material-UI' start  **/
-    handleRequestSort = (event, property) => {
-        const orderBy = property;
-        let order = 'desc';
-
-        if (this.state.orderBy === property && this.state.order === 'desc') {
-            order = 'asc';
-        }
-
-        this.setState({ order, orderBy });
-    };
-
-    handleSelectAllClick = event => {
-        if (event.target.checked) {
-            this.setState(state => ({ selected: state.data.map(n => n.id) }));
-            return;
-        }
-        this.setState({ selected: [] });
-    };
-
-    handleClick = (event, id) => {
-        const { selected } = this.state;
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-
-        this.setState({ selected: newSelected });
-    };
-
-    handleChangePage = (event, page) => {
-        this.setState({ page });
-    };
-
-    handleChangeRowsPerPage = event => {
-        this.setState({ rowsPerPage: event.target.value });
-    };
-
-    isSelected = id => this.state.selected.indexOf(id) !== -1;
-    /** React components 'Material-UI' end  **/
-
     render() {
         const { classes
             //, t, i18n
@@ -208,38 +121,6 @@ class SchoolCourseAssessmentDetail extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-
-                                <ToolBar
-                                    backButton={false}
-                                    backButtonText="返回"
-                                    backButtonAction={this._backButtonAction}
-                                    backButtonActionUrl='school-course-material'
-
-                                    createButton={false}
-                                    createButtonText="添加"
-                                    createButtonAction={this._createButtonAction}
-                                    createButtonActionUrl='new-school-course-material'
-
-                                    editButton={false}
-                                    editButtonText="编辑"
-                                    editButtonAction={this._editButtonAction}
-
-                                    deleteButton={false}
-                                    deleteButtonText="删除"
-                                    deleteButtonAction={this._deleteButtonAction}
-
-                                    importButton={false}
-                                    importButtonText="导入"
-                                    importButtonAction={this._importButtonAction}
-
-                                    copyButton={false}
-                                    copyButtonText="拷贝"
-                                    copyButtonAction={this._copyButtonAction}
-
-                                    reportButton={false}
-                                    reportButtonText="评分报告"
-                                    reportButtonAction={this._reportButtonAction}
-                                />
                                 <Form>
                                     <Grid container spacing={32} alignItems="stretch">
                                         <Grid item xs={1} >學生</Grid>
@@ -290,8 +171,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // loginP: data => dispatch(login(data)),
-    // verifyT: token => dispatch(verifyToken(token)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
