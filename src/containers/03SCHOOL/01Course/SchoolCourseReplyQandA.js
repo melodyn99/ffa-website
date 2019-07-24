@@ -1,6 +1,6 @@
 // Essential for all components
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
-import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 // import Table from '@material-ui/core/Table';
 // import TableBody from '@material-ui/core/TableBody';
 // import TableCell from '@material-ui/core/TableCell';
@@ -29,12 +29,14 @@ import { apiConferences } from '../../../Api/ApiConferences';
 import { connect } from 'react-redux';
 
 // Utils
-// import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
+import ErrorMessage from '../../../components/01General/ErrorMessage';
 import ListType5 from '../../../components/102Grids/ListType5';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
@@ -85,7 +87,7 @@ class SchoolCourseReplyQandA extends React.Component {
         this.state = {
             name: ['彭'],
             content: ['abcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfasdabcabacabcabcabacabcabcacbacbabcabafdsfadsfadsfadfasdfasdfasdfasdfadsfdfasdfadfasdfadsafdsfasdfadfadsfdaasd'],
-            newMessage: ''
+            message: ''
         }
     }
 
@@ -94,18 +96,15 @@ class SchoolCourseReplyQandA extends React.Component {
         this.props.history.push(url);
     }
 
-    _submitMessage = () => {
-        this._insertConferenceQandAList();
+    _handleSubmit = (values, { resetForm }) => {
+        this._insertConferenceQandAList(values, resetForm);
     }
 
-    _insertConferenceQandAList = () => {
+    _insertConferenceQandAList = (values, resetForm) => {
 
         const cb = (obj) => {
             console.log("cb : ", obj);
-            this.setState({
-                ...this.state,
-                newMessage: ''
-            });
+            resetForm();
         }
 
         const eCb = (obj) => {
@@ -114,7 +113,7 @@ class SchoolCourseReplyQandA extends React.Component {
 
         const body = {
             conversation: this.props.auth.relatedData.conversationId,
-            message: this.state.newMessage,
+            message: values.message,
             read: false,
             image: null
         }
@@ -122,17 +121,34 @@ class SchoolCourseReplyQandA extends React.Component {
         apiConferences.insertConferenceQandA(body, this.props.auth.token, cb, eCb);
     }
 
-    _handleStateChange = (e) => {
-        this.setState({
-            ...this.state,
-            newMessage: e.target.value
-        });
+    // Formik form
+    form = ({
+        // values,
+        errors, touched
+        // , handleChange
+    }) => {
+
+        const {
+            // i18n,
+            classes } = this.props;
+
+        return (
+            <Form>
+                <div className="messageBar">
+                    <Field name="message" type="text" placeholder="公告标题" />
+                    <Button type="submit" className={classes.greenButton}>發送</Button>
+                    {errors.message && touched.message ? <div><ErrorMessage message={errors.message} /></div> : null}
+                </div>
+            </Form>
+        )
     }
 
     render() {
 
-        const { //t, i18n 
-            classes } = this.props;
+        const Schema = Yup.object().shape({
+            message: Yup.string()
+                .required('Message is required'),
+        });
 
         return (
             <div>
@@ -158,16 +174,15 @@ class SchoolCourseReplyQandA extends React.Component {
                                     content={this.state.content}
                                 />
 
-                                <div className="messageBar">
-                                    <input type="text" value="hello"
-                                        onChange={(e) => this._handleStateChange(e)}
-                                        value={this.state.newMessage}
-                                    />
-                                    <Button
-                                        className={classes.greenButton}
-                                        onClick={() => this._submitMessage()}
-                                    >發送</Button>
-                                </div>
+                                <Formik
+                                    enableReinitialize
+                                    initialValues={{
+                                        message: this.state.message,
+                                    }}
+                                    validationSchema={Schema}
+                                    onSubmit={this._handleSubmit}
+                                    component={this.form}
+                                />
                             </div>
                         </div>
                     </div>
