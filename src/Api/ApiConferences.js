@@ -163,7 +163,10 @@ export const apiConferences = {
     getConferenceQandA: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('qa_list', params, token, cb, eCb)
     },
-    insertConferenceQandA: (body, token, cb, eCb) => {
+    getOneConferenceQandA: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('messages', params, token, cb, eCb)
+    },
+    insertOneConferenceQandA: (body, token, cb, eCb) => {
         apiGeneral.apiPost('messages', body, token, cb, eCb)
     },
     /* Course q-and-a end */

@@ -12,14 +12,6 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TablePagination from '@material-ui/core/TablePagination';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 
 // Api
@@ -38,7 +30,6 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCou
 import ToolBar from '../../../components/105ToolBars/General';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 import ListType5 from '../../../components/102Grids/ListType5';
-// import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
 function Block(props) {
     return (
@@ -91,16 +82,35 @@ class SchoolCourseReplyQandA extends React.Component {
         }
     }
 
-    // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
+    componentDidMount = () => {
+        this._getOneConferenceQandAList();
     }
 
+    // get Q and A
+    _getOneConferenceQandAList = () => {
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            'conversation/conference': this.props.auth.relatedData.conversationId,
+            '$orderby': `createddate`,
+            '$expand': `image`
+        }
+
+        apiConferences.getOneConferenceQandA(params, this.props.auth.token, cb, eCb);
+    }
+
+    // insert Q and A
     _handleSubmit = (values, { resetForm }) => {
-        this._insertConferenceQandAList(values, resetForm);
+        this._insertOneConferenceQandAList(values, resetForm);
     }
 
-    _insertConferenceQandAList = (values, resetForm) => {
+    _insertOneConferenceQandAList = (values, resetForm) => {
 
         const cb = (obj) => {
             console.log("cb : ", obj);
@@ -118,7 +128,12 @@ class SchoolCourseReplyQandA extends React.Component {
             image: null
         }
 
-        apiConferences.insertConferenceQandA(body, this.props.auth.token, cb, eCb);
+        apiConferences.insertOneConferenceQandA(body, this.props.auth.token, cb, eCb);
+    }
+
+    // ToolBar
+    _backButtonAction = (url) => {
+        this.props.history.push(url);
     }
 
     // Formik form
@@ -149,6 +164,8 @@ class SchoolCourseReplyQandA extends React.Component {
             message: Yup.string()
                 .required('Message is required'),
         });
+
+        // console.log(this.props.auth.relatedData.conversationId);
 
         return (
             <div>
