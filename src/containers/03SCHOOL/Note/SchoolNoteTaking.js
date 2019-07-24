@@ -504,14 +504,14 @@ class SchoolNoteTaking extends React.Component {
     }
 
     render() {
-        const {
-            theNoteName, theNoteContent } = this.state;
+        const { theNoteName, theNoteContent } = this.state;
+
         const Schema = Yup.object().shape({
             notesName: Yup.string()
                 .required('Note Name is required'),
             notesContent: Yup.string()
                 .required('Note Content is required'),
-        })
+        });
 
         return (
             <div>
