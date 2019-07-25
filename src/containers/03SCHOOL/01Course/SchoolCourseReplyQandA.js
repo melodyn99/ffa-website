@@ -97,12 +97,10 @@ class SchoolCourseReplyQandA extends React.Component {
         }
 
         const params = {
-            'conversation/conference': this.props.auth.relatedData.conversationId,
-            '$orderby': `createddate`,
-            '$expand': `image`
+            'conference': 'b16beeb2-6fca-4653-8e36-a764aa62d767'
         }
 
-        apiConferences.getOneConferenceQandA(params, this.props.auth.token, cb, eCb);
+        // apiConferences.getOneConferenceQandA(params, this.props.auth.token, cb, eCb); 
     }
 
     // insert Q and A
@@ -122,7 +120,7 @@ class SchoolCourseReplyQandA extends React.Component {
         }
 
         const body = {
-            conversation: this.props.auth.relatedData.conversationId,
+            conversation: '8c9af8ae-3e91-4f60-9ee1-6695cbbe61f5',
             message: values.message,
             read: false,
             image: null

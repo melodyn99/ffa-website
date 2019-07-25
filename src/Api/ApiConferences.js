@@ -104,6 +104,7 @@ export const apiConferences = {
 
     createContractType: name => api.post('vocabularies', { text_value: name, term: CONTRACT_TYPE_TERM_ID }),
 
+
     /* All Course start */
     getConferenceList: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('conference_list', params, token, cb, eCb)
@@ -151,6 +152,9 @@ export const apiConferences = {
     /* Course work end */
 
     /* Course student-management start */
+    getSubmittedStudentEnrollmentsByConferenceId: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('conference_enrollment_list', params, token, cb, eCb)
+    },
     /* Course student-management end */
 
     /* Course announcement start */
@@ -163,11 +167,11 @@ export const apiConferences = {
     getConferenceQandA: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('qa_list', params, token, cb, eCb)
     },
-    getOneConferenceQandA: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('messages', params, token, cb, eCb)
-    },
+    // getOneConferenceQandA: (params, token, cb, eCb) => {
+    //     apiGeneral.apiFetch('messages', params, token, cb, eCb)
+    // },
     insertOneConferenceQandA: (body, token, cb, eCb) => {
-        apiGeneral.apiPost('messages', body, token, cb, eCb)
+        apiGeneral.apiPost('messages', body, token, cb, eCb) // correct
     },
     /* Course q-and-a end */
 

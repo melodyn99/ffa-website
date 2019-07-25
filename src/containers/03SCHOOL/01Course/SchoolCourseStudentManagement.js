@@ -22,19 +22,21 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseStudentManagement';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseStudentManagement';
 
 // Define column names
 const rows = [
@@ -58,8 +60,57 @@ class SchoolCourseStudentManagement extends React.Component {
         rowsPerPage: 10,
 
         // component state
-        data: data,
+        // data: data,
+        data: []
     };
+
+    componentDidMount = () => {
+        this._getSubmittedStudentEnrollmentsByConferenceId();
+    }
+
+    _getSubmittedStudentEnrollmentsByConferenceId = () => {
+        const cb = (obj) => {
+            console.log("cb1 : ", obj);
+
+            const theList = obj.body;
+            const convertedList = [];
+
+            theList.map(n => {
+                const convertedArray = {
+                    id: n.enrollment_id,
+                    student: n.student,
+                    fee: n.fee,
+                    actualfee: n.actual_received,
+                    status: n.status,
+
+                    num_of_sections: n.num_of_sections,
+                    num_of_attendances: n.num_of_attendances,
+
+                    num_of_assignments: n.num_of_assignments,
+                    num_of_sunmitted_assignments: n.num_of_sunmitted_assignments,
+
+                    score: n.score,
+                    lastmoddate: dateToDayAndMonth(n.lastmoddate)
+                }
+                return convertedList.push(convertedArray);
+            });
+
+            this.setState({
+                data: convertedList,
+            });
+        }
+
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            'conference': '34fe4326-cadd-476d-8444-4f0255cb4d01',
+            // 'state': null
+        }
+
+        apiConferences.getSubmittedStudentEnrollmentsByConferenceId(params, this.props.auth.token, cb, eCb);
+    }
 
     // ToolBar
     _createButtonAction = (url) => {
@@ -189,15 +240,15 @@ class SchoolCourseStudentManagement extends React.Component {
                                                                 <TableCell
                                                                     onClick={() => this._goToDetail('school-course-student-management-attendance')}
                                                                 >
-                                                                    <span className="color-blue">{n.attendance}</span>
+                                                                    <span className="color-blue">({n.num_of_attendances}/{n.num_of_sections})</span>
                                                                 </TableCell>
                                                                 <TableCell
                                                                     onClick={() => this._goToDetail('school-course-student-management-homework')}
                                                                 >
-                                                                    <span className="color-blue">{n.homework}</span>
+                                                                    <span className="color-blue">({n.num_of_assignments}/{n.num_of_sunmitted_assignments})</span>
                                                                 </TableCell>
                                                                 <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.date}</TableCell>
+                                                                <TableCell>{n.lastmoddate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}

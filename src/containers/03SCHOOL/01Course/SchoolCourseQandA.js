@@ -66,7 +66,7 @@ class SchoolCourseQandA extends React.Component {
     _getConferenceQandAList = () => {
 
         const cb = (obj) => {
-            // console.log("cb : ", obj);
+            console.log("cb123 : ", obj);
             const theList = obj.body;
             let convertedList = [];
 
@@ -89,9 +89,8 @@ class SchoolCourseQandA extends React.Component {
         }
 
         const params = {
-            //fetching with Hardcore Id
-            // conference: this.props.auth.relatedData.conferenceId,
-            conference: '5322de86-1540-4f35-8951-4872bf0c4b07',
+            // fetching with Hardcore Id
+            'conference': `23825592-aaf7-4725-b19c-95261df97ede`
         }
 
         apiConferences.getConferenceQandA(params, this.props.auth.token, cb, eCb);
@@ -222,7 +221,7 @@ class SchoolCourseQandA extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.student}</TableCell>
+                                                                >{n.student} {n.conversation_id}</TableCell>
                                                                 <TableCell>{n.messages}</TableCell>
                                                                 <TableCell>{n.lastsend}</TableCell>
                                                             </TableRow>
