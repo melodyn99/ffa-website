@@ -88,17 +88,17 @@ class SchoolCourseReplyQandA extends React.Component {
 
     // get Q and A
     _getOneConferenceQandAList = () => {
-        const cb = (obj) => {
-            console.log("cb : ", obj);
-        }
+        // const cb = (obj) => {
+        //     console.log("cb : ", obj);
+        // }
 
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
+        // const eCb = (obj) => {
+        //     console.log("eCb : ", obj);
+        // }
 
-        const params = {
-            'conference': 'b16beeb2-6fca-4653-8e36-a764aa62d767'
-        }
+        // const params = {
+        //     'conference': 'b16beeb2-6fca-4653-8e36-a764aa62d767'
+        // }
 
         // apiConferences.getOneConferenceQandA(params, this.props.auth.token, cb, eCb); 
     }
