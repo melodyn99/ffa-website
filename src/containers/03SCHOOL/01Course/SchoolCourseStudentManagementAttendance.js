@@ -12,7 +12,6 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
-import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -22,37 +21,83 @@ import Paper from '@material-ui/core/Paper';
 // import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
+import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import { dateToDayAndMonth } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ToolBar from '../../../components/105ToolBars/General';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-import data from '../../../data/03SCHOOL/01Course/SchoolCourseStudentManagementAttendance';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseStudentManagementAttendance';
 
 // Define column names
 const rows = [
-    { id: 'date', numeric: false, disablePadding: false, label: '课程日期' },
+    { id: 'courseDate', numeric: false, disablePadding: false, label: '课程日期' },
     { id: 'admin', numeric: true, disablePadding: false, label: '操作人员' },
-    { id: 'deadline', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'lastUpdatedOn', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
 class SchoolCourseStudentManagementAttendance extends React.Component {
 
     state = {
+        // table settings
         order: 'desc',
-        orderBy: 'deadline',
+        orderBy: 'lastUpdatedOn',
         selected: [],
-        data: data,
         page: 0,
         rowsPerPage: 10,
+
+        // component state
+        data: []
     };
+
+    componentDidMount = () => {
+        this._getSubmittedAttendaceRecordsByConferenceEnrollmentId();
+    }
+
+    _getSubmittedAttendaceRecordsByConferenceEnrollmentId = () => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+
+            const theList = obj.body;
+            const convertedList = [];
+
+            theList.map(n => {
+                const convertedArray = {
+                    attendance_id: n.attendance_id,
+                    conference_enrollment: n.conference_enrollment,
+                    conference_section: n.conference_section,
+                    created_by: n.created_by,
+                    createddate: dateToDayAndMonth(n.createddate),
+                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                    modified_by: n.modified_by
+                }
+                return convertedList.push(convertedArray);
+            });
+
+            this.setState({
+                data: convertedList,
+            });
+        }
+
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            'conference_enrollment': 'd20fb3e5-f8bf-4e04-9be4-35bb854d4e7e',
+        }
+
+        apiConferences.getSubmittedAttendaceRecordsByConferenceEnrollmentId(params, this.props.auth.token, cb, eCb);
+    }
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -153,15 +198,15 @@ class SchoolCourseStudentManagementAttendance extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const isSelected = this.isSelected(n.attendance_id);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.id)}
+                                                                onClick={event => this.handleClick(event, n.attendance_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={n.attendance_id}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">
@@ -170,8 +215,8 @@ class SchoolCourseStudentManagementAttendance extends React.Component {
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
                                                                 >{n.date}</TableCell>
-                                                                <TableCell>{n.admin}</TableCell>
-                                                                <TableCell>{n.deadline}</TableCell>
+                                                                <TableCell>{n.created_by}</TableCell>
+                                                                <TableCell>{n.lastmoddate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
@@ -206,10 +251,6 @@ class SchoolCourseStudentManagementAttendance extends React.Component {
         );
     }
 }
-
-SchoolCourseStudentManagementAttendance.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth

@@ -155,6 +155,9 @@ export const apiConferences = {
     getSubmittedStudentEnrollmentsByConferenceId: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('conference_enrollment_list', params, token, cb, eCb)
     },
+    getSubmittedAttendaceRecordsByConferenceEnrollmentId: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('attendance', params, token, cb, eCb)
+    },
     /* Course student-management end */
 
     /* Course announcement start */

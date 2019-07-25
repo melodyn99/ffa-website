@@ -1,7 +1,7 @@
 export default [
     {
         "id": 1,
-        "SchoolCourseWork": "Course 1",
+        "SchoolCourseWork": "Need Api",
         "type": 123,
         "status": 456,
         "score": 789,
@@ -10,7 +10,7 @@ export default [
     },
     {
         "id": 2,
-        "SchoolCourseWork": "Course 2",
+        "SchoolCourseWork": "Need Api",
         "type": 123,
         "status": 456,
         "score": 789,
@@ -19,7 +19,7 @@ export default [
     },
     {
         "id": 3,
-        "SchoolCourseWork": "Course 3",
+        "SchoolCourseWork": "Need Api",
         "type": 123,
         "status": 456,
         "score": 789,
