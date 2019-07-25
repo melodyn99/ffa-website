@@ -31,6 +31,7 @@ import { connect } from 'react-redux';
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import { dateToDayAndMonth } from '../../../Util/DateUtils';
+import { formatFileSizeToString } from '../../../Util/CommonUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -41,10 +42,10 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'material', numeric: false, disablePadding: false, label: '课程教材' },
-    { id: 'fileCount', numeric: true, disablePadding: false, label: '文件' },
-    { id: 'editor', numeric: true, disablePadding: false, label: '操作人員' },
-    { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改时间' },
+    { id: 'fileName', numeric: false, disablePadding: false, label: '记录文件' },
+    { id: 'creator', numeric: false, disablePadding: false, label: '创建人员' },
+    { id: 'size', numeric: true, disablePadding: false, label: '文件大小' },
+    { id: 'createdDate', numeric: false, disablePadding: false, label: '上载日期' },
 ];
 
 class SchoolCourseMaterialSelectFile extends React.Component {
@@ -58,33 +59,84 @@ class SchoolCourseMaterialSelectFile extends React.Component {
 
         // component state
         // data: data,
-        materialList: [],
+        libraryList: [],
+        // classMaterialFileList: [],
     };
 
     componentDidMount() {
-        this._getMaterialList();
+        this._getClassMaterialFileList();
     }
-
-    _getMaterialList = () => {
+    _getClassMaterialFileList = () => {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
-            const convertedList = [];
 
+            // this.setState({
+            //     classMaterialFileList: theList,
+            // });
+
+            return this._getLibrariesList(theList);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            class_material: this.props.auth.relatedData.classMaterialId,
+        }
+
+        apiConferences.getConferenceMaterialFile(params, this.props.auth.token, cb, eCb);
+    }
+    _getLibrariesList = (classMaterialFileList) => {
+        // console.log("_getLibrariesList classMaterialFileList:");
+        // console.log(classMaterialFileList);
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body[0].materials;
+            // console.log("_getLibrariesList theList:");
+            // console.log(theList);
+
+            //find selected Material List
+            let selectedMaterialList = [];
+            classMaterialFileList.map(n => {
+                const isSelected = theList.find(i => i.material_id === n.material);
+                selectedMaterialList.push(isSelected);
+                return null;
+            });
+
+
+            //find unselected Material List
+            let unselectedMaterialList = [];
             theList.map(n => {
+                let isUnselect = true;
+                selectedMaterialList.map(i => {
+                    if (i.material_id === n.material_id) {
+                        return isUnselect = false;
+                    }
+                    return null;
+                });
+                if (isUnselect) {
+                    return unselectedMaterialList.push(n);
+                } else
+                    return null;
+            })
+
+            //covert the key name of unselected Material List for sort in UI
+            const convertedList = [];
+            unselectedMaterialList.map(n => {
                 const convertedArray = {
-                    class_material_id: n.class_material_id,
-                    material: n.name,
-                    fileCount: n.class_material_files.length,
-                    editor: n.modified_by,
-                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                    material_id: n.material_id,
+                    fileName: n.file.name,
+                    creator: n.file.created_by,
+                    size: n.file.size,
+                    createdDate: dateToDayAndMonth(n.file.createddate),
                 }
                 return convertedList.push(convertedArray);
             });
 
             this.setState({
-                materialList: convertedList,
+                libraryList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -92,16 +144,44 @@ class SchoolCourseMaterialSelectFile extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            library_id: this.props.auth.relatedData.libraryId,
+            $expand: "materials/file",
         }
 
-        apiConferences.getConferenceMaterial(params, this.props.auth.token, cb, eCb);
+        apiConferences.getLibraries(params, this.props.auth.token, cb, eCb);
     }
 
+
     /** form handle input start **/
-    handleEnterSelection = (event, id) => {
-        console.log(`Clicked class_material_id: ${id}`);
-    };
+    //post
+    _createClassMaterialFiles = () => {
+        // console.log('Click _createClassMaterialFiles()');
+        // console.log(this.state.selected);
+        const classMaterialId = this.props.auth.relatedData.classMaterialId;
+        const cb = (obj) => {
+            // console.log("createNoteFileCb : ", obj);
+            this.props.history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const body = [];
+        if (this.state.selected) {
+            this.state.selected.map(n => {
+                const theLink = {
+                    class_material: classMaterialId,
+                    material: this.state.libraryList[n].material_id,
+                }
+                return body.push(theLink);
+            });
+            // console.log(body);
+            apiConferences.createConferenceMaterialFile(body, this.props.auth.token, cb, eCb);
+        } else {
+            console.log('Selection is empty, select one item or more please!');
+        }
+
+    }
+
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -190,7 +270,7 @@ class SchoolCourseMaterialSelectFile extends React.Component {
         const {
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = this.state.materialList;
+        const data = this.state.libraryList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -226,8 +306,9 @@ class SchoolCourseMaterialSelectFile extends React.Component {
                                                         const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
+                                                                className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.class_material_id)}
+                                                                onClick={event => this.handleClick(event, theIndexNum)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -239,10 +320,10 @@ class SchoolCourseMaterialSelectFile extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.material}</TableCell>
-                                                                <TableCell>{n.fileCount}</TableCell>
-                                                                <TableCell>{n.editor}</TableCell>
-                                                                <TableCell>{n.lastmoddate}</TableCell>
+                                                                >{n.fileName}</TableCell>
+                                                                <TableCell>{n.creator}</TableCell>
+                                                                <TableCell>{n.size}</TableCell>
+                                                                <TableCell>{n.createdDate}</TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
@@ -273,7 +354,7 @@ class SchoolCourseMaterialSelectFile extends React.Component {
                                     <Button className={classes.greyButton}
                                         onClick={() => this.props.history.push('school-course-material-inside-folder')}
                                     >返回</Button>
-                                    <span className="right"><Button type="submit" className={classes.blackButton}>加入檔案</Button></span>
+                                    <span className="right"><Button onClick={() => this._createClassMaterialFiles()} className={classes.blackButton}>加入檔案</Button></span>
                                 </div>
                             </div>
                         </div>

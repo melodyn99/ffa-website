@@ -26,6 +26,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -57,23 +58,25 @@ class SchoolCourseMaterial extends React.Component {
 
         // component state
         data: data,
-        materialList: [],
+        classMaterialList: [],
     };
 
     componentDidMount() {
-        this._getMaterialList();
+        this._getClassMaterialList();
     }
 
-    _getMaterialList = () => {
+    _getClassMaterialList = () => {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
             const convertedList = [];
-
+            // console.log("theList");
+            // console.log(theList);
             theList.map(n => {
                 const convertedArray = {
                     class_material_id: n.class_material_id,
+                    library: n.library,
                     material: n.name,
                     fileCount: n.class_material_files.length,
                     editor: n.modified_by,
@@ -83,7 +86,7 @@ class SchoolCourseMaterial extends React.Component {
             });
 
             this.setState({
-                materialList: convertedList,
+                classMaterialList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -98,9 +101,17 @@ class SchoolCourseMaterial extends React.Component {
     }
 
     /** form handle input start **/
-    handleEnterSelection = (event, id) => {
-        console.log(`Clicked class_material_id: ${id}`);
-        this.props.history.push('school-course-material-inside-folder');
+    handleEnterSelection = (event, class_material_id, library_id) => {
+        // console.log(`Clicked class_material_id: ${library_id}`);
+        const { i18n } = this.props;
+        const data = {
+            ...this.props.auth.relatedData,
+            classMaterialId: class_material_id,
+            libraryId: library_id,
+        }
+        this.props.setRelatedDataP(data);
+        this.props.history.push('/' + i18n.language + '/school-course-material-inside-folder');
+
     };
 
     // ToolBar
@@ -191,8 +202,8 @@ class SchoolCourseMaterial extends React.Component {
         const {
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
-        // const data = this.state.materialList;
-        const data = this.state.data;
+        const data = this.state.classMaterialList;
+        // const data = this.state.data;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -237,7 +248,7 @@ class SchoolCourseMaterial extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.class_material_id)}
+                                                                onClick={event => this.handleEnterSelection(event, n.class_material_id, n.library)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -297,7 +308,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

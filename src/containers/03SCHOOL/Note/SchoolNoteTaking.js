@@ -34,12 +34,12 @@ import { setNoteTitle, viewingNoteAction } from '../../../Redux/Action/eventActi
 import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
-import Bluebird from 'bluebird';
 import { autoScrollTop } from '../../../Util/ScrollToTop';
 import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
+import Bluebird from 'bluebird';
 import CommonUtils, { formatFileSizeToString } from '../../../Util/CommonUtils';
 import FileInput from '../../../Util/FileInput';
 import { emitter, EventTypes } from '../../../Util/EventEmitter';
@@ -262,24 +262,33 @@ class SchoolNoteTaking extends React.Component {
         emitter.emit(eventName, data);
     }
 
-    _downloadFile = () => {
-        const { selected, fileList } = this.state;
-        // console.log('download button pressed');
-        // const selectedListLength = selected.length;
-        selected.forEach((i, counter) => {
-            let theSelectedFileUrl = fileList[i].file_url;
-            Bluebird.delay(counter * 1000, theSelectedFileUrl).then((url) => {
+    _downloadFile = (file_url) => {
+        console.log("Click _downloadFile()");
+        // console.log(file_url);
+            // const indexOfFileList = fileList.findIndex(n => n.note_file_id === note_file_id);
+            // const theSelectedFileUrl = fileList[indexOfFileList].file_url;
+            Bluebird.delay(0, file_url).then((url) => {
                 CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
             });
-        });
     }
+    // _downloadMultipleFile = () => {
+    //     const { selected, fileList } = this.state;
+    //     // console.log('download button pressed');
+    //     // const selectedListLength = selected.length;
+    //     selected.forEach((i, counter) => {
+    //         let theSelectedFileUrl = fileList[i].file_url;
+    //         Bluebird.delay(counter * 1000, theSelectedFileUrl).then((url) => {
+    //             CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
+    //         });
+    //     });
+    // }
 
     _deleteFile = (note_file_id) => {
         // console.log('delete button pressed');
         const deleteNoteFileCb = (obj) => {
             console.log("deleteNoteFileCb : ", obj);
             this._getNoteFile();
-            this.setState({ selected: [] });
+            // this.setState({ selected: [] });
         }
         const deleteNoteFileEcb = (obj) => {
             console.log("deleteNoteFileEcb : ", obj);
@@ -288,24 +297,24 @@ class SchoolNoteTaking extends React.Component {
         apiNoteFile.deleteNoteFile(note_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
     }
 
-    _deleteMultipleFile = () => {
-        // console.log('delete button pressed');
-        const { selected, fileList } = this.state;
+    // _deleteMultipleFile = () => {
+    //     // console.log('delete button pressed');
+    //     const { selected, fileList } = this.state;
 
-        const deleteNoteFileCb = (obj) => {
-            console.log("deleteNoteFileCb : ", obj);
-            this._getNoteFile();
-            this.setState({ selected: [] });
-        }
-        const deleteNoteFileEcb = (obj) => {
-            console.log("deleteNoteFileEcb : ", obj);
-        }
+    //     const deleteNoteFileCb = (obj) => {
+    //         console.log("deleteNoteFileCb : ", obj);
+    //         this._getNoteFile();
+    //         this.setState({ selected: [] });
+    //     }
+    //     const deleteNoteFileEcb = (obj) => {
+    //         console.log("deleteNoteFileEcb : ", obj);
+    //     }
 
-        selected.forEach(i => {
-            let theSelectedNote_file_id = fileList[i].note_file_id;
-            apiNoteFile.deleteNoteFile(theSelectedNote_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
-        });
-    }
+    //     selected.forEach(i => {
+    //         let theSelectedNote_file_id = fileList[i].note_file_id;
+    //         apiNoteFile.deleteNoteFile(theSelectedNote_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
+    //     });
+    // }
     /** Files management end **/
 
     /** React components 'Material-UI' start  **/
@@ -434,7 +443,7 @@ class SchoolNoteTaking extends React.Component {
                                                     const isSelected = this.isSelected(theIndexNum);
                                                     return (
                                                         <TableRow
-                                                            className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
+                                                            // className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                             hover
                                                             onClick={event => this.handleClick(event, theIndexNum)}
                                                             role="checkbox"
@@ -453,6 +462,7 @@ class SchoolNoteTaking extends React.Component {
                                                             <TableCell>{n.size}</TableCell>
                                                             <TableCell>{n.createdDate}</TableCell>
                                                             <TableCell align="right" >
+                                                                <Button onClick={() => this._downloadFile(n.file_url)}>{' Download '}</Button>
                                                                 <Button onClick={() => this._deleteFile(n.note_file_id)}>{' X '}</Button>
                                                             </TableCell>
                                                         </TableRow>

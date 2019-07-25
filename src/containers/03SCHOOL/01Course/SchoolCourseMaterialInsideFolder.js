@@ -5,6 +5,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -30,6 +31,10 @@ import { connect } from 'react-redux';
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import { dateToDayAndMonth } from '../../../Util/DateUtils';
+import Bluebird from 'bluebird';
+import CommonUtils, { formatFileSizeToString } from '../../../Util/CommonUtils';
+import FileInput from '../../../Util/FileInput';
+import { emitter, EventTypes } from '../../../Util/EventEmitter';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -40,50 +45,53 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'material', numeric: false, disablePadding: false, label: '课程教材' },
-    { id: 'fileCount', numeric: true, disablePadding: false, label: '文件' },
-    { id: 'editor', numeric: true, disablePadding: false, label: '操作人員' },
-    { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改时间' },
+    { id: 'fileName', numeric: false, disablePadding: false, label: '文件名称' },
+    { id: 'creator', numeric: false, disablePadding: false, label: '创建人员' },
+    { id: 'size', numeric: true, disablePadding: false, label: '文件大小' },
+    { id: 'createdDate', numeric: false, disablePadding: false, label: '上载日期' },
+    { id: '', numeric: false, disablePadding: false, label: '' },
 ];
 
 class SchoolCourseMaterialInsideFolder extends React.Component {
     state = {
         // table settings
         order: 'desc',
-        orderBy: 'lastdate',
+        orderBy: 'createdDate',
         selected: [],
         page: 0,
         rowsPerPage: 10,
 
         // component state
         // data: data,
-        materialList: [],
+        classMaterialFileList: [],
     };
 
     componentDidMount() {
-        this._getMaterialList();
+        this._getClassMaterialFileList();
     }
 
-    _getMaterialList = () => {
+    _getClassMaterialFileList = () => {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
             const convertedList = [];
-
+            console.log("_getClassMaterialFileList theList:");
+            console.log(theList);
             theList.map(n => {
                 const convertedArray = {
-                    class_material_id: n.class_material_id,
-                    material: n.name,
-                    fileCount: n.class_material_files.length,
-                    editor: n.modified_by,
-                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                    class_material_file_id: n.class_material_file_id,
+                    fileName: n.material.file.name,
+                    creator: n.material.file.created_by,
+                    size: formatFileSizeToString(n.material.file.size),
+                    createdDate: dateToDayAndMonth(n.material.file.createdDate),
+                    file_url: n.material.file.url,
                 }
                 return convertedList.push(convertedArray);
             });
 
             this.setState({
-                materialList: convertedList,
+                classMaterialFileList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -91,11 +99,38 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            class_material: this.props.auth.relatedData.classMaterialId,
+            $expand: "material/file",
         }
 
-        apiConferences.getConferenceMaterial(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceMaterialFile(params, this.props.auth.token, cb, eCb);
     }
+
+    /** class material files management start **/
+    _downloadFile = (file_url) => {
+        console.log("Click _downloadFile()");
+        console.log(file_url);
+            // const indexOfFileList = fileList.findIndex(n => n.note_file_id === note_file_id);
+            // const theSelectedFileUrl = fileList[indexOfFileList].file_url;
+            Bluebird.delay(0, file_url).then((url) => {
+                CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
+            });
+    }
+
+    _deleteFile = (class_material_file_id) => {
+        // console.log('delete button pressed');
+        const deleteNoteFileCb = (obj) => {
+            console.log("deleteNoteFileCb : ", obj);
+            this._getClassMaterialFileList();
+            // this.setState({ selected: [] });
+        }
+        const deleteNoteFileEcb = (obj) => {
+            console.log("deleteNoteFileEcb : ", obj);
+        }
+
+        apiConferences.deleteConferenceMaterialFile(class_material_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
+    }
+    /** class material files management end **/
 
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
@@ -131,7 +166,6 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         console.log('report button pressed');
     }
     /** form handle input end **/
-
 
     /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
@@ -190,7 +224,7 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         const {
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = this.state.materialList;
+        const data = this.state.classMaterialFileList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -252,16 +286,20 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.material}</TableCell>
-                                                                <TableCell>{n.fileCount}</TableCell>
-                                                                <TableCell>{n.editor}</TableCell>
-                                                                <TableCell>{n.lastmoddate}</TableCell>
+                                                                >{n.fileName}</TableCell>
+                                                                <TableCell>{n.creator}</TableCell>
+                                                                <TableCell>{n.size}</TableCell>
+                                                                <TableCell>{n.createdDate}</TableCell>
+                                                                <TableCell align="right" >
+                                                                    <Button onClick={() => this._downloadFile(n.file_url)}>{' Download '}</Button>
+                                                                    <Button onClick={() => this._deleteFile(n.class_material_file_id)}>{' X '}</Button>
+                                                                </TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={4} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
