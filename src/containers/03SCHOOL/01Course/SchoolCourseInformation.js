@@ -368,8 +368,8 @@ class SchoolCourseInformation extends React.Component {
 
     // put
     editConferenceInfo = (formInput) => {
-        // console.log("formInput:");
-        // console.log(formInput);
+        console.log("formInput:");
+        console.log(formInput);
         const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -471,42 +471,71 @@ class SchoolCourseInformation extends React.Component {
         }
         the_conference_sections.push(newClass);
         /*end add back exist class */
-        this.setState({
-            // conference_id: formInput.conference_id,
-            academicTerm: formInput.academicTerm,
-            courseLocation: formInput.courseLocation,
-            subjectName: formInput.subjectName,
-            courseType: formInput.courseType,
 
-            courseCode: formInput.courseCode,
-            courseName: formInput.courseName,
-            courseAddress: formInput.courseAddress,
-            courseIntroduction: formInput.courseIntroduction,
-            courseEmphasis: formInput.courseEmphasis,
-            courseBenefits: formInput.courseBenefits,
-            contactEmail: formInput.contactEmail,
-            contactWechat: formInput.contactWechat,
-            contactNumber: formInput.contactNumber,
-            essentialCourse: '',
-
-            enrollmenetStartDate: formInput.enrollmenetStartDate || 1565798300000,
-            enrollmenetEndDate: formInput.enrollmenetEndDate || 1565798400000,
-
-            courseQuota: formInput.courseQuota,
-            courseCredits: formInput.courseCredits,
-
-            courseFees: formInput.courseFees,
-            expectedFees: formInput.expectedFees,
-            actualFees: formInput.actualFees,
-
-            conference_sections: the_conference_sections,
-            conference_officers: formInput.conference_officers,
-        });
-
-        if(this.props.auth.relatedData.conferenceId){
+        if (this.props.auth.relatedData.conferenceId) {
             this.setState({
-                ...this.state,
                 conference_id: this.props.auth.relatedData.conferenceId,
+
+                academicTerm: formInput.academicTerm,
+                courseLocation: formInput.courseLocation,
+                subjectName: formInput.subjectName,
+                courseType: formInput.courseType,
+
+                courseCode: formInput.courseCode,
+                courseName: formInput.courseName,
+                courseAddress: formInput.courseAddress,
+                courseIntroduction: formInput.courseIntroduction,
+                courseEmphasis: formInput.courseEmphasis,
+                courseBenefits: formInput.courseBenefits,
+                contactEmail: formInput.contactEmail,
+                contactWechat: formInput.contactWechat,
+                contactNumber: formInput.contactNumber,
+                essentialCourse: '',
+
+                enrollmenetStartDate: formInput.enrollmenetStartDate || 1565798300000,
+                enrollmenetEndDate: formInput.enrollmenetEndDate || 1565798400000,
+
+                courseQuota: formInput.courseQuota,
+                courseCredits: formInput.courseCredits,
+
+                courseFees: formInput.courseFees,
+                expectedFees: formInput.expectedFees,
+                actualFees: formInput.actualFees,
+
+                conference_sections: the_conference_sections,
+                conference_officers: formInput.conference_officers,
+            });
+        } else {
+            this.setState({
+                // conference_id: formInput.conference_id,
+                academicTerm: formInput.academicTerm,
+                courseLocation: formInput.courseLocation,
+                subjectName: formInput.subjectName,
+                courseType: formInput.courseType,
+
+                courseCode: formInput.courseCode,
+                courseName: formInput.courseName,
+                courseAddress: formInput.courseAddress,
+                courseIntroduction: formInput.courseIntroduction,
+                courseEmphasis: formInput.courseEmphasis,
+                courseBenefits: formInput.courseBenefits,
+                contactEmail: formInput.contactEmail,
+                contactWechat: formInput.contactWechat,
+                contactNumber: formInput.contactNumber,
+                essentialCourse: '',
+
+                enrollmenetStartDate: formInput.enrollmenetStartDate || 1565798300000,
+                enrollmenetEndDate: formInput.enrollmenetEndDate || 1565798400000,
+
+                courseQuota: formInput.courseQuota,
+                courseCredits: formInput.courseCredits,
+
+                courseFees: formInput.courseFees,
+                expectedFees: formInput.expectedFees,
+                actualFees: formInput.actualFees,
+
+                conference_sections: the_conference_sections,
+                conference_officers: formInput.conference_officers,
             });
         }
     }
@@ -912,7 +941,7 @@ class SchoolCourseInformation extends React.Component {
             conference_officers: conference_officers,
         }
         const classCounts = conference_sections ? conference_sections.length : 0;
-
+        // console.log(conference_sections);
         if (classCounts !== 0) {
             for (let i = 1; i <= classCounts; i++) {
                 const targetClass = conference_sections[i - 1];
