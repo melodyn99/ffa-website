@@ -26,6 +26,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -77,7 +78,7 @@ class SchoolCourseStudentManagement extends React.Component {
 
             theList.map(n => {
                 const convertedArray = {
-                    id: n.enrollment_id,
+                    enrollment_id: n.enrollment_id,
                     student: n.student,
                     fee: n.fee,
                     actualfee: n.actual_received,
@@ -117,8 +118,17 @@ class SchoolCourseStudentManagement extends React.Component {
         this.props.history.push(url);
     }
 
-    _goToDetail = (url) => {
-        this.props.history.push(url);
+    _goToDetail = (url, id) => {
+
+        const { i18n } = this.props;
+
+        const data = {
+            ...this.props.auth.relatedData,
+            "attendanceId": id,
+        }
+        this.props.setRelatedDataP(data);
+
+        this.props.history.push('/' + i18n.language + '/' + url);
     }
 
     /** React components 'Material-UI' start  **/
@@ -217,15 +227,15 @@ class SchoolCourseStudentManagement extends React.Component {
                                                     .sort(getSorting(order, orderBy))
                                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     .map(n => {
-                                                        const isSelected = this.isSelected(n.id);
+                                                        const isSelected = this.isSelected(n.enrollment_id);
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                // onClick={event => this.handleClick(event, n.id)}
+                                                                // onClick={event => this.handleClick(event, n.enrollment_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
-                                                                key={n.id}
+                                                                key={n.enrollment_id}
                                                                 selected={isSelected}
                                                             >
                                                                 {/* <TableCell padding="checkbox">
@@ -238,12 +248,12 @@ class SchoolCourseStudentManagement extends React.Component {
                                                                 <TableCell>{n.actualfee}</TableCell>
                                                                 <TableCell>{n.status}</TableCell>
                                                                 <TableCell
-                                                                    onClick={() => this._goToDetail('school-course-student-management-attendance')}
+                                                                    onClick={() => this._goToDetail('school-course-student-management-attendance', n.enrollment_id)}
                                                                 >
                                                                     <span className="color-blue">({n.num_of_attendances}/{n.num_of_sections})</span>
                                                                 </TableCell>
                                                                 <TableCell
-                                                                    onClick={() => this._goToDetail('school-course-student-management-homework')}
+                                                                    onClick={() => this._goToDetail('school-course-student-management-homework', n.enrollment_id)}
                                                                 >
                                                                     <span className="color-blue">({n.num_of_assignments}/{n.num_of_sunmitted_assignments})</span>
                                                                 </TableCell>
@@ -293,6 +303,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

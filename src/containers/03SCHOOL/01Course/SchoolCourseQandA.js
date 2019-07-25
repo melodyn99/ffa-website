@@ -66,7 +66,7 @@ class SchoolCourseQandA extends React.Component {
     _getConferenceQandAList = () => {
 
         const cb = (obj) => {
-            console.log("cb123 : ", obj);
+            console.log("cb : ", obj);
             const theList = obj.body;
             let convertedList = [];
 
