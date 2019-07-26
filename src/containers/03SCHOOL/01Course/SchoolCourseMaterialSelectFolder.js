@@ -19,7 +19,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 
 // Api
@@ -41,6 +41,7 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
+    { id: '', numeric: true, disablePadding: false, label: '' },
     { id: 'library_name', numeric: false, disablePadding: false, label: '教材库' },
     { id: 'fileCount', numeric: true, disablePadding: false, label: '文件' },
     { id: 'editor', numeric: true, disablePadding: false, label: '操作人員' },
@@ -307,9 +308,9 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                                                                 key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
-                                                                {/* <TableCell padding="checkbox">
+                                                                <TableCell padding="checkbox">
                                                                     <Checkbox checked={isSelected} />
-                                                                </TableCell> */}
+                                                                </TableCell>
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
                                                                 >{n.library_name}</TableCell>

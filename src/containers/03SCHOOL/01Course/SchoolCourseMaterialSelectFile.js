@@ -20,7 +20,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 
 // Api
 import { apiConferences } from '../../../Api/ApiConferences';
@@ -31,7 +31,7 @@ import { connect } from 'react-redux';
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import { dateToDayAndMonth } from '../../../Util/DateUtils';
-import { formatFileSizeToString } from '../../../Util/CommonUtils';
+// import { formatFileSizeToString } from '../../../Util/CommonUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -42,6 +42,7 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
+    { id: '', numeric: false, disablePadding: false, label: '' },
     { id: 'fileName', numeric: false, disablePadding: false, label: '记录文件' },
     { id: 'creator', numeric: false, disablePadding: false, label: '创建人员' },
     { id: 'size', numeric: true, disablePadding: false, label: '文件大小' },
@@ -315,9 +316,9 @@ class SchoolCourseMaterialSelectFile extends React.Component {
                                                                 key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
-                                                                {/* <TableCell padding="checkbox">
+                                                                <TableCell padding="checkbox">
                                                                     <Checkbox checked={isSelected} />
-                                                                </TableCell> */}
+                                                                </TableCell>
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
                                                                 >{n.fileName}</TableCell>
@@ -329,7 +330,7 @@ class SchoolCourseMaterialSelectFile extends React.Component {
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={4} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
