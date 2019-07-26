@@ -33,8 +33,8 @@ import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
 import { dateToDayAndMonth } from '../../../Util/DateUtils';
 import Bluebird from 'bluebird';
 import CommonUtils, { formatFileSizeToString } from '../../../Util/CommonUtils';
-import FileInput from '../../../Util/FileInput';
-import { emitter, EventTypes } from '../../../Util/EventEmitter';
+// import FileInput from '../../../Util/FileInput';
+// import { emitter, EventTypes } from '../../../Util/EventEmitter';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -107,17 +107,8 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
     }
 
     /** class material files management start **/
-    _downloadFile = (file_url) => {
-        console.log("Click _downloadFile()");
-        console.log(file_url);
-            // const indexOfFileList = fileList.findIndex(n => n.note_file_id === note_file_id);
-            // const theSelectedFileUrl = fileList[indexOfFileList].file_url;
-            Bluebird.delay(0, file_url).then((url) => {
-                CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
-            });
-    }
-
-    _deleteFile = (class_material_file_id) => {
+    //delete
+    _deleteConferenceMaterialFile = (class_material_file_id) => {
         // console.log('delete button pressed');
         const deleteNoteFileCb = (obj) => {
             console.log("deleteNoteFileCb : ", obj);
@@ -129,6 +120,16 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         }
 
         apiConferences.deleteConferenceMaterialFile(class_material_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
+    }
+
+    _downloadFile = (file_url) => {
+        console.log("Click _downloadFile()");
+        console.log(file_url);
+            // const indexOfFileList = fileList.findIndex(n => n.note_file_id === note_file_id);
+            // const theSelectedFileUrl = fileList[indexOfFileList].file_url;
+            Bluebird.delay(0, file_url).then((url) => {
+                CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
+            });
     }
     /** class material files management end **/
 
@@ -292,7 +293,7 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
                                                                 <TableCell>{n.createdDate}</TableCell>
                                                                 <TableCell align="right" >
                                                                     <Button onClick={() => this._downloadFile(n.file_url)}>{' Download '}</Button>
-                                                                    <Button onClick={() => this._deleteFile(n.class_material_file_id)}>{' X '}</Button>
+                                                                    <Button onClick={() => this._deleteConferenceMaterialFile(n.class_material_file_id)}>{' X '}</Button>
                                                                 </TableCell>
                                                             </TableRow>
                                                         );

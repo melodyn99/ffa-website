@@ -97,34 +97,34 @@ class SchoolCourseMaterialSelectFile extends React.Component {
             // console.log("_getLibrariesList theList:");
             // console.log(theList);
 
-            //find selected Material List
-            let selectedMaterialList = [];
+            //find selected item List
+            let selectedItemList = [];
             classMaterialFileList.map(n => {
                 const isSelected = theList.find(i => i.material_id === n.material);
-                selectedMaterialList.push(isSelected);
+                selectedItemList.push(isSelected);
                 return null;
             });
 
 
-            //find unselected Material List
-            let unselectedMaterialList = [];
+            //find unselected item List
+            let unselectedItemList = [];
             theList.map(n => {
                 let isUnselect = true;
-                selectedMaterialList.map(i => {
+                selectedItemList.map(i => {
                     if (i.material_id === n.material_id) {
                         return isUnselect = false;
                     }
                     return null;
                 });
                 if (isUnselect) {
-                    return unselectedMaterialList.push(n);
+                    return unselectedItemList.push(n);
                 } else
                     return null;
             })
 
-            //covert the key name of unselected Material List for sort in UI
+            //covert the key name of unselected item List for sort in UI
             const convertedList = [];
-            unselectedMaterialList.map(n => {
+            unselectedItemList.map(n => {
                 const convertedArray = {
                     material_id: n.material_id,
                     fileName: n.file.name,
