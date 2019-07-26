@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
 import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
@@ -42,39 +42,39 @@ function Block(props) {
 
             <Grid item xs={1} >课程标题</Grid>
             <Grid item xs={11}>
-                <Field name={"className" + props.i} type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100" value={props.data.title} />
-                {props.errors[props.className] && props.touched[props.className] ? <ErrorMessage message={props.errors[props.className]} /> : null}
+                <Field name={`conference_sections[${props.i}].title`} type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100" />
+                {/* {props.errors[props.className] && props.touched[props.className] ? <ErrorMessage message={props.errors[props.className]} /> : null} */}
             </Grid>
 
-            <Grid item xs={1} >课程日期</Grid>
+            {/* <Grid item xs={1} >课程日期</Grid>
             <Grid item xs={11}>
-                <Field name={"classDate" + props.i} type="text" maxLength="100" value={props.data.start_date} />
+                <Field name={"classDate" + props.i} type="text" maxLength="100" />
                 {props.errors[props.classDate] && props.touched[props.classDate] ? <ErrorMessage message={props.errors[props.classDate]} /> : null}
             </Grid>
 
             <Grid item xs={1} >课程地点</Grid>
             <Grid item xs={11}>
-                <Field name={"classLocation" + props.i} type="text" maxLength="100" value={props.data.end_date} />
+                <Field name={"classLocation" + props.i} type="text" maxLength="100" />
                 {props.errors[props.classLocation] && props.touched[props.classLocation] ? <ErrorMessage message={props.errors[props.classLocation]} /> : null}
             </Grid>
 
             <Grid item xs={1} >授课老师</Grid>
             <Grid item xs={11}>
-                <Field name={"classTeacher" + props.i} component="select" value={3}>
+                <Field name={"classTeacher" + props.i} component="select">
                     <option value="1">A</option>
                     <option value="2">B</option>
                     <option value="3">C</option>
                     <option value="4">D</option>
                 </Field>
-            </Grid>
-        </Grid >
+            </Grid> */}
+        </Grid>
     )
 }
 
 class SchoolCourseInformation extends React.Component {
     state = {
         formData: {
-            academicTerm: '2022-23',
+            academicTerm: '2021-22',
             courseLocation: '香港',
             subjectName: '4ca84f07-e091-4868-87d2-671b3d1ce0d6',
             courseType: '大商品公开课程',
@@ -699,7 +699,7 @@ class SchoolCourseInformation extends React.Component {
             // classTeacher7: Yup.string().required('Class8 Location is required'),
         })
 
-        // console.log(this.state);
+        // console.log(this.state.formData.conference_sections);
 
         return (
             <div>
