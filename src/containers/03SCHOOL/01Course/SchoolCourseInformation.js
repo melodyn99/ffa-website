@@ -292,11 +292,14 @@ class SchoolCourseInformation extends React.Component {
     // }
 
     handleSubmit = (values, { setFieldError }) => {
-        if (this.props.auth.relatedData.conferenceId !== null) {
-            this.editConferenceInfo();
-        } else {
-            this.createConferenceWithEnterInfo();
-        }
+
+        console.log(values);
+
+        // if (this.props.auth.relatedData.conferenceId !== null) {
+        //     this.editConferenceInfo();
+        // } else {
+        //     this.createConferenceWithEnterInfo();
+        // }
     }
 
     // Tools
@@ -318,12 +321,6 @@ class SchoolCourseInformation extends React.Component {
         });
     }
     //** form handle input end **/
-
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
-    }
 
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
@@ -614,26 +611,26 @@ class SchoolCourseInformation extends React.Component {
                 .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
 
-            className0: Yup.string()
-                .required('Class Name is required'),
-            classDate0: Yup.string()
-                .required('Class Date is required'),
-            classLocation0: Yup.string()
-                .required('Class Location is required'),
+            // className0: Yup.string()
+            //     .required('Class Name is required'),
+            // classDate0: Yup.string()
+            //     .required('Class Date is required'),
+            // classLocation0: Yup.string()
+            //     .required('Class Location is required'),
 
-            className1: Yup.string()
-                .required('Class Name is required'),
-            classDate1: Yup.string()
-                .required('Class Date is required'),
-            classLocation1: Yup.string()
-                .required('Class Location is required'),
+            // className1: Yup.string()
+            //     .required('Class Name is required'),
+            // classDate1: Yup.string()
+            //     .required('Class Date is required'),
+            // classLocation1: Yup.string()
+            //     .required('Class Location is required'),
 
-            className2: Yup.string()
-                .required('Class Name is required'),
-            classDate2: Yup.string()
-                .required('Class Date is required'),
-            classLocation2: Yup.string()
-                .required('Class Location is required'),
+            // className2: Yup.string()
+            //     .required('Class Name is required'),
+            // classDate2: Yup.string()
+            //     .required('Class Date is required'),
+            // classLocation2: Yup.string()
+            //     .required('Class Location is required'),
 
             // conference_sections: Yup
             //     .array()
