@@ -42,39 +42,39 @@ function Block(props) {
 
             <Grid item xs={1} >课程标题</Grid>
             <Grid item xs={11}>
-                <Field name={"className" + props.i} type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100" />
+                <Field name={"className" + props.i} type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100" value={props.data.title} />
                 {props.errors[props.className] && props.touched[props.className] ? <ErrorMessage message={props.errors[props.className]} /> : null}
             </Grid>
 
             <Grid item xs={1} >课程日期</Grid>
             <Grid item xs={11}>
-                <Field name={"classDate" + props.i} type="text" maxLength="100" />
+                <Field name={"classDate" + props.i} type="text" maxLength="100" value={props.data.start_date} />
                 {props.errors[props.classDate] && props.touched[props.classDate] ? <ErrorMessage message={props.errors[props.classDate]} /> : null}
             </Grid>
 
             <Grid item xs={1} >课程地点</Grid>
             <Grid item xs={11}>
-                <Field name={"classLocation" + props.i} type="text" maxLength="100" />
+                <Field name={"classLocation" + props.i} type="text" maxLength="100" value={props.data.end_date} />
                 {props.errors[props.classLocation] && props.touched[props.classLocation] ? <ErrorMessage message={props.errors[props.classLocation]} /> : null}
             </Grid>
 
             <Grid item xs={1} >授课老师</Grid>
             <Grid item xs={11}>
-                <Field name={"classTeacher" + props.i} component="select">
+                <Field name={"classTeacher" + props.i} component="select" value={3}>
                     <option value="1">A</option>
                     <option value="2">B</option>
                     <option value="3">C</option>
                     <option value="4">D</option>
                 </Field>
             </Grid>
-        </Grid>
+        </Grid >
     )
 }
 
 class SchoolCourseInformation extends React.Component {
     state = {
         academicTerm: '2020-21',
-        courseLocation: '北京',
+        courseLocation: '香港',
         subjectName: '4ca84f07-e091-4868-87d2-671b3d1ce0d6',
         courseType: '大商品公开课程',
 
@@ -113,39 +113,39 @@ class SchoolCourseInformation extends React.Component {
         console.log('here');
 
         const cb = (obj) => {
-            // console.log("cb : ", obj);
-            // const theList = obj.body[0];
+            console.log("cb : ", obj);
+            const theList = obj.body[0];
             // console.log("theList: " + JSON.stringify(theList, null, 2));
 
-            // this.setState({
-            //     academicTerm: theList.academic_term,
-            //     courseLocation: theList.courseLocation,
-            //     subjectName: theList.subject,
-            //     courseType: theList.type,
+            this.setState({
+                academicTerm: theList.academic_term,
+                courseLocation: theList.courseLocation,
+                subjectName: theList.subject,
+                courseType: theList.type,
 
-            //     courseCode: theList.code,
-            //     courseName: theList.name,
-            //     courseAddress: theList.address,
-            //     courseIntroduction: theList.introduction,
-            //     courseEmphasis: theList.emphasis,
-            //     courseBenefits: theList.benefit,
-            //     contactEmail: theList.email,
-            //     contactWechat: theList.wechat,
-            //     contactNumber: theList.phone,
-            //     essentialCourse: '',
+                courseCode: theList.code,
+                courseName: theList.name,
+                courseAddress: theList.address,
+                courseIntroduction: theList.introduction,
+                courseEmphasis: theList.emphasis,
+                courseBenefits: theList.benefit,
+                contactEmail: theList.email,
+                contactWechat: theList.wechat,
+                contactNumber: theList.phone,
+                essentialCourse: '',
 
-            //     enrollmenetStartDate: theList.enrollmenet_start_date,
-            //     enrollmenetEndDate: theList.enrollment_end_date,
+                enrollmenetStartDate: theList.enrollmenet_start_date,
+                enrollmenetEndDate: theList.enrollment_end_date,
 
-            //     courseQuota: theList.quota,
-            //     courseCredits: theList.credit,
+                courseQuota: theList.quota,
+                courseCredits: theList.credit,
 
-            //     courseFees: theList.fee,
-            //     expectedFees: theList.expected_fee,
-            //     actualFees: theList.actual_fee,
+                courseFees: theList.fee,
+                expectedFees: theList.expected_fee,
+                actualFees: theList.actual_fee,
 
-            //     conference_sections: theList.conference_sections
-            // });
+                conference_sections: theList.conference_sections
+            });
         }
 
         const eCb = (obj) => {
@@ -545,6 +545,7 @@ class SchoolCourseInformation extends React.Component {
                                 classTeacher={"classTeacher" + i}
                                 errors={errors}
                                 touched={touched}
+                                data={data}
                             />
                         )
                     }
