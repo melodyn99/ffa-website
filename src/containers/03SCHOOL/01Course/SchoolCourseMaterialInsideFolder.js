@@ -167,6 +167,7 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
     }
 
     _deleteButtonAction = (url) => {
+        // console.log('delete button pressed');
         this._deleteConferenceMaterial();
     }
 

@@ -102,8 +102,25 @@ class SchoolCourseWorkInsideFolder extends React.Component {
             $expand: 'assignment',
         }
 
-        apiConferences.getConferenceAssignmentList(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceAssignment(params, this.props.auth.token, cb, eCb);
     }
+
+    /** class assignment management start **/
+    //delete
+    _deleteConferenceMaterial = () => {
+        // console.log('delete button pressed');
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            // this.setState({ selected: [] });
+            this.props.history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        console.log(this.props.auth.relatedData.course.classMaterialId);
+        apiConferences.deleteConferenceAssignment(this.props.auth.relatedData.course.assignmentId, this.props.auth.token, cb, eCb);
+    }
+    /** class assignment management end **/
 
     /** form handle input start **/
     handleEnterSelection = (event, id) => {
@@ -111,7 +128,6 @@ class SchoolCourseWorkInsideFolder extends React.Component {
         const courseAssignment_id = id;
         console.log('CourseAssignmentId: ' + courseAssignment_id);
         // const data = {
-        //     ...this.props.auth.relatedData,
         //     "courseAssignmentId": courseAssignment_id,
         // }
         // this.props.setRelatedDataP(data);
@@ -133,6 +149,7 @@ class SchoolCourseWorkInsideFolder extends React.Component {
 
     _deleteButtonAction = () => {
         console.log('delete button pressed');
+        this._deleteConferenceMaterial();
     }
 
     _importButtonAction = () => {
@@ -230,6 +247,11 @@ class SchoolCourseWorkInsideFolder extends React.Component {
                                     createButtonText="添加"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-course-work-select-file'
+
+                                    deleteButton={true}
+                                    deleteButtonText="删除"
+                                    deleteButtonAction={this._deleteButtonAction}
+                                    deleteButtonActionUrl='school-course-work'
                                 />
 
                                 <Paper className={classes.paper}>

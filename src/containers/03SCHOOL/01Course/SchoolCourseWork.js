@@ -41,7 +41,7 @@ import data from '../../../data/03SCHOOL/01Course/SchoolCourseWork';
 
 // Define column names
 const rows = [
-    { id: 'SchoolCourseWork', numeric: false, disablePadding: false, label: '课程作业' },
+    { id: 'assignment', numeric: false, disablePadding: false, label: '课程作业' },
     { id: 'type', numeric: true, disablePadding: false, label: '类型' },
     { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
     { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
@@ -73,12 +73,14 @@ class SchoolCourseWork extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
+            console.log("theList");
+            console.log(theList);
 
             const convertedList = [];
 
             theList.map(n => {
                 const convertedArray = {
-                    SchoolCourseWork: n.name,
+                    assignment: n.name,
                     type: n.assignment.question_type,
                     questions: n.assignment.assignment_questions.length,
                     score: n.total_mark,
@@ -97,11 +99,12 @@ class SchoolCourseWork extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            conference: this.props.auth.relatedData.course.conferenceId,
+            "assignment/subject": this.props.auth.relatedData.course.subjectId,
             $expand: 'assignment',
         }
 
-        apiConferences.getConferenceAssignmentList(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceAssignment(params, this.props.auth.token, cb, eCb);
     }
 
     /** form handle input start **/
@@ -109,13 +112,12 @@ class SchoolCourseWork extends React.Component {
         // const { i18n } = this.props;
         const courseAssignment_id = id;
         console.log('CourseAssignmentId: ' + courseAssignment_id);
+        const data = {
+            ...this.props.auth.relatedData.course,
+            "courseAssignmentId": courseAssignment_id,
+        }
+        this.props.setRelatedDataP(data);
         this.props.history.push('school-course-work-inside-folder');
-        // const data = {
-        //     ...this.props.auth.relatedData,
-        //     "courseAssignmentId": courseAssignment_id,
-        // }
-        // this.props.setRelatedDataP(data);
-        // this.props.history.push('/' + i18n.language + '/school-note-taking');
     };
 
     // ToolBar
@@ -204,10 +206,9 @@ class SchoolCourseWork extends React.Component {
         const { classes } = this.props;
         const {
             // data,
-            // courseAssignmentList,
+            courseAssignmentList,
             order, orderBy, selected, rowsPerPage, page } = this.state;
-        // const data = courseAssignmentList;
-        const data = this.state.data;
+        const data = courseAssignmentList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
         return (
             <div>
@@ -263,7 +264,7 @@ class SchoolCourseWork extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.SchoolCourseWork}</TableCell>
+                                                                >{n.assignment}</TableCell>
                                                                 <TableCell>{n.type}</TableCell>
                                                                 <TableCell>{n.questions}</TableCell>
                                                                 <TableCell>{n.score}</TableCell>

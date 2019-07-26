@@ -19,7 +19,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 
 // Api
@@ -42,7 +42,8 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'SchoolCourseWorkSelectFolder', numeric: false, disablePadding: false, label: '课程作业' },
+    { id: '', numeric: true, disablePadding: false, label: '' },
+    { id: 'assignment', numeric: false, disablePadding: false, label: '课程作业' },
     { id: 'type', numeric: true, disablePadding: false, label: '类型' },
     { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
     { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
@@ -74,12 +75,14 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
+            console.log("theList");
+            console.log(theList);
 
             const convertedList = [];
 
             theList.map(n => {
                 const convertedArray = {
-                    SchoolCourseWorkSelectFolder: n.name,
+                    assignment: n.name,
                     type: n.assignment.question_type,
                     questions: n.assignment.assignment_questions.length,
                     score: n.total_mark,
@@ -98,19 +101,15 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            conference: this.props.auth.relatedData.course.conferenceId,
+            "assignment/subject": this.props.auth.relatedData.course.subjectId,
             $expand: 'assignment',
         }
 
-        apiConferences.getConferenceAssignmentList(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceAssignment(params, this.props.auth.token, cb, eCb);
     }
 
     /** form handle input start **/
-    handleEnterSelection = (event, id) => {
-        // const { i18n } = this.props;
-        // const courseAssignment_id = id;
-        // console.log('CourseAssignmentId: ' + courseAssignment_id);
-    };
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -234,20 +233,21 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                                                         const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
+                                                                className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.conference_assignment_id)}
+                                                                onClick={event => this.handleClick(event, n.conference_assignment_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
                                                                 key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
-                                                                {/* <TableCell padding="checkbox">
+                                                                <TableCell padding="checkbox">
                                                                     <Checkbox checked={isSelected} />
-                                                                </TableCell> */}
+                                                                </TableCell>
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.SchoolCourseWorkSelectFolder}</TableCell>
+                                                                >{n.assignment}</TableCell>
                                                                 <TableCell>{n.type}</TableCell>
                                                                 <TableCell>{n.questions}</TableCell>
                                                                 <TableCell>{n.score}</TableCell>
@@ -258,7 +258,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={6} />
+                                                        <TableCell colSpan={7} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>

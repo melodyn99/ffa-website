@@ -158,13 +158,26 @@ export const apiConferences = {
     /* Course material end */
 
     /* Course work start */
-    getConferenceAssignmentList: (params, token, cb, eCb) => {
+    getConferenceAssignment: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('conference_assignment_list', params, token, cb, eCb)
     },
-
-    deleteConferenceAssignmentList: (id, token, cb, eCb) => {
+    createConferenceAssignment: (params, token, cb, eCb) => {
+        apiGeneral.apiPost('conference_assignments', params, token, cb, eCb)
+    },
+    deleteConferenceAssignment: (id, token, cb, eCb) => {
         apiGeneral.apiDelete('conference_assignment_list', id, token, cb, eCb)
     },
+
+
+    // getConferenceAssignmentQuestion: (params, token, cb, eCb) => {
+    //     apiGeneral.apiFetch('assignment_questions', params, token, cb, eCb)
+    // },
+    // createConferenceAssignmentQuestion: (body, token, cb, eCb) => {
+    //     apiGeneral.apiPost('assignment_questions', body, token, cb, eCb)
+    // },
+    // deleteConferenceAssignmentQuestion: (id, token, cb, eCb) => {
+    //     apiGeneral.apiDelete('assignment_questions', id, token, cb, eCb)
+    // },
     /* Course work end */
 
     /* Course student-management start */
@@ -199,25 +212,8 @@ export const apiConferences = {
 
     /* Course assessment start */
     getConferenceAssessment: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('conference_assignment_list', params, token, cb, eCb)
+        apiGeneral.apiFetch('end_conference_scores', params, token, cb, eCb)
     },
-    createConferenceAssessment: (params, token, cb, eCb) => {
-        apiGeneral.apiPost('assignments', params, token, cb, eCb)
-    },
-    deleteConferenceAssessment: (id, token, cb, eCb) => {
-        apiGeneral.apiDelete('assignments', id, token, cb, eCb)
-    },
-
-    getConferenceAssessmentQuestion: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('assignment_questions', params, token, cb, eCb)
-    },
-    createConferenceAssessmentQuestion: (body, token, cb, eCb) => {
-        apiGeneral.apiPost('assignment_questions', body, token, cb, eCb)
-    },
-    deleteConferenceAssessmentQuestion: (id, token, cb, eCb) => {
-        apiGeneral.apiDelete('assignment_questions', id, token, cb, eCb)
-    },
-
     /* Course assessment end */
 
 
