@@ -150,7 +150,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
 
         const params = {
             "subject": this.props.auth.relatedData.course.subjectId,
-            // $expand: 'assignment_questions',
+            $expand: 'subject,assignment_questions',
         }
 
         apiConferences.getLibrariesAssignments(params, this.props.auth.token, cb, eCb);
