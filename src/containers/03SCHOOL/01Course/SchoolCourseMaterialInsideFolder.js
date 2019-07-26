@@ -122,14 +122,29 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         apiConferences.deleteConferenceMaterialFile(class_material_file_id, this.props.auth.token, deleteNoteFileCb, deleteNoteFileEcb);
     }
 
+    _deleteConferenceMaterial = () => {
+        // console.log('delete button pressed');
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            // this.setState({ selected: [] });
+            this.props.history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        console.log(this.props.auth.relatedData.classMaterialId);
+        apiConferences.deleteConferenceMaterial(this.props.auth.relatedData.classMaterialId, this.props.auth.token, cb, eCb);
+    }
+
+
     _downloadFile = (file_url) => {
         console.log("Click _downloadFile()");
         console.log(file_url);
-            // const indexOfFileList = fileList.findIndex(n => n.note_file_id === note_file_id);
-            // const theSelectedFileUrl = fileList[indexOfFileList].file_url;
-            Bluebird.delay(0, file_url).then((url) => {
-                CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
-            });
+        // const indexOfFileList = fileList.findIndex(n => n.note_file_id === note_file_id);
+        // const theSelectedFileUrl = fileList[indexOfFileList].file_url;
+        Bluebird.delay(0, file_url).then((url) => {
+            CommonUtils.forceDownload(url, CommonUtils.extractFileName(url));
+        });
     }
     /** class material files management end **/
 
@@ -151,8 +166,8 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         console.log('edit button pressed');
     }
 
-    _deleteButtonAction = () => {
-        console.log('delete button pressed');
+    _deleteButtonAction = (url) => {
+        this._deleteConferenceMaterial();
     }
 
     _importButtonAction = () => {
@@ -251,6 +266,11 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
                                     createButtonText="添加檔案"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-course-material-select-file'
+
+                                    deleteButton={true}
+                                    deleteButtonText="删除"
+                                    deleteButtonAction={this._deleteButtonAction}
+                                    deleteButtonActionUrl='school-course-material'
                                 />
 
                                 <Paper className={classes.paper}>

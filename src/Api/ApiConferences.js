@@ -155,13 +155,6 @@ export const apiConferences = {
     deleteConferenceMaterialFile: (id, token, cb, eCb) => {
         apiGeneral.apiDelete('class_material_files', id, token, cb, eCb)
     },
-
-    getLibraries: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('libraries', params, token, cb, eCb)
-    },
-    getLibrariesList: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('library_list', params, token, cb, eCb)
-    },
     /* Course material end */
 
     /* Course work start */
@@ -206,7 +199,36 @@ export const apiConferences = {
 
     /* Course assessment start */
     getConferenceAssessment: (params, token, cb, eCb) => {
-        apiGeneral.apiFetch('end_conference_scores', params, token, cb, eCb)
+        apiGeneral.apiFetch('conference_assignment_list', params, token, cb, eCb)
     },
+    createConferenceAssessment: (params, token, cb, eCb) => {
+        apiGeneral.apiPost('assignments', params, token, cb, eCb)
+    },
+    deleteConferenceAssessment: (id, token, cb, eCb) => {
+        apiGeneral.apiDelete('assignments', id, token, cb, eCb)
+    },
+
+    getConferenceAssessmentQuestion: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('assignment_questions', params, token, cb, eCb)
+    },
+    createConferenceAssessmentQuestion: (body, token, cb, eCb) => {
+        apiGeneral.apiPost('assignment_questions', body, token, cb, eCb)
+    },
+    deleteConferenceAssessmentQuestion: (id, token, cb, eCb) => {
+        apiGeneral.apiDelete('assignment_questions', id, token, cb, eCb)
+    },
+
     /* Course assessment end */
+
+
+
+
+    /* Course material && assessment start */
+    getLibraries: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('libraries', params, token, cb, eCb)
+    },
+    getLibrariesList: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('library_list', params, token, cb, eCb)
+    },
+    /* Course material && assessment end */
 };

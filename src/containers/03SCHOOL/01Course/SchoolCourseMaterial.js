@@ -46,7 +46,6 @@ const rows = [
     { id: 'fileCount', numeric: true, disablePadding: false, label: '文件' },
     { id: 'editor', numeric: true, disablePadding: false, label: '操作人員' },
     { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改时间' },
-    { id: '', numeric: false, disablePadding: false, label: '' },
 ];
 
 class SchoolCourseMaterial extends React.Component {
@@ -102,21 +101,6 @@ class SchoolCourseMaterial extends React.Component {
     }
 
     /** form handle input start **/
-    //delete
-    _deleteConferenceMaterial = (class_material_id) => {
-        // console.log('delete button pressed');
-        const cb = (obj) => {
-            console.log("cb : ", obj);
-            this._getClassMaterialList();
-            // this.setState({ selected: [] });
-        }
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
-
-        apiConferences.deleteConferenceMaterial(class_material_id, this.props.auth.token, cb, eCb);
-    }
-
     handleEnterSelection = (event, class_material_id, library_id) => {
         // console.log(`Clicked class_material_id: ${library_id}`);
         const { i18n } = this.props;
@@ -280,15 +264,12 @@ class SchoolCourseMaterial extends React.Component {
                                                                 <TableCell>{n.fileCount}</TableCell>
                                                                 <TableCell>{n.editor}</TableCell>
                                                                 <TableCell>{n.lastmoddate}</TableCell>
-                                                                <TableCell align="right" >
-                                                                    <Button onClick={() => this._deleteConferenceMaterial(n.class_material_id)}>{' X '}</Button>
-                                                                </TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={5} />
+                                                        <TableCell colSpan={4} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
