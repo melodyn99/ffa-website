@@ -26,7 +26,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedData } from '../../../Redux/Action/authAction';
+import { setRelatedCourseData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -98,7 +98,7 @@ class SchoolCourseWorkInsideFolder extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            conference: this.props.auth.relatedData.course.conferenceId,
             $expand: 'assignment',
         }
 
@@ -117,7 +117,7 @@ class SchoolCourseWorkInsideFolder extends React.Component {
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
-        console.log(this.props.auth.relatedData.course.classMaterialId);
+        console.log(this.props.auth.relatedData.course.materialId);
         apiConferences.deleteConferenceAssignment(this.props.auth.relatedData.course.assignmentId, this.props.auth.token, cb, eCb);
     }
     /** class assignment management end **/
@@ -128,9 +128,10 @@ class SchoolCourseWorkInsideFolder extends React.Component {
         const courseAssignment_id = id;
         console.log('CourseAssignmentId: ' + courseAssignment_id);
         // const data = {
-        //     "courseAssignmentId": courseAssignment_id,
+        //     ...this.props.auth.relatedData.course,
+        //     "assignmentId": courseAssignment_id,
         // }
-        // this.props.setRelatedDataP(data);
+        // this.props.setRelatedCourseDataP(data);
         // this.props.history.push('/' + i18n.language + '/school-note-taking');
     };
 
@@ -339,7 +340,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
 
-    setRelatedDataP: data => dispatch(setRelatedData(data)),
+    setRelatedCourseDataP: data => dispatch(setRelatedCourseData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

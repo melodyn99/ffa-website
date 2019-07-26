@@ -100,7 +100,7 @@ class SchoolCourseReplyQandA extends React.Component {
         //     'conference': 'b16beeb2-6fca-4653-8e36-a764aa62d767'
         // }
 
-        // apiConferences.getOneConferenceQandA(params, this.props.auth.token, cb, eCb); 
+        // apiConferences.getOneConferenceQandA(params, this.props.auth.token, cb, eCb);
     }
 
     // insert Q and A
@@ -163,7 +163,7 @@ class SchoolCourseReplyQandA extends React.Component {
                 .required('Message is required'),
         });
 
-        // console.log(this.props.auth.relatedData.conversationId);
+        // console.log(this.props.auth.relatedData.course.conversationId);
 
         return (
             <div>

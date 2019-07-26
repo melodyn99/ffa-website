@@ -95,7 +95,7 @@ class SchoolCoursePreparation extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            conference: this.props.auth.relatedData.course.conferenceId,
         }
 
         apiConferences.getConferencePreparations(params, this.props.auth.token, cb, eCb);

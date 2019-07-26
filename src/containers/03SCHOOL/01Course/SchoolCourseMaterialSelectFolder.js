@@ -77,7 +77,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            conference: this.props.auth.relatedData.course.conferenceId,
         }
 
         apiConferences.getConferenceMaterial(params, this.props.auth.token, cb, eCb);
@@ -138,7 +138,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
         }
 
         const params = {
-            "subject/subject_id": this.props.auth.relatedData.subjectId,
+            "subject/subject_id": this.props.auth.relatedData.course.subjectId,
         }
 
         apiConferences.getLibrariesList(params, this.props.auth.token, cb, eCb);
@@ -163,7 +163,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                 const theLink = {
                     library: librariesList[n].library_id,
                     name: librariesList[n].library_name,
-                    conference: this.props.auth.relatedData.conferenceId,
+                    conference: this.props.auth.relatedData.course.conferenceId,
                 }
                 return body.push(theLink);
             });

@@ -69,9 +69,9 @@ class SchoolCourseAssessmentDetail extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            conference: this.props.auth.relatedData.course.conferenceId,
             $expand: 'user',
-            end_conference_score_id: this.props.auth.relatedData.endConferenceScoreId,
+            end_conference_score_id: this.props.auth.relatedData.course.endConferenceScoreId,
         }
 
         apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
@@ -83,14 +83,14 @@ class SchoolCourseAssessmentDetail extends React.Component {
     }
 
     downloadTxtFile = () => {
-        const data = this.props.auth.relatedData.selectedCourseAssessment;
-        const selectedCourseCode = this.props.auth.relatedData.courseCode;
+        const data = this.state.assessmentList;
+        const selectedCourseCode = this.props.auth.relatedData.course.code;
         const convertedList = {
             '学生': data.student,
             '讲师评价': data.teacher_assess,
             '资料评价': data.material_assess,
             '综合评价': data.assessment,
-            '创建日期': data.date,
+            '创建日期': dateToDayMonthYear(data.createddate),
             '其他意见': data.other,
         }
         // console.log(convertedList);

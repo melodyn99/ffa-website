@@ -84,7 +84,7 @@ class SchoolCourseMaterialSelectFile extends React.Component {
         }
 
         const params = {
-            class_material: this.props.auth.relatedData.classMaterialId,
+            class_material: this.props.auth.relatedData.course.materialId,
         }
 
         apiConferences.getConferenceMaterialFile(params, this.props.auth.token, cb, eCb);
@@ -145,7 +145,7 @@ class SchoolCourseMaterialSelectFile extends React.Component {
         }
 
         const params = {
-            library_id: this.props.auth.relatedData.libraryId,
+            library_id: this.props.auth.relatedData.course.libraryId,
             $expand: "materials/file",
         }
 
@@ -158,7 +158,7 @@ class SchoolCourseMaterialSelectFile extends React.Component {
     _createClassMaterialFiles = () => {
         // console.log('Click _createClassMaterialFiles()');
         // console.log(this.state.selected);
-        const classMaterialId = this.props.auth.relatedData.classMaterialId;
+        const materialId = this.props.auth.relatedData.course.materialId;
         const cb = (obj) => {
             // console.log("createNoteFileCb : ", obj);
             this.props.history.goBack();
@@ -170,7 +170,7 @@ class SchoolCourseMaterialSelectFile extends React.Component {
         if (this.state.selected) {
             this.state.selected.map(n => {
                 const theLink = {
-                    class_material: classMaterialId,
+                    class_material: materialId,
                     material: this.state.libraryList[n].material_id,
                 }
                 return body.push(theLink);

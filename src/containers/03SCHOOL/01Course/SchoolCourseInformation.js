@@ -20,7 +20,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedData } from '../../../Redux/Action/authAction';
+import { setRelatedCourseData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -111,7 +111,7 @@ class SchoolCourseInformation extends React.Component {
     }
 
     componentDidMount() {
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
         if (redux_conferenceId !== null) {
             this._getConferenceDefailByUser();
         }
@@ -190,10 +190,10 @@ class SchoolCourseInformation extends React.Component {
             });
 
             const data = {
-                ...this.props.auth.relatedData,
-                courseCode: theList.code,
+                ...this.props.auth.relatedData.course,
+                code: theList.code,
             }
-            this.props.setRelatedDataP(data);
+            this.props.setRelatedCourseDataP(data);
         }
 
         const eCb = (obj) => {
@@ -201,7 +201,7 @@ class SchoolCourseInformation extends React.Component {
         }
 
         let params = {
-            conference_id: this.props.auth.relatedData.conferenceId,
+            conference_id: this.props.auth.relatedData.course.conferenceId,
             $expand: 'conference_sections/teachers,conference_officers',
         }
         apiConferences.getConferenceDefailByUser(params, this.props.auth.token, cb, eCb);
@@ -304,10 +304,10 @@ class SchoolCourseInformation extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const data = {
-                ...this.props.auth.relatedData,
+                ...this.props.auth.relatedData.course,
                 conferenceId: obj.body.conference_id,
             }
-            this.props.setRelatedDataP(data);
+            this.props.setRelatedCourseDataP(data);
             this._getConferenceDefailByUser();
         }
         const eCb = (obj) => {
@@ -370,14 +370,14 @@ class SchoolCourseInformation extends React.Component {
     editConferenceInfo = (formInput) => {
         console.log("formInput:");
         console.log(formInput);
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
         const cb = (obj) => {
             // console.log("cb : ", obj);
             // const data = {
-            //     ...this.props.auth.relatedData,
+            //     ...this.props.auth.relatedData.course,
             //     conferenceId: obj.body.conference_id,
             // }
-            // this.props.setRelatedDataP(data);
+            // this.props.setRelatedCourseDataP(data);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -419,14 +419,14 @@ class SchoolCourseInformation extends React.Component {
             }
             console.log("edit's params:");
             console.log(params);
-            apiConferences.editConference(this.props.auth.relatedData.conferenceId, params, this.props.auth.token, cb, eCb);
+            apiConferences.editConference(this.props.auth.relatedData.course.conferenceId, params, this.props.auth.token, cb, eCb);
         } else
             console.log('redux_conferenceId is empty');
     }
 
     // delete
     deleteConferenceByConferenceId = () => {
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
 
         if (redux_conferenceId !== null) {
             const cb = (obj) => {
@@ -472,9 +472,9 @@ class SchoolCourseInformation extends React.Component {
         the_conference_sections.push(newClass);
         /*end add back exist class */
 
-        if (this.props.auth.relatedData.conferenceId) {
+        if (this.props.auth.relatedData.course.conferenceId) {
             this.setState({
-                conference_id: this.props.auth.relatedData.conferenceId,
+                conference_id: this.props.auth.relatedData.course.conferenceId,
 
                 academicTerm: formInput.academicTerm,
                 courseLocation: formInput.courseLocation,
@@ -548,7 +548,7 @@ class SchoolCourseInformation extends React.Component {
     //** form handle input end **/
 
     handleSubmit = (values, { setFieldError }) => {
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
         if (redux_conferenceId !== null) {
             this.editConferenceInfo(values);
         } else {
@@ -561,7 +561,7 @@ class SchoolCourseInformation extends React.Component {
         const { classes
             //, t, i18n
         } = this.props;
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
+        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
@@ -998,7 +998,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
 
-    setRelatedDataP: data => dispatch(setRelatedData(data)),
+    setRelatedCourseDataP: data => dispatch(setRelatedCourseData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

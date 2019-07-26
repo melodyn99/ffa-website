@@ -26,7 +26,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedData } from '../../../Redux/Action/authAction';
+import { setRelatedCourseData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -98,7 +98,7 @@ class SchoolCourseAssessment extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            conference: this.props.auth.relatedData.course.conferenceId,
             $expand: 'user',
         }
 
@@ -114,10 +114,10 @@ class SchoolCourseAssessment extends React.Component {
         // });
         // console.log(theList);
         const data = {
-            ...this.props.auth.relatedData,
+            ...this.props.auth.relatedData.course,
             endConferenceScoreId: end_conference_score_id,
         }
-        this.props.setRelatedDataP(data);
+        this.props.setRelatedCourseDataP(data);
         this.props.history.push('/' + i18n.language + '/school-course-assessment-detail');
     };
 
@@ -295,7 +295,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setRelatedDataP: data => dispatch(setRelatedData(data)),
+    setRelatedCourseDataP: data => dispatch(setRelatedCourseData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

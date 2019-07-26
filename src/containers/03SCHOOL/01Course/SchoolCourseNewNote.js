@@ -43,7 +43,7 @@ class SchoolCourseNewNote extends React.Component {
 
     handleSubmit = (event, { setFieldError }) => {
         // console.log('event: ' + JSON.stringify(event, null, 2));
-        const conferenceId = this.props.auth.relatedData.conferenceId;
+        const conferenceId = this.props.auth.relatedData.course.conferenceId;
 
         const cb = (obj) => {
             // console.log("cb : ", obj);

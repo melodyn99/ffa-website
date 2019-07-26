@@ -99,7 +99,7 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         }
 
         const params = {
-            class_material: this.props.auth.relatedData.classMaterialId,
+            class_material: this.props.auth.relatedData.course.materialId,
             $expand: "material/file",
         }
 
@@ -132,8 +132,8 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
-        console.log(this.props.auth.relatedData.classMaterialId);
-        apiConferences.deleteConferenceMaterial(this.props.auth.relatedData.classMaterialId, this.props.auth.token, cb, eCb);
+        console.log(this.props.auth.relatedData.course.materialId);
+        apiConferences.deleteConferenceMaterial(this.props.auth.relatedData.course.materialId, this.props.auth.token, cb, eCb);
     }
 
 

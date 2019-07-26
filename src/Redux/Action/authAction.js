@@ -60,7 +60,7 @@ export const refreshTokenByRefreshToken = (data) => ({
   data
 });
 
-export const setRelatedData = (data) => ({
-  type: AuthActionTypes.SET_RELATED_DATA,
+export const setRelatedCourseData = (data) => ({
+  type: AuthActionTypes.SET_RELATED_COURSE_DATA,
   data
 });

@@ -27,7 +27,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedData } from '../../../Redux/Action/authAction';
+import { setRelatedCourseData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -59,7 +59,7 @@ class SchoolCourseMaterial extends React.Component {
 
         // component state
         data: data,
-        classMaterialList: [],
+        courseMaterialList: [],
     };
 
     componentDidMount() {
@@ -86,7 +86,7 @@ class SchoolCourseMaterial extends React.Component {
             });
 
             this.setState({
-                classMaterialList: convertedList,
+                courseMaterialList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -94,7 +94,7 @@ class SchoolCourseMaterial extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.conferenceId,
+            conference: this.props.auth.relatedData.course.conferenceId,
         }
 
         apiConferences.getConferenceMaterial(params, this.props.auth.token, cb, eCb);
@@ -105,11 +105,11 @@ class SchoolCourseMaterial extends React.Component {
         // console.log(`Clicked class_material_id: ${library_id}`);
         const { i18n } = this.props;
         const data = {
-            ...this.props.auth.relatedData,
-            classMaterialId: class_material_id,
+            ...this.props.auth.relatedData.course,
+            materialId: class_material_id,
             libraryId: library_id,
         }
-        this.props.setRelatedDataP(data);
+        this.props.setRelatedCourseDataP(data);
         this.props.history.push('/' + i18n.language + '/school-course-material-inside-folder');
 
     };
@@ -202,7 +202,7 @@ class SchoolCourseMaterial extends React.Component {
         const {
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = this.state.classMaterialList;
+        const data = this.state.courseMaterialList;
         // const data = this.state.data;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -308,7 +308,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setRelatedDataP: data => dispatch(setRelatedData(data)),
+    setRelatedCourseDataP: data => dispatch(setRelatedCourseData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

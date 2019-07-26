@@ -82,7 +82,7 @@ function Cluster(props) {
 class SchoolCourseAnnouncement extends React.Component {
     state = {
         currLoginAccount: this.props.auth.userInfo.username,
-        conferenceId: this.props.auth.relatedData.conferenceId,
+        conferenceId: this.props.auth.relatedData.course.conferenceId,
         messagesList: [],
     }
 
@@ -106,7 +106,7 @@ class SchoolCourseAnnouncement extends React.Component {
         }
 
         const params = {
-            'conversation/conference': this.props.auth.relatedData.conferenceId,
+            'conversation/conference': this.props.auth.relatedData.course.conferenceId,
             // $orderby: `createddate`,
             $expand: `conversation,image`
         }
