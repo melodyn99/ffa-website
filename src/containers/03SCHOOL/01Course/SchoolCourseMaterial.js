@@ -5,6 +5,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
@@ -26,6 +27,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
+import { setRelatedData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
@@ -44,6 +46,7 @@ const rows = [
     { id: 'fileCount', numeric: true, disablePadding: false, label: '文件' },
     { id: 'editor', numeric: true, disablePadding: false, label: '操作人員' },
     { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改时间' },
+    { id: '', numeric: false, disablePadding: false, label: '' },
 ];
 
 class SchoolCourseMaterial extends React.Component {
@@ -57,23 +60,24 @@ class SchoolCourseMaterial extends React.Component {
 
         // component state
         data: data,
-        materialList: [],
+        classMaterialList: [],
     };
 
     componentDidMount() {
-        this._getMaterialList();
+        this._getClassMaterialList();
     }
 
-    _getMaterialList = () => {
-
+    _getClassMaterialList = () => {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
             const convertedList = [];
-
+            // console.log("theList");
+            // console.log(theList);
             theList.map(n => {
                 const convertedArray = {
                     class_material_id: n.class_material_id,
+                    library: n.library,
                     material: n.name,
                     fileCount: n.class_material_files.length,
                     editor: n.modified_by,
@@ -83,7 +87,7 @@ class SchoolCourseMaterial extends React.Component {
             });
 
             this.setState({
-                materialList: convertedList,
+                classMaterialList: convertedList,
             });
         }
         const eCb = (obj) => {
@@ -98,9 +102,32 @@ class SchoolCourseMaterial extends React.Component {
     }
 
     /** form handle input start **/
-    handleEnterSelection = (event, id) => {
-        console.log(`Clicked class_material_id: ${id}`);
-        this.props.history.push('school-course-material-inside-folder');
+    //delete
+    _deleteConferenceMaterial = (class_material_id) => {
+        // console.log('delete button pressed');
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            this._getClassMaterialList();
+            // this.setState({ selected: [] });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        apiConferences.deleteConferenceMaterial(class_material_id, this.props.auth.token, cb, eCb);
+    }
+
+    handleEnterSelection = (event, class_material_id, library_id) => {
+        // console.log(`Clicked class_material_id: ${library_id}`);
+        const { i18n } = this.props;
+        const data = {
+            ...this.props.auth.relatedData,
+            classMaterialId: class_material_id,
+            libraryId: library_id,
+        }
+        this.props.setRelatedDataP(data);
+        this.props.history.push('/' + i18n.language + '/school-course-material-inside-folder');
+
     };
 
     // ToolBar
@@ -191,8 +218,8 @@ class SchoolCourseMaterial extends React.Component {
         const {
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
-        // const data = this.state.materialList;
-        const data = this.state.data;
+        const data = this.state.classMaterialList;
+        // const data = this.state.data;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -237,7 +264,7 @@ class SchoolCourseMaterial extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.class_material_id)}
+                                                                onClick={event => this.handleEnterSelection(event, n.class_material_id, n.library)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -253,12 +280,15 @@ class SchoolCourseMaterial extends React.Component {
                                                                 <TableCell>{n.fileCount}</TableCell>
                                                                 <TableCell>{n.editor}</TableCell>
                                                                 <TableCell>{n.lastmoddate}</TableCell>
+                                                                <TableCell align="right" >
+                                                                    <Button onClick={() => this._deleteConferenceMaterial(n.class_material_id)}>{' X '}</Button>
+                                                                </TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={4} />
+                                                        <TableCell colSpan={5} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
@@ -297,7 +327,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);

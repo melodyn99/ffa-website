@@ -115,7 +115,7 @@ export const apiConferences = {
     },
 
     editConference: (conferenceId, body, token, cb, eCb) => {
-        apiGeneral.apiPut(`conferences/${conferenceId}`, body, token, cb, eCb)
+        apiGeneral.apiPost(`conferences/${conferenceId}`, body, token, cb, eCb)
     },
 
     // deleteConference: (conferenceId, token, cb, eCb) => {
@@ -138,6 +138,29 @@ export const apiConferences = {
     /* Course material start */
     getConferenceMaterial: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('class_materials', params, token, cb, eCb)
+    },
+    createConferenceMaterial: (params, token, cb, eCb) => {
+        apiGeneral.apiPost('class_materials', params, token, cb, eCb)
+    },
+    deleteConferenceMaterial: (id, token, cb, eCb) => {
+        apiGeneral.apiDelete('class_materials', id, token, cb, eCb)
+    },
+
+    getConferenceMaterialFile: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('class_material_files', params, token, cb, eCb)
+    },
+    createConferenceMaterialFile: (body, token, cb, eCb) => {
+        apiGeneral.apiPost('class_material_files', body, token, cb, eCb)
+    },
+    deleteConferenceMaterialFile: (id, token, cb, eCb) => {
+        apiGeneral.apiDelete('class_material_files', id, token, cb, eCb)
+    },
+
+    getLibraries: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('libraries', params, token, cb, eCb)
+    },
+    getLibrariesList: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('library_list', params, token, cb, eCb)
     },
     /* Course material end */
 

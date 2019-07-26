@@ -19,7 +19,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 
 // Api
@@ -41,7 +41,8 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'material', numeric: false, disablePadding: false, label: '课程教材' },
+    { id: '', numeric: true, disablePadding: false, label: '' },
+    { id: 'library_name', numeric: false, disablePadding: false, label: '教材库' },
     { id: 'fileCount', numeric: true, disablePadding: false, label: '文件' },
     { id: 'editor', numeric: true, disablePadding: false, label: '操作人員' },
     { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改时间' },
@@ -58,34 +59,18 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
 
         // component state
         // data: data,
-        materialList: [],
+        librariesList: [],
     };
 
     componentDidMount() {
-        this._getMaterialList();
+        this._getClassMaterialList();
     }
 
-    _getMaterialList = () => {
-
+    _getClassMaterialList = () => {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
-            const convertedList = [];
-
-            theList.map(n => {
-                const convertedArray = {
-                    class_material_id: n.class_material_id,
-                    material: n.name,
-                    fileCount: n.class_material_files.length,
-                    editor: n.modified_by,
-                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
-                }
-                return convertedList.push(convertedArray);
-            });
-
-            this.setState({
-                materialList: convertedList,
-            });
+            this._getLibrariesList(theList);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -98,10 +83,97 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
         apiConferences.getConferenceMaterial(params, this.props.auth.token, cb, eCb);
     }
 
+    _getLibrariesList = (classMaterialList) => {
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body;
+            // console.log("_getLibrariesList()");
+            // console.log(theList);
+
+            //find selected item List
+            let selectedItemList = [];
+            classMaterialList.map(n => {
+                const isSelected = theList.find(i => i.library_id === n.library);
+                selectedItemList.push(isSelected);
+                return null;
+            });
+
+            // console.log("selectedItemList");
+            // console.log(selectedItemList);
+            //find unselected item List
+            let unselectedItemList = [];
+            theList.map(n => {
+                let isUnselect = true;
+                selectedItemList.map(i => {
+                    if (i.library_id === n.library_id) {
+                        return isUnselect = false;
+                    }
+                    return null;
+                });
+                if (isUnselect) {
+                    return unselectedItemList.push(n);
+                } else
+                    return null;
+            })
+
+            //covert the key name of unselected item List for sort in UI
+            const convertedList = [];
+            unselectedItemList.map(n => {
+                const convertedArray = {
+                    library_id: n.library_id,
+                    library_name: n.name,
+                    fileCount: n.total_document,
+                    editor: n.modified_by,
+                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                }
+                return convertedList.push(convertedArray);
+            });
+
+            this.setState({
+                librariesList: convertedList,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            "subject/subject_id": this.props.auth.relatedData.subjectId,
+        }
+
+        apiConferences.getLibrariesList(params, this.props.auth.token, cb, eCb);
+    }
+
     /** form handle input start **/
-    handleEnterSelection = (event, id) => {
-        console.log(`Clicked class_material_id: ${id}`);
-    };
+    //post
+    _createClassMaterial = () => {
+        // console.log('Click _createClassMaterialFiles()');
+        // console.log(this.state.selected);
+        const { librariesList } = this.state;
+        const cb = (obj) => {
+            // console.log("createNoteFileCb : ", obj);
+            this.props.history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const body = [];
+        if (this.state.selected) {
+            this.state.selected.map(n => {
+                const theLink = {
+                    library: librariesList[n].library_id,
+                    name: librariesList[n].library_name,
+                    conference: this.props.auth.relatedData.conferenceId,
+                }
+                return body.push(theLink);
+            });
+            console.log(body);
+            apiConferences.createConferenceMaterial(body, this.props.auth.token, cb, eCb);
+        } else {
+            console.log('Selection is empty, select one item or more please!');
+        }
+
+    }
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -191,7 +263,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
         const {
             // data,
             order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = this.state.materialList;
+        const data = this.state.librariesList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -227,20 +299,21 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                                                         const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
+                                                                className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.class_material_id)}
+                                                                onClick={event => this.handleClick(event, theIndexNum)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
                                                                 key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
-                                                                {/* <TableCell padding="checkbox">
+                                                                <TableCell padding="checkbox">
                                                                     <Checkbox checked={isSelected} />
-                                                                </TableCell> */}
+                                                                </TableCell>
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.material}</TableCell>
+                                                                >{n.library_name}</TableCell>
                                                                 <TableCell>{n.fileCount}</TableCell>
                                                                 <TableCell>{n.editor}</TableCell>
                                                                 <TableCell>{n.lastmoddate}</TableCell>
@@ -274,7 +347,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                                     <Button className={classes.greyButton}
                                         onClick={() => this.props.history.push('school-course-material')}
                                     >返回</Button>
-                                    <span className="right"><Button type="submit" className={classes.blackButton}>加入資料匣</Button></span>
+                                    <span className="right"><Button onClick={() => this._createClassMaterial()} className={classes.blackButton}>加入資料匣</Button></span>
                                 </div>
                             </div>
                         </div>

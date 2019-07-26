@@ -74,6 +74,9 @@ class SchoolAllCourse extends React.Component {
 
             // console.log("theList: " + JSON.stringify(theList,null,2));
             theList.map(n => {
+
+                console.log("n:");
+                console.log(n);
                 let theTeachers = '';
                 theTeachers = n.teachers.map(name => {
                     return theTeachers = theTeachers + ", " + name
@@ -81,7 +84,8 @@ class SchoolAllCourse extends React.Component {
                 theTeachers = theTeachers.toString().substr(2);
                 const convertedArray = {
                     conference: n.conference_id,
-                    subject: n.subject_name,
+                    subject: n.subject,
+                    subject_name: n.subject_name,
                     course: n.name,
                     teacher: theTeachers,
                     location: n.location,
@@ -118,12 +122,12 @@ class SchoolAllCourse extends React.Component {
         this.props.history.push(url);
     }
 
-    handleEnterSelection = (event, id) => {
+    handleEnterSelection = (event, conference_id, subject_id) => {
         const { i18n } = this.props;
-        const conference_id = id;
         const data = {
             ...this.props.auth.relatedData,
             conferenceId: conference_id,
+            subjectId: subject_id,
         }
 
         this.props.setRelatedDataP(data);
@@ -230,7 +234,7 @@ class SchoolAllCourse extends React.Component {
                                                     .filter(item => {
                                                         const searchSubject = this.props.searchSubject || null;
                                                         if (searchSubject) {
-                                                            return item.subject === searchSubject;
+                                                            return item.subject_name === searchSubject;
                                                         } else
                                                             return true;
                                                     })
@@ -242,7 +246,7 @@ class SchoolAllCourse extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.conference)}
+                                                                onClick={event => this.handleEnterSelection(event, n.conference, n.subject)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -254,7 +258,7 @@ class SchoolAllCourse extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.subject}</TableCell>
+                                                                >{n.subject_name}</TableCell>
                                                                 <TableCell>{n.course}</TableCell>
                                                                 <TableCell>{n.teacher}</TableCell>
                                                                 <TableCell>{n.location}</TableCell>
