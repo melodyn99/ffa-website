@@ -43,11 +43,11 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 // Define column names
 const rows = [
     { id: '', numeric: true, disablePadding: false, label: '' },
-    { id: 'assignment', numeric: false, disablePadding: false, label: '课程作业' },
-    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
-    { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
-    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
-    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
+    { id: 'library_assignment', numeric: false, disablePadding: false, label: '作业材料库' },
+    { id: 'subject_name', numeric: true, disablePadding: false, label: '学科' },
+    { id: 'question_type', numeric: true, disablePadding: false, label: '问题类型' },
+    { id: 'questions_count', numeric: true, disablePadding: false, label: '问题数量' },
+    { id: 'created_by', numeric: true, disablePadding: false, label: '创建人员' },
     { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
@@ -62,7 +62,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
 
         // component state
         // data: data,
-        courseAssignmentList: [],
+        library_assignmentList: [],
     };
 
     componentDidMount() {
@@ -75,26 +75,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
-            console.log("theList");
-            console.log(theList);
-
-            const convertedList = [];
-
-            theList.map(n => {
-                const convertedArray = {
-                    assignment: n.name,
-                    type: n.assignment.question_type,
-                    questions: n.assignment.assignment_questions.length,
-                    score: n.total_mark,
-                    deadline: dateToDayAndMonth(n.deadline),
-                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
-                }
-                return convertedList.push(convertedArray);
-            });
-
-            this.setState({
-                courseAssignmentList: convertedList,
-            });
+            this._getLibrariesAssignments(theList);
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -103,13 +84,107 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         const params = {
             conference: this.props.auth.relatedData.course.conferenceId,
             "assignment/subject": this.props.auth.relatedData.course.subjectId,
-            $expand: 'assignment',
+            // $expand: 'assignment',
         }
 
         apiConferences.getConferenceAssignment(params, this.props.auth.token, cb, eCb);
     }
 
+    _getLibrariesAssignments = (conferenceAssignmentList) => {
+        // const { viewingSeminar } = this.props;
+
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            const theList = obj.body;
+            // console.log("theList");
+            // console.log(theList);
+
+            //find selected item List
+            let selectedItemList = [];
+            conferenceAssignmentList.map(n => {
+                const isSelected = theList.find(i => i.assignment_id === n.assignment);
+                selectedItemList.push(isSelected);
+                return null;
+            });
+
+            // console.log("selectedItemList");
+            // console.log(selectedItemList);
+            //find unselected item List
+            let unselectedItemList = [];
+            theList.map(n => {
+                let isUnselect = true;
+                selectedItemList.map(i => {
+                    if (i.assignment_id === n.assignment_id) {
+                        return isUnselect = false;
+                    }
+                    return null;
+                });
+                if (isUnselect) {
+                    return unselectedItemList.push(n);
+                } else
+                    return null;
+            })
+
+
+            const convertedList = [];
+            unselectedItemList.map(n => {
+                const convertedArray = {
+                    assignment_id: n.assignment_id,
+                    library_assignment: n.title,
+                    subject_name: n.subject.name,
+                    question_type: n.question_type,
+                    questions_count: n.assignment_questions.length || 0,
+                    created_by: n.created_by,
+                    lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                }
+                return convertedList.push(convertedArray);
+            });
+
+            this.setState({
+                library_assignmentList: convertedList,
+            });
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            "subject": this.props.auth.relatedData.course.subjectId,
+            // $expand: 'assignment_questions',
+        }
+
+        apiConferences.getLibrariesAssignments(params, this.props.auth.token, cb, eCb);
+    }
+
     /** form handle input start **/
+    //post
+    _createClassAssignment = () => {
+        const { library_assignmentList } = this.state;
+        const cb = (obj) => {
+            // console.log("cb : ", obj);
+            this.props.history.goBack();
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const body = [];
+
+        if (this.state.selected) {
+            this.state.selected.map(n => {
+                const theLink = {
+                    conference: this.props.auth.relatedData.course.conferenceId,
+                    assignment: library_assignmentList[n].assignment_id,
+                    name: library_assignmentList[n].library_assignment,
+                    deadline: 1564459200000,
+                }
+                return body.push(theLink);
+            });
+            // console.log(body);
+            apiConferences.createConferenceAssignment(body, this.props.auth.token, cb, eCb);
+        } else {
+            console.log('Selection is empty, select one item or more please!');
+        }
+    }
 
     // ToolBar
     _backButtonAction = (url) => {
@@ -197,8 +272,8 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         const { classes } = this.props;
         const {
             // data,
-            courseAssignmentList, order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = courseAssignmentList;
+            library_assignmentList, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = library_assignmentList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
         return (
             <div>
@@ -235,7 +310,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                                                             <TableRow
                                                                 className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
-                                                                onClick={event => this.handleClick(event, n.conference_assignment_id)}
+                                                                onClick={event => this.handleClick(event, theIndexNum)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -247,11 +322,11 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                                                                 </TableCell>
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.assignment}</TableCell>
-                                                                <TableCell>{n.type}</TableCell>
-                                                                <TableCell>{n.questions}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.deadline}</TableCell>
+                                                                >{n.library_assignment}</TableCell>
+                                                                <TableCell>{n.subject_name}</TableCell>
+                                                                <TableCell>{n.question_type}</TableCell>
+                                                                <TableCell>{n.questions_count}</TableCell>
+                                                                <TableCell>{n.created_by}</TableCell>
                                                                 <TableCell>{n.lastmoddate}</TableCell>
                                                             </TableRow>
                                                         );
@@ -283,7 +358,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                                     <Button className={classes.greyButton}
                                         onClick={() => this.props.history.push('school-course-work')}
                                     >返回</Button>
-                                    <span className="right"><Button type="submit" className={classes.blackButton}>加入資料匣</Button></span>
+                                    <span className="right"><Button onClick={() => this._createClassAssignment()} className={classes.blackButton}>加入資料匣</Button></span>
                                 </div>
                             </div>
                         </div>

@@ -165,13 +165,13 @@ export const apiConferences = {
         apiGeneral.apiPost('conference_assignments', params, token, cb, eCb)
     },
     deleteConferenceAssignment: (id, token, cb, eCb) => {
-        apiGeneral.apiDelete('conference_assignment_list', id, token, cb, eCb)
+        apiGeneral.apiDelete('conference_assignments', id, token, cb, eCb)
     },
 
 
-    // getConferenceAssignmentQuestion: (params, token, cb, eCb) => {
-    //     apiGeneral.apiFetch('assignment_questions', params, token, cb, eCb)
-    // },
+    getConferenceAssignmentQuestion: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('assignment_questions', params, token, cb, eCb)
+    },
     // createConferenceAssignmentQuestion: (body, token, cb, eCb) => {
     //     apiGeneral.apiPost('assignment_questions', body, token, cb, eCb)
     // },
@@ -219,12 +219,17 @@ export const apiConferences = {
 
 
 
-    /* Course material && assessment start */
+    /* Libraries start */
     getLibraries: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('libraries', params, token, cb, eCb)
     },
     getLibrariesList: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('library_list', params, token, cb, eCb)
     },
-    /* Course material && assessment end */
+
+
+    getLibrariesAssignments: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('assignments', params, token, cb, eCb)
+    },
+    /* Libraries end */
 };

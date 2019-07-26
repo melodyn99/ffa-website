@@ -146,12 +146,12 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
 
     /** form handle input start **/
     //post
-    _createClassMaterial = () => {
+    _createCourseMaterial = () => {
         // console.log('Click _createClassMaterialFiles()');
         // console.log(this.state.selected);
         const { librariesList } = this.state;
         const cb = (obj) => {
-            // console.log("createNoteFileCb : ", obj);
+            // console.log("cb : ", obj);
             this.props.history.goBack();
         }
         const eCb = (obj) => {
@@ -347,7 +347,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                                     <Button className={classes.greyButton}
                                         onClick={() => this.props.history.push('school-course-material')}
                                     >返回</Button>
-                                    <span className="right"><Button onClick={() => this._createClassMaterial()} className={classes.blackButton}>加入資料匣</Button></span>
+                                    <span className="right"><Button onClick={() => this._createCourseMaterial()} className={classes.blackButton}>加入資料匣</Button></span>
                                 </div>
                             </div>
                         </div>

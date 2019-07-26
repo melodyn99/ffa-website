@@ -41,11 +41,11 @@ import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTab
 
 // Define column names
 const rows = [
-    { id: 'SchoolCourseWorkInsideFolder', numeric: false, disablePadding: false, label: '课程作业' },
-    { id: 'type', numeric: true, disablePadding: false, label: '类型' },
-    { id: 'questions', numeric: true, disablePadding: false, label: '问题' },
-    { id: 'score', numeric: true, disablePadding: false, label: '作业分数' },
-    { id: 'deadline', numeric: true, disablePadding: false, label: '截止日期' },
+    { id: 'question_name', numeric: false, disablePadding: false, label: '题目' },
+    { id: 'mark', numeric: true, disablePadding: false, label: '值分' },
+    { id: 'correct_answer', numeric: true, disablePadding: false, label: '正确选择' },
+    { id: 'question_options', numeric: true, disablePadding: false, label: '答案选择' },
+    { id: 'created_by', numeric: true, disablePadding: false, label: '创建人员' },
     { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改日期' },
 ];
 
@@ -60,36 +60,38 @@ class SchoolCourseWorkInsideFolder extends React.Component {
 
         // component state
         // data: data,
-        courseAssignmentList: [],
+        assignmentQuestionList: [],
     };
 
     componentDidMount() {
-        this._getConferenceAssignmentList();
+        this._getAssignmentQuestionList();
     }
 
-    _getConferenceAssignmentList = () => {
+    _getAssignmentQuestionList = () => {
         // const { viewingSeminar } = this.props;
-
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
+            console.log("_getAssignmentQuestionList");
+            console.log(theList);
 
             const convertedList = [];
 
             theList.map(n => {
                 const convertedArray = {
-                    SchoolCourseWorkInsideFolder: n.name,
-                    type: n.assignment.question_type,
-                    questions: n.assignment.assignment_questions.length,
-                    score: n.total_mark,
-                    deadline: dateToDayAndMonth(n.deadline),
+                    assignment_question_id: n.assignment_question_id,
+                    question_name: n.question,
+                    mark: n.mark,
+                    correct_answer: n.correct_answer,
+                    question_options: n.assignment_question_options.length,
+                    created_by: n.created_by,
                     lastmoddate: dateToDayAndMonth(n.lastmoddate),
                 }
                 return convertedList.push(convertedArray);
             });
 
             this.setState({
-                courseAssignmentList: convertedList,
+                assignmentQuestionList: convertedList,
             });
         }
 
@@ -98,11 +100,11 @@ class SchoolCourseWorkInsideFolder extends React.Component {
         }
 
         const params = {
-            conference: this.props.auth.relatedData.course.conferenceId,
-            $expand: 'assignment',
+            assignment: this.props.auth.relatedData.course.assignmentId,
+            // $expand: 'assignment_question_options',
         }
 
-        apiConferences.getConferenceAssignment(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceAssignmentQuestion(params, this.props.auth.token, cb, eCb);
     }
 
     /** class assignment management start **/
@@ -117,8 +119,7 @@ class SchoolCourseWorkInsideFolder extends React.Component {
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
-        console.log(this.props.auth.relatedData.course.materialId);
-        apiConferences.deleteConferenceAssignment(this.props.auth.relatedData.course.assignmentId, this.props.auth.token, cb, eCb);
+        apiConferences.deleteConferenceAssignment(this.props.auth.relatedData.course.courseAssignmentId, this.props.auth.token, cb, eCb);
     }
     /** class assignment management end **/
 
@@ -222,8 +223,8 @@ class SchoolCourseWorkInsideFolder extends React.Component {
         const { classes } = this.props;
         const {
             // data,
-            courseAssignmentList, order, orderBy, selected, rowsPerPage, page } = this.state;
-        const data = courseAssignmentList;
+            assignmentQuestionList, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const data = assignmentQuestionList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
         return (
             <div>
@@ -277,7 +278,7 @@ class SchoolCourseWorkInsideFolder extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.conference_assignment_id)}
+                                                                onClick={event => this.handleEnterSelection(event, n.assignment_question_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -289,11 +290,11 @@ class SchoolCourseWorkInsideFolder extends React.Component {
                                                                 </TableCell> */}
                                                                 <TableCell component="th" scope="row"
                                                                 // padding="none"
-                                                                >{n.SchoolCourseWorkInsideFolder}</TableCell>
-                                                                <TableCell>{n.type}</TableCell>
-                                                                <TableCell>{n.questions}</TableCell>
-                                                                <TableCell>{n.score}</TableCell>
-                                                                <TableCell>{n.deadline}</TableCell>
+                                                                >{n.question_name}</TableCell>
+                                                                <TableCell>{n.mark}</TableCell>
+                                                                <TableCell>{n.correct_answer}</TableCell>
+                                                                <TableCell>{n.question_options}</TableCell>
+                                                                <TableCell>{n.created_by}</TableCell>
                                                                 <TableCell>{n.lastmoddate}</TableCell>
                                                             </TableRow>
                                                         );

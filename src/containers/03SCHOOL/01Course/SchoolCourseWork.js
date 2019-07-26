@@ -73,13 +73,15 @@ class SchoolCourseWork extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
-            console.log("theList");
-            console.log(theList);
+            // console.log("theList");
+            // console.log(theList);
 
             const convertedList = [];
 
             theList.map(n => {
                 const convertedArray = {
+                    assignment_id: n.assignment.assignment_id,
+                    conference_assignment_id: n.conference_assignment_id,
                     assignment: n.name,
                     type: n.assignment.question_type,
                     questions: n.assignment.assignment_questions.length,
@@ -108,13 +110,13 @@ class SchoolCourseWork extends React.Component {
     }
 
     /** form handle input start **/
-    handleEnterSelection = (event, id) => {
+    handleEnterSelection = (event, assignment_id, courseAssignment_id) => {
         // const { i18n } = this.props;
-        const courseAssignment_id = id;
         console.log('CourseAssignmentId: ' + courseAssignment_id);
         const data = {
             ...this.props.auth.relatedData.course,
-            "courseAssignmentId": courseAssignment_id,
+            assignmentId: assignment_id,
+            courseAssignmentId: courseAssignment_id,
         }
         this.props.setRelatedCourseDataP(data);
         this.props.history.push('school-course-work-inside-folder');
@@ -252,7 +254,7 @@ class SchoolCourseWork extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.conference_assignment_id)}
+                                                                onClick={event => this.handleEnterSelection(event, n.assignment_id, n.conference_assignment_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}

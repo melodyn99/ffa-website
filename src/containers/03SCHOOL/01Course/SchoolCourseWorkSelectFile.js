@@ -65,10 +65,10 @@ class SchoolCourseWorkSelectFile extends React.Component {
     };
 
     componentDidMount() {
-        this._getConferenceAssignmentList();
+        this._getConferenceAssignment();
     }
 
-    _getConferenceAssignmentList = () => {
+    _getConferenceAssignment = () => {
         // const { viewingSeminar } = this.props;
 
         const cb = (obj) => {
@@ -102,7 +102,7 @@ class SchoolCourseWorkSelectFile extends React.Component {
             $expand: 'assignment',
         }
 
-        apiConferences.getConferenceAssignmentList(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceAssignment(params, this.props.auth.token, cb, eCb);
     }
 
     /** form handle input start **/
