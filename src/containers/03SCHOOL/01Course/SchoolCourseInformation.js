@@ -73,33 +73,35 @@ function Block(props) {
 
 class SchoolCourseInformation extends React.Component {
     state = {
-        academicTerm: '2020-21',
-        courseLocation: '香港',
-        subjectName: '4ca84f07-e091-4868-87d2-671b3d1ce0d6',
-        courseType: '大商品公开课程',
+        formData: {
+            academicTerm: '2022-23',
+            courseLocation: '香港',
+            subjectName: '4ca84f07-e091-4868-87d2-671b3d1ce0d6',
+            courseType: '大商品公开课程',
 
-        courseCode: '',
-        courseName: '',
-        courseAddress: '',
-        courseIntroduction: '',
-        courseEmphasis: '',
-        courseBenefits: '',
-        contactEmail: '',
-        contactWechat: '',
-        contactNumber: '',
-        essentialCourse: 4,
+            courseCode: '',
+            courseName: '',
+            courseAddress: '',
+            courseIntroduction: '',
+            courseEmphasis: '',
+            courseBenefits: '',
+            contactEmail: '',
+            contactWechat: '',
+            contactNumber: '',
+            essentialCourse: 4,
 
-        enrollmenetStartDate: '1565798400000',
-        enrollmenetEndDate: '',
+            enrollmenetStartDate: '1565798400000',
+            enrollmenetEndDate: '',
 
-        courseQuota: '',
-        courseCredits: '',
+            courseQuota: '',
+            courseCredits: '',
 
-        courseFees: '',
-        expectedFees: '',
-        actualFees: '',
+            courseFees: '',
+            expectedFees: '',
+            actualFees: '',
 
-        conference_sections: []
+            conference_sections: []
+        }
     }
 
     componentDidMount() {
@@ -110,41 +112,41 @@ class SchoolCourseInformation extends React.Component {
 
     _getConferenceDefailByUser = () => {
 
-        console.log('here');
-
         const cb = (obj) => {
-            console.log("cb : ", obj);
+            // console.log("cb : ", obj);
             const theList = obj.body[0];
-            // console.log("theList: " + JSON.stringify(theList, null, 2));
 
             this.setState({
-                academicTerm: theList.academic_term,
-                courseLocation: theList.courseLocation,
-                subjectName: theList.subject,
-                courseType: theList.type,
+                ...this.state,
+                formData: {
+                    academicTerm: theList.academic_term,
+                    courseLocation: theList.courseLocation,
+                    subjectName: theList.subject,
+                    courseType: theList.type,
 
-                courseCode: theList.code,
-                courseName: theList.name,
-                courseAddress: theList.address,
-                courseIntroduction: theList.introduction,
-                courseEmphasis: theList.emphasis,
-                courseBenefits: theList.benefit,
-                contactEmail: theList.email,
-                contactWechat: theList.wechat,
-                contactNumber: theList.phone,
-                essentialCourse: '',
+                    courseCode: theList.code,
+                    courseName: theList.name,
+                    courseAddress: theList.address,
+                    courseIntroduction: theList.introduction,
+                    courseEmphasis: theList.emphasis,
+                    courseBenefits: theList.benefit,
+                    contactEmail: theList.email,
+                    contactWechat: theList.wechat,
+                    contactNumber: theList.phone,
+                    essentialCourse: '',
 
-                enrollmenetStartDate: theList.enrollmenet_start_date,
-                enrollmenetEndDate: theList.enrollment_end_date,
+                    enrollmenetStartDate: theList.enrollmenet_start_date,
+                    enrollmenetEndDate: theList.enrollment_end_date,
 
-                courseQuota: theList.quota,
-                courseCredits: theList.credit,
+                    courseQuota: theList.quota,
+                    courseCredits: theList.credit,
 
-                courseFees: theList.fee,
-                expectedFees: theList.expected_fee,
-                actualFees: theList.actual_fee,
+                    courseFees: theList.fee,
+                    expectedFees: theList.expected_fee,
+                    actualFees: theList.actual_fee,
 
-                conference_sections: theList.conference_sections
+                    conference_sections: theList.conference_sections
+                }
             });
         }
 
@@ -293,7 +295,7 @@ class SchoolCourseInformation extends React.Component {
 
     handleSubmit = (values, { setFieldError }) => {
 
-        console.log(values);
+        console.log('Submit Values : ', values);
 
         // if (this.props.auth.relatedData.conferenceId !== null) {
         //     this.editConferenceInfo();
@@ -307,17 +309,28 @@ class SchoolCourseInformation extends React.Component {
         // console.log('AddMore');
         this.setState({
             ...this.state,
-            conference_sections: [
-                ...this.state.conference_sections,
-                {
-                    conference_section_id: '',
-                    conference: '',
-                    sequence: '',
-                    start_date: '',
-                    end_date: '',
-                    location: '',
-                    address: '',
-                }]
+            formData: {
+                ...this.state.formData,
+                conference_sections: [
+                    ...this.state.formData.conference_sections,
+                    {
+                        address: "",
+                        conference: '',
+                        conference_section_id: '',
+                        created_by: null,
+                        createddate: null,
+                        end_date: '',
+                        lastmoddate: null,
+                        location: null,
+                        modified_by: null,
+                        sequence: 1,
+                        serial_no: null,
+                        start_date: '',
+                        teachers: [],
+                        time_managements: [],
+                        title: 'Henry Cheung',
+                    }]
+            }
         });
     }
     //** form handle input end **/
@@ -326,6 +339,8 @@ class SchoolCourseInformation extends React.Component {
         const { classes
             //, t, i18n
         } = this.props;
+
+        // console.log(this.state.formData.conference_sections);
 
         return (
             <Form>
@@ -530,7 +545,7 @@ class SchoolCourseInformation extends React.Component {
                     <Grid item xs={12} >课程日期和时间</Grid>
                 </Grid>
 
-                {(this.state.conference_sections.map(
+                {(this.state.formData.conference_sections.map(
                     (data, i) => {
                         return (
                             <Block
@@ -700,65 +715,7 @@ class SchoolCourseInformation extends React.Component {
                             <div className="content">
                                 <Formik
                                     enableReinitialize
-                                    initialValues={{
-                                        academicTerm: this.state.academicTerm,
-                                        courseLocation: this.state.courseLocation,
-                                        subjectName: this.state.subjectName,
-                                        courseType: this.state.courseType,
-
-                                        courseCode: this.state.courseCode,
-                                        courseName: this.state.courseName,
-                                        courseAddress: this.state.courseAddress,
-                                        courseIntroduction: this.state.courseIntroduction,
-                                        courseEmphasis: this.state.courseEmphasis,
-                                        courseBenefits: this.state.courseBenefits,
-                                        contactEmail: this.state.contactEmail,
-                                        contactWechat: this.state.contactWechat,
-                                        contactNumber: this.state.contactNumber,
-                                        essentialCourse: this.state.essentialCourse,
-
-                                        enrollmenetStartDate: this.state.enrollmenetStartDate,
-                                        enrollmenetEndDate: this.state.enrollmenetEndDate,
-
-                                        courseQuota: this.state.courseQuota,
-                                        courseCredits: this.state.courseCredits,
-
-                                        courseFees: this.state.courseFees,
-                                        expectedFees: this.state.expectedFees,
-                                        actualFees: this.state.actualFees,
-
-                                        className0: '',
-                                        classDate0: '',
-                                        classLocation0: '',
-
-                                        className1: '',
-                                        classDate1: '',
-                                        classLocation1: '',
-
-                                        className2: '',
-                                        classDate2: '',
-                                        classLocation2: '',
-
-                                        className3: '',
-                                        classDate3: '',
-                                        classLocation3: '',
-
-                                        className4: '',
-                                        classDate4: '',
-                                        classLocation4: '',
-
-                                        className5: '',
-                                        classDate5: '',
-                                        classLocation5: '',
-
-                                        className6: '',
-                                        classDate6: '',
-                                        classLocation6: '',
-
-                                        className7: '',
-                                        classDate7: '',
-                                        classLocation7: '',
-                                    }}
+                                    initialValues={this.state.formData}
                                     validationSchema={Schema}
                                     onSubmit={this.handleSubmit}
                                     component={this.form}
