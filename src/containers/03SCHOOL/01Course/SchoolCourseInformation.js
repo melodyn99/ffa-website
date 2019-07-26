@@ -16,6 +16,7 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 // Api
+// import { apiAuth } from '../../Api/ApiAuth';
 import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
@@ -25,7 +26,7 @@ import { setRelatedData } from '../../../Redux/Action/authAction';
 // Utils
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { dateToDayMonthYear, timeStampsToRange, rangeToTimeStamps } from '../../../Util/DateUtils';
+import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -35,43 +36,36 @@ import ErrorMessage from '../../../components/01General/ErrorMessage';
 // import data from '../../data/09Account/EnrollmentHistory';
 
 function Block(props) {
-    const i = props.i;
-    const className = props.className;
-    const classStartToEndDate = props.classStartToEndDate;
-    const classAddress = props.classAddress;
-    // const classTeachers = props.classTeachers;
-    const errors = props.errors;
-    const touched = props.touched;
     return (
         <Grid container spacing={16} alignItems="center" className="mt20">
-            <Grid item xs={12} >#{(i + 1)}</Grid>
+            <Grid item xs={12} >#{props.i + 1}</Grid>
 
             <Grid item xs={1} >课程标题</Grid>
             <Grid item xs={11}>
-                <Field name={"className" + (i + 1)} type="text" placeholder={"第" + (i + 1) + "课"} maxLength="100" />
-                {errors[className] && touched[className] ? <ErrorMessage message={errors[className]} /> : null}
+                <Field name={"className" + props.i} type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100" />
+                {props.errors[props.className] && props.touched[props.className] ? <ErrorMessage message={props.errors[props.className]} /> : null}
             </Grid>
 
             <Grid item xs={1} >课程日期</Grid>
             <Grid item xs={11}>
-                <Field name={"classStartToEndDate" + (i + 1)} type="text" placeholder="2019-12-13, 13:00 - 15:00" maxLength="100" />
-                {errors[classStartToEndDate] && touched[classStartToEndDate] ? <ErrorMessage message={errors[classStartToEndDate]} /> : null}
+                <Field name={"classDate" + props.i} type="text" placeholder="2019 / 3 / 22" maxLength="100" />
+                {props.errors[props.classDate] && props.touched[props.classDate] ? <ErrorMessage message={props.errors[props.classDate]} /> : null}
             </Grid>
 
             <Grid item xs={1} >课程地点</Grid>
             <Grid item xs={11}>
-                <Field name={"classAddress" + (i + 1)} type="text" placeholder={"地点" + (i + 1)} maxLength="100" />
-                {errors[classAddress] && touched[classAddress] ? <ErrorMessage message={errors[classAddress]} /> : null}
+                <Field name={"classLocation" + props.i} type="text" placeholder="5号厅" maxLength="100" />
+                {props.errors[props.classLocation] && props.touched[props.classLocation] ? <ErrorMessage message={props.errors[props.classLocation]} /> : null}
             </Grid>
 
             <Grid item xs={1} >授课老师</Grid>
             <Grid item xs={11}>
-                <Field component="select" name={"classTeachers" + (i + 1)} >
-                    <option value="teacher@ffa.test">FFA Teacher</option>
+                <select name={"classTeacher" + props.i}>
+                    <option value="1">A</option>
                     <option value="2">B</option>
                     <option value="3">C</option>
                     <option value="4">D</option>
-                </Field>
+                </select>
             </Grid>
         </Grid>
     )
@@ -79,121 +73,79 @@ function Block(props) {
 
 class SchoolCourseInformation extends React.Component {
     state = {
-        conference_id: null,
+        academicTerm: '',
+        courseLocation: '',
+        subjectName: '',
+        courseType: '',
 
-        academicTerm: '2022-23',
-        courseLocation: '香港',
-        subjectName: '4ca84f07-e091-4868-87d2-671b3d1ce0d6',
-        courseType: '开发流程课程',
+        courseCode: '',
+        courseName: '',
+        courseAddress: '',
+        courseIntroduction: '',
+        courseEmphasis: '',
+        courseBenefits: '',
+        contactEmail: '',
+        contactWechat: '',
+        contactNumber: '',
+        essentialCourse: '',
 
-        courseCode: 'CC24072019_0',
-        courseName: '课程24072019_0',
-        courseAddress: 'addr',
-        courseIntroduction: 'intro',
-        courseEmphasis: 'emph',
-        courseBenefits: 'bene',
-        contactEmail: 'testing01@ffa.com',
-        contactWechat: '1',
-        contactNumber: '1',
-        // essentialCourse: '',
+        enrollmenetStartDate: '',
+        enrollmenetEndDate: '',
 
-        enrollmenetStartDate: 1565798300000,
-        enrollmenetEndDate: 1565798400000,
+        courseQuota: '',
+        courseCredits: '',
 
-        courseQuota: '1',
-        courseCredits: '1',
+        courseFees: '',
+        expectedFees: '',
+        actualFees: '',
 
-        courseFees: '1',
-        expectedFees: '10000',
-        actualFees: '1',
-
-        conference_sections: [],
+        conference_sections: []
     }
 
     componentDidMount() {
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
-        if (redux_conferenceId !== null) {
+        if (this.props.auth.relatedData.conferenceId !== null) {
             this._getConferenceDefailByUser();
         }
-        // console.log(dayMonthYearTimeToTimeStamps("2020-09-01 18:06"));
-        // console.log(rangeToTimeStamps("2019-08-14, 23:58 - 00:00"));
     }
 
     _getConferenceDefailByUser = () => {
 
+        console.log('here');
+
         const cb = (obj) => {
-            // console.log("cb : ", obj);
+            console.log("cb : ", obj);
             const theList = obj.body[0];
-            // console.log(theList);
-            let converted_conference_sections = [];
-            theList.conference_sections.sort(function (a, b) {
-                return a.sequence - b.sequence;
-            }).map((n, i) => {
-                let the_classTeachers = [];
-                if (n.teachers[0]) {
-                    the_classTeachers = [
-                        {
-                            instructor_id: n.teachers[0].instructor_id,
-                            user: n.teachers[0].user,
-                            conference_section: n.teachers[0].conference_section,
-                            sequence: n.teachers[0].sequence,
-                            checked_in: n.teachers[0].checked_in,
-                            location: n.teachers[0].location,
-                        }
-                    ];
-                }
-                const convertedArray = {
-                    conference_section_id: n.conference_section_id,
-                    conference: n.conference,
-                    sequence: n.sequence,
-                    start_date: parseInt(n.start_date),
-                    end_date: parseInt(n.end_date),
-                    classStartToEndDate: timeStampsToRange(n.start_date, n.end_date) || '',
-                    location: n.location,
-                    address: n.address,
-                    teachers: the_classTeachers,
-                    title: n.title,
-                }
-                return converted_conference_sections.push(convertedArray);
-            });
+            // console.log("theList: " + JSON.stringify(theList, null, 2));
 
-            this.setState({
-                conference_id: theList.conference_id,
-                academicTerm: theList.academic_term,
-                courseLocation: theList.location,
-                subjectName: theList.subject,
-                courseType: theList.type,
+            // this.setState({
+            //     academicTerm: theList.academic_term,
+            //     courseLocation: theList.courseLocation,
+            //     subjectName: theList.subject,
+            //     courseType: theList.type,
 
-                courseCode: theList.code,
-                courseName: theList.name,
-                courseAddress: theList.address,
-                courseIntroduction: theList.introduction,
-                courseEmphasis: theList.emphasis,
-                courseBenefits: theList.benefit,
-                contactEmail: theList.email,
-                contactWechat: theList.wechat,
-                contactNumber: theList.phone,
-                essentialCourse: '',
+            //     courseCode: theList.code,
+            //     courseName: theList.name,
+            //     courseAddress: theList.address,
+            //     courseIntroduction: theList.introduction,
+            //     courseEmphasis: theList.emphasis,
+            //     courseBenefits: theList.benefit,
+            //     contactEmail: theList.email,
+            //     contactWechat: theList.wechat,
+            //     contactNumber: theList.phone,
+            //     essentialCourse: '',
 
-                enrollmenetStartDate: theList.enrollmenet_start_date || 1565798300000,
-                enrollmenetEndDate: theList.enrollment_end_date || 1565798400000,
+            //     enrollmenetStartDate: theList.enrollmenet_start_date,
+            //     enrollmenetEndDate: theList.enrollment_end_date,
 
-                courseQuota: theList.quota,
-                courseCredits: theList.credit,
+            //     courseQuota: theList.quota,
+            //     courseCredits: theList.credit,
 
-                courseFees: theList.fee,
-                expectedFees: theList.expected_fee,
-                actualFees: theList.actual_fee,
+            //     courseFees: theList.fee,
+            //     expectedFees: theList.expected_fee,
+            //     actualFees: theList.actual_fee,
 
-                conference_sections: converted_conference_sections,
-                conference_officers: theList.conference_officers,
-            });
-
-            const data = {
-                ...this.props.auth.relatedData,
-                courseCode: theList.code,
-            }
-            this.props.setRelatedDataP(data);
+            //     conference_sections: theList.conference_sections
+            // });
         }
 
         const eCb = (obj) => {
@@ -202,366 +154,192 @@ class SchoolCourseInformation extends React.Component {
 
         let params = {
             conference_id: this.props.auth.relatedData.conferenceId,
-            $expand: 'conference_sections/teachers,conference_officers',
+            'conference_officers/user': this.props.auth.userInfo.username,
+            $expand: 'subject,conference_sections/teachers/user',
         }
+
         apiConferences.getConferenceDefailByUser(params, this.props.auth.token, cb, eCb);
     }
 
     //** form handle input start **/
-    convertForm_conference_sections = (formInput) => {
-        // console.log("convertForm_conference_sections() formInput");
-        // console.log(formInput);
-        let the_conference_sections = [];
-        const classLength = this.state.conference_sections.length || 0;
-        if (classLength !== 0) {
-            for (let i = 1; i <= classLength; i++) {
-                //2019-08-14, 23:58 - 00:00
-                // dayMonthYearTimeToTimeStamps("2020-09-01 18:06")
-                const convertedDate = rangeToTimeStamps(formInput["classStartToEndDate" + i]);
+    // insert
+    // createConferenceWithEnterInfo = () => {
+    //     const cb = (obj) => {
+    //         // console.log("cb : ", obj);
 
-                let theClass = {}
-                const isNewCreateClass = formInput["classId" + i] && formInput["classTeachers" + i].instructor_id && formInput["classTeachers" + i].conference_section;
-                if (!formInput.conference_id) {
-                    theClass = {
-                        // conference_section_id: formInput["classId" + i],
-                        // conference: formInput.conference_id,
-                        sequence: i,
-                        start_date: parseInt(convertedDate[0]),
-                        end_date: parseInt(convertedDate[1]),
-                        classStartToEndDate: formInput["classStartToEndDate" + i],
-                        location: formInput.courseLocation,
-                        address: formInput["classAddress" + i],
-                        teachers: [
-                            {
-                                // instructor_id: formInput["classTeachers" + i].instructor_id,
-                                user: formInput["classTeachers" + i].user,
-                                // conference_section: formInput["classTeachers" + i].conference_section,
-                                sequence: formInput["classTeachers" + i].sequence,
-                                checked_in: formInput["classTeachers" + i].checked_in,
-                                location: formInput["classTeachers" + i].location,
-                            }
-                        ],
-                        title: formInput["className" + i],
-                    }
-                } else if (isNewCreateClass) {
-                    theClass = {
-                        conference_section_id: formInput["classId" + i],
-                        conference: formInput.conference_id,
-                        sequence: i,
-                        start_date: parseInt(convertedDate[0]),
-                        end_date: parseInt(convertedDate[1]),
-                        classStartToEndDate: formInput["classStartToEndDate" + i],
-                        location: formInput.courseLocation,
-                        address: formInput["classAddress" + i],
-                        teachers: [
-                            {
-                                instructor_id: formInput["classTeachers" + i].instructor_id,
-                                user: formInput["classTeachers" + i].user,
-                                conference_section: formInput["classTeachers" + i].conference_section,
-                                sequence: formInput["classTeachers" + i].sequence,
-                                checked_in: formInput["classTeachers" + i].checked_in,
-                                location: formInput["classTeachers" + i].location,
-                            }
-                        ],
-                        title: formInput["className" + i],
-                    }
-                } else {
-                    theClass = {
-                        // conference_section_id: formInput["classId" + i],
-                        conference: formInput.conference_id,
-                        sequence: i,
-                        start_date: parseInt(convertedDate[0]),
-                        end_date: parseInt(convertedDate[1]),
-                        classStartToEndDate: formInput["classStartToEndDate" + i],
-                        location: formInput.courseLocation,
-                        address: formInput["classAddress" + i],
-                        teachers: [
-                            {
-                                // instructor_id: formInput["classTeachers" + i].instructor_id,
-                                user: formInput["classTeachers" + i].user,
-                                // conference_section: formInput["classTeachers" + i].conference_section,
-                                sequence: formInput["classTeachers" + i].sequence,
-                                checked_in: formInput["classTeachers" + i].checked_in,
-                                location: formInput["classTeachers" + i].location,
-                            }
-                        ],
-                        title: formInput["className" + i],
-                    }
-                }
-                the_conference_sections.push(theClass);
-            }
-        }
-        this.setState({
-            ...this.state,
-            conference_sections: the_conference_sections,
-        });
-        return the_conference_sections;
-    }
-    // post
-    createConferenceWithEnterInfo = (formInput) => {
-        // console.log("formInput");
-        // console.log(formInput);
-        const cb = (obj) => {
-            // console.log("cb : ", obj);
-            const data = {
-                ...this.props.auth.relatedData,
-                conferenceId: obj.body.conference_id,
-            }
-            this.props.setRelatedDataP(data);
-            this._getConferenceDefailByUser();
-        }
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
+    //         const data = {
+    //             ...this.props.auth.conferenceId,
+    //             conferenceId: obj.body.conference_id,
+    //         }
+    //         this.props.setRelatedDataP(data);
+    //     }
+    //     const eCb = (obj) => {
+    //         console.log("eCb : ", obj);
+    //     }
 
-        const the_conference_sections = this.convertForm_conference_sections(formInput)
+    //     const params = {
+    //         active: true,
+    //         name: this.state.courseName,
+    //         academic_year: this.state.academicTerm.substring(0, 4),
+    //         academic_term: this.state.academicTerm,
+    //         location: this.state.courseLocation,
+    //         subject: this.state.subjectName,
+    //         type: this.state.courseType,
+    //         code: this.state.courseCode,
+    //         address: this.state.courseAddress,
+    //         enrollmenet_start_date: 1565797400000,
+    //         enrollment_end_date: 1565798400000,
+    //         credit_requirement: 2019,
+    //         fee: this.state.courseFees,
+    //         expected_fee: this.state.expectedFees,
+    //         actual_fee: this.state.actualFees,
+    //         discount: 0,
+    //         quota: this.state.courseQuota,
+    //         credit: this.state.courseCredits,
+    //         introduction: this.state.courseIntroduction,
+    //         emphasis: this.state.courseEmphasis,
+    //         benefit: this.state.courseBenefits,
+    //         email: this.state.contactEmail,
+    //         wechat: this.state.contactWechat,
+    //         phone: this.state.contactNumber,
+    //         conference_sections: [
+    //             {
+    //                 "title": "第1课 - 介绍",
+    //                 "sequence": 1,
+    //                 "start_date": 1570323600000,
+    //                 "end_date": 1570356000000,
+    //                 "location": "杭州",
+    //                 "address": "新城东方君悦水星厅",
+    //                 "teachers": [
+    //                     { "user": "teacher@ffa.test", "sequence": 1 }
+    //                 ]
+    //             }
+    //         ],
+    //         conference_officers: [
+    //             { user: this.props.auth.userInfo.username }
+    //         ]
+    //     }
+    //     console.log(params);
+    //     apiConferences.createConference(params, this.props.auth.token, cb, eCb);
+    // }
 
-        let params = {
-            active: true,
-            name: formInput.courseName,
-            academic_year: formInput.academicTerm.substring(0, 4),
-            academic_term: formInput.academicTerm,
-            location: formInput.courseLocation,
-            subject: formInput.subjectName,
-            type: formInput.courseType,
-            code: formInput.courseCode,
-            address: formInput.courseAddress,
-            enrollmenet_start_date: 1565798300000,
-            enrollment_end_date: 1565798400000,
-            credit_requirement: 2019,
-            fee: formInput.courseFees,
-            expected_fee: formInput.expectedFees,
-            actual_fee: formInput.actualFees,
-            discount: 0,
-            quota: formInput.courseQuota,
-            credit: formInput.courseCredits,
-            promotion_message: null,
-            introduction: formInput.courseIntroduction,
-            emphasis: formInput.courseEmphasis,
-            benefit: formInput.courseBenefits,
-            email: formInput.contactEmail,
-            wechat: formInput.contactWechat,
-            phone: formInput.contactNumber,
-            teacher_image: null,
-            teacher_introduction: null,
-            // conference_sections: the_conference_sections,
-            conference_officers: [
-                {
-                    user: this.props.auth.userInfo.username,
-                    job_duties: null,
-                }
-            ],
-        }
+    // update
+    // editConferenceInfo = () => {
+    //     const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
 
-        if (the_conference_sections) {
-            if (the_conference_sections.length > 0) {
-                params = {
-                    ...params,
-                    conference_sections: the_conference_sections,
-                }
-            }
-        }
-        console.log("create's params:");
-        console.log(params);
-        apiConferences.createConference(params, this.props.auth.token, cb, eCb);
-    }
+    //     if (redux_conferenceId !== null) {
+    //         const cb = (obj) => {
+    //             // console.log("cb : ", obj);
 
-    // put
-    editConferenceInfo = (formInput) => {
-        console.log("formInput:");
-        console.log(formInput);
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
-        const cb = (obj) => {
-            // console.log("cb : ", obj);
-            // const data = {
-            //     ...this.props.auth.relatedData,
-            //     conferenceId: obj.body.conference_id,
-            // }
-            // this.props.setRelatedDataP(data);
-        }
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
+    //             // const data = {
+    //             //     ...this.props.auth.conferenceId,
+    //             //     conferenceId: obj.body.conference_id,
+    //             // }
+    //             // this.props.setRelatedDataP(data);
+    //         }
+    //         const eCb = (obj) => {
+    //             console.log("eCb : ", obj);
+    //         }
 
-        if (redux_conferenceId !== null) {
-            const the_conference_sections = this.convertForm_conference_sections(formInput);;
-            const params = {
-                conference_id: formInput.conference_id,
-                active: true,
-                name: formInput.courseName,
-                academic_year: formInput.academicTerm.substring(0, 4),
-                academic_term: formInput.academicTerm,
-                location: formInput.courseLocation,
-                subject: formInput.subjectName,
-                type: formInput.courseType,
-                code: formInput.courseCode,
-                address: formInput.courseAddress,
-                enrollmenet_start_date: 1565798300000,
-                enrollment_end_date: 1565798400000,
-                credit_requirement: 2019,
-                fee: formInput.courseFees,
-                expected_fee: formInput.expectedFees,
-                actual_fee: formInput.actualFees,
-                discount: 0,
-                quota: formInput.courseQuota,
-                credit: formInput.courseCredits,
-                promotion_message: null,
-                introduction: formInput.courseIntroduction,
-                emphasis: formInput.courseEmphasis,
-                benefit: formInput.courseBenefits,
-                email: formInput.contactEmail,
-                wechat: formInput.contactWechat,
-                phone: formInput.contactNumber,
-                teacher_image: null,
-                teacher_introduction: null,
-                conference_sections: the_conference_sections,
-                conference_officers: formInput.conference_officers
-            }
-            console.log("edit's params:");
-            console.log(params);
-            apiConferences.editConference(this.props.auth.relatedData.conferenceId, params, this.props.auth.token, cb, eCb);
-        } else
-            console.log('redux_conferenceId is empty');
-    }
+    //         const params = {
+    //             active: true,
+    //             name: this.state.courseName,
+    //             academic_year: this.state.academicTerm.substring(0, 4),
+    //             academic_term: this.state.academicTerm,
+    //             location: this.state.courseLocation,
+    //             subject: this.state.subjectName,
+    //             type: this.state.courseType,
+    //             code: this.state.courseCode,
+    //             address: this.state.courseAddress,
+    //             enrollmenet_start_date: 1565797400000,
+    //             enrollment_end_date: 1565798400000,
+    //             credit_requirement: 2019,
+    //             fee: this.state.courseFees,
+    //             expected_fee: this.state.expectedFees,
+    //             actual_fee: this.state.actualFees,
+    //             discount: 0,
+    //             quota: this.state.courseQuota,
+    //             credit: this.state.courseCredits,
+    //             introduction: this.state.courseIntroduction,
+    //             emphasis: this.state.courseEmphasis,
+    //             benefit: this.state.courseBenefits,
+    //             email: this.state.contactEmail,
+    //             wechat: this.state.contactWechat,
+    //             phone: this.state.contactNumber,
+    //         }
+    //         console.log(params);
+    //         apiConferences.editConference(redux_conferenceId, params, this.props.auth.token, cb, eCb);
+    //     } else
+    //         console.log('redux_conferenceId is empty');
+    // }
 
     // delete
-    deleteConferenceByConferenceId = () => {
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
+    // deleteConferenceByConferenceId = () => {
+    //     const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
 
-        if (redux_conferenceId !== null) {
-            const cb = (obj) => {
-                // console.log("cb : ", obj);
-                this.props.history.goBack();
-            }
-            const eCb = (obj) => {
-                console.log("eCb : ", obj);
-            }
+    //     if (redux_conferenceId !== null) {
+    //         // const cb = (obj) => {
+    //         //     // console.log("cb : ", obj);
+    //         //     this.props.history.goBack();
+    //         // }
+    //         // const eCb = (obj) => {
+    //         //     console.log("eCb : ", obj);
+    //         // }
 
-            apiConferences.deleteConference(redux_conferenceId, this.props.auth.token, cb, eCb);
-        } else
-            console.log('redux_conferenceId is empty');
+    //         // apiConferences.deleteConference(redux_conferenceId, this.props.auth.token, cb, eCb);
+    //     } else
+    //         console.log('redux_conferenceId is empty');
+    // }
+
+    handleSubmit = (values, { setFieldError }) => {
+        if (this.props.auth.relatedData.conferenceId !== null) {
+            this.editConferenceInfo();
+        } else {
+            this.createConferenceWithEnterInfo();
+        }
     }
 
     // Tools
-    _handleAddClass = (formInput) => {
-        console.log('_handleAddClass formInput');
-        console.log(formInput);
-        /*start add back exist class */
-        let the_conference_sections = this.convertForm_conference_sections(formInput);
-        const newClass = {
-            // conference_section_id: null,
-            conference: this.state.conference_id,
-            sequence: this.state.conference_sections.length + 1,
-            start_date: 1576209600000,
-            end_date: 1576216800000,
-            classStartToEndDate: timeStampsToRange(1576209600000, 1576216800000),
-            location: this.state.courseLocation,
-            address: `地点${this.state.conference_sections.length + 1}`,
-            teachers: [
+    _handleAddMore = () => {
+        // console.log('AddMore');
+        this.setState({
+            ...this.state,
+            conference_sections: [
+                ...this.state.conference_sections,
                 {
-                    // instructor_id: "",
-                    user: 'teacher@ffa.test',
-                    // conference_section: "",
-                    sequence: 1,
-                    checked_in: false,
-                    location: null,
-                }
-            ],
-            title: `第${this.state.conference_sections.length + 1}课`,
-        }
-        the_conference_sections.push(newClass);
-        /*end add back exist class */
-
-        if (this.props.auth.relatedData.conferenceId) {
-            this.setState({
-                conference_id: this.props.auth.relatedData.conferenceId,
-
-                academicTerm: formInput.academicTerm,
-                courseLocation: formInput.courseLocation,
-                subjectName: formInput.subjectName,
-                courseType: formInput.courseType,
-
-                courseCode: formInput.courseCode,
-                courseName: formInput.courseName,
-                courseAddress: formInput.courseAddress,
-                courseIntroduction: formInput.courseIntroduction,
-                courseEmphasis: formInput.courseEmphasis,
-                courseBenefits: formInput.courseBenefits,
-                contactEmail: formInput.contactEmail,
-                contactWechat: formInput.contactWechat,
-                contactNumber: formInput.contactNumber,
-                essentialCourse: '',
-
-                enrollmenetStartDate: formInput.enrollmenetStartDate || 1565798300000,
-                enrollmenetEndDate: formInput.enrollmenetEndDate || 1565798400000,
-
-                courseQuota: formInput.courseQuota,
-                courseCredits: formInput.courseCredits,
-
-                courseFees: formInput.courseFees,
-                expectedFees: formInput.expectedFees,
-                actualFees: formInput.actualFees,
-
-                conference_sections: the_conference_sections,
-                conference_officers: formInput.conference_officers,
-            });
-        } else {
-            this.setState({
-                // conference_id: formInput.conference_id,
-                academicTerm: formInput.academicTerm,
-                courseLocation: formInput.courseLocation,
-                subjectName: formInput.subjectName,
-                courseType: formInput.courseType,
-
-                courseCode: formInput.courseCode,
-                courseName: formInput.courseName,
-                courseAddress: formInput.courseAddress,
-                courseIntroduction: formInput.courseIntroduction,
-                courseEmphasis: formInput.courseEmphasis,
-                courseBenefits: formInput.courseBenefits,
-                contactEmail: formInput.contactEmail,
-                contactWechat: formInput.contactWechat,
-                contactNumber: formInput.contactNumber,
-                essentialCourse: '',
-
-                enrollmenetStartDate: formInput.enrollmenetStartDate || 1565798300000,
-                enrollmenetEndDate: formInput.enrollmenetEndDate || 1565798400000,
-
-                courseQuota: formInput.courseQuota,
-                courseCredits: formInput.courseCredits,
-
-                courseFees: formInput.courseFees,
-                expectedFees: formInput.expectedFees,
-                actualFees: formInput.actualFees,
-
-                conference_sections: the_conference_sections,
-                conference_officers: formInput.conference_officers,
-            });
-        }
+                    conference_section_id: '',
+                    conference: '',
+                    sequence: '',
+                    start_date: '',
+                    end_date: '',
+                    location: '',
+                    address: '',
+                }]
+        });
     }
-
-    // _handleSelection = (key, selectionString) => {
-    //     this.setState({
-    //         [key]: selectionString,
-    //     });
-    // }
     //** form handle input end **/
 
     handleSubmit = (values, { setFieldError }) => {
-        const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
-        if (redux_conferenceId !== null) {
-            this.editConferenceInfo(values);
-        } else {
-            this.createConferenceWithEnterInfo(values);
-        }
+        // call api
+        // TODO
+        console.log('GREAT!');
     }
 
     form = ({ values, errors, touched, handleChange }) => {
-        // console.log(values);
         const { classes
             //, t, i18n
         } = this.props;
+        const {
+            academicTerm,
+            courseLocation,
+            subjectName,
+            courseType,
+
+            enrollmenetStartDate,
+            enrollmenetEndDate,
+        } = this.state;
         const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
+
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
@@ -569,43 +347,43 @@ class SchoolCourseInformation extends React.Component {
                         学期
                     </Grid>
                     <Grid item xs={11}>
-                        <Field component="select" name="academicTerm">
+                        <select>
                             <option value="2019-20">2019-20</option>
                             <option value="2020-21">2020-21</option>
                             <option value="2021-22">2021-22</option>
                             <option value="2022-23">2022-23</option>
-                        </Field>
+                        </select>
                     </Grid>
 
                     <Grid item xs={1} >
                         上课城市
                     </Grid>
                     <Grid item xs={11}>
-                        <Field component="select" name="courseLocation">
+                        <select>
                             <option value="杭州">杭州</option>
                             <option value="北京">北京</option>
                             <option value="上海">上海</option>
                             <option value="香港">香港</option>
-                        </Field>
+                        </select>
                     </Grid>
 
                     <Grid item xs={1} >
                         学科名称
                     </Grid>
                     <Grid item xs={11}>
-                        <Field component="select" name="subjectName">
+                        <select>
                             <option value="d4314518-5a20-4bc4-ad6a-35ad44c16647">战略课程</option>
                             <option value="6e90c530-869d-46d3-8655-b229da34935e">商品管理系列课程</option>
                             <option value="3de02f4e-1c58-49e5-8b80-390346c94ad2">设计应用系列课程</option>
                             <option value="4ca84f07-e091-4868-87d2-671b3d1ce0d6">开发流程系列课程</option>
-                        </Field>
+                        </select>
                     </Grid>
 
                     <Grid item xs={1} >
                         课程类型
                     </Grid>
                     <Grid item xs={11}>
-                        <Field component="select" name="courseType">
+                        <select>
                             <option value="test-type">test-type</option>
                             <option value="开发流程课程">开发流程课程</option>
                             <option value="设计应用课程">设计应用课程</option>
@@ -613,7 +391,7 @@ class SchoolCourseInformation extends React.Component {
                             <option value="大商品公开课程">大商品公开课程</option>
                             <option value="商品管理课程">商品管理课程</option>
                             <option value="海外联合课程">海外联合课程</option>
-                        </Field>
+                        </select>
                     </Grid>
 
                     <Grid item xs={1} >
@@ -628,7 +406,7 @@ class SchoolCourseInformation extends React.Component {
                         课程名称
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseName" type="text" placeholder="课程名称" maxLength="100" />
+                        <Field name="courseName" type="text" maxLength="100" />
                         {errors.courseName && touched.courseName ? <ErrorMessage message={errors.courseName} /> : null}
                     </Grid>
 
@@ -636,7 +414,7 @@ class SchoolCourseInformation extends React.Component {
                         课程地址
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseAddress" type="text" placeholder="课程地址" maxLength="100" />
+                        <Field name="courseAddress" type="text" maxLength="100" />
                         {errors.courseAddress && touched.courseAddress ? <ErrorMessage message={errors.courseAddress} /> : null}
                     </Grid>
 
@@ -644,7 +422,7 @@ class SchoolCourseInformation extends React.Component {
                         课程简介
                     </Grid>
                     <Grid item xs={11}>
-                        <Field name="courseIntroduction" type="text" placeholder="课程简介" maxLength="100" />
+                        <Field name="courseIntroduction" type="text" maxLength="100" />
                         {errors.courseIntroduction && touched.courseIntroduction ? <ErrorMessage message={errors.courseIntroduction} /> : null}
                     </Grid>
 
@@ -692,7 +470,7 @@ class SchoolCourseInformation extends React.Component {
                         先修课程
                     </Grid>
                     <Grid item xs={11}>
-                        <select>
+                        <select name="essentialCourse">
                             <option value="1">课程1</option>
                             <option value="2">课程2</option>
                             <option value="3">课程3</option>
@@ -704,22 +482,20 @@ class SchoolCourseInformation extends React.Component {
                         报名开始
                     </Grid>
                     <Grid item xs={11}>
-                        <Field component="select" name="enrollmenetStartDate" >
-                            <option value={1565798300000}>{dateToDayMonthYear(1565798300000)}</option>
-                            <option value={1565797400000}>{dateToDayMonthYear(1565797400000)}</option>
-                            <option value={1565798400000}>{dateToDayMonthYear(1565798400000)}</option>
-                        </Field>
+                        <select>
+                            <option value="1565798300000">{dateToDayMonthYear(1565798300000)}</option>
+                            <option value="1565798400000">{dateToDayMonthYear(1565798400000)}</option>
+                        </select>
                     </Grid>
 
                     <Grid item xs={1} >
                         报名结束
                     </Grid>
                     <Grid item xs={11}>
-                        <Field component="select" name="enrollmenetEndDate">
-                            <option value={1565798300000}>{dateToDayMonthYear(1565798300000)}</option>
-                            <option value={1565797400000}>{dateToDayMonthYear(1565797400000)}</option>
-                            <option value={1565798400000}>{dateToDayMonthYear(1565798400000)}</option>
-                        </Field>
+                        <select>
+                            <option value="1565798300000">{dateToDayMonthYear(1565798300000)}</option>
+                            <option value="1565798400000">{dateToDayMonthYear(1565798400000)}</option>
+                        </select>
                     </Grid>
 
                     <Grid item xs={1} >
@@ -761,40 +537,32 @@ class SchoolCourseInformation extends React.Component {
                         <Field name="actualFees" type="text" placeholder="实际收费" maxLength="100" />
                         {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null}
                     </Grid>
+                </Grid>
 
-                    <Grid item xs={12} >&nbsp;</Grid>
+                <Grid container spacing={16} alignItems="center">
+                    <Grid item xs={12} ></Grid>
+                    <Grid item xs={12} >课程日期和时间</Grid>
+                </Grid>
 
-                    <Grid container spacing={16} alignItems="center">
-                        <Grid item xs={12} >课程日期和时间</Grid>
-                        {/* forget */}
+                {(this.state.conference_sections.map(
+                    (data, i) => {
+                        return (
+                            <Block
+                                key={i}
+                                i={i}
+                                className={"className" + i}
+                                classDate={"classDate" + i}
+                                classLocation={"classLocation" + i}
+                                classTeacher={"classTeacher" + i}
+                                errors={errors}
+                                touched={touched}
+                            />
+                        )
+                    }
+                ))}
 
-                        <Grid item xs={12} >
-                            {(
-                                this.state.conference_sections.map(
-                                    (data, i) => {
-                                        const classStartToEndDate = timeStampsToRange(data.start_date, data.end_date);
-
-                                        return (
-                                            <Block
-                                                key={data.conference_section_id || "new" + i}
-                                                i={i}
-                                                className={data.title}
-                                                classStartToEndDate={classStartToEndDate}
-                                                classAddress={data.address}
-                                                classTeachers={data.teachers}
-                                                errors={errors}
-                                                touched={touched}
-                                            />
-                                        )
-                                    }
-                                ))}
-                        </Grid>
-
-                    </Grid>
-
-                    <Grid item xs={12} className="mt20">
-                        <Button className={classes.greyButton} onClick={() => this._handleAddClass(values)}>添加上課日子</Button>
-                    </Grid>
+                <Grid item xs={12} className="mt20">
+                    <Button className={classes.greyButton} onClick={this._handleAddMore}>添加上課日子</Button>
                 </Grid>
 
                 <div className="bottomControl clearfix">
@@ -819,8 +587,6 @@ class SchoolCourseInformation extends React.Component {
     render() {
         // const { classes, t, i18n } = this.props;
         const {
-            conference_id,
-
             academicTerm,
             courseLocation,
             subjectName,
@@ -846,10 +612,10 @@ class SchoolCourseInformation extends React.Component {
             courseFees,
             expectedFees,
             actualFees,
-
-            conference_sections,
-            conference_officers,
         } = this.state;
+
+        // console.log('SchoolCourseInformation_render: ' + JSON.stringify(conferenceList, null, 2));
+
         const Schema = Yup.object().shape({
             courseCode: Yup.string()
                 .required('Course Code is required'),
@@ -888,77 +654,80 @@ class SchoolCourseInformation extends React.Component {
                 .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
 
+            className0: Yup.string()
+                .required('Class Name is required'),
+            classDate0: Yup.string()
+                .required('Class Date is required'),
+            classLocation0: Yup.string()
+                .required('Class Location is required'),
+
+            className1: Yup.string()
+                .required('Class Name is required'),
+            classDate1: Yup.string()
+                .required('Class Date is required'),
+            classLocation1: Yup.string()
+                .required('Class Location is required'),
+
+            className2: Yup.string()
+                .required('Class Name is required'),
+            classDate2: Yup.string()
+                .required('Class Date is required'),
+            classLocation2: Yup.string()
+                .required('Class Location is required'),
+
             // conference_sections: Yup
             //     .array()
             //     .of(
             //         Yup.object().shape({
             //             className: Yup.string().required('Class Name is required'),
             //             classDate: Yup.string().required('Class Date is required'),
-            //             classAddress: Yup.string().required('Class Location is required'),
+            //             classLocation: Yup.string().required('Class Location is required'),
             //             classTeacher: Yup.string().required('Class Location is required'),
             //         })
             //     )
 
             // className0: Yup.string().required('Class1 Name is required'),
             // classDate0: Yup.string().required('Class1 Date is required'),
-            // classAddress0: Yup.string().required('Class1 Location is required'),
+            // classLocation0: Yup.string().required('Class1 Location is required'),
             // classTeacher0: Yup.string().required('Class1 Location is required'),
+
+            // className1: Yup.string().required('Class2 Name is required'),
+            // classDate1: Yup.string().required('Class2 Date is required'),
+            // classLocation1: Yup.string().required('Class2 Location is required'),
+            // classTeacher1: Yup.string().required('Class2 Location is required'),
+
+            // className2: Yup.string().required('Class3 Name is required'),
+            // classDate2: Yup.string().required('Class3 Date is required'),
+            // classLocation2: Yup.string().required('Class3 Location is required'),
+            // classTeacher2: Yup.string().required('Class3 Location is required'),
+
+            // className3: Yup.string().required('Class4 Name is required'),
+            // classDate3: Yup.string().required('Class4 Date is required'),
+            // classLocation3: Yup.string().required('Class4 Location is required'),
+            // classTeacher3: Yup.string().required('Class4 Location is required'),
+
+            // className4: Yup.string().required('Class5 Name is required'),
+            // classDate4: Yup.string().required('Class5 Date is required'),
+            // classLocation4: Yup.string().required('Class5 Location is required'),
+            // classTeacher4: Yup.string().required('Class5 Location is required'),
+
+            // className5: Yup.string().required('Class6 Name is required'),
+            // classDate5: Yup.string().required('Class6 Date is required'),
+            // classLocation5: Yup.string().required('Class6 Location is required'),
+            // classTeacher5: Yup.string().required('Class6 Location is required'),
+
+            // className6: Yup.string().required('Class7 Name is required'),
+            // classDate6: Yup.string().required('Class7 Date is required'),
+            // classLocation6: Yup.string().required('Class7 Location is required'),
+            // classTeacher6: Yup.string().required('Class7 Location is required'),
+
+            // className7: Yup.string().required('Class8 Name is required'),
+            // classDate7: Yup.string().required('Class8 Date is required'),
+            // classLocation7: Yup.string().required('Class8 Location is required'),
+            // classTeacher7: Yup.string().required('Class8 Location is required'),
         })
 
-        let theInitialValues = {
-            conference_id: conference_id,
-
-            academicTerm: academicTerm,
-            courseLocation: courseLocation,
-            subjectName: subjectName,
-            courseType: courseType,
-
-            courseCode: courseCode,
-            courseName: courseName,
-            courseAddress: courseAddress,
-            courseIntroduction: courseIntroduction,
-            courseEmphasis: courseEmphasis,
-            courseBenefits: courseBenefits,
-            contactEmail: contactEmail,
-            contactWechat: contactWechat,
-            contactNumber: contactNumber,
-            // essentialCourse: '',
-
-            enrollmenetStartDate: enrollmenetStartDate,
-            enrollmenetEndDate: enrollmenetEndDate,
-
-            courseQuota: courseQuota,
-            courseCredits: courseCredits,
-
-            courseFees: courseFees,
-            expectedFees: expectedFees,
-            actualFees: actualFees,
-
-            // className1: '1',
-            // classStartToEndDate1: '1',
-            // classAddress1: '1',
-            // classTeachers1: '1',
-            conference_officers: conference_officers,
-        }
-        const classCounts = conference_sections ? conference_sections.length : 0;
-        // console.log(conference_sections);
-        if (classCounts !== 0) {
-            for (let i = 1; i <= classCounts; i++) {
-                const targetClass = conference_sections[i - 1];
-                // console.log("targetClass:");
-                // console.log(targetClass);
-                theInitialValues = {
-                    ...theInitialValues,
-                    ["classId" + i]: targetClass.conference_section_id,
-                    ["className" + i]: targetClass.title,
-                    ["classStartToEndDate" + i]: targetClass.classStartToEndDate,
-                    ["classAddress" + i]: targetClass.address,
-                    ["classTeachers" + i]: targetClass.teachers[0],
-
-                }
-            }
-
-        }
+        // console.log(this.state);
 
         return (
             <div>
@@ -974,7 +743,65 @@ class SchoolCourseInformation extends React.Component {
                             <div className="content">
                                 <Formik
                                     enableReinitialize
-                                    initialValues={theInitialValues}
+                                    initialValues={{
+                                        academicTerm: '123123123',
+                                        courseLocation: courseLocation,
+                                        subjectName: subjectName,
+                                        courseType: courseType,
+
+                                        courseCode: courseCode,
+                                        courseName: courseName,
+                                        courseAddress: courseAddress,
+                                        courseIntroduction: courseIntroduction,
+                                        courseEmphasis: courseEmphasis,
+                                        courseBenefits: courseBenefits,
+                                        contactEmail: contactEmail,
+                                        contactWechat: contactWechat,
+                                        contactNumber: contactNumber,
+                                        essentialCourse: '',
+
+                                        enrollmenetStartDate: enrollmenetStartDate,
+                                        enrollmenetEndDate: enrollmenetEndDate,
+
+                                        courseQuota: courseQuota,
+                                        courseCredits: courseCredits,
+
+                                        courseFees: courseFees,
+                                        expectedFees: expectedFees,
+                                        actualFees: actualFees,
+
+                                        className0: '',
+                                        classDate0: '',
+                                        classLocation0: '',
+
+                                        className1: '',
+                                        classDate1: '',
+                                        classLocation1: '',
+
+                                        className2: '',
+                                        classDate2: '',
+                                        classLocation2: '',
+
+                                        className3: '',
+                                        classDate3: '',
+                                        classLocation3: '',
+
+                                        className4: '',
+                                        classDate4: '',
+                                        classLocation4: '',
+
+                                        className5: '',
+                                        classDate5: '',
+                                        classLocation5: '',
+
+                                        className6: '',
+                                        classDate6: '',
+                                        classLocation6: '',
+
+                                        className7: '',
+                                        classDate7: '',
+                                        classLocation7: '',
+                                    }}
                                     validationSchema={Schema}
                                     onSubmit={this.handleSubmit}
                                     component={this.form}
@@ -997,7 +824,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
     setRelatedDataP: data => dispatch(setRelatedData(data)),
 });
 

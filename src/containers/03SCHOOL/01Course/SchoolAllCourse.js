@@ -75,8 +75,8 @@ class SchoolAllCourse extends React.Component {
             // console.log("theList: " + JSON.stringify(theList,null,2));
             theList.map(n => {
 
-                console.log("n:");
-                console.log(n);
+                // console.log("n:");
+                // console.log(n);
                 let theTeachers = '';
                 theTeachers = n.teachers.map(name => {
                     return theTeachers = theTeachers + ", " + name
