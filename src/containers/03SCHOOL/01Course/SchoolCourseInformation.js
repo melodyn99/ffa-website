@@ -100,7 +100,59 @@ class SchoolCourseInformation extends React.Component {
             expectedFees: '',
             actualFees: '',
 
-            conference_sections: []
+            conference_sections: [
+                {
+                    address: "新城东方君悦水星厅",
+                    conference: "23825592-aaf7-4725-b19c-95261df97ede",
+                    conference_section_id: "529138a4-2dc4-42a0-9376-845eef6ca598",
+                    created_by: null,
+                    createddate: null,
+                    end_date: 1570615200000,
+                    lastmoddate: null,
+                    location: "杭州",
+                    modified_by: null,
+                    sequence: 2,
+                    serial_no: null,
+                    start_date: 1570582800000,
+                    teachers: [],
+                    time_managements: [],
+                    title: "第2课 - 案例研究"
+                },
+                {
+                    address: "新城东方君悦水星厅",
+                    conference: "23825592-aaf7-4725-b19c-95261df97ede",
+                    conference_section_id: "529138a4-2dc4-42a0-9376-845eef6ca598",
+                    created_by: null,
+                    createddate: null,
+                    end_date: 1570615200000,
+                    lastmoddate: null,
+                    location: "杭州",
+                    modified_by: null,
+                    sequence: 2,
+                    serial_no: null,
+                    start_date: 1570582800000,
+                    teachers: [],
+                    time_managements: [],
+                    title: "第2课 - 案例研究"
+                },
+                {
+                    address: "新城东方君悦水星厅",
+                    conference: "23825592-aaf7-4725-b19c-95261df97ede",
+                    conference_section_id: "529138a4-2dc4-42a0-9376-845eef6ca598",
+                    created_by: null,
+                    createddate: null,
+                    end_date: 1570615200000,
+                    lastmoddate: null,
+                    location: "杭州",
+                    modified_by: null,
+                    sequence: 2,
+                    serial_no: null,
+                    start_date: 1570582800000,
+                    teachers: [],
+                    time_managements: [],
+                    title: "第2课 - 案例研究"
+                }
+            ]
         }
     }
 
@@ -165,133 +217,10 @@ class SchoolCourseInformation extends React.Component {
 
     //** form handle input start **/
     // insert
-    // createConferenceWithEnterInfo = () => {
-    //     const cb = (obj) => {
-    //         // console.log("cb : ", obj);
-
-    //         const data = {
-    //             ...this.props.auth.conferenceId,
-    //             conferenceId: obj.body.conference_id,
-    //         }
-    //         this.props.setRelatedDataP(data);
-    //     }
-    //     const eCb = (obj) => {
-    //         console.log("eCb : ", obj);
-    //     }
-
-    //     const params = {
-    //         active: true,
-    //         name: this.state.courseName,
-    //         academic_year: this.state.academicTerm.substring(0, 4),
-    //         academic_term: this.state.academicTerm,
-    //         location: this.state.courseLocation,
-    //         subject: this.state.subjectName,
-    //         type: this.state.courseType,
-    //         code: this.state.courseCode,
-    //         address: this.state.courseAddress,
-    //         enrollmenet_start_date: 1565797400000,
-    //         enrollment_end_date: 1565798400000,
-    //         credit_requirement: 2019,
-    //         fee: this.state.courseFees,
-    //         expected_fee: this.state.expectedFees,
-    //         actual_fee: this.state.actualFees,
-    //         discount: 0,
-    //         quota: this.state.courseQuota,
-    //         credit: this.state.courseCredits,
-    //         introduction: this.state.courseIntroduction,
-    //         emphasis: this.state.courseEmphasis,
-    //         benefit: this.state.courseBenefits,
-    //         email: this.state.contactEmail,
-    //         wechat: this.state.contactWechat,
-    //         phone: this.state.contactNumber,
-    //         conference_sections: [
-    //             {
-    //                 "title": "第1课 - 介绍",
-    //                 "sequence": 1,
-    //                 "start_date": 1570323600000,
-    //                 "end_date": 1570356000000,
-    //                 "location": "杭州",
-    //                 "address": "新城东方君悦水星厅",
-    //                 "teachers": [
-    //                     { "user": "teacher@ffa.test", "sequence": 1 }
-    //                 ]
-    //             }
-    //         ],
-    //         conference_officers: [
-    //             { user: this.props.auth.userInfo.username }
-    //         ]
-    //     }
-    //     console.log(params);
-    //     apiConferences.createConference(params, this.props.auth.token, cb, eCb);
-    // }
 
     // update
-    // editConferenceInfo = () => {
-    //     const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
-
-    //     if (redux_conferenceId !== null) {
-    //         const cb = (obj) => {
-    //             // console.log("cb : ", obj);
-
-    //             // const data = {
-    //             //     ...this.props.auth.conferenceId,
-    //             //     conferenceId: obj.body.conference_id,
-    //             // }
-    //             // this.props.setRelatedDataP(data);
-    //         }
-    //         const eCb = (obj) => {
-    //             console.log("eCb : ", obj);
-    //         }
-
-    //         const params = {
-    //             active: true,
-    //             name: this.state.courseName,
-    //             academic_year: this.state.academicTerm.substring(0, 4),
-    //             academic_term: this.state.academicTerm,
-    //             location: this.state.courseLocation,
-    //             subject: this.state.subjectName,
-    //             type: this.state.courseType,
-    //             code: this.state.courseCode,
-    //             address: this.state.courseAddress,
-    //             enrollmenet_start_date: 1565797400000,
-    //             enrollment_end_date: 1565798400000,
-    //             credit_requirement: 2019,
-    //             fee: this.state.courseFees,
-    //             expected_fee: this.state.expectedFees,
-    //             actual_fee: this.state.actualFees,
-    //             discount: 0,
-    //             quota: this.state.courseQuota,
-    //             credit: this.state.courseCredits,
-    //             introduction: this.state.courseIntroduction,
-    //             emphasis: this.state.courseEmphasis,
-    //             benefit: this.state.courseBenefits,
-    //             email: this.state.contactEmail,
-    //             wechat: this.state.contactWechat,
-    //             phone: this.state.contactNumber,
-    //         }
-    //         console.log(params);
-    //         apiConferences.editConference(redux_conferenceId, params, this.props.auth.token, cb, eCb);
-    //     } else
-    //         console.log('redux_conferenceId is empty');
-    // }
 
     // delete
-    // deleteConferenceByConferenceId = () => {
-    //     const redux_conferenceId = this.props.auth.relatedData.conferenceId || null;
-
-    //     if (redux_conferenceId !== null) {
-    //         // const cb = (obj) => {
-    //         //     // console.log("cb : ", obj);
-    //         //     this.props.history.goBack();
-    //         // }
-    //         // const eCb = (obj) => {
-    //         //     console.log("eCb : ", obj);
-    //         // }
-
-    //         // apiConferences.deleteConference(redux_conferenceId, this.props.auth.token, cb, eCb);
-    //     } else
-    //         console.log('redux_conferenceId is empty');
-    // }
 
     handleSubmit = (values, { setFieldError }) => {
 
@@ -545,23 +474,41 @@ class SchoolCourseInformation extends React.Component {
                     <Grid item xs={12} >课程日期和时间</Grid>
                 </Grid>
 
-                {(this.state.formData.conference_sections.map(
+                {/* {(this.state.formData.conference_sections.map(
                     (data, i) => {
                         return (
                             <Block
                                 key={i}
                                 i={i}
+                                data={data}
+
                                 className={"className" + i}
                                 classDate={"classDate" + i}
                                 classLocation={"classLocation" + i}
                                 classTeacher={"classTeacher" + i}
+
+                                values={values}
                                 errors={errors}
                                 touched={touched}
-                                data={data}
+                                handleChange={handleChange}
                             />
                         )
                     }
-                ))}
+                ))} */}
+
+                <FieldArray
+                    name="conference_sections"
+                    render={arrayHelpers => (
+                        <div>
+                            {this.state.formData.conference_sections.map((friend, index) => (
+                                <div key={index}>
+                                    <Field name={`conference_sections[${index}].title`} />
+                                    <Field name={`conference_sections.${index}.title`} /> // both these conventions do the same
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                />
 
                 <Grid item xs={12} className="mt20">
                     <Button className={classes.greyButton} onClick={this._handleAddMore}>添加上課日子</Button>
@@ -626,27 +573,6 @@ class SchoolCourseInformation extends React.Component {
                 .typeError('Actual Fees must be a number')
                 .required('Actual Fees is required'),
 
-            // className0: Yup.string()
-            //     .required('Class Name is required'),
-            // classDate0: Yup.string()
-            //     .required('Class Date is required'),
-            // classLocation0: Yup.string()
-            //     .required('Class Location is required'),
-
-            // className1: Yup.string()
-            //     .required('Class Name is required'),
-            // classDate1: Yup.string()
-            //     .required('Class Date is required'),
-            // classLocation1: Yup.string()
-            //     .required('Class Location is required'),
-
-            // className2: Yup.string()
-            //     .required('Class Name is required'),
-            // classDate2: Yup.string()
-            //     .required('Class Date is required'),
-            // classLocation2: Yup.string()
-            //     .required('Class Location is required'),
-
             // conference_sections: Yup
             //     .array()
             //     .of(
@@ -657,49 +583,9 @@ class SchoolCourseInformation extends React.Component {
             //             classTeacher: Yup.string().required('Class Location is required'),
             //         })
             //     )
-
-            // className0: Yup.string().required('Class1 Name is required'),
-            // classDate0: Yup.string().required('Class1 Date is required'),
-            // classLocation0: Yup.string().required('Class1 Location is required'),
-            // classTeacher0: Yup.string().required('Class1 Location is required'),
-
-            // className1: Yup.string().required('Class2 Name is required'),
-            // classDate1: Yup.string().required('Class2 Date is required'),
-            // classLocation1: Yup.string().required('Class2 Location is required'),
-            // classTeacher1: Yup.string().required('Class2 Location is required'),
-
-            // className2: Yup.string().required('Class3 Name is required'),
-            // classDate2: Yup.string().required('Class3 Date is required'),
-            // classLocation2: Yup.string().required('Class3 Location is required'),
-            // classTeacher2: Yup.string().required('Class3 Location is required'),
-
-            // className3: Yup.string().required('Class4 Name is required'),
-            // classDate3: Yup.string().required('Class4 Date is required'),
-            // classLocation3: Yup.string().required('Class4 Location is required'),
-            // classTeacher3: Yup.string().required('Class4 Location is required'),
-
-            // className4: Yup.string().required('Class5 Name is required'),
-            // classDate4: Yup.string().required('Class5 Date is required'),
-            // classLocation4: Yup.string().required('Class5 Location is required'),
-            // classTeacher4: Yup.string().required('Class5 Location is required'),
-
-            // className5: Yup.string().required('Class6 Name is required'),
-            // classDate5: Yup.string().required('Class6 Date is required'),
-            // classLocation5: Yup.string().required('Class6 Location is required'),
-            // classTeacher5: Yup.string().required('Class6 Location is required'),
-
-            // className6: Yup.string().required('Class7 Name is required'),
-            // classDate6: Yup.string().required('Class7 Date is required'),
-            // classLocation6: Yup.string().required('Class7 Location is required'),
-            // classTeacher6: Yup.string().required('Class7 Location is required'),
-
-            // className7: Yup.string().required('Class8 Name is required'),
-            // classDate7: Yup.string().required('Class8 Date is required'),
-            // classLocation7: Yup.string().required('Class8 Location is required'),
-            // classTeacher7: Yup.string().required('Class8 Location is required'),
         })
 
-        // console.log(this.state.formData.conference_sections);
+        console.log(this.state.formData.conference_sections);
 
         return (
             <div>
@@ -714,7 +600,7 @@ class SchoolCourseInformation extends React.Component {
 
                             <div className="content">
                                 <Formik
-                                    enableReinitialize
+                                    enableReinitialize={true}
                                     initialValues={this.state.formData}
                                     validationSchema={Schema}
                                     onSubmit={this.handleSubmit}
