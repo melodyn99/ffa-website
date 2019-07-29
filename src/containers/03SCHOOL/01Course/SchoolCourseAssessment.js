@@ -12,7 +12,6 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
-import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -90,7 +89,6 @@ class SchoolCourseAssessment extends React.Component {
             this.setState({
                 assessmentList: convertedList,
             });
-            // console.log(this.state.assessmentList);
         }
 
         const eCb = (obj) => {
@@ -105,14 +103,8 @@ class SchoolCourseAssessment extends React.Component {
         apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
     }
 
-    /** form handle input start **/
-    handleEnterSelection = (event, id) => {
+    _goToDetail = (end_conference_score_id) => {
         const { i18n } = this.props;
-        const end_conference_score_id = id;
-        // const theList = this.state.assessmentList.find(n => {
-        //     return n.end_conference_score_id === id;
-        // });
-        // console.log(theList);
         const data = {
             ...this.props.auth.relatedData.course,
             endConferenceScoreId: end_conference_score_id,
@@ -121,6 +113,7 @@ class SchoolCourseAssessment extends React.Component {
         this.props.history.push('/' + i18n.language + '/school-course-assessment-detail');
     };
 
+    // TODO : move to utils
     checkIsNeedEllipsis = (msg) => {
         let checkedMsg = msg;
         checkedMsg = msg.length >= 100 ? checkedMsg.substring(0, 97) + "..." : checkedMsg;
@@ -131,7 +124,6 @@ class SchoolCourseAssessment extends React.Component {
     _reportButtonAction = () => {
         console.log('report button pressed');
     }
-    /** form handle input end **/
 
     /** React components 'Material-UI' start  **/
     handleRequestSort = (event, property) => {
@@ -233,7 +225,7 @@ class SchoolCourseAssessment extends React.Component {
                                                         return (
                                                             <TableRow
                                                                 hover
-                                                                onClick={event => this.handleEnterSelection(event, n.end_conference_score_id)}
+                                                                onClick={() => this._goToDetail(n.end_conference_score_id)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
@@ -285,10 +277,6 @@ class SchoolCourseAssessment extends React.Component {
         );
     }
 }
-
-SchoolCourseAssessment.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth

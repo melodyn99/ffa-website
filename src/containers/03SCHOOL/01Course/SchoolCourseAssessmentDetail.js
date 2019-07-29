@@ -13,7 +13,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
 // Material UI
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 // import Checkbox from '@material-ui/core/Checkbox';
 
@@ -78,10 +77,6 @@ class SchoolCourseAssessmentDetail extends React.Component {
     }
 
     // ToolBar
-    _backButtonAction = (url) => {
-        this.props.history.push(url);
-    }
-
     downloadTxtFile = () => {
         const data = this.state.assessmentList;
         const selectedCourseCode = this.props.auth.relatedData.course.code;
@@ -158,10 +153,6 @@ class SchoolCourseAssessmentDetail extends React.Component {
         );
     }
 }
-
-SchoolCourseAssessmentDetail.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth
