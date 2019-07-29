@@ -37,47 +37,47 @@ import * as Yup from 'yup';
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
-import ListType4 from '../../../components/102Grids/ListType4';
+import ListType6 from '../../../components/102Grids/ListType6';
 // import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
 
-function Block(props) {
-    return (
-        <ListType4
-            from={props.from}
-            same={props.same}
-            name={props.name}
-            content={props.content}
-        />
-    )
-}
+// function Block(props) {
+//     return (
+//         <ListType6
+//             from={props.from}
+//             same={props.same}
+//             name={props.name}
+//             content={props.content}
+//         />
+//     )
+// }
 
-function Cluster(props) {
-    let rows = [];
-    const currLoginUser = props.currLoginUser;
-    const theList = props.list;
-    let i = 0;
+// function Cluster(props) {
+//     let rows = [];
+//     const currLoginUser = props.currLoginUser;
+//     const theList = props.list;
+//     let i = 0;
 
-    theList.map(n => {
-        const theMessageCreator = n.created_by
-        let messageCreator = 'me';
-        if (currLoginUser !== theMessageCreator) {
-            messageCreator = 'they'
-        }
-        rows.push(
-            <div key={i}>
-                <Block
-                    key={i}
-                    from={messageCreator}
-                    same={false}
-                    name={n.display_name.substring(0, 1)}
-                    content={n.message}
-                />
-            </div>
-        )
-        return i++;
-    })
-    return (rows);
-}
+//     theList.map(n => {
+//         const theMessageCreator = n.created_by
+//         let messageCreator = 'me';
+//         if (currLoginUser !== theMessageCreator) {
+//             messageCreator = 'they'
+//         }
+//         rows.push(
+//             <div key={i}>
+//                 <Block
+//                     key={i}
+//                     from={messageCreator}
+//                     same={false}
+//                     name={n.display_name.substring(0, 1)}
+//                     content={n.message}
+//                 />
+//             </div>
+//         )
+//         return i++;
+//     })
+//     return (rows);
+// }
 
 class SchoolCourseAnnouncement extends React.Component {
     state = {
@@ -93,7 +93,7 @@ class SchoolCourseAnnouncement extends React.Component {
     _getConferenceMessages = () => {
 
         const cb = (obj) => {
-            // console.log("cb : ", obj);
+            console.log("cb : ", obj);
             const theList = obj.body;
             // console.log(theList);
             this.setState({
@@ -114,6 +114,10 @@ class SchoolCourseAnnouncement extends React.Component {
         apiConferences.getConferenceMessages(params, this.props.auth.token, cb, eCb);
     }
 
+    handleSubmit = (values) => {
+        console.log(values);
+    }
+
     // Formik form
     form = ({
         // values,
@@ -128,17 +132,13 @@ class SchoolCourseAnnouncement extends React.Component {
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={1} >
-                        公告标题
-                        </Grid>
+                    <Grid item xs={1}>公告标题</Grid>
                     <Grid item xs={11}>
                         <Field name="announcementName" type="text" placeholder="公告标题" maxLength="100" />
                         {errors.announcementName && touched.announcementName ? <ErrorMessage message={errors.announcementName} /> : null}
                     </Grid>
 
-                    <Grid item xs={1} >
-                        公告内容
-                        </Grid>
+                    <Grid item xs={1}>公告内容</Grid>
                     <Grid item xs={11}>
                         <Field name="announcementContent" type="text" placeholder="公告内容" maxLength="100" />
                         {errors.announcementContent && touched.announcementContent ? <ErrorMessage message={errors.announcementContent} /> : null}
@@ -166,6 +166,8 @@ class SchoolCourseAnnouncement extends React.Component {
                 .required('Announcement Content is required'),
         });
 
+        console.log(this.state.messagesList);
+
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -178,10 +180,25 @@ class SchoolCourseAnnouncement extends React.Component {
                             <SubMenu />
 
                             <div className="content">
-                                <Cluster
+                                {/* <Cluster
                                     currLoginUser={this.state.currLoginAccount}
                                     list={this.state.messagesList}
-                                />
+                                /> */}
+
+                                {(this.state.messagesList.map(
+                                    (message, i) => {
+                                        return (
+                                            <div key={message.message_id}>
+                                                <ListType6
+                                                    date={message.createddate}
+                                                    name={message.display_name}
+                                                    content={message.message}
+                                                />
+                                            </div>
+                                        )
+                                    }
+                                ))}
+
 
                                 <Formik
                                     enableReinitialize

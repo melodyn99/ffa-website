@@ -3,7 +3,6 @@ import { withTranslation } from 'react-i18next';
 
 function ListType5(props) {
 
-
     return (
         (props.from === 'me') ?
             <div className="ListType5">

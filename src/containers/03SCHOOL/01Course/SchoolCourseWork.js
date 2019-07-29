@@ -12,7 +12,6 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
-import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -227,7 +226,7 @@ class SchoolCourseWork extends React.Component {
 
                                 <ToolBar
                                     createButton={true}
-                                    createButtonText="添加"
+                                    createButtonText="添加作業"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-course-work-select-folder'
                                 />
@@ -306,10 +305,6 @@ class SchoolCourseWork extends React.Component {
         );
     }
 }
-
-SchoolCourseWork.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth

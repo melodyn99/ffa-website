@@ -100,7 +100,6 @@ import SchoolCourseMaterialSelectFile from './containers/03SCHOOL/01Course/Schoo
 import SchoolCourseWork from './containers/03SCHOOL/01Course/SchoolCourseWork';
 import SchoolCourseWorkSelectFolder from './containers/03SCHOOL/01Course/SchoolCourseWorkSelectFolder';
 import SchoolCourseWorkInsideFolder from './containers/03SCHOOL/01Course/SchoolCourseWorkInsideFolder';
-import SchoolCourseWorkSelectFile from './containers/03SCHOOL/01Course/SchoolCourseWorkSelectFile';
 
 import SchoolCourseStudentManagement from './containers/03SCHOOL/01Course/SchoolCourseStudentManagement';
 import SchoolCourseStudentManagementSelectStudent from './containers/03SCHOOL/01Course/SchoolCourseStudentManagementSelectStudent';
@@ -403,9 +402,6 @@ class App extends Component {
                 }
                 case 'school-course-work-inside-folder': { // OK
                     return <SchoolCourseWorkInsideFolder />;
-                }
-                case 'school-course-work-select-file': { // OK
-                    return <SchoolCourseWorkSelectFile />;
                 }
 
                 case 'school-course-student-management': { // OK

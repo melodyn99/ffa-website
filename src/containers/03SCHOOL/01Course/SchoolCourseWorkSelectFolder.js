@@ -419,7 +419,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                                     <Button className={classes.greyButton}
                                         onClick={() => this.props.history.push('school-course-work')}
                                     >返回</Button>
-                                    <span className="right"><Button onClick={() => this._createClassAssignment()} className={classes.blackButton}>加入資料匣</Button></span>
+                                    <span className="right"><Button onClick={() => this._createClassAssignment()} className={classes.blackButton}>加入作業</Button></span>
                                 </div>
                             </div>
                         </div>
