@@ -221,7 +221,7 @@ class SchoolCourseMaterial extends React.Component {
 
                                 <ToolBar
                                     createButton={true}
-                                    createButtonText="添加"
+                                    createButtonText="添加資料匣"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-course-material-select-folder'
                                 />
