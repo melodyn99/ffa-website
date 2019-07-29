@@ -92,10 +92,13 @@ export function rangeToTimeStamps(yearMonthDayTime) {
   const finishTime = string.substring(indexOfFinishTime_start, indexOfFinishTime_end);
 
 
-  const beginDate = dayMonthYearTimeToTimeStamps(year + " " + beginTime, 'YYYY-MM-DD HH:mm') + "000";
+  let beginDate = dayMonthYearTimeToTimeStamps(year + " " + beginTime, 'YYYY-MM-DD HH:mm');
+  if (beginDate.length <= 10) beginDate += "000";
+
   array.push(beginDate);
 
-  const finishDate = dayMonthYearTimeToTimeStamps(year + " " + finishTime, 'YYYY-MM-DD HH:mm') + "000";
+  let finishDate = dayMonthYearTimeToTimeStamps(year + " " + finishTime, 'YYYY-MM-DD HH:mm');
+  if (finishDate.length <= 10) finishDate += "000";
   array.push(finishDate);
   return array;
 }
