@@ -78,8 +78,6 @@ export const apiConferences = {
 
     getConferenceStudentForQrCode: (conferenceId, studentId) => api.get(`conference_students?conference_company/conference=${encodeURIComponent(conferenceId)}&conference_student_id=${encodeURIComponent(studentId)}&$expand=student&$select=student/name`),
 
-    // deleteConference: conferenceId => api.delete(`conferences/${conferenceId}`),
-
     sendQrCodeToStudent: conferenceId => api.post(`qr_code_emails/${conferenceId}/send`),
 
     sendQrCodeToIndividualStudent: (conferenceId, studentId) => api.post(`qr_code_emails/${conferenceId}/send?student_id=${studentId}`),
@@ -118,9 +116,9 @@ export const apiConferences = {
         apiGeneral.apiPost(`conferences/${conferenceId}`, body, token, cb, eCb)
     },
 
-    // deleteConference: (conferenceId, token, cb, eCb) => {
-    //     apiGeneral.apiDelete('conferences', conferenceId, token, cb, eCb)
-    // },
+    deleteConference: (conferenceId, token, cb, eCb) => {
+        apiGeneral.apiDelete('conferences', conferenceId, token, cb, eCb)
+    },
     /* All Course end */
 
     /* Course Information start */

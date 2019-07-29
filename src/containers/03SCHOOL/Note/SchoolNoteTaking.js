@@ -116,7 +116,7 @@ class SchoolNoteTaking extends React.Component {
                 const convertedArray = {
                     note_file_id: n.note_file_id,
                     fileName: n.file.name,
-                    creator: n.created_by,
+                    creator: n.created_by_name,
                     size: formatFileSizeToString(n.file.size),
                     createdDate: dateToDayAndMonth(n.createdDate),
                     file_url: n.file.url,

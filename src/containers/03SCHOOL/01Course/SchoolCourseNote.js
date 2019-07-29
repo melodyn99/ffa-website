@@ -82,7 +82,7 @@ class SchoolCourseNote extends React.Component {
                     fileCount: n.note_files.length,
                     createddate: dateToDayAndMonth(n.createddate),
                     lastmoddate: dateToDayAndMonth(n.lastmoddate),
-                    creator: n.created_by,
+                    creator: n.created_by_name,
                     editor: n.modified_by,
                 }
                 return convertedList.push(convertedArray);

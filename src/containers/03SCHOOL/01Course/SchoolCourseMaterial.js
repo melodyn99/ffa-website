@@ -79,7 +79,7 @@ class SchoolCourseMaterial extends React.Component {
                     library: n.library,
                     material: n.name,
                     fileCount: n.class_material_files.length,
-                    editor: n.modified_by,
+                    editor: n.modified_by_name,
                     lastmoddate: dateToDayAndMonth(n.lastmoddate),
                 }
                 return convertedList.push(convertedArray);
