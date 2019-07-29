@@ -1,4 +1,4 @@
-export const SchoolNoteTakingStyles = () => ({
+export const SchoolCourseNoteTakingStyles = () => ({
     list: {
         padding: '10px',
     },

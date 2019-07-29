@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
-import { SchoolNoteTakingStyles } from '../../../utils/01MaterialJsStyles/Note/SchoolNoteTaking'
+import { SchoolCourseNoteTakingStyles } from '../../../utils/01MaterialJsStyles/Note/SchoolCourseNoteTaking'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
 // import { List, ListItem, ListItemText, Typography, } from '@material-ui/core';
@@ -49,7 +49,7 @@ import BreadCrumb from '../../../components/100Include/Breadcrumb';
 import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCourse';
 import ErrorMessage from '../../../components/01General/ErrorMessage';
 import EnhancedTableHead from '../../../components/103MaterialDesign/EnhancedTable/EnhancedTableHead';
-// import data from '../../../data/03SCHOOL/01Course/SchoolNoteTaking';
+// import data from '../../../data/03SCHOOL/01Course/SchoolCourseNoteTaking';
 
 // Define column names
 const rows = [
@@ -60,7 +60,7 @@ const rows = [
     { id: '', numeric: false, disablePadding: false, label: '' },
 ];
 
-class SchoolNoteTaking extends React.Component {
+class SchoolCourseNoteTaking extends React.Component {
     state = {
         // table settings
         order: 'desc',
@@ -565,6 +565,6 @@ const mapDispatchToProps = dispatch => ({
     setRelatedCourseDataP: data => dispatch(setRelatedCourseData(data)),
 });
 
-const combinedStyles = combineStyles(CommonStyles, SchoolNoteTakingStyles);
+const combinedStyles = combineStyles(CommonStyles, SchoolCourseNoteTakingStyles);
 
-export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolNoteTaking)))));
+export default withTranslation()(autoScrollTop(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(SchoolCourseNoteTaking)))));

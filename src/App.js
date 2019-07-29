@@ -110,7 +110,7 @@ import SchoolCourseAnnouncement from './containers/03SCHOOL/01Course/SchoolCours
 import SchoolCourseQandA from './containers/03SCHOOL/01Course/SchoolCourseQandA';
 import SchoolCourseReplyQandA from './containers/03SCHOOL/01Course/SchoolCourseReplyQandA';
 import SchoolCourseNote from './containers/03SCHOOL/01Course/SchoolCourseNote';
-import SchoolCourseNewNote from './containers/03SCHOOL/01Course/SchoolCourseNewNote';
+import SchoolCourseNoteTaking from './containers/03SCHOOL/01Course/SchoolCourseNoteTaking';
 import SchoolCourseAssessment from './containers/03SCHOOL/01Course/SchoolCourseAssessment';
 import SchoolCourseAssessmentDetail from './containers/03SCHOOL/01Course/SchoolCourseAssessmentDetail';
 
@@ -153,12 +153,6 @@ import SchoolStaffAccountInformation from './containers/03SCHOOL/09Account/Schoo
 import SchoolStaffRelatedCourse from './containers/03SCHOOL/09Account/SchoolStaffRelatedCourse';
 import SchoolStaffAccountAccess from './containers/03SCHOOL/09Account/SchoolStaffAccountAccess';
 import SchoolStaffNewAccount from './containers/03SCHOOL/09Account/SchoolStaffNewAccount';
-
-// Note
-import SchoolNoteTaking from './containers/03SCHOOL/Note/SchoolNoteTaking';
-import SchoolNoteContent from './containers/03SCHOOL/Note/SchoolNoteContent';
-import SchoolNewNoteTitle from './containers/03SCHOOL/Note/SchoolNewNoteTitle';
-import SchoolNewNoteContent from './containers/03SCHOOL/Note/SchoolNewNoteContent';
 
 // Seating Plan
 import SchoolSeatingPlan from './containers/03SCHOOL/01Course/SeatingPlan/SchoolSeatingPlan';
@@ -438,9 +432,12 @@ class App extends Component {
                 case 'school-course-note': { // OK
                     return <SchoolCourseNote />;
                 }
-                case 'school-course-new-note': { // OK
-                    return <SchoolCourseNewNote />;
+                case 'school-note-taking': {
+                    return <SchoolCourseNoteTaking />;
                 }
+                // case 'school-course-new-note': { // OK
+                //     return <SchoolCourseNewNote />;
+                // }
                 case 'school-course-assessment': { // OK
                     return <SchoolCourseAssessment />;
                 }
@@ -537,20 +534,6 @@ class App extends Component {
                 }
                 case 'school-staff-account-access': { // OK
                     return <SchoolStaffAccountAccess />
-                }
-
-                // Note
-                case 'school-note-taking': {
-                    return <SchoolNoteTaking />;
-                }
-                case 'school-notes-content': {
-                    return <SchoolNoteContent />;
-                }
-                case 'school-new-note': {
-                    return <SchoolNewNoteTitle />
-                }
-                case 'school-new-note-content': {
-                    return <SchoolNewNoteContent />
                 }
 
                 default: {
