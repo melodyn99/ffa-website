@@ -115,7 +115,28 @@ class SchoolCourseAnnouncement extends React.Component {
     }
 
     handleSubmit = (values) => {
+        this._createAnnouncement(values);
+    }
+
+    _createAnnouncement = (values) => {
         console.log(values);
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const body = {
+            conversation: "268909e7-b9b0-48c4-98e8-4215cbc9f39e",
+            message: values.announcementContent,
+            read: false,
+            image: null
+        }
+
+        apiConferences.createAnnouncement(body, this.props.auth.token, cb, eCb);
     }
 
     // Formik form
@@ -186,7 +207,7 @@ class SchoolCourseAnnouncement extends React.Component {
                                 /> */}
 
                                 {(this.state.messagesList.map(
-                                    (message, i) => {
+                                    (message) => {
                                         return (
                                             <div key={message.message_id}>
                                                 <ListType6
@@ -198,7 +219,6 @@ class SchoolCourseAnnouncement extends React.Component {
                                         )
                                     }
                                 ))}
-
 
                                 <Formik
                                     enableReinitialize

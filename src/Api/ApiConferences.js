@@ -193,6 +193,9 @@ export const apiConferences = {
     getConferenceMessages: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('messages', params, token, cb, eCb)
     },
+    createAnnouncement: (body, token, cb, eCb) => {
+        apiGeneral.apiPost('messages', body, token, cb, eCb) // correct
+    },
     /* Course announcement end */
 
     /* Course q-and-a start */
