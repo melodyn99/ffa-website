@@ -113,16 +113,15 @@ class SchoolCourseAssessment extends React.Component {
         this.props.history.push('/' + i18n.language + '/school-course-assessment-detail');
     };
 
+    _reportButtonAction = () => {
+        console.log('report button pressed');
+    }
+
     // TODO : move to utils
     checkIsNeedEllipsis = (msg) => {
         let checkedMsg = msg;
         checkedMsg = msg.length >= 100 ? checkedMsg.substring(0, 97) + "..." : checkedMsg;
         return checkedMsg;
-    }
-
-    // ToolBar
-    _reportButtonAction = () => {
-        console.log('report button pressed');
     }
 
     /** React components 'Material-UI' start  **/

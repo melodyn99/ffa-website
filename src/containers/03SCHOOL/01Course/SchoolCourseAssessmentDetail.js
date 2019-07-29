@@ -76,7 +76,6 @@ class SchoolCourseAssessmentDetail extends React.Component {
         apiConferences.getConferenceAssessment(params, this.props.auth.token, cb, eCb);
     }
 
-    // ToolBar
     downloadTxtFile = () => {
         const data = this.state.assessmentList;
         const selectedCourseCode = this.props.auth.relatedData.course.code;
@@ -102,7 +101,6 @@ class SchoolCourseAssessmentDetail extends React.Component {
             //, t, i18n
         } = this.props;
         const data = this.state.assessmentList;
-        // console.log(data);
 
         return (
             <div>
