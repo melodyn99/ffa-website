@@ -216,7 +216,6 @@ class SchoolCourseInformation extends React.Component {
         if (classLength !== 0) {
             for (let i = 1; i <= classLength; i++) {
                 //2019-08-14, 23:58 - 00:00
-                // dayMonthYearTimeToTimeStamps("2020-09-01 18:06")
                 const convertedDate = rangeToTimeStamps(formInput["classStartToEndDate" + i]);
 
                 let theClass = {}

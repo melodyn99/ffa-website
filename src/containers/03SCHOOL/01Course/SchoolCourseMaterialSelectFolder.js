@@ -299,7 +299,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                                                         const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
-                                                                className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
+                                                                // className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
                                                                 onClick={event => this.handleClick(event, theIndexNum)}
                                                                 role="checkbox"

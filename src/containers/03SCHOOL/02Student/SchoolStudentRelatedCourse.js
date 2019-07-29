@@ -53,7 +53,7 @@ const rows = [
 class SchoolStudentRelatedCourse extends React.Component {
     state = {
         order: 'asc',
-        orderBy: 'calories',
+        orderBy: 'status',
         selected: [],
         data: data,
         page: 0,
@@ -124,7 +124,9 @@ class SchoolStudentRelatedCourse extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page, isTheEditingItem, isEnableEditActualFees } = this.state;
+        const {
+            isTheEditingItem, isEnableEditActualFees,
+            data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (

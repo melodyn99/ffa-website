@@ -250,10 +250,10 @@ class SchoolCourseWorkInsideFolder extends React.Component {
                                     // createButtonAction={this._createButtonAction}
                                     // createButtonActionUrl='school-course-work-select-file'
 
-                                    // deleteButton={true}
-                                    // deleteButtonText="删除"
-                                    // deleteButtonAction={this._deleteButtonAction}
-                                    // deleteButtonActionUrl='school-course-work'
+                                    deleteButton={true}
+                                    deleteButtonText="删除"
+                                    deleteButtonAction={this._deleteButtonAction}
+                                    deleteButtonActionUrl='school-course-work'
                                 />
 
                                 <Paper className={classes.paper}>

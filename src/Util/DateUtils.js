@@ -33,6 +33,11 @@ export function dateToRemainingDaysEvent(deadline) {
   return isOver ? `已结束: ${duration}天` : `剩下: ${duration} 天`;
 }
 
+export function distanceDateToTimeStamps(distanceDate) {
+  const date = moment().add(distanceDate, 'days');
+  return moment(date).format("X");
+}
+
 export function dateToDayAndMonth(date) {
   return moment(date).format('MM月 DD日');
 }
@@ -63,7 +68,12 @@ export function dayMonthYearTimeToTimeStamps(yearMonthDayTime) {
   const date = moment(yearMonthDayTime, 'YYYY-MM-DD HH:mm');
   // const date = moment(yearMonthDayTime).format();
   // const date = moment(yearMonthDayTime.tz('Europe/Paris')).format();
-  return moment(date).format("X");
+  return moment(date).format("X") + "000";
+}
+
+export function getTheMonentToRange() {
+  const currMoment = moment();
+  return moment(currMoment).format('YYYY-MM-DD HH:mm');
 }
 
 export function rangeToTimeStamps(yearMonthDayTime) {
@@ -82,10 +92,10 @@ export function rangeToTimeStamps(yearMonthDayTime) {
   const finishTime = string.substring(indexOfFinishTime_start, indexOfFinishTime_end);
 
 
-  const beginDate = dayMonthYearTimeToTimeStamps(year+" "+beginTime, 'YYYY-MM-DD HH:mm')+"000";
+  const beginDate = dayMonthYearTimeToTimeStamps(year + " " + beginTime, 'YYYY-MM-DD HH:mm') + "000";
   array.push(beginDate);
 
-  const finishDate = dayMonthYearTimeToTimeStamps(year+" "+finishTime, 'YYYY-MM-DD HH:mm')+"000";
+  const finishDate = dayMonthYearTimeToTimeStamps(year + " " + finishTime, 'YYYY-MM-DD HH:mm') + "000";
   array.push(finishDate);
   return array;
 }

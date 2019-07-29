@@ -31,7 +31,7 @@ import { setRelatedCourseData } from '../../../Redux/Action/authAction';
 
 // Utils
 import { getSorting } from '../../../utils/02MaterialDesign/EnhancedTable';
-import { dateToDayAndMonth } from '../../../Util/DateUtils';
+import { dateToDayAndMonth, dayMonthYearTimeToTimeStamps, getTheMonentToRange } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -49,6 +49,7 @@ const rows = [
     { id: 'questions_count', numeric: true, disablePadding: false, label: '问题数量' },
     { id: 'created_by', numeric: true, disablePadding: false, label: '创建人员' },
     { id: 'lastmoddate', numeric: true, disablePadding: false, label: '最后修改日期' },
+    { id: 'deadline', numeric: false, disablePadding: false, label: '输入截止日期' },
 ];
 
 class SchoolCourseWorkSelectFolder extends React.Component {
@@ -63,10 +64,15 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         // component state
         // data: data,
         library_assignmentList: [],
+        isTheEditingItem: -1,
+        isEnableEditDeadline: true,
     };
 
     componentDidMount() {
         this._getConferenceAssignmentList();
+
+        // console.log("distanceDateToTimeStamps");
+        // console.log(dayMonthYearTimeToTimeStamps('2019-07-29 20:00'));
     }
 
     _getConferenceAssignmentList = () => {
@@ -136,6 +142,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                     questions_count: n.assignment_questions.length || 0,
                     created_by: n.created_by,
                     lastmoddate: dateToDayAndMonth(n.lastmoddate),
+                    deadline: getTheMonentToRange(),
                 }
                 return convertedList.push(convertedArray);
             });
@@ -167,7 +174,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
-        const body = [];
+        let body = [];
 
         if (this.state.selected) {
             this.state.selected.map(n => {
@@ -175,7 +182,7 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                     conference: this.props.auth.relatedData.course.conferenceId,
                     assignment: library_assignmentList[n].assignment_id,
                     name: library_assignmentList[n].library_assignment,
-                    deadline: 1564459200000,
+                    deadline: dayMonthYearTimeToTimeStamps(library_assignmentList[n].deadline),
                 }
                 return body.push(theLink);
             });
@@ -266,15 +273,49 @@ class SchoolCourseWorkSelectFolder extends React.Component {
     };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
+
+    submitChangeDeadline = (value, indexNum) => {
+        console.log("Enter: " + value);
+        console.log(this.state.library_assignmentList[indexNum]);
+        const theList = [];
+        this.state.library_assignmentList.map((n, i) => {
+            let deadline = n.deadline;
+            if (i === indexNum) {
+                deadline = value;
+            }
+            const array = {
+                assignment_id: n.assignment_id,
+                library_assignment: n.library_assignment,
+                subject_name: n.subject_name,
+                question_type: n.question_type,
+                questions_count: n.questions_count,
+                created_by: n.created_by,
+                lastmoddate: n.lastmoddate,
+                deadline: deadline,
+            }
+            return theList.push(array);
+        });
+
+        this.setState({
+            library_assignmentList: theList,
+            isTheEditingItem: -1,
+            isEnableEditDeadline: true,
+        });
+    }
+    editDeadline = (selectedNum) => {
+        this.setState({ isTheEditingItem: selectedNum, isEnableEditDeadline: false });
+    }
     /** React components 'Material-UI' end  **/
 
     render() {
         const { classes } = this.props;
         const {
             // data,
-            library_assignmentList, order, orderBy, selected, rowsPerPage, page } = this.state;
+            isTheEditingItem, isEnableEditDeadline, library_assignmentList,
+            order, orderBy, selected, rowsPerPage, page } = this.state;
         const data = library_assignmentList;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -308,16 +349,16 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                                                         const isSelected = this.isSelected(theIndexNum);
                                                         return (
                                                             <TableRow
-                                                                className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
+                                                                // className={isSelected ? classes.selectedRow : classes.nthOfTypeRow}
                                                                 hover
-                                                                onClick={event => this.handleClick(event, theIndexNum)}
+                                                                // onClick={event => this.handleClick(event, theIndexNum)}
                                                                 role="checkbox"
                                                                 aria-checked={isSelected}
                                                                 tabIndex={-1}
                                                                 key={theIndexNum}
                                                                 selected={isSelected}
                                                             >
-                                                                <TableCell padding="checkbox">
+                                                                <TableCell padding="checkbox" onClick={event => this.handleClick(event, theIndexNum)}>
                                                                     <Checkbox checked={isSelected} />
                                                                 </TableCell>
                                                                 <TableCell component="th" scope="row"
@@ -328,12 +369,32 @@ class SchoolCourseWorkSelectFolder extends React.Component {
                                                                 <TableCell>{n.questions_count}</TableCell>
                                                                 <TableCell>{n.created_by}</TableCell>
                                                                 <TableCell>{n.lastmoddate}</TableCell>
+                                                                <TableCell>
+                                                                    {isTheEditingItem === theIndexNum ?
+                                                                        <div>
+                                                                            <input
+                                                                                type="text"
+                                                                                autoFocus={true}
+                                                                                placeholder="YYYY-MM-DD HH:mm"
+                                                                                defaultValue={n.deadline}
+                                                                                onBlur={event => this.submitChangeDeadline(event.target.value, theIndexNum)}
+                                                                            />
+                                                                        </div>
+                                                                        :
+                                                                        <div onDoubleClick={
+                                                                            isEnableEditDeadline ?
+                                                                                () => this.editDeadline(theIndexNum) :
+                                                                                null}>
+                                                                            {n.deadline}
+                                                                        </div>
+                                                                    }
+                                                                </TableCell>
                                                             </TableRow>
                                                         );
                                                     })}
                                                 {emptyRows > 0 && (
                                                     <TableRow style={{ height: 49 * emptyRows }}>
-                                                        <TableCell colSpan={7} />
+                                                        <TableCell colSpan={8} />
                                                     </TableRow>
                                                 )}
                                             </TableBody>
