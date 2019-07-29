@@ -12,7 +12,6 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
-import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -67,11 +66,13 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
     }
 
     _getClassMaterialList = () => {
+
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
             this._getLibrariesList(theList);
         }
+
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
@@ -84,6 +85,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
     }
 
     _getLibrariesList = (classMaterialList) => {
+
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
@@ -133,6 +135,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
                 librariesList: convertedList,
             });
         }
+
         const eCb = (obj) => {
             console.log("eCb : ", obj);
         }
@@ -145,7 +148,7 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
     }
 
     /** form handle input start **/
-    //post
+    // post
     _createCourseMaterial = () => {
         // console.log('Click _createClassMaterialFiles()');
         // console.log(this.state.selected);
@@ -357,10 +360,6 @@ class SchoolCourseMaterialSelectFolder extends React.Component {
         );
     }
 }
-
-SchoolCourseMaterialSelectFolder.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth

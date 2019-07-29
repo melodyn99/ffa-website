@@ -13,7 +13,6 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 
 // Material UI
-import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -267,6 +266,11 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
                                     createButtonText="添加檔案"
                                     createButtonAction={this._createButtonAction}
                                     createButtonActionUrl='school-course-material-select-file'
+
+                                    deleteButton={true}
+                                    deleteButtonText="删除資料匣"
+                                    deleteButtonAction={this._deleteButtonAction}
+                                    deleteButtonActionUrl='school-course-material'
                                 />
 
                                 <Paper className={classes.paper}>
@@ -345,10 +349,6 @@ class SchoolCourseMaterialInsideFolder extends React.Component {
         );
     }
 }
-
-SchoolCourseMaterialInsideFolder.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth

@@ -183,7 +183,6 @@ class SchoolCourseMaterialSelectFile extends React.Component {
 
     }
 
-
     // ToolBar
     _backButtonAction = (url) => {
         this.props.history.push(url);
