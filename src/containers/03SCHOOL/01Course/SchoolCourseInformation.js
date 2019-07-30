@@ -703,37 +703,6 @@ class SchoolCourseInformation extends React.Component {
     }
 
     render() {
-        const {
-            // conference_id,
-            academicTerm,
-            courseLocation,
-            subjectName,
-            courseType,
-
-            courseCode,
-            courseName,
-            courseAddress,
-            courseIntroduction,
-            courseEmphasis,
-            courseBenefits,
-            contactEmail,
-            contactWechat,
-            contactNumber,
-            // essentialCourse,
-
-            enrollmenetStartDate,
-            enrollmenetEndDate,
-
-            courseQuota,
-            courseCredits,
-
-            courseFees,
-            expectedFees,
-            actualFees,
-
-            // conference_sections,
-            // conference_officers,
-        } = this.state;
         // const { classes, t, i18n } = this.props;
 
         // console.log(values);
@@ -758,7 +727,7 @@ class SchoolCourseInformation extends React.Component {
                                         学期
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <select name="academicTerm" value={academicTerm}
+                                        <select name="academicTerm" value={this.state.academicTerm}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         >
                                             <option value="2019-20">2019-20</option>
@@ -772,7 +741,7 @@ class SchoolCourseInformation extends React.Component {
                                         上课城市
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <select name="courseLocation" value={courseLocation}
+                                        <select name="courseLocation" value={this.state.courseLocation}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         >
                                             <option value="杭州">杭州</option>
@@ -786,7 +755,7 @@ class SchoolCourseInformation extends React.Component {
                                         学科名称
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <select name="subjectName" value={subjectName}
+                                        <select name="subjectName" value={this.state.subjectName}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         >
                                             <option value="d4314518-5a20-4bc4-ad6a-35ad44c16647">战略课程</option>
@@ -800,7 +769,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程类型
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <select name="courseType" value={courseType}
+                                        <select name="courseType" value={this.state.courseType}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         >
                                             <option value="test-type">test-type</option>
@@ -817,7 +786,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程编号
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseCode" type="text" placeholder="课程编号" maxLength="100" value={courseCode}
+                                        <input name="courseCode" type="text" placeholder="课程编号" maxLength="100" value={this.state.courseCode}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseCode && touched.courseCode ? <ErrorMessage message={errors.courseCode} /> : null} */}
@@ -827,7 +796,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程名称
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseName" type="text" placeholder="课程名称" maxLength="100" value={courseName}
+                                        <input name="courseName" type="text" placeholder="课程名称" maxLength="100" value={this.state.courseName}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseName && touched.courseName ? <ErrorMessage message={errors.courseName} /> : null} */}
@@ -837,7 +806,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程地址
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseAddress" type="text" placeholder="课程地址" maxLength="100" value={courseAddress}
+                                        <input name="courseAddress" type="text" placeholder="课程地址" maxLength="100" value={this.state.courseAddress}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseAddress && touched.courseAddress ? <ErrorMessage message={errors.courseAddress} /> : null} */}
@@ -847,7 +816,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程简介
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseIntroduction" type="text" placeholder="课程简介" maxLength="100" value={courseIntroduction}
+                                        <input name="courseIntroduction" type="text" placeholder="课程简介" maxLength="100" value={this.state.courseIntroduction}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseIntroduction && touched.courseIntroduction ? <ErrorMessage message={errors.courseIntroduction} /> : null} */}
@@ -857,7 +826,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程重点
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseEmphasis" type="text" placeholder="课程重点" maxLength="100" value={courseEmphasis}
+                                        <input name="courseEmphasis" type="text" placeholder="课程重点" maxLength="100" value={this.state.courseEmphasis}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseEmphasis && touched.courseEmphasis ? <ErrorMessage message={errors.courseEmphasis} /> : null} */}
@@ -867,7 +836,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程收益
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseBenefits" type="text" placeholder="课程收益" maxLength="100" value={courseBenefits}
+                                        <input name="courseBenefits" type="text" placeholder="课程收益" maxLength="100" value={this.state.courseBenefits}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseBenefits && touched.courseBenefits ? <ErrorMessage message={errors.courseBenefits} /> : null} */}
@@ -877,7 +846,7 @@ class SchoolCourseInformation extends React.Component {
                                         联系电邮
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="contactEmail" type="text" placeholder="联系电邮" maxLength="100" value={contactEmail}
+                                        <input name="contactEmail" type="text" placeholder="联系电邮" maxLength="100" value={this.state.contactEmail}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} /> : null} */}
@@ -887,7 +856,7 @@ class SchoolCourseInformation extends React.Component {
                                         联系微信
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="contactWechat" type="text" placeholder="联系微信" maxLength="100" value={contactWechat}
+                                        <input name="contactWechat" type="text" placeholder="联系微信" maxLength="100" value={this.state.contactWechat}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null} */}
@@ -897,7 +866,7 @@ class SchoolCourseInformation extends React.Component {
                                         联系电话
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="contactNumber" type="text" placeholder="联系电话" maxLength="100" value={contactNumber}
+                                        <input name="contactNumber" type="text" placeholder="联系电话" maxLength="100" value={this.state.contactNumber}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null} */}
@@ -919,7 +888,7 @@ class SchoolCourseInformation extends React.Component {
                                         报名开始
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <select name="enrollmenetStartDate" value={enrollmenetStartDate}
+                                        <select name="enrollmenetStartDate" value={this.state.enrollmenetStartDate}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         >
                                             <option value={1565798300000}>{dateToDayMonthYear(1565798300000)}</option>
@@ -932,7 +901,7 @@ class SchoolCourseInformation extends React.Component {
                                         报名结束
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <select name="enrollmenetEndDate" value={enrollmenetEndDate}
+                                        <select name="enrollmenetEndDate" value={this.state.enrollmenetEndDate}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         >
                                             <option value={1565798300000}>{dateToDayMonthYear(1565798300000)}</option>
@@ -945,7 +914,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程名额
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseQuota" type="text" placeholder="课程名额" maxLength="100" value={courseQuota}
+                                        <input name="courseQuota" type="text" placeholder="课程名额" maxLength="100" value={this.state.courseQuota}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseQuota && touched.courseQuota ? <ErrorMessage message={errors.courseQuota} /> : null} */}
@@ -955,7 +924,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程学分
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseCredits" type="text" placeholder="课程学分" maxLength="100" value={courseCredits}
+                                        <input name="courseCredits" type="text" placeholder="课程学分" maxLength="100" value={this.state.courseCredits}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseCredits && touched.courseCredits ? <ErrorMessage message={errors.courseCredits} /> : null} */}
@@ -965,7 +934,7 @@ class SchoolCourseInformation extends React.Component {
                                         课程费用
                                    </Grid>
                                     <Grid item xs={11}>
-                                        <input name="courseFees" type="text" placeholder="课程费用" maxLength="100" value={courseFees}
+                                        <input name="courseFees" type="text" placeholder="课程费用" maxLength="100" value={this.state.courseFees}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.courseFees && touched.courseFees ? <ErrorMessage message={errors.courseFees} /> : null} */}
@@ -975,7 +944,7 @@ class SchoolCourseInformation extends React.Component {
                                         预计学费
                                      </Grid>
                                     <Grid item xs={11}>
-                                        <input name="expectedFees" type="text" placeholder="预计学费" maxLength="100" value={expectedFees}
+                                        <input name="expectedFees" type="text" placeholder="预计学费" maxLength="100" value={this.state.expectedFees}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.expectedFees && touched.expectedFees ? <ErrorMessage message={errors.expectedFees} /> : null} */}
@@ -985,7 +954,7 @@ class SchoolCourseInformation extends React.Component {
                                         实际收费
                                    </Grid>
                                     <Grid item xs={11}>
-                                        <input name="actualFees" type="text" placeholder="实际收费" maxLength="100" value={actualFees}
+                                        <input name="actualFees" type="text" placeholder="实际收费" maxLength="100" value={this.state.actualFees}
                                             onChange={e => this._handleFormInput(e.target.name, e.target.value)}
                                         />
                                         {/* {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null} */}
