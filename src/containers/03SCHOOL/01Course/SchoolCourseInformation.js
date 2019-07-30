@@ -25,7 +25,7 @@ import { setRelatedCourseData } from '../../../Redux/Action/authAction';
 // Utils
 // import { Formik, Form, input } from 'formik';
 import * as Yup from 'yup';
-import { dateToDayMonthYear, timeStampsToRange, rangeToTimeStamps } from '../../../Util/DateUtils';
+import { dateToDayMonthYear, timeStampsToRange, rangeToTimeStamps, getTheMonent } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -38,8 +38,8 @@ function Block(props) {
     const data = props.data;
     const sequence = props.sequence;
 
-    console.log("props");
-    console.log(props);
+    // console.log("props");
+    // console.log(props);
     const className = data.className;
     const classStartToEndDate = data.classStartToEndDate;
     const classAddress = data.classAddress;
@@ -129,7 +129,6 @@ class SchoolCourseInformation extends React.Component {
         if (redux_conferenceId !== null) {
             this._getConferenceDefailByUser();
         }
-        // console.log(dayMonthYearTimeToTimeStamps("2020-09-01 18:06"));
         // console.log(rangeToTimeStamps("2019-08-14, 23:58 - 00:00"));
     }
 
@@ -498,13 +497,16 @@ class SchoolCourseInformation extends React.Component {
 
         /*start add back exist class */
         let the_conference_sections = conference_sections;
+        const the_start_date = parseInt(getTheMonent(0));
+        const the_end_date = parseInt(getTheMonent(1));
+
         const newClass = {
             // conference_section_id: null,
             conference_id: conference_id,
             sequence: conference_sections.length + 1,
-            start_date: 1576209600000,
-            end_date: 1576216800000,
-            classStartToEndDate: timeStampsToRange(1576209600000, 1576216800000),
+            start_date: the_start_date,
+            end_date: the_end_date,
+            classStartToEndDate: timeStampsToRange(the_start_date, the_end_date),
             location: courseLocation,
             classAddress: `地点${conference_sections.length + 1}`,
             classTeachers: [
@@ -592,8 +594,8 @@ class SchoolCourseInformation extends React.Component {
 
     _handleSubClass = () => {
         const formInput = this.state;
-        console.log('_handleSubClass formInput');
-        console.log(formInput);
+        // console.log('_handleSubClass formInput');
+        // console.log(formInput);
         /*start add back exist class */
         let the_conference_sections = formInput.conference_sections;
 

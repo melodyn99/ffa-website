@@ -68,7 +68,20 @@ export function dayMonthYearTimeToTimeStamps(yearMonthDayTime) {
   const date = moment(yearMonthDayTime, 'YYYY-MM-DD HH:mm');
   // const date = moment(yearMonthDayTime).format();
   // const date = moment(yearMonthDayTime.tz('Europe/Paris')).format();
-  return moment(date).format("X") + "000";
+  let result = moment(date).format("X")
+  if (result.length <= 10) {
+    result += "000";
+  }
+  return result;
+}
+
+export function getTheMonent(hourNum) {
+  const currMoment = moment().add(hourNum, 'hours');
+  let result = moment(currMoment).format("X")
+  if (result.length <= 10) {
+    result += "000";
+  }
+  return result;
 }
 
 export function getTheMonentToRange() {
