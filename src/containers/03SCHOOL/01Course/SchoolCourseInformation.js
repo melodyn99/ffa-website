@@ -992,28 +992,26 @@ class SchoolCourseInformation extends React.Component {
                                     </Grid>
 
                                     <Grid item xs={12} >&nbsp;</Grid>
+                                </Grid>
 
-                                    <Grid container spacing={16} alignItems="center">
-                                        <Grid item xs={12} >课程日期和时间</Grid>
-                                        {/* forget */}
+                                <Grid container spacing={16} alignItems="center">
+                                    <Grid item xs={12} >课程日期和时间</Grid>
+                                </Grid>
 
-                                        <Grid item xs={12} >
-                                            {(
-                                                this.state.conference_sections.map(
-                                                    (data, i) => {
-                                                        return (
-                                                            <Block
-                                                                key={data.conference_section_id}
-                                                                sequence={i + 1}
-                                                                data={data}
-                                                                _handleClassInput={this._handleClassInput}
-                                                            />
-                                                        )
-                                                    }
-                                                ))}
-                                        </Grid>
-                                    </Grid>
+                                {(this.state.conference_sections.map(
+                                    (data, i) => {
+                                        return (
+                                            <Block
+                                                key={data.conference_section_id}
+                                                sequence={i + 1}
+                                                data={data}
+                                                _handleClassInput={this._handleClassInput}
+                                            />
+                                        )
+                                    }
+                                ))}
 
+                                <Grid container spacing={16} alignItems="center">
                                     <Grid item xs={12} className="mt20">
                                         <Button className={classes.greenButton} onClick={() => this._handleAddClass()}>添加上課日子</Button>&nbsp;
                                         <Button className={classes.greyButton} onClick={() => this._handleSubClass()}>删减上課日子</Button>
@@ -1038,7 +1036,7 @@ class SchoolCourseInformation extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
