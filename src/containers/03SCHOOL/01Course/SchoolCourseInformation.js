@@ -41,7 +41,7 @@ function Block(props) {
 
             <Grid item xs={1}>课程标题</Grid>
             <Grid item xs={11}>
-                <input name="className" type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100"
+                <input name="title" type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100"
                     value={props.data.title}
                     onChange={(e) => props.handleDynamicFormInput(props.i, e.target.name, e.target.value)} />
                 {/* {errors[className] && touched[className] ? <ErrorMessage message={errors[className]} /> : null} */}
@@ -49,7 +49,7 @@ function Block(props) {
 
             <Grid item xs={1}>课程日期</Grid>
             <Grid item xs={11}>
-                <input name="classStartToEndDate" type="text" placeholder="2019-12-13, 13:00 - 15:00" maxLength="100"
+                <input name="start_date" type="text" placeholder="2019-12-13, 13:00 - 15:00" maxLength="100"
                     value={props.data.start_date}
                     onChange={(e) => props.handleDynamicFormInput(props.i, e.target.name, e.target.value)} />
                 {/* {errors[classStartToEndDate] && touched[classStartToEndDate] ? <ErrorMessage message={errors[classStartToEndDate]} /> : null} */}
@@ -57,7 +57,7 @@ function Block(props) {
 
             <Grid item xs={1}>课程地点</Grid>
             <Grid item xs={11}>
-                <input name="classAddress" type="text" placeholder={"地点" + props.i} maxLength="100"
+                <input name="address" type="text" placeholder={"地点" + props.i} maxLength="100"
                     value={props.data.address}
                     onChange={(e) => props.handleDynamicFormInput(props.i, e.target.name, e.target.value)} />
                 {/* {errors[classAddress] && touched[classAddress] ? <ErrorMessage message={errors[classAddress]} /> : null} */}
@@ -190,10 +190,12 @@ class SchoolCourseInformation extends React.Component {
         });
     }
 
-    _handleDynamicFormInput = (key, value) => {
-        this.setState({
-            [key]: value,
-        });
+    _handleDynamicFormInput = (i, key, value) => {
+        // console.log('hello : ', i, key, value);
+        const conference_sections = [...this.state.conference_sections];
+        // console.log(array);
+        conference_sections[i] = { ...conference_sections[i], [key]: value };
+        this.setState({ conference_sections });
     }
 
     _handleDynamicFormSelect = (key, value) => {
@@ -261,6 +263,8 @@ class SchoolCourseInformation extends React.Component {
     }
 
     render() {
+        console.log(this.state);
+
         // const { classes, t, i18n } = this.props;
 
         const { classes
