@@ -41,6 +41,10 @@ export function dateToDayMonthYear(date) {
   return moment(date).format('YYYY年 MM月 DD日');
 }
 
+export function dateToDayMonthYearWithoutWord(date) {
+  return moment(date).format('YYYY-MM-DD');
+}
+
 export function dateToDayMonthYearTimeMinutes(date) {
   return moment(date).format('YYYY年 MM月 DD日 HH:mm');
 }

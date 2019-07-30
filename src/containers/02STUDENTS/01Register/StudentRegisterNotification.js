@@ -4,12 +4,13 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 // Styling
 import { CommonStyles } from '../../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-// import { Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
@@ -37,8 +38,18 @@ class StudentRegisterNotification extends Component {
 
     }
 
+    navigationTo = (url) => {
+        // const data = {
+        //     ...this.props.auth.relatedData.course,
+        //     conferenceId: '',
+        // }
+
+        // this.props.setRelatedCourseDataP(data);
+        this.props.history.push(url);
+    }
+
     render() {
-        // const { classes } = this.props;
+        const { classes } = this.props;
 
         return (
             <div>
@@ -52,7 +63,9 @@ class StudentRegisterNotification extends Component {
                             <SubMenu />
 
                             <div className="content">
-                                <p>This is 录取通知</p>
+                                <div className="bottomControl clearfix">
+                                    <Button onClick={() => { this.navigationTo('student-register-fee') }}  className={classes.blackButton}>上一步</Button>
+                                </div>
                             </div>
                         </div>
 
@@ -73,4 +86,4 @@ const mapDispatchToProps = dispatch => ({
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(StudentRegisterNotification)));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(StudentRegisterNotification))));

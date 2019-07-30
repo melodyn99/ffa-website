@@ -77,7 +77,7 @@ class StudentRegister extends React.Component {
 
     /* start student registration API*/
     createUser_student = (formInput) => {
-        console.log(JSON.stringify(formInput, null, 2));
+        // console.log(JSON.stringify(formInput, null, 2));
 
         const cb = (obj) => {
             console.log("cb : ", obj);
@@ -95,13 +95,14 @@ class StudentRegister extends React.Component {
             first_name: formInput.firstName,
             last_name: formInput.lastName,
         }
-        console.log(JSON.stringify(body, null, 2));
+        // console.log(JSON.stringify(body, null, 2));
         apiUsers.createUser(body, this.props.auth.token, cb, eCb);
     }
     createStudent = (formInput) => {
         console.log("createStudent()");
         const cb = (obj) => {
             console.log("cb : ", obj);
+            this.props.history.push('student-register-personal-information');
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -128,7 +129,7 @@ class StudentRegister extends React.Component {
             status: "pending"
         }
         // console.log(JSON.stringify(body, null, 2));
-        apiStudent.createConferenceStudent(body, this.props.auth.token, cb, eCb);
+        apiStudent.createSchoolStudent(body, this.props.auth.token, cb, eCb);
     }
     /* end student registration API*/
 

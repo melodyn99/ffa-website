@@ -60,11 +60,15 @@ export const apiStudent = {
     getStudentAttendance: (conference_student, conference_section) => api.get(`attendance?conference_student=${conference_student}&conference_section=${conference_section}`),
 
     // new
+    // Suggest that put getConferenceStudent() back to ApiConference.js
     getConferenceStudent: (conferenceId, params, token, cb, eCb) => {
         apiGeneral.apiFetch(`conference_students?conference=${encodeURIComponent(conferenceId)}&$expand=student,students/contacts,student/business_license_copy`, params, token, cb, eCb)
     },
 
-    createConferenceStudent: (body, token, cb, eCb) => {
+    getSchoolStudent: (params, token, cb, eCb) => {
+        apiGeneral.apiFetch('simple/students', params, token, cb, eCb)
+    },
+    createSchoolStudent: (body, token, cb, eCb) => {
         apiGeneral.apiPost('student_schools', body, token, cb, eCb)
     },
 
