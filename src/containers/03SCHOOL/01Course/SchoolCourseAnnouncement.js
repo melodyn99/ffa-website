@@ -90,10 +90,11 @@ class SchoolCourseAnnouncement extends React.Component {
         this._getConferenceMessages();
     }
 
+    // display the message of this conference
     _getConferenceMessages = () => {
 
         const cb = (obj) => {
-            console.log("cb : ", obj);
+            // console.log("cb : ", obj);
             const theList = obj.body;
             // console.log(theList);
             this.setState({
@@ -107,20 +108,38 @@ class SchoolCourseAnnouncement extends React.Component {
 
         const params = {
             'conversation/conference': this.props.auth.relatedData.course.conferenceId,
-            // $orderby: `createddate`,
+            $orderby: `createddate desc`,
             $expand: `conversation,image`
         }
 
         apiConferences.getConferenceMessages(params, this.props.auth.token, cb, eCb);
     }
 
+    // handle new message submmit
     handleSubmit = (values) => {
-        this._createAnnouncement(values);
+        this._getAccouncementConversation(values);
     }
 
-    _createAnnouncement = (values) => {
-        console.log(values);
+    // call API to get conversation id
+    _getAccouncementConversation = (values) => {
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            this._createAnnouncement(values, obj.body[0].conversation_id)
+        }
 
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const params = {
+            conference: this.props.auth.relatedData.course.conferenceId
+        }
+
+        apiConferences.getAccouncementConversation(params, this.props.auth.token, cb, eCb);
+    }
+
+    // api post to create record
+    _createAnnouncement = (values, conversation_id) => {
         const cb = (obj) => {
             console.log("cb : ", obj);
         }
@@ -130,7 +149,7 @@ class SchoolCourseAnnouncement extends React.Component {
         }
 
         const body = {
-            conversation: "268909e7-b9b0-48c4-98e8-4215cbc9f39e",
+            conversation: conversation_id,
             message: values.announcementContent,
             read: false,
             image: null
@@ -186,8 +205,6 @@ class SchoolCourseAnnouncement extends React.Component {
             announcementContent: Yup.string()
                 .required('Announcement Content is required'),
         });
-
-        console.log(this.state.messagesList);
 
         return (
             <div>
