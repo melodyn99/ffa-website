@@ -1,6 +1,6 @@
 // Essential for all components
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
@@ -24,7 +24,6 @@ import { setRelatedCourseData } from '../../../Redux/Action/authAction';
 
 // Utils
 // import { Formik, Form, input } from 'formik';
-import * as Yup from 'yup';
 import { dateToDayMonthYear, timeStampsToRange, rangeToTimeStamps } from '../../../Util/DateUtils';
 
 // Children components
@@ -35,57 +34,41 @@ import SubMenu from '../../../components/104SubMenus/03SCHOOL/01Course/SchoolCou
 // import data from '../../data/09Account/EnrollmentHistory';
 
 function Block(props) {
-    const data = props.data;
-    const sequence = props.sequence;
 
-    console.log("props");
-    console.log(props);
-    const className = data.className;
-    const classStartToEndDate = data.classStartToEndDate;
-    const classAddress = data.classAddress;
-
-    const classTeachers_length = data.classTeachers.length || 0;
-    let classTeachers = "empty";
-    if (classTeachers_length !== 0) {
-        classTeachers = data.classTeachers[0].user.username;
-    }
-
-    // const errors = props.errors;
-    // const touched = props.touched;
     return (
         <Grid container spacing={16} alignItems="center" className="mt20">
-            <Grid item xs={12} >#{sequence}</Grid>
+            <Grid item xs={12} >#{props.sequence}</Grid>
 
             <Grid item xs={1} >课程标题</Grid>
             <Grid item xs={11}>
-                <input name="className" type="text" placeholder={"第" + sequence + "课"} maxLength="100" value={className}
-                    onChange={e => props._handleClassInput(sequence, e.target.name, e.target.value)} />
+                <input name="className" type="text" placeholder={"第" + props.sequence + "课"} maxLength="100" value={props.data.className}
+                    onChange={e => props._handleClassInput(props.sequence, e.target.name, e.target.value)} />
                 {/* {errors[className] && touched[className] ? <ErrorMessage message={errors[className]} /> : null} */}
             </Grid>
 
             <Grid item xs={1} >课程日期</Grid>
             <Grid item xs={11}>
-                <input name="classStartToEndDate" type="text" placeholder="2019-12-13, 13:00 - 15:00" maxLength="100" value={classStartToEndDate}
-                    onChange={e => props._handleClassInput(sequence, e.target.name, e.target.value)} />
+                <input name="classStartToEndDate" type="text" placeholder="2019-12-13, 13:00 - 15:00" maxLength="100" value={props.data.classStartToEndDate}
+                    onChange={e => props._handleClassInput(props.sequence, e.target.name, e.target.value)} />
                 {/* {errors[classStartToEndDate] && touched[classStartToEndDate] ? <ErrorMessage message={errors[classStartToEndDate]} /> : null} */}
             </Grid>
 
             <Grid item xs={1} >课程地点</Grid>
             <Grid item xs={11}>
-                <input name="classAddress" type="text" placeholder={"地点" + sequence} maxLength="100" value={classAddress}
-                    onChange={e => props._handleClassInput(sequence, e.target.name, e.target.value)} />
+                <input name="classAddress" type="text" placeholder={"地点" + props.sequence} maxLength="100" value={props.data.classAddress}
+                    onChange={e => props._handleClassInput(props.sequence, e.target.name, e.target.value)} />
                 {/* {errors[classAddress] && touched[classAddress] ? <ErrorMessage message={errors[classAddress]} /> : null} */}
             </Grid>
 
             <Grid item xs={1} >授课老师</Grid>
             <Grid item xs={11}>
-                <select name="classTeachers" value={classTeachers}
-                    onChange={e => props._handleClassInput(sequence, e.target.name, e.target.value)} >
+                {/* <select name="classTeachers" value={classTeachers}
+                    onChange={e => props._handleClassInput(props.sequence, e.target.name, e.target.value)} >
                     <option value="empty">请选择负责的老师</option>
                     <option value="teacher@ffa.test">FFA Teacher</option>
                     <option value="3">C</option>
                     <option value="4">D</option>
-                </select>
+                </select> */}
             </Grid>
         </Grid>
     )
@@ -125,8 +108,7 @@ class SchoolCourseInformation extends React.Component {
     }
 
     componentDidMount() {
-        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
-        if (redux_conferenceId !== null) {
+        if (this.props.auth.relatedData.course.conferenceId) {
             this._getConferenceDefailByUser();
         }
         // console.log(dayMonthYearTimeToTimeStamps("2020-09-01 18:06"));
@@ -496,7 +478,7 @@ class SchoolCourseInformation extends React.Component {
         } = this.state;
         console.log('_handleAddClass formInput');
 
-        /*start add back exist class */
+        /* start add back exist class */
         let the_conference_sections = conference_sections;
         const newClass = {
             // conference_section_id: null,
@@ -709,6 +691,7 @@ class SchoolCourseInformation extends React.Component {
         });
     }
     //** form handle input end **/
+
     // handleSubmit = (values, { setinputError }) => {
     handleSubmit = () => {
         const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
@@ -752,66 +735,12 @@ class SchoolCourseInformation extends React.Component {
             // conference_officers,
         } = this.state;
         // const { classes, t, i18n } = this.props;
-        const Schema = Yup.object().shape({
-            courseCode: Yup.string()
-                .required('Course Code is required'),
-            courseName: Yup.string()
-                .required('Course Name is required'),
-            courseAddress: Yup.string()
-                .required('Course Address is required'),
-            courseIntroduction: Yup.string()
-                .required('Course Introduction is required'),
-            courseEmphasis: Yup.string()
-                .required('Course Emphasis is required'),
-            courseBenefits: Yup.string()
-                .required('Course Benefits is required'),
-            contactEmail: Yup.string()
-                .email('Contact Email must be a valid email')
-                .required('Contact Email is required'),
-            contactWechat: Yup.number()
-                .typeError('Wechat number must be a valid phone number')
-                .required('WeChat number is required'),
-            contactNumber: Yup.number()
-                .typeError('Contact Number must be a valid phone number')
-                .required('Contact Number is required'),
-            courseQuota: Yup.number()
-                .typeError('Course Quota must be a number')
-                .required('Course Quota is required'),
-            courseCredits: Yup.number()
-                .typeError('Course Credits must be a number')
-                .required('Course Credits is required'),
-            courseFees: Yup.number()
-                .typeError('Course Fees must be a number')
-                .required('Course Fees is required'),
-            expectedFees: Yup.number()
-                .typeError('Expected Fees must be a number')
-                .required('Expected Fees is required'),
-            actualFees: Yup.number()
-                .typeError('Actual Fees must be a number')
-                .required('Actual Fees is required'),
-
-            //     // conference_sections: Yup
-            //     //     .array()
-            //     //     .of(
-            //     //         Yup.object().shape({
-            //     //             className: Yup.string().required('Class Name is required'),
-            //     //             classDate: Yup.string().required('Class Date is required'),
-            //     //             classAddress: Yup.string().required('Class Location is required'),
-            //     //             classTeacher: Yup.string().required('Class Location is required'),
-            //     //         })
-            //     //     )
-
-            //     // className0: Yup.string().required('Class1 Name is required'),
-            //     // classDate0: Yup.string().required('Class1 Date is required'),
-            //     // classAddress0: Yup.string().required('Class1 Location is required'),
-            //     // classTeacher0: Yup.string().required('Class1 Location is required'),
-        })
 
         // console.log(values);
         const { classes
             //, t, i18n
         } = this.props;
-        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
+
         return (
             <div>
                 <div className="wrapper-container-main">
@@ -1074,18 +1003,15 @@ class SchoolCourseInformation extends React.Component {
                                                     (data, i) => {
                                                         return (
                                                             <Block
-                                                                key={data.conference_section_id || "new" + i}
-                                                                sequence={data.sequence}
+                                                                key={data.conference_section_id}
+                                                                sequence={i + 1}
                                                                 data={data}
                                                                 _handleClassInput={this._handleClassInput}
-                                                            // errors={errors}
-                                                            // touched={touched}
                                                             />
                                                         )
                                                     }
                                                 ))}
                                         </Grid>
-
                                     </Grid>
 
                                     <Grid item xs={12} className="mt20">
@@ -1096,7 +1022,7 @@ class SchoolCourseInformation extends React.Component {
 
                                 <div className="bottomControl clearfix">
 
-                                    {redux_conferenceId
+                                    {this.props.auth.relatedData.course.conferenceId
                                         ?
                                         <span className="right">
                                             <Button onClick={() => this.deleteConferenceByConferenceId()} className={classes.blackButton}>删除</Button>
@@ -1105,7 +1031,6 @@ class SchoolCourseInformation extends React.Component {
                                         :
                                         <span className="right">
                                             <Button onClick={() => this.handleSubmit()} className={classes.blackButton}>确认</Button>
-
                                         </span>
                                     }
                                 </div>
@@ -1117,10 +1042,6 @@ class SchoolCourseInformation extends React.Component {
         );
     }
 }
-
-SchoolCourseInformation.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth
