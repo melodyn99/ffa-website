@@ -18,8 +18,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../Api/ApiAuth';
-// import { apiConferences } from '../../Api/ApiConferences';
+// import { apiAuth } from '../../../Api/ApiAuth';
+// import { apiConferences } from '../../../Api/ApiConferences';
+import { apiStudent } from '../../../Api/ApiStudent';
+import { apiUsers } from '../../../Api/ApiUsers';
 
 // Redux
 import { connect } from 'react-redux';
@@ -27,6 +29,8 @@ import { connect } from 'react-redux';
 // Utils
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { convertDayToRange } from '../../../Util/DateUtils';
+
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -67,9 +71,66 @@ class StudentRegister extends React.Component {
         super(props);
 
         this.state = {
-            agree: false
+            agree: false,
         }
     }
+
+    /* start student registration API*/
+    createUser_student = (formInput) => {
+        console.log(JSON.stringify(formInput, null, 2));
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            this.createStudent(formInput);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const body = {
+            username: formInput.contactEmail,
+            password: formInput.password,
+            role: 4,
+            email: formInput.emailConfirm,
+            first_name: formInput.firstName,
+            last_name: formInput.lastName,
+        }
+        console.log(JSON.stringify(body, null, 2));
+        apiUsers.createUser(body, this.props.auth.token, cb, eCb);
+    }
+    createStudent = (formInput) => {
+        console.log("createStudent()");
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const body = {
+            student: {
+                user: formInput.contactEmail,
+                first_name: formInput.firstName,
+                last_name: formInput.lastName,
+                name_zh: formInput.chineseName,
+                id_type: formInput.id_type,
+                id_no: formInput.idNumber,
+                // date_of_birth: 473385600000,
+                date_of_birth: convertDayToRange(formInput.birthDate),
+                mobile: formInput.contactNumber,
+                email: formInput.emailConfirm,
+                education_doc: null,
+                other_doc: null,
+                wechat_id: formInput.contactWechat,
+                qq_id: formInput.contactQQ
+            },
+            school: "dc81cbfc-efdd-42e9-86e0-0edc603b7777",
+            status: "pending"
+        }
+        // console.log(JSON.stringify(body, null, 2));
+        apiStudent.createConferenceStudent(body, this.props.auth.token, cb, eCb);
+    }
+    /* end student registration API*/
 
     _handleAgree = () => {
         this.setState({
@@ -77,9 +138,19 @@ class StudentRegister extends React.Component {
         })
     }
 
+
+    // handleSubmit = (values, { setFieldError }) => {
+    handleSubmit = values => {
+        if (this.state.isClickTick) {
+            console.log('handleSubmit()');
+            // console.log(values);
+            this.createUser_student(values);
+        }
+    }
+
     form = ({ values, errors, touched, handleChange }) => {
         const { classes
-            //, t, i18n 
+            //, t, i18n
         } = this.props;
 
         return (
@@ -109,6 +180,8 @@ class StudentRegister extends React.Component {
                         {errors.firstName && touched.firstName ? <ErrorMessage message={errors.firstName} /> : null}
                     </Grid>
 
+                    <Grid item xs={12} >&nbsp;</Grid>
+
                     <Grid item xs={2} >
                         中文姓名* :
                     </Grid>
@@ -120,13 +193,12 @@ class StudentRegister extends React.Component {
                     <Grid item xs={2} >
                         证件类别和号码 :
                     </Grid>
-                    <Grid item xs={1}>
-                        <select>
+                    <Grid item xs={1} >
+                        <Field component="select" name="id_type" type="text">
                             <option value="1">类别</option>
-                            <option value="2">类别</option>
+                            <option value="id_card">居民身份证</option>
                             <option value="3">类别</option>
-                            <option value="4">类别</option>
-                        </select>
+                        </Field>
                     </Grid>
                     <Grid item xs={9}>
                         <Field name="idNumber" type="text" placeholder="" maxLength="100" />
@@ -149,6 +221,8 @@ class StudentRegister extends React.Component {
                         {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null}
                     </Grid>
 
+                    <Grid item xs={12} >&nbsp;</Grid>
+
                     <Grid item xs={2} >
                         设定登记电邮* :
                     </Grid>
@@ -168,6 +242,24 @@ class StudentRegister extends React.Component {
                         <Field name="emailConfirm" type="text" placeholder="e.g. chantaiman@gmail.com" maxLength="100" />
                         {errors.emailConfirm && touched.emailConfirm ? <ErrorMessage message={errors.emailConfirm} /> : null}
                     </Grid>
+
+                    <Grid item xs={2} >
+                        微信
+                    </Grid>
+                    <Grid item xs={10}>
+                        <Field name="contactWechat" type="text" placeholder="微信" maxLength="100" />
+                        {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null}
+                    </Grid>
+
+                    <Grid item xs={2} >
+                        QQ
+                    </Grid>
+                    <Grid item xs={10}>
+                        <Field name="contactQQ" type="text" placeholder="QQ" maxLength="100" />
+                        {errors.contactQQ && touched.contactQQ ? <ErrorMessage message={errors.contactQQ} /> : null}
+                    </Grid>
+
+                    <Grid item xs={12} >&nbsp;</Grid>
 
                     <Grid item xs={2} >
                         设定此户口密码* :
@@ -198,7 +290,9 @@ class StudentRegister extends React.Component {
                     <div className="sep-60"></div>
                 </Grid>
                 <div>
-                    <FormControlLabel control={<Checkbox value="checkedterms" />} label="本人同意FFA及其机构成员使用我提供的个人资料，包括姓名、电话号码、手机号码、电邮地址、通讯地址及教育程度。提供有关FFA及其机构成员的任何课程、招生及活动推广资讯。" />
+                    <FormControlLabel control={<Checkbox value="checkedterms" />} label="本人同意FFA及其机构成员使用我提供的个人资料，包括姓名、电话号码、手机号码、电邮地址、通讯地址及教育程度。提供有关FFA及其机构成员的任何课程、招生及活动推广资讯。"
+                        onChange={(e, checked) => { this.setState({ isClickTick: checked }) }}
+                    />
                     {/* <Checkbox
                     value="checkedterms"
                     inputProps={{ 'aria-labelledby': '' } }
@@ -206,7 +300,8 @@ class StudentRegister extends React.Component {
                 </div>
                 <div className="bottomControl clearfix">
                     <span className="right"><Button className={classes.blueButton}
-                        onClick={() => this.props.history.push('student-register-personal-information')}
+                        // onClick={() => this.props.history.push('student-register-personal-information')}
+                        onClick={() => this.handleSubmit(values)}
                     >提交 (click)</Button></span>
                     {/* <span className="right"><Button type="submit" className={classes.editButton}>編輯</Button></span> */}
                 </div>
@@ -214,15 +309,9 @@ class StudentRegister extends React.Component {
         )
     }
 
-    handleSubmit = (values, { setFieldError }) => {
-        // call api
-        // TODO
-        console.log('GREAT!');
-    }
-
     render() {
         const { classes
-            // , t, i18n 
+            // , t, i18n
         } = this.props;
 
         const Schema = Yup.object().shape({
@@ -243,6 +332,14 @@ class StudentRegister extends React.Component {
                 .email('Confirm Email must be a valid email')
                 .oneOf([Yup.ref('contactEmail'), null], "Does not match with Contact Email!")
                 .required('Confirm Email is required'),
+            contactWechat: Yup.number()
+                .typeError('Wechat number must be a valid phone number')
+                .required('WeChat number is required'),
+            contactQQ: Yup.number()
+                .typeError('QQ number must be a number')
+                .required('QQ number is required'),
+            // contactAddress: Yup.string()
+            //     .required('Contact Address is required'),
             password: Yup.string()
                 .typeError('Password must be a valid string')
                 .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, "Does not match Password requirements!")
@@ -268,16 +365,19 @@ class StudentRegister extends React.Component {
                                 {this.state.agree ?
                                     <Formik
                                         initialValues={{
-                                            lastName: '',
-                                            firstName: '',
-                                            chineseName: '',
-                                            idNumber: '',
-                                            birthDate: '',
-                                            contactNumber: '',
-                                            contactEmail: '',
-                                            emailConfirm: '',
-                                            password: '',
-                                            passwordConfirm: '',
+                                            lastName: 'Chan',
+                                            firstName: 'Tai Man',
+                                            chineseName: '陈大满',
+                                            id_type: 'id_card',
+                                            idNumber: 'A0123456',
+                                            birthDate: '2000-01-13',
+                                            contactNumber: '111',
+                                            contactEmail: 'student01@ffa.com',
+                                            emailConfirm: 'student01@ffa.com',
+                                            contactWechat: '111',
+                                            contactQQ: '111',
+                                            password: 'Abcd1234',
+                                            passwordConfirm: 'Abcd1234',
                                         }}
                                         validationSchema={Schema}
                                         onSubmit={this.handleSubmit}

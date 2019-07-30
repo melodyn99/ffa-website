@@ -26,9 +26,6 @@ export const apiStudent = {
     //         })
     //     })
     // },
-    getConferenceStudent: (conferenceId, params, token, cb, eCb) => {
-        apiGeneral.apiFetch(`conference_students?conference=${encodeURIComponent(conferenceId)}&$expand=student,students/contacts,student/business_license_copy`, params, token, cb, eCb)
-    },
 
     getConferenceStudentAccMgt: (params) => api.get(`conference_students`, { ...params }),
 
@@ -60,5 +57,15 @@ export const apiStudent = {
 
     deleteConferenceStudent: studentId => api.delete(`conference_students/${studentId}`),
 
-    getStudentAttendance: (conference_student, conference_section) => api.get(`attendance?conference_student=${conference_student}&conference_section=${conference_section}`)
+    getStudentAttendance: (conference_student, conference_section) => api.get(`attendance?conference_student=${conference_student}&conference_section=${conference_section}`),
+
+    // new
+    getConferenceStudent: (conferenceId, params, token, cb, eCb) => {
+        apiGeneral.apiFetch(`conference_students?conference=${encodeURIComponent(conferenceId)}&$expand=student,students/contacts,student/business_license_copy`, params, token, cb, eCb)
+    },
+
+    createConferenceStudent: (body, token, cb, eCb) => {
+        apiGeneral.apiPost('student_schools', body, token, cb, eCb)
+    },
+
 };

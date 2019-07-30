@@ -33,11 +33,6 @@ export function dateToRemainingDaysEvent(deadline) {
   return isOver ? `已结束: ${duration}天` : `剩下: ${duration} 天`;
 }
 
-export function distanceDateToTimeStamps(distanceDate) {
-  const date = moment().add(distanceDate, 'days');
-  return moment(date).format("X");
-}
-
 export function dateToDayAndMonth(date) {
   return moment(date).format('MM月 DD日');
 }
@@ -63,6 +58,11 @@ export function timeStampToDate(timestamp) {
   return new Date(timestamp);
 }
 
+export function distanceDateToTimeStamps(distanceDate) {
+  const date = moment().add(distanceDate, 'days');
+  return moment(date).format("X");
+}
+
 //"2016-10-11 18:06"
 export function dayMonthYearTimeToTimeStamps(yearMonthDayTime) {
   const date = moment(yearMonthDayTime, 'YYYY-MM-DD HH:mm');
@@ -78,6 +78,15 @@ export function dayMonthYearTimeToTimeStamps(yearMonthDayTime) {
 export function getTheMonent(hourNum) {
   const currMoment = moment().add(hourNum, 'hours');
   let result = moment(currMoment).format("X")
+  if (result.length <= 10) {
+    result += "000";
+  }
+  return result;
+}
+
+export function convertDayToRange(input) {
+  const date = moment(input, 'YYYY-MM-DD');
+  let result = moment(date).format("X")
   if (result.length <= 10) {
     result += "000";
   }

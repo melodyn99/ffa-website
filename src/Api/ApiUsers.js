@@ -1,4 +1,5 @@
 import { api } from './_ApiFactoryWithHeader';
+import { apiGeneral } from './_General';
 
 export const apiUsers = {
   getUserList: (params, cancelToken) => api.get('user_list', params, null, cancelToken),
@@ -53,4 +54,10 @@ export const apiUsers = {
   }),
 
   deleteUser: username => api.delete(`users/${username}`),
+
+  //new
+
+  createUser: (body, token, cb, eCb) => {
+    apiGeneral.apiPost('users', body, token, cb, eCb)
+  },
 };
