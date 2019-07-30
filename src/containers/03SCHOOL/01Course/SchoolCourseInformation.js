@@ -437,7 +437,7 @@ class SchoolCourseInformation extends React.Component {
             }
             console.log("edit's params:");
             console.log(params);
-            // apiConferences.editConference(this.props.auth.relatedData.course.conferenceId, params, this.props.auth.token, cb, eCb);
+            apiConferences.editConference(this.props.auth.relatedData.course.conferenceId, params, this.props.auth.token, cb, eCb);
         } else
             console.log('redux_conferenceId is empty');
     }
