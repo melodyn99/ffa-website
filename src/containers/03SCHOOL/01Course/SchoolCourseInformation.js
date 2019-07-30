@@ -41,7 +41,7 @@ function Block(props) {
     console.log("props");
     console.log(props);
     const className = data.className;
-    const classStartToEndDate = timeStampsToRange(data.start_date, data.end_date);
+    const classStartToEndDate = data.classStartToEndDate;
     const classAddress = data.classAddress;
 
     const classTeachers_length = data.classTeachers.length || 0;
@@ -689,18 +689,6 @@ class SchoolCourseInformation extends React.Component {
                             {
                                 ...n.classTeachers[0],
                                 user: selectionString,
-                            }
-                        ]
-                    }
-                } else if (key === 'classStartToEndDate') {
-                    const convertedDate = rangeToTimeStamps(selectionString);
-                    theArray = {
-                        ...n,
-                        classTeachers: [
-                            {
-                                ...n.classTeachers[0],
-                                start_date: parseInt(convertedDate[0]),
-                                end_date: parseInt(convertedDate[1]),
                             }
                         ]
                     }
