@@ -109,13 +109,13 @@ class SchoolCourseInformation extends React.Component {
 
     componentDidMount() {
         if (this.props.auth.relatedData.course.conferenceId) {
-            this._getConferenceDefailByUser();
+            this._getConferenceDetailByUser();
         }
         // console.log(dayMonthYearTimeToTimeStamps("2020-09-01 18:06"));
         // console.log(rangeToTimeStamps("2019-08-14, 23:58 - 00:00"));
     }
 
-    _getConferenceDefailByUser = () => {
+    _getConferenceDetailByUser = () => {
 
         const cb = (obj) => {
             // console.log("cb : ", obj);
@@ -200,7 +200,7 @@ class SchoolCourseInformation extends React.Component {
             conference_id: this.props.auth.relatedData.course.conferenceId,
             $expand: 'conference_sections/teachers/user,conference_officers',
         }
-        apiConferences.getConferenceDefailByUser(params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceDetailByUser(params, this.props.auth.token, cb, eCb);
     }
 
     //** form handle input start **/
@@ -305,7 +305,7 @@ class SchoolCourseInformation extends React.Component {
                 conferenceId: obj.body.conference_id,
             }
             this.props.setRelatedCourseDataP(data);
-            this._getConferenceDefailByUser();
+            this._getConferenceDetailByUser();
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);

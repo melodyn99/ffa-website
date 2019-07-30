@@ -23,7 +23,7 @@ export const apiConferences = {
         return api.get(url, params, null, cancelToken);
     },
 
-    // getConferenceDefail: conferenceId => {
+    // getConferenceDetail: conferenceId => {
     //     const url = `conferences/${encodeURIComponent(conferenceId)}?$expand=conference_officers/user,conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/company,contracts/contract_file,contracts/contract_incomes`;
     //     return api.get(url).then(response => {
     //         const conferenceSections = response.conference_sections;
@@ -33,7 +33,7 @@ export const apiConferences = {
     //         return response;
     //     });
     // },
-    getConferenceDefail: (conferenceId, params, token, cb, eCb) => {
+    getConferenceDetail: (conferenceId, params, token, cb, eCb) => {
         apiGeneral.apiFetch(`conferences/${encodeURIComponent(conferenceId)}`, params, token, cb, eCb)
     },
 
@@ -122,7 +122,7 @@ export const apiConferences = {
     /* All Course end */
 
     /* Course Information start */
-    getConferenceDefailByUser: (params, token, cb, eCb) => {
+    getConferenceDetailByUser: (params, token, cb, eCb) => {
         apiGeneral.apiFetch('conferences', params, token, cb, eCb)
     },
     /* Course Information end */

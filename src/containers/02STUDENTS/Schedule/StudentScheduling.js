@@ -130,7 +130,7 @@ class StudentScheduling extends React.Component {
             $expand: `conference_officers/user,conference_sections/teachers,conference_sections/time_managements,contracts/contract_teachers,contracts/company,contracts/contract_file,contracts/contract_incomes`
         });
 
-        apiConferences.getConferenceDefail(seminar.conference_id, params, this.props.auth.token, cb, eCb);
+        apiConferences.getConferenceDetail(seminar.conference_id, params, this.props.auth.token, cb, eCb);
     }
 
     _getEventPreparationData = (conferenceId) => {

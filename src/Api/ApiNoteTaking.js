@@ -8,7 +8,7 @@ export const apiNoteTaking = {
     apiGeneral.apiFetch('notes', params, token, cb, eCb)
   },
 
-  getNoteTakingDefail: noteId => api.get(`notes/${noteId}`),
+  getNoteTakingDetail: noteId => api.get(`notes/${noteId}`),
 
   // createNoteTaking: data => api.post('notes', data),
   createNoteTaking: (body, token, cb, eCb) => {
