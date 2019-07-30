@@ -76,33 +76,34 @@ function Block(props) {
 
 class SchoolCourseInformation extends React.Component {
     state = {
-        conference_id: null,
+        conference_id: '',
 
-        academicTerm: '2022-23',
-        courseLocation: '香港',
-        subjectName: '4ca84f07-e091-4868-87d2-671b3d1ce0d6',
-        courseType: '开发流程课程',
+        academicTerm: '',
+        courseLocation: '',
+        subjectName: '',
+        courseType: '',
 
-        courseCode: 'CC29072019_0',
-        courseName: '课程29072019_0',
-        courseAddress: 'addr',
-        courseIntroduction: 'intro',
-        courseEmphasis: 'emph',
-        courseBenefits: 'bene',
-        contactEmail: 'testing@ffa.com',
-        contactWechat: '1',
-        contactNumber: '1',
+        courseCode: '',
+        courseName: '',
+        courseAddress: '',
+        courseIntroduction: '',
+        courseEmphasis: '',
+        courseBenefits: '',
+        contactEmail: '',
+        contactWechat: '',
+        contactNumber: '',
         // essentialCourse: 1,
 
-        enrollmenetStartDate: 1565798300000,
-        enrollmenetEndDate: 1565798400000,
+        enrollmenetStartDate: '',
+        enrollmenetEndDate: '',
 
-        courseQuota: '1',
-        courseCredits: '1',
+        courseQuota: '',
+        courseCredits: '',
 
-        courseFees: '1',
-        expectedFees: '10000',
-        actualFees: '1',
+        courseFees: '',
+        expectedFees: '',
+        actualFees: '',
+
         conference_officers: [],
         conference_sections: [],
     }
@@ -111,8 +112,6 @@ class SchoolCourseInformation extends React.Component {
         if (this.props.auth.relatedData.course.conferenceId) {
             this._getConferenceDetailByUser();
         }
-        // console.log(dayMonthYearTimeToTimeStamps("2020-09-01 18:06"));
-        // console.log(rangeToTimeStamps("2019-08-14, 23:58 - 00:00"));
     }
 
     _getConferenceDetailByUser = () => {
@@ -120,41 +119,10 @@ class SchoolCourseInformation extends React.Component {
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body[0];
-            // console.log(theList);
-            let converted_conference_sections = [];
-            theList.conference_sections.sort(function (a, b) {
-                return a.sequence - b.sequence;
-            }).map((n, i) => {
-                let the_classTeachers = [];
-                if (n.teachers[0]) {
-                    the_classTeachers = [
-                        {
-                            instructor_id: n.teachers[0].instructor_id,
-                            user: n.teachers[0].user,
-                            conference_section: n.teachers[0].conference_section,
-                            sequence: n.teachers[0].sequence,
-                            checked_in: n.teachers[0].checked_in,
-                            location: n.teachers[0].location,
-                        },
-                    ];
-                }
-                const convertedArray = {
-                    conference_section_id: n.conference_section_id,
-                    conference_id: n.conference_id,
-                    sequence: n.sequence,
-                    start_date: parseInt(n.start_date),
-                    end_date: parseInt(n.end_date),
-                    classStartToEndDate: timeStampsToRange(n.start_date, n.end_date) || '',
-                    location: n.location,
-                    classAddress: n.address,
-                    classTeachers: the_classTeachers,
-                    className: n.title,
-                }
-                return converted_conference_sections.push(convertedArray);
-            });
 
             this.setState({
                 conference_id: theList.conference_id,
+
                 academicTerm: theList.academic_term,
                 courseLocation: theList.location,
                 subjectName: theList.subject,
@@ -181,15 +149,15 @@ class SchoolCourseInformation extends React.Component {
                 expectedFees: theList.expected_fee,
                 actualFees: theList.actual_fee,
 
-                conference_sections: converted_conference_sections,
+                conference_sections: theList.conference_sections,
                 conference_officers: theList.conference_officers,
             });
 
-            const data = {
-                ...this.props.auth.relatedData.course,
-                code: theList.code,
-            }
-            this.props.setRelatedCourseDataP(data);
+            // const data = {
+            //     ...this.props.auth.relatedData.course,
+            //     code: theList.code,
+            // }
+            // this.props.setRelatedCourseDataP(data);
         }
 
         const eCb = (obj) => {
@@ -204,511 +172,62 @@ class SchoolCourseInformation extends React.Component {
     }
 
     //** form handle input start **/
-    convertForm_conference_sections = () => {
-        let the_conference_sections = [];
-        const classLength = this.state.conference_sections.length || 0;
-        if (classLength !== 0) {
-            for (let i = 1; i <= classLength; i++) {
-                const theList = this.state.conference_sections[(i - 1)];
-                // console.log("theList");
-                // console.log(theList);
-
-                //2019-08-14, 23:58 - 00:00
-                const convertedDate = rangeToTimeStamps(theList.classStartToEndDate);
-
-                let theClass = {};
-                const isNewCreateClass = theList.conference_section_id && theList.classTeachers.instructor_id && theList.classTeachers.conference_section;
-                if (!this.state.conference_id) {
-                    // if create the new course with the its new class
-                    theClass = {
-                        // conference_section_id: theList.conference_section_id,
-                        // conference_id: theList.conference_id,
-                        sequence: i,
-                        start_date: parseInt(convertedDate[0]),
-                        end_date: parseInt(convertedDate[1]),
-                        classStartToEndDate: theList.classStartToEndDate,
-                        location: this.state.courseLocation,
-                        address: theList.classAddress,
-                        teachers: [
-                            {
-                                // instructor_id: theList.classTeachers[0].instructor_id,
-                                user: theList.classTeachers[0].user,
-                                // conference_section: theList.classTeachers[0].conference_section,
-                                sequence: theList.classTeachers[0].sequence,
-                                checked_in: theList.classTeachers[0].checked_in,
-                                location: theList.classTeachers[0].location,
-                            }
-                        ],
-                        title: theList.className,
-                    }
-                } else if (isNewCreateClass) {
-                    // if edit and have new class
-                    theClass = {
-                        // conference_section_id: theList.conference_section_id,
-                        // conference_id: theList.conference_id,
-                        sequence: i,
-                        start_date: parseInt(convertedDate[0]),
-                        end_date: parseInt(convertedDate[1]),
-                        classStartToEndDate: theList.classStartToEndDate,
-                        location: this.state.courseLocation,
-                        address: theList.classAddress,
-                        teachers: [
-                            {
-                                // instructor_id: theList.classTeachers[0].instructor_id,
-                                user: theList.classTeachers[0].user,
-                                // conference_section: theList.classTeachers[0].conference_section,
-                                sequence: theList.classTeachers[0].sequence,
-                                checked_in: theList.classTeachers[0].checked_in,
-                                location: theList.classTeachers[0].location,
-                            }
-                        ],
-                        title: theList.className,
-                    }
-                } else {
-                    // if no new class
-                    theClass = {
-                        conference_section_id: theList.conference_section_id,
-                        conference_id: theList.conference_id,
-                        sequence: i,
-                        start_date: parseInt(convertedDate[0]),
-                        end_date: parseInt(convertedDate[1]),
-                        classStartToEndDate: theList.classStartToEndDate,
-                        location: this.state.courseLocation,
-                        address: theList.classAddress,
-                        teachers: [
-                            {
-                                instructor_id: theList.classTeachers[0].instructor_id,
-                                user: theList.classTeachers[0].user,
-                                conference_section: theList.classTeachers[0].conference_section,
-                                sequence: theList.classTeachers[0].sequence,
-                                checked_in: theList.classTeachers[0].checked_in,
-                                location: theList.classTeachers[0].location,
-                            }
-                        ],
-                        title: theList.className,
-                    }
-                }
-                the_conference_sections.push(theClass);
-            }
-        }
-        return the_conference_sections;
-    }
-    // post
-    createConferenceWithEnterInfo = () => {
-        const formInput = this.state;
-        // console.log("formInput");
-        // console.log(formInput);
-        const cb = (obj) => {
-            // console.log("cb : ", obj);
-            const data = {
-                ...this.props.auth.relatedData.course,
-                conferenceId: obj.body.conference_id,
-            }
-            this.props.setRelatedCourseDataP(data);
-            this._getConferenceDetailByUser();
-        }
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
-
-        const the_conference_sections = this.convertForm_conference_sections()
-
-        let params = {
-            active: true,
-            name: formInput.courseName,
-            academic_year: formInput.academicTerm.substring(0, 4),
-            academic_term: formInput.academicTerm,
-            location: formInput.courseLocation,
-            subject: formInput.subjectName,
-            type: formInput.courseType,
-            code: formInput.courseCode,
-            address: formInput.courseAddress,
-            enrollmenet_start_date: 1565798300000,
-            enrollment_end_date: 1565798400000,
-            credit_requirement: 2019,
-            fee: formInput.courseFees,
-            expected_fee: formInput.expectedFees,
-            actual_fee: formInput.actualFees,
-            discount: 0,
-            quota: formInput.courseQuota,
-            credit: formInput.courseCredits,
-            promotion_message: null,
-            introduction: formInput.courseIntroduction,
-            emphasis: formInput.courseEmphasis,
-            benefit: formInput.courseBenefits,
-            email: formInput.contactEmail,
-            wechat: formInput.contactWechat,
-            phone: formInput.contactNumber,
-            teacher_image: null,
-            teacher_introduction: null,
-            // conference_sections: the_conference_sections,
-            conference_officers: [
-                {
-                    user: this.props.auth.userInfo.username,
-                    job_duties: null,
-                }
-            ],
-        }
-
-        if (the_conference_sections) {
-            if (the_conference_sections.length > 0) {
-                params = {
-                    ...params,
-                    conference_sections: the_conference_sections,
-                }
-            }
-        }
-        console.log("create's params:");
-        console.log(params);
-        // apiConferences.createConference(params, this.props.auth.token, cb, eCb);
-    }
-
-    // put
-    editConferenceInfo = () => {
-        const formInput = this.state;
-        // console.log("formInput:");
-        // console.log(formInput);
-        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
-        const cb = (obj) => {
-            // console.log("cb : ", obj);
-            // const data = {
-            //     ...this.props.auth.relatedData.course,
-            //     conferenceId: obj.body.conference_id,
-            // }
-            // this.props.setRelatedCourseDataP(data);
-        }
-        const eCb = (obj) => {
-            console.log("eCb : ", obj);
-        }
-
-        if (redux_conferenceId !== null) {
-            const the_conference_sections = this.convertForm_conference_sections();
-            // console.log("the_conference_sections");
-            // console.log(the_conference_sections);
-            const params = {
-                conference_id: formInput.conference_id,
-                active: true,
-                name: formInput.courseName,
-                academic_year: formInput.academicTerm.substring(0, 4),
-                academic_term: formInput.academicTerm,
-                location: formInput.courseLocation,
-                subject: formInput.subjectName,
-                type: formInput.courseType,
-                code: formInput.courseCode,
-                address: formInput.courseAddress,
-                enrollmenet_start_date: 1565798300000,
-                enrollment_end_date: 1565798400000,
-                credit_requirement: 2019,
-                fee: formInput.courseFees,
-                expected_fee: formInput.expectedFees,
-                actual_fee: formInput.actualFees,
-                discount: 0,
-                quota: formInput.courseQuota,
-                credit: formInput.courseCredits,
-                promotion_message: null,
-                introduction: formInput.courseIntroduction,
-                emphasis: formInput.courseEmphasis,
-                benefit: formInput.courseBenefits,
-                email: formInput.contactEmail,
-                wechat: formInput.contactWechat,
-                phone: formInput.contactNumber,
-                teacher_image: null,
-                teacher_introduction: null,
-                conference_sections: the_conference_sections,
-                conference_officers: formInput.conference_officers
-            }
-            console.log("edit's params:");
-            console.log(params);
-            apiConferences.editConference(this.props.auth.relatedData.course.conferenceId, params, this.props.auth.token, cb, eCb);
-        } else
-            console.log('redux_conferenceId is empty');
-    }
-
-    // delete
-    deleteConferenceByConferenceId = () => {
-        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
-
-        if (redux_conferenceId !== null) {
-            const cb = (obj) => {
-                // console.log("cb : ", obj);
-                this.props.history.goBack();
-            }
-            const eCb = (obj) => {
-                console.log("eCb : ", obj);
-            }
-
-            apiConferences.deleteConference(redux_conferenceId, this.props.auth.token, cb, eCb);
-        } else
-            console.log('redux_conferenceId is empty');
-    }
-
-    // Tools
-    _handleAddClass = () => {
-        const {
-            conference_id,
-
-            academicTerm,
-            courseLocation,
-            subjectName,
-            courseType,
-
-            courseCode,
-            courseName,
-            courseAddress,
-            courseIntroduction,
-            courseEmphasis,
-            courseBenefits,
-            contactEmail,
-            contactWechat,
-            contactNumber,
-            // essentialCourse,
-
-            enrollmenetStartDate,
-            enrollmenetEndDate,
-
-            courseQuota,
-            courseCredits,
-
-            courseFees,
-            expectedFees,
-            actualFees,
-
-            conference_sections,
-            conference_officers,
-        } = this.state;
-        console.log('_handleAddClass formInput');
-
-        /* start add back exist class */
-        let the_conference_sections = conference_sections;
-        const newClass = {
-            // conference_section_id: null,
-            conference_id: conference_id,
-            sequence: conference_sections.length + 1,
-            start_date: 1576209600000,
-            end_date: 1576216800000,
-            classStartToEndDate: timeStampsToRange(1576209600000, 1576216800000),
-            location: courseLocation,
-            classAddress: `地点${conference_sections.length + 1}`,
-            classTeachers: [
-                {
-                    // instructor_id: "",
-                    user: "empty",
-                    // conference_section: "",
-                    sequence: 1,
-                    checked_in: false,
-                    location: null,
-                }
-            ],
-            className: `第${conference_sections.length + 1}课`,
-        }
-        the_conference_sections.push(newClass);
-        /*end add back exist class */
-
-        if (this.props.auth.relatedData.course.conferenceId) {
-            this.setState({
-                conference_id: this.props.auth.relatedData.course.conferenceId,
-
-                academicTerm: academicTerm,
-                courseLocation: courseLocation,
-                subjectName: subjectName,
-                courseType: courseType,
-
-                courseCode: courseCode,
-                courseName: courseName,
-                courseAddress: courseAddress,
-                courseIntroduction: courseIntroduction,
-                courseEmphasis: courseEmphasis,
-                courseBenefits: courseBenefits,
-                contactEmail: contactEmail,
-                contactWechat: contactWechat,
-                contactNumber: contactNumber,
-                essentialCourse: '',
-
-                enrollmenetStartDate: enrollmenetStartDate || 1565798300000,
-                enrollmenetEndDate: enrollmenetEndDate || 1565798400000,
-
-                courseQuota: courseQuota,
-                courseCredits: courseCredits,
-
-                courseFees: courseFees,
-                expectedFees: expectedFees,
-                actualFees: actualFees,
-
-                conference_sections: the_conference_sections,
-                conference_officers: conference_officers,
-            });
-        } else {
-            this.setState({
-                // conference_id: conference_id,
-                academicTerm: academicTerm,
-                courseLocation: courseLocation,
-                subjectName: subjectName,
-                courseType: courseType,
-
-                courseCode: courseCode,
-                courseName: courseName,
-                courseAddress: courseAddress,
-                courseIntroduction: courseIntroduction,
-                courseEmphasis: courseEmphasis,
-                courseBenefits: courseBenefits,
-                contactEmail: contactEmail,
-                contactWechat: contactWechat,
-                contactNumber: contactNumber,
-                essentialCourse: '',
-
-                enrollmenetStartDate: enrollmenetStartDate || 1565798300000,
-                enrollmenetEndDate: enrollmenetEndDate || 1565798400000,
-
-                courseQuota: courseQuota,
-                courseCredits: courseCredits,
-
-                courseFees: courseFees,
-                expectedFees: expectedFees,
-                actualFees: actualFees,
-
-                conference_sections: the_conference_sections,
-                conference_officers: conference_officers,
-            });
-        }
-    }
-
-    _handleSubClass = () => {
-        const formInput = this.state;
-        console.log('_handleSubClass formInput');
-        console.log(formInput);
-        /*start add back exist class */
-        let the_conference_sections = formInput.conference_sections;
-
-        the_conference_sections.pop();
-        /*end add back exist class */
-
-        if (this.props.auth.relatedData.course.conferenceId) {
-            this.setState({
-                conference_id: this.props.auth.relatedData.course.conferenceId,
-
-                academicTerm: formInput.academicTerm,
-                courseLocation: formInput.courseLocation,
-                subjectName: formInput.subjectName,
-                courseType: formInput.courseType,
-
-                courseCode: formInput.courseCode,
-                courseName: formInput.courseName,
-                courseAddress: formInput.courseAddress,
-                courseIntroduction: formInput.courseIntroduction,
-                courseEmphasis: formInput.courseEmphasis,
-                courseBenefits: formInput.courseBenefits,
-                contactEmail: formInput.contactEmail,
-                contactWechat: formInput.contactWechat,
-                contactNumber: formInput.contactNumber,
-                essentialCourse: '',
-
-                enrollmenetStartDate: formInput.enrollmenetStartDate || 1565798300000,
-                enrollmenetEndDate: formInput.enrollmenetEndDate || 1565798400000,
-
-                courseQuota: formInput.courseQuota,
-                courseCredits: formInput.courseCredits,
-
-                courseFees: formInput.courseFees,
-                expectedFees: formInput.expectedFees,
-                actualFees: formInput.actualFees,
-
-                conference_sections: the_conference_sections,
-                conference_officers: formInput.conference_officers,
-            });
-        } else {
-            this.setState({
-                // conference_id: formInput.conference_id,
-                academicTerm: formInput.academicTerm,
-                courseLocation: formInput.courseLocation,
-                subjectName: formInput.subjectName,
-                courseType: formInput.courseType,
-
-                courseCode: formInput.courseCode,
-                courseName: formInput.courseName,
-                courseAddress: formInput.courseAddress,
-                courseIntroduction: formInput.courseIntroduction,
-                courseEmphasis: formInput.courseEmphasis,
-                courseBenefits: formInput.courseBenefits,
-                contactEmail: formInput.contactEmail,
-                contactWechat: formInput.contactWechat,
-                contactNumber: formInput.contactNumber,
-                essentialCourse: '',
-
-                enrollmenetStartDate: formInput.enrollmenetStartDate || 1565798300000,
-                enrollmenetEndDate: formInput.enrollmenetEndDate || 1565798400000,
-
-                courseQuota: formInput.courseQuota,
-                courseCredits: formInput.courseCredits,
-
-                courseFees: formInput.courseFees,
-                expectedFees: formInput.expectedFees,
-                actualFees: formInput.actualFees,
-
-                conference_sections: the_conference_sections,
-                conference_officers: formInput.conference_officers,
-            });
-        }
-    }
-
     _handleFormInput = (key, selectionString) => {
         this.setState({
             [key]: selectionString,
         });
     }
 
-    _handleClassInput = (sequence, key, selectionString) => {
-        let theList = [];
-        // console.log("this.state.conference_sections");
-        // console.log(this.state.conference_sections);
-
-        this.state.conference_sections.map(n => {
-            let theArray = n;
-            if (sequence === n.sequence) {
-                if (key === 'classTeachers') {
-                    theArray = {
-                        ...n,
-                        classTeachers: [
-                            {
-                                ...n.classTeachers[0],
-                                user: selectionString,
-                            }
-                        ]
-                    }
-                }
-                else {
-                    theArray = {
-                        ...n,
-                        [key]: selectionString,
-                    }
-
-                }
-            }
-            return theList.push(theArray);
-        });
+    _handleAddClass = () => {
         this.setState({
             ...this.state,
-            conference_sections: theList,
-        });
+            conference_sections: {
+                ...this.state.conference_sections,
+
+            }
+        })
     }
     //** form handle input end **/
 
     // handleSubmit = (values, { setinputError }) => {
     handleSubmit = () => {
-        const redux_conferenceId = this.props.auth.relatedData.course.conferenceId || null;
-        if (redux_conferenceId !== null) {
+        if (this.props.auth.relatedData.course.conferenceId) {
             this.editConferenceInfo();
         } else {
             this.createConferenceWithEnterInfo();
         }
     }
 
+    // delete
+    deleteConferenceByConferenceId = () => {
+
+        if (this.props.auth.relatedData.course.conferenceId !== null) {
+
+            const cb = (obj) => {
+                // console.log("cb : ", obj);
+                this.props.history.goBack();
+            }
+
+            const eCb = (obj) => {
+                console.log("eCb : ", obj);
+            }
+
+            apiConferences.deleteConference(this.props.auth.relatedData.course.conferenceId, this.props.auth.token, cb, eCb);
+
+        } else {
+
+            console.log('redux_conferenceId is empty');
+        }
+    }
+
     render() {
         // const { classes, t, i18n } = this.props;
 
-        // console.log(values);
         const { classes
             //, t, i18n
         } = this.props;
+
+        console.log(this.state);
 
         return (
             <div>
@@ -1005,7 +524,7 @@ class SchoolCourseInformation extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         );
     }
 }
