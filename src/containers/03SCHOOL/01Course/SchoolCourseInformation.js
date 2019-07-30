@@ -37,38 +37,43 @@ function Block(props) {
 
     return (
         <Grid container spacing={16} alignItems="center" className="mt20">
-            <Grid item xs={12} >#{props.sequence}</Grid>
+            <Grid item xs={12}>#{props.i + 1}</Grid>
 
-            <Grid item xs={1} >课程标题</Grid>
+            <Grid item xs={1}>课程标题</Grid>
             <Grid item xs={11}>
-                <input name="className" type="text" placeholder={"第" + props.sequence + "课"} maxLength="100" value={props.data.className}
-                    onChange={e => props._handleClassInput(props.sequence, e.target.name, e.target.value)} />
+                <input name="className" type="text" placeholder={"第" + (props.i + 1) + "课"} maxLength="100"
+                    value={props.data.title}
+                    onChange={(e) => props.handleDynamicFormInput(props.i, e.target.name, e.target.value)} />
                 {/* {errors[className] && touched[className] ? <ErrorMessage message={errors[className]} /> : null} */}
             </Grid>
 
-            <Grid item xs={1} >课程日期</Grid>
+            <Grid item xs={1}>课程日期</Grid>
             <Grid item xs={11}>
-                <input name="classStartToEndDate" type="text" placeholder="2019-12-13, 13:00 - 15:00" maxLength="100" value={props.data.classStartToEndDate}
-                    onChange={e => props._handleClassInput(props.sequence, e.target.name, e.target.value)} />
+                <input name="classStartToEndDate" type="text" placeholder="2019-12-13, 13:00 - 15:00" maxLength="100"
+                    value={props.data.start_date}
+                    onChange={(e) => props.handleDynamicFormInput(props.i, e.target.name, e.target.value)} />
                 {/* {errors[classStartToEndDate] && touched[classStartToEndDate] ? <ErrorMessage message={errors[classStartToEndDate]} /> : null} */}
             </Grid>
 
-            <Grid item xs={1} >课程地点</Grid>
+            <Grid item xs={1}>课程地点</Grid>
             <Grid item xs={11}>
-                <input name="classAddress" type="text" placeholder={"地点" + props.sequence} maxLength="100" value={props.data.classAddress}
-                    onChange={e => props._handleClassInput(props.sequence, e.target.name, e.target.value)} />
+                <input name="classAddress" type="text" placeholder={"地点" + props.i} maxLength="100"
+                    value={props.data.address}
+                    onChange={(e) => props.handleDynamicFormInput(props.i, e.target.name, e.target.value)} />
                 {/* {errors[classAddress] && touched[classAddress] ? <ErrorMessage message={errors[classAddress]} /> : null} */}
             </Grid>
 
-            <Grid item xs={1} >授课老师</Grid>
+            <Grid item xs={1}>授课老师</Grid>
             <Grid item xs={11}>
-                {/* <select name="classTeachers" value={classTeachers}
-                    onChange={e => props._handleClassInput(props.sequence, e.target.name, e.target.value)} >
+                <select name="classTeachers"
+                    value={(props.data.teachers.length > 0) ? props.data.teachers[0].instructor_id : ''}
+                    onChange={e => props.handleDynamicFormSelect(props.i, e.target.name, e.target.value)}
+                >
                     <option value="empty">请选择负责的老师</option>
                     <option value="teacher@ffa.test">FFA Teacher</option>
-                    <option value="3">C</option>
-                    <option value="4">D</option>
-                </select> */}
+                    <option value="1be82914-fa2c-4bbd-ac44-024c455232de">C</option>
+                    <option value="23d998a3-aa2c-41f5-aea8-87fb0484ad1e">D</option>
+                </select>
             </Grid>
         </Grid>
     )
@@ -168,23 +173,58 @@ class SchoolCourseInformation extends React.Component {
             conference_id: this.props.auth.relatedData.course.conferenceId,
             $expand: 'conference_sections/teachers/user,conference_officers',
         }
+
         apiConferences.getConferenceDetailByUser(params, this.props.auth.token, cb, eCb);
     }
 
     //** form handle input start **/
-    _handleFormInput = (key, selectionString) => {
+    _handleFormInput = (key, value) => {
         this.setState({
-            [key]: selectionString,
+            [key]: value,
+        });
+    }
+
+    _handleFormSelect = (key, value) => {
+        this.setState({
+            [key]: value,
+        });
+    }
+
+    _handleDynamicFormInput = (key, value) => {
+        this.setState({
+            [key]: value,
+        });
+    }
+
+    _handleDynamicFormSelect = (key, value) => {
+        this.setState({
+            [key]: value,
         });
     }
 
     _handleAddClass = () => {
         this.setState({
             ...this.state,
-            conference_sections: {
+            conference_sections: [
                 ...this.state.conference_sections,
-
-            }
+                {
+                    address: '',
+                    conference: '',
+                    conference_section_id: '',
+                    created_by: null,
+                    createddate: null,
+                    end_date: '',
+                    lastmoddate: '',
+                    location: '',
+                    modified_by: '',
+                    sequence: '',
+                    serial_no: null,
+                    start_date: '',
+                    teachers: [],
+                    time_managements: [],
+                    title: ""
+                }
+            ]
         })
     }
     //** form handle input end **/
@@ -227,7 +267,7 @@ class SchoolCourseInformation extends React.Component {
             //, t, i18n
         } = this.props;
 
-        console.log(this.state);
+        // console.log(this.state.conference_sections);
 
         return (
             <div>
@@ -242,7 +282,7 @@ class SchoolCourseInformation extends React.Component {
 
                             <div className="content">
                                 <Grid container spacing={16} alignItems="center">
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         学期
                                     </Grid>
                                     <Grid item xs={11}>
@@ -256,7 +296,7 @@ class SchoolCourseInformation extends React.Component {
                                         </select>
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         上课城市
                                     </Grid>
                                     <Grid item xs={11}>
@@ -270,7 +310,7 @@ class SchoolCourseInformation extends React.Component {
                                         </select>
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         学科名称
                                     </Grid>
                                     <Grid item xs={11}>
@@ -284,7 +324,7 @@ class SchoolCourseInformation extends React.Component {
                                         </select>
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程类型
                                     </Grid>
                                     <Grid item xs={11}>
@@ -301,7 +341,7 @@ class SchoolCourseInformation extends React.Component {
                                         </select>
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程编号
                                     </Grid>
                                     <Grid item xs={11}>
@@ -311,7 +351,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseCode && touched.courseCode ? <ErrorMessage message={errors.courseCode} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程名称
                                     </Grid>
                                     <Grid item xs={11}>
@@ -321,7 +361,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseName && touched.courseName ? <ErrorMessage message={errors.courseName} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程地址
                                     </Grid>
                                     <Grid item xs={11}>
@@ -331,7 +371,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseAddress && touched.courseAddress ? <ErrorMessage message={errors.courseAddress} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程简介
                                     </Grid>
                                     <Grid item xs={11}>
@@ -341,7 +381,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseIntroduction && touched.courseIntroduction ? <ErrorMessage message={errors.courseIntroduction} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程重点
                                     </Grid>
                                     <Grid item xs={11}>
@@ -351,7 +391,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseEmphasis && touched.courseEmphasis ? <ErrorMessage message={errors.courseEmphasis} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程收益
                                     </Grid>
                                     <Grid item xs={11}>
@@ -361,7 +401,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseBenefits && touched.courseBenefits ? <ErrorMessage message={errors.courseBenefits} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         联系电邮
                                     </Grid>
                                     <Grid item xs={11}>
@@ -371,7 +411,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.contactEmail && touched.contactEmail ? <ErrorMessage message={errors.contactEmail} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         联系微信
                                     </Grid>
                                     <Grid item xs={11}>
@@ -381,7 +421,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.contactWechat && touched.contactWechat ? <ErrorMessage message={errors.contactWechat} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         联系电话
                                     </Grid>
                                     <Grid item xs={11}>
@@ -391,7 +431,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.contactNumber && touched.contactNumber ? <ErrorMessage message={errors.contactNumber} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         先修课程
                                     </Grid>
                                     <Grid item xs={11}>
@@ -403,7 +443,7 @@ class SchoolCourseInformation extends React.Component {
                                         </select>
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         报名开始
                                     </Grid>
                                     <Grid item xs={11}>
@@ -416,7 +456,7 @@ class SchoolCourseInformation extends React.Component {
                                         </select>
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         报名结束
                                     </Grid>
                                     <Grid item xs={11}>
@@ -429,7 +469,7 @@ class SchoolCourseInformation extends React.Component {
                                         </select>
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程名额
                                     </Grid>
                                     <Grid item xs={11}>
@@ -439,7 +479,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseQuota && touched.courseQuota ? <ErrorMessage message={errors.courseQuota} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程学分
                                     </Grid>
                                     <Grid item xs={11}>
@@ -449,7 +489,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseCredits && touched.courseCredits ? <ErrorMessage message={errors.courseCredits} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         课程费用
                                    </Grid>
                                     <Grid item xs={11}>
@@ -459,7 +499,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.courseFees && touched.courseFees ? <ErrorMessage message={errors.courseFees} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         预计学费
                                      </Grid>
                                     <Grid item xs={11}>
@@ -469,7 +509,7 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.expectedFees && touched.expectedFees ? <ErrorMessage message={errors.expectedFees} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={1} >
+                                    <Grid item xs={1}>
                                         实际收费
                                    </Grid>
                                     <Grid item xs={11}>
@@ -479,21 +519,22 @@ class SchoolCourseInformation extends React.Component {
                                         {/* {errors.actualFees && touched.actualFees ? <ErrorMessage message={errors.actualFees} /> : null} */}
                                     </Grid>
 
-                                    <Grid item xs={12} >&nbsp;</Grid>
+                                    <Grid item xs={12}>&nbsp;</Grid>
                                 </Grid>
 
                                 <Grid container spacing={16} alignItems="center">
-                                    <Grid item xs={12} >课程日期和时间</Grid>
+                                    <Grid item xs={12}>课程日期和时间</Grid>
                                 </Grid>
 
                                 {(this.state.conference_sections.map(
                                     (data, i) => {
                                         return (
                                             <Block
-                                                key={data.conference_section_id}
-                                                sequence={i + 1}
+                                                key={i}
+                                                i={i}
                                                 data={data}
-                                                _handleClassInput={this._handleClassInput}
+                                                handleDynamicFormInput={this._handleDynamicFormInput}
+                                                handleDynamicFormSelect={this._handleDynamicFormSelect}
                                             />
                                         )
                                     }
