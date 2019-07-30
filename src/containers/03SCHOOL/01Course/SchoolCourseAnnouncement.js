@@ -92,7 +92,6 @@ class SchoolCourseAnnouncement extends React.Component {
 
     // display the message of this conference
     _getConferenceMessages = () => {
-
         const cb = (obj) => {
             // console.log("cb : ", obj);
             const theList = obj.body;
@@ -142,6 +141,7 @@ class SchoolCourseAnnouncement extends React.Component {
     _createAnnouncement = (values, conversation_id) => {
         const cb = (obj) => {
             console.log("cb : ", obj);
+            window.location.reload();
         }
 
         const eCb = (obj) => {
@@ -223,6 +223,17 @@ class SchoolCourseAnnouncement extends React.Component {
                                     list={this.state.messagesList}
                                 /> */}
 
+                                <Formik
+                                    enableReinitialize
+                                    initialValues={{
+                                        announcementName: '',
+                                        announcementContent: '',
+                                    }}
+                                    validationSchema={Schema}
+                                    onSubmit={this.handleSubmit}
+                                    component={this.form}
+                                />
+
                                 {(this.state.messagesList.map(
                                     (message) => {
                                         return (
@@ -236,17 +247,6 @@ class SchoolCourseAnnouncement extends React.Component {
                                         )
                                     }
                                 ))}
-
-                                <Formik
-                                    enableReinitialize
-                                    initialValues={{
-                                        announcementName: '',
-                                        announcementContent: '',
-                                    }}
-                                    validationSchema={Schema}
-                                    onSubmit={this.handleSubmit}
-                                    component={this.form}
-                                />
                             </div>
                         </div>
                     </div>
