@@ -113,7 +113,7 @@ export const apiConferences = {
     },
 
     editConference: (conferenceId, body, token, cb, eCb) => {
-        apiGeneral.apiPost(`conferences/${conferenceId}`, body, token, cb, eCb)
+        apiGeneral.apiPost(`conferences/${conferenceId}?$expand=subject,conference_sections/teachers&$expand=conference_officers`, body, token, cb, eCb)
     },
 
     deleteConference: (conferenceId, token, cb, eCb) => {
