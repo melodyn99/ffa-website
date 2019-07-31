@@ -58,11 +58,13 @@ class StudentRegisterPersonalInformation extends Component {
             console.log("eCb : ", obj);
         }
 
-        const params = {
-            student_id: this.props.auth.userInfo.student.student_id,
+        if (this.props.auth.userInfo.student) {
+            const params = {
+                student_id: this.props.auth.userInfo.student.student_id,
+            }
+            // console.log(JSON.stringify(body, null, 2));
+            apiStudent.getSchoolStudent(params, this.props.auth.token, cb, eCb);
         }
-        // console.log(JSON.stringify(body, null, 2));
-        apiStudent.getSchoolStudent(params, this.props.auth.token, cb, eCb);
     }
 
     convertIdType = (id_type) => {
@@ -135,7 +137,7 @@ class StudentRegisterPersonalInformation extends Component {
                                             出生日期
                                         </Grid>
                                         <Grid item xs={10}>
-                                            {dateToDayMonthYearWithoutWord(infoList.date_of_birth)}
+                                            {infoList.date_of_birth?dateToDayMonthYearWithoutWord(infoList.date_of_birth):null}
                                         </Grid>
                                         <Grid item xs={2} >
                                             手提电话号码
