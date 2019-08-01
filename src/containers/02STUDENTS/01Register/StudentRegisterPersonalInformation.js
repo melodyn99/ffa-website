@@ -102,7 +102,7 @@ class StudentRegisterPersonalInformation extends Component {
 
                             <div className="content">
                                 <Form>
-                                    <Grid container spacing={32} alignItems="stretch">
+                                    <Grid container spacing={8} alignItems="stretch">
                                         <Grid item xs={2} >
                                             姓
                                         </Grid>

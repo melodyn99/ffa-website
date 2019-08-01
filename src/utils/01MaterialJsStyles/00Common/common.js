@@ -129,4 +129,8 @@ export const CommonStyles = theme => ({
             backgroundColor: 'rgba(163, 211, 253, 0.8)',
         },
     },
+
+    redWord: {
+        color: 'red',
+    },
 });

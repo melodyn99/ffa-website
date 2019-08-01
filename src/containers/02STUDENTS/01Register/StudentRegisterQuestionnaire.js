@@ -122,7 +122,7 @@ class StudentRegisterQuestionnaire extends Component {
                                 <Form>
                                     <Grid container spacing={8} alignItems="stretch">
                                         <Grid item xs={1}>
-                                            <div className="underline">问卷调查</div>
+                                            <span className="border-bottom">问卷调查</span>
                                         </Grid>
                                         <Grid item xs={12}>&nbsp;</Grid>
                                         {(!this.state.formSubmitted)

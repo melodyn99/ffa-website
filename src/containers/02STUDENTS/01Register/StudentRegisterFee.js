@@ -71,7 +71,7 @@ class StudentRegisterFee extends Component {
                                 <Form>
                                     <Grid container spacing={8} alignItems="stretch">
                                         <Grid item xs={1}>
-                                            <div className="underline">缴付费用</div>
+                                            <span className="border-bottom">缴付费用</span>
                                         </Grid>
                                         <Grid item xs={12}>&nbsp;</Grid>
 

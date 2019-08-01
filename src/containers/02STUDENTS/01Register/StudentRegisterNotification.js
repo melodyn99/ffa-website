@@ -70,7 +70,7 @@ class StudentRegisterNotification extends Component {
                                 <Form>
                                     <Grid container spacing={8} alignItems="stretch">
                                         <Grid item xs={1}>
-                                            <div className="underline">录取通知</div>
+                                            <span className="border-bottom">录取通知</span>
                                         </Grid>
                                         <Grid item xs={12}>&nbsp;</Grid>
 

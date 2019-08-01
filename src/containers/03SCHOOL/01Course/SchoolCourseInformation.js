@@ -1129,7 +1129,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
     setRelatedCourseDataP: data => dispatch(setRelatedCourseData(data)),
 });
 

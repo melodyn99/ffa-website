@@ -18,13 +18,16 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 
 // Api
-// import { apiAuth } from '../../../Api/ApiAuth';
+import { apiAuth } from '../../../Api/ApiAuth';
+import { apiSubject } from '../../../Api/ApiSubject';
 // import { apiConferences } from '../../../Api/ApiConferences';
 import { apiStudent } from '../../../Api/ApiStudent';
 import { apiUsers } from '../../../Api/ApiUsers';
 
 // Redux
 import { connect } from 'react-redux';
+import { login, getUserInfo } from '../../../Redux/Action/authAction';
+import { getSimpleSubject } from '../../../Redux/Action/subjectAction';
 
 // Utils
 import { Formik, Form, Field } from 'formik';
@@ -71,7 +74,9 @@ class StudentRegister extends React.Component {
         super(props);
 
         this.state = {
-            agree: false,
+            isAgree: false,
+            isAgreeSharing: false,
+            isCheckedSubmit: false,
         }
     }
 
@@ -102,7 +107,8 @@ class StudentRegister extends React.Component {
         console.log("createStudent()");
         const cb = (obj) => {
             console.log("cb : ", obj);
-            this.props.history.push('student-register-personal-information');
+            this._signInAsync(formInput);
+            // this.props.history.push('student-register-personal-information');
         }
         const eCb = (obj) => {
             console.log("eCb : ", obj);
@@ -133,19 +139,65 @@ class StudentRegister extends React.Component {
     }
     /* end student registration API*/
 
+    _signInAsync = (formInput) => {
+        //  TODO: research the double calling here
+        // console.log(values);
+
+        if (typeof (formInput.contactEmail) !== 'undefined' && typeof (formInput.password) !== 'undefined') {
+            let submitEmail = formInput.contactEmail;
+            let submitPassword = formInput.password;
+
+            apiAuth.authenticate(submitEmail, submitPassword).then((res) => {
+                this.props.loginP(res);
+                this._getUserInformation(res.access_token);
+                this._getSimpleSubject(res.access_token);
+            })
+        }
+    };
+
+    _getUserInformation = (access_token) => {
+
+        const cb = (obj) => {
+            console.log("cb here : ", obj);
+            this.props.getUserInfoP(obj.body);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = null;
+
+        apiAuth.getUserInformation(params, access_token, cb, eCb);
+    }
+
+    _getSimpleSubject = (access_token) => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
+            this.props.getSimpleSubjectP(obj.body);
+        }
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+        const params = null;
+
+        const url = "simple/subjects?school=dc81cbfc-efdd-42e9-86e0-0edc603b7777";
+
+        apiSubject.getSimpleSubject(url, params, access_token, cb, eCb);
+    }
+
     _handleAgree = () => {
-        this.setState({
-            agree: true
-        })
+        this.setState({ isAgree: true });
     }
 
 
     // handleSubmit = (values, { setFieldError }) => {
     handleSubmit = values => {
-        if (this.state.isClickTick) {
+        if (this.state.isAgreeSharing) {
             console.log('handleSubmit()');
             // console.log(values);
             this.createUser_student(values);
+        } else {
+            this.setState({ isCheckedSubmit: true });
         }
     }
 
@@ -157,8 +209,8 @@ class StudentRegister extends React.Component {
         return (
             <Form>
                 <Grid container spacing={16} alignItems="center">
-                    <Grid item xs={12} className="border-bottom">
-                        填写个人资料
+                    <Grid item xs={12} >
+                        <span className="border-bottom">填写个人资料</span>
                     </Grid>
 
                     <Grid item xs={12} >
@@ -166,7 +218,7 @@ class StudentRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={2} >
-                        姓（以英文填写）* :
+                        姓（以英文填写）<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="lastName" type="text" placeholder="e.g. CHAN" maxLength="100" />
@@ -174,7 +226,7 @@ class StudentRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={2} >
-                        名（以英文填写）* :
+                        名（以英文填写）<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="firstName" type="text" placeholder="e.g. Tai Man" maxLength="100" />
@@ -184,7 +236,7 @@ class StudentRegister extends React.Component {
                     <Grid item xs={12} >&nbsp;</Grid>
 
                     <Grid item xs={2} >
-                        中文姓名* :
+                        中文姓名<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="chineseName" type="text" placeholder="e.g. 陈大满" maxLength="100" />
@@ -207,7 +259,7 @@ class StudentRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={2} >
-                        出生日期* :
+                        出生日期<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="birthDate" type="text" placeholder="YYYY-MM-DD" maxLength="100" />
@@ -215,7 +267,7 @@ class StudentRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={2} >
-                        手提电话号码* :
+                        手提电话号码<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="contactNumber" type="text" placeholder="" maxLength="100" />
@@ -225,7 +277,7 @@ class StudentRegister extends React.Component {
                     <Grid item xs={12} >&nbsp;</Grid>
 
                     <Grid item xs={2} >
-                        设定登记电邮* :
+                        设定登记电邮<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="contactEmail" type="text" placeholder="e.g. chantaiman@gmail.com" maxLength="100" />
@@ -237,7 +289,7 @@ class StudentRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={2} >
-                        确认电邮* :
+                        确认电邮<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="emailConfirm" type="text" placeholder="e.g. chantaiman@gmail.com" maxLength="100" />
@@ -263,7 +315,7 @@ class StudentRegister extends React.Component {
                     <Grid item xs={12} >&nbsp;</Grid>
 
                     <Grid item xs={2} >
-                        设定此户口密码* :
+                        设定此户口密码<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="password" type="text" placeholder="" maxLength="100" />
@@ -275,7 +327,7 @@ class StudentRegister extends React.Component {
                     </Grid>
 
                     <Grid item xs={2} >
-                        确认密码* :
+                        确认密码<span className={classes.redWord}>*</span> :
                     </Grid>
                     <Grid item xs={10}>
                         <Field name="passwordConfirm" type="text" placeholder="" maxLength="100" />
@@ -285,20 +337,30 @@ class StudentRegister extends React.Component {
                     <div className="sep-60"></div>
 
                     <Grid item xs={12} >
-                        *必须填写
+                        <span className={classes.redWord}>*必须填写</span>
                     </Grid>
 
                     <div className="sep-60"></div>
                 </Grid>
                 <div>
                     <FormControlLabel control={<Checkbox value="checkedterms" />} label="本人同意FFA及其机构成员使用我提供的个人资料，包括姓名、电话号码、手机号码、电邮地址、通讯地址及教育程度。提供有关FFA及其机构成员的任何课程、招生及活动推广资讯。"
-                        onChange={(e, checked) => { this.setState({ isClickTick: checked }) }}
+                        onChange={(e, checked) => { this.setState({ isAgreeSharing: checked }) }}
                     />
                     {/* <Checkbox
                     value="checkedterms"
                     inputProps={{ 'aria-labelledby': '' } }
                 /> */}
                 </div>
+
+                {(this.state.isCheckedSubmit && !this.state.isAgreeSharing)
+                    ?
+                    <div>
+                        <span className={classes.redWord}>*请同意上述要求</span>
+                    </div>
+                    :
+                    null
+                }
+
                 <div className="bottomControl clearfix">
                     <span className="right"><Button className={classes.blueButton}
                         // onClick={() => this.props.history.push('student-register-personal-information')}
@@ -363,7 +425,7 @@ class StudentRegister extends React.Component {
 
                             <div className="content">
 
-                                {this.state.agree ?
+                                {this.state.isAgree ?
                                     <Formik
                                         initialValues={{
                                             lastName: 'Chan',
@@ -407,6 +469,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    loginP: data => dispatch(login(data)),
+    getUserInfoP: data => dispatch(getUserInfo(data)),
+    getSimpleSubjectP: data => dispatch(getSimpleSubject(data)),
 
 });
 
