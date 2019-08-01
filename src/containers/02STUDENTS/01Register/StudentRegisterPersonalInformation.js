@@ -115,9 +115,6 @@ class StudentRegisterPersonalInformation extends Component {
                                         <Grid item xs={10}>
                                             {infoList.first_name}
                                         </Grid>
-                                        <Grid item xs={12} >&nbsp;</Grid>
-
-
                                         <Grid item xs={2} >
                                             中文姓名
                                         </Grid>
@@ -125,7 +122,15 @@ class StudentRegisterPersonalInformation extends Component {
                                             {infoList.name_zh}
                                         </Grid>
                                         <Grid item xs={2} >
-                                            证件类别和号码 :
+                                            性別
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            性別
+                                        </Grid>
+                                        <Grid item xs={12} >&nbsp;</Grid>
+
+                                        <Grid item xs={2} >
+                                            证件号码 :
                                         </Grid>
                                         <Grid item xs={1} >
                                             {this.convertIdType(infoList.id_type)}
@@ -137,19 +142,57 @@ class StudentRegisterPersonalInformation extends Component {
                                             出生日期
                                         </Grid>
                                         <Grid item xs={10}>
-                                            {infoList.date_of_birth?dateToDayMonthYearWithoutWord(infoList.date_of_birth):null}
-                                        </Grid>
-                                        <Grid item xs={2} >
-                                            手提电话号码
-                                        </Grid>
-                                        <Grid item xs={10}>
-                                            {infoList.mobile}
+                                            {infoList.date_of_birth ? dateToDayMonthYearWithoutWord(infoList.date_of_birth) : null}
                                         </Grid>
                                         <Grid item xs={12} >&nbsp;</Grid>
 
 
                                         <Grid item xs={2} >
-                                            电邮
+                                            品牌(中文)
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            品牌(中文)
+                                        </Grid>
+                                        <Grid item xs={2} >
+                                            品牌(英文)
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            品牌(英文)
+                                        </Grid>
+                                        <Grid item xs={2} >
+                                            品牌类型
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            品牌类型
+                                        </Grid>
+                                        <Grid item xs={2} >
+                                            公司集团
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            公司集团
+                                        </Grid>
+                                        <Grid item xs={2} >
+                                            公司
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            公司
+                                        </Grid>
+                                        <Grid item xs={2} >
+                                            公司地址
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            公司地址
+                                        </Grid>
+                                        <Grid item xs={2} >
+                                            工作职位
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            工作职位
+                                        </Grid>
+                                        <Grid item xs={12} >&nbsp;</Grid>
+
+                                        <Grid item xs={2} >
+                                            邮箱
                                         </Grid>
                                         <Grid item xs={10}>
                                             {infoList.email}
@@ -165,6 +208,18 @@ class StudentRegisterPersonalInformation extends Component {
                                         </Grid>
                                         <Grid item xs={10}>
                                             {infoList.qq_id}
+                                        </Grid>
+                                        <Grid item xs={2} >
+                                            联络电话
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            {infoList.mobile}
+                                        </Grid>
+                                        <Grid item xs={2} >
+                                            联络地址
+                                        </Grid>
+                                        <Grid item xs={10}>
+                                            联络地址
                                         </Grid>
                                     </Grid>
                                     <div className="bottomControl clearfix">

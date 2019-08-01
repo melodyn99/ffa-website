@@ -12,6 +12,9 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
+// Material UI
+import Grid from '@material-ui/core/Grid';
+
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
 // import { apiConferences } from '../../../Api/ApiConferences';
@@ -20,6 +23,7 @@ import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 // Utils
+import { Form } from 'formik';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -63,9 +67,21 @@ class StudentRegisterNotification extends Component {
                             <SubMenu />
 
                             <div className="content">
-                                <div className="bottomControl clearfix">
-                                    <Button onClick={() => { this.navigationTo('student-register-fee') }}  className={classes.blackButton}>上一步</Button>
-                                </div>
+                                <Form>
+                                    <Grid container spacing={8} alignItems="stretch">
+                                        <Grid item xs={1}>
+                                            <div className="underline">录取通知</div>
+                                        </Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+
+                                        <Grid item xs={12}>
+                                            录取通知讯息，缴费通知讯息，成功录取状态等。
+                                        </Grid>
+                                    </Grid>
+                                    <div className="bottomControl clearfix">
+                                        <Button onClick={() => { this.navigationTo('student-register-fee') }} className={classes.blackButton}>上一步</Button>
+                                    </div>
+                                </Form>
                             </div>
                         </div>
 

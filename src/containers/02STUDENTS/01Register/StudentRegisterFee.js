@@ -12,6 +12,9 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
+// Material UI
+import Grid from '@material-ui/core/Grid';
+
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
 // import { apiConferences } from '../../../Api/ApiConferences';
@@ -20,6 +23,8 @@ import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 // Utils
+import { Form } from 'formik';
+import { dateToDayMonthYear } from '../../../Util/DateUtils';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -63,12 +68,40 @@ class StudentRegisterFee extends Component {
                             <SubMenu />
 
                             <div className="content">
-                                <div className="bottomControl clearfix">
-                                    <Button onClick={() => { this.navigationTo('student-register-questionnaire') }} className={classes.blackButton}>上一步</Button>
-                                    <span className="right">
-                                        <Button onClick={() => { this.navigationTo('student-register-notification') }} className={classes.blackButton}>下一步</Button>
-                                    </span>
-                                </div>
+                                <Form>
+                                    <Grid container spacing={8} alignItems="stretch">
+                                        <Grid item xs={1}>
+                                            <div className="underline">缴付费用</div>
+                                        </Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+
+                                        <Grid item xs={12}>
+                                            请联系财务部门缴付申请费人民币200。
+                                        </Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+
+                                        <Grid item xs={1}>
+                                            截止日期
+                                        </Grid>
+                                        <Grid item xs={11}>
+                                            {dateToDayMonthYear()}
+                                        </Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+
+                                        <Grid item xs={12}>
+                                            学院将于8月下旬邀请报名的同学参加面试/测试。
+                                        </Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+
+
+                                    </Grid>
+                                    <div className="bottomControl clearfix">
+                                        <Button onClick={() => { this.navigationTo('student-register-questionnaire') }} className={classes.blackButton}>上一步</Button>
+                                        <span className="right">
+                                            <Button onClick={() => { this.navigationTo('student-register-notification') }} className={classes.greyButton}>下一步</Button>
+                                        </span>
+                                    </div>
+                                </Form>
                             </div>
                         </div>
 

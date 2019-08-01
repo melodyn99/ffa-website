@@ -12,6 +12,9 @@ import combineStyles from '../../../utils/01MaterialJsStyles/00Common/combineSty
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
+// Material UI
+import Grid from '@material-ui/core/Grid';
+
 // Api
 // import { apiAuth } from '../../../Api/ApiAuth';
 // import { apiConferences } from '../../../Api/ApiConferences';
@@ -20,6 +23,7 @@ import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 // Utils
+import { Form } from 'formik';
 
 // Children components
 import BreadCrumb from '../../../components/100Include/Breadcrumb';
@@ -63,12 +67,47 @@ class StudentRegisterDocumentUpload extends Component {
                             <SubMenu />
 
                             <div className="content">
-                                <div className="bottomControl clearfix">
-                                    <Button onClick={() => { this.navigationTo('student-register-personal-information') }} className={classes.blackButton}>上一步</Button>
-                                    <span
-                                        className="right"><Button onClick={() => { this.navigationTo('student-register-questionnaire') }} className={classes.blackButton}>下一步</Button>
-                                    </span>
-                                </div>
+                                <Form>
+                                    <Grid container spacing={8} alignItems="stretch">
+                                        <Grid item xs={1}>
+                                            <div className="underline">上载文件</div>
+                                        </Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+
+                                        <Grid item xs={1} >
+                                            学历文件:
+                                        </Grid>
+                                        <Grid item xs={11}>
+                                            <Button onClick={() => { }} className={classes.greyButton}>上传文件</Button>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            - 相关专业在校成绩单/证书(包括国内或非本地学历);
+                                        </Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+
+                                        <Grid item xs={1} >
+                                            其他文件:
+                                        </Grid>
+                                        <Grid item xs={11}>
+                                            <Button onClick={() => { }} className={classes.greyButton}>上传文件</Button>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            - 公司证明文件/推介人介绍信
+                                        </Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+                                        <Grid item xs={12}>&nbsp;</Grid>
+                                    </Grid>
+                                    <div className="bottomControl clearfix">
+                                        <Button onClick={() => { this.navigationTo('student-register-personal-information') }} className={classes.blackButton}>上一步</Button>
+                                        <span
+                                            className="right"><Button onClick={() => { this.navigationTo('student-register-questionnaire') }} className={classes.blackButton}>下一步</Button>
+                                        </span>
+                                    </div>
+                                </Form>
                             </div>
                         </div>
 
