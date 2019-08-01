@@ -8,10 +8,14 @@ import { withRouter } from 'react-router-dom';
 import { CommonStyles } from '../../utils/01MaterialJsStyles/00Common/common'
 import combineStyles from '../../utils/01MaterialJsStyles/00Common/combineStyles';
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
+
+// Material UI
+import Grid from '@material-ui/core/Grid';
 
 // Redux
 import { connect } from 'react-redux';
+import { logout } from '../../Redux/Action/authAction';
 
 class Header extends Component {
 
@@ -29,6 +33,10 @@ class Header extends Component {
         this.props.i18n.changeLanguage(param);
     }
 
+    logout = () => {
+        this.props.logoutP();
+    }
+
     _handleRegister = (language, currentPath) => {
         if (typeof currentPath === 'undefined') {
             this.props.history.push(language + '/student-register');
@@ -39,9 +47,9 @@ class Header extends Component {
 
     _handleLogin = (language, currentPath) => {
         if (typeof currentPath === 'undefined') {
-            this.props.history.push('/'+ language + '/login-no-register');
+            this.props.history.push('/' + language + '/login-no-register');
         } else {
-            this.props.history.push('/'+ language +'/login-no-register');
+            this.props.history.push('/' + language + '/login-no-register');
         }
 
     }
@@ -164,29 +172,60 @@ class Header extends Component {
                     }
 
                     <div className="desktop-control">
-                        <Button
-                            className={classes.silverButton}
-                            onClick={() => this._handleRegister(i18n.language, currentPath)}
-                        >报名</Button>
-
-                        <Button
-                            className={classes.goldButton}
-                            onClick={() => this._handleLogin(i18n.language, currentPath)}
-                        >登入</Button>
+                        {(this.props.members.auth && typeof this.props.members.userInfo !== 'undefined')
+                            ?
+                            <Grid container spacing={16} alignItems="center">
+                                <Grid item xs>
+                                    <Grid item xs>你好!</Grid>
+                                    <Grid item xs zeroMinWidth>
+                                        <Typography noWrap>
+                                            {this.props.members.userInfo.display_name}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <Grid item xs>
+                                    <Grid item xs zeroMinWidth>
+                                        <Typography noWrap>
+                                            <Button
+                                                className={classes.blackButton}
+                                                onClick={() => this.logout()}
+                                            >登出</Button>
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            :
+                            <Grid container spacing={16} alignItems="center">
+                                <Grid item xs>
+                                    <Button
+                                        className={classes.silverButton}
+                                        onClick={() => this._handleRegister(i18n.language, currentPath)}
+                                    >报名</Button>
+                                </Grid>
+                                <Grid item xs>
+                                    <Button
+                                        className={classes.goldButton}
+                                        onClick={() => this._handleLogin(i18n.language, currentPath)}
+                                    >登入</Button>
+                                </Grid>
+                            </Grid>
+                        }
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
 
-const mapStateToProps = (state) => (
-    {
-        members: state.auth,
-        router: state.router
-    }
-);
+const mapStateToProps = (state) => ({
+    router: state.router,
+    members: state.auth,
+});
+
+const mapDispatchToProps = dispatch => ({
+    logoutP: () => dispatch(logout),
+});
 
 const combinedStyles = combineStyles(CommonStyles);
 
-export default withTranslation()(connect(mapStateToProps)(withStyles(combinedStyles)(withRouter(Header))));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(withStyles(combinedStyles)(withRouter(Header))));

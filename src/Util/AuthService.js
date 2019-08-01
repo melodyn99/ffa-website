@@ -27,9 +27,9 @@ export function refreshToken() {
 }
 
 export function clearLoginData() {
-  const accessToken = CacheService.getAuthData().access_token;
+  // const accessToken = CacheService.getAuthData().access_token;
   return Promise.all([
-    apiAuth.revokeToken(accessToken),
+    // apiAuth.revokeToken(accessToken),
     setAccessToken(null),
     CacheService.clearAuthData(),
     CacheService.clearProfileData()
