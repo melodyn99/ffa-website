@@ -20,7 +20,7 @@ import { apiConferences } from '../../../Api/ApiConferences';
 
 // Redux
 import { connect } from 'react-redux';
-import { setRelatedCourseData } from '../../../Redux/Action/authAction';
+// import { setRelatedCourseData } from '../../../Redux/Action/authAction';
 
 // Utils
 // import { Formik, Form, input } from 'formik';
@@ -157,12 +157,6 @@ class SchoolCourseInformation extends React.Component {
                 conference_sections: theList.conference_sections,
                 conference_officers: theList.conference_officers,
             });
-
-            // const data = {
-            //     ...this.props.auth.relatedData.course,
-            //     code: theList.code,
-            // }
-            // this.props.setRelatedCourseDataP(data);
         }
 
         const eCb = (obj) => {
@@ -179,12 +173,7 @@ class SchoolCourseInformation extends React.Component {
 
     //** form handle input start **/
     _handleFormInput = (key, value) => {
-        this.setState({
-            [key]: value,
-        });
-    }
-
-    _handleFormSelect = (key, value) => {
+        console.log('ho');
         this.setState({
             [key]: value,
         });
@@ -193,16 +182,16 @@ class SchoolCourseInformation extends React.Component {
     _handleDynamicFormInput = (i, key, value) => {
         // console.log('hello : ', i, key, value);
         const conference_sections = [...this.state.conference_sections];
-        // console.log(array);
         conference_sections[i] = { ...conference_sections[i], [key]: value };
         this.setState({ conference_sections });
     }
 
-    _handleDynamicFormSelect = (key, value) => {
-        this.setState({
-            [key]: value,
-        });
-    }
+    // TODO - ask Raymond and backend what to do
+    // _handleDynamicFormSelect = (key, value) => {
+    //     this.setState({
+    //         [key]: value,
+    //     });
+    // }
 
     _handleAddClass = () => {
         this.setState({
@@ -224,7 +213,7 @@ class SchoolCourseInformation extends React.Component {
                     start_date: '',
                     teachers: [],
                     time_managements: [],
-                    title: ""
+                    title: ''
                 }
             ]
         })
@@ -233,11 +222,78 @@ class SchoolCourseInformation extends React.Component {
 
     // handleSubmit = (values, { setinputError }) => {
     handleSubmit = () => {
-        if (this.props.auth.relatedData.course.conferenceId) {
-            this.editConferenceInfo();
-        } else {
-            this.createConferenceWithEnterInfo();
+        // if (this.props.auth.relatedData.course.conferenceId) {
+        //     this.editConferenceInfo();
+        // } else {
+        this.createConferenceWithEnterInfo();
+        // }
+    }
+
+    // insert
+    createConferenceWithEnterInfo = () => {
+
+        const cb = (obj) => {
+            console.log("cb : ", obj);
         }
+
+        const eCb = (obj) => {
+            console.log("eCb : ", obj);
+        }
+
+        const body = {
+            "active": true,
+            "name": this.state.subjectName,
+            "academic_year": "2019",
+            "academic_term": this.state.academicTerm,
+            "location": "杭州",
+            "subject": "d4314518-5a20-4bc4-ad6a-35ad44c16647",
+            "type": this.state.courseType,
+            "code": this.state.courseCode,
+            "address": this.state.courseAddress,
+            "enrollmenet_start_date": this.state.enrollmenetStartDate,
+            "enrollment_end_date": this.state.enrollmenetEndDate,
+            "credit_requirement": 2019,
+            "fee": this.state.courseFees,
+            "expected_fee": this.state.expectedFees,
+            "actual_fee": 10000,
+            "discount": 0,
+            "quota": 10,
+            "introduction": this.state.courseIntroduction,
+            "emphasis": this.state.courseEmphasis,
+            "benefit": this.state.courseBenefits,
+            "email": this.state.contactEmail,
+            "wechat": this.state.contactWechat,
+            "phone": this.state.contactNumber,
+            "conference_sections": [
+                {
+                    "title": "第1课 - 介绍",
+                    "sequence": 1,
+                    "start_date": 1570323600000,
+                    "end_date": 1570356000000,
+                    "location": "杭州",
+                    "address": "新城东方君悦水星厅",
+                    "teachers": [
+                        { "user": "teacher@ffa.test", "sequence": 1 }
+                    ]
+                },
+                {
+                    "title": "第2课 - 案例研究",
+                    "sequence": 2,
+                    "start_date": 1570582800000,
+                    "end_date": 1570615200000,
+                    "location": "杭州",
+                    "address": "新城东方君悦水星厅",
+                    "teachers": [
+                        { "user": "teacher@ffa.test", "sequence": 1 }
+                    ]
+                }
+            ],
+            "conference_officers": [
+                { "user": "officer@ffa.test" }
+            ]
+        }
+
+        apiConferences.createConference(body, this.props.auth.token, cb, eCb);
     }
 
     // delete
@@ -263,15 +319,11 @@ class SchoolCourseInformation extends React.Component {
     }
 
     render() {
-        console.log(this.state);
-
         // const { classes, t, i18n } = this.props;
 
         const { classes
             //, t, i18n
         } = this.props;
-
-        // console.log(this.state.conference_sections);
 
         return (
             <div>
@@ -439,7 +491,9 @@ class SchoolCourseInformation extends React.Component {
                                         先修课程
                                     </Grid>
                                     <Grid item xs={11}>
-                                        <select>
+                                        <select name="essentialCourse" value={this.state.essentialCourse}
+                                            onChange={e => this._handleFormInput(e.target.name, e.target.value)}
+                                        >
                                             <option value="1">课程1</option>
                                             <option value="2">课程2</option>
                                             <option value="3">课程3</option>
@@ -579,8 +633,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
-    setRelatedCourseDataP: data => dispatch(setRelatedCourseData(data)),
+    // setRelatedCourseDataP: data => dispatch(setRelatedCourseData(data)),
 });
 
 const combinedStyles = combineStyles(CommonStyles);
